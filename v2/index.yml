@@ -1,0 +1,33 @@
+### YamlMime:Hub
+
+title: Javonet 2.0
+summary: Learn to use Javonet to create cross-technological applications in Java, .NET, Perl Python, GoLang, Ruby, NodeJS using any mix of DLLs, JARs Python modules, npm modules. Browse tutorials, sample code, fundamentals, API reference and more. 
+brand: aspnet
+# list of all supported programming languages
+programming-languages: Java, CSharp, Ruby, Perl, Python, Kotlin, GoLang, CPP
+# list of all supported modules
+modules: Python module, Perl module, NPM module, DLL module, JAR module, GoLang module
+
+metadata:
+  title: Javonet 2.0
+  description: Learn to use Javonet to create cross-technological applications in Java, .NET, Perl Python, GoLang, Ruby, NodeJS using any mix of DLLs, JARs Python modules, npm modules. Browse tutorials, sample code, fundamentals, API reference and more. 
+
+# conceptualContent section (optional)
+conceptualContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+  title: Develop Multi-Technological Applications with Javonet 2.0 # < 60 chars (optional)
+  summary: "In this guide you will learn how to use Javonet 2.0 to build cross-technological applications"
+  items:
+    # Card
+    - title: "Getting Started"
+      summary: Quick start guides to let you start building cross technological applications in minutes
+      links:
+        - url: /v2/getting-started/installing-javonet.md
+          itemType: overview
+          text: "Installing Javonet"
+          description: Learn how to add Javonet to your project in Java, .NET, Perl, Python, GoLang, Ruby, NodeJS
+          keywords: some keywords
+          modules: Python module, Perl module, NPM module, DLL module, JAR module
+   
+  # footer (optional)
+  footer: "Contribute to ASP.NET Core docs. Read our [contributor guide](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md)."
