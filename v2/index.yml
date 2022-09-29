@@ -19,15 +19,26 @@ conceptualContent:
   summary: "In this guide you will learn how to use Javonet 2.0 to build cross-technological applications"
   items:
     # Card
-    - title: "Getting Started"
+    - title: 1. Getting started
       summary: Quick start guides to let you start building cross technological applications in minutes
       links:
-        - url: /v2/getting-started/installing-javonet.md
+        - url: /v2/getting-started/01-01-installing-javonet.md
           itemType: overview
-          text: "Installing Javonet"
+          text: Getting started
           description: Learn how to add Javonet to your project in Java, .NET, Perl, Python, GoLang, Ruby, NodeJS
+          keywords: some keywords
+          modules: Python module, Perl module, NPM module, DLL module, JAR module
+
+    # Card
+    - title: 2. Calling methods
+      summary: Quick start guides of calling methods from different technologies
+      links:
+        - url: /v2/getting-started/02-01-invoking-static-methods.md
+          itemType: overview
+          text: Calling methods
+          description: Learn how to call methods from different technologies using Javonet
           keywords: some keywords
           modules: Python module, Perl module, NPM module, DLL module, JAR module
    
   # footer (optional)
-  footer: "Contribute to ASP.NET Core docs. Read our [contributor guide](https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md)."
+  footer: "This is footer"
