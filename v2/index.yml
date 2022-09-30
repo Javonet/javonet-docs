@@ -22,7 +22,7 @@ conceptualContent:
     - title: 1. Getting started
       summary: Quick start guides to let you start building cross technological applications in minutes
       links:
-        - url: /v2/getting-started/01-01-installing-javonet.md
+        - url: /v2/getting-started/installing-javonet.md
           itemType: overview
           text: Getting started
           description: Learn how to add Javonet to your project in Java, .NET, Perl, Python, GoLang, Ruby, NodeJS
@@ -33,7 +33,7 @@ conceptualContent:
     - title: 2. Calling methods
       summary: Quick start guides of calling methods from different technologies
       links:
-        - url: /v2/getting-started/02-01-invoking-static-methods.md
+        - url: /v2/calling-methods/invoking-static-methods.md
           itemType: overview
           text: Calling methods
           description: Learn how to call methods from different technologies using Javonet
@@ -41,4 +41,4 @@ conceptualContent:
           modules: Python module, Perl module, NPM module, DLL module, JAR module
    
   # footer (optional)
-  footer: "This is footer"
+  footer: Learn to use Javonet to create cross-technological applications in Java, .NET, Perl Python, GoLang, Ruby, NodeJS using any mix of DLLs, JARs Python modules, npm modules. Browse tutorials, sample code, fundamentals, API reference and more. 
