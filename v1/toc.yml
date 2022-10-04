@@ -1,0 +1,44 @@
+title: Javonet 1.0
+summary: Learn to use Javonet to create cross-technological applications in Java and .NET. Browse tutorials, sample code, fundamentals, API reference and more. 
+# list of calling technologies
+programming-languages: clr, jvm
+# list of called technologies
+modules: clr, jvm
+
+items:
+- name: Javonet Guides
+  href: index.yml
+- name: Getting started
+  items: 
+  - name: Installing Javonet
+    href: /getting-started/installing-javonet.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+  - name: Activating Javonet
+    href: /getting-started/activating-javonet.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+  - name: Loading libraries
+    href: /getting-started/adding-references-to-libraries.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+- name: Calling methods
+  items:
+  - name: Invoking static methods
+    href: /calling-methods/invoking-static-method.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+  - name: Create instance and calling instance methods
+    href: /calling-methods/create-instance-and-calling-instance-methods.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+- name: 4. Fields and Properties 
+  items: 
+  - name: 4.1. Get/Set values for static fields and properties
+    href: /fields-and-properties/get-set-values-for-static-fields-and-properties.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+  - name: 4.2 Get values for instance fields and properties
+    href: /fields-and-properties/get-values-for-instance-fields-and-properties.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm

@@ -1,37 +1,44 @@
+title: Javonet 2.0
+summary: Learn to use Javonet to create cross-technological applications in Java, .NET, Perl Python, GoLang, Ruby, NodeJS using any mix of DLLs, JARs Python modules, npm modules. Browse tutorials, sample code, fundamentals, API reference and more. 
+# list of calling technologies
+programming-languages: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+# list of called technologies
+modules: clr, jvm, netcore, perl, python, ruby, nodejs
+
 items:
 - name: Javonet Guides
   href: index.yml
 - name: Getting started
   items: 
   - name: Installing Javonet
-    href: ../v2/installing-javonet.md
+    href: /getting-started/installing-javonet.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs  
   - name: Activating Javonet
-    href: ../v2/activating-javonet.md
+    href: /getting-started/activating-javonet.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Loading libraries
-    href: ../v2/adding-references-to-libraries.md
+    href: /getting-started/adding-references-to-libraries.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 - name: Calling methods
   items:
   - name: Invoking static methods
-    href: ../v2/invoking-static-method.md
+    href: /calling-methods/invoking-static-method.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Create instance and calling instance methods
-    href: ../v2/create-instance-and-calling-instance-methods.md
+    href: /calling-methods/create-instance-and-calling-instance-methods.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 - name: 4. Fields and Properties 
   items: 
   - name: 4.1. Get/Set values for static fields and properties
-    href: ../v2/get-set-values-for-static-fields-and-properties.md
+    href: /fields-and-properties/get-set-values-for-static-fields-and-properties.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: 4.2 Get values for instance fields and properties
-    href: ../v2/get-values-for-instance-fields-and-properties.md
+    href: /fields-and-properties/get-values-for-instance-fields-and-properties.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
