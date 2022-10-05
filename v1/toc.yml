@@ -1,12 +1,15 @@
 technologies:
  - slug: clr
    name: CLR
-   file_ext: .cs
+   calling_ext: .cs
    called_ext: .dll
  - slug: jvm
    name: JVM
-   file_ext: .java
+   calling_ext: .java
    called_ext: .jar
+
+calling_technology: clr, jvm
+called_technology: clr, jvm
 
 items:
 - name: Getting started

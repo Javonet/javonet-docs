@@ -1,41 +1,43 @@
 programming-languages:
  - slug: clr
    name: CLR
-   file_ext: .cs
+   calling_ext: .cs
    called_ext: .dll
  - slug: jvm
    name: JVM
-   file_ext: .java
+   calling_ext: .java
    called_ext: .jar
  - slug: netcore
    name: Netcore
-   file_ext: .cs
+   calling_ext: .cs
    called_ext: .dll
  - slug: perl
    name: Perl
-   file_ext: .pm
+   calling_ext: .pm
    called_ext: .pm
  - slug: python
    name: Python
-   file_ext: .py
+   calling_ext: .py
    called_ext: .py
  - slug: ruby
    name: Ruby
-   file_ext: .rb
+   calling_ext: .rb
    called_ext: .rb
  - slug: nodejs
    name: NodeJS
-   file_ext: .js
+   calling_ext: .js
    called_ext: .js
  - slug: cpp
    name: C++
-   file_ext: .cpp
+   calling_ext: .cpp
    called_ext: .dll
  - slug: golang
    name: GoLang
-   file_ext: .go
+   calling_ext: .go
    called_ext: .go
 
+calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+called_technology: clr, jvm, netcore, perl, python, ruby, nodejs  
 
 items:
 - name: Javonet Guides
