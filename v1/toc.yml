@@ -1,13 +1,21 @@
-title: Javonet 1.0
-summary: Learn to use Javonet to create cross-technological applications in Java and .NET. Browse tutorials, sample code, fundamentals, API reference and more. 
-# list of calling technologies
-programming-languages: clr, jvm
-# list of called technologies
-modules: clr, jvm
+programming-languages:
+ - slug: clr
+   name: CLR
+   ext: .cs
+ - slug: jvm
+   name: JVM
+   ext: .java
+
+modules:
+ - slug: clr
+   name: CLR
+   ext: .dll
+ - slug: jvm
+   name: JVM
+   ext: .jar
+
 
 items:
-- name: Javonet Guides
-  href: index.yml
 - name: Getting started
   items: 
   - name: Installing Javonet
@@ -18,10 +26,23 @@ items:
     href: /getting-started/activating-javonet.md
     calling_technology: clr, jvm
     called_technology: clr, jvm
-  - name: Loading libraries
+  - name: Adding references to libraries
     href: /getting-started/adding-references-to-libraries.md
     calling_technology: clr, jvm
     called_technology: clr, jvm
+  - name: XML Configuration File
+    href: /getting-started/xml-configuration-file.md
+    calling_technology: jvm
+    called_technology: clr
+  - name: Using the Javonet Fluent Interface
+    href: /getting-started/fluent-interface.md
+    calling_technology: jvm
+    called_technology: clr
+  - name: Using Back-end and UI Components
+    href: /getting-started/using-backend-and-ui-components.md
+    calling_technology: jvm
+    called_technology: clr
+
 - name: Calling methods
   items:
   - name: Invoking static methods
@@ -32,13 +53,29 @@ items:
     href: /calling-methods/create-instance-and-calling-instance-methods.md
     calling_technology: clr, jvm
     called_technology: clr, jvm
-- name: 4. Fields and Properties 
+
+- name: Fields and properties 
   items: 
-  - name: 4.1. Get/Set values for static fields and properties
+  - name: Get/Set values for static fields and properties
     href: /fields-and-properties/get-set-values-for-static-fields-and-properties.md
     calling_technology: clr, jvm
     called_technology: clr, jvm
-  - name: 4.2 Get values for instance fields and properties
+  - name: Get values for instance fields and properties
     href: /fields-and-properties/get-values-for-instance-fields-and-properties.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+
+- name: Advanced activation and licencing
+  items: 
+  - name: Runtime vs. offline vs. compile time activation
+    href: /advanced-activation-and-licensing/runtime-offline-compile-time-activation.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm
+  - name: Project activation tool
+    href: /advanced-activation-and-licensing/project-activation-tool.md
+    calling_technology: clr, jvm
+    called_technology: clr, jvm  
+  - name: Delegationg activation server
+    href: /advanced-activation-and-licensing/delegating-activation-server.md
     calling_technology: clr, jvm
     called_technology: clr, jvm

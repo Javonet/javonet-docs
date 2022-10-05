@@ -1,9 +1,32 @@
-title: Javonet 2.0
-summary: Learn to use Javonet to create cross-technological applications in Java, .NET, Perl Python, GoLang, Ruby, NodeJS using any mix of DLLs, JARs Python modules, npm modules. Browse tutorials, sample code, fundamentals, API reference and more. 
-# list of calling technologies
-programming-languages: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
-# list of called technologies
-modules: clr, jvm, netcore, perl, python, ruby, nodejs
+programming-languages:
+ - slug: clr
+   name: CLR
+   ext: .cs
+ - slug: jvm
+   name: JVM
+   ext: .java
+ - slug: netcore
+   name: Netcore
+   ext: .cs
+ - slug: perl
+   name: Perl
+   ext: .pm
+ - slug: python
+   name: Python
+   ext: .py
+ - slug: ruby
+   name: Ruby
+   ext: .rb
+ - slug: nodejs
+   name: NodeJS
+   ext: .js
+ - slug: cpp
+   name: C++
+   ext: .cpp
+ - slug: golang
+   name: GoLang
+   ext: .go
+
 
 items:
 - name: Javonet Guides
@@ -32,13 +55,13 @@ items:
     href: /calling-methods/create-instance-and-calling-instance-methods.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
-- name: 4. Fields and Properties 
+- name: Fields and Properties 
   items: 
-  - name: 4.1. Get/Set values for static fields and properties
+  - name: Get/Set values for static fields and properties
     href: /fields-and-properties/get-set-values-for-static-fields-and-properties.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
-  - name: 4.2 Get values for instance fields and properties
+  - name: Get values for instance fields and properties
     href: /fields-and-properties/get-values-for-instance-fields-and-properties.md
     calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
