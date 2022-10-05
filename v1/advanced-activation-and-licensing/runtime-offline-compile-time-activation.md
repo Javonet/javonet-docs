@@ -3,7 +3,6 @@
 :description: Runtime vs. offline vs. compile time activation
 :::
 
-
 # Runtime vs. offline vs. compile time activation
 
 ## Overview

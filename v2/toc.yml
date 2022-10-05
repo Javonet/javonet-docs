@@ -1,31 +1,40 @@
 programming-languages:
  - slug: clr
    name: CLR
-   ext: .cs
+   file_ext: .cs
+   called_ext: .dll
  - slug: jvm
    name: JVM
-   ext: .java
+   file_ext: .java
+   called_ext: .jar
  - slug: netcore
    name: Netcore
-   ext: .cs
+   file_ext: .cs
+   called_ext: .dll
  - slug: perl
    name: Perl
-   ext: .pm
+   file_ext: .pm
+   called_ext: .pm
  - slug: python
    name: Python
-   ext: .py
+   file_ext: .py
+   called_ext: .py
  - slug: ruby
    name: Ruby
-   ext: .rb
+   file_ext: .rb
+   called_ext: .rb
  - slug: nodejs
    name: NodeJS
-   ext: .js
+   file_ext: .js
+   called_ext: .js
  - slug: cpp
    name: C++
-   ext: .cpp
+   file_ext: .cpp
+   called_ext: .dll
  - slug: golang
    name: GoLang
-   ext: .go
+   file_ext: .go
+   called_ext: .go
 
 
 items:

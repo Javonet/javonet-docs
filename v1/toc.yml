@@ -1,19 +1,12 @@
-programming-languages:
+technologies:
  - slug: clr
    name: CLR
-   ext: .cs
+   file_ext: .cs
+   called_ext: .dll
  - slug: jvm
    name: JVM
-   ext: .java
-
-modules:
- - slug: clr
-   name: CLR
-   ext: .dll
- - slug: jvm
-   name: JVM
-   ext: .jar
-
+   file_ext: .java
+   called_ext: .jar
 
 items:
 - name: Getting started
@@ -46,7 +39,7 @@ items:
 - name: Calling methods
   items:
   - name: Invoking static methods
-    href: /calling-methods/invoking-static-method.md
+    href: /calling-methods/invoking-static-methods.md
     calling_technology: clr, jvm
     called_technology: clr, jvm
   - name: Create instance and calling instance methods
@@ -75,7 +68,7 @@ items:
     href: /advanced-activation-and-licensing/project-activation-tool.md
     calling_technology: clr, jvm
     called_technology: clr, jvm  
-  - name: Delegationg activation server
+  - name: Delegating activation server
     href: /advanced-activation-and-licensing/delegating-activation-server.md
     calling_technology: clr, jvm
     called_technology: clr, jvm
