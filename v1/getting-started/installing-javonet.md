@@ -3,7 +3,9 @@
 :description: This article provides an information about installing Javonet
 :::
 
-# Prerequisites
+# Installing Javonet
+
+## Prerequisites
 
 Before using Javonet, make sure you have following pre-requisites installed:
 - JDK 1.6 or newer
@@ -23,7 +25,7 @@ Before using Javonet, make sure you have following pre-requisites installed:
 - Visual C++ Runtime 2013: [download here](https://www.microsoft.com/en-us/download/details.aspx?id=40784)
 - .NET Framework 4.5: [download here](https://www.microsoft.com/en-us/download/details.aspx?id=30653)
 
-# Adding Javonet Reference
+## Adding Javonet Reference to your project
 
-## Java
+As Javonet is single file solution, all you need to start using it is to [download the latest Javonet package](https://my.javonet.com/signup/) and add a reference to this file in your project. If any of pre-requisites will be missing Javonet will detect them automatically and display in exception message the URLs for download of required dependencies.
 

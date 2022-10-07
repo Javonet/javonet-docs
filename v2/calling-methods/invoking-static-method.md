@@ -7,4 +7,4 @@
 
 Example how to call static method
 
-:::code source="~/snippets/v2/`{called_technology}`/`{calling_technology}`/IntegrationTests.`{ext}`" ID="InvokeStaticMethod":::
+:::code source="~/v2/snippets/`{called_technology}`/`{calling_technology}`/IntegrationTests.`{ext}`" ID="InvokeStaticMethod":::

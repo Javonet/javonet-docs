@@ -123,13 +123,6 @@ items:
     calling_technology: jvm
     called_technology: clr
 
-- name: Referencing libraries
-  items: 
-  - name: Adding references to libraries
-    href: /referencing-libraries/adding-references-to-libraries.md
-    calling_technology: jvm
-    called_technology: clr
-
 - name: Offline activation
   items: 
   - name: Using Javonet hardware dongle
