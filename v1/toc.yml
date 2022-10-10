@@ -28,8 +28,8 @@ items:
     called_technology: clr, jvm
   - name: XML Configuration File
     href: /getting-started/xml-configuration-file.md
-    calling_technology: jvm
-    called_technology: clr
+    calling_technology: clr, jvm
+    called_technology: jvm, clr
   - name: Using the Javonet Fluent Interface
     href: /getting-started/fluent-interface.md
     calling_technology: jvm

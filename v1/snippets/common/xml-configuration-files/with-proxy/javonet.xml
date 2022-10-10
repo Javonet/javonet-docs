@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<javonet>
+<activation>
+      <username>YOUR NAME</username>
+      <email>your@email.com</email>
+      <licencekey>YOUR-LICENSE-KEY</licencekey>
+      <proxy>
+           <host>HOST_NAME:PORT</host>
+           <username>OPTIONAL_USER_NAME</username>
+           <password>OPTIONAL_USER_PASSWORD</password>
+           <domain>OPTIONAL_USER_DOMAIN:PORT</domain>
+      </proxy>
+</activation>
+<settings>
+    <framework>v40</framework>
+</settings>
+</javonet>

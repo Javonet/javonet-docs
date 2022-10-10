@@ -5,5 +5,11 @@
 
 # Adding references to libraries
 
-To access any Java JAR package from .NET or 
+Javonet allows you to use any library from .NET or Java. As with any regular application, you need to reference the libraries you are planning to use. You can reference any JAR file or DLL file on your computer or registered in GAC, as well as any library from the .NET Framework.
+
+:::code source="~/v1/snippets/`{called_technology}`/`{calling_technology}`/adding-references.`{file_ext}`":::
+
+As argument you provide the relative or full path to your JAR or DLL package. If your package has dependencies on other packages you should add reference to each package first.
+
+Now you can access any objects stored in this package. Use static classes, create instances, call methods, use fields and properties and much more.
 

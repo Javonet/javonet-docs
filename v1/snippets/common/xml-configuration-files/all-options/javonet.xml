@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<javonet>
+<references> <!-- optional -->
+    <reference>System.Windows.Forms</reference>
+    <reference>System.Drawing</reference>
+    <reference>yourDotNet.dll</reference>
+</references>
+<activation> <!-- mandatory -->
+    <username>YOUR NAME</username>
+    <email>your@email.com</email>
+    <licencekey>YOUR-LICENSE-KEY</licencekey>
+    <proxy> <!-- optional -->
+         <host>your@email.com</host>
+         <username>your@email.com</username>
+         <password>your@email.com</password>
+         <domain>your@email.com</domain>
+    </proxy>
+</activation>
+<settings> <!-- optional (default .NET v35 and MTA) -->
+    <apartmentState>STA</apartmentState> <!-- optional (default MTA) -->
+    <framework>v40</framework> <!-- optional (default .NET v35) -->
+</settings>
+</javonet>
