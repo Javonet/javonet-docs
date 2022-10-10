@@ -7,7 +7,7 @@
 
 To start using Javonet in your application you need to activate your license first. This must be done before you use any other Javonet features.
 
-:::code source="~/v1/snippets/`{called_technology}`/`{calling_technology}`/Activation.`{file_ext}`" ID="Javonet_activate":::
+:::code source="v1/snippets/`{called_technology}`/`{calling_technology}`/Activation.`{file_ext}`" ID="Javonet_activate":::
 
 Activation must be called only once at the start-up of your application. During the first activation, Javonet contacts our servers and generates a javonet.lic file in your application directory. All subsequent calls simply verify this file.
 
@@ -51,8 +51,8 @@ Simply name the file "javonet.xml" and place it in the root directory of your Ja
 
 Sample Javonet XML configuration file
 
-:::code source="~/v1/snippets/common/xml-configuration-files/short-file/javonet.xml":::
+:::code source="v1/snippets/common/xml-configuration-files/short-file/javonet.xml":::
 
 Starting with version 1.3, Javonet supports proxy settings for activations. These settings can be defined as activate method arguments or as an optional tag in your XML configuration file using the following syntax:
 
-:::code source="~/v1/snippets/common/xml-configuration-files/with-proxy/javonet.xml":::
+:::code source="v1/snippets/common/xml-configuration-files/with-proxy/javonet.xml":::
