@@ -21,6 +21,6 @@ After logging in, go to Licence Keys subpage. There are your credentials and tri
 
 To start using Javonet in your application you need to activate your license first. This must be done before you use any other Javonet features.
 
-:::code source="v1/snippets/`{called_technology}`/`{calling_technology}`/Activation.`{file_ext}`" ID="Javonet_activate":::
+:::code source="v1/snippets/`{called_technology}`/`{calling_technology}`/Activation.`{calling_ext}`" ID="Javonet_activate":::
 
 Activation must be called only once at the start-up of your application. During the first activation, Javonet contacts our servers and generates a javonet.lic file in your application directory. All subsequent calls simply verify this file.

@@ -7,4 +7,4 @@
 
 Example how to create instance and call instance method
 
-:::code source="~/v2/snippets/`{called_technology}`/`{calling_technology}`/IntegrationTests.`{file_ext}`" ID="StandardLibrary_InvokeInstanceMethod":::
+:::code source="v2/snippets/`{called_technology}`/`{calling_technology}`/IntegrationTests.`{calling_ext}`" ID="StandardLibrary_InvokeInstanceMethod":::
