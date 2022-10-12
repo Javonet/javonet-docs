@@ -13,4 +13,4 @@ Simply name the file "javonet.xml" and place it in the root directory of your Ja
 
 Below you can find the full structure of the XML configuration file. Some of the tags are optional. 
 
-:::code source="~/v1/snippets/common/xml-configuration-files/all-options/javonet.xml":::
+:::code source="v1/snippets/common/xml-configuration-files/all-options/javonet.xml":::
