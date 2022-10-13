@@ -20,3 +20,10 @@ To start using Javonet in your `{calling_technology}` application you need to ac
 :::code source="v2/snippets/`{calling_technology}`/common/activation.`{calling_ext}`" ID="Javonet_activate":::
 
 Activation must be called only once at the start-up of your `{calling_technology}` application. During the first activation, Javonet contacts our servers and generates a javonet.lic file in your application directory. All subsequent calls simply verify this file.
+
+TEST:
+`{calling_technology}`
+`{called_technology}`
+`{calling_ext}`
+`{called_ext}`
+
