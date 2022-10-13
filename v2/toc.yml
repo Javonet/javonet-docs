@@ -1,34 +1,44 @@
 programming-languages:
  - slug: clr
    name: CLR
-   ext: .cs
+   ext: cs
  - slug: jvm
    name: JVM
-   ext: .java
+   ext: java
  - slug: netcore
-   name: Netcore
-   ext: .cs
+   name: .Net Core
+   ext: cs
  - slug: perl
    name: Perl
-   ext: .pm
+   ext: pm
  - slug: python
    name: Python
-   ext: .py
+   ext: py
  - slug: ruby
    name: Ruby
-   ext: .rb
+   ext: rb
  - slug: nodejs
    name: NodeJS
-   ext: .js
+   ext: js
  - slug: cpp
    name: C++
    ext: .cpp
  - slug: golang
    name: GoLang
-   ext: .go
+   ext: go
+ - slug: csharp
+   name: C#
+   ext: cs
+ - slug: java
+   name: Java
+   ext: java
+ - slug: javascript
+   name: JavaScript
+   ext: js
 
-calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
-called_technology: clr, jvm, netcore, perl, python, ruby, nodejs  
+
+calling_technology: csharp, cpp, golang, java, perl, python, ruby, javascript 
+called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 
 items:
 - name: Javonet Guides
