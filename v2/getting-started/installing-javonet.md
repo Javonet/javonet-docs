@@ -1,6 +1,6 @@
 # Overview
 
-Javonet does not need any installation steps, all you need to do is to add reference to Javonet package in your project.
+Javonet does not need any installation steps, all you need to do is to add reference to Javonet package in your `{calling_technology}` project.
 
 ## Downloading Javonet Package
 
