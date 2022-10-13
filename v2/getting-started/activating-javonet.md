@@ -23,8 +23,12 @@ Activation must be called only once at the start-up of your `{calling_technology
 
 TEST:
 `{calling_technology}`
+
 `{called_technology}`
-`{calling_ext}`
-`{called_ext}`
+
 `{ext}`
+
+`{name}`
+
+`{slug}`
 
