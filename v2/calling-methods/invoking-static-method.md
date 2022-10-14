@@ -5,7 +5,7 @@
 
 # Invoking static methods
 
-This article provides an introduction to cross-technology invocation of static methods when calling the **`{called_name}`** static method from **`{calling_name}`**. The article explains how to invoke any static method, pass arguments and retrieve the results.
+This article provides an introduction to cross-technology invocation of static methods when `calling` the **`{called_name}`** static method from **`{calling_name}`**. The article explains how to invoke any static method, pass arguments and retrieve the results.
 
 With Javonet you can interact with **`{called_name}`** static methods like they were available in **`{calling_name}`** but invocation must be performed through Javonet SDK API, passing the name of the target method as String.
 
