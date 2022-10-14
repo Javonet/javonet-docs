@@ -7,4 +7,4 @@
 
 Javonet offers a robust fluent interface that lets you simplify and shorten operations on .NET objects.
 
-:::code source="~/v1/snippets/`{called_technology}`/`{calling_technology}`/fluent-interface.`{file_ext}`":::
+:::code source="~/v1/snippets/`{calling_tech}`/`{called_tech}`/fluent-interface.`{calling_ext}`":::
