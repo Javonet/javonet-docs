@@ -19,6 +19,6 @@ Assuming we have a library with the following class in it:
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_tech_ext!!!!!!!}`":::
 
-We can invoke static method with teh following command:
+We can invoke static method with the following command:
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/IntegrationTests.`{ext}`" ID="TestResources_InvokeStaticMethod":::
