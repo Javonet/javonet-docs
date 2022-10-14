@@ -1,14 +1,18 @@
 technologies:
  - slug: clr
    name: CLR
-   calling_ext: .cs
-   called_ext: .cs
+   ext: cs
  - slug: jvm
    name: JVM
-   calling_ext: .java
-   called_ext: .java
+   ext: java
+ - slug: csharp
+   name: C#
+   ext: cs
+ - slug: java
+   name: Java
+   ext: java
 
-calling_technology: clr, jvm
+calling_technology: csharp, java
 called_technology: clr, jvm
 
 items:
@@ -16,176 +20,175 @@ items:
   items: 
   - name: Installing Javonet
     href: /getting-started/installing-javonet.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
   - name: Activating Javonet
     href: /getting-started/activating-javonet.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
   - name: Adding references to libraries
     href: /getting-started/adding-references-to-libraries.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
   - name: XML Configuration File
     href: /getting-started/xml-configuration-file.md
-    calling_technology: clr, jvm
-    called_technology: jvm, clr
+    calling_technology: csharp, java
+    called_technology: clr, jvm
   - name: Using the Javonet Fluent Interface
     href: /getting-started/fluent-interface.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Using Back-end and UI Components
     href: /getting-started/using-backend-and-ui-components.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Calling methods
   items:
   - name: Invoking static methods
     href: /calling-methods/invoking-static-methods.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
   - name: Create instance and calling instance methods
     href: /calling-methods/create-instance-and-calling-instance-methods.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
 
 - name: Working with objects
   items: 
   - name: Creating instance of generic object
     href: /working-with-objects/creating-instance-of-generic-object.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Extending a class and wrapping methods
     href: /working-with-objects/extending-a-class-and-wrapping-methods.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Fields and properties 
   items: 
   - name: Get/Set values for static fields and properties
     href: /fields-and-properties/get-set-values-for-static-fields-and-properties.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
   - name: Get/Set values for instance fields and properties
     href: /fields-and-properties/get-set-values-for-instance-fields-and-properties.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
 
 - name: Methods arguments
   items: 
   - name: Passing reference-type arguments
     href: /methods-arguments/passing-reference-type-arguments.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Passing arguments by reference with 'ref' and 'out' keywords
     href: /methods-arguments/passing-arguments-by-reference-wth-keywords.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Passing typeof(Type) as method argument
     href: /methods-arguments/passing-typeof-type-as-method-argument.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Calling overloaded method passing null argument
     href: /methods-arguments/calling-overloaded-method-passing-null-argument.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Nested types
   items: 
   - name: Using nested types
     href: /nested-types/using-nested-types.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Enums
   items: 
   - name: Using enum type
     href: /Enums/using-enum-type.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Arrays and collections
   items: 
   - name: Using value-type and reference-type arrays
     href: /arrays-and-collections/using-value-type-and-reference-type-arrays.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Working with arrays and collections
     href: /arrays-and-collections/working-with-arrays-and-collections.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Embedding UI controls
   items: 
   - name: Embedding .NET User Controls in Java AWT, Swing or JAvaFX
     href: /embedding-ui-controls/embedding-net-user-controls.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Offline activation
   items: 
   - name: Using Javonet hardware dongle
     href: /offline-activation/using-javonet-hardware-dongle.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Events and delegates
   items: 
   - name: Subscribing to events
     href: /events-and-delegates/subscribing-to-events.md
-    calling_technology: jvm
-    called_technology: clr   
-
+    calling_technology: java
+    called_technology: clr
 
 - name: Disposing and garbage collection
   items: 
   - name: Disposing of objects
     href: /disposing-and-garbage-collection/disposing-of-objects.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr   
   - name: Batching GC with DelayGcContext
     href: /disposing-and-garbage-collection/batching-gc-with-delaygccontext.md
-    calling_technology: jvm
-    called_technology: clr   
+    calling_technology: java
+    called_technology: clr 
 
 - name: .NET configuration files (AppConfig, WebConfig)
   items: 
   - name: Accessing the .NET AppConfig File (connectionStrings and appSettings)
     href: /net-configuration-files/accessing-the-net-appconfig-file.md
-    calling_technology: jvm
-    called_technology: clr   
+    calling_technology: java
+    called_technology: clr 
 
 - name: Exceptions, debugging, testing
   items: 
   - name: Handling activation issues
     href: /exceptions-debugging-testing/handling-activation-issues.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Handling exceptions
     href: /exceptions-debugging-testing/handling-exceptions.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Debugging
     href: /exceptions-debugging-testing/debugging.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
   - name: Debugging Javonet enabled application
     href: /exceptions-debugging-testing/debugging-javonet-enabled-application.md
-    calling_technology: jvm
+    calling_technology: java
     called_technology: clr
 
 - name: Advanced activation and licencing
   items: 
   - name: Runtime vs. offline vs. compile time activation
     href: /advanced-activation-and-licensing/runtime-offline-compile-time-activation.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm
   - name: Project activation tool
     href: /advanced-activation-and-licensing/project-activation-tool.md
-    calling_technology: clr, jvm
-    called_technology: clr, jvm  
+    calling_technology: csharp, java
+    called_technology: clr, jvm
   - name: Delegating activation server
     href: /advanced-activation-and-licensing/delegating-activation-server.md
-    calling_technology: clr, jvm
+    calling_technology: csharp, java
     called_technology: clr, jvm

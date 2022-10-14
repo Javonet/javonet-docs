@@ -47,33 +47,34 @@ items:
   items: 
   - name: Installing Javonet
     href: /getting-started/installing-javonet.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Activating Javonet
     href: /getting-started/activating-javonet.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Adding references to libraries
     href: /getting-started/adding-references-to-libraries.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+
 - name: Calling methods
   items:
   - name: Invoking static methods
     href: /calling-methods/invoking-static-method.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Creating instance and calling instance methods
     href: /calling-methods/creating-instance-and-calling-instance-methods.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 - name: Fields and Properties 
   items: 
   - name: Getting and setting values for static fields and properties
     href: /fields-and-properties/getting-and-setting-values-for-static-fields-and-properties.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Geting values for instance fields and properties
     href: /fields-and-properties/getting-values-for-instance-fields-and-properties.md
-    calling_technology: clr, cpp, golang, jvm, netcore, perl, python, ruby, nodejs  
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
