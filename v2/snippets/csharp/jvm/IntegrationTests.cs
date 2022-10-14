@@ -1,4 +1,4 @@
-﻿using Xunit;
+using Xunit;
 using Xunit.Abstractions;
 using Javonet.Clr.Utils;
 
@@ -66,7 +66,7 @@ namespace Javonet.Clr.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_InvokeStaticMethod_multiplyByTwo_25_50()
+		public void Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
 		{
 			// <TestResources_InvokeStaticMethod>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
@@ -79,7 +79,7 @@ namespace Javonet.Clr.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_GetStaticField_staticValue_3()
+		public void Test_Jvm_TestResources_GetStaticField_StaticValue_3()
 		{
 			// <TestResources_GetStaticField>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
@@ -92,7 +92,7 @@ namespace Javonet.Clr.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_SetStaticField_staticValue_75()
+		public void Test_Jvm_TestResources_SetStaticField_StaticValue_75()
 		{
 			// <TestResources_SetStaticField>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
@@ -106,7 +106,7 @@ namespace Javonet.Clr.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_InvokeInstanceMethod_multiplyTwoNumbers_4_5_20()
+		public void Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
 		{
 			// <TestResources_InvokeInstanceMethod>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
@@ -120,7 +120,7 @@ namespace Javonet.Clr.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_GetInstanceField_publicValue_1()
+		public void Test_Jvm_TestResources_GetInstanceField_PublicValue_1()
 		{
 			// <TestResources_GetInstanceField>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
