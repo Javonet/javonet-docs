@@ -5,6 +5,20 @@
 
 # Invoking static methods
 
-Example how to call static method
+## Standard `{called_technology}` library
 
-:::code source="v2/snippets/`{called_technology}`/`{calling_technology}`/IntegrationTests.`{calling_ext}`" ID="StandardLibrary_InvokeStaticMethod":::
+To call static method from standard `{called_technology}` library.
+
+:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/IntegrationTests.`{ext}`" ID="StandardLibrary_InvokeStaticMethod":::
+
+## Custom `{called_technology}` library
+
+Example how to call static method from any library written for `{called_technology}`:
+
+Assuming we have a library with the following class in it:
+
+:::code source="v2/snippets/testResouces/`{called_technology}`/IntegrationTests.`{called_tech_ext!!!!!!!}`":::
+
+We can invoke static method with teh following command:
+
+:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/IntegrationTests.`{ext}`" ID="TestResources_InvokeStaticMethod":::
