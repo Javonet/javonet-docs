@@ -14,6 +14,7 @@ Choose Javonet SDK package for your technology and follow the displayed instruct
 Javonet is also available on public feeds: 
 
 https://www.nuget.org/packages/Javonet.Clr.Sdk
+
 https://www.nuget.org/packages/Javonet.Netcore.Sdk 
 
 Depending on your technology you will need to install Javonet or add it as a reference to a project.
