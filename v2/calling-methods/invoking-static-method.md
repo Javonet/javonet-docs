@@ -17,7 +17,7 @@ Example how to call static method from any library written for `{called_technolo
 
 Assuming we have a library with the following class in it:
 
-:::code source="v2/snippets/testResouces/`{called_technology}`/TestClass.`{called_tech_ext!!!!!!!}`":::
+:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_tech_ext!!!!!!!}`":::
 
 We can invoke static method with teh following command:
 
