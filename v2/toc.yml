@@ -1,12 +1,12 @@
 programming-languages:
  - slug: clr
-   name: CLR
+   name: .NET Framework
    ext: cs
  - slug: jvm
    name: JVM
    ext: java
  - slug: netcore
-   name: .Net Core
+   name: .NET Core
    ext: cs
  - slug: perl
    name: Perl

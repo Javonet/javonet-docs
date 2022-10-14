@@ -13,9 +13,7 @@ To call static method from standard `{called_name}` library.
 
 ## Custom `{called_name}` library
 
-Example how to call static method from any library written for `{called_name}`:
-
-Assuming we have a library with the following class in it:
+Assuming we have a library written for `{called_name}` with the following class in it:
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
 
