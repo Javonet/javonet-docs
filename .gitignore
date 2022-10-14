@@ -1,2 +1,7 @@
-.vscode/settings.json
+.vscode
+.vs
+.idea
+bin
+obj
+__pycache__
 eclipse-formatter.xml
