@@ -1,23 +1,23 @@
 using Xunit;
 using Xunit.Abstractions;
-using Javonet.Clr.Utils;
+using Javonet.Utils;
 
-namespace Javonet.Clr.Sdk.Tests
+namespace Javonet.Netcore.Sdk.Tests
 {
-	public class ClrToJvmIntegrationTests
+	public class NetcoreToJvmIntegrationTests
 	{
 		private readonly ITestOutputHelper output;
 		//this constructor is called only once, before first test
-		public ClrToJvmIntegrationTests(ITestOutputHelper output)
+		public NetcoreToJvmIntegrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
 			Assert.Equal(0, result);
 		}
-		private static readonly string	_javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
+		private static readonly string _javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
 		// <TestResources_TestClassValues> 
-		private static readonly string	libraryPath = _javonetSrcRoot + "/testResources/jvm/JavaTestClass.jar";
-		private static readonly string	className = "javonet.test.resources.jvm.JavaTestClass";
+		private static readonly string libraryPath = _javonetSrcRoot + "/testResources/jvm/JavaTestClass.jar";
+		private static readonly string className = "javonet.test.resources.jvm.JavaTestClass";
 		// </TestResources_TestClassValues> 
 
 		[Fact]
@@ -111,7 +111,7 @@ namespace Javonet.Clr.Sdk.Tests
 			// <TestResources_InvokeInstanceMethod>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 			var instance = Javonet.InMemory().Jvm().GetType(className).CreateInstance().Execute();
-			var call = instance.InvokeInstanceMethod("multiplyTwoNumbers", 5,4).Execute();
+			var call = instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute();
 			var result = (int)call.GetValue();
 			// </TestResources_InvokeInstanceMethod>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);

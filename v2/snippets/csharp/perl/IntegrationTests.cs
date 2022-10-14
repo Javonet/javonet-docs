@@ -3,20 +3,14 @@ using Xunit.Abstractions;
 
 namespace Javonet.Netcore.Sdk.Tests
 {
-	public class NetcoreActivationTests
+	public class NetcoreToPerlIntegrationTests
 	{
 		private readonly ITestOutputHelper output;
-		public NetcoreActivationTests(ITestOutputHelper output)
+		//this constructor is called only once, before first test
+		public NetcoreToPerlIntegrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
-		}
-
-		[Trait("Test", "Integration")]
-		public void Test_Activation_CorrectCredentials_Returns0()
-		{
-			// <Javonet_activate>
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
-			// </Javonet_activate>
 			Assert.Equal(0, result);
 		}
 	}
