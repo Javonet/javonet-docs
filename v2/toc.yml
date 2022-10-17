@@ -22,7 +22,7 @@ programming-languages:
    ext: js
  - slug: cpp
    name: C++
-   ext: .cpp
+   ext: cpp
  - slug: golang
    name: GoLang
    ext: go
