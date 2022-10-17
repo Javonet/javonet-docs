@@ -1,4 +1,3 @@
-#ifdef _WIN32
 #include <gtest/gtest.h>
 #include "Javonet.h"
 #define _USE_MATH_DEFINES
@@ -101,5 +100,3 @@ namespace CppToJvmIntegrationTests {
 		EXPECT_EQ(2, result);
 	}
 }
-
-#endif //_WIN32
