@@ -17,6 +17,10 @@ Code example below represents the sample `{called_name}` class that will be used
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
 
+Using this values:
+
+:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
+
 To invoke static method from the custom `{called_name}` library with `{calling_name}` code:
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_InvokeStaticMethod":::

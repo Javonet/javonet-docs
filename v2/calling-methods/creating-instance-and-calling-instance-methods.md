@@ -11,6 +11,10 @@ Assuming we have a custom library written for `{called_name}` with the following
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
 
+Using this values:
+
+:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
+
 To create instance and call instance method from the custom `{called_name}` library:
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_InvokeInstanceMethod":::
