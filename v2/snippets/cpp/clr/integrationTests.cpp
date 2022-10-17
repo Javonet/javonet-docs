@@ -38,9 +38,10 @@ namespace CppToClrIntegrationTests {
 		// <StandardLibrary_InvokeInstanceMethod>
 		auto instance = Javonet::InMemory()->Clr()->GetType("System.DateTime")->CreateInstance({ 2022, 5, 9 })->Execute();
 		auto call = instance->InvokeInstanceMethod("ToShortDateString")->Execute();
+		auto result = std::any_cast<std::u8string>(call->GetValue());
 		// </StandardLibrary_InvokeInstanceMethod>
 		EXPECT_EQ(36, std::any_cast<std::u8string>(instance->GetValue()).length());
-		EXPECT_NE(std::u8string::npos, std::any_cast<std::u8string>(call->GetValue()).find(u8"2022"));
+		EXPECT_NE(std::u8string::npos, result.find(u8"2022"));
 	}
 
 	TEST(Integration, Test_Clr_TestResources_LoadLibrary_libraryPath_NoExeption) {
