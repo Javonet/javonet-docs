@@ -7,9 +7,12 @@
 
 Javonet allows you to use any library from all supported technologies. As with any regular application, you need to reference the libraries you are planning to use. 
 
-:::code source="v2/snippets/`{calling_tech}`/`{called_tech}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
 
-:::code source="v2/snippets/`{calling_tech}`/`{called_tech}`/integrationTests.`{calling_ext}`" ID="TestResources_LoadLibrary":::
+:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
+
+
+:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_LoadLibrary":::
+
 
 As argument you provide the relative or full path to file or package. 
 If your package has dependencies on other packages you should add reference to each package first.
