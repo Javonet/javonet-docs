@@ -15,7 +15,7 @@ Javonet allows you to pass any `{calling_name}` value type as argument to `{call
 
 Code example below represents the sample `{called_name}` class that will be used in following sections to present the right syntax to invoke static methods defined in potential target `{called_name}` library.
 
-:::code source="v2/snippets/testResources/`{called_technology}`/`{called_technology}`TestClass.`{called_ext}`":::
+:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
 
 To invoke static method from the custom `{called_name}` library with `{calling_name}` code:
 
