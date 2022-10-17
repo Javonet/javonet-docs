@@ -41,8 +41,6 @@ calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
 called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 
 items:
-- name: Javonet Guides
-  href: index.yml
 - name: Getting started
   items: 
   - name: Installing Javonet
