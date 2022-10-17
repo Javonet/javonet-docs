@@ -3,8 +3,9 @@ from pathlib import Path
 
 from javonet.sdk import Javonet
 
-// <TestResources_TestClassValues>
+
 javonet_src_root = str(Path(__file__).parent.parent.parent.parent)
+// <TestResources_TestClassValues>
 library_path = javonet_src_root + '/testResources/jvm/JavaTestClass.jar'
 class_name = 'javonet.test.resources.jvm.JavaTestClass'
 // </TestResources_TestClassValues>
@@ -37,7 +38,6 @@ def test_jvm_standardlibrary_invokeinstancemethod_javautilrandom_nextInt_10_inra
 
 def test_jvm_testresources_loadlibrary_librarypath_noexception():
     // <TestResources_LoadLibrary>
-    print(library_path)
     Javonet.in_memory().Jvm().load_library(library_path)
     // </TestResources_LoadLibrary>
 

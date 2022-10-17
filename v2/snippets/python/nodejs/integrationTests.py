@@ -3,8 +3,9 @@ from pathlib import Path
 
 from javonet.sdk import Javonet
 
-// <TestResources_TestClassValues>
+
 javonet_src_root = str(Path(__file__).parent.parent.parent.parent)
+// <TestResources_TestClassValues>
 library_path = javonet_src_root + '/testResources/v8/V8TestClass.js'
 class_name = 'V8TestClass.js'
 // </TestResources_TestClassValues>

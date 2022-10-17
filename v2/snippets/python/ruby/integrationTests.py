@@ -3,12 +3,11 @@ from pathlib import Path
 
 from javonet.sdk import Javonet
 
-// <TestResources_TestClassValues>
+
 javonet_src_root = str(Path(__file__).parent.parent.parent.parent)
+// <TestResources_TestClassValues>
 library_path = javonet_src_root + '/testResources/ruby/ruby_test_class.rb'
 class_name = 'RubyTestClass::RubyTestClass'
-
-
 // </TestResources_TestClassValues>
 
 def test_ruby_standardlibrary_loadlibrary_base64_noexception():
