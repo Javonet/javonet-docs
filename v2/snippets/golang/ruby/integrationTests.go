@@ -18,7 +18,7 @@ func init() {
 	cwd, _ := os.Getwd()
 	_javonetSrcRoot = cwd + "/../../.."
 	// <TestResources_TestClassValues>
-	libraryPath = _javonetSrcRoot + "/../../../testResources/ruby/ruby_test_class.rb"
+	libraryPath = _javonetSrcRoot + "/testResources/ruby/ruby_test_class.rb"
 	className = "RubyTestClass::RubyTestClass"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)

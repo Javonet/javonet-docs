@@ -18,7 +18,7 @@ func init() {
 	cwd, _ := os.Getwd()
 	_javonetSrcRoot = cwd + "/../../.."
 	// <TestResources_TestClassValues>
-	libraryPath = _javonetSrcRoot + "/../../../testResources/python"
+	libraryPath = _javonetSrcRoot + "/testResources/python"
 	className = "PythonTestClass.PythonTestClass"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
