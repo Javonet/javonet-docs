@@ -20,7 +20,7 @@ func init() {
 	// <TestResources_TestClassValues>
 	libraryPath = _javonetSrcRoot + "/testResources/v8/V8TestClass.js"
 	className = "V8TestClass"
-	// <TestResources_TestClassValues>
+	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }
 
@@ -53,11 +53,11 @@ func Test_V8_TestResources_LoadLibrary_libraryPath_NoExeption(t *testing.T) {
 }
 
 func Test_V8_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
-	// <StandardLibrary_InvokeStaticMethod>
+	// <TestResources_InvokeStaticMethod>
 	javonet.InMemory().V8().LoadLibrary(libraryPath)
 	call := javonet.InMemory().V8().GetType(className).InvokeStaticMethod("multiplyByTwo", 25).Execute()
 	result := call.GetValue().(int32)
-	// </StandardLibrary_InvokeStaticMethod>
+	// </TestResources_InvokeStaticMethod>
 	expectedResponse := int32(50)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
