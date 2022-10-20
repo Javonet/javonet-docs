@@ -12,21 +12,21 @@ import (
 	"javonet.com/javonet"
 )
 
-var _javonetSrcRoot string
+var javonetSrcRoot string
 var libraryPath string
 var className string
 
 func init() {
 	cwd, _ := os.Getwd()
-	_javonetSrcRoot = cwd + "/../../.."
+	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
-	libraryPath = _javonetSrcRoot + "/testResources/clr/ClrTestClass.dll"
+	libraryPath = javonetSrcRoot + "/testResources/clr/ClrTestClass.dll"
 	className = "ClrTestClass.ClrTestClass"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }
 
-func Test_Integration_Clr_StandardLibrary_InvokeStaticMethod_MathAbs(t *testing.T) {
+func Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		// <StandardLibrary_InvokeStaticMethod>
 		call := javonet.InMemory().Clr().GetType("System.Math").InvokeStaticMethod("Abs", -50).Execute()
@@ -41,7 +41,7 @@ func Test_Integration_Clr_StandardLibrary_InvokeStaticMethod_MathAbs(t *testing.
 	}
 }
 
-func Test_Clr_StandardLibrary_GetStaticField_SystemMathPI_PI(t *testing.T) {
+func Test_Clr_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		// <StandardLibrary_GetStaticField>
 		call := javonet.InMemory().Clr().GetType("System.Math").GetStaticField("PI").Execute()
@@ -88,7 +88,7 @@ func Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022(t *testi
 	}
 }
 
-func Test_Clr_TestResources_LoadLibrary_clrLibraryPath_NoExeption(t *testing.T) {
+func Test_Clr_TestResources_LoadLibrary_LibraryPath_NoExeption(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		// <TestResources_LoadLibrary>
 		javonet.InMemory().Clr().LoadLibrary(libraryPath)
@@ -138,11 +138,11 @@ func Test_Clr_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 		// </TestResources_SetStaticField>
 		call := javonet.InMemory().Clr().GetType(className).GetStaticField("StaticValue").Execute()
 		result := call.GetValue().(int32)
+		javonet.InMemory().Clr().GetType(className).SetStaticField("StaticValue", 3).Execute()
 		expectedResponse := int32(75)
 		if result != expectedResponse {
 			t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 		}
-		javonet.InMemory().Clr().GetType(className).SetStaticField("StaticValue", 3).Execute()
 	} else {
 		t.Skip("CLR not implemented on linux")
 	}
@@ -153,10 +153,10 @@ func Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *te
 		// <TestResources_GetStaticField>
 		javonet.InMemory().Clr().LoadLibrary(libraryPath)
 		instance := javonet.InMemory().Clr().GetType(className).CreateInstance(4, 5).Execute()
-		call := instance.InvokeInstanceMethod("MultiplyTwoNumbers", 5, 4)
-		result := call.GetValue().(int64)
+		call := instance.InvokeInstanceMethod("MultiplyTwoNumbers", 5, 4).Execute()
+		result := call.GetValue().(int32)
 		// </TestResources_GetStaticField>
-		expectedResponse := int64(20)
+		expectedResponse := int32(20)
 		if result != expectedResponse {
 			t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 		}
@@ -169,8 +169,8 @@ func Test_Clr_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
 	if runtime.GOOS == "windows" {
 		// <TestResources_GetStaticField>
 		javonet.InMemory().Clr().LoadLibrary(libraryPath)
-		instance := javonet.InMemory().Clr().GetType(className).CreateInstance(4, 5).Execute()
-		call := instance.GetInstanceField("PublicValue")
+		instance := javonet.InMemory().Clr().GetType(className).CreateInstance(1, 2).Execute()
+		call := instance.GetInstanceField("PublicValue").Execute()
 		result := call.GetValue().(int32)
 		// </TestResources_GetStaticField>
 		expectedResponse := int32(1)

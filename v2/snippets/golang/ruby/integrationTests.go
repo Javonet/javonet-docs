@@ -10,32 +10,32 @@ import (
 	"javonet.com/javonet"
 )
 
-var _javonetSrcRoot string
+var javonetSrcRoot string
 var libraryPath string
 var className string
 
 func init() {
 	cwd, _ := os.Getwd()
-	_javonetSrcRoot = cwd + "/../../.."
+	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
-	libraryPath = _javonetSrcRoot + "/testResources/ruby/ruby_test_class.rb"
+	libraryPath = javonetSrcRoot + "/testResources/ruby/ruby_test_class.rb"
 	className = "RubyTestClass::RubyTestClass"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }
 
-func Test_Ruby_StandardLibrary_LoadLibrary_base64_NoExeption(t *testing.T) {
+func Test_Ruby_StandardLibrary_LoadLibrary_Base64_NoExeption(t *testing.T) {
 	// <StandardLibrary_LoadLibrary>
 	javonet.InMemory().Ruby().LoadLibrary("base64")
 	// </StandardLibrary_LoadLibrary>
 }
 
-func Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_sqrt_2500_50(t *testing.T) {
+func Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	call := javonet.InMemory().Ruby().GetType("Math").InvokeStaticMethod("sqrt", 2500).Execute()
-	result := call.GetValue().(int32)
+	result := call.GetValue().(float32)
 	// </StandardLibrary_InvokeStaticMethod>
-	expectedResponse := int32(50)
+	expectedResponse := float32(50)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
@@ -44,9 +44,9 @@ func Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_sqrt_2500_50(t *testing.T
 func Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	call := javonet.InMemory().Ruby().GetType("Math").GetStaticField("PI").Execute()
-	result := call.GetValue().(float64)
+	result := call.GetValue().(float32)
 	// </StandardLibrary_GetStaticField>
-	expectedResponse := math.Pi
+	expectedResponse := float32(math.Pi)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
@@ -89,18 +89,18 @@ func Test_Ruby_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// </TestResources_SetStaticField>
 	call := javonet.InMemory().Ruby().GetType(className).GetStaticField("static_value").Execute()
 	result := call.GetValue().(int32)
+	javonet.InMemory().Ruby().GetType(className).SetStaticField("static_value", 3).Execute()
 	expectedResponse := int32(75)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
-	javonet.InMemory().Ruby().GetType(className).SetStaticField("static_value", 3).Execute()
 }
 
 func Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_GetStaticField>
 	javonet.InMemory().Ruby().LoadLibrary(libraryPath)
 	instance := javonet.InMemory().Ruby().GetType(className).CreateInstance(4, 5).Execute()
-	call := instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4)
+	call := instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4).Execute()
 	result := call.GetValue().(int32)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(20)
@@ -112,8 +112,8 @@ func Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *t
 func Test_Ruby_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
 	// <TestResources_GetStaticField>
 	javonet.InMemory().Ruby().LoadLibrary(libraryPath)
-	instance := javonet.InMemory().Ruby().GetType(className).CreateInstance(4, 5).Execute()
-	call := instance.GetInstanceField("public_value")
+	instance := javonet.InMemory().Ruby().GetType(className).CreateInstance(1, 2).Execute()
+	call := instance.GetInstanceField("public_value").Execute()
 	result := call.GetValue().(int32)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(1)

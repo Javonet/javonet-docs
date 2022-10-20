@@ -7,11 +7,11 @@ import (
 	"javonet.com/javonet"
 )
 
-var _javonetSrcRoot string
+var javonetSrcRoot string
 
 func init() {
 	cwd, _ := os.Getwd()
-	_javonetSrcRoot = cwd + "/../../.."
+	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)

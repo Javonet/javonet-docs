@@ -10,21 +10,21 @@ import (
 	"javonet.com/javonet"
 )
 
-var _javonetSrcRoot string
+var javonetSrcRoot string
 var libraryPath string
 var className string
 
 func init() {
 	cwd, _ := os.Getwd()
-	_javonetSrcRoot = cwd + "/../../.."
+	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
-	libraryPath = _javonetSrcRoot + "/testResources/v8/V8TestClass.js"
-	className = "V8TestClass"
+	libraryPath = javonetSrcRoot + "/testResources/v8/V8TestClass.js"
+	className = "V8TestClass.js"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }
 
-func Test_V8_StandardLibrary_InvokeStaticMethod_Math_abs_minus50_50(t *testing.T) {
+func Test_V8_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	call := javonet.InMemory().V8().GetType("Math").InvokeStaticMethod("abs", -50).Execute()
 	result := call.GetValue().(int32)
@@ -46,7 +46,7 @@ func Test_V8_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	}
 }
 
-func Test_V8_TestResources_LoadLibrary_libraryPath_NoExeption(t *testing.T) {
+func Test_V8_TestResources_LoadLibrary_LibraryPath_NoExeption(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	javonet.InMemory().V8().LoadLibrary(libraryPath)
 	// </TestResources_LoadLibrary>
@@ -87,14 +87,14 @@ func Test_V8_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
-	javonet.InMemory().V8().GetType(className).SetStaticField("staticValue", 3).Execute()
+
 }
 
 func Test_V8_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_GetStaticField>
 	javonet.InMemory().V8().LoadLibrary(libraryPath)
 	instance := javonet.InMemory().V8().GetType(className).CreateInstance(4, 5).Execute()
-	call := instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4)
+	call := instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute()
 	result := call.GetValue().(int32)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(20)
@@ -106,8 +106,8 @@ func Test_V8_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *tes
 func Test_V8_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
 	// <TestResources_GetStaticField>
 	javonet.InMemory().V8().LoadLibrary(libraryPath)
-	instance := javonet.InMemory().V8().GetType(className).CreateInstance(4, 5).Execute()
-	call := instance.GetInstanceField("publicValue")
+	instance := javonet.InMemory().V8().GetType(className).CreateInstance(1, 2).Execute()
+	call := instance.GetInstanceField("publicValue").Execute()
 	result := call.GetValue().(int32)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(1)
