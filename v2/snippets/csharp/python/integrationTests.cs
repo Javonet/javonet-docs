@@ -15,6 +15,7 @@ namespace Javonet.Netcore.Sdk.Tests
 			Assert.Equal(0, result);
 		}
 		private static readonly string _javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
+		
 		// <TestResources_TestClassValues> 
 		private static readonly string libraryPath = _javonetSrcRoot + "/testResources/python";
 		private static readonly string className = "PythonTestClass.PythonTestClass";
