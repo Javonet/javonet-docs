@@ -14,16 +14,16 @@ namespace Javonet.Netcore.Sdk.Tests
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
 			Assert.Equal(0, result);
 		}
-		private static readonly string _javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
-		
+		private static readonly string javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
+
 		// <TestResources_TestClassValues> 
-		private static readonly string libraryPath = _javonetSrcRoot + "/testResources/python";
+		private static readonly string libraryPath = javonetSrcRoot + "/testResources/python";
 		private static readonly string className = "PythonTestClass.PythonTestClass";
 		// </TestResources_TestClassValues> 
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_StandardLibrary_InvokeStaticMethod_builtins_abs_minus50_50()
+		public void Test_Python_StandardLibrary_InvokeStaticMethod_Builtins_Abs_Minus50_50()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			var call = Javonet.InMemory().Python().GetType("builtins").InvokeStaticMethod("abs", -50).Execute();
@@ -45,7 +45,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_TestResources_LoadLibrary_libraryPath_NoExeption()
+		public void Test_Python_TestResources_LoadLibrary_LibraryPath_NoExeption()
 		{
 			// <TestResources_LoadLibrary>
 			Javonet.InMemory().Python().LoadLibrary(libraryPath);
@@ -54,7 +54,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_TestResources_InvokeStaticMethod_multiply_by_two_22_44()
+		public void Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
 		{
 			// <TestResources_InvokeStaticMethod>
 			Javonet.InMemory().Python().LoadLibrary(libraryPath);
@@ -67,7 +67,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_TestResources_GetStaticField_staticValue_3()
+		public void Test_Python_TestResources_GetStaticField_StaticValue_3()
 		{
 			// <TestResources_GetStaticField>
 			Javonet.InMemory().Python().LoadLibrary(libraryPath);
@@ -80,7 +80,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_TestResources_SetStaticField_staticValue_75()
+		public void Test_Python_TestResources_SetStaticField_StaticValue_75()
 		{
 			// <TestResources_SetStaticField>
 			Javonet.InMemory().Python().LoadLibrary(libraryPath);
@@ -88,13 +88,13 @@ namespace Javonet.Netcore.Sdk.Tests
 			// </TestResources_SetStaticField>
 			var call = Javonet.InMemory().Python().GetType(className).GetStaticField("static_value").Execute();
 			var result = (int)call.GetValue();
-			Assert.Equal(75, result);
 			Javonet.InMemory().Python().GetType(className).SetStaticField("static_value", 3).Execute();
+			Assert.Equal(75, result);
 		}
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_TestResources_InvokeInstanceMethod_multiply_two_numbers_4_5_20()
+		public void Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
 		{
 			// <TestResources_InvokeInstanceMethod>
 			Javonet.InMemory().Python().LoadLibrary(libraryPath);
@@ -108,7 +108,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Python_TestResources_GetInstanceField_publicValue_1()
+		public void Test_Python_TestResources_GetInstanceField_PublicValue_1()
 		{
 			// <TestResources_GetInstanceField>
 			Javonet.InMemory().Python().LoadLibrary(libraryPath);

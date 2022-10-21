@@ -14,17 +14,17 @@ namespace Javonet.Netcore.Sdk.Tests
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
 			Assert.Equal(0, result);
 		}
-		private static readonly string _javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
-		
+		private static readonly string javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
+
 		// <TestResources_TestClassValues> 
-		private static readonly string libraryPath = _javonetSrcRoot + "/testResources/v8/V8TestClass.js";
-		private static readonly string className = "V8TestClass";
+		private static readonly string libraryPath = javonetSrcRoot + "/testResources/v8/V8TestClass.js";
+		private static readonly string className = "V8TestClass.js";
 		// </TestResources_TestClassValues> 
 
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_StandardLibrary_InvokeStaticMethod_Math_abs_minus50_50()
+		public void Test_V8_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			var call = Javonet.InMemory().V8().GetType("Math").InvokeStaticMethod("abs", -50).Execute();
@@ -46,7 +46,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_TestResources_LoadLibrary_libraryPath_NoExeption()
+		public void Test_V8_TestResources_LoadLibrary_LibraryPath_NoExeption()
 		{
 			// <TestResources_LoadLibrary>
 			Javonet.InMemory().V8().LoadLibrary(libraryPath);
@@ -55,7 +55,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_TestResources_InvokeStaticMethod_multiplyByTwo_25_50()
+		public void Test_V8_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
 		{
 			// <TestResources_InvokeStaticMethod>
 			Javonet.InMemory().V8().LoadLibrary(libraryPath);
@@ -68,7 +68,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_TestResources_GetStaticField_staticValue_3()
+		public void Test_V8_TestResources_GetStaticField_StaticValue_3()
 		{
 			// <TestResources_GetStaticField>
 			Javonet.InMemory().V8().LoadLibrary(libraryPath);
@@ -81,7 +81,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_TestResources_SetStaticField_staticValue_75()
+		public void Test_V8_TestResources_SetStaticField_StaticValue_75()
 		{
 			// <TestResources_SetStaticField>
 			Javonet.InMemory().V8().LoadLibrary(libraryPath);
@@ -89,13 +89,13 @@ namespace Javonet.Netcore.Sdk.Tests
 			// </TestResources_SetStaticField>
 			var call = Javonet.InMemory().V8().GetType(className).GetStaticField("staticValue").Execute();
 			var result = (int)call.GetValue();
-			Assert.Equal(75, result);
 			Javonet.InMemory().V8().GetType(className).SetStaticField("staticValue", 3).Execute();
+			Assert.Equal(75, result);
 		}
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_TestResources_InvokeInstanceMethod_multiplyTwoNumbers_4_5_20()
+		public void Test_V8_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
 		{
 			// <TestResources_InvokeInstanceMethod>
 			Javonet.InMemory().V8().LoadLibrary(libraryPath);
@@ -109,16 +109,16 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_V8_TestResources_GetInstanceField_publicValue_1()
+		public void Test_V8_TestResources_GetInstanceField_PublicValue_1()
 		{
 			// <TestResources_GetInstanceField>
 			Javonet.InMemory().V8().LoadLibrary(libraryPath);
-			var instance = Javonet.InMemory().V8().GetType(className).CreateInstance(8, 9).Execute();
+			var instance = Javonet.InMemory().V8().GetType(className).CreateInstance(1, 2).Execute();
 			var call = instance.GetInstanceField("publicValue").Execute();
 			var result = (int)call.GetValue();
 			// </TestResources_GetInstanceField>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);
-			Assert.Equal(8.0, result);
+			Assert.Equal(1, result);
 		}
 	}
 }

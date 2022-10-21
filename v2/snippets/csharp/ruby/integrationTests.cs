@@ -14,10 +14,10 @@ namespace Javonet.Netcore.Sdk.Tests
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
 			Assert.Equal(0, result);
 		}
-		private static readonly string _javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
-		
+		private static readonly string javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
+
 		// <TestResources_TestClassValues> 
-		private static readonly string libraryPath = _javonetSrcRoot + "/testResources/ruby/ruby_test_class.rb";
+		private static readonly string libraryPath = javonetSrcRoot + "/testResources/ruby/ruby_test_class.rb";
 		private static readonly string className = "RubyTestClass::RubyTestClass";
 		// </TestResources_TestClassValues> 
 
@@ -32,7 +32,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_sqrt_2500_50()
+		public void Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			var call = Javonet.InMemory().Ruby().GetType("Math").InvokeStaticMethod("sqrt", 2500).Execute();
@@ -54,7 +54,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_LoadLibrary_libraryPath_NoExeption()
+		public void Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoExeption()
 		{
 			// <TestResources_LoadLibrary>
 			Javonet.InMemory().Ruby().LoadLibrary(libraryPath);
@@ -63,7 +63,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_InvokeStaticMethod_multiplyByTwo_25_50()
+		public void Test_Ruby_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
 		{
 			// <TestResources_InvokeStaticMethod>
 			Javonet.InMemory().Ruby().LoadLibrary(libraryPath);
@@ -76,7 +76,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_GetStaticField_staticValue_3()
+		public void Test_Ruby_TestResources_GetStaticField_StaticValue_3()
 		{
 			// <TestResources_GetStaticField>
 			Javonet.InMemory().Ruby().LoadLibrary(libraryPath);
@@ -85,6 +85,47 @@ namespace Javonet.Netcore.Sdk.Tests
 			var result = (int)call.GetValue();
 			// </TestResources_GetStaticField>
 			Assert.Equal(3, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Ruby_TestResources_SetStaticField_StaticValue_75()
+		{
+			// <TestResources_SetStaticField>
+			Javonet.InMemory().Ruby().LoadLibrary(libraryPath);
+			Javonet.InMemory().Ruby().GetType(className).SetStaticField("static_value", 75).Execute();
+			// </TestResources_SetStaticField>
+			var call = Javonet.InMemory().Ruby().GetType(className).GetStaticField("static_value").Execute();
+			var result = (int)call.GetValue();
+			//Javonet.InMemory().Ruby().GetType(className).SetStaticField("static_value", 3).Execute();
+			Assert.Equal(75, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
+		{
+			// <TestResources_InvokeInstanceMethod>
+			Javonet.InMemory().Ruby().LoadLibrary(libraryPath);
+			var instance = Javonet.InMemory().Ruby().GetType(className).CreateInstance(3, 4).Execute();
+			var call = instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4).Execute();
+			var result = (int)call.GetValue();
+			// </TestResources_InvokeInstanceMethod>
+			Assert.Equal(36, ((string)instance.GetValue()).Length);
+			Assert.Equal(20, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Ruby_TestResources_GetInstanceField_PublicValue_1()
+		{
+			// <TestResources_GetInstanceField>
+			Javonet.InMemory().Ruby().LoadLibrary(libraryPath);
+			var instance = Javonet.InMemory().Ruby().GetType(className).CreateInstance(1,2).Execute();
+			var result = instance.GetInstanceField("public_value").Execute();
+			// </TestResources_GetInstanceField>
+			Assert.Equal(36, ((string)instance.GetValue()).Length);
+			Assert.Equal(1, (int)result.GetValue());
 		}
 	}
 }

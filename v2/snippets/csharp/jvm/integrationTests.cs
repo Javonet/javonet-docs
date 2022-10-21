@@ -14,16 +14,16 @@ namespace Javonet.Netcore.Sdk.Tests
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
 			Assert.Equal(0, result);
 		}
-		private static readonly string _javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
-		
-		// <TestResources_TestClassValues>
-		private static readonly string libraryPath = _javonetSrcRoot + "/testResources/jvm/JavaTestClass.jar";
+		private static readonly string javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
+
+		// <TestResources_TestClassValues> 
+		private static readonly string libraryPath = javonetSrcRoot + "/testResources/jvm/JavaTestClass.jar";
 		private static readonly string className = "javonet.test.resources.jvm.JavaTestClass";
 		// </TestResources_TestClassValues> 
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_StandardLibrary_InvokeStaticMethod_javalangMath_abs_minus50_50()
+		public void Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			var call = Javonet.InMemory().Jvm().GetType("java.lang.Math").InvokeStaticMethod("abs", -50).Execute();
@@ -34,7 +34,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_StandardLibrary_GetStaticField_javalangMathPI_PI()
+		public void Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI()
 		{
 			// <StandardLibrary_GetStaticField>
 			var call = Javonet.InMemory().Jvm().GetType("java.lang.Math").GetStaticField("PI").Execute();
@@ -58,7 +58,7 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_LoadLibrary_libraryPath_NoExeption()
+		public void Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoExeption()
 		{
 			// <TestResources_LoadLibrary>
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
@@ -101,8 +101,8 @@ namespace Javonet.Netcore.Sdk.Tests
 			// </TestResources_SetStaticField>
 			var call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
 			var result = (int)call.GetValue();
-			Assert.Equal(75, result);
 			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 3).Execute();
+			Assert.Equal(75, result);
 		}
 
 		[Fact]
