@@ -17,7 +17,7 @@ With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{c
 
 This section present sample custom `{called_name}` package with class declaring static methods and Javonet SDK syntax required to invoke that methods and consume the results in `{calling_name}`.
 
-**Code example below represents the sample `{called_name}` class that will be used in following sections**
+Code example below represents the sample `{called_name}` class that will be used in following sections
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
   
