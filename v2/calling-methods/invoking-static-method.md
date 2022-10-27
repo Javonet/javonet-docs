@@ -13,19 +13,19 @@ Javonet allows you to pass any `{calling_name}` value type as argument to `{call
 
 ## Calling static method in custom `{called_name}` library
 
-With Javonet you can [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` library and interact with public static methods declared on types defined within that module almost the same as with any other `{calling_name}` library. 
+With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` library and interact with public static methods declared on types defined within that module almost the same as with any other `{calling_name}` library. 
 
-This section present sample custom `{called_name}` package with class declaring static methods and Javonet SDK syntax you need to use to invoke that methods and consume the results in `{calling_name}`.
+This section present sample custom `{called_name}` package with class declaring static methods and Javonet SDK syntax required to invoke that methods and consume the results in `{calling_name}`.
 
 **Code example below represents the sample `{called_name}` class that will be used in following sections**
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
   
-To interact with this library we have defined two variables pointing to our `{called_name}` package and class.
+To interact with this library there are defined two variables pointing to `{called_name}` package and class.
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
  
-Now you can invoke one of the declared `{called_name}` static methods using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}` package, and next retrieves reference to specific type and invokes the static method passing value type arguments. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
+Now it possible to invoke one of the declared `{called_name}` static methods using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}` package, and next retrieves reference to specific type and invokes the static method passing value type arguments. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_InvokeStaticMethod":::
  
