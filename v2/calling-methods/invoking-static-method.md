@@ -25,13 +25,11 @@ This section present sample custom `{called_name}` package with class declaring 
 To interact with this library we have defined following variables pointing to our `{called_name}` package and class.
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
-
-
+ 
 Now you can invoke one of the declared `{called_name}` static methods using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}` package, and next retrieves reference to specific type and invokes the static method passing value type arguments. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_InvokeStaticMethod":::
-
-
+ 
 ## Calling static methods in `{called_name}` library
 
 To invoke static method from standard `{called_name}` library:
