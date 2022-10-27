@@ -20,9 +20,8 @@ This section present sample custom `{called_name}` package with class declaring 
 **Code example below represents the sample `{called_name}` class that will be used in following sections**
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
-
-
-To interact with this library we have defined following variables pointing to our `{called_name}` package and class.
+  
+To interact with this library we have defined two variables pointing to our `{called_name}` package and class.
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
  
