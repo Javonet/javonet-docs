@@ -3,8 +3,8 @@ from pathlib import Path
 
 from javonet.sdk import Javonet
 
-# <TestResources_TestClassValues>
 javonet_src_root = str(Path(__file__).parent.parent.parent.parent)
+# <TestResources_TestClassValues>
 library_path = javonet_src_root + '/testResources/jvm/JavaTestClass.jar'
 class_name = 'javonet.test.resources.jvm.JavaTestClass'
 # </TestResources_TestClassValues>
