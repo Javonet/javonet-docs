@@ -6,3 +6,5 @@
 # In memory channel
 
 Javonet offers two ways of communicating with called runtime. In memory channel is used to use Javonet within the same machine.
+
+After selecting channel user selects a runtime to interact with in order to create [Runtime Context](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md)
