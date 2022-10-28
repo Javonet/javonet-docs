@@ -67,7 +67,7 @@ items:
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: TCP channel
-    href: /foundations/tcp-connection.md
+    href: /foundations/tcp-channel.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Runtime Context concept
