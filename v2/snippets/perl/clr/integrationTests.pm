@@ -50,7 +50,7 @@ sub Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022 {
     my $instance = Javonet->in_memory()->clr()->get_type("System.DateTime")->create_instance(2022, 9, 1)->Execute();
     my $call = $instance->get_instance_field("Year")->Execute();
     my $result = $call->get_value();
-    # <StandardLibrary_GetInstanceField>
+    # </StandardLibrary_GetInstanceField>
     return $result;
 }
 
