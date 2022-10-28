@@ -62,12 +62,12 @@ items:
     href: /foundations/javonet-static-class.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
-  - name: In memory connection
-    href: /foundations/in-memory-connection.md
+  - name: In memory channel
+    href: /foundations/in-memory-channel.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
-  - name: Network connection
-    href: /foundations/network-connection.md
+  - name: TCP channel
+    href: /foundations/tcp-connection.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Runtime Context concept
