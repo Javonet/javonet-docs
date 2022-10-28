@@ -56,6 +56,33 @@ items:
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 
+- name: Foundations
+  items: 
+  - name: Javonet static class
+    href: /foundations/javonet-static-class.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: In memory connection
+    href: /foundations/in-memory-connection.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Network connection
+    href: /foundations/network-connection.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Runtime Context concept
+    href: /foundations/runtime-context.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Invocation Context concept
+    href: /foundations/invocation-context.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Execute method concept
+    href: /foundations/execute-method.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+
 - name: Calling methods
   items:
   - name: Invoking static methods
