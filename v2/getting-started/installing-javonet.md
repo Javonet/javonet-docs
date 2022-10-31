@@ -4,18 +4,20 @@ This section describes how to download and install Javonet.
 
 ## Downloading Javonet Package
 
-As Javonet is single file solution, all you need to start using it is to download the latest Javonet package relevant for `{calling_technology}` project.
+As Javonet is single file solution, all you need to start using it is to download the latest Javonet package relevant for `{calling_name}` project.
 Javonet packages for each technology are available on Javonet Public BETA feeds:
 
 https://dev.azure.com/sdncenterspzoo/JAVONETFEEDS/_artifacts/feed/JavonetTestPublic 
 
-Javonet SDK package for `{calling_technology}` needs to be chosen to display futher instruction
+Javonet SDK package for `{calling_name}` needs to be chosen to display futher instruction
 
-Javonet is also available on Nuget. 
+Javonet is also available on public repositories. 
 
 https://www.nuget.org/packages/Javonet.Clr.Sdk
 
 https://www.nuget.org/packages/Javonet.Netcore.Sdk 
+
+https://www.npmjs.com/package/javonet.nodejs.sdk
 
 Some of the technologies might require additional pre-requisites to be called. List below presents the requirements to be installed on your machine in order to call selected technology. 
 
