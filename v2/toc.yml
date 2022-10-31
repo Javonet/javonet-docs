@@ -99,7 +99,7 @@ items:
     href: /fields-and-properties/getting-and-setting-values-for-static-fields-and-properties.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
-  - name: Geting values for instance fields and properties
+  - name: Getting values for instance fields and properties
     href: /fields-and-properties/getting-values-for-instance-fields-and-properties.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
