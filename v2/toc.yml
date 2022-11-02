@@ -51,6 +51,37 @@ items:
     href: /getting-started/installing-javonet-dotnet-framework.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for .Net Core
+    href: /getting-started/installing-javonet-dotnet-core.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for Java
+    href: /getting-started/installing-javonet-java.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for Perl
+    href: /getting-started/installing-javonet-perl.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for Python
+    href: /getting-started/installing-javonet-python.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for Ruby
+    href: /getting-started/installing-javonet-ruby.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for Golang
+    href: /getting-started/installing-javonet-golang.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for C++
+    href: /getting-started/installing-javonet-cpp.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+
+
+
   - name: Activating Javonet
     href: /getting-started/activating-javonet.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
