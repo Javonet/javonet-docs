@@ -8,13 +8,13 @@ import com.javonet.sdk.java.Javonet;
 
 import java.nio.file.Paths;
 
-public class JvmToV8IntegrationTest {
+public class JvmToNodejsIntegrationTest {
 
-    private final String _javonetSrcRoot = Paths.get("").toAbsolutePath().getParent().getParent().toString();
+    private final String javonetSrcRoot = Paths.get("").toAbsolutePath().getParent().getParent().toString();
 
     // <TestResources_TestClassValues>
-    private final String libraryPath = _javonetSrcRoot + "/testResources/v8/V8TestClass.js";
-    private final String className = "V8TestClass.js";
+    private final String libraryPath = javonetSrcRoot + "/testResources/nodejs/NodejsTestClass.js";
+    private final String className = "NodejsTestClass.js";
     // </TestResources_TestClassValues>
     @BeforeAll
     public static void initialization() {
@@ -23,9 +23,9 @@ public class JvmToV8IntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_V8_StandardLibrary_InvokeStaticMethod_Math_Abs_minus50_50() {
+    public void Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
-        InvocationContext call = Javonet.inMemory().v8().getType("Math").invokeStaticMethod("abs", -50).execute();
+        InvocationContext call = Javonet.inMemory().nodejs().getType("Math").invokeStaticMethod("abs", -50).execute();
         int result = (int) call.getValue();
         // </StandardLibrary_InvokeStaticMethod>
         Assertions.assertEquals(50, result);
@@ -33,9 +33,9 @@ public class JvmToV8IntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_V8_StandardLibrary_GetStaticField_Math_PI_PI() {
+    public void Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
-        InvocationContext call = Javonet.inMemory().v8().getType("Math").getStaticField("PI").execute();
+        InvocationContext call = Javonet.inMemory().nodejs().getType("Math").getStaticField("PI").execute();
         double result = (double) call.getValue();
         // </StandardLibrary_GetStaticField>
         Assertions.assertEquals(Math.PI, result, 0.00001);
@@ -43,18 +43,18 @@ public class JvmToV8IntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_V8_TestResources_LoadLibrary_LibraryPath_NoException() {
+    public void Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
-        Javonet.inMemory().v8().loadLibrary(libraryPath);
+        Javonet.inMemory().nodejs().loadLibrary(libraryPath);
         // </TestResources_LoadLibrary>
     }
 
     @Test
     @Tag("integration")
-    public void Test_V8_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
+    public void Test_Nodejs_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
-        Javonet.inMemory().v8().loadLibrary(libraryPath);
-        InvocationContext call = Javonet.inMemory().v8().getType(className).invokeStaticMethod("multiplyByTwo", 25).execute();
+        Javonet.inMemory().nodejs().loadLibrary(libraryPath);
+        InvocationContext call = Javonet.inMemory().nodejs().getType(className).invokeStaticMethod("multiplyByTwo", 25).execute();
         int result = (int) call.getValue();
         // </TestResources_InvokeStaticMethod>
         Assertions.assertEquals(50, result);
@@ -62,10 +62,10 @@ public class JvmToV8IntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_V8_TestResources_GetStaticField_staticValue_3() {
+    public void Test_Nodejs_TestResources_GetStaticField_staticValue_3() {
         // <TestResources_GetStaticField>
-        Javonet.inMemory().v8().loadLibrary(libraryPath);
-        InvocationContext call = Javonet.inMemory().v8().getType(className).getStaticField("staticValue").execute();
+        Javonet.inMemory().nodejs().loadLibrary(libraryPath);
+        InvocationContext call = Javonet.inMemory().nodejs().getType(className).getStaticField("staticValue").execute();
         int result = (int) call.getValue();
         // </TestResources_GetStaticField>
         Assertions.assertEquals(3, result);
@@ -73,23 +73,23 @@ public class JvmToV8IntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_V8_TestResources_SetStaticField_staticValue_75() {
+    public void Test_Nodejs_TestResources_SetStaticField_staticValue_75() {
         // <TestResources_SetStaticField>
-        Javonet.inMemory().v8().loadLibrary(libraryPath);
-        Javonet.inMemory().v8().getType(className).setStaticField("staticValue", 75).execute();
+        Javonet.inMemory().nodejs().loadLibrary(libraryPath);
+        Javonet.inMemory().nodejs().getType(className).setStaticField("staticValue", 75).execute();
         // </TestResources_SetStaticField>
-        InvocationContext call = Javonet.inMemory().v8().getType(className).getStaticField("staticValue").execute();
+        InvocationContext call = Javonet.inMemory().nodejs().getType(className).getStaticField("staticValue").execute();
         int result = (int) call.getValue();
         Assertions.assertEquals(75, result);
-        Javonet.inMemory().v8().getType(className).setStaticField("staticValue", 3).execute();
+        Javonet.inMemory().nodejs().getType(className).setStaticField("staticValue", 3).execute();
     }
 
     @Test
     @Tag("integration")
-    public void Test_V8_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+    public void Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
-        Javonet.inMemory().v8().loadLibrary(libraryPath);
-        InvocationContext instance = Javonet.inMemory().v8().getType(className).createInstance(2,3).execute();
+        Javonet.inMemory().nodejs().loadLibrary(libraryPath);
+        InvocationContext instance = Javonet.inMemory().nodejs().getType(className).createInstance(2,3).execute();
         InvocationContext call = instance.invokeInstanceMethod("multiplyTwoNumbers", 5, 4).execute();
         int result = (int) call.getValue();
         // </TestResources_InvokeInstanceMethod>
@@ -99,10 +99,10 @@ public class JvmToV8IntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_V8_TestResources_GetInstanceField_PublicValue_1() {
+    public void Test_Nodejs_TestResources_GetInstanceField_PublicValue_1() {
         // <TestResources_GetInstanceField>
-        Javonet.inMemory().v8().loadLibrary(libraryPath);
-        InvocationContext instance = Javonet.inMemory().v8().getType(className).createInstance(1,2).execute();
+        Javonet.inMemory().nodejs().loadLibrary(libraryPath);
+        InvocationContext instance = Javonet.inMemory().nodejs().getType(className).createInstance(1,2).execute();
         InvocationContext call = instance.getInstanceField("publicValue").execute();
         int result = (int) call.getValue();
         // </TestResources_GetInstanceField>
