@@ -5,13 +5,13 @@
 
 # Activating Javonet
 
-## Getting licence
+## Getting license
 
-In order to activate Javonet you need to get your licence key. Please use [register webpage](https://my.javonet.com/signup/?type=free) 
+In order to activate Javonet you need to get your license key. Please use [register webpage](https://my.javonet.com/signup/?type=free) 
 
 If you already have an account, please [log in](https://my.javonet.com/signin/) 
 
-After logging in, go to Licence Keys subpage. There are your credentials and trial expiry date.
+After logging in, go to License Keys tab. There are your credentials and trial expiry date.
 
 ## Activating Javonet in your application
 
