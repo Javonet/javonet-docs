@@ -1,36 +1,55 @@
-# Installing
+# How to install Javonet
 
-This section describes how to download and install Javonet.
+Javonet is available for Windows and Linux environments for many different programming languages as a standard package. This section describes how to download Javonet and install required prerequisites. 
 
-## Downloading Javonet Package
+## Download Javonet `{calling_name}` package
 
-As Javonet is single file solution, all you need to start using it is to download the latest Javonet package relevant for `{calling_name}` project.
-Javonet packages for each technology are available on Javonet Public BETA feeds:
+Javonet can be used as any other package in a `{calling_name}` project.
 
-https://dev.azure.com/sdncenterspzoo/JAVONETFEEDS/_artifacts/feed/JavonetTestPublic 
+See links below to find detailed instructions for each technology:
 
-Javonet SDK package for `{calling_name}` needs to be chosen to display futher instruction
+- [.Net Framework](https://www.javonet.com/guides/v2/getting-started/installing-javonet-dotnet-framework)
 
-Javonet is also available on public repositories. 
+- [Java](https://www.javonet.com/guides/v2/getting-started/installing-javonet-java)
 
-https://www.nuget.org/packages/Javonet.Clr.Sdk
+- [.Net Core](https://www.javonet.com/guides/v2/getting-started/installing-javonet-dotnet-core)
 
-https://www.nuget.org/packages/Javonet.Netcore.Sdk 
+- [Perl](https://www.javonet.com/guides/v2/getting-started/installing-javonet-perl)
 
-https://www.npmjs.com/package/javonet.nodejs.sdk
+- [Python](https://www.javonet.com/guides/v2/getting-started/installing-javonet-python)
 
-Some of the technologies might require additional pre-requisites to be called. List below presents the requirements to be installed on your machine in order to call selected technology. 
+- [Ruby](https://www.javonet.com/guides/v2/getting-started/installing-javonet-ruby)
 
-CLR 		- .Net Framework 4.7.2 (on windows)
+- [Node.js](https://www.javonet.com/guides/v2/getting-started/installing-javonet-nodejs)
 
-JVM 		- Java 1.8 
+- [C++](https://www.javonet.com/guides/v2/getting-started/installing-javonet-cpp)
 
-NETCORE 	- .Net Core 3.1
+- [GoLang](https://www.javonet.com/guides/v2/getting-started/installing-javonet-golang)
 
-PYTHON 	    - Python 3.10 
 
-RUBY 		- Ruby 2.7 
+## Install prerequisites
 
-PERL 		- Perl 5.30 
+In order to use Javonet to call another runtime, this runtime has to be installed. List below presents the prerequisites to be installed on target machine (f.e your machine) in order to call selected technology. 
 
-V8 		    - NodeJs 12
+- CLR:  [.Net Framework 4.7.2 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472)
+
+
+- JVM: JRE 1.8 or JDK 1.8 For example:
+  
+  - [OpenJDK](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=All&field_architecture_target_id=391&field_java_package_target_id=All)
+
+  - [Oracle](https://www.oracle.com/pl/java/technologies/javase/javase8u211-later-archive-downloads.html)
+
+- .Net Core:  [.Net Core 3.1 x64 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
+
+- Python: [Python 3.10](https://www.python.org/downloads/release/python-3108/)
+
+- Ruby: [Ruby 2.7](https://rubyinstaller.org/downloads/) 
+
+- Perl: 
+
+  - Windows: [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi) 
+
+  - Linux: Perl is preinstalled. Use Perl 5.32
+
+- Node.js: [Node.js 12.22 or higher](https://nodejs.org/en/download/)
