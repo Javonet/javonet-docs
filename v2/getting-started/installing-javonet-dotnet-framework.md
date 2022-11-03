@@ -12,4 +12,4 @@ Javonet is available as a Nuget package called Javonet.Clr.Sdk.
 Please visit [Javonet on Nuget](https://www.nuget.org/packages/Javonet.Clr.Sdk) or install it through Nuget Package Manager
 
 
-Additional prerequisites needs to be installed to use external packages. See [Installing Javonet](https://www.javonet.com/guides/v2/getting-started/installing-javonet)
+Additional prerequisites need to be installed to use external packages. See [Installing Javonet](https://www.javonet.com/guides/v2/getting-started/installing-javonet)
