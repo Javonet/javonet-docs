@@ -80,8 +80,6 @@ items:
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
 
-
-
   - name: Activating Javonet
     href: /getting-started/activating-javonet.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
@@ -128,6 +126,7 @@ items:
     href: /calling-methods/creating-instance-and-calling-instance-methods.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+
 - name: Fields and Properties 
   items: 
   - name: Getting and setting values for static fields and properties
@@ -138,3 +137,32 @@ items:
     href: /fields-and-properties/getting-values-for-instance-fields-and-properties.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+
+
+- name: Arrays and collections 
+  items: 
+  - name: Arrays and collections overview
+    href: /arrays-and-collections/arrays-and-collections-overview.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Value types arrays
+    href: /arrays-and-collections/value-types-arrays.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Reference types arrays
+    href: /arrays-and-collections/reference-types-arrays.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Multidimensional arrays
+    href: /arrays-and-collections/multidimensional-arrays.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Jagged arrays
+    href: /arrays-and-collections/jagged-arrays.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Collections (lists, sets, queues, dictionaries )
+    href: /arrays-and-collections/collections.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+
