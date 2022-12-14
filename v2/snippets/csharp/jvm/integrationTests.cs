@@ -1,9 +1,10 @@
 using Xunit;
 using Xunit.Abstractions;
-using Javonet.Utils;
 
-namespace Javonet.Netcore.Sdk.Tests
+namespace Integration.Tests
 {
+	using Javonet.Netcore.Utils;
+	using Javonet.Netcore.Sdk;
 	public class NetcoreToJvmIntegrationTests
 	{
 		private readonly ITestOutputHelper output;
@@ -11,21 +12,19 @@ namespace Javonet.Netcore.Sdk.Tests
 		public NetcoreToJvmIntegrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
-			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
+			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourlicenseKey);
 			Assert.Equal(0, result);
 		}
-		private static readonly string javonetSrcRoot = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName;
-
-		// <TestResources_TestClassValues> 
-		private static readonly string libraryPath = javonetSrcRoot + "/testResources/jvm/JavaTestClass.jar";
-		private static readonly string className = "javonet.test.resources.jvm.JavaTestClass";
-		// </TestResources_TestClassValues> 
+		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/jvm";
 
 		[Fact]
 		[Trait("Test", "Integration")]
 		public void Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
 			var call = Javonet.InMemory().Jvm().GetType("java.lang.Math").InvokeStaticMethod("abs", -50).Execute();
 			var result = (int)call.GetValue();
 			// </StandardLibrary_InvokeStaticMethod>
@@ -37,6 +36,9 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI()
 		{
 			// <StandardLibrary_GetStaticField>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
 			var call = Javonet.InMemory().Jvm().GetType("java.lang.Math").GetStaticField("PI").Execute();
 			var result = (double)call.GetValue();
 			// </StandardLibrary_GetStaticField>
@@ -48,6 +50,9 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9()
 		{
 			// <StandardLibrary_InvokeInstanceMethod>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
 			var instance = Javonet.InMemory().Jvm().GetType("java.util.Random").CreateInstance().Execute();
 			var call = instance.InvokeInstanceMethod("nextInt", 10).Execute();
 			var result = (int)call.GetValue();
@@ -58,9 +63,29 @@ namespace Javonet.Netcore.Sdk.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
+		public void Test_Jvm_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver_Name()
+		{
+			// <StandardLibrary_GetInstanceField>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			var instance = Javonet.InMemory().Jvm().GetType("java.sql.DriverPropertyInfo").CreateInstance("sample value", "sample value 2").Execute();
+			var call = instance.GetInstanceField("name").Execute();
+			var result = (string)call.GetValue();
+			// </StandardLibrary_GetInstanceField>
+			Assert.Equal(36, ((string)instance.GetValue()).Length);
+			Assert.Equal("sample value", result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
 		public void Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoExeption()
 		{
 			// <TestResources_LoadLibrary>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 			// </TestResources_LoadLibrary>
 		}
@@ -70,6 +95,11 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
 		{
 			// <TestResources_InvokeStaticMethod>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
+			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 			var call = Javonet.InMemory().Jvm().GetType(className).
 				InvokeStaticMethod("multiplyByTwo", 25).Execute();
@@ -83,6 +113,11 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_TestResources_GetStaticField_StaticValue_3()
 		{
 			// <TestResources_GetStaticField>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
+			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 			var call = Javonet.InMemory().Jvm().GetType(className).
 				GetStaticField("staticValue").Execute();
@@ -96,13 +131,29 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_TestResources_SetStaticField_StaticValue_75()
 		{
 			// <TestResources_SetStaticField>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
+			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
-			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 75).Execute();
-			// </TestResources_SetStaticField>
+
+			// Get initial value
 			var call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
 			var result = (int)call.GetValue();
+
+			// Set new value
+			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 75).Execute();
+
+			// Get new value
+			call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
+			var newResult = (int)call.GetValue();
+			// </TestResources_SetStaticField>
+
 			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 3).Execute();
-			Assert.Equal(75, result);
+
+			Assert.Equal(3, result);
+			Assert.Equal(75, newResult);
 		}
 
 		[Fact]
@@ -110,7 +161,13 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
 		{
 			// <TestResources_InvokeInstanceMethod>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
+			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
+
 			var instance = Javonet.InMemory().Jvm().GetType(className).CreateInstance().Execute();
 			var call = instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute();
 			var result = (int)call.GetValue();
@@ -124,12 +181,18 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Jvm_TestResources_GetInstanceField_PublicValue_1()
 		{
 			// <TestResources_GetInstanceField>
+			// Use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
+			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 			var instance = Javonet.InMemory().Jvm().GetType(className).CreateInstance().Execute();
-			var result = instance.GetInstanceField("publicValue").Execute();
+			var call = instance.GetInstanceField("publicValue").Execute();
+			var result = (int)call.GetValue();
 			// </TestResources_GetInstanceField>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);
-			Assert.Equal(1, (int)result.GetValue());
+			Assert.Equal(1, result);
 		}
 	}
 }
