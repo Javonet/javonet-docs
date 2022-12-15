@@ -223,16 +223,32 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//set up variables
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			string className = "javonet.test.resources.jvm.JavaTestClass";
-			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 
-			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 75).Execute();
+			//load custom library
+			runtime.LoadLibrary(libraryPath);
 
-			var call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
-			var result = (int)call.GetValue();
+			//get type from the runtime
+			var type = runtime.GetType(className).Execute();
+
+			//set static field's value
+			type.SetStaticField("staticValue", 75).Execute();
+
+			//get type's static field
+			var response = type.GetStaticField("staticValue").Execute();
+
+			//get value from response
+			var result = (int)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </TestResources_SetStaticField>
-			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 3).Execute();
+			type.SetStaticField("staticValue", 3).Execute();
 
 			Assert.Equal(75, result);
 		}
@@ -245,13 +261,31 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//set up variables
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			string className = "javonet.test.resources.jvm.JavaTestClass";
-			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 
-			var instance = Javonet.InMemory().Jvm().GetType(className).CreateInstance().Execute();
-			var call = instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute();
-			var result = (int)call.GetValue();
+			//load custom library
+			runtime.LoadLibrary(libraryPath);
+
+			//get type from the runtime
+			var type = runtime.GetType(className).Execute();
+
+			//create type's instance
+			var instance = type.CreateInstance(18, 19).Execute();
+
+			//invoke instance's method
+			var response = instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute();
+
+			//get value from response
+			var result = (int)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
+
 			// </TestResources_InvokeInstanceMethod>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);
 			Assert.Equal(20, result);
@@ -259,21 +293,39 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_GetInstanceField_PublicValue_1()
+		public void Test_Jvm_TestResources_GetInstanceField_PublicValue_18()
 		{
 			// <TestResources_GetInstanceField>
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//set up variables
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			string className = "javonet.test.resources.jvm.JavaTestClass";
-			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
-			var instance = Javonet.InMemory().Jvm().GetType(className).CreateInstance().Execute();
-			var call = instance.GetInstanceField("publicValue").Execute();
-			var result = (int)call.GetValue();
+
+			//load custom library
+			runtime.LoadLibrary(libraryPath);
+
+			//get type from the runtime
+			var type = runtime.GetType(className).Execute();
+
+			//create type's instance
+			var instance = type.CreateInstance(18, 19).Execute();
+
+			//get instance's field
+			var response = instance.GetInstanceField("publicValue").Execute();
+
+			//get value from response
+			var result = (int)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </TestResources_GetInstanceField>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);
-			Assert.Equal(1, result);
+			Assert.Equal(18, result);
 		}
 	}
 }
