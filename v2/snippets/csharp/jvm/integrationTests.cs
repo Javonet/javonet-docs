@@ -5,7 +5,6 @@ namespace Integration.Tests
 {
 	using Javonet.Netcore.Utils;
 	using Javonet.Netcore.Sdk;
-	using System;
 
 	public class NetcoreToJvmIntegrationTests
 	{
@@ -34,14 +33,13 @@ namespace Integration.Tests
 			var type = runtime.GetType("java.lang.Math").Execute();
 			
 			//invoke type's static method
-			var call = type.InvokeStaticMethod("abs", -50).Execute();
+			var response = type.InvokeStaticMethod("abs", -50).Execute();
 
-			//get result from the call
-			var result = (int)call.GetValue();
+			//get value from response
+			var result = (int)response.GetValue();
 
 			//write result to console
-			Console.WriteLine(result);
-
+			System.Console.WriteLine(result);
 			// </StandardLibrary_InvokeStaticMethod>
 			Assert.Equal(50, result);
 		}
@@ -54,8 +52,20 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			var call = Javonet.InMemory().Jvm().GetType("java.lang.Math").GetStaticField("PI").Execute();
-			var result = (double)call.GetValue();
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//get type from the runtime
+			var type = runtime.GetType("java.lang.Math").Execute();
+
+			//get type's static field
+			var response = type.GetStaticField("PI").Execute();
+
+			//get value from response
+			var result = (double)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </StandardLibrary_GetStaticField>
 			Assert.Equal(System.Math.PI, result);
 		}
@@ -68,9 +78,23 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			var instance = Javonet.InMemory().Jvm().GetType("java.util.Random").CreateInstance().Execute();
-			var call = instance.InvokeInstanceMethod("nextInt", 10).Execute();
-			var result = (int)call.GetValue();
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//get type from the runtime
+			var type = runtime.GetType("java.util.Random").Execute();
+
+			//create type's instance
+			var instance = type.CreateInstance().Execute();
+
+			//invoke instance's method
+			var response = instance.InvokeInstanceMethod("nextInt", 10).Execute();
+
+			//get value from response
+			var result = (int)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </StandardLibrary_InvokeInstanceMethod>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);
 			Assert.InRange(result, 0, 10);
@@ -84,9 +108,23 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			var instance = Javonet.InMemory().Jvm().GetType("java.sql.DriverPropertyInfo").CreateInstance("sample value", "sample value 2").Execute();
-			var call = instance.GetInstanceField("name").Execute();
-			var result = (string)call.GetValue();
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//get type from the runtime
+			var type = runtime.GetType("java.sql.DriverPropertyInfo").Execute();
+
+			//create type's instance
+			var instance = type.CreateInstance("sample value", "sample value 2").Execute();
+
+			//get instance's field 
+			var response = instance.GetInstanceField("name").Execute();
+
+			//get value from response
+			var result = (string)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </StandardLibrary_GetInstanceField>
 			Assert.Equal(36, ((string)instance.GetValue()).Length);
 			Assert.Equal("sample value", result);
@@ -100,8 +138,14 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//set up variables
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
-			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
+
+			//load custom library
+			runtime.LoadLibrary(libraryPath);
 			// </TestResources_LoadLibrary>
 		}
 
@@ -113,12 +157,27 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//set up variables
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			string className = "javonet.test.resources.jvm.JavaTestClass";
-			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
-			var call = Javonet.InMemory().Jvm().GetType(className).
-				InvokeStaticMethod("multiplyByTwo", 25).Execute();
-			var result = (int)call.GetValue();
+
+			//load custom library
+			runtime.LoadLibrary(libraryPath);
+
+			//get type from the runtime
+			var type = runtime.GetType(className).Execute();
+
+			//invoke type's static method
+			var response = type.InvokeStaticMethod("multiplyByTwo", 25).Execute();
+
+			//get value from response
+			var result = (int)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </TestResources_InvokeStaticMethod>
 			Assert.Equal(50, result);
 		}
@@ -131,13 +190,27 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//set up variables
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			string className = "javonet.test.resources.jvm.JavaTestClass";
-			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 
-			var call = Javonet.InMemory().Jvm().GetType(className).
-				GetStaticField("staticValue").Execute();
-			var result = (int)call.GetValue();
+			//load custom library
+			runtime.LoadLibrary(libraryPath);
+
+			//get type from the runtime
+			var type = runtime.GetType(className).Execute();
+
+			//get type's static field
+			var response = type.GetStaticField("staticValue").Execute();
+
+			//get value from response
+			var result = (int)response.GetValue();
+
+			//write result to console
+			System.Console.WriteLine(result);
 			// </TestResources_GetStaticField>
 			Assert.Equal(3, result);
 		}
