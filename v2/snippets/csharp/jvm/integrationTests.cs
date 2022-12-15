@@ -5,6 +5,8 @@ namespace Integration.Tests
 {
 	using Javonet.Netcore.Utils;
 	using Javonet.Netcore.Sdk;
+	using System;
+
 	public class NetcoreToJvmIntegrationTests
 	{
 		private readonly ITestOutputHelper output;
@@ -25,8 +27,21 @@ namespace Integration.Tests
 			// Use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			var call = Javonet.InMemory().Jvm().GetType("java.lang.Math").InvokeStaticMethod("abs", -50).Execute();
+			//create JVM runtime context
+			var runtime = Javonet.InMemory().Jvm();
+
+			//get type from the runtime
+			var type = runtime.GetType("java.lang.Math").Execute();
+			
+			//invoke type's static method
+			var call = type.InvokeStaticMethod("abs", -50).Execute();
+
+			//get result from the call
 			var result = (int)call.GetValue();
+
+			//write result to console
+			Console.WriteLine(result);
+
 			// </StandardLibrary_InvokeStaticMethod>
 			Assert.Equal(50, result);
 		}
@@ -119,6 +134,7 @@ namespace Integration.Tests
 			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
 			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
+
 			var call = Javonet.InMemory().Jvm().GetType(className).
 				GetStaticField("staticValue").Execute();
 			var result = (int)call.GetValue();
@@ -138,22 +154,14 @@ namespace Integration.Tests
 			string className = "javonet.test.resources.jvm.JavaTestClass";
 			Javonet.InMemory().Jvm().LoadLibrary(libraryPath);
 
-			// Get initial value
-			var call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
-			var result = (int)call.GetValue();
-
-			// Set new value
 			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 75).Execute();
 
-			// Get new value
-			call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
-			var newResult = (int)call.GetValue();
+			var call = Javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute();
+			var result = (int)call.GetValue();
 			// </TestResources_SetStaticField>
-
 			Javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 3).Execute();
 
-			Assert.Equal(3, result);
-			Assert.Equal(75, newResult);
+			Assert.Equal(75, result);
 		}
 
 		[Fact]
