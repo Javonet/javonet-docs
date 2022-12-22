@@ -5,7 +5,7 @@ RSpec.describe 'Ruby Activation Tests' do
 
   it 'Test_Activation_CorrectCredentials_Returns0' do
     # <Javonet_activate>
-    result = Javonet.activate(ActivationCredentials.your_email, ActivationCredentials.your_licence_key)
+    result = Javonet.activate(ActivationCredentials.your_email, ActivationCredentials.your_license_key)
     # </Javonet_activate>
     expect(result).to eq(0)
 
