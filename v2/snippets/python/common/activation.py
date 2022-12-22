@@ -4,6 +4,6 @@ from tests.ActivationCredentials import *
 
 def test_activation_correct_credentials_0():
     # <Javonet_activate>
-    result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey)
+    result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
     # </Javonet_activate>
     assert (result == 0)

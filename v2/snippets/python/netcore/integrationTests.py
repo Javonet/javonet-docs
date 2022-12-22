@@ -1,104 +1,282 @@
 import math
+import platform
 from pathlib import Path
 
+import pytest
 from javonet.sdk import Javonet
 
-javonet_src_root = str(Path(__file__).parent.parent.parent.parent)
-# <TestResources_TestClassValues>
-library_path = javonet_src_root + '/testResources/netcore/NetcoreTestClass.dll'
-class_name = 'NetcoreTestClass.NetcoreTestClass'
-# </TestResources_TestClassValues>
+resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/netcore'
 
 
 def test_netcore_standardlibrary_invokestaticmethod_systemmath_abs_minus50_50():
     # <StandardLibrary_InvokeStaticMethod>
-    call = Javonet.in_memory().Netcore().get_type("System.Math").invoke_static_method("Abs", -50).Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type("System.Math").execute()
+
+    response = netcore_type.invoke_static_method("Abs", -50).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </StandardLibrary_InvokeStaticMethod>
     assert (result == 50)
 
 
 def test_netcore_standardlibrary_getstaticfield_mathpi_pi():
     # <StandardLibrary_GetStaticField>
-    call = Javonet.in_memory().Netcore().get_type("System.Math").get_static_field("PI").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type("System.Math").execute()
+
+    # get type's static field
+    response = netcore_type.get_static_field("PI").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </StandardLibrary_GetStaticField>
     assert (result == math.pi)
 
 
 def test_netcore_standardlibrary_invokeinstancemethod_systemdatetime_toshortdatestring_contains2022():
     # <StandardLibrary_InvokeInstanceMethod>
-    instance = Javonet.in_memory().Netcore().get_type("System.DateTime").create_instance(2022, 9, 2).Execute()
-    call = instance.invoke_instance_method("ToShortDateString").Execute()
-    result = call.get_value()
-    # </StandardLibrary_GetStaticField>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type("System.DateTime").execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(2022, 9, 2).execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("ToShortDateString").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeInstanceMethod>
     assert ("2022" in result)
 
 
 def test_netcore_standardlibrary_getinstancefield_systemdatetime_year_2022():
-    # <StandardLibrary_InvokeInstanceMethod>
-    instance = Javonet.in_memory().Netcore().get_type("System.DateTime").create_instance(2022, 9, 2).Execute()
-    call = instance.get_instance_field("Year").Execute()
-    result = call.get_value()
-    # </StandardLibrary_GetStaticField>
+    # <StandardLibrary_GetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type("System.DateTime").execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(2022, 9, 2).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("Year").execute()
+
+    # get value from response
+    result = response.get_value()
+    # </StandardLibrary_GetInstanceField>
     assert (result == 2022)
 
 
 def test_netcore_testresources_loadlibrary_librarypath_noexception():
     # <TestResources_LoadLibrary>
-    Javonet.in_memory().Netcore().load_library(library_path)
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/NetcoreTestClass.dll'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
     # </TestResources_LoadLibrary>
 
 
 def test_netcore_testresources_invokestaticmethod_multiplybytwo_25_50():
     # <TestResources_InvokeStaticMethod>
-    Javonet.in_memory().Netcore().load_library(library_path)
-    call = Javonet.in_memory().Netcore().get_type(class_name).invoke_static_method("MultiplyByTwo", 25).Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/NetcoreTestClass.dll'
+    class_name = 'NetcoreTestClass.NetcoreTestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # invoke type's static method
+    response = netcore_type.invoke_static_method("MultiplyByTwo", 25).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_InvokeStaticMethod>
     assert (result == 50)
 
 
 def test_netcore_testresources_getstaticfield_staticvalue_3():
     # <TestResources_GetStaticField>
-    Javonet.in_memory().Netcore().load_library(library_path)
-    call = Javonet.in_memory().Netcore().get_type(class_name).get_static_field("StaticValue").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/NetcoreTestClass.dll'
+    class_name = 'NetcoreTestClass.NetcoreTestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # get type's static field
+    response = netcore_type.get_static_field("StaticValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_GetStaticField>
     assert (result == 3)
 
 
 def test_netcore_testresources_setstaticfield_staticvalue_75():
     # <TestResources_SetStaticField>
-    Javonet.in_memory().Netcore().load_library(library_path)
-    Javonet.in_memory().Netcore().get_type(class_name).set_static_field("StaticValue", 75).Execute()
-    call = Javonet.in_memory().Netcore().get_type(class_name).get_static_field("StaticValue").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/NetcoreTestClass.dll'
+    class_name = 'NetcoreTestClass.NetcoreTestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # set static field value
+    netcore_type.set_static_field("StaticValue", 75).execute()
+
+    # get type's static field
+    response = netcore_type.get_static_field("StaticValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_SetStaticField>
+    netcore_type.set_static_field("StaticValue", 3).execute()
     assert (result == 75)
-    Javonet.in_memory().Netcore().get_type(class_name).set_static_field("StaticValue", 3).Execute()
 
 
 def test_netcore_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     # <TestResources_InvokeInstanceMethod>
-    Javonet.in_memory().Netcore().load_library(library_path)
-    instance = Javonet.in_memory().Netcore().get_type(class_name).create_instance(3, 4).Execute()
-    call = instance.invoke_instance_method("MultiplyTwoNumbers", 2, 25).Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/NetcoreTestClass.dll'
+    class_name = 'NetcoreTestClass.NetcoreTestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(13, 14).execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("MultiplyTwoNumbers", 2, 25).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_InvokeInstanceMethod>
     assert (result == 50)
 
 
-def test_netcore_testresources_getinstancefield_publicvalue_3():
-    # <TestResources_GetInstanceField>
-    Javonet.in_memory().Netcore().load_library(library_path)
-    instance = Javonet.in_memory().Netcore().get_type(class_name).create_instance(3, 4).Execute()
-    call = instance.get_instance_field("PublicValue").Execute()
-    result = call.get_value()
+def test_netcore_testresources_getinstancefield_publicvalue_18():
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/NetcoreTestClass.dll'
+    class_name = 'NetcoreTestClass.NetcoreTestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(18, 19).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("PublicValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_GetInstanceField>
-    assert (result == 3)
+    assert (result == 18)
 
-
+    
 def test_netcore_standardlibrary_systemdatetime_passinstanceasargument():
     # <TestResources_GetInstanceField>
     instance = Javonet.in_memory().Netcore().get_type("System.DateTime").create_instance(2022, 9, 13, 8, 24,

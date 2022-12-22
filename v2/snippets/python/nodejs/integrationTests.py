@@ -3,79 +3,227 @@ from pathlib import Path
 
 from javonet.sdk import Javonet
 
-javonet_src_root = str(Path(__file__).parent.parent.parent.parent)
-# <TestResources_TestClassValues>
-library_path = javonet_src_root + '/testResources/nodejs/NodejsTestClass.js'
-class_name = 'NodejsTestClass.js'
-# </TestResources_TestClassValues>
+resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/nodejs'
+
 
 def test_nodejs_standardlibrary_invokestaticmethod_math_abs_minus50_50():
     # <StandardLibrary_InvokeStaticMethod>
-    call = Javonet.in_memory().Nodejs().get_type("Math").invoke_static_method("abs", -50).Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type("Math").execute()
+
+    # invoke type's static method
+    response = nodejs_type.invoke_static_method("abs", -50).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </StandardLibrary_InvokeStaticMethod>
     assert (result == 50)
 
 
 def test_nodejs_standardlibrary_getstaticfield_mathpi_pi():
     # <StandardLibrary_GetStaticField>
-    call = Javonet.in_memory().Nodejs().get_type("Math").get_static_field("PI").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type("Math").execute()
+
+    # get type's static field
+    response = nodejs_type.get_static_field("PI").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </StandardLibrary_GetStaticField>
     assert (round(result, 6) == round(math.pi, 6))
 
 
 def test_nodejs_testresources_loadlibrary_librarypath_noexception():
     # <TestResources_LoadLibrary>
-    Javonet.in_memory().Nodejs().load_library(library_path)
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/NodejsTestClass.js'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
     # </TestResources_LoadLibrary>
 
 
 def test_nodejs_testresources_invokestaticmethod_multiplybytwo_25_50():
     # <TestResources_InvokeStaticMethod>
-    Javonet.in_memory().Nodejs().load_library(library_path)
-    call = Javonet.in_memory().Nodejs().get_type(class_name).invoke_static_method("multiplyByTwo", 25).Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/NodejsTestClass.js'
+    class_name = 'NodejsTestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # invoke type's static method
+    response = nodejs_type.invoke_static_method("multiplyByTwo", 25).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_InvokeStaticMethod>
     assert (result == 50)
 
 
 def test_nodejs_testresources_getstaticfield_staticvalue_3():
     # <TestResources_GetStaticField>
-    Javonet.in_memory().Nodejs().load_library(library_path)
-    call = Javonet.in_memory().Nodejs().get_type(class_name).get_static_field("staticValue").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/NodejsTestClass.js'
+    class_name = 'NodejsTestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # get type's static value
+    response = nodejs_type.get_static_field("staticValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_GetStaticField>
     assert (result == 3)
 
 
 def test_nodejs_testresources_setstaticfield_staticvalue_75():
     # <TestResources_SetStaticField>
-    Javonet.in_memory().Nodejs().load_library(library_path)
-    Javonet.in_memory().Nodejs().get_type(class_name).set_static_field("staticValue", 75).Execute()
-    call = Javonet.in_memory().Nodejs().get_type(class_name).get_static_field("staticValue").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/NodejsTestClass.js'
+    class_name = 'NodejsTestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # set static field value
+    nodejs_type.set_static_field("staticValue", 75).execute()
+
+    # get type's static value
+    response = nodejs_type.get_static_field("staticValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_SetStaticField>
+    nodejs_type.set_static_field("staticValue", 3).execute()
     assert (result == 75)
-    Javonet.in_memory().Nodejs().get_type(class_name).set_static_field("staticValue", 3).Execute()
 
 
 def test_nodejs_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     # <TestResources_InvokeInstanceMethod>
-    Javonet.in_memory().Nodejs().load_library(library_path)
-    instance = Javonet.in_memory().Nodejs().get_type(class_name).create_instance(3, 4).Execute()
-    call = instance.invoke_instance_method("multiplyTwoNumbers", 2, 25).Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/NodejsTestClass.js'
+    class_name = 'NodejsTestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = nodejs_type.create_instance(13, 14).execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("multiplyTwoNumbers", 2, 25).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_InvokeInstanceMethod>
     assert (result == 50)
 
 
-def test_nodejs_testresources_getinstancefield_publicvalue_3():
+def test_nodejs_testresources_getinstancefield_publicvalue_18():
     # <TestResources_GetInstanceField>
-    Javonet.in_memory().Nodejs().load_library(library_path)
-    instance = Javonet.in_memory().Nodejs().get_type(class_name).create_instance(3, 4).Execute()
-    call = instance.get_instance_field("publicValue").Execute()
-    result = call.get_value()
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/NodejsTestClass.js'
+    class_name = 'NodejsTestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = nodejs_type.create_instance(18, 19).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("publicValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
     # </TestResources_GetInstanceField>
-    assert (result == 3)
+    assert (result == 18)
 
