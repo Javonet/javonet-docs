@@ -15,7 +15,7 @@ namespace Javonet.Netcore.Sdk.Tests
 		public void Test_Activation_CorrectCredentials_Returns0()
 		{
 			// <Javonet_activate>
-			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
+			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
 			// </Javonet_activate>
 			Assert.Equal(0, result);
 		}
