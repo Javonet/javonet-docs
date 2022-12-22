@@ -5,7 +5,7 @@ describe('NodeJS activation tests', () => {
 
     test(`Test_Activation_CorrectCredentials_Returns0`, () => {
         // <Javonet_activate>
-        let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey)
+        let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
         // </Javonet_activate>
         expect(result).toBe(0)
     })

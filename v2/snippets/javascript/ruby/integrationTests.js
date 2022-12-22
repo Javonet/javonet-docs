@@ -1,35 +1,70 @@
-const {Javonet} = require('javonet/src/sdk/Javonet')
+const {Javonet} = require('javonet.nodejs.sdk/src/sdk/Javonet')
 const ActivationCredentials = require("./ActivationCredentials")
 const path = require('path')
 
-const javonet_src_root = path.resolve(__dirname, '../../..')
-// <TestResources_TestClassValues>
-const libraryPath = javonet_src_root + '/testResources/ruby/ruby_test_class.rb'
-const className = 'RubyTestClass::RubyTestClass'
-// </TestResources_TestClassValues>
+const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/ruby'
 
-describe('NodeJS to Ruby integration tests', () => {
 
-    Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey)
+
+describe('Nodejs to Ruby integration tests', () => {
+
+    Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
 
     test(`Test_Ruby_StandardLibrary_LoadLibrary_Base64_NoException`, () => {
         // <TestResources_LoadLibrary>
-        Javonet.inMemory().ruby().loadLibrary("base64")
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //load RUBY library
+        rubyRuntime.loadLibrary("base64")
         // </TestResources_LoadLibrary>
     })
 
-    test(`Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_sqrt_2500_50`, () => {
+    test(`Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50`, () => {
         // <StandardLibrary_InvokeStaticMethod>
-        let call = Javonet.inMemory().ruby().getType("Math").invokeStaticMethod("sqrt", 2500).execute()
-        let result = call.getValue()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType("Math").execute()
+
+        // invoke type's static method
+        let response = rubyType.invokeStaticMethod("sqrt", 2500).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </StandardLibrary_InvokeStaticMethod>
         expect(result).toBe(50)
     })
 
     test(`Test_Ruby_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
         // <StandardLibrary_GetStaticField>
-        let call = Javonet.inMemory().ruby().getType("Math").getStaticField("PI").execute()
-        let result = call.getValue()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType("Math").execute()
+
+        // get type's field
+        let response = rubyType.getStaticField("PI").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </StandardLibrary_GetStaticField>
         expect(result).toBeCloseTo(Math.PI, 6)
     })
@@ -37,59 +72,180 @@ describe('NodeJS to Ruby integration tests', () => {
 
     test(`Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
         // <TestResources_LoadLibrary>
-        Javonet.inMemory().ruby().loadLibrary(libraryPath)
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //set up variables
+        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+
+        //load custom library
+        rubyRuntime.loadLibrary(libraryPath)
         // </TestResources_LoadLibrary>
     })
 
     test(`Test_Ruby_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
         // <TestResources_InvokeStaticMethod>
-        Javonet.inMemory().ruby().loadLibrary(libraryPath)
-        let call = Javonet.inMemory().ruby().getType(className).invokeStaticMethod("multiply_by_two", 25).execute()
-        let result = call.getValue()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //set up variables
+        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+        const className = 'RubyTestClass::RubyTestClass'
+
+        //load custom library
+        rubyRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType(className).execute()
+
+        // invoke type's static method
+        let response = rubyType.invokeStaticMethod("multiply_by_two", 25).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </TestResources_InvokeStaticMethod>
         expect(result).toBe(50)
     })
 
     test(`Test_Ruby_TestResources_GetStaticField_StaticValue_3`, () => {
         // <TestResources_GetStaticField>
-        Javonet.inMemory().ruby().loadLibrary(libraryPath)
-        let call = Javonet.inMemory().ruby().getType(className).getStaticField("static_value").execute()
-        let result = call.getValue()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //set up variables
+        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+        const className = 'RubyTestClass::RubyTestClass'
+
+        //load custom library
+        rubyRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType(className).execute()
+
+        // get type's static field
+        let response = rubyType.getStaticField("static_value").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </TestResources_GetStaticField>
         expect(result).toBe(3)
     })
 
     test(`Test_Ruby_TestResources_SetStaticField_StaticValue_75`, () => {
         // <TestResources_SetStaticField>
-        Javonet.inMemory().ruby().loadLibrary(libraryPath)
-        Javonet.inMemory().ruby().getType(className).setStaticField("static_value", 75).execute()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //set up variables
+        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+        const className = 'RubyTestClass::RubyTestClass'
+
+        //load custom library
+        rubyRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType(className).execute()
+
+        // set static field's value
+        rubyType.setStaticField("static_value", 75).execute()
+
+        // get type's static field
+        let response = rubyType.getStaticField("static_value").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </TestResources_SetStaticField>
-        let call = Javonet.inMemory().ruby().getType(className).getStaticField("static_value").execute()
-        let result = call.getValue()
+        rubyType.setStaticField("static_value", 3).execute()
         expect(result).toBe(75)
-        Javonet.inMemory().ruby().getType(className).setStaticField("static_value", 3).execute()
     })
 
     test(`Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
         // <TestResources_InvokeInstanceMethod>
-        Javonet.inMemory().ruby().loadLibrary(libraryPath)
-        let instance = Javonet.inMemory().ruby().getType(className).createInstance(2, 3).execute()
-        let call = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute()
-        let result = call.getValue()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //set up variables
+        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+        const className = 'RubyTestClass::RubyTestClass'
+
+        //load custom library
+        rubyRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = rubyType.createInstance(12, 13).execute()
+
+        // invoke instance's method
+        let response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </TestResources_InvokeInstanceMethod>
         expect(instance.getValue().length).toBe(36)
         expect(result).toBe(20)
     })
 
-    test(`Test_Ruby_TestResources_GetInstanceField_PublicValue_1`, () => {
+    test(`Test_Ruby_TestResources_GetInstanceField_PublicValue_18`, () => {
         // <TestResources_GetInstanceField>
-        Javonet.inMemory().ruby().loadLibrary(libraryPath)
-        let instance = Javonet.inMemory().ruby().getType(className).createInstance(1, 2).execute()
-        let call = instance.getInstanceField("public_value").execute()
-        let result = call.getValue()
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create RUBY runtime context
+        let rubyRuntime = Javonet.inMemory().ruby()
+
+        //set up variables
+        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+        const className = 'RubyTestClass::RubyTestClass'
+
+        //load custom library
+        rubyRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let rubyType = rubyRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = rubyType.createInstance(18, 19).execute()
+
+        // get instance's field
+        let response = instance.getInstanceField("public_value").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
         // </TestResources_GetInstanceField>
         expect(instance.getValue().length).toBe(36)
-        expect(result).toBe(1)
+        expect(result).toBe(18)
     })
 
 })
