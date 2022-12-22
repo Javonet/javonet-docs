@@ -4,9 +4,10 @@ import com.javonet.sdk.core.JvmCommandType;
 import com.javonet.sdk.core.RuntimeLib;
 import com.javonet.sdk.core.Type;
 import com.javonet.sdk.internal.InvocationContext;
+import com.javonet.sdk.internal.RuntimeContext;
 import com.javonet.sdk.java.Javonet;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import java.io.File;
@@ -17,135 +18,363 @@ import java.util.ArrayList;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class JvmToNetcoreIntegrationTest {
 
-    private final String _javonetSrcRoot = Paths.get("").toAbsolutePath().getParent().getParent().toString();
-
-    // <TestResources_TestClassValues>
-    private final String libraryPath = _javonetSrcRoot + "/testResources/netcore/NetcoreTestClass.dll";
-    private final String className = "NetcoreTestClass.NetcoreTestClass";
-    // </TestResources_TestClassValues>
+    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/netcore";
 
     @BeforeAll
     public static void initialization() {
-        Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey);
+        Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
     }
 
     @Test
     @Tag("integration")
-    @DisabledOnOs({ OS.LINUX, OS.OTHER, OS.MAC })
-    public void Test_Netcore_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50() {
+    public void Test_Netcore_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
-        InvocationContext call = Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs", -50).execute();
-        int result = (int)call.getValue();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType("System.Math").execute();
+
+        // invoke type's static method
+        InvocationContext response = netcoreType.invokeStaticMethod("Abs", -50).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </StandardLibrary_InvokeStaticMethod>
         Assertions.assertEquals(50, result);
     }
 
     @Test
     @Tag("integration")
-    @DisabledOnOs({ OS.LINUX, OS.OTHER, OS.MAC })
-    public void Test_Netcore_StandardLibrary_GetStaticField_SystemMath_PI_PI() {
+    public void Test_Netcore_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
-        InvocationContext call = Javonet.inMemory().netcore().getType("System.Math").getStaticField("PI").execute();
-        double result = (double)call.getValue();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType("System.Math").execute();
+
+        // get type's static field
+        InvocationContext response = netcoreType.getStaticField("PI").execute();
+
+        // get result from response
+        double result = (double) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </StandardLibrary_GetStaticField>
         Assertions.assertEquals(Math.PI, result);
     }
 
     @Test
     @Tag("integration")
-    @DisabledOnOs({ OS.LINUX, OS.OTHER, OS.MAC })
     public void Test_Netcore_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022() {
         // <StandardLibrary_InvokeInstanceMethod>
-        InvocationContext instance = Javonet.inMemory().netcore().getType("System.DateTime").
-                createInstance(2022,9,1).execute();
-        InvocationContext call = instance.invokeInstanceMethod("ToShortDateString").execute();
-        String result = (String)call.getValue();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType("System.DateTime").execute();
+
+        // create type's instance
+        InvocationContext instance = netcoreType.createInstance(2022, 9, 1).execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("ToShortDateString").execute();
+
+        // get result from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </StandardLibrary_InvokeInstanceMethod>
-        Assertions.assertEquals(36, ((String)instance.getValue()).length());
+        Assertions.assertEquals(36, ((String) instance.getValue()).length());
         Assertions.assertTrue(result.contains("2022"));
     }
 
     @Test
     @Tag("integration")
-    @DisabledOnOs({ OS.LINUX, OS.OTHER, OS.MAC })
     public void Test_Netcore_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022() {
         // <StandardLibrary_GetInstanceField>
-        InvocationContext instance = Javonet.inMemory().netcore().getType("System.DateTime").
-                createInstance(2022,9,1).execute();
-        InvocationContext call = instance.getInstanceField("Year").execute();
-        int result = (int)call.getValue();
-        // </StandardLibrary_GetInstanceField>
-        Assertions.assertEquals(36, ((String)instance.getValue()).length());
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
 
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType("System.DateTime").execute();
+
+        // create type's instance
+        InvocationContext instance = netcoreType.createInstance(2022, 9, 1).execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("Year").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_GetInstanceField>
+        Assertions.assertEquals(36, ((String) instance.getValue()).length());
         Assertions.assertEquals(2022, result);
     }
 
     @Test
     @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
     public void Test_Netcore_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
-        Javonet.inMemory().netcore().loadLibrary(libraryPath);
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
         // </TestResources_LoadLibrary>
     }
 
     @Test
     @Tag("integration")
-    public void Test_Netcore_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_Netcore_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
-        Javonet.inMemory().netcore().loadLibrary(libraryPath);
-        InvocationContext call = Javonet.inMemory().netcore().getType(className).invokeStaticMethod("MultiplyByTwo", 25).execute();
-        int result = (int) call.getValue();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+        String className = "NetcoreTestClass.NetcoreTestClass";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType(className).execute();
+
+        // get type's static field
+        InvocationContext response = netcoreType.invokeStaticMethod("MultiplyByTwo", 25).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </TestResources_InvokeStaticMethod>
         Assertions.assertEquals(50, result);
     }
 
     @Test
     @Tag("integration")
-    public void Test_Netcore_TestResources_GetStaticField_staticValue_3() {
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_Netcore_TestResources_GetStaticField_StaticValue_3() {
         // <TestResources_GetStaticField>
-        Javonet.inMemory().netcore().loadLibrary(libraryPath);
-        InvocationContext call = Javonet.inMemory().netcore().getType(className).getStaticField("StaticValue").execute();
-        int result = (int) call.getValue();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+        String className = "NetcoreTestClass.NetcoreTestClass";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType(className).execute();
+
+        // get type's static field
+        InvocationContext response = netcoreType.getStaticField("StaticValue").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </TestResources_GetStaticField>
         Assertions.assertEquals(3, result);
     }
 
     @Test
     @Tag("integration")
-    public void Test_Netcore_TestResources_SetStaticField_staticValue_75() {
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_Netcore_TestResources_SetStaticField_StaticValue_75() {
         // <TestResources_SetStaticField>
-        Javonet.inMemory().netcore().loadLibrary(libraryPath);
-        Javonet.inMemory().netcore().getType(className).setStaticField("StaticValue", 75).execute();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+        String className = "NetcoreTestClass.NetcoreTestClass";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType(className).execute();
+
+        // set static field's value
+        netcoreType.setStaticField("StaticValue", 75).execute();
+
+        // get type's static field
+        InvocationContext response = netcoreType.getStaticField("StaticValue").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </TestResources_SetStaticField>
-        InvocationContext call = Javonet.inMemory().netcore().getType(className).getStaticField("StaticValue").execute();
-        int result = (int) call.getValue();
+        netcoreType.setStaticField("StaticValue", 3).execute();
         Assertions.assertEquals(75, result);
-        Javonet.inMemory().netcore().getType(className).setStaticField("StaticValue", 3).execute();
     }
 
     @Test
     @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
     public void Test_Netcore_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
-        Javonet.inMemory().netcore().loadLibrary(libraryPath);
-        InvocationContext instance = Javonet.inMemory().netcore().getType(className).createInstance(2,3).execute();
-        InvocationContext call = instance.invokeInstanceMethod("MultiplyTwoNumbers", 5, 4).execute();
-        int result = (int) call.getValue();
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+        String className = "NetcoreTestClass.NetcoreTestClass";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = netcoreType.createInstance(12, 13).execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("MultiplyTwoNumbers", 5, 4).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </TestResources_InvokeInstanceMethod>
-        Assertions.assertEquals(36, ((String)instance.getValue()).length());
+        Assertions.assertEquals(36, ((String) instance.getValue()).length());
         Assertions.assertEquals(20, result);
     }
 
     @Test
     @Tag("integration")
-    public void Test_Netcore_TestResources_GetInstanceField_PublicValue_1() {
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_Netcore_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
-        Javonet.inMemory().netcore().loadLibrary(libraryPath);
-        InvocationContext instance = Javonet.inMemory().netcore().getType(className).createInstance(1,2).execute();
-        InvocationContext call = instance.getInstanceField("PublicValue").execute();
-        int result = (int) call.getValue();
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+        String className = "NetcoreTestClass.NetcoreTestClass";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext netcoreType = netcoreRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = netcoreType.createInstance(18, 19).execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("PublicValue").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
         // </TestResources_GetInstanceField>
-        Assertions.assertEquals(36, ((String)instance.getValue()).length());
-        Assertions.assertEquals(1, result);
+        Assertions.assertEquals(36, ((String) instance.getValue()).length());
+        Assertions.assertEquals(18, result);
+    }
+
+    @Test
+    @Tag("integration")
+    void Test_Netcore_StandardLibrary_System_DateTime_PassInstanceAsArgument() {
+        InvocationContext ic1 = Javonet.inMemory().netcore().getType("System.DateTime").createInstance(2022, 5, 22, 21, 37, 38).execute();
+        InvocationContext ic2 = Javonet.inMemory().netcore().getType("System.Globalization.CultureInfo").createInstance("fr-FR").execute();
+        InvocationContext ic3 = Javonet.inMemory().netcore().getType("System.Globalization.CultureInfo").createInstance("en-US").execute();
+        InvocationContext ic4 = Javonet.inMemory().netcore().getType("System.Globalization.CultureInfo").createInstance("pl-PL").execute();
+
+        Object result2 = ic1.invokeInstanceMethod("ToString", "F", ic2).execute().getValue();
+        Object result3 = ic1.invokeInstanceMethod("ToString", "F", ic3).execute().getValue();
+        Object result4 = ic1.invokeInstanceMethod("ToString", "F", ic4).execute().getValue();
+        Assertions.assertEquals("dimanche 22 mai 2022 21:37:38", result2);
+        Assertions.assertEquals("Sunday, May 22, 2022 9:37:38 PM", result3);
+        Assertions.assertEquals("niedziela, 22 maja 2022 21:37:38", result4);
+
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Netcore_TestResources_ExchangeLibrary_ExchangeCalculator_GetExchangeRate() {
+        // <TestResources_GetInstanceField>
+        Javonet.activate("your-email", "your-license-key");
+
+        // create NETCORE runtime context
+        RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/ExchangeLibrary.dll";
+        String className = "ExchangeLibrary.ExchangeCalculator";
+
+        // load custom NETCORE library
+        netcoreRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext netcoreType = netcoreRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = netcoreType.createInstance().execute();
+
+        // invoke instance's methods
+        InvocationContext response1 = instance.invokeInstanceMethod("GetExchangeRate", "PLNEUR").execute();
+        InvocationContext response2 = instance.invokeInstanceMethod("GetExchangeRate", "PLNUSD").execute();
+
+        Float PLNEUR = (Float) response1.getValue();
+        Float PLNUSD = (Float) response2.getValue();
+
+        Assertions.assertEquals(4.6f, PLNEUR);
+        Assertions.assertEquals(4.0f, PLNUSD);
     }
 }
