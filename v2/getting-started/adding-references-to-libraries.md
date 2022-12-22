@@ -7,10 +7,6 @@
 
 Javonet allows you to use any library from all supported technologies. As with any regular application, you need to reference the libraries you are planning to use. 
 
-Using this values:
-
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
-
 You can call:
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_LoadLibrary":::

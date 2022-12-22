@@ -21,10 +21,6 @@ Code example below represents the sample `{called_name}` class that will be used
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
   
-To interact with this library there are defined two variables pointing to `{called_name}` package and class.
-
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_TestClassValues":::
- 
 Now it possible to invoke one of the declared `{called_name}` static methods using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}` package, and next retrieves reference to specific type and invokes the static method passing value type arguments. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
 :::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_InvokeStaticMethod":::
