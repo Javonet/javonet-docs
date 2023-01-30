@@ -71,6 +71,10 @@ items:
     href: /getting-started/installing-javonet-ruby.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
     called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+  - name: Installing Javonet for Node.js
+    href: /getting-started/installing-javonet-nodejs.md
+    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
+    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
   - name: Installing Javonet for Golang
     href: /getting-started/installing-javonet-golang.md
     calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
