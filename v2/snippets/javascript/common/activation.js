@@ -1,7 +1,7 @@
-const {Javonet} = require('javonet/src/sdk/Javonet')
-const ActivationCredentials = require("./ActivationCredentials");
+const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
+const ActivationCredentials = require("./ActivationCredentials")
 
-describe('NodeJS activation tests', () => {
+describe('Nodejs activation tests', () => {
 
     test(`Test_Activation_CorrectCredentials_Returns0`, () => {
         // <Javonet_activate>

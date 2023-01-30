@@ -1,15 +1,15 @@
-const {Javonet} = require('javonet.nodejs.sdk/src/sdk/Javonet')
+const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
 const ActivationCredentials = require("./ActivationCredentials")
 const path = require('path')
 
 const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/clr'
 
+
 describe('Nodejs to CLR integration tests', () => {
+    if (process.platform === 'win32') {
+        Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
 
-    Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
-
-    test(`Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
             // <StandardLibrary_InvokeStaticMethod>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -30,13 +30,9 @@ describe('Nodejs to CLR integration tests', () => {
             console.log(result)
             // </StandardLibrary_InvokeStaticMethod>
             expect(result).toBe(50)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
             // <StandardLibrary_GetStaticField>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -57,13 +53,9 @@ describe('Nodejs to CLR integration tests', () => {
             console.log(result)
             // </StandardLibrary_GetStaticField>
             expect(result).toBe(Math.PI)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022`, () => {
             // <StandardLibrary_InvokeInstanceMethod>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -87,13 +79,9 @@ describe('Nodejs to CLR integration tests', () => {
             console.log(result)
             // </StandardLibrary_InvokeInstanceMethod>
             expect(result).toContain("2022")
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022`, () => {
             // <StandardLibrary_InvokeInstanceMethod>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -108,7 +96,7 @@ describe('Nodejs to CLR integration tests', () => {
             let instance = clrType.createInstance(2022, 9, 2).execute()
 
             // get instance's field
-            let response  = instance.getInstanceField("Year").execute()
+            let response = instance.getInstanceField("Year").execute()
 
             // get value from response
             let result = response.getValue()
@@ -117,13 +105,9 @@ describe('Nodejs to CLR integration tests', () => {
             console.log(result)
             // </StandardLibrary_InvokeInstanceMethod>
             expect(result).toBe(2022)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
             // <TestResources_LoadLibrary>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -137,13 +121,9 @@ describe('Nodejs to CLR integration tests', () => {
             // load custom library
             clrRuntime.loadLibrary(libraryPath)
             // </TestResources_LoadLibrary>
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
             // <TestResources_InvokeStaticMethod>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -171,13 +151,9 @@ describe('Nodejs to CLR integration tests', () => {
             console.log(result)
             // </TestResources_InvokeStaticMethod>
             expect(result).toBe(50)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_TestResources_GetStaticField_StaticValue_3`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_TestResources_GetStaticField_StaticValue_3`, () => {
             // <TestResources_GetStaticField>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -205,13 +181,9 @@ describe('Nodejs to CLR integration tests', () => {
             console.log(result)
             // </TestResources_GetStaticField>
             expect(result).toBe(3)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_TestResources_SetStaticField_StaticValue_75`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_TestResources_SetStaticField_StaticValue_75`, () => {
             // <TestResources_SetStaticField>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -243,13 +215,9 @@ describe('Nodejs to CLR integration tests', () => {
             // </TestResources_SetStaticField>
             clrType.setStaticField("StaticValue", 3).execute()
             expect(result).toBe(75)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
             // <TestResources_InvokeInstanceMethod>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -281,13 +249,9 @@ describe('Nodejs to CLR integration tests', () => {
             // </TestResources_InvokeInstanceMethod>
             expect(instance.getValue().length).toBe(36)
             expect(result).toBe(20)
-        } else {
-            this.skip
-        }
-    })
+        })
 
-    test(`Test_Clr_TestResources_GetInstanceField_PublicValue_18`, () => {
-        if (process.platform === 'win32') {
+        test(`Test_Clr_TestResources_GetInstanceField_PublicValue_18`, () => {
             // <TestResources_GetInstanceField>
             // use Activate only once in your app
             Javonet.activate("your-email", "your-license-key")
@@ -319,8 +283,9 @@ describe('Nodejs to CLR integration tests', () => {
             // </TestResources_GetInstanceField>
             expect(instance.getValue().length).toBe(36)
             expect(result).toBe(18)
-        } else {
-            this.skip
-        }
-    })
+        })
+    } else {
+        test.skip("Clr supported only on Windows", () => {
+        })
+    }
 })
