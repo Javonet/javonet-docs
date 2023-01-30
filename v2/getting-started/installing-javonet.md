@@ -41,6 +41,6 @@ In order to use Javonet to call another runtime, this runtime has to be installe
 
 - Ruby: [Ruby 2.7](https://rubyinstaller.org/downloads/) 
 
-- Perl: Windows: [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi). Om Linux Perl is preinstalled. Use Perl 5.30 or higher
+- Perl: Windows: [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi). On Linux Perl is preinstalled. Use Perl 5.30 or higher
 
 - Node.js: [Node.js 12.22 or higher](https://nodejs.org/en/download/)

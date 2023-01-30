@@ -5,11 +5,7 @@
 
 ## Download Javonet package for .Net Framework
 
-Javonet is available for Windows and Linux environments for many different programming languages as a standard package. This section describes how to download Javonet for .Net Framework and install required prerequisites. 
+Javonet is available for many different programming languages as a standard package. This section describes how to download Javonet for .Net Framework.
 
-Javonet is available as a Nuget package called Javonet.Clr.Sdk.
+Javonet is available as a Nuget package [Javonet.Clr.Sdk](https://www.nuget.org/packages/Javonet.Clr.Sdk). 
 
-Please visit [Javonet on Nuget](https://www.nuget.org/packages/Javonet.Clr.Sdk) or install it through Nuget Package Manager
-
-
-Additional prerequisites need to be installed to use external packages. See [Installing Javonet](https://www.javonet.com/guides/v2/getting-started/installing-javonet)
