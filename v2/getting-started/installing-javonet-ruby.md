@@ -1,6 +1,7 @@
 :::options
 :title: Installing Javonet for Ruby
 :description: This article provides an information about installing Javonet for Ruby
+:::
 
 ## Download Javonet package for Ruby
 

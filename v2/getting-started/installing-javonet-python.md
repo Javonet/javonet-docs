@@ -3,11 +3,9 @@
 :description: This article provides an information about installing Javonet for Python
 :::
 
-# How to download Javonet package
+#Download Javonet package for Python
 
-Javonet is available for Windows and Linux environments for many different programming languages as a standard package. This section describes how to download Javonet for Python and install required prerequisites. 
+Javonet is available for many different programming languages as a standard package. This section describes how to download Javonet for Python
 
-Javonet is available as an Python package called javonet.python.sdk
-
-Please visit [Javonet Feed](https://dev.azure.com/sdncenterspzoo/JAVONETFEEDS/_artifacts/feed/JavonetTestPublic/UPack/javonet.python.sdk) and follow download instructions
+Javonet is available as a Python package [javonet-python-sdk](https://pypi.org/project/javonet-python-sdk/). 
 
