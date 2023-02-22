@@ -1,172 +1,181 @@
 programming-languages:
- - slug: clr
-   name: .NET Framework
-   ext: cs
- - slug: jvm
-   name: JVM
-   ext: java
- - slug: netcore
-   name: .NET Core
-   ext: cs
- - slug: perl
-   name: Perl
-   ext: pm
- - slug: python
-   name: Python
-   ext: py
- - slug: ruby
-   name: Ruby
-   ext: rb
- - slug: nodejs
-   name: NodeJS
-   ext: js
- - slug: cpp
-   name: C++
-   ext: cpp
- - slug: golang
-   name: GoLang
-   ext: go
- - slug: csharp
-   name: C#
-   ext: cs
- - slug: java
-   name: Java
-   ext: java
- - slug: javascript
-   name: JavaScript
-   ext: js
+- slug: csharp
+  name: C#
+  ext: cs
+- slug: java
+  name: Java
+  ext: java
+- slug: javascript
+  name: JavaScript
+  ext: js
+- slug: perl
+  name: Perl
+  ext: pm
+- slug: python
+  name: Python
+  ext: py
+- slug: ruby
+  name: Ruby
+  ext: rb
+- slug: cpp
+  name: C++
+  ext: cpp
+- slug: golang
+  name: GoLang
+  ext: go
+- slug: netframework_dll
+  name: .NET Framework DLL
+  ext: cs
+- slug: net_dll
+  name: .NET DLL
+  ext: cs
+- slug: jar_library
+  name: JAR library
+  ext: java
+- slug: nodejs_package
+  name: NodeJs package
+  ext: js
+- slug: perl_package
+  name: Perl package
+  ext: pm
+- slug: python_package
+  name: Python package
+  ext: py
+- slug: ruby_package
+  name: Ruby package
+  ext: rb
 
 
-calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
 items:
 - name: Getting started
   items: 
   - name: Installing Javonet
     href: /getting-started/installing-javonet.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for .Net Framework
     href: /getting-started/installing-javonet-dotnet-framework.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for .Net Core
     href: /getting-started/installing-javonet-dotnet-core.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for Java
     href: /getting-started/installing-javonet-java.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for Perl
     href: /getting-started/installing-javonet-perl.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for Python
     href: /getting-started/installing-javonet-python.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for Ruby
     href: /getting-started/installing-javonet-ruby.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for Node.js
     href: /getting-started/installing-javonet-nodejs.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for Golang
     href: /getting-started/installing-javonet-golang.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Installing Javonet for C++
     href: /getting-started/installing-javonet-cpp.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
   - name: Activating Javonet
     href: /getting-started/activating-javonet.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Adding references to libraries
     href: /getting-started/adding-references-to-libraries.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
 - name: Foundations
   items: 
   - name: Javonet static class
     href: /foundations/javonet-static-class.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: In memory channel
     href: /foundations/in-memory-channel.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: TCP channel
     href: /foundations/tcp-channel.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Runtime Context concept
     href: /foundations/runtime-context.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Invocation Context concept
     href: /foundations/invocation-context.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Execute method concept
     href: /foundations/execute-method.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
 - name: Calling methods
   items:
   - name: Invoking static methods
     href: /calling-methods/invoking-static-method.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Creating instance and calling instance methods
     href: /calling-methods/creating-instance-and-calling-instance-methods.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
 - name: Fields and Properties 
   items: 
   - name: Getting and setting values for static fields and properties
     href: /fields-and-properties/getting-and-setting-values-for-static-fields-and-properties.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Getting values for instance fields and properties
     href: /fields-and-properties/getting-values-for-instance-fields-and-properties.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
 
 - name: Arrays and collections 
   items: 
   - name: Arrays and collections overview
     href: /arrays-and-collections/arrays-and-collections-overview.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Value types arrays
     href: /arrays-and-collections/value-types-arrays.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Reference types arrays
     href: /arrays-and-collections/reference-types-arrays.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Multidimensional arrays
     href: /arrays-and-collections/multidimensional-arrays.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Jagged arrays
     href: /arrays-and-collections/jagged-arrays.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
   - name: Collections (lists, sets, queues, dictionaries )
     href: /arrays-and-collections/collections.md
-    calling_technology: csharp, java, perl, python, ruby, javascript, cpp, golang
-    called_technology: clr, jvm, netcore, perl, python, ruby, nodejs
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework_dll, net_dll, jar_library, nodejs_package, perl_package, python_package, ruby_package
 
