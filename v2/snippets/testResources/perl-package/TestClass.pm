@@ -1,4 +1,4 @@
-package PerlTestClass::PerlTestClass;
+package TestClass::TestClass;
 use strict;
 use warnings FATAL => 'all';
 use Moose;
@@ -42,6 +42,23 @@ sub set_public_value{
 sub multiply_by_two {
     my ($first_arg) = @_;
     return $first_arg * 2;
+}
+
+sub multiply_two_numbers {
+    my ($self, $first_arg, $second_arg) = @_;
+    return $first_arg * $second_arg;
+}
+
+sub get_1d_array {
+    return ["one", "two", "three", "four", "five"];
+}
+
+sub add_number_to_1D_array {
+    my ($self, $myArray, $myDouble) = @_;
+    for(@$myArray) {
+        $_ = $_ + $myDouble;
+    }
+    return $myArray;
 }
 
 
