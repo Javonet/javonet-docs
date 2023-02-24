@@ -133,7 +133,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       clr_runtime = Javonet.in_memory.clr
 
       # set up variables
-      library_path = resources_directory + "/ClrTestClass.dll"
+      library_path = resources_directory + "/TestClass.dll"
 
       # load custom library
       clr_runtime.load_library(library_path)
@@ -153,8 +153,8 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       clr_runtime = Javonet.in_memory.clr
 
       # set up variables
-      library_path = resources_directory + "/ClrTestClass.dll"
-      class_name = "ClrTestClass.ClrTestClass"
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
 
       # load custom library
       clr_runtime.load_library(library_path)
@@ -187,8 +187,8 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       clr_runtime = Javonet.in_memory.clr
 
       # set up variables
-      library_path = resources_directory + "/ClrTestClass.dll"
-      class_name = "ClrTestClass.ClrTestClass"
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
 
       # load custom library
       clr_runtime.load_library(library_path)
@@ -221,8 +221,8 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       clr_runtime = Javonet.in_memory.clr
 
       # set up variables
-      library_path = resources_directory + "/ClrTestClass.dll"
-      class_name = "ClrTestClass.ClrTestClass"
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
 
       # load custom library
       clr_runtime.load_library(library_path)
@@ -259,8 +259,8 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       clr_runtime = Javonet.in_memory.clr
 
       # set up variables
-      library_path = resources_directory + "/ClrTestClass.dll"
-      class_name = "ClrTestClass.ClrTestClass"
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
 
       # load custom library
       clr_runtime.load_library(library_path)
@@ -296,8 +296,8 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       clr_runtime = Javonet.in_memory.clr
 
       # set up variables
-      library_path = resources_directory + "/ClrTestClass.dll"
-      class_name = "ClrTestClass.ClrTestClass"
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
 
       # load custom library
       clr_runtime.load_library(library_path)

@@ -64,7 +64,7 @@ RSpec.describe 'Ruby To Nodejs Integration Tests' do
     nodejs_runtime = Javonet.in_memory.nodejs
 
     # set up variables
-    library_path = resources_directory + "/NodejsTestClass.js"
+    library_path = resources_directory + "/TestClass.js"
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -80,8 +80,8 @@ RSpec.describe 'Ruby To Nodejs Integration Tests' do
     nodejs_runtime = Javonet.in_memory.nodejs
 
     # set up variables
-    library_path = resources_directory + "/NodejsTestClass.js"
-    class_name = "NodejsTestClass"
+    library_path = resources_directory + "/TestClass.js"
+    class_name = "TestClass"
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -110,8 +110,8 @@ RSpec.describe 'Ruby To Nodejs Integration Tests' do
     nodejs_runtime = Javonet.in_memory.nodejs
 
     # set up variables
-    library_path = resources_directory + "/NodejsTestClass.js"
-    class_name = "NodejsTestClass"
+    library_path = resources_directory + "/TestClass.js"
+    class_name = "TestClass"
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -140,8 +140,8 @@ RSpec.describe 'Ruby To Nodejs Integration Tests' do
     nodejs_runtime = Javonet.in_memory.nodejs
 
     # set up variables
-    library_path = resources_directory + "/NodejsTestClass.js"
-    class_name = "NodejsTestClass"
+    library_path = resources_directory + "/TestClass.js"
+    class_name = "TestClass"
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -174,8 +174,8 @@ RSpec.describe 'Ruby To Nodejs Integration Tests' do
     nodejs_runtime = Javonet.in_memory.nodejs
 
     # set up variables
-    library_path = resources_directory + "/NodejsTestClass.js"
-    class_name = "NodejsTestClass"
+    library_path = resources_directory + "/TestClass.js"
+    class_name = "TestClass"
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -207,8 +207,8 @@ RSpec.describe 'Ruby To Nodejs Integration Tests' do
     nodejs_runtime = Javonet.in_memory.nodejs
 
     # set up variables
-    library_path = resources_directory + "/NodejsTestClass.js"
-    class_name = "NodejsTestClass"
+    library_path = resources_directory + "/TestClass.js"
+    class_name = "TestClass"
 
     # load custom library
     nodejs_runtime.load_library(library_path)

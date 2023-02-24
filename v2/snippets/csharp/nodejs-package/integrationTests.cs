@@ -81,7 +81,7 @@ namespace Integration.Tests
 			var nodejsRuntime = Javonet.InMemory().Nodejs();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/NodejsTestClass.js";
+			string libraryPath = resourcesDirectory + "/TestClass.js";
 
 			// load custom library
 			nodejsRuntime.LoadLibrary(libraryPath);
@@ -100,8 +100,8 @@ namespace Integration.Tests
 			var nodejsRuntime = Javonet.InMemory().Nodejs();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-			string className = "NodejsTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.js";
+			string className = "TestClass";
 
 			// load custom library
 			nodejsRuntime.LoadLibrary(libraryPath);
@@ -133,8 +133,8 @@ namespace Integration.Tests
 			var nodejsRuntime = Javonet.InMemory().Nodejs();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-			string className = "NodejsTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.js";
+			string className = "TestClass";
 
 			// load custom library
 			nodejsRuntime.LoadLibrary(libraryPath);
@@ -166,8 +166,8 @@ namespace Integration.Tests
 			var nodejsRuntime = Javonet.InMemory().Nodejs();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-			string className = "NodejsTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.js";
+			string className = "TestClass";
 
 			// load custom library
 			nodejsRuntime.LoadLibrary(libraryPath);
@@ -203,8 +203,8 @@ namespace Integration.Tests
 			var nodejsRuntime = Javonet.InMemory().Nodejs();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-			string className = "NodejsTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.js";
+			string className = "TestClass";
 
 			// load custom library
 			nodejsRuntime.LoadLibrary(libraryPath);
@@ -240,8 +240,8 @@ namespace Integration.Tests
 			var nodejsRuntime = Javonet.InMemory().Nodejs();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-			string className = "NodejsTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.js";
+			string className = "TestClass";
 
 			// load custom library
 			nodejsRuntime.LoadLibrary(libraryPath);

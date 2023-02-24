@@ -13,8 +13,8 @@ namespace CppToNodejsIntegrationTests {
 	auto currentWorkingDir = getcwd(nullptr, 0);
 #endif //_WIN32
 	// <TestResources_TestClassValues>
-	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/nodejs-package/NodejsTestClass.js");
-	auto className = "NodejsTestClass.js";
+	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/nodejs-package/TestClass.js");
+	auto className = "TestClass.js";
 	// </TestResources_TestClassValues> 
 
 	TEST(Integration, Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50) {

@@ -117,7 +117,7 @@ def test_clr_testresources_loadlibrary_librarypath_noexception():
     clr_runtime = Javonet.in_memory().clr()
 
     # set up variables
-    library_path = resources_directory + '/ClrTestClass.dll'
+    library_path = resources_directory + '/TestClass.dll'
 
     # load custom library
     clr_runtime.load_library(library_path)
@@ -134,8 +134,8 @@ def test_clr_testresources_invokestaticmethod_multiplybytwo_25_50():
     clr_runtime = Javonet.in_memory().clr()
 
     # set up variables
-    library_path = resources_directory + '/ClrTestClass.dll'
-    class_name = 'ClrTestClass.ClrTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     clr_runtime.load_library(library_path)
@@ -165,8 +165,8 @@ def test_clr_testresources_getstaticfield_staticvalue_3():
     clr_runtime = Javonet.in_memory().clr()
 
     # set up variables
-    library_path = resources_directory + '/ClrTestClass.dll'
-    class_name = 'ClrTestClass.ClrTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     clr_runtime.load_library(library_path)
@@ -196,8 +196,8 @@ def test_clr_testresources_setstaticfield_staticvalue_75():
     clr_runtime = Javonet.in_memory().clr()
 
     # set up variables
-    library_path = resources_directory + '/ClrTestClass.dll'
-    class_name = 'ClrTestClass.ClrTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     clr_runtime.load_library(library_path)
@@ -231,8 +231,8 @@ def test_clr_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     clr_runtime = Javonet.in_memory().clr()
 
     # set up variables
-    library_path = resources_directory + '/ClrTestClass.dll'
-    class_name = 'ClrTestClass.ClrTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     clr_runtime.load_library(library_path)
@@ -264,8 +264,8 @@ def test_clr_testresources_getinstancefield_publicvalue_18():
     clr_runtime = Javonet.in_memory().clr()
 
     # set up variables
-    library_path = resources_directory + '/ClrTestClass.dll'
-    class_name = 'ClrTestClass.ClrTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     clr_runtime.load_library(library_path)

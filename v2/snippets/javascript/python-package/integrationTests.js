@@ -78,7 +78,7 @@ describe('Nodejs to Python integration tests', () => {
 
         //set up variables
         const libraryPath = resourcesDirectory
-        const className = "PythonTestClass.PythonTestClass"
+        const className = "TestClass.TestClass"
 
         // load custom library
         pythonRuntime.loadLibrary(libraryPath)
@@ -108,7 +108,7 @@ describe('Nodejs to Python integration tests', () => {
 
         //set up variables
         const libraryPath = resourcesDirectory
-        const className = "PythonTestClass.PythonTestClass"
+        const className = "TestClass.TestClass"
 
         // load custom library
         pythonRuntime.loadLibrary(libraryPath)
@@ -138,7 +138,7 @@ describe('Nodejs to Python integration tests', () => {
 
         //set up variables
         const libraryPath = resourcesDirectory
-        const className = "PythonTestClass.PythonTestClass"
+        const className = "TestClass.TestClass"
 
         // load custom library
         pythonRuntime.loadLibrary(libraryPath)
@@ -172,7 +172,7 @@ describe('Nodejs to Python integration tests', () => {
 
         //set up variables
         const libraryPath = resourcesDirectory
-        const className = "PythonTestClass.PythonTestClass"
+        const className = "TestClass.TestClass"
 
         // load custom library
         pythonRuntime.loadLibrary(libraryPath)
@@ -206,7 +206,7 @@ describe('Nodejs to Python integration tests', () => {
 
         //set up variables
         const libraryPath = resourcesDirectory
-        const className = "PythonTestClass.PythonTestClass"
+        const className = "TestClass.TestClass"
 
         // load custom library
         pythonRuntime.loadLibrary(libraryPath)

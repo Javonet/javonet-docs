@@ -98,7 +98,7 @@ namespace Integration.Tests
 			var rubyRuntime = Javonet.InMemory().Ruby();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/ruby_test_class.rb";
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
 
 			// load custom library
 			rubyRuntime.LoadLibrary(libraryPath);
@@ -117,8 +117,8 @@ namespace Integration.Tests
 			var rubyRuntime = Javonet.InMemory().Ruby();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-			string className = "RubyTestClass::RubyTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
 
 			// load custom library
 			rubyRuntime.LoadLibrary(libraryPath);
@@ -150,8 +150,8 @@ namespace Integration.Tests
 			var rubyRuntime = Javonet.InMemory().Ruby();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-			string className = "RubyTestClass::RubyTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
 
 			// load custom library
 			rubyRuntime.LoadLibrary(libraryPath);
@@ -183,8 +183,8 @@ namespace Integration.Tests
 			var rubyRuntime = Javonet.InMemory().Ruby();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-			string className = "RubyTestClass::RubyTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
 
 			// load custom library
 			rubyRuntime.LoadLibrary(libraryPath);
@@ -220,8 +220,8 @@ namespace Integration.Tests
 			var rubyRuntime = Javonet.InMemory().Ruby();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-			string className = "RubyTestClass::RubyTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
 
 			// load custom library
 			rubyRuntime.LoadLibrary(libraryPath);
@@ -257,8 +257,8 @@ namespace Integration.Tests
 			var rubyRuntime = Javonet.InMemory().Ruby();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-			string className = "RubyTestClass::RubyTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
 
 			// load custom library
 			rubyRuntime.LoadLibrary(libraryPath);

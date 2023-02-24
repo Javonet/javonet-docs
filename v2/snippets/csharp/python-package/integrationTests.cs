@@ -103,7 +103,7 @@ namespace Integration.Tests
 			// set up variables
 			// libraryPath - directory with .py files
 			string libraryPath = resourcesDirectory;
-			string className = "PythonTestClass.PythonTestClass";
+			string className = "TestClass.TestClass";
 
 			// load custom library
 			pythonRuntime.LoadLibrary(libraryPath);
@@ -137,7 +137,7 @@ namespace Integration.Tests
 			// set up variables
 			// libraryPath - directory with .py files
 			string libraryPath = resourcesDirectory;
-			string className = "PythonTestClass.PythonTestClass";
+			string className = "TestClass.TestClass";
 
 			// load custom library
 			pythonRuntime.LoadLibrary(libraryPath);
@@ -171,7 +171,7 @@ namespace Integration.Tests
 			// set up variables
 			// libraryPath - directory with .py files
 			string libraryPath = resourcesDirectory;
-			string className = "PythonTestClass.PythonTestClass";
+			string className = "TestClass.TestClass";
 
 			// load custom library
 			pythonRuntime.LoadLibrary(libraryPath);
@@ -209,7 +209,7 @@ namespace Integration.Tests
 			// set up variables
 			// libraryPath - directory with .py files
 			string libraryPath = resourcesDirectory;
-			string className = "PythonTestClass.PythonTestClass";
+			string className = "TestClass.TestClass";
 
 			// load custom library
 			pythonRuntime.LoadLibrary(libraryPath);
@@ -248,7 +248,7 @@ namespace Integration.Tests
 			// set up variables
 			// libraryPath - directory with .py files
 			string libraryPath = resourcesDirectory;
-			string className = "PythonTestClass.PythonTestClass";
+			string className = "TestClass.TestClass";
 
 			// load custom library
 			pythonRuntime.LoadLibrary(libraryPath);

@@ -13,8 +13,8 @@ namespace CppToRubyIntegrationTests {
 	auto currentWorkingDir = getcwd(nullptr, 0);
 #endif //_WIN32
 	// <TestResources_TestClassValues>
-	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/ruby-package/ruby_test_class.rb");
-	auto className = "RubyTestClass::RubyTestClass";
+	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/ruby-package/TestClass.rb");
+	auto className = "TestClass::TestClass";
 	// </TestResources_TestClassValues> 
 
 	TEST(Integration, Test_Ruby_StandardLibrary_LoadLibrary_base64_NoExeption) {

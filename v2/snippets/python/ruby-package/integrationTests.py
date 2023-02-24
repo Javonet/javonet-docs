@@ -74,7 +74,7 @@ def test_ruby_testresources_loadlibrary_librarypath_noexception():
     ruby_runtime = Javonet.in_memory().ruby()
 
     # set up variables
-    library_path = resources_directory + '/ruby_test_class.rb'
+    library_path = resources_directory + '/TestClass.rb'
 
     # load custom library
     ruby_runtime.load_library(library_path)
@@ -90,8 +90,8 @@ def test_ruby_testresources_invokestaticmethod_multiplybytwo_25_50():
     ruby_runtime = Javonet.in_memory().ruby()
 
     # set up variables
-    library_path = resources_directory + '/ruby_test_class.rb'
-    class_name = "RubyTestClass::RubyTestClass"
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
 
     # load custom library
     ruby_runtime.load_library(library_path)
@@ -120,8 +120,8 @@ def test_ruby_testresources_getstaticfield_staticvalue_3():
     ruby_runtime = Javonet.in_memory().ruby()
 
     # set up variables
-    library_path = resources_directory + '/ruby_test_class.rb'
-    class_name = "RubyTestClass::RubyTestClass"
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
 
     # load custom library
     ruby_runtime.load_library(library_path)
@@ -150,8 +150,8 @@ def test_ruby_testresources_setstaticfield_staticvalue_75():
     ruby_runtime = Javonet.in_memory().ruby()
 
     # set up variables
-    library_path = resources_directory + '/ruby_test_class.rb'
-    class_name = "RubyTestClass::RubyTestClass"
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
 
     # load custom library
     ruby_runtime.load_library(library_path)
@@ -185,8 +185,8 @@ def test_ruby_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     ruby_runtime = Javonet.in_memory().ruby()
 
     # set up variables
-    library_path = resources_directory + '/ruby_test_class.rb'
-    class_name = "RubyTestClass::RubyTestClass"
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
 
     # load custom library
     ruby_runtime.load_library(library_path)
@@ -218,8 +218,8 @@ def test_ruby_testresources_getinstancefield_publicvalue_18():
     ruby_runtime = Javonet.in_memory().ruby()
 
     # set up variables
-    library_path = resources_directory + '/ruby_test_class.rb'
-    class_name = "RubyTestClass::RubyTestClass"
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
 
     # load custom library
     ruby_runtime.load_library(library_path)

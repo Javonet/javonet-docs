@@ -78,7 +78,7 @@ public class JvmToNodejsIntegrationTest {
         RuntimeContext nodejsRuntime = Javonet.inMemory().nodejs();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NodejsTestClass.js";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
 
         // load custom CLR library
         nodejsRuntime.loadLibrary(libraryPath);
@@ -96,8 +96,8 @@ public class JvmToNodejsIntegrationTest {
         RuntimeContext nodejsRuntime = Javonet.inMemory().nodejs();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-        String className = "NodejsTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
 
         // load custom CLR library
         nodejsRuntime.loadLibrary(libraryPath);
@@ -128,8 +128,8 @@ public class JvmToNodejsIntegrationTest {
         RuntimeContext nodejsRuntime = Javonet.inMemory().nodejs();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-        String className = "NodejsTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
 
         // load custom CLR library
         nodejsRuntime.loadLibrary(libraryPath);
@@ -160,8 +160,8 @@ public class JvmToNodejsIntegrationTest {
         RuntimeContext nodejsRuntime = Javonet.inMemory().nodejs();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-        String className = "NodejsTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
 
         // load custom CLR library
         nodejsRuntime.loadLibrary(libraryPath);
@@ -196,8 +196,8 @@ public class JvmToNodejsIntegrationTest {
         RuntimeContext nodejsRuntime = Javonet.inMemory().nodejs();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-        String className = "NodejsTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
 
         // load custom CLR library
         nodejsRuntime.loadLibrary(libraryPath);
@@ -232,8 +232,8 @@ public class JvmToNodejsIntegrationTest {
         RuntimeContext nodejsRuntime = Javonet.inMemory().nodejs();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NodejsTestClass.js";
-        String className = "NodejsTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
 
         // load custom CLR library
         nodejsRuntime.loadLibrary(libraryPath);

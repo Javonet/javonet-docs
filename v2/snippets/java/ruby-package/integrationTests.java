@@ -98,7 +98,7 @@ public class JvmToRubyIntegrationTest {
         RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
 
         // set up variables.
-        String libraryPath = resourcesDirectory + "/ruby_test_class.rb";
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
 
         // load RUBY custom library
         rubyRuntime.loadLibrary(libraryPath);
@@ -117,8 +117,8 @@ public class JvmToRubyIntegrationTest {
         RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
 
         // set up variables.
-        String libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-        String className = "RubyTestClass::RubyTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
 
         // load RUBY custom library
         rubyRuntime.loadLibrary(libraryPath);
@@ -150,8 +150,8 @@ public class JvmToRubyIntegrationTest {
         RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
 
         // set up variables.
-        String libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-        String className = "RubyTestClass::RubyTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
 
         // load RUBY custom library
         rubyRuntime.loadLibrary(libraryPath);
@@ -183,8 +183,8 @@ public class JvmToRubyIntegrationTest {
         RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
 
         // set up variables.
-        String libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-        String className = "RubyTestClass::RubyTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
 
         // load RUBY custom library
         rubyRuntime.loadLibrary(libraryPath);
@@ -220,8 +220,8 @@ public class JvmToRubyIntegrationTest {
         RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
 
         // set up variables.
-        String libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-        String className = "RubyTestClass::RubyTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
 
         // load RUBY custom library
         rubyRuntime.loadLibrary(libraryPath);
@@ -257,8 +257,8 @@ public class JvmToRubyIntegrationTest {
         RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
 
         // set up variables.
-        String libraryPath = resourcesDirectory + "/ruby_test_class.rb";
-        String className = "RubyTestClass::RubyTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
 
         // load RUBY custom library
         rubyRuntime.loadLibrary(libraryPath);

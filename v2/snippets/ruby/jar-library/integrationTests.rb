@@ -92,7 +92,7 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     jvm_runtime = Javonet.in_memory.jvm
     
     # set up variables
-    library_path = resources_directory + "/JavaTestClass.jar"
+    library_path = resources_directory + "/TestClass.jar"
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -108,8 +108,8 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     jvm_runtime = Javonet.in_memory.jvm
 
     # set up variables
-    library_path = resources_directory + "/JavaTestClass.jar"
-    class_name = "javonet.test.resources.jvm.JavaTestClass"
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -138,8 +138,8 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     jvm_runtime = Javonet.in_memory.jvm
 
     # set up variables
-    library_path = resources_directory + "/JavaTestClass.jar"
-    class_name = "javonet.test.resources.jvm.JavaTestClass"
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -168,8 +168,8 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     jvm_runtime = Javonet.in_memory.jvm
 
     # set up variables
-    library_path = resources_directory + "/JavaTestClass.jar"
-    class_name = "javonet.test.resources.jvm.JavaTestClass"
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -203,8 +203,8 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     jvm_runtime = Javonet.in_memory.jvm
 
     # set up variables
-    library_path = resources_directory + "/JavaTestClass.jar"
-    class_name = "javonet.test.resources.jvm.JavaTestClass"
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -236,8 +236,8 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     jvm_runtime = Javonet.in_memory.jvm
 
     # set up variables
-    library_path = resources_directory + "/JavaTestClass.jar"
-    class_name = "javonet.test.resources.jvm.JavaTestClass"
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
 
     # load custom library
     jvm_runtime.load_library(library_path)

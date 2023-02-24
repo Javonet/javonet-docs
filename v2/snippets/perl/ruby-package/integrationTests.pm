@@ -81,7 +81,7 @@ sub Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException {
     my $ruby_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
-    my $library_path = "${resources_directory}/ruby_test_class.rb";
+    my $library_path = "${resources_directory}/TestClass.rb";
 
     # load Ruby custom library
     $ruby_runtime->load_library($library_path);
@@ -98,8 +98,8 @@ sub Test_Ruby_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     my $ruby_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
-    my $library_path = "${resources_directory}/ruby_test_class.rb";
-    my $class_name = "RubyTestClass::RubyTestClass";
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
     $ruby_runtime->load_library($library_path);
@@ -128,8 +128,8 @@ sub Test_Ruby_TestResources_GetStaticField_StaticValue_3 {
     my $ruby_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
-    my $library_path = "${resources_directory}/ruby_test_class.rb";
-    my $class_name = "RubyTestClass::RubyTestClass";
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
     $ruby_runtime->load_library($library_path);
@@ -158,8 +158,8 @@ sub Test_Ruby_TestResources_SetStaticField_StaticValue_75 {
     my $ruby_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
-    my $library_path = "${resources_directory}/ruby_test_class.rb";
-    my $class_name = "RubyTestClass::RubyTestClass";
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
     $ruby_runtime->load_library($library_path);
@@ -192,8 +192,8 @@ sub Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $ruby_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
-    my $library_path = "${resources_directory}/ruby_test_class.rb";
-    my $class_name = "RubyTestClass::RubyTestClass";
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
     $ruby_runtime->load_library($library_path);
@@ -225,8 +225,8 @@ sub Test_Ruby_TestResources_GetInstanceField_PublicValue_18 {
     my $ruby_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
-    my $library_path = "${resources_directory}/ruby_test_class.rb";
-    my $class_name = "RubyTestClass::RubyTestClass";
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
     $ruby_runtime->load_library($library_path);

@@ -142,7 +142,7 @@ namespace Integration.Tests
 			var jvmRuntime = Javonet.InMemory().Jvm();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
 
 			// load custom library
 			jvmRuntime.LoadLibrary(libraryPath);
@@ -161,8 +161,8 @@ namespace Integration.Tests
 			var jvmRuntime = Javonet.InMemory().Jvm();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
-			string className = "javonet.test.resources.jvm.JavaTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
 
 			// load custom library
 			jvmRuntime.LoadLibrary(libraryPath);
@@ -194,8 +194,8 @@ namespace Integration.Tests
 			var jvmRuntime = Javonet.InMemory().Jvm();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
-			string className = "javonet.test.resources.jvm.JavaTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
 
 			// load custom library
 			jvmRuntime.LoadLibrary(libraryPath);
@@ -227,8 +227,8 @@ namespace Integration.Tests
 			var jvmRuntime = Javonet.InMemory().Jvm();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
-			string className = "javonet.test.resources.jvm.JavaTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
 
 			// load custom library
 			jvmRuntime.LoadLibrary(libraryPath);
@@ -264,8 +264,8 @@ namespace Integration.Tests
 			var jvmRuntime = Javonet.InMemory().Jvm();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
-			string className = "javonet.test.resources.jvm.JavaTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
 
 			// load custom library
 			jvmRuntime.LoadLibrary(libraryPath);
@@ -301,8 +301,8 @@ namespace Integration.Tests
 			var jvmRuntime = Javonet.InMemory().Jvm();
 
 			// set up variables
-			string libraryPath = resourcesDirectory + "/JavaTestClass.jar";
-			string className = "javonet.test.resources.jvm.JavaTestClass";
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
 
 			// load custom library
 			jvmRuntime.LoadLibrary(libraryPath);

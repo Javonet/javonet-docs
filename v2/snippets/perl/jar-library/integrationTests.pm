@@ -121,7 +121,7 @@ sub Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoException {
     my $jvm_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
-    my $library_path = "$resources_directory/JavaTestClass.jar";
+    my $library_path = "$resources_directory/TestClass.jar";
 
     # load JVM custom library
     $jvm_runtime->load_library($library_path);
@@ -138,8 +138,8 @@ sub Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     my $jvm_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
-    my $library_path = "$resources_directory/JavaTestClass.jar";
-    my $class_name = "javonet.test.resources.jvm.JavaTestClass";
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
 
     # load JVM custom library
     $jvm_runtime->load_library($library_path);
@@ -168,8 +168,8 @@ sub Test_Jvm_TestResources_GetStaticField_StaticValue_3 {
     my $jvm_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
-    my $library_path = "$resources_directory/JavaTestClass.jar";
-    my $class_name = "javonet.test.resources.jvm.JavaTestClass";
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
 
     # load JVM custom library
     $jvm_runtime->load_library($library_path);
@@ -198,8 +198,8 @@ sub Test_Jvm_TestResources_SetStaticField_StaticValue_75 {
     my $jvm_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
-    my $library_path = "$resources_directory/JavaTestClass.jar";
-    my $class_name = "javonet.test.resources.jvm.JavaTestClass";
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
 
     # load JVM custom library
     $jvm_runtime->load_library($library_path);
@@ -232,8 +232,8 @@ sub Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $jvm_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
-    my $library_path = "$resources_directory/JavaTestClass.jar";
-    my $class_name = "javonet.test.resources.jvm.JavaTestClass";
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
 
     # load JVM custom library
     $jvm_runtime->load_library($library_path);
@@ -265,8 +265,8 @@ sub Test_Jvm_TestResources_GetInstanceField_PublicValue_18 {
     my $jvm_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
-    my $library_path = "$resources_directory/JavaTestClass.jar";
-    my $class_name = "javonet.test.resources.jvm.JavaTestClass";
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
 
     # load JVM custom library
     $jvm_runtime->load_library($library_path);

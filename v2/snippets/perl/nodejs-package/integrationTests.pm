@@ -68,7 +68,7 @@ sub Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
-    my $library_path = "${resources_directory}/NodejsTestClass.js";
+    my $library_path = "${resources_directory}/TestClass.js";
 
     # load Nodejs custom library
     $nodejs_runtime->load_library($library_path);
@@ -85,8 +85,8 @@ sub Test_Nodejs_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
-    my $library_path = "${resources_directory}/NodejsTestClass.js";
-    my $class_name = "NodejsTestClass";
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
 
     # load Nodejs custom library
     $nodejs_runtime->load_library($library_path);
@@ -115,8 +115,8 @@ sub Test_Nodejs_TestResources_GetStaticField_StaticValue_3 {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
-    my $library_path = "${resources_directory}/NodejsTestClass.js";
-    my $class_name = "NodejsTestClass";
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
 
     # load Nodejs custom library
     $nodejs_runtime->load_library($library_path);
@@ -145,8 +145,8 @@ sub Test_Nodejs_TestResources_SetStaticField_StaticValue_75 {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
-    my $library_path = "${resources_directory}/NodejsTestClass.js";
-    my $class_name = "NodejsTestClass";
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
 
     # load Nodejs custom library
     $nodejs_runtime->load_library($library_path);
@@ -179,8 +179,8 @@ sub Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
-    my $library_path = "${resources_directory}/NodejsTestClass.js";
-    my $class_name = "NodejsTestClass";
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
 
     # load Nodejs custom library
     $nodejs_runtime->load_library($library_path);
@@ -212,8 +212,8 @@ sub Test_Nodejs_TestResources_GetInstanceField_PublicValue_18 {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
-    my $library_path = "${resources_directory}/NodejsTestClass.js";
-    my $class_name = "NodejsTestClass";
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
 
     # load Nodejs custom library
     $nodejs_runtime->load_library($library_path);

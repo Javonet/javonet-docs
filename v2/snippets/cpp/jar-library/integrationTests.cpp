@@ -13,8 +13,8 @@ namespace CppToJvmIntegrationTests {
 	auto currentWorkingDir = getcwd(nullptr, 0);
 #endif //_WIN32
 	// <TestResources_TestClassValues>
-	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/jar-library/JavaTestClass.jar");
-	auto className = "javonet.test.resources.jvm.JavaTestClass";
+	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/jar-library/TestClass.jar");
+	auto className = "TestClass";
 	// </TestResources_TestClassValues> 
 
 	TEST(Integration, Test_Jvm_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50) {

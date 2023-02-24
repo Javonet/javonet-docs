@@ -143,7 +143,7 @@ public class JvmToClrIntegrationTest {
         RuntimeContext clrRuntime = Javonet.inMemory().clr();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ClrTestClass.dll";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
 
         // load custom CLR library
         clrRuntime.loadLibrary(libraryPath);
@@ -162,8 +162,8 @@ public class JvmToClrIntegrationTest {
         RuntimeContext clrRuntime = Javonet.inMemory().clr();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ClrTestClass.dll";
-        String className = "ClrTestClass.ClrTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom CLR library
         clrRuntime.loadLibrary(libraryPath);
@@ -195,8 +195,8 @@ public class JvmToClrIntegrationTest {
         RuntimeContext clrRuntime = Javonet.inMemory().clr();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ClrTestClass.dll";
-        String className = "ClrTestClass.ClrTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom CLR library
         clrRuntime.loadLibrary(libraryPath);
@@ -228,8 +228,8 @@ public class JvmToClrIntegrationTest {
         RuntimeContext clrRuntime = Javonet.inMemory().clr();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ClrTestClass.dll";
-        String className = "ClrTestClass.ClrTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom CLR library
         clrRuntime.loadLibrary(libraryPath);
@@ -265,8 +265,8 @@ public class JvmToClrIntegrationTest {
         RuntimeContext clrRuntime = Javonet.inMemory().clr();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ClrTestClass.dll";
-        String className = "ClrTestClass.ClrTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom CLR library
         clrRuntime.loadLibrary(libraryPath);
@@ -301,8 +301,8 @@ public class JvmToClrIntegrationTest {
         RuntimeContext clrRuntime = Javonet.inMemory().clr();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ClrTestClass.dll";
-        String className = "ClrTestClass.ClrTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom CLR library
         clrRuntime.loadLibrary(libraryPath);

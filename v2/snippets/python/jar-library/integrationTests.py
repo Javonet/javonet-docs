@@ -87,7 +87,7 @@ def test_jvm_testresources_loadlibrary_librarypath_noexception():
     jvm_runtime = Javonet.in_memory().jvm()
 
     # set up variables
-    library_path = resources_directory + '/JavaTestClass.jar'
+    library_path = resources_directory + '/TestClass.jar'
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -103,8 +103,8 @@ def test_jvm_testresources_invokestaticmethod_multiplybytwo_25_50():
     jvm_runtime = Javonet.in_memory().jvm()
 
     # set up variables
-    library_path = resources_directory + '/JavaTestClass.jar'
-    class_name = 'javonet.test.resources.jvm.JavaTestClass'
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -133,8 +133,8 @@ def test_jvm_testresources_getstaticfield_staticvalue_3():
     jvm_runtime = Javonet.in_memory().jvm()
 
     # set up variables
-    library_path = resources_directory + '/JavaTestClass.jar'
-    class_name = 'javonet.test.resources.jvm.JavaTestClass'
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -163,8 +163,8 @@ def test_jvm_testresources_setstaticfield_staticvalue_75():
     jvm_runtime = Javonet.in_memory().jvm()
 
     # set up variables
-    library_path = resources_directory + '/JavaTestClass.jar'
-    class_name = 'javonet.test.resources.jvm.JavaTestClass'
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -197,8 +197,8 @@ def test_jvm_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     jvm_runtime = Javonet.in_memory().jvm()
 
     # set up variables
-    library_path = resources_directory + '/JavaTestClass.jar'
-    class_name = 'javonet.test.resources.jvm.JavaTestClass'
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
 
     # load custom library
     jvm_runtime.load_library(library_path)
@@ -230,8 +230,8 @@ def test_jvm_testresources_getinstancefield_publicvalue_18():
     jvm_runtime = Javonet.in_memory().jvm()
 
     # set up variables
-    library_path = resources_directory + '/JavaTestClass.jar'
-    class_name = 'javonet.test.resources.jvm.JavaTestClass'
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
 
     # load custom library
     jvm_runtime.load_library(library_path)

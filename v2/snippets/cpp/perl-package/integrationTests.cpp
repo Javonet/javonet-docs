@@ -12,8 +12,8 @@ namespace CppToPerlIntegrationTests {
 #endif //_WIN32
 	// <TestResources_TestClassValues>
 	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/perl-package");
-	auto fileName = std::string("PerlTestClass.pm");
-	auto className = std::string("PerlTestClass::PerlTestClass");
+	auto fileName = std::string("TestClass.pm");
+	auto className = std::string("TestClass::TestClass");
 
 	TEST(Integration, Test_Perl_TestResources_LoadLibrary_LibraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>

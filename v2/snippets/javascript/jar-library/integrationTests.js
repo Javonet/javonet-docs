@@ -90,7 +90,7 @@ describe('Nodejs to Jvm integration tests', () => {
         let jvmRuntime = Javonet.inMemory().jvm()
 
         // set up variables
-        const libraryPath = resourcesDirectory + '/JavaTestClass.jar'
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
 
         // load custom library
         jvmRuntime.loadLibrary(libraryPath)
@@ -106,8 +106,8 @@ describe('Nodejs to Jvm integration tests', () => {
         let jvmRuntime = Javonet.inMemory().jvm()
 
         // set up variables
-        const libraryPath = resourcesDirectory + '/JavaTestClass.jar'
-        const className = 'javonet.test.resources.jvm.JavaTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
 
         // load custom library
         jvmRuntime.loadLibrary(libraryPath)
@@ -136,8 +136,8 @@ describe('Nodejs to Jvm integration tests', () => {
         let jvmRuntime = Javonet.inMemory().jvm()
 
         // set up variables
-        const libraryPath = resourcesDirectory + '/JavaTestClass.jar'
-        const className = 'javonet.test.resources.jvm.JavaTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
 
         // load custom library
         jvmRuntime.loadLibrary(libraryPath)
@@ -166,8 +166,8 @@ describe('Nodejs to Jvm integration tests', () => {
         let jvmRuntime = Javonet.inMemory().jvm()
 
         // set up variables
-        const libraryPath = resourcesDirectory + '/JavaTestClass.jar'
-        const className = 'javonet.test.resources.jvm.JavaTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
 
         // load custom library
         jvmRuntime.loadLibrary(libraryPath)
@@ -200,8 +200,8 @@ describe('Nodejs to Jvm integration tests', () => {
         let jvmRuntime = Javonet.inMemory().jvm()
 
         // set up variables
-        const libraryPath = resourcesDirectory + '/JavaTestClass.jar'
-        const className = 'javonet.test.resources.jvm.JavaTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
 
         // load custom library
         jvmRuntime.loadLibrary(libraryPath)
@@ -234,8 +234,8 @@ describe('Nodejs to Jvm integration tests', () => {
         let jvmRuntime = Javonet.inMemory().jvm()
 
         // set up variables
-        const libraryPath = resourcesDirectory + '/JavaTestClass.jar'
-        const className = 'javonet.test.resources.jvm.JavaTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
 
         // load custom library
         jvmRuntime.loadLibrary(libraryPath)

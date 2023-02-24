@@ -145,7 +145,7 @@ public class JvmToNetcoreIntegrationTest {
         RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
 
         // load custom NETCORE library
         netcoreRuntime.loadLibrary(libraryPath);
@@ -164,8 +164,8 @@ public class JvmToNetcoreIntegrationTest {
         RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
-        String className = "NetcoreTestClass.NetcoreTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom NETCORE library
         netcoreRuntime.loadLibrary(libraryPath);
@@ -197,8 +197,8 @@ public class JvmToNetcoreIntegrationTest {
         RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
-        String className = "NetcoreTestClass.NetcoreTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom NETCORE library
         netcoreRuntime.loadLibrary(libraryPath);
@@ -230,8 +230,8 @@ public class JvmToNetcoreIntegrationTest {
         RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
-        String className = "NetcoreTestClass.NetcoreTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom NETCORE library
         netcoreRuntime.loadLibrary(libraryPath);
@@ -267,8 +267,8 @@ public class JvmToNetcoreIntegrationTest {
         RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
-        String className = "NetcoreTestClass.NetcoreTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom NETCORE library
         netcoreRuntime.loadLibrary(libraryPath);
@@ -303,8 +303,8 @@ public class JvmToNetcoreIntegrationTest {
         RuntimeContext netcoreRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/NetcoreTestClass.dll";
-        String className = "NetcoreTestClass.NetcoreTestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom NETCORE library
         netcoreRuntime.loadLibrary(libraryPath);

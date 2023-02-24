@@ -111,7 +111,7 @@ def test_netcore_testresources_loadlibrary_librarypath_noexception():
     netcore_runtime = Javonet.in_memory().netcore()
 
     # set up variables
-    library_path = resources_directory + '/NetcoreTestClass.dll'
+    library_path = resources_directory + '/TestClass.dll'
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -127,8 +127,8 @@ def test_netcore_testresources_invokestaticmethod_multiplybytwo_25_50():
     netcore_runtime = Javonet.in_memory().netcore()
 
     # set up variables
-    library_path = resources_directory + '/NetcoreTestClass.dll'
-    class_name = 'NetcoreTestClass.NetcoreTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -157,8 +157,8 @@ def test_netcore_testresources_getstaticfield_staticvalue_3():
     netcore_runtime = Javonet.in_memory().netcore()
 
     # set up variables
-    library_path = resources_directory + '/NetcoreTestClass.dll'
-    class_name = 'NetcoreTestClass.NetcoreTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -187,8 +187,8 @@ def test_netcore_testresources_setstaticfield_staticvalue_75():
     netcore_runtime = Javonet.in_memory().netcore()
 
     # set up variables
-    library_path = resources_directory + '/NetcoreTestClass.dll'
-    class_name = 'NetcoreTestClass.NetcoreTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -221,8 +221,8 @@ def test_netcore_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50()
     netcore_runtime = Javonet.in_memory().netcore()
 
     # set up variables
-    library_path = resources_directory + '/NetcoreTestClass.dll'
-    class_name = 'NetcoreTestClass.NetcoreTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -253,8 +253,8 @@ def test_netcore_testresources_getinstancefield_publicvalue_18():
     netcore_runtime = Javonet.in_memory().netcore()
 
     # set up variables
-    library_path = resources_directory + '/NetcoreTestClass.dll'
-    class_name = 'NetcoreTestClass.NetcoreTestClass'
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
 
     # load custom library
     netcore_runtime.load_library(library_path)

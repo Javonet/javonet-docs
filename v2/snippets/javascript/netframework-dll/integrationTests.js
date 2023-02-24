@@ -116,7 +116,7 @@ describe('Nodejs to CLR integration tests', () => {
             let clrRuntime = Javonet.inMemory().clr()
 
             // set up variables
-            let libraryPath = resourcesDirectory + '/ClrTestClass.dll'
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
 
             // load custom library
             clrRuntime.loadLibrary(libraryPath)
@@ -132,8 +132,8 @@ describe('Nodejs to CLR integration tests', () => {
             let clrRuntime = Javonet.inMemory().clr()
 
             // set up variables
-            let libraryPath = resourcesDirectory + '/ClrTestClass.dll'
-            let className = 'ClrTestClass.ClrTestClass'
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+            let className = 'TestClass.TestClass'
 
             // load custom library
             clrRuntime.loadLibrary(libraryPath)
@@ -162,8 +162,8 @@ describe('Nodejs to CLR integration tests', () => {
             let clrRuntime = Javonet.inMemory().clr()
 
             // set up variables
-            let libraryPath = resourcesDirectory + '/ClrTestClass.dll'
-            let className = 'ClrTestClass.ClrTestClass'
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+            let className = 'TestClass.TestClass'
 
             // load custom library
             clrRuntime.loadLibrary(libraryPath)
@@ -192,8 +192,8 @@ describe('Nodejs to CLR integration tests', () => {
             let clrRuntime = Javonet.inMemory().clr()
 
             // set up variables
-            let libraryPath = resourcesDirectory + '/ClrTestClass.dll'
-            let className = 'ClrTestClass.ClrTestClass'
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+            let className = 'TestClass.TestClass'
 
             // load custom library
             clrRuntime.loadLibrary(libraryPath)
@@ -226,8 +226,8 @@ describe('Nodejs to CLR integration tests', () => {
             let clrRuntime = Javonet.inMemory().clr()
 
             // set up variables
-            let libraryPath = resourcesDirectory + '/ClrTestClass.dll'
-            let className = 'ClrTestClass.ClrTestClass'
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+            let className = 'TestClass.TestClass'
 
             // load custom library
             clrRuntime.loadLibrary(libraryPath)
@@ -260,8 +260,8 @@ describe('Nodejs to CLR integration tests', () => {
             let clrRuntime = Javonet.inMemory().clr()
 
             // set up variables
-            let libraryPath = resourcesDirectory + '/ClrTestClass.dll'
-            let className = 'ClrTestClass.ClrTestClass'
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+            let className = 'TestClass.TestClass'
 
             // load custom library
             clrRuntime.loadLibrary(libraryPath)

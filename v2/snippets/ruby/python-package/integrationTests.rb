@@ -81,7 +81,7 @@ RSpec.describe 'Ruby To Python Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    class_name = "PythonTestClass.PythonTestClass"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     python_runtime.load_library(library_path)
@@ -111,7 +111,7 @@ RSpec.describe 'Ruby To Python Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    class_name = "PythonTestClass.PythonTestClass"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     python_runtime.load_library(library_path)
@@ -141,7 +141,7 @@ RSpec.describe 'Ruby To Python Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    class_name = "PythonTestClass.PythonTestClass"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     python_runtime.load_library(library_path)
@@ -175,7 +175,7 @@ RSpec.describe 'Ruby To Python Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    class_name = "PythonTestClass.PythonTestClass"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     python_runtime.load_library(library_path)
@@ -208,7 +208,7 @@ RSpec.describe 'Ruby To Python Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    class_name = "PythonTestClass.PythonTestClass"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     python_runtime.load_library(library_path)

@@ -29,7 +29,7 @@ public class JvmToPerlIntegrationTest {
 
         // set up variables.
         String libraryPath = resourcesDirectory ;
-        String fileName = "PerlTestClass.pm";
+        String fileName = "TestClass.pm";
 
         // load custom PERL library
         perlRuntime.loadLibrary(libraryPath, fileName);
@@ -48,8 +48,8 @@ public class JvmToPerlIntegrationTest {
 
         // set up variables.
         String libraryPath = resourcesDirectory ;
-        String fileName = "PerlTestClass.pm";
-        String className = "PerlTestClass::PerlTestClass";
+        String fileName = "TestClass.pm";
+        String className = "TestClass::TestClass";
 
         // load custom PERL library
         perlRuntime.loadLibrary(libraryPath, fileName);
@@ -81,8 +81,8 @@ public class JvmToPerlIntegrationTest {
 
         // set up variables.
         String libraryPath = resourcesDirectory ;
-        String fileName = "PerlTestClass.pm";
-        String className = "PerlTestClass::PerlTestClass";
+        String fileName = "TestClass.pm";
+        String className = "TestClass::TestClass";
 
         // load custom PERL library
         perlRuntime.loadLibrary(libraryPath, fileName);
@@ -114,8 +114,8 @@ public class JvmToPerlIntegrationTest {
 
         // set up variables.
         String libraryPath = resourcesDirectory ;
-        String fileName = "PerlTestClass.pm";
-        String className = "PerlTestClass::PerlTestClass";
+        String fileName = "TestClass.pm";
+        String className = "TestClass::TestClass";
 
         // load custom PERL library
         perlRuntime.loadLibrary(libraryPath, fileName);
@@ -151,8 +151,8 @@ public class JvmToPerlIntegrationTest {
 
         // set up variables.
         String libraryPath = resourcesDirectory ;
-        String fileName = "PerlTestClass.pm";
-        String className = "PerlTestClass::PerlTestClass";
+        String fileName = "TestClass.pm";
+        String className = "TestClass::TestClass";
 
         // load custom PERL library
         perlRuntime.loadLibrary(libraryPath, fileName);
@@ -185,8 +185,8 @@ public class JvmToPerlIntegrationTest {
 
         // set up variables.
         String libraryPath = resourcesDirectory ;
-        String fileName = "PerlTestClass.pm";
-        String className = "PerlTestClass::PerlTestClass";
+        String fileName = "TestClass.pm";
+        String className = "TestClass::TestClass";
 
         // load custom PERL library
         perlRuntime.loadLibrary(libraryPath, fileName);

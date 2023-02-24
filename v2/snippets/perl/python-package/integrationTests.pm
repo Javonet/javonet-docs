@@ -86,7 +86,7 @@ sub Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
 
     # set up variables
     my $library_path = $resources_directory;
-    my $class_name = "PythonTestClass.PythonTestClass";
+    my $class_name = "TestClass.TestClass";
 
     # load Python custom library
     $python_runtime->load_library($library_path);
@@ -116,7 +116,7 @@ sub Test_Python_TestResources_GetStaticField_StaticValue_3 {
 
     # set up variables
     my $library_path = $resources_directory;
-    my $class_name = "PythonTestClass.PythonTestClass";
+    my $class_name = "TestClass.TestClass";
 
     # load Python custom library
     $python_runtime->load_library($library_path);
@@ -146,7 +146,7 @@ sub Test_Python_TestResources_SetStaticField_StaticValue_75 {
 
     # set up variables
     my $library_path = ${resources_directory};
-    my $class_name = "PythonTestClass.PythonTestClass";
+    my $class_name = "TestClass.TestClass";
 
     # load Python custom library
     $python_runtime->load_library($library_path);
@@ -180,7 +180,7 @@ sub Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
 
     # set up variables
     my $library_path = $resources_directory;
-    my $class_name = "PythonTestClass.PythonTestClass";
+    my $class_name = "TestClass.TestClass";
 
     # load Python custom library
     $python_runtime->load_library($library_path);
@@ -213,7 +213,7 @@ sub Test_Python_TestResources_GetInstanceField_PublicValue_18 {
 
     # set up variables
     my $library_path = $resources_directory;
-    my $class_name = "PythonTestClass.PythonTestClass";
+    my $class_name = "TestClass.TestClass";
 
     # load Python custom library
     $python_runtime->load_library($library_path);

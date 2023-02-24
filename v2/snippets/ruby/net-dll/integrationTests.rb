@@ -116,7 +116,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     netcore_runtime = Javonet.in_memory.netcore
 
     # set up variables
-    library_path = resources_directory + "/NetcoreTestClass.dll"
+    library_path = resources_directory + "/TestClass.dll"
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -132,8 +132,8 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     netcore_runtime = Javonet.in_memory.netcore
 
     # set up variables
-    library_path = resources_directory + "/NetcoreTestClass.dll"
-    class_name = "NetcoreTestClass.NetcoreTestClass"
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -162,8 +162,8 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     netcore_runtime = Javonet.in_memory.netcore
 
     # set up variables
-    library_path = resources_directory + "/NetcoreTestClass.dll"
-    class_name = "NetcoreTestClass.NetcoreTestClass"
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -192,8 +192,8 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     netcore_runtime = Javonet.in_memory.netcore
 
     # set up variables
-    library_path = resources_directory + "/NetcoreTestClass.dll"
-    class_name = "NetcoreTestClass.NetcoreTestClass"
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -226,8 +226,8 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     netcore_runtime = Javonet.in_memory.netcore
 
     # set up variables
-    library_path = resources_directory + "/NetcoreTestClass.dll"
-    class_name = "NetcoreTestClass.NetcoreTestClass"
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     netcore_runtime.load_library(library_path)
@@ -259,8 +259,8 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     netcore_runtime = Javonet.in_memory.netcore
 
     # set up variables
-    library_path = resources_directory + "/NetcoreTestClass.dll"
-    class_name = "NetcoreTestClass.NetcoreTestClass"
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
 
     # load custom library
     netcore_runtime.load_library(library_path)

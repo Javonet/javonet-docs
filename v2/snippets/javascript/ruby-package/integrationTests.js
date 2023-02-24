@@ -79,7 +79,7 @@ describe('Nodejs to Ruby integration tests', () => {
         let rubyRuntime = Javonet.inMemory().ruby()
 
         //set up variables
-        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
 
         //load custom library
         rubyRuntime.loadLibrary(libraryPath)
@@ -95,8 +95,8 @@ describe('Nodejs to Ruby integration tests', () => {
         let rubyRuntime = Javonet.inMemory().ruby()
 
         //set up variables
-        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
-        const className = 'RubyTestClass::RubyTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
 
         //load custom library
         rubyRuntime.loadLibrary(libraryPath)
@@ -125,8 +125,8 @@ describe('Nodejs to Ruby integration tests', () => {
         let rubyRuntime = Javonet.inMemory().ruby()
 
         //set up variables
-        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
-        const className = 'RubyTestClass::RubyTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
 
         //load custom library
         rubyRuntime.loadLibrary(libraryPath)
@@ -155,8 +155,8 @@ describe('Nodejs to Ruby integration tests', () => {
         let rubyRuntime = Javonet.inMemory().ruby()
 
         //set up variables
-        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
-        const className = 'RubyTestClass::RubyTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
 
         //load custom library
         rubyRuntime.loadLibrary(libraryPath)
@@ -189,8 +189,8 @@ describe('Nodejs to Ruby integration tests', () => {
         let rubyRuntime = Javonet.inMemory().ruby()
 
         //set up variables
-        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
-        const className = 'RubyTestClass::RubyTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
 
         //load custom library
         rubyRuntime.loadLibrary(libraryPath)
@@ -223,8 +223,8 @@ describe('Nodejs to Ruby integration tests', () => {
         let rubyRuntime = Javonet.inMemory().ruby()
 
         //set up variables
-        const libraryPath = resourcesDirectory + '/ruby_test_class.rb'
-        const className = 'RubyTestClass::RubyTestClass'
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
 
         //load custom library
         rubyRuntime.loadLibrary(libraryPath)

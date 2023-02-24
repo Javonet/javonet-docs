@@ -18,7 +18,7 @@ def test_perl_testresources_loadlibrary_librarypath_noexception():
 
     # set up variables
     library_path = resources_directory
-    file_name = 'PerlTestClass.pm'
+    file_name = 'TestClass.pm'
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -36,8 +36,8 @@ def test_perl_testresources_invokestaticmethod_multiplybytwo_25_50():
 
     # set up variables
     library_path = resources_directory
-    file_name = 'PerlTestClass.pm'
-    class_name = 'PerlTestClass::PerlTestClass'
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -68,8 +68,8 @@ def test_perl_testresources_getstaticfield_staticvalue_3():
 
     # set up variables
     library_path = resources_directory
-    file_name = 'PerlTestClass.pm'
-    class_name = 'PerlTestClass::PerlTestClass'
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -100,8 +100,8 @@ def test_perl_testresources_setstaticfield_staticvalue_75():
 
     # set up variables
     library_path = resources_directory
-    file_name = 'PerlTestClass.pm'
-    class_name = 'PerlTestClass::PerlTestClass'
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -136,8 +136,8 @@ def test_perl_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
 
     # set up variables
     library_path = resources_directory
-    file_name = 'PerlTestClass.pm'
-    class_name = 'PerlTestClass::PerlTestClass'
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -171,8 +171,8 @@ def test_perl_testresources_getinstancefield_publicvalue_1():
 
     # set up variables
     library_path = resources_directory
-    file_name = 'PerlTestClass.pm'
-    class_name = 'PerlTestClass::PerlTestClass'
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)

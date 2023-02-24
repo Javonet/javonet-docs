@@ -19,7 +19,7 @@ func init() {
 	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
 	libraryPath = javonetSrcRoot + "/testResources/python-package"
-	className = "PythonTestClass.PythonTestClass"
+	className = "TestClass.TestClass"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }

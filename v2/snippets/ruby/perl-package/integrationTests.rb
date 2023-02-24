@@ -19,7 +19,7 @@ RSpec.describe 'Ruby To Perl Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    file_name = "PerlTestClass.pm"
+    file_name = "TestClass.pm"
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -36,8 +36,8 @@ RSpec.describe 'Ruby To Perl Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    file_name = "PerlTestClass.pm"
-    class_name = "PerlTestClass::PerlTestClass"
+    file_name = "TestClass.pm"
+    class_name = "TestClass::TestClass"
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -67,8 +67,8 @@ RSpec.describe 'Ruby To Perl Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    file_name = "PerlTestClass.pm"
-    class_name = "PerlTestClass::PerlTestClass"
+    file_name = "TestClass.pm"
+    class_name = "TestClass::TestClass"
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -98,8 +98,8 @@ RSpec.describe 'Ruby To Perl Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    file_name = "PerlTestClass.pm"
-    class_name = "PerlTestClass::PerlTestClass"
+    file_name = "TestClass.pm"
+    class_name = "TestClass::TestClass"
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -133,8 +133,8 @@ RSpec.describe 'Ruby To Perl Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    file_name = "PerlTestClass.pm"
-    class_name = "PerlTestClass::PerlTestClass"
+    file_name = "TestClass.pm"
+    class_name = "TestClass::TestClass"
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)
@@ -167,8 +167,8 @@ RSpec.describe 'Ruby To Perl Integration Tests' do
 
     # set up variables
     library_path = resources_directory
-    file_name = "PerlTestClass.pm"
-    class_name = "PerlTestClass::PerlTestClass"
+    file_name = "TestClass.pm"
+    class_name = "TestClass::TestClass"
 
     # load custom library
     perl_runtime.load_library(library_path, file_name)

@@ -19,8 +19,8 @@ func init() {
 	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
 	libraryPath = javonetSrcRoot + "/testResources/perl-package"
-	fileName = "PerlTestClass.pm"
-	className = "PerlTestClass::PerlTestClass"
+	fileName = "TestClass.pm"
+	className = "TestClass::TestClass"
 
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)

@@ -14,7 +14,7 @@ namespace CppToPythonIntegrationTests {
 #endif //_WIN32
 	// <TestResources_TestClassValues>
 	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/python-package");
-	auto className = "PythonTestClass.PythonTestClass";
+	auto className = "TestClass.TestClass";
 	// </TestResources_TestClassValues> 
 
 	TEST(Integration, Test_Python_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50) {

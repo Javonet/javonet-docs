@@ -122,7 +122,7 @@ sub Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException {
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
-    my $library_path = "${resources_directory}/ClrTestClass.dll";
+    my $library_path = "${resources_directory}/TestClass.dll";
 
     # load CLR custom library
     $clr_runtime->load_library($library_path);
@@ -139,8 +139,8 @@ sub Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
-    my $library_path = "${resources_directory}/ClrTestClass.dll";
-    my $class_name = "ClrTestClass.ClrTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load CLR custom library
     $clr_runtime->load_library($library_path);
@@ -169,8 +169,8 @@ sub Test_Clr_TestResources_GetStaticField_StaticValue_3 {
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
-    my $library_path = "${resources_directory}/ClrTestClass.dll";
-    my $class_name = "ClrTestClass.ClrTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load CLR custom library
     $clr_runtime->load_library($library_path);
@@ -199,8 +199,8 @@ sub Test_Clr_TestResources_SetStaticField_StaticValue_75 {
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
-    my $library_path = "${resources_directory}/ClrTestClass.dll";
-    my $class_name = "ClrTestClass.ClrTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load CLR custom library
     $clr_runtime->load_library($library_path);
@@ -233,8 +233,8 @@ sub Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
-    my $library_path = "${resources_directory}/ClrTestClass.dll";
-    my $class_name = "ClrTestClass.ClrTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load CLR custom library
     $clr_runtime->load_library($library_path);
@@ -266,8 +266,8 @@ sub Test_Clr_TestResources_GetInstanceField_PublicValue_18 {
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
-    my $library_path = "${resources_directory}/ClrTestClass.dll";
-    my $class_name = "ClrTestClass.ClrTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load CLR custom library
     $clr_runtime->load_library($library_path);

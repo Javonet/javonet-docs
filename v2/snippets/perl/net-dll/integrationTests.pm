@@ -120,7 +120,7 @@ sub Test_Netcore_TestResources_LoadLibrary_LibraryPath_NoException {
     my $netcore_runtime = Javonet->in_memory()->netcore();
 
     # set up variables
-    my $library_path = "${resources_directory}/NetcoreTestClass.dll";
+    my $library_path = "${resources_directory}/TestClass.dll";
 
     # load NETCORE custom library
     $netcore_runtime->load_library($library_path);
@@ -137,8 +137,8 @@ sub Test_Netcore_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     my $netcore_runtime = Javonet->in_memory()->netcore();
 
     # set up variables
-    my $library_path = "${resources_directory}/NetcoreTestClass.dll";
-    my $class_name = "NetcoreTestClass.NetcoreTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load NETCORE custom library
     $netcore_runtime->load_library($library_path);
@@ -167,8 +167,8 @@ sub Test_Netcore_TestResources_GetStaticField_StaticValue_3 {
     my $netcore_runtime = Javonet->in_memory()->netcore();
 
     # set up variables
-    my $library_path = "${resources_directory}/NetcoreTestClass.dll";
-    my $class_name = "NetcoreTestClass.NetcoreTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load NETCORE custom library
     $netcore_runtime->load_library($library_path);
@@ -197,8 +197,8 @@ sub Test_Netcore_TestResources_SetStaticField_StaticValue_75 {
     my $netcore_runtime = Javonet->in_memory()->netcore();
 
     # set up variables
-    my $library_path = "${resources_directory}/NetcoreTestClass.dll";
-    my $class_name = "NetcoreTestClass.NetcoreTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load NETCORE custom library
     $netcore_runtime->load_library($library_path);
@@ -231,8 +231,8 @@ sub Test_Netcore_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $netcore_runtime = Javonet->in_memory()->netcore();
 
     # set up variables
-    my $library_path = "${resources_directory}/NetcoreTestClass.dll";
-    my $class_name = "NetcoreTestClass.NetcoreTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load NETCORE custom library
     $netcore_runtime->load_library($library_path);
@@ -264,8 +264,8 @@ sub Test_Netcore_TestResources_GetInstanceField_PublicValue_18 {
     my $netcore_runtime = Javonet->in_memory()->netcore();
 
     # set up variables
-    my $library_path = "${resources_directory}/NetcoreTestClass.dll";
-    my $class_name = "NetcoreTestClass.NetcoreTestClass";
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
 
     # load NETCORE custom library
     $netcore_runtime->load_library($library_path);

@@ -115,7 +115,7 @@ describe('Nodejs to Netcore integration tests', () => {
         let netcoreRuntime = Javonet.inMemory().netcore()
 
         // set up variables
-        let libraryPath = resourcesDirectory + '/NetcoreTestClass.dll'
+        let libraryPath = resourcesDirectory + '/TestClass.dll'
 
         // load custom library
         netcoreRuntime.loadLibrary(libraryPath)
@@ -131,8 +131,8 @@ describe('Nodejs to Netcore integration tests', () => {
         let netcoreRuntime = Javonet.inMemory().netcore()
 
         // set up variables
-        let libraryPath = resourcesDirectory + '/NetcoreTestClass.dll'
-        let className = 'NetcoreTestClass.NetcoreTestClass'
+        let libraryPath = resourcesDirectory + '/TestClass.dll'
+        let className = 'TestClass.TestClass'
 
         // load custom library
         netcoreRuntime.loadLibrary(libraryPath)
@@ -161,8 +161,8 @@ describe('Nodejs to Netcore integration tests', () => {
         let netcoreRuntime = Javonet.inMemory().netcore()
 
         // set up variables
-        let libraryPath = resourcesDirectory + '/NetcoreTestClass.dll'
-        let className = 'NetcoreTestClass.NetcoreTestClass'
+        let libraryPath = resourcesDirectory + '/TestClass.dll'
+        let className = 'TestClass.TestClass'
 
         // load custom library
         netcoreRuntime.loadLibrary(libraryPath)
@@ -191,8 +191,8 @@ describe('Nodejs to Netcore integration tests', () => {
         let netcoreRuntime = Javonet.inMemory().netcore()
 
         // set up variables
-        let libraryPath = resourcesDirectory + '/NetcoreTestClass.dll'
-        let className = 'NetcoreTestClass.NetcoreTestClass'
+        let libraryPath = resourcesDirectory + '/TestClass.dll'
+        let className = 'TestClass.TestClass'
 
         // load custom library
         netcoreRuntime.loadLibrary(libraryPath)
@@ -225,8 +225,8 @@ describe('Nodejs to Netcore integration tests', () => {
         let netcoreRuntime = Javonet.inMemory().netcore()
 
         // set up variables
-        let libraryPath = resourcesDirectory + '/NetcoreTestClass.dll'
-        let className = 'NetcoreTestClass.NetcoreTestClass'
+        let libraryPath = resourcesDirectory + '/TestClass.dll'
+        let className = 'TestClass.TestClass'
 
         // load custom library
         netcoreRuntime.loadLibrary(libraryPath)
@@ -259,8 +259,8 @@ describe('Nodejs to Netcore integration tests', () => {
         let netcoreRuntime = Javonet.inMemory().netcore()
 
         // set up variables
-        let libraryPath = resourcesDirectory + '/NetcoreTestClass.dll'
-        let className = 'NetcoreTestClass.NetcoreTestClass'
+        let libraryPath = resourcesDirectory + '/TestClass.dll'
+        let className = 'TestClass.TestClass'
 
         // load custom library
         netcoreRuntime.loadLibrary(libraryPath)

@@ -61,7 +61,7 @@ def test_nodejs_testresources_loadlibrary_librarypath_noexception():
     nodejs_runtime = Javonet.in_memory().nodejs()
 
     # set up variables
-    library_path = resources_directory + '/NodejsTestClass.js'
+    library_path = resources_directory + '/TestClass.js'
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -77,8 +77,8 @@ def test_nodejs_testresources_invokestaticmethod_multiplybytwo_25_50():
     nodejs_runtime = Javonet.in_memory().nodejs()
 
     # set up variables
-    library_path = resources_directory + '/NodejsTestClass.js'
-    class_name = 'NodejsTestClass'
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -107,8 +107,8 @@ def test_nodejs_testresources_getstaticfield_staticvalue_3():
     nodejs_runtime = Javonet.in_memory().nodejs()
 
     # set up variables
-    library_path = resources_directory + '/NodejsTestClass.js'
-    class_name = 'NodejsTestClass'
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -137,8 +137,8 @@ def test_nodejs_testresources_setstaticfield_staticvalue_75():
     nodejs_runtime = Javonet.in_memory().nodejs()
 
     # set up variables
-    library_path = resources_directory + '/NodejsTestClass.js'
-    class_name = 'NodejsTestClass'
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -171,8 +171,8 @@ def test_nodejs_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     nodejs_runtime = Javonet.in_memory().nodejs()
 
     # set up variables
-    library_path = resources_directory + '/NodejsTestClass.js'
-    class_name = 'NodejsTestClass'
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
 
     # load custom library
     nodejs_runtime.load_library(library_path)
@@ -204,8 +204,8 @@ def test_nodejs_testresources_getinstancefield_publicvalue_18():
     nodejs_runtime = Javonet.in_memory().nodejs()
 
     # set up variables
-    library_path = resources_directory + '/NodejsTestClass.js'
-    class_name = 'NodejsTestClass'
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
 
     # load custom library
     nodejs_runtime.load_library(library_path)

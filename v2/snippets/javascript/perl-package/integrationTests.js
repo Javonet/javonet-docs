@@ -19,7 +19,7 @@ describe('Nodejs to Perl integration tests', () => {
 
         // set up variables
         const libraryPath = resourcesDirectory
-        const fileName = 'PerlTestClass.pm'
+        const fileName = 'TestClass.pm'
 
         // load custom library
         perlRuntime.loadLibrary(libraryPath, fileName)
@@ -36,8 +36,8 @@ describe('Nodejs to Perl integration tests', () => {
 
         // set up variables
         const libraryPath = resourcesDirectory
-        const fileName = 'PerlTestClass.pm'
-        const className = 'PerlTestClass::PerlTestClass'
+        const fileName = 'TestClass.pm'
+        const className = 'TestClass::TestClass'
 
         // load custom library
         perlRuntime.loadLibrary(libraryPath, fileName)
@@ -67,8 +67,8 @@ describe('Nodejs to Perl integration tests', () => {
 
         // set up variables
         const libraryPath = resourcesDirectory
-        const fileName = 'PerlTestClass.pm'
-        const className = 'PerlTestClass::PerlTestClass'
+        const fileName = 'TestClass.pm'
+        const className = 'TestClass::TestClass'
 
         // load custom library
         perlRuntime.loadLibrary(libraryPath, fileName)
@@ -98,8 +98,8 @@ describe('Nodejs to Perl integration tests', () => {
 
         // set up variables
         const libraryPath = resourcesDirectory
-        const fileName = 'PerlTestClass.pm'
-        const className = 'PerlTestClass::PerlTestClass'
+        const fileName = 'TestClass.pm'
+        const className = 'TestClass::TestClass'
 
         // load custom library
         perlRuntime.loadLibrary(libraryPath, fileName)
@@ -134,8 +134,8 @@ describe('Nodejs to Perl integration tests', () => {
 
         // set up variables
         const libraryPath = resourcesDirectory
-        const fileName = 'PerlTestClass.pm'
-        const className = 'PerlTestClass::PerlTestClass'
+        const fileName = 'TestClass.pm'
+        const className = 'TestClass::TestClass'
 
         // load custom library
         perlRuntime.loadLibrary(libraryPath, fileName)
@@ -169,8 +169,8 @@ describe('Nodejs to Perl integration tests', () => {
 
         // set up variables
         const libraryPath = resourcesDirectory
-        const fileName = 'PerlTestClass.pm'
-        const className = 'PerlTestClass::PerlTestClass'
+        const fileName = 'TestClass.pm'
+        const className = 'TestClass::TestClass'
 
         // load custom library
         perlRuntime.loadLibrary(libraryPath, fileName)

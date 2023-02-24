@@ -18,8 +18,8 @@ func init() {
 	cwd, _ := os.Getwd()
 	javonetSrcRoot = cwd + "/../../../.."
 	// <TestResources_TestClassValues>
-	libraryPath = javonetSrcRoot + "/testResources/nodejs-package/NodejsTestClass.js"
-	className = "NodejsTestClass.js"
+	libraryPath = javonetSrcRoot + "/testResources/nodejs-package/TestClass.js"
+	className = "TestClass.js"
 	// </TestResources_TestClassValues>
 	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }

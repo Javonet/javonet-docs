@@ -99,7 +99,7 @@ public class JvmToPythonIntegrationTest {
         // set up variables.
         // path to directory with .py files
         String libraryPath = resourcesDirectory;
-        String className = "PythonTestClass.PythonTestClass";
+        String className = "TestClass.TestClass";
 
         // load custom PYTHON library
         pythonRuntime.loadLibrary(libraryPath);
@@ -132,7 +132,7 @@ public class JvmToPythonIntegrationTest {
         // set up variables.
         // path to directory with .py files
         String libraryPath = resourcesDirectory;
-        String className = "PythonTestClass.PythonTestClass";
+        String className = "TestClass.TestClass";
 
         // load custom PYTHON library
         pythonRuntime.loadLibrary(libraryPath);
@@ -165,7 +165,7 @@ public class JvmToPythonIntegrationTest {
         // set up variables.
         // path to directory with .py files
         String libraryPath = resourcesDirectory;
-        String className = "PythonTestClass.PythonTestClass";
+        String className = "TestClass.TestClass";
 
         // load custom PYTHON library
         pythonRuntime.loadLibrary(libraryPath);
@@ -202,7 +202,7 @@ public class JvmToPythonIntegrationTest {
         // set up variables.
         // path to directory with .py files
         String libraryPath = resourcesDirectory;
-        String className = "PythonTestClass.PythonTestClass";
+        String className = "TestClass.TestClass";
 
         // load custom PYTHON library
         pythonRuntime.loadLibrary(libraryPath);
@@ -236,7 +236,7 @@ public class JvmToPythonIntegrationTest {
         // set up variables.
         // path to directory with .py files
         String libraryPath = resourcesDirectory;
-        String className = "PythonTestClass.PythonTestClass";
+        String className = "TestClass.TestClass";
 
         // load custom PYTHON library
         pythonRuntime.loadLibrary(libraryPath);
