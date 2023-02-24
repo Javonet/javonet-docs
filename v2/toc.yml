@@ -45,9 +45,24 @@ programming-languages:
   name: Ruby package
   ext: rb
 
-
 calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
 called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+
+blocked_pairs:
+- calling_technology: csharp
+  called_technology: netframework-dll
+- calling_technology: csharp
+  called_technology: net-dll
+- calling_technology: java
+  called_technology: jar-package  
+- calling_technology: javascript
+  called_technology: nodejs-package
+- calling_technology: perl
+  called_technology: perl-package
+- calling_technology: python
+  called_technology: python-package
+- calling_technology: ruby
+  called_technology: ruby-package
 
 items:
 - name: Getting started
