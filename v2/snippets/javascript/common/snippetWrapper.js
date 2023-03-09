@@ -1,4 +1,4 @@
 const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
-let resourcesDirectory = "."
+let resourcesDirectory = '.'
 
 //place-for-snippet
