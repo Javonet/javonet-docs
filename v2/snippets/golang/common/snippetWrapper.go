@@ -6,6 +6,9 @@ import (
 	"javonet.com/javonet"
 )
 
+var resourcesDirectory string = "."
+
 func main() {
-	//place-for-snippet
+_ = resourcesDirectory
+  //place-for-snippet
 }
