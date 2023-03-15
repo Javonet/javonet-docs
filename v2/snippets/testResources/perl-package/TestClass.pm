@@ -1,3 +1,4 @@
+# <Test_Resource_All>
 package TestClass::TestClass;
 use strict;
 use warnings FATAL => 'all';
@@ -25,5 +26,5 @@ sub multiply_two_numbers {
     return $first_arg * $second_arg;
 }
 
-
 1;
+# </Test_Resource_All>
