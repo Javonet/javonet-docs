@@ -1,3 +1,4 @@
+# <Test_Resource_All>
 class TestClass:
     static_value = 3
 
@@ -11,3 +12,5 @@ class TestClass:
 
     def multiply_two_numbers(self, first, second):
         return first * second
+
+# </Test_Resource_All>

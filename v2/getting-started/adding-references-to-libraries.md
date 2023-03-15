@@ -5,15 +5,19 @@
 
 # Adding references to libraries
 
-Javonet allows you to use any library from all supported technologies. As with any regular application, you need to reference the libraries you are planning to use. 
+Javonet allows to use any library from all supported technologies. As with any regular application, necessary libraries need to be referenced.
 
-You can call:
+:::code 
+calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
+calling_id="TestResources_LoadLibrary"
+called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
+called_id="Test_Resource_All"
+display="calling"
+:::
 
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_LoadLibrary":::
 
+The argument is a relative or full path to `{called_name}`. 
+If the `{called_name}` has dependencies on other `{called_name}`, the latter needs to be added first.
 
-As argument you provide the relative or full path to file or package. 
-If your package has dependencies on other packages you should add reference to each package first.
-
-Now you can access any objects stored in this package. 
+After referencing the `{called_name}` any objects stored in this package can be used. 
 Use static classes, create instances, call methods, use fields and properties and much more.

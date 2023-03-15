@@ -1,3 +1,4 @@
+# <Test_Resource_All>
 module TestClass
   class TestClass
     @@static_value = 3
@@ -20,3 +21,5 @@ module TestClass
     end
   end
 end
+
+# </Test_Resource_All>
