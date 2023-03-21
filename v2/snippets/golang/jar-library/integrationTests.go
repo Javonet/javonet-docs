@@ -7,27 +7,36 @@ import (
 	"testing"
 
 	"javonet.com/integrationTests/integrationtests/activationcredentials"
-	"javonet.com/javonet"
+	Javonet "javonet.com/javonet"
 )
 
-var javonetSrcRoot string
-var libraryPath string
-var className string
+var resourcesDirectory string
 
 func init() {
 	cwd, _ := os.Getwd()
-	javonetSrcRoot = cwd + "/../../../.."
-	// <TestResources_TestClassValues>
-	libraryPath = javonetSrcRoot + "/testResources/jar-library/TestClass.jar"
-	className = "TestClass"
-	// </TestResources_TestClassValues>
-	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
+	resourcesDirectory = cwd + "/../../../../testResources/jar-library"
+	Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }
 
 func Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
-	call := javonet.InMemory().Jvm().GetType("java.lang.Math").InvokeStaticMethod("abs", -50).Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType("java.lang.Math").Execute()
+
+	// invoke type's static method 
+	response := jvmType.InvokeStaticMethod("abs", -50).Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </StandardLibrary_InvokeStaticMethod>
 	expectedResponse := int32(50)
 	if result != expectedResponse {
@@ -37,8 +46,23 @@ func Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.
 
 func Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
-	call := javonet.InMemory().Jvm().GetType("java.lang.Math").GetStaticField("PI").Execute()
-	result := call.GetValue().(float64)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType("java.lang.Math").Execute()
+
+	// get type's static field 
+	response := jvmType.GetStaticField("PI").Execute()
+
+	// get value from response
+	result := response.GetValue().(float64)
+
+	// write result to console
+	fmt.Println(result)
 	// </StandardLibrary_GetStaticField>
 	expectedResponse := math.Pi
 	if result != expectedResponse {
@@ -48,26 +72,103 @@ func Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 
 func Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9(t *testing.T) {
 	// <StandardLibrary_InvokeInstanceMethod>
-	instance := javonet.InMemory().Jvm().GetType("java.util.Random").CreateInstance().Execute()
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType("java.util.Random").Execute()
+
+	// create type's instance
+	instance := jvmType.CreateInstance().Execute()
+	// invoke instance's method	
 	call := instance.InvokeInstanceMethod("nextInt", 10).Execute()
+
+	// get value from response
 	result := call.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </StandardLibrary_InvokeInstanceMethod>
 	if result < 0 || result > 9 {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result))
 	}
 }
 
+
+func Test_Jvm_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver_Name(t *testing.T) {
+	// <StandardLibrary_InvokeInstanceMethod>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType("java.sql.DriverPropertyInfo").Execute()
+
+	// create type's instance
+	instance := jvmType.CreateInstance("sample value", "sample value 2").Execute()
+
+	// get instance's field 
+	call := instance.GetInstanceField("name").Execute()
+
+	// get value from response
+	result := call.GetValue().(string)
+
+	// write result to console
+	fmt.Println(result)
+	// </StandardLibrary_InvokeInstanceMethod>
+	if result != "sample value" {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result))
+	}
+}
+
+
 func Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoExeption(t *testing.T) {
 	// <TestResources_LoadLibrary>
-	javonet.InMemory().Jvm().LoadLibrary(libraryPath)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+
+	// load custom library
+	jvmRuntime.LoadLibrary(libraryPath)
 	// </TestResources_LoadLibrary>
 }
 
 func Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
-	javonet.InMemory().Jvm().LoadLibrary(libraryPath)
-	call := javonet.InMemory().Jvm().GetType(className).InvokeStaticMethod("multiplyByTwo", 25).Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	jvmRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType(className).Execute()
+
+	// invoke type's static method
+	response := jvmType.InvokeStaticMethod("multiplyByTwo", 25).Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </TestResources_InvokeStaticMethod>
 	expectedResponse := int32(50)
 	if result != expectedResponse {
@@ -77,9 +178,30 @@ func Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T)
 
 func Test_Jvm_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
-	javonet.InMemory().Jvm().LoadLibrary(libraryPath)
-	call := javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	jvmRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType(className).Execute()
+
+	// get type's static field
+	response := jvmType.GetStaticField("staticValue").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(3)
 	if result != expectedResponse {
@@ -89,24 +211,67 @@ func Test_Jvm_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 
 func Test_Jvm_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
-	javonet.InMemory().Jvm().LoadLibrary(libraryPath)
-	javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 75).Execute()
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	jvmRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType(className).Execute()
+
+	// set static field's value
+	jvmType.SetStaticField("staticValue", 75).Execute()	
+
+	// get type's static field
+	response := jvmType.GetStaticField("staticValue").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </TestResources_SetStaticField>
-	call := javonet.InMemory().Jvm().GetType(className).GetStaticField("staticValue").Execute()
-	result := call.GetValue().(int32)
 	expectedResponse := int32(75)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
-	javonet.InMemory().Jvm().GetType(className).SetStaticField("staticValue", 3).Execute()
+	jvmType.SetStaticField("staticValue", 3).Execute()
 }
 
 func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_GetStaticField>
-	javonet.InMemory().Jvm().LoadLibrary(libraryPath)
-	instance := javonet.InMemory().Jvm().GetType(className).CreateInstance(4, 5).Execute()
-	call := instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	jvmRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := jvmType.CreateInstance(4, 5).Execute()
+
+	// invoke instance's method
+	response := instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(20)
 	if result != expectedResponse {
@@ -114,14 +279,34 @@ func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *te
 	}
 }
 
-func Test_Jvm_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
+func Test_Jvm_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetStaticField>
-	javonet.InMemory().Jvm().LoadLibrary(libraryPath)
-	instance := javonet.InMemory().Jvm().GetType(className).CreateInstance(1, 2).Execute()
-	call := instance.GetInstanceField("publicValue").Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create JVM runtime context
+	jvmRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	jvmRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	jvmType := jvmRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := jvmType.CreateInstance(18, 18).Execute()
+
+	// get instance's field
+	response := instance.GetInstanceField("publicValue").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
 	// </TestResources_GetStaticField>
-	expectedResponse := int32(1)
+	expectedResponse := int32(18)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}

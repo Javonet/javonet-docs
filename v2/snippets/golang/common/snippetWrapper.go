@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-
-	"javonet.com/javonet"
+	Javonet "javonet.com/javonet"
 )
 
 var resourcesDirectory string = "."
