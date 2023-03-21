@@ -1,4 +1,3 @@
 require 'javonet-ruby-sdk'
 resources_directory = "."
-
-//place-for-snippet
+ #place-for-snippet
