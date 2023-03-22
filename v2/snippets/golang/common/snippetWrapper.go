@@ -8,6 +8,6 @@ import (
 var resourcesDirectory string = "."
 
 func main() {
-_ = resourcesDirectory
-  //place-for-snippet
+	_ = resourcesDirectory
+  	//place-for-snippet
 }

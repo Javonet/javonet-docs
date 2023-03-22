@@ -6,6 +6,6 @@ public class SampleProgram {
 
     private static final String resourcesDirectory = ".";
     public static void main(String []args) {
-            //place-for-snippet
+        //place-for-snippet
      }
 }
