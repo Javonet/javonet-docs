@@ -12,91 +12,282 @@ namespace CppToJvmIntegrationTests {
 #else
 	auto currentWorkingDir = getcwd(nullptr, 0);
 #endif //_WIN32
-	// <TestResources_TestClassValues>
-	auto libraryPath = std::string(currentWorkingDir) + std::string("/testResources/jar-library/TestClass.jar");
-	auto className = "TestClass";
-	// </TestResources_TestClassValues> 
+	const std::string resourcesDirectory = std::string(currentWorkingDir) + std::string("/testResources/jar-library");
 
-	TEST(Integration, Test_Jvm_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50) {
+	TEST(Integration, Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50) {
 		// <StandardLibrary_InvokeStaticMethod>
-		auto call = Javonet::InMemory()->Jvm()->GetType("java.lang.Math")->InvokeStaticMethod({ "abs", -50 })->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType("java.lang.Math")->Execute();
+
+		// invoke type's static method 
+		auto response = jvmType->InvokeStaticMethod({ "abs", -50 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </StandardLibrary_InvokeStaticMethod>
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_Jvm_StandardLibrary_GetStaticField_SystemMathPI_PI) {
+	TEST(Integration, Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI) {
 		// <StandardLibrary_GetStaticField>
-		auto call = Javonet::InMemory()->Jvm()->GetType("java.lang.Math")->GetStaticField("PI")->Execute();
-		auto result = std::any_cast<double>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType("java.lang.Math")->Execute();
+
+		// get type's static field
+		auto response = jvmType->GetStaticField("PI")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<double>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </StandardLibrary_GetStaticField>
 		EXPECT_EQ(M_PI, result);
 	}
 
 	TEST(Integration, Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9) {
 		// <StandardLibrary_InvokeInstanceMethod>
-		auto instance = Javonet::InMemory()->Jvm()->GetType("java.util.Random")->CreateInstance()->Execute();
-		auto call = instance->InvokeInstanceMethod({ "nextInt",10 })->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType("java.util.Random")->Execute();
+
+		// create type's instance
+		auto instance = jvmType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod({ "nextInt", 10 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </StandardLibrary_InvokeInstanceMethod>
 		EXPECT_EQ(36, std::any_cast<std::u8string>(instance->GetValue()).length());
 		EXPECT_LE(0, result);
-		EXPECT_GT(9, result);
+		EXPECT_GT(10, result);
+	}
+
+	TEST(Integration, Test_Jvm_StandardLibrary_GetInstanceFField_SystemDateTime_Year_2022) {
+
+		// <StandardLibrary_InvokeInstanceMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType("java.sql.DriverPropertyInfo")->Execute();
+
+		// create type's instance
+		auto instance = jvmType->CreateInstance({ "sample value", "sample value 2" })->Execute();
+
+		// invoke instance's method
+		auto response = instance->GetInstanceField("name")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::u8string>(response->GetValue());
+
+		// </StandardLibrary_InvokeInstanceMethod>
+		EXPECT_EQ(36, std::any_cast<std::u8string>(instance->GetValue()).length());
+		
 	}
 
 	TEST(Integration, Test_Jvm_TestResources_LoadLibrary_libraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>
-		Javonet::InMemory()->Jvm()->LoadLibrary(libraryPath);
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+
+		// load custom library
+		jvmRuntime->LoadLibrary(libraryPath);
 		// </TestResources_LoadLibrary>
 	}
 
 	TEST(Integration, Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
-		Javonet::InMemory()->Jvm()->LoadLibrary(libraryPath);
-		auto call = Javonet::InMemory()->Jvm()->GetType(className)->InvokeStaticMethod({ "multiplyByTwo", 25 })->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		jvmRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType(className)->Execute();
+
+		// invoke type's static method 
+		auto response = jvmType->InvokeStaticMethod({ "multiplyByTwo", 25 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
 		// </TestResources_InvokeStaticMethod>
 		EXPECT_EQ(50, result);
 	}
 
 	TEST(Integration, Test_Jvm_TestResources_GetStaticField_StaticValue_3) {
 		// <TestResources_GetStaticField>
-		Javonet::InMemory()->Jvm()->LoadLibrary(libraryPath);
-		auto call = Javonet::InMemory()->Jvm()->GetType(className)->GetStaticField("staticValue")->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		jvmRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType(className)->Execute();
+
+		// get type's static field
+		auto response = jvmType->GetStaticField("staticValue")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </TestResources_GetStaticField>
 		EXPECT_EQ(3, result);
 	}
 
 	TEST(Integration, Test_Jvm_TestResources_SetStaticField_StaticValue_75) {
 		// <TestResources_SetStaticField>
-		Javonet::InMemory()->Jvm()->LoadLibrary(libraryPath);
-		Javonet::InMemory()->Jvm()->GetType(className)->SetStaticField({ "staticValue", 75 })->Execute();
-		auto call = Javonet::InMemory()->Jvm()->GetType(className)->GetStaticField("staticValue")->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		jvmRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType(className)->Execute();
+
+		// set type's static field
+		jvmType->SetStaticField({ "staticValue", 75 })->Execute();
+
+		// get type's static field
+		auto response = jvmType->GetStaticField("staticValue")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </TestResources_SetStaticField>
+		jvmType->SetStaticField({ "staticValue", 3 })->Execute();
 		EXPECT_EQ(75, result);
-		Javonet::InMemory()->Jvm()->GetType(className)->SetStaticField({ "staticValue", 3 })->Execute();
 	}
 
 	TEST(Integration, Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
 		// <TestResources_InvokeInstanceMethod>
-		Javonet::InMemory()->Jvm()->LoadLibrary(libraryPath);
-		auto instance = Javonet::InMemory()->Jvm()->GetType(className)->CreateInstance()->Execute();
-		auto call = instance->InvokeInstanceMethod({ "multiplyTwoNumbers", 5, 4 })->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		jvmRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = jvmType->CreateInstance({ 1,2 })->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod({ "multiplyTwoNumbers", 4, 5 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </TestResources_InvokeInstanceMethod>
+		EXPECT_EQ(36, std::any_cast<std::u8string>(instance->GetValue()).length());
 		EXPECT_EQ(20, result);
 	}
 
-	TEST(Integration, Test_Jvm_TestResources_GetInstanceField_PublicValue_1) {
+	TEST(Integration, Test_Jvm_TestResources_GetInstanceField_PublicValue_18) {
 		// <TestResources_GetInstanceField>
-		Javonet::InMemory()->Jvm()->LoadLibrary(libraryPath);
-		auto instance = Javonet::InMemory()->Jvm()->GetType(className)->CreateInstance({ 2,3 })->Execute();
-		auto call = instance->GetInstanceField("publicValue")->Execute();
-		auto result = std::any_cast<int>(call->GetValue());
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create JVM runtime context
+		auto jvmRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		jvmRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto jvmType = jvmRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = jvmType->CreateInstance({ 18,19 })->Execute();
+
+		// get instance's field
+		auto response = instance->GetInstanceField("publicValue")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
 		// </TestResources_GetInstanceField>
 		EXPECT_EQ(36, std::any_cast<std::u8string>(instance->GetValue()).length());
-		EXPECT_EQ(2, result);
+		EXPECT_EQ(18, result);
 	}
 }
