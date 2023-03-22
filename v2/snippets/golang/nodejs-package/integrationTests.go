@@ -191,7 +191,7 @@ func Test_Nodejs_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 }
 
 func Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
-	// <TestResources_GetStaticField>
+	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
 
@@ -219,7 +219,7 @@ func Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t 
 
 	// write result to console
 	fmt.Println(result)
-	// </TestResources_GetStaticField>
+	// </TestResources_InvokeInstanceMethod>
 	expectedResponse := int32(20)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
@@ -227,7 +227,7 @@ func Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t 
 }
 
 func Test_Nodejs_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
-	// <TestResources_GetStaticField>
+	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
 
@@ -255,7 +255,7 @@ func Test_Nodejs_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 
 	// write result to console
 	fmt.Println(result)
-	// </TestResources_GetStaticField>
+	// </TestResources_GetInstanceField>
 	expectedResponse := int32(18)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))

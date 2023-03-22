@@ -99,7 +99,7 @@ func Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_bet
 
 
 func Test_Jvm_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver_Name(t *testing.T) {
-	// <StandardLibrary_InvokeInstanceMethod>
+	// <StandardLibrary_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
 
@@ -120,7 +120,7 @@ func Test_Jvm_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver_Name(
 
 	// write result to console
 	fmt.Println(result)
-	// </StandardLibrary_InvokeInstanceMethod>
+	// </StandardLibrary_GetInstanceField>
 	if result != "sample value" {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result))
 	}
@@ -247,7 +247,7 @@ func Test_Jvm_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 }
 
 func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
-	// <TestResources_GetStaticField>
+	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
 
@@ -272,7 +272,7 @@ func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *te
 
 	// get value from response
 	result := response.GetValue().(int32)
-	// </TestResources_GetStaticField>
+	// </TestResources_InvokeInstanceMethod>
 	expectedResponse := int32(20)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
@@ -280,7 +280,7 @@ func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *te
 }
 
 func Test_Jvm_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
-	// <TestResources_GetStaticField>
+	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
 
@@ -305,7 +305,7 @@ func Test_Jvm_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 
 	// get value from response
 	result := response.GetValue().(int32)
-	// </TestResources_GetStaticField>
+	// </TestResources_GetInstanceField>
 	expectedResponse := int32(18)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
