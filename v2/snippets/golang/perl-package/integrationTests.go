@@ -1,3 +1,6 @@
+//go:build !darwin
+// +build !darwin
+
 package gotoperlintegrationtests
 
 import (
@@ -6,37 +9,61 @@ import (
 	"testing"
 
 	"javonet.com/integrationTests/integrationtests/activationcredentials"
-	"javonet.com/javonet"
+	Javonet "javonet.com/javonet"
 )
 
-var javonetSrcRoot string
-var libraryPath string
-var fileName string
-var className string
+var resourcesDirectory string
 
 func init() {
 	cwd, _ := os.Getwd()
-	javonetSrcRoot = cwd + "/../../../.."
-	// <TestResources_TestClassValues>
-	libraryPath = javonetSrcRoot + "/testResources/perl-package"
-	fileName = "TestClass.pm"
-	className = "TestClass::TestClass"
-
-	// </TestResources_TestClassValues>
-	javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
+	resourcesDirectory = cwd + "/../../../../testResources/perl-package"
+	Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
 }
 
 func Test_Perl_TestResources_LoadLibrary_LibraryPath_NoExeption(t *testing.T) {
 	// <TestResources_LoadLibrary>
-	javonet.InMemory().Perl().LoadLibrary(libraryPath, fileName)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create PERL runtime context
+	perlRuntime := Javonet.InMemory().Perl()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	fileName := "TestClass.pm"
+
+	// load custom library
+	perlRuntime.LoadLibrary(libraryPath, fileName)
 	// </TestResources_LoadLibrary>
 }
 
 func Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
-	javonet.InMemory().Perl().LoadLibrary(libraryPath, fileName)
-	call := javonet.InMemory().Perl().GetType(className).InvokeStaticMethod("multiply_by_two", 25).Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create PERL runtime context
+	perlRuntime := Javonet.InMemory().Perl()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	fileName := "TestClass.pm"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	perlRuntime.LoadLibrary(libraryPath, fileName)
+
+	// get type from the runtime
+	perlType := perlRuntime.GetType(className).Execute()
+
+	// invoke type's static method
+	response := perlType.InvokeStaticMethod("multiply_by_two", 25).Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </TestResources_InvokeStaticMethod>
 	expectedResponse := int32(50)
 	if result != expectedResponse {
@@ -46,9 +73,31 @@ func Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T
 
 func Test_Perl_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
-	javonet.InMemory().Perl().LoadLibrary(libraryPath, fileName)
-	call := javonet.InMemory().Perl().GetType(className).GetStaticField("static_value").Execute()
-	result := call.GetValue().(int32)
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create PERL runtime context
+	perlRuntime := Javonet.InMemory().Perl()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	fileName := "TestClass.pm"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	perlRuntime.LoadLibrary(libraryPath, fileName)
+
+	// get type from the runtime
+	perlType := perlRuntime.GetType(className).Execute()
+
+	// get type's static field
+	response := perlType.GetStaticField("static_value").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </TestResources_GetStaticField>
 	expectedResponse := int32(3)
 	if result != expectedResponse {
@@ -58,12 +107,36 @@ func Test_Perl_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 
 func Test_Perl_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
-	javonet.InMemory().Perl().LoadLibrary(libraryPath, fileName)
-	javonet.InMemory().Perl().GetType(className).SetStaticField("static_value", 75).Execute()
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create PERL runtime context
+	perlRuntime := Javonet.InMemory().Perl()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	fileName := "TestClass.pm"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	perlRuntime.LoadLibrary(libraryPath, fileName)
+
+	// get type from the runtime
+	perlType := perlRuntime.GetType(className).Execute()
+
+	// set static field's value
+	perlType.SetStaticField("static_value", 75).Execute()	
+
+	// get type's static field
+	response := perlType.GetStaticField("static_value").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
 	// </TestResources_SetStaticField>
-	call := javonet.InMemory().Perl().GetType(className).GetStaticField("static_value").Execute()
-	result := call.GetValue().(int32)
-	javonet.InMemory().Perl().GetType(className).SetStaticField("static_value", 3).Execute()
+	perlType.SetStaticField("static_value", 3).Execute()
 	expectedResponse := int32(75)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
@@ -71,12 +144,33 @@ func Test_Perl_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 }
 
 func Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
-	// <TestResources_GetStaticField>
-	javonet.InMemory().Perl().LoadLibrary(libraryPath, fileName)
-	instance := javonet.InMemory().Perl().GetType(className).CreateInstance(4, 5).Execute()
-	call := instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4).Execute()
-	result := call.GetValue().(int32)
-	// </TestResources_GetStaticField>
+	// <TestResources_InvokeInstanceMethod>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create PERL runtime context
+	perlRuntime := Javonet.InMemory().Perl()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	fileName := "TestClass.pm"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	perlRuntime.LoadLibrary(libraryPath, fileName)
+
+	// get type from the runtime
+	perlType := perlRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := perlType.CreateInstance(1, 2).Execute()
+
+	// invoke instance's method
+	response := instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4).Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+	// </TestResources_InvokeInstanceMethod>
 	expectedResponse := int32(20)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
@@ -84,12 +178,36 @@ func Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *t
 }
 
 func Test_Perl_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
-	// <TestResources_GetStaticField>
-	javonet.InMemory().Perl().LoadLibrary(libraryPath, fileName)
-	instance := javonet.InMemory().Perl().GetType(className).CreateInstance(1, 2).Execute()
-	call := instance.GetInstanceField("public_value").Execute()
-	result := call.GetValue().(int32)
-	// </TestResources_GetStaticField>
+	// <TestResources_GetInstanceField>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create PERL runtime context
+	perlRuntime := Javonet.InMemory().Perl()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	fileName := "TestClass.pm"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	perlRuntime.LoadLibrary(libraryPath, fileName)
+
+	// get type from the runtime
+	perlType := perlRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := perlType.CreateInstance(18, 19).Execute()
+
+	// get instance's field
+	response := instance.GetInstanceField("public_value").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_GetInstanceField>
 	expectedResponse := int32(1)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
