@@ -11,7 +11,8 @@ class SampleProgram
 		// </Activation>
 
 
-
+		// <RuntimeContextCreation>
 		var pythonRuntime = Javonet.InMemory().Python();
+		// </RuntimeContextCreation>
 	}
 }

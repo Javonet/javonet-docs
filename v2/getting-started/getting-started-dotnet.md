@@ -25,13 +25,15 @@ Javonet needs to be imported as any other dependency.
 
 :::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="Import":::
 
+If Javonet.Clr.Sdk package is used replace it with using Javonet.Clr.Sdk.
+
 Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
-
-
 
 :::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="Activation":::
 
+To use other programming technology, [Runtime Context](/v2/foundations/runtime-context.md) of called technology needs to be created:
 
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="RuntimeContextCreation":::
 
 
 
