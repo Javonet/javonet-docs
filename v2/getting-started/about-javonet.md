@@ -6,10 +6,7 @@ Javonet enables software developers to instantly integrate several programming l
 
   
 
-[Getting started for .Net Framework developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-framework)  
-  
-
-[Getting started for .Net and .Net Core developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-core)  
+[Getting started for .NET developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet)  
 
   
 [Getting started for Java developers](https://www.javonet.com/guides/v2/getting-started/getting-started-java)  
