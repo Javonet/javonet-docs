@@ -21,12 +21,25 @@ An e-mail and license key is necessary to activate Javonet.
 
 ## First App
 
-Code example below represents the sample class that will be used in following example.
+Javonet needs to be imported as any other dependency.
 
-:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="Import":::
 
-The file is to be called TestClass.`{called_ext}` and be saved/compiled in main application directory. To use simple static method from this class the following code is used: 
+Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
+
+
+
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="Activation":::
+
+
+
+
 
 :::code source="v2/snippets/csharp/`{called_technology}`/integrationTests.cs" ID="StandardLibrary_GetStaticField"::: 
 
 
+Code example below represents the sample class that will be used in following example.
+
+:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
+
+The file is to be saved/compiled as TestClass.`{called_ext}` in main application directory.
