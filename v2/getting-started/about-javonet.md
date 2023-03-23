@@ -4,7 +4,7 @@ Javonet enables software developers to instantly integrate several programming l
 
 # Getting started
 
-See links below to find detailed instructions for selected technology:  
+  
 
 [Getting started for .Net Framework developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-framework)  
   
