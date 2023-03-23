@@ -1,28 +1,28 @@
 # About Javonet
 
-Javonet enables instant integration between several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article describes how to use Javonet in selected technology and install prerequisites. 
+Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article describes how to use Javonet in selected technology and install prerequisites. 
 
 # Getting started
 
 See links below to find detailed instructions for selected technology:
 
-- [.Net Framework](https://www.javonet.com/guides/v2/getting-started/installing-javonet-dotnet-framework)
+[Getting started for .Net Framework developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-framework)  
 
-- [Java](https://www.javonet.com/guides/v2/getting-started/installing-javonet-java)
+[Getting started for .Net and .Net Core developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-core)  
 
-- [.Net Core](https://www.javonet.com/guides/v2/getting-started/installing-javonet-dotnet-core)
+[Getting started for Java developers](https://www.javonet.com/guides/v2/getting-started/getting-started-java)  
 
-- [Perl](https://www.javonet.com/guides/v2/getting-started/installing-javonet-perl)
+[Getting started for Perl developers](https://www.javonet.com/guides/v2/getting-started/getting-started-perl)  
 
-- [Python](https://www.javonet.com/guides/v2/getting-started/installing-javonet-python)
+[Getting started for Python developers](https://www.javonet.com/guides/v2/getting-started/getting-started-python)  
 
-- [Ruby](https://www.javonet.com/guides/v2/getting-started/installing-javonet-ruby)
+[Getting started for Ruby developers](https://www.javonet.com/guides/v2/getting-started/getting-started-ruby)  
 
-- [Node.js](https://www.javonet.com/guides/v2/getting-started/installing-javonet-nodejs)
+[Getting started for Nodejs developers](https://www.javonet.com/guides/v2/getting-started/getting-started-nodejs)  
 
-- [C++](https://www.javonet.com/guides/v2/getting-started/installing-javonet-cpp)
+[Getting started for C++ developers++](https://www.javonet.com/guides/v2/getting-started/getting-started-cpp)  
 
-- [GoLang](https://www.javonet.com/guides/v2/getting-started/installing-javonet-golang)  
+[Getting started for Golang developers](https://www.javonet.com/guides/v2/getting-started/getting-started-golang)    
   
 
 # Install prerequisites

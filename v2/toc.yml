@@ -71,40 +71,40 @@ items:
     href: /getting-started/about-javonet.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for .Net Framework
-    href: /getting-started/installing-javonet-dotnet-framework.md
+  - name: Getting started for .Net Framework
+    href: /getting-started/getting-started-dotnet-framework.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for .Net Core
-    href: /getting-started/installing-javonet-dotnet-core.md
+  - name: Getting started for .Net Core
+    href: /getting-started/getting-started-dotnet-core.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for Java
-    href: /getting-started/installing-javonet-java.md
+  - name: Getting started for Java
+    href: /getting-started/getting-started-java.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for Perl
-    href: /getting-started/installing-javonet-perl.md
+  - name: Getting started for Perl
+    href: /getting-started/getting-started-perl.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for Python
-    href: /getting-started/installing-javonet-python.md
+  - name: Getting started for Python
+    href: /getting-started/getting-started-python.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for Ruby
-    href: /getting-started/installing-javonet-ruby.md
+  - name: Getting started for Ruby
+    href: /getting-started/getting-started-ruby.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for Node.js
-    href: /getting-started/installing-javonet-nodejs.md
+  - name: Getting started for Node.js
+    href: /getting-started/getting-started-nodejs.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for Golang
-    href: /getting-started/installing-javonet-golang.md
+  - name: Getting started for Golang
+    href: /getting-started/getting-started-golang.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Installing Javonet for C++
-    href: /getting-started/installing-javonet-cpp.md
+  - name: Getting started for C++
+    href: /getting-started/getting-started-cpp.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
 
