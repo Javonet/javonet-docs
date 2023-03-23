@@ -67,8 +67,8 @@ blocked_pairs:
 items:
 - name: Getting started
   items: 
-  - name: Installing Javonet
-    href: /getting-started/installing-javonet.md
+  - name: About Javonet
+    href: /getting-started/about-javonet.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Installing Javonet for .Net Framework
