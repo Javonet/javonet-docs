@@ -22,17 +22,17 @@ See links below to find detailed instructions for selected technology:
 
 - [C++](https://www.javonet.com/guides/v2/getting-started/installing-javonet-cpp)
 
-- [GoLang](https://www.javonet.com/guides/v2/getting-started/installing-javonet-golang)
-
+- [GoLang](https://www.javonet.com/guides/v2/getting-started/installing-javonet-golang)  
+  
 
 ## Install prerequisites
 
 To use Javonet to call library/package/module which was designed for another technology, runtime of this technology has to be installed. List below present prerequisites to be installed:
 
-- .NET Framework DLL Library:  
+- .NET Framework DLL Library:
 [.Net Framework 4.7.2 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472)  
 
-- .NET Core DLL Library:  
+- .NET Core DLL Library:
 [.Net Core 3.1 x64 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/3.1) or higher  
 
 - Jar Library:
@@ -45,7 +45,7 @@ To use Javonet to call library/package/module which was designed for another tec
 [Ruby 2.7](https://rubyinstaller.org/downloads/) 
 
 - Perl Package:
- Windows: [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi). On Linux Perl is preinstalled. Use Perl 5.30 or higher
+ On Windows [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi). On Linux and MacOS use Perl 5.30 or higher
 
 - Node.js package: 
 [Node.js 12.22 or higher](https://nodejs.org/en/download/)
