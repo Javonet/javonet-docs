@@ -5,7 +5,7 @@
 
 ## Install Javonet for .NET
 
-Javonet is available as a Nuget package, which can be installed using Nuget package manager or any other method which supports nuget packages. Detailed instructions can be found at [Nuget Documentation](https://learn.microsoft.com/en-us/nuget/)    
+Javonet is available as a Nuget package, which can be installed using Nuget package manager or any other method which supports Nuget packages. Detailed instructions can be found at [Nuget Documentation](https://learn.microsoft.com/en-us/nuget/)    
 
 For applications using .NET Framework 4.7.2 and higher use [Javonet.Clr.Sdk Package](https://www.nuget.org/packages/Javonet.Clr.Sdk)  
 
