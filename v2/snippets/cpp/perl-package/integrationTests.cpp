@@ -17,7 +17,7 @@ namespace CppToPerlIntegrationTests {
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
-		// create NETCORE runtime context
+		// create PERL runtime context
 		auto perlRuntime = Javonet::InMemory()->Perl();
 
 		// set up variables
@@ -34,7 +34,7 @@ namespace CppToPerlIntegrationTests {
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
-		// create NETCORE runtime context
+		// create PERL runtime context
 		auto perlRuntime = Javonet::InMemory()->Perl();
 
 		// set up variables
@@ -65,7 +65,7 @@ namespace CppToPerlIntegrationTests {
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
-		// create NETCORE runtime context
+		// create PERL runtime context
 		auto perlRuntime = Javonet::InMemory()->Perl();
 
 		// set up variables
@@ -96,7 +96,7 @@ namespace CppToPerlIntegrationTests {
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
-		// create NETCORE runtime context
+		// create PERL runtime context
 		auto perlRuntime = Javonet::InMemory()->Perl();
 
 		// set up variables
@@ -131,7 +131,7 @@ namespace CppToPerlIntegrationTests {
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
-		// create NETCORE runtime context
+		// create PERL runtime context
 		auto perlRuntime = Javonet::InMemory()->Perl();
 
 		// set up variables
@@ -166,7 +166,7 @@ namespace CppToPerlIntegrationTests {
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
-		// create NETCORE runtime context
+		// create PERL runtime context
 		auto perlRuntime = Javonet::InMemory()->Perl();
 
 		// set up variables

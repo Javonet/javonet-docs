@@ -4,24 +4,32 @@ Javonet enables software developers to instantly integrate several programming l
 
 # Getting started
 
-See links below to find detailed instructions for selected technology:
+See links below to find detailed instructions for selected technology:  
 
 [Getting started for .Net Framework developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-framework)  
+  
 
 [Getting started for .Net and .Net Core developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet-core)  
 
+  
 [Getting started for Java developers](https://www.javonet.com/guides/v2/getting-started/getting-started-java)  
 
+  
 [Getting started for Perl developers](https://www.javonet.com/guides/v2/getting-started/getting-started-perl)  
 
+  
 [Getting started for Python developers](https://www.javonet.com/guides/v2/getting-started/getting-started-python)  
 
+  
 [Getting started for Ruby developers](https://www.javonet.com/guides/v2/getting-started/getting-started-ruby)  
 
+  
 [Getting started for Nodejs developers](https://www.javonet.com/guides/v2/getting-started/getting-started-nodejs)  
 
+  
 [Getting started for C++ developers++](https://www.javonet.com/guides/v2/getting-started/getting-started-cpp)  
 
+  
 [Getting started for Golang developers](https://www.javonet.com/guides/v2/getting-started/getting-started-golang)    
   
 

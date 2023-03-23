@@ -15,7 +15,7 @@ namespace CppToRubyIntegrationTests {
 
 	TEST(Integration, Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50) {
 		// <StandardLibrary_InvokeStaticMethod>
-				// use Activate only once in your app
+		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
 		// create RUBY runtime context
