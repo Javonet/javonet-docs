@@ -25,13 +25,13 @@ programming-languages:
   ext: go
 - slug: netframework-dll
   name: .NET Framework DLL
-  ext: cs
+  ext: dll
 - slug: net-dll
   name: .NET DLL
-  ext: cs
+  ext: dll
 - slug: jar-library
   name: JAR library
-  ext: java
+  ext: jar
 - slug: nodejs-package
   name: NodeJs package
   ext: js
@@ -73,7 +73,7 @@ items:
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Getting started for .NET
     href: /getting-started/getting-started-dotnet.md
-    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    calling_technology: csharp
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Getting started for Java
     href: /getting-started/getting-started-java.md

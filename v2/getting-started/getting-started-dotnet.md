@@ -25,7 +25,7 @@ Code example below represents the sample class that will be used in following ex
 
 :::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
 
-The file is to be called TestClass.`{called_ext}` and saved in main application directory. To use simple static method from this class the following code is used: 
+The file is to be called TestClass.`{called_ext}` and be saved/compiled in main application directory. To use simple static method from this class the following code is used: 
 
 :::code source="v2/snippets/csharp/`{called_technology}`/integrationTests.cs" ID="StandardLibrary_GetStaticField"::: 
 
