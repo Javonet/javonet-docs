@@ -31,7 +31,7 @@ Javonet needs to be activated first. Activation must be called only once at the 
 
 :::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="Activation":::
 
-To use other programming technology, [Runtime Context](../v2/foundations/runtime-context.md) of called technology needs to be created.
+To use other programming technology, [Runtime Context](../foundations/runtime-context.md) of called technology needs to be created.
 
 :::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="RuntimeContextCreation":::
 
