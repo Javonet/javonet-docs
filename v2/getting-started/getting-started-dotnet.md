@@ -19,7 +19,7 @@ Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.
 
 An e-mail and license key is necessary to activate Javonet.
 
-## First App
+## First sample application
 
 Javonet needs to be imported as any other dependency.
 
@@ -31,17 +31,26 @@ Javonet needs to be activated first. Activation must be called only once at the 
 
 :::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="Activation":::
 
-To use other programming technology, [Runtime Context](/v2/foundations/runtime-context.md) of called technology needs to be created:
+To use other programming technology, [Runtime Context](guides/v2/foundations/runtime-context.md) of called technology needs to be created.
 
 :::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="RuntimeContextCreation":::
 
+RuntimeContext refers to single instance of an runtime. Once it is created it is used to interact with called runtime.
+
+The simplest use case is to get from target technology a type from a built-in library:
+
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="GetType":::
+
+And then get static field from the type:
+
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="GetStaticField":::
+
+The returned value needs to be cast to calling technology type and can be used as any other variable:
+
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="GetValue":::
+
+To sum up, the whole code snippet looks like:
+
+:::code source="v2/snippets/csharp/common/SampleProgram/SampleProgram.cs" ID="WholeSnippet":::
 
 
-:::code source="v2/snippets/csharp/`{called_technology}`/integrationTests.cs" ID="StandardLibrary_GetStaticField"::: 
-
-
-Code example below represents the sample class that will be used in following example.
-
-:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
-
-The file is to be saved/compiled as TestClass.`{called_ext}` in main application directory.

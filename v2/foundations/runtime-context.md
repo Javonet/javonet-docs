@@ -5,13 +5,15 @@
 
 # Runtime Context
 
-Runtime Context represents the single context which allows to interact with selected technology.
+Runtime Context represents the single context which allows to interact with selected technology.  
 
-RuntimeContext refers to single instance of an runtime within particular target OS process either the local currently running process (inMemory) or particular remote process identified by IP Address and PORT of target Javonet instance.
+RuntimeContext refers to single instance of an runtime within particular target OS process either the local currently running process (inMemory) or particular remote process identified by IP Address and PORT of target Javonet instance.  
 
-Multiple Runtime Contexts can be initialized within one process. 
-Calling the same technology on inMemory communication channel will return the exisiting instance of runtime context.
-Calling the same technology on TCP channel but on different nodes will result with unique Runtime Contexts.
+Multiple Runtime Contexts can be initialized within one process.  
+
+Calling the same technology on inMemory communication channel will return the existing instance of runtime context.  
+
+Calling the same technology on TCP channel but on different nodes will result with unique Runtime Contexts.  
 
 Within the runtime context developer can load any number of libraries and interact with any objects from target technology that are aware of each other due to sharing the same memory space and same runtime instance.
 
