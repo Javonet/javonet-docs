@@ -10,19 +10,17 @@
 Assuming we have a custom `{called_name}` with the following class inside:
 
 :::code 
-called_source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
-called_id="Test_Resource_All"
-display="called"
+:called_source: v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`
+:display: called
 :::
 
 To create instance and call instance method of a class inside custom `{called_name}`:
 
 :::code 
-calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
-calling_id="TestResources_InvokeInstanceMethod"
-called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
-called_id="Test_Resource_All"
-display="calling"
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_InvokeInstanceMethod
+:called_source: v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`
+:display: calling
 :::
 
 
@@ -31,7 +29,7 @@ display="calling"
 To create instance and call instance method from standard `{called_name}`:
 
 :::code 
-calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
-calling_id="StandardLibrary_InvokeInstanceMethod"
-display="calling"
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: StandardLibrary_InvokeInstanceMethod
+:display: calling
 :::
