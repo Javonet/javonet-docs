@@ -1,5 +1,4 @@
 
-//<Test_Resource_All>
 namespace TestClass {
 	public class TestClass {
 		public int PublicValue { get; set; }
@@ -25,4 +24,3 @@ namespace TestClass {
 		}
 	}
 }
-//</Test_Resource_All>

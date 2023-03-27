@@ -1,4 +1,3 @@
-//<Test_Resource_All>
 class TestClass {
 
     publicValue;
@@ -21,4 +20,3 @@ class TestClass {
 }
 
 module.exports = TestClass
-//</Test_Resource_All>

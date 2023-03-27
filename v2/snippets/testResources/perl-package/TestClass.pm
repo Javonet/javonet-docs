@@ -1,4 +1,3 @@
-# <Test_Resource_All>
 package TestClass::TestClass;
 use strict;
 use warnings FATAL => 'all';
@@ -27,4 +26,3 @@ sub multiply_two_numbers {
 }
 
 1;
-# </Test_Resource_All>
