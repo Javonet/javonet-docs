@@ -25,4 +25,4 @@ my $response = $python_type->get_static_field("pi")->execute();
 my $result = $response->get_value();
 print("$result\n");
 // </GetValue>	
-// </WholeSnippet
+// </WholeSnippet>
