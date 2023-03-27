@@ -17,32 +17,32 @@ An e-mail and license key is necessary to activate Javonet.
 
 Javonet needs to be imported as any other dependency.
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="Import":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="Import":::
 
 Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="Activation":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="Activation":::
 
 To use other programming technology, [Runtime Context](/guides/v2/foundations/runtime-context.md) of called technology needs to be created.
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="RuntimeContextCreation":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="RuntimeContextCreation":::
 
 RuntimeContext refers to single instance of an runtime. Once it is created it is used to interact with called runtime.
 
 The simplest use case is to get from target technology a type from a built-in library:
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="GetType":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="GetType":::
 
 And then get static field from the type:
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="GetStaticField":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="GetStaticField":::
 
 The returned value needs to be cast to calling technology type and can be used as any other variable:
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="GetValue":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="GetValue":::
 
 To sum up, the whole code snippet looks like:
 
-:::code source="v2/snippets/perl/common/SampleProgram.pm" ID="WholeSnippet":::
+:::code source="v2/snippets/perl/common/sampleProgram.pm" ID="WholeSnippet":::
 
 
