@@ -2,17 +2,25 @@
 const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
 // </Import>
 
-// use Activate only once in your app
+// <WholeSnippet>
+// <Activation>
 Javonet.activate("your-email", "your-license-key")
+// </Activation>
 
-// create PYTHON runtime context
+// <RuntimeContextCreation>
 let pythonRuntime = Javonet.inMemory().python()
+// </RuntimeContextCreation>
 
-// get type from the runtime
+// <GetType>
 let pythonType = pythonRuntime.getType('math').execute()
+// </GetType>
 
-// get type's field
+// <GetStaticField>
 let response = pythonType.getStaticField("pi").execute()
+// </GetStaticField>
 
-// get value from response
+// <GetValue>
 let result = response.getValue()
+console.log(result)
+// </GetValue>	
+// </WholeSnippet>
