@@ -1,3 +1,4 @@
+
 //<Test_Resource_All>
 namespace TestClass {
 	public class TestClass {
