@@ -5,23 +5,42 @@
 
 # Working with static fields and properties
 
-## Custom `{called_name}` library
+## Custom `{called_name}`
 
-Assuming we have a library written for `{called_name}` with the following class in it:
+Assuming we have a custom `{called_name}` with the following class inside:
 
-:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
+:::code 
+called_source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
+called_id="Test_Resource_All"
+display="called"
+:::
 
-To get static field from the custom `{called_name}` library:
+To get static field from the custom `{called_name}`:
 
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_GetStaticField":::
+:::code 
+calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
+calling_id="TestResources_GetStaticField"
+called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
+called_id="Test_Resource_All"
+display="calling"
+:::
 
 To set static field from the custom `{called_name}` library:
 
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_SetStaticField":::
+:::code 
+calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
+calling_id="TestResources_SetStaticField"
+called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
+called_id="Test_Resource_All"
+display="calling"
+:::
 
-## Standard `{called_name}` library
+## Standard `{called_name}`
 
-To get static field from the standard `{called_name}` library:
+To get static field from the standard `{called_name}`:
 
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="StandardLibrary_GetStaticField":::
-
+:::code 
+calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
+calling_id="StandardLibrary_GetStaticField"
+display="calling"
+:::

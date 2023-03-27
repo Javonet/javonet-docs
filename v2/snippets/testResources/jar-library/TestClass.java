@@ -1,3 +1,4 @@
+//<Test_Resource_All>
 public class TestClass {
 
     public int publicValue;
@@ -22,3 +23,4 @@ public class TestClass {
         return a * b;
     }
 }
+//</Test_Resource_All>

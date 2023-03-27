@@ -5,18 +5,33 @@
 
 # Working with instances
 
-## Custom `{called_name}` library
+## Custom `{called_name}`
 
-Assuming we have a custom library written for `{called_name}` with the following class in it:
+Assuming we have a custom `{called_name}` with the following class inside:
 
-:::code source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`":::
+:::code 
+called_source="v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
+called_id="Test_Resource_All"
+display="called"
+:::
 
-To create instance and call instance method from the custom `{called_name}` library:
+To create instance and call instance method of a class inside custom `{called_name}`:
 
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="TestResources_InvokeInstanceMethod":::
+:::code 
+calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
+calling_id="TestResources_InvokeInstanceMethod"
+called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
+called_id="Test_Resource_All"
+display="calling"
+:::
 
-## Standard `{called_name}` library
 
-To create instance and call instance method from standard `{called_name}` library:
+## Standard `{called_name}`
 
-:::code source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`" ID="StandardLibrary_InvokeInstanceMethod":::
+To create instance and call instance method from standard `{called_name}`:
+
+:::code 
+calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
+calling_id="StandardLibrary_InvokeInstanceMethod"
+display="calling"
+:::
