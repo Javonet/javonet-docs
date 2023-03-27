@@ -1,28 +1,28 @@
 use strict;
 use warnings;
-// <Import>
+# <Import>
 use aliased 'Javonet::Javonet' => 'Javonet';
-// </Import>
+# </Import>
 
-// <WholeSnippet>
-// <Activation>
+# <WholeSnippet>
+# <Activation>
 Javonet->activate("your-email", "your-license-key");
-// </Activation>
+# </Activation>
 
-// <RuntimeContextCreation>
+# <RuntimeContextCreation>
 my $python_runtime = Javonet->in_memory()->python();
-// </RuntimeContextCreation>
+# </RuntimeContextCreation>
 
-// <GetType>
+# <GetType>
 my $python_type = $python_runtime->get_type("math")->execute();
-// </GetType>
+# </GetType>
 
-// <GetStaticField>
+# <GetStaticField>
 my $response = $python_type->get_static_field("pi")->execute();
-// </GetStaticField>
+# </GetStaticField>
 
-// <GetValue>
+# <GetValue>
 my $result = $response->get_value();
 print("$result\n");
-// </GetValue>	
-// </WholeSnippet>
+# </GetValue>	
+# </WholeSnippet>
