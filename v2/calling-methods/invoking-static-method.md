@@ -35,10 +35,11 @@ Now it possible to invoke one of the declared static methods from `{called_name}
  
 ## Calling static methods from standard `{called_name}`
 
-To invoke static method from standard `{called_name}:
+To invoke static method from standard `{called_name}`:
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_InvokeStaticMethod
+:called_source: v2/snippets/testResources/`{called_technology}`/EmptyTestClass.`{called_ext}`
 :display: calling
 :::
