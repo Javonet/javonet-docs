@@ -30,5 +30,6 @@ public class SampleProgram {
         float result = (float) response.getValue();
         System.out.println(result);
 		// </GetValue>
+        // </WholeSnippet>
     }
 }

@@ -18,9 +18,9 @@ After logging in, go to License Keys tab. There are your credentials and trial e
 To start using Javonet in your `{calling_name}` application you need to activate your license first. This must be done before you use any other Javonet feature.
 
 :::code 
-calling_source="v2/snippets/`{calling_technology}`/common/activation.`{calling_ext}`" 
-calling_id="Javonet_activate"
-display="calling"
+:calling_source: v2/snippets/`{calling_technology}`/common/activation.`{calling_ext}`
+:calling_id: Javonet_activate
+:display: calling
 :::
 
 Activation must be called only once at the start-up of your `{calling_name}` application. During the first activation, Javonet contacts our servers and generates a javonet.lic file in your application directory. All subsequent calls simply verify this file.
