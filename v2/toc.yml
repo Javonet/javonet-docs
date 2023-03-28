@@ -31,7 +31,7 @@ programming-languages:
   ext: cs
 - slug: jar-library
   name: JAR library
-  ext: jar
+  ext: java
 - slug: nodejs-package
   name: NodeJs package
   ext: js
