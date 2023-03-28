@@ -8,10 +8,10 @@
 Javonet allows to use any library from all supported technologies. As with any regular application, necessary libraries need to be referenced.
 
 :::code 
-calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
-calling_id="TestResources_LoadLibrary"
-called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
-display="calling"
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_LoadLibrary
+:called_source: v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`
+:display: calling
 :::
 
 The argument is a relative or full path to `{called_name}`. 
