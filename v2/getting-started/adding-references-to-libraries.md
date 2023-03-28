@@ -11,10 +11,8 @@ Javonet allows to use any library from all supported technologies. As with any r
 calling_source="v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`"
 calling_id="TestResources_LoadLibrary"
 called_source = "v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`"
-called_id="Test_Resource_All"
 display="calling"
 :::
-
 
 The argument is a relative or full path to `{called_name}`. 
 If the `{called_name}` has dependencies on other `{called_name}`, the latter needs to be added first.

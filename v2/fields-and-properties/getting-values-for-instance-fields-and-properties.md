@@ -31,6 +31,5 @@ To get instance field from the standard `{called_name}`:
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_InvokeInstanceField
-:called_source: v2/snippets/testResources/`{called_technology}`/EmptyTestClass.`{called_ext}`
 :display: calling
 :::
