@@ -25,10 +25,10 @@ programming-languages:
   ext: go
 - slug: netframework-dll
   name: .NET Framework DLL
-  ext: dll
+  ext: cs
 - slug: net-dll
   name: .NET DLL
-  ext: dll
+  ext: cs
 - slug: jar-library
   name: JAR library
   ext: jar
