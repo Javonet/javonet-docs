@@ -5,7 +5,9 @@
 
 ## Install Javonet for Perl
 
-Javonet is available as a Perl package. To get the library please contact support@javonet.com.
+Javonet is available as a Perl package, which can be installed using CPANM package manager or any other method which supports Perl packages.
+
+For applications using Perl 5 use [JavonetPerlSdk Package](https://metacpan.org/author/JAVONET/releases)  
 
 ## Activate Javonet
 
