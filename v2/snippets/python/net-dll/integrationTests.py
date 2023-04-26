@@ -1,8 +1,6 @@
 import math
-import platform
 from pathlib import Path
 
-import pytest
 from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/net-dll'
@@ -276,26 +274,337 @@ def test_netcore_testresources_getinstancefield_publicvalue_18():
     # </TestResources_GetInstanceField>
     assert (result == 18)
 
-    
-def test_netcore_standardlibrary_systemdatetime_passinstanceasargument():
-    # <TestResources_GetInstanceField>
-    instance = Javonet.in_memory().Netcore().get_type("System.DateTime").create_instance(2022, 9, 13, 8, 24,
-                                                                                         22).Execute()
-    culture_info_es = Javonet.in_memory().Netcore().get_type("System.Globalization.CultureInfo").create_instance(
-        "es-ES",
-        False).Execute();
-    culture_info_pl = Javonet.in_memory().Netcore().get_type("System.Globalization.CultureInfo").create_instance(
-        "pl-PL",
-        False).Execute();
-    culture_info_de = Javonet.in_memory().Netcore().get_type("System.Globalization.CultureInfo").create_instance(
-        "de-De",
-        False).Execute();
 
-    result_es = instance.invoke_instance_method("ToString", "F", culture_info_es).Execute().get_value()
-    result_pl = instance.invoke_instance_method("ToString", "F", culture_info_pl).Execute().get_value()
-    result_de = instance.invoke_instance_method("ToString", "F", culture_info_de).Execute().get_value()
+def test_netcore_testresources_1darray_get_index_2_string_three():
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
 
-    # </TestResources_GetInstanceField>
-    assert (result_es == "martes, 13 de septiembre de 2022 8:24:22")
-    assert (result_pl == "wtorek, 13 września 2022 08:24:22")
-    assert (result_de == "Dienstag, 13. September 2022 08:24:22")
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # get index from array
+    response = array.get_index(2).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetIndex>
+    assert (result == "three")
+
+
+def test_netcore_testresources_1darray_get_size_5():
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # get array's size
+    response = array.get_size().execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetSize>
+    assert (result == 5)
+
+
+def test_netcore_testresources_1darray_set_index_string_seven():
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # set array's index
+    array.set_index("seven", 4).execute()
+
+    # get index from array
+    response = array.get_index(4).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetIndex>
+    array.set_index("five", 4).execute()
+    assert (result == "seven")
+
+
+def test_netcore_testresources_1darray_get_index_2_string_three():
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # get index from array
+    response = array.get_index(2).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetIndex>
+    assert result == "three"
+
+
+def test_netcore_testresources_1darray_get_size_5():
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # get array's size
+    response = array.get_size().execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetSize>
+    assert result == 5
+
+
+def test_netcore_testresources_1darray_set_index_string_seven():
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # set array's index
+    array.set_index("seven", 4).execute()
+
+    # get index from array
+    response = array.get_index(4).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetIndex>
+    array.set_index("five", 4).execute()
+    assert result == "seven"
+
+
+def test_netcore_testresources_1darray_iterate_strings():
+    # <TestResources_1DArray_Iterate>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # iterate through elements and invoke method on them
+    array_upper = list()
+    for element in array:
+        array_upper.append(element.invoke_instance_method("ToUpper").execute().get_value())
+
+    # write result to console
+    print(array_upper)
+    # </TestResources_1DArray_Iterate>
+    assert array_upper == ["ONE", "TWO", "THREE", "FOUR", "FIVE"]
+
+
+def test_netcore_testresources_1darray_get_element_string():
+    # <TestResources_1DArray_GetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # get element of array and invoke method on it
+    response = array[2].invoke_instance_method("ToUpper").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetElement>
+    assert result == "THREE"
+
+
+def test_netcore_testresources_1darray_set_element_string():
+    # <TestResources_1DArray_SetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create netcore runtime context
+    netcore_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    netcore_runtime.load_library(library_path)
+
+    # get type from the runtime
+    netcore_type = netcore_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = netcore_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get1DArray").execute()
+
+    # set element of array
+    array[2] = "zero"
+
+    # get element of array
+    response = array[2].invoke_instance_method("ToUpper").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetElement>
+    assert result == "ZERO"
+

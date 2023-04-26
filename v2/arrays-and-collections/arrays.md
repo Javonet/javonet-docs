@@ -23,7 +23,7 @@ To get element of the array:
 :display: calling
 :::
 
-To get size of hte array
+To get size of the array
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
