@@ -252,3 +252,214 @@ def test_jvm_testresources_getinstancefield_publicvalue_18():
     print(result)
     # </TestResources_GetInstanceField>
     assert (result == 18)
+
+    
+def test_jvm_testresources_1darray_get_index_2_string_three():
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create jvm runtime context
+    jvm_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    jvm_runtime.load_library(library_path)
+
+    # get type from the runtime
+    jvm_type = jvm_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = jvm_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # get index from array
+    response = array.get_index(2).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetIndex>
+    assert (result == "three")
+
+
+def test_jvm_testresources_1darray_get_size_5():
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create jvm runtime context
+    jvm_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    jvm_runtime.load_library(library_path)
+
+    # get type from the runtime
+    jvm_type = jvm_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = jvm_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # get array's size
+    response = array.get_size().execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetSize>
+    assert (result == 5)
+
+
+def test_jvm_testresources_1darray_set_index_string_seven():
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create jvm runtime context
+    jvm_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    jvm_runtime.load_library(library_path)
+
+    # get type from the runtime
+    jvm_type = jvm_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = jvm_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # set array's index
+    array.set_index("seven", 4).execute()
+
+    # get index from array
+    response = array.get_index(4).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetIndex>
+    array.set_index("five", 4).execute()
+    assert (result == "seven")
+
+
+def test_jvm_testresources_1darray_iterate_strings():
+    # <TestResources_1DArray_Iterate>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create jvm runtime context
+    jvm_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    jvm_runtime.load_library(library_path)
+
+    # get type from the runtime
+    jvm_type = jvm_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = jvm_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # iterate through elements and invoke method on them
+    array_upper = list()
+    for element in array:
+        array_upper.append(element.invoke_instance_method("toUpperCase").execute().get_value())
+
+    # write result to console
+    print(array_upper)
+    # </TestResources_1DArray_Iterate>
+    assert array_upper == ["ONE", "TWO", "THREE", "FOUR", "FIVE"]
+
+
+def test_jvm_testresources_1darray_get_element_string():
+    # <TestResources_1DArray_GetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create jvm runtime context
+    jvm_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    jvm_runtime.load_library(library_path)
+
+    # get type from the runtime
+    jvm_type = jvm_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = jvm_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # get element of array and invoke method on it
+    response = array[2].invoke_instance_method("toUpperCase").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetElement>
+    assert result == "THREE"
+
+def test():
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create jvm runtime context
+    jvm_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    jvm_runtime.load_library(library_path)
+
+    # get type from the runtime
+    jvm_type = jvm_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = jvm_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    response = array[2].execute().get_value()
+
+    print(response)
+
