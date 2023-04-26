@@ -20,7 +20,7 @@ This section present sample custom `{called_name}` with class declaring static m
 Code example below represents the sample class from `{called_name}` that will be used in following sections
 
 :::code 
-:called_source: v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`
+:called_source: v2/snippets/testResources/`{called_technology}`/TestClass_Simple/TestClass.`{called_ext}`
 :display: called
 :::
   
@@ -29,7 +29,7 @@ Now it possible to invoke one of the declared static methods from `{called_name}
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_InvokeStaticMethod
-:called_source: v2/snippets/testResources/`{called_technology}`/TestClass.`{called_ext}`
+:called_source: v2/snippets/testResources/`{called_technology}`/TestClass_Simple/TestClass.`{called_ext}`
 :display: calling
 :::
  
@@ -40,6 +40,6 @@ To invoke static method from standard `{called_name}`:
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_InvokeStaticMethod
-:called_source: v2/snippets/testResources/`{called_technology}`/EmptyTestClass.`{called_ext}`
+:called_source: v2/snippets/testResources/`{called_technology}`/TestClass_Empty/TestClass.`{called_ext}`
 :display: calling
 :::
