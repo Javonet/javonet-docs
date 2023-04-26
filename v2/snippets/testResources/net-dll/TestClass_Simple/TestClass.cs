@@ -1,4 +1,3 @@
-
 namespace TestClass {
 	public class TestClass {
 		public int PublicValue { get; set; }
