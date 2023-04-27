@@ -7,7 +7,7 @@ from javonet.sdk import Javonet
 resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/perl-package'
 
 
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux")
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_perl_testresources_loadlibrary_librarypath_noexception():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
@@ -25,7 +25,7 @@ def test_perl_testresources_loadlibrary_librarypath_noexception():
     # </TestResources_LoadLibrary>
 
 
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux")
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_perl_testresources_invokestaticmethod_multiplybytwo_25_50():
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
@@ -57,7 +57,7 @@ def test_perl_testresources_invokestaticmethod_multiplybytwo_25_50():
     assert (result == 50)
 
 
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux")
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_perl_testresources_getstaticfield_staticvalue_3():
     # <TestResources_GetStaticField>
     # use activate only once in your app
@@ -89,7 +89,7 @@ def test_perl_testresources_getstaticfield_staticvalue_3():
     assert (result == 3)
 
 
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux")
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_perl_testresources_setstaticfield_staticvalue_75():
     # <TestResources_SetStaticField>
     # use activate only once in your app
@@ -125,7 +125,7 @@ def test_perl_testresources_setstaticfield_staticvalue_75():
     perl_type.set_static_field("static_value", 3).execute()
 
 
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux")
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_perl_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
@@ -160,7 +160,7 @@ def test_perl_testresources_invokeinstancemethod_multiplytwonumbers_2_25_50():
     assert (result == 50)
 
 
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux")
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_perl_testresources_getinstancefield_publicvalue_1():
     # <TestResources_GetInstanceField>
     # use activate only once in your app
@@ -193,3 +193,121 @@ def test_perl_testresources_getinstancefield_publicvalue_1():
     print(result)
     # </TestResources_GetInstanceField>
     assert (result == 1)
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
+def test_perl_testresources_1darray_get_index_2_string_three():
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create perl runtime context
+    perl_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    perl_runtime.load_library(library_path, file_name)
+
+    # get type from the runtime
+    perl_type = perl_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = perl_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get index from array
+    response = array.get_index(2).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetIndex>
+    assert (result == "three")
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
+def test_perl_testresources_1darray_get_size_5():
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create perl runtime context
+    perl_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    perl_runtime.load_library(library_path, file_name)
+
+    # get type from the runtime
+    perl_type = perl_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = perl_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get array's size
+    response = array.get_size().execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetSize>
+    assert (result == 5)
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
+def test_perl_testresources_1darray_set_index_string_seven():
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create perl runtime context
+    perl_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory
+    file_name = 'TestClass.pm'
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    perl_runtime.load_library(library_path, file_name)
+
+    # get type from the runtime
+    perl_type = perl_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = perl_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # set array's index
+    array.set_index("seven", 4).execute()
+
+    # get index from array
+    response = array.get_index(4).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetIndex>
+    array.set_index("five", 4).execute()
+    assert (result == "seven")

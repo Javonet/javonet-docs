@@ -6,19 +6,6 @@ from javonet.sdk import Javonet
 resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/ruby-package'
 
 
-def test_ruby_standardlibrary_loadlibrary_base64_noexception():
-    # <StandardLibrary_LoadLibrary>
-    # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
-
-    # create ruby runtime context
-    ruby_runtime = Javonet.in_memory().ruby()
-
-    #load ruby library
-    ruby_runtime.load_library("base64")
-    # </StandardLibrary_LoadLibrary>
-
-
 def test_ruby_standardlibrary_invokestaticmethod_math_sqrt_2500_50():
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
@@ -240,3 +227,226 @@ def test_ruby_testresources_getinstancefield_publicvalue_18():
     print(result)
     # </TestResources_GetInstanceField>
     assert (result == 18)
+
+
+def test_ruby_testresources_1darray_get_index_2_string_three():
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create ruby runtime context
+    ruby_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    ruby_runtime.load_library(library_path)
+
+    # get type from the runtime
+    ruby_type = ruby_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = ruby_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get index from array
+    response = array.get_index(2).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetIndex>
+    assert (result == "three")
+
+
+def test_ruby_testresources_1darray_get_size_5():
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create ruby runtime context
+    ruby_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    ruby_runtime.load_library(library_path)
+
+    # get type from the runtime
+    ruby_type = ruby_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = ruby_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get array's size
+    response = array.get_size().execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetSize>
+    assert (result == 5)
+
+
+def test_ruby_testresources_1darray_set_index_string_seven():
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create ruby runtime context
+    ruby_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    ruby_runtime.load_library(library_path)
+
+    # get type from the runtime
+    ruby_type = ruby_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = ruby_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # set array's index
+    array.set_index("seven", 4).execute()
+
+    # get index from array
+    response = array.get_index(4).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetIndex>
+    array.set_index("five", 4).execute()
+    assert (result == "seven")
+
+
+
+def test_ruby_testresources_1darray_iterate_strings():
+    # <TestResources_1DArray_Iterate>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create ruby runtime context
+    ruby_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    ruby_runtime.load_library(library_path)
+
+    # get type from the runtime
+    ruby_type = ruby_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = ruby_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # iterate through elements and invoke method on them
+    array_upper = list()
+    for element in array:
+        array_upper.append(element.invoke_instance_method("upcase!").execute().get_value())
+
+    # write result to console
+    print(array_upper)
+    # </TestResources_1DArray_Iterate>
+    assert array_upper == ["ONE", "TWO", "THREE", "FOUR", "FIVE"]
+
+
+def test_jvm_testresources_1darray_get_element_string():
+    # <TestResources_1DArray_GetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create ruby runtime context
+    ruby_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    ruby_runtime.load_library(library_path)
+
+    # get type from the runtime
+    ruby_type = ruby_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = ruby_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get element of array and invoke method on it
+    response = array[2].invoke_instance_method("upcase!").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetElement>
+    assert result == "THREE"
+
+
+def test_jvm_testresources_1darray_set_element_string():
+    # <TestResources_1DArray_SetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    #    # create ruby runtime context
+    ruby_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    ruby_runtime.load_library(library_path)
+
+    # get type from the runtime
+    ruby_type = ruby_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = ruby_type.create_instance(0, 1).execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # set element of array
+    array[2] = "zero"
+
+    # get element of array and invoke method on it
+    response = array[2].invoke_instance_method("upcase!").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetElement>
+    assert result == "ZERO"

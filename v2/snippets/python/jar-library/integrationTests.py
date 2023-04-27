@@ -252,7 +252,7 @@ def test_jvm_testresources_getinstancefield_publicvalue_18():
     print(result)
     # </TestResources_GetInstanceField>
     assert (result == 18)
-
+    
     
 def test_jvm_testresources_1darray_get_index_2_string_three():
     # <TestResources_1DArray_GetIndex>
@@ -273,7 +273,7 @@ def test_jvm_testresources_1darray_get_index_2_string_three():
     jvm_type = jvm_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = jvm_type.create_instance(0, 1).execute()
+    instance = jvm_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get1DArray").execute()
@@ -309,7 +309,7 @@ def test_jvm_testresources_1darray_get_size_5():
     jvm_type = jvm_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = jvm_type.create_instance(0, 1).execute()
+    instance = jvm_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get1DArray").execute()
@@ -345,7 +345,7 @@ def test_jvm_testresources_1darray_set_index_string_seven():
     jvm_type = jvm_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = jvm_type.create_instance(0, 1).execute()
+    instance = jvm_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get1DArray").execute()
@@ -385,7 +385,7 @@ def test_jvm_testresources_1darray_iterate_strings():
     jvm_type = jvm_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = jvm_type.create_instance(0, 1).execute()
+    instance = jvm_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get1DArray").execute()
@@ -420,7 +420,7 @@ def test_jvm_testresources_1darray_get_element_string():
     jvm_type = jvm_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = jvm_type.create_instance(0, 1).execute()
+    instance = jvm_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get1DArray").execute()
@@ -436,7 +436,9 @@ def test_jvm_testresources_1darray_get_element_string():
     # </TestResources_1DArray_GetElement>
     assert result == "THREE"
 
-def test():
+
+def test_jvm_testresources_1darray_set_element_string():
+    # <TestResources_1DArray_SetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
 
@@ -454,12 +456,21 @@ def test():
     jvm_type = jvm_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = jvm_type.create_instance(0, 1).execute()
+    instance = jvm_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get1DArray").execute()
 
-    response = array[2].execute().get_value()
+    # set element of array
+    array[2] = "zero"
 
-    print(response)
+    # get element of array and invoke method on it
+    response = array[2].invoke_instance_method("toUpperCase").execute()
 
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetElement>
+    assert result == "ZERO"

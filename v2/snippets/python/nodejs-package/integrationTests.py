@@ -227,3 +227,114 @@ def test_nodejs_testresources_getinstancefield_publicvalue_18():
     # </TestResources_GetInstanceField>
     assert (result == 18)
 
+
+def test_nodejs_testresources_1darray_get_index_2_string_three():
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = nodejs_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # get index from array
+    response = array.get_index(2).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetIndex>
+    assert (result == "three")
+
+
+def test_nodejs_testresources_1darray_get_size_5():
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = nodejs_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # get array's size
+    response = array.get_size().execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetSize>
+    assert (result == 5)
+
+
+def test_nodejs_testresources_1darray_set_index_string_seven():
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create nodejs runtime context
+    nodejs_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    nodejs_runtime.load_library(library_path)
+
+    # get type from the runtime
+    nodejs_type = nodejs_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = nodejs_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get1DArray").execute()
+
+    # set array's index
+    array.set_index("seven", 4).execute()
+
+    # get index from array
+    response = array.get_index(4).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetIndex>
+    array.set_index("five", 4).execute()
+    assert (result == "seven")
