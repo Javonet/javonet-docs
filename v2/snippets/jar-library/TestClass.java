@@ -36,4 +36,7 @@ public class TestClass {
         return sum * myValue;
     }
     // </Arrays>
+
+    // <Empty>
+    // </Empty>
 }

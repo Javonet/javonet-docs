@@ -40,5 +40,7 @@ To invoke static method from standard `{called_name}`:
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_InvokeStaticMethod
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Empty
 :display: calling
 :::
