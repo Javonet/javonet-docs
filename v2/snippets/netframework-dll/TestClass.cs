@@ -1,4 +1,4 @@
-﻿ namespace TestClass
+﻿namespace TestClass
 {
 	public class TestClass
 	{
