@@ -3,6 +3,7 @@
 	public class TestClass
 	{
 		public TestClass() { }
+
 		// <Fields>
 		public int PublicValue { get; set; }
 		private int PrivateValue { get; }
@@ -44,6 +45,24 @@
 			return sum * myValue;
 		}
 		// </Arrays>
+
+		// <Exceptions>
+		public static int DivideBy(int a, int b)
+		{
+			return DivideBySecond(a, b);
+		}
+
+		public static int DivideBySecond(int a, int b)
+		{
+			return DivideByThird(a, b);
+		}
+
+		public static int DivideByThird(int a, int b)
+		{
+			return a / b;
+		}
+		// </Exceptions>
+
 
 		// <Empty>
 		// minimal class
