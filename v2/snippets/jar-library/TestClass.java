@@ -1,5 +1,6 @@
 public class TestClass {
-    public TestClass() { }
+    public TestClass() {
+    }
 
     // <Fields>
     public int publicValue;
@@ -24,11 +25,10 @@ public class TestClass {
 
     // <Arrays>
     public String[] get1DArray() {
-        return new String[] { "one", "two", "three", "four", "five" };
+        return new String[]{"one", "two", "three", "four", "five"};
     }
 
-    public double addArrayElementsAndMultiply(Double[] myArray, double myValue)
-    {
+    public double addArrayElementsAndMultiply(Double[] myArray, double myValue) {
         Double sum = 0.0;
         for (Double value : myArray) {
             sum += value;
@@ -36,6 +36,20 @@ public class TestClass {
         return sum * myValue;
     }
     // </Arrays>
+
+    // <Exceptions>
+    public static int divideBy(int a, int b) {
+        return divideBySecond(a, b);
+    }
+
+    public static int divideBySecond(int a, int b) {
+        return divideByThird(a, b);
+    }
+
+    public static int divideByThird(int a, int b) {
+        return a / b;
+    }
+    // </Expections>
 
     // <Empty>
     // minimal class
