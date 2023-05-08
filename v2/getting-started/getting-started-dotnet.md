@@ -57,7 +57,7 @@ To sum up, the whole code snippet looks like:
 :::code 
 :calling_source: v2/snippets/csharp/common/sampleProgram.cs 
 :calling_id: WholeSnippet
-:called_source: v2/snippets/testResources/python-package/TestClass.py
+:called_source: v2/snippets/python-package/TestClass.py
 :display: calling
 :::
 

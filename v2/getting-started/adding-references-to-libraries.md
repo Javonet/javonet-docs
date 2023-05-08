@@ -10,7 +10,7 @@ Javonet allows to use any library from all supported technologies. As with any r
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_LoadLibrary
-:called_source: v2/snippets/testResources/`{called_technology}`/TestClass_Simple/TestClass.`{called_ext}`
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :display: calling
 :::
 

@@ -1,4 +1,8 @@
-namespace TestClass {
-	public class TestClass {
-        //place-for-snippet
+namespace TestClass
+{
+	public class TestClass
+	{
+		public TestClass() { }
+        // place for snippet
+	}
 }
