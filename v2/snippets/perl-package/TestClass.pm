@@ -43,9 +43,8 @@ sub add_number_to_1d_array {
 }
 #</Arrays>
 
-
-
 #<Empty>
+# minimal class
 #</Empty>
 
 1;

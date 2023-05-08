@@ -31,6 +31,10 @@ class TestClass {
         (accumulator, currentValue) => accumulator + currentValue) * myValue
     }
     // </Arrays>
+
+    // <Empty>
+    // minimal class
+    // </Empty>
 }
 
 module.exports = TestClass

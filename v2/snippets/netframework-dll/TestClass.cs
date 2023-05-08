@@ -46,6 +46,7 @@
 		// </Arrays>
 
 		// <Empty>
-    	// </Empty>
+		// minimal class
+		// </Empty>
 	}
 }
