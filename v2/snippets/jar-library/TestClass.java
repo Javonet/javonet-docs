@@ -38,5 +38,6 @@ public class TestClass {
     // </Arrays>
 
     // <Empty>
+    // minimal class
     // </Empty>
 }
