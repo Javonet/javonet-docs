@@ -35,7 +35,7 @@ module TestClass
     #</Arrays>
 
     #<Empty>
-    # minimal class
+    # empty
     #</Empty>
   end
 end

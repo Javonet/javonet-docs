@@ -52,6 +52,6 @@ public class TestClass {
     // </Expections>
 
     // <Empty>
-    // minimal class
+    // empty
     // </Empty>
 }

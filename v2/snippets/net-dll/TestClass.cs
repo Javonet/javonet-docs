@@ -63,9 +63,8 @@
 		}
 		// </Exceptions>
 
-
 		// <Empty>
-		// minimal class
+		// empty
 		// </Empty>
 	}
 }
