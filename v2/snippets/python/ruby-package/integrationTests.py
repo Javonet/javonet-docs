@@ -167,7 +167,7 @@ def test_ruby_TestResources_InvokeInstanceMethod():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(13, 14).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     response = instance.invoke_instance_method("multiply_two_numbers", 2, 25).execute()
@@ -200,7 +200,7 @@ def test_ruby_TestResources_1DArray_GetIndex():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_1d_array").execute()
@@ -236,7 +236,7 @@ def test_ruby_TestResources_1DArray_GetSize():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_1d_array").execute()
@@ -272,7 +272,7 @@ def test_ruby_TestResources_1DArray_SetIndex():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_1d_array").execute()
@@ -312,7 +312,7 @@ def test_ruby_TestResources_1DArray_Iterate():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_1d_array").execute()
@@ -347,7 +347,7 @@ def test_ruby_TestResources_1DArray_GetElement():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_1d_array").execute()
@@ -383,7 +383,7 @@ def test_ruby_TestResources_1DArray_SetElement():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_1d_array").execute()

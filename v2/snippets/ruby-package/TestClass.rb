@@ -5,11 +5,10 @@ module TestClass
     @public_value
     @private_value
 
-    def initialize(public_value, private_value)
+    def initialize(public_value = 0, private_value = 0)
       @public_value = public_value
       @private_value = private_value
     end
-
     #</Fields>
 
     #<Methods>
