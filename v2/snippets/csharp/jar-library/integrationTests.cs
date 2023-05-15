@@ -373,7 +373,7 @@ namespace Integration.Tests
 			}
 
 			// write result to console
-			System.Console.WriteLine(arrayValues);
+			System.Console.WriteLine(string.Join("\t", arrayValues));
 			// </TestResources_1DArray_Iterate>
 			Assert.Equal(new string[] { "ONE", "TWO", "THREE", "FOUR", "FIVE" }, arrayValues);
 		}
