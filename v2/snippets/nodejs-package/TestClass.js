@@ -28,9 +28,20 @@ class TestClass {
 
     addArrayElementsAndMultiply(myArray, myValue) {
         return myArray.reduce(
-        (accumulator, currentValue) => accumulator + currentValue) * myValue
+            (accumulator, currentValue) => accumulator + currentValue) * myValue
     }
     // </Arrays>
+
+    // <Exceptions>
+    divideTwoNumbers(first, second) {
+        if (second === 0) {
+            throw new Error("ZeroDivisionException")
+        }
+        else {
+            return first / second;
+        }
+    }
+    // </Exceptions>
 
     // <Empty>
     // empty

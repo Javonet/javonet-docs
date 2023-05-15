@@ -1,6 +1,6 @@
 module TestClass
   class TestClass
-    #<Fields>
+     #<Fields>
     @@static_value = 3
     @public_value
     @private_value
@@ -9,9 +9,9 @@ module TestClass
       @public_value = public_value
       @private_value = private_value
     end
-    #</Fields>
+    # </Fields>
 
-    #<Methods>
+    # <Methods>
     def self.multiply_by_two(value)
       return value * 2
     end
@@ -20,9 +20,9 @@ module TestClass
       return first * second
     end
 
-    #</Methods>
+    # </Methods>
 
-    #<Arrays>
+    # <Arrays>
     def get_1d_array
       return ["one", "two", "three", "four", "five"]
     end
@@ -30,11 +30,16 @@ module TestClass
     def add_array_elements_and_multiply(my_array, my_value)
       return my_array.sum * my_value
     end
+    # </Arrays>
 
-    #</Arrays>
+    # <Exceptions>
+    def self.divide_two_numbers(value_one, value_two)
+      return value_one / value_two
+    end
+    # </Exceptions>
 
-    #<Empty>
+    # <Empty>
     # empty
-    #</Empty>
+    # </Empty>
   end
 end

@@ -3,7 +3,7 @@ use strict;
 use warnings FATAL => 'all';
 use Moose;
 
-#<Fields>
+# <Fields>
 our $static_value = 3;
 
 sub new {
@@ -15,9 +15,9 @@ sub new {
         };
     return bless $self, $class;
 }
-#</Fields>
+# </Fields>
 
-#<Methods>
+# <Methods>
 sub multiply_by_two {
     my ($first_arg) = @_;
     return $first_arg * 2;
@@ -27,9 +27,9 @@ sub multiply_two_numbers {
     my ($self, $first_arg, $second_arg) = @_;
     return $first_arg * $second_arg;
 }
-#</Methods>
+# </Methods>
 
-#<Arrays>
+# <Arrays>
 sub get_1d_array {
     return ["one", "two", "three", "four", "five"];
 }
@@ -41,10 +41,17 @@ sub add_number_to_1d_array {
     }
     return $myArray;
 }
-#</Arrays>
+# </Arrays>
 
-#<Empty>
+# <Exceptions>
+sub divide_two_numbers {
+    my ($self, $first_arg, $second_arg) = @_;
+    return $first_arg / $second_arg;
+}
+# </Exceptions>
+
+# <Empty>
 # empty
-#</Empty>
+# </Empty>
 
 1;

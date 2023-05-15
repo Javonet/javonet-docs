@@ -19,81 +19,46 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_LoadLibrary_LibraryPath_NoExeption()
+		public void Test_Perl_TestResources_LoadLibrary()
 		{
 			// <TestResources_LoadLibrary>
 			// use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			// create PERL runtime context
-			var perlRuntime = Javonet.InMemory().Perl();
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
 
 			// set up variables
-			// libraryPath - directory with .pm files
-			string libraryPath = resourcesDirectory;
-			string fileName = "TestClass.pm";
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
 
 			// load custom library
-			perlRuntime.LoadLibrary(libraryPath, fileName);
+			calledRuntime.LoadLibrary(libraryPath);
 			// </TestResources_LoadLibrary>
 		}
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
-		{
-			// <TestResources_InvokeStaticMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
-
-			// create PERL runtime context
-			var perlRuntime = Javonet.InMemory().Perl();
-
-			// set up variables
-			// libraryPath - directory with .pm files
-			string libraryPath = resourcesDirectory;
-			string fileName = "TestClass.pm";
-			string className = "TestClass::TestClass";
-
-			// load custom library
-			perlRuntime.LoadLibrary(libraryPath, fileName);
-
-			// get type from the runtime
-			var perlType = perlRuntime.GetType(className).Execute();
-
-			// invoke type's static method
-			var response = perlType.InvokeStaticMethod("multiply_by_two", 25).Execute();
-
-			var result = (int)response.GetValue();
-			// </TestResources_InvokeStaticMethod>
-			Assert.Equal(50, result);
-		}
-
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_GetStaticField_StaticValue_3()
+		public void Test_Perl_TestResources_GetStaticField()
 		{
 			// <TestResources_GetStaticField>
 			// use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			// create PERL runtime context
-			var perlRuntime = Javonet.InMemory().Perl();
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
 
 			// set up variables
-			// libraryPath - directory with .pm files
-			string libraryPath = resourcesDirectory;
-			string fileName = "TestClass.pm";
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
 			string className = "TestClass::TestClass";
 
 			// load custom library
-			perlRuntime.LoadLibrary(libraryPath, fileName);
+			calledRuntime.LoadLibrary(libraryPath);
 
 			// get type from the runtime
-			var perlType = perlRuntime.GetType(className).Execute();
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
 			// get type's static field
-			var response = perlType.GetStaticField("static_value").Execute();
+			var response = calledRuntimeType.GetStaticField("static_value").Execute();
 
 			// get value from response
 			var result = (int)response.GetValue();
@@ -106,32 +71,30 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_SetStaticField_StaticValue_75()
+		public void Test_Perl_TestResources_SetStaticField()
 		{
 			// <TestResources_SetStaticField>
 			// use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			// create PERL runtime context
-			var perlRuntime = Javonet.InMemory().Perl();
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
 
 			// set up variables
-			// libraryPath - directory with .pm files
-			string libraryPath = resourcesDirectory;
-			string fileName = "TestClass.pm";
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
 			string className = "TestClass::TestClass";
 
 			// load custom library
-			perlRuntime.LoadLibrary(libraryPath, fileName);
+			calledRuntime.LoadLibrary(libraryPath);
 
 			// get type from the runtime
-			var perlType = perlRuntime.GetType(className).Execute();
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
 			// set static field's value
-			perlType.SetStaticField("static_value", 75).Execute();
+			calledRuntimeType.SetStaticField("static_value", 75).Execute();
 
 			// get type's static field
-			var response = perlType.GetStaticField("static_value").Execute();
+			var response = calledRuntimeType.GetStaticField("static_value").Execute();
 
 			// get value from response
 			var result = (int)response.GetValue();
@@ -139,74 +102,33 @@ namespace Integration.Tests
 			// write result to console
 			System.Console.WriteLine(result);
 			// </TestResources_SetStaticField>
-			perlType.SetStaticField("static_value", 3).Execute();
+			calledRuntimeType.SetStaticField("static_value", 3).Execute();
 			Assert.Equal(75, result);
 		}
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
-		{
-			// <TestResources_InvokeInstanceMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
-
-			// create PERL runtime context
-			var perlRuntime = Javonet.InMemory().Perl();
-
-			// set up variables
-			// libraryPath - directory with .pm files
-			string libraryPath = resourcesDirectory;
-			string fileName = "TestClass.pm";
-			string className = "TestClass::TestClass";
-
-			// load custom library
-			perlRuntime.LoadLibrary(libraryPath, fileName);
-
-			// get type from the runtime
-			var perlType = perlRuntime.GetType(className).Execute();
-
-			// create type's instance
-			var instance = perlType.CreateInstance().Execute();
-
-			// invoke instance's method
-			var response = instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4).Execute();
-
-			// get value from response
-			var result = (int)response.GetValue();
-
-			// write result to console
-			System.Console.WriteLine(result);
-			// </TestResources_InvokeInstanceMethod>
-			Assert.Equal(36, ((string)instance.GetValue()).Length);
-			Assert.Equal(20, result);
-		}
-
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_GetInstanceField_PublicValue_1()
+		public void Test_Perl_TestResources_GetInstanceField()
 		{
 			// <TestResources_GetInstanceField>
 			// use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
-			// create PERL runtime context
-			var perlRuntime = Javonet.InMemory().Perl();
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
 
 			// set up variables
-			// libraryPath - directory with .pm files
-			string libraryPath = resourcesDirectory;
-			string fileName = "TestClass.pm";
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
 			string className = "TestClass::TestClass";
 
 			// load custom library
-			perlRuntime.LoadLibrary(libraryPath, fileName);
+			calledRuntime.LoadLibrary(libraryPath);
 
 			// get type from the runtime
-			var perlType = perlRuntime.GetType(className).Execute();
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
 			// create type's instance
-			var instance = perlType.CreateInstance().Execute();
+			var instance = calledRuntimeType.CreateInstance().Execute();
 
 			// get instance's field
 			var response = instance.GetInstanceField("public_value").Execute();
@@ -217,9 +139,277 @@ namespace Integration.Tests
 			// write result to console
 			System.Console.WriteLine(result);
 			// </TestResources_GetInstanceField>
-			Assert.Equal(36, ((string)instance.GetValue()).Length);
 			Assert.Equal(1, result);
 		}
 
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_InvokeStaticMethod()
+		{
+			// <TestResources_InvokeStaticMethod>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// invoke type's static method
+			var response = calledRuntimeType.InvokeStaticMethod("multiply_by_two", 25).Execute();
+
+			var result = (int)response.GetValue();
+			// </TestResources_InvokeStaticMethod>
+			Assert.Equal(50, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_InvokeInstanceMethod()
+		{
+			// <TestResources_InvokeInstanceMethod>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var response = instance.InvokeInstanceMethod("multiply_two_numbers", 5, 4).Execute();
+
+			// get value from response
+			var result = (int)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// </TestResources_InvokeInstanceMethod>
+			Assert.Equal(20, result);
+		}
+
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_1DArray_GetIndex()
+		{
+			// <TestResources_1DArray_GetIndex>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var array = instance.InvokeInstanceMethod("get_1d_array").Execute();
+
+			// get index from array
+			var response = array.GetIndex(2).Execute();
+
+			// get value from response
+			var result = (string)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// </TestResources_1DArray_GetIndex>
+			Assert.Equal("three", result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_1DArray_GetSize()
+		{
+			// <TestResources_1DArray_GetSize>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var array = instance.InvokeInstanceMethod("get_1d_array").Execute();
+
+			// get array's size
+			var response = array.GetSize().Execute();
+
+			// get value from response
+			var result = (int)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// <TestResources_1DArray_GetSize>
+			Assert.Equal(5, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_1DArray_SetIndex()
+		{
+			// <TestResources_1DArray_SetIndex>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var array = instance.InvokeInstanceMethod("get_1d_array").Execute();
+
+			// set array's index
+			array.SetIndex("seven", 4).Execute();
+
+			// get index from array
+			var response = array.GetIndex(4).Execute();
+
+			// get value from response
+			var result = (string)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// <TestResources_1DArray_SetIndex>
+			array.SetIndex("five", 4).Execute();
+			Assert.Equal("seven", result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_1DArray_Iterate()
+		{
+			// <TestResources_1DArray_Iterate>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var array = instance.InvokeInstanceMethod("get_1d_array").Execute();
+
+			// get array's size
+			int arraySize = (int)array.GetSize().Execute().GetValue();
+
+			// create local array and store elements in it
+			string[] arrayValues = new string[arraySize];
+			int i = 0;
+			foreach (var element in array)
+			{
+				arrayValues[i] = (string)element.Execute().GetValue();
+				i++;
+			}
+
+			// write result to console
+			System.Console.WriteLine(arrayValues);
+			// <TestResources_1DArray_Iterate>
+			Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, arrayValues);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_Perl_TestResources_1DArray_GetElement()
+		{
+			// <TestResources_1DArray_GetElement>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Perl();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.pm";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var array = instance.InvokeInstanceMethod("get_1d_array").Execute();
+
+			// invoke method on array's element
+			var response = array[2].Execute();
+
+			// get value from response
+			var result = (string)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// <TestResources_1DArray_GetElement>
+			Assert.Equal("three", result);
+		}
 	}
 }
