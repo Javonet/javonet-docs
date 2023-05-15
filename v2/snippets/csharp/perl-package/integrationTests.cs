@@ -282,7 +282,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_GetSize>
+			// </TestResources_1DArray_GetSize>
 			Assert.Equal(5, result);
 		}
 
@@ -323,7 +323,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_SetIndex>
+			// </TestResources_1DArray_SetIndex>
 			array.SetIndex("five", 4).Execute();
 			Assert.Equal("seven", result);
 		}
@@ -369,7 +369,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(arrayValues);
-			// <TestResources_1DArray_Iterate>
+			// </TestResources_1DArray_Iterate>
 			Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, arrayValues);
 		}
 
@@ -408,7 +408,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_GetElement>
+			// </TestResources_1DArray_GetElement>
 			Assert.Equal("three", result);
 		}
 	}

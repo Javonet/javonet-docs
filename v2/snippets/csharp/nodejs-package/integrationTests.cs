@@ -285,7 +285,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_GetSize>
+			// </TestResources_1DArray_GetSize>
 			Assert.Equal(5, result);
 		}
 
@@ -327,7 +327,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_SetIndex>
+			// </TestResources_1DArray_SetIndex>
 			array.SetIndex("five", 4).Execute();
 			Assert.Equal("seven", result);
 		}
@@ -373,7 +373,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(arrayValues);
-			// <TestResources_1DArray_Iterate>
+			// </TestResources_1DArray_Iterate>
 			Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, arrayValues);
 		}
 
@@ -412,7 +412,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_GetElement>
+			// </TestResources_1DArray_GetElement>
 			Assert.Equal("three", result);
 		}
 
@@ -420,7 +420,7 @@ namespace Integration.Tests
 		[Trait("Test", "Integration")]
 		public void Test_Nodejs_TestResources_1DArray_PassArrayAsArgument()
 		{
-			// <TestResources_1DArray_GetElement>
+			// <TestResources_1DArray_PassArrayAsArgument>
 			// use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
 
@@ -448,7 +448,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(result);
-			// <TestResources_1DArray_GetElement>
+			// </TestResources_1DArray_PassArrayAsArgument>
 			Assert.Equal(999, result);
 		}
 
