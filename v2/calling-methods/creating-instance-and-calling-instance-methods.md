@@ -20,6 +20,7 @@ To create instance and call instance method of a class inside custom `{called_na
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_InvokeInstanceMethod
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Methods
 :display: calling
 :::
 
