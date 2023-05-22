@@ -1,6 +1,5 @@
 module TestClass
     class TestClass
-    #place for snippet
-
+    #place-for-snippet
     end
 end

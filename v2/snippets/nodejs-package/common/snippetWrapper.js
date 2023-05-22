@@ -1,5 +1,5 @@
 class TestClass {
-    //place for snippet
+    //place-for-snippet
 }
 
 module.exports = TestClass

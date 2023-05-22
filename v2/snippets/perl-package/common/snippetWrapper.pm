@@ -3,6 +3,6 @@ use strict;
 use warnings FATAL => 'all';
 use Moose;
 
-#place for snippet
+#place-for-snippet
 
 1;
