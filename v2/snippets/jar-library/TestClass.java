@@ -49,7 +49,7 @@ public class TestClass {
     public static int divideByThird(int a, int b) {
         return a / b;
     }
-    // </Expections>
+    // </Exceptions>
 
     // <Empty>
     // empty

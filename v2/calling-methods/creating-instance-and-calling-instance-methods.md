@@ -7,7 +7,7 @@
 
 ## Custom `{called_name}`
 
-Assuming we have a custom `{called_name}` with the following class inside:
+Assuming we have a custom `{called_name}` with the following methods inside:
 
 :::code 
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
