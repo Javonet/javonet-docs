@@ -11,6 +11,7 @@ Assuming we have a custom `{called_name}` with the following class inside:
 
 :::code 
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Methods
 :display: called
 :::
 
