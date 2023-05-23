@@ -21,6 +21,7 @@ To get element of the array:
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_GetIndex
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
 :display: calling
 :::
 
@@ -30,6 +31,7 @@ To get size of the array
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_GetSize
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
 :display: calling
 :::
 
@@ -39,6 +41,7 @@ To set element of the array:
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_SetIndex
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
 :display: calling
 :::
 
@@ -48,6 +51,7 @@ To iterate over the array:
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_Iterate
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
 :display: calling
 :::
 

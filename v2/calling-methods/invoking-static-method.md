@@ -31,6 +31,7 @@ Now it possible to invoke one of the declared static methods from `{called_name}
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_InvokeStaticMethod
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Methods
 :display: calling
 :::
  

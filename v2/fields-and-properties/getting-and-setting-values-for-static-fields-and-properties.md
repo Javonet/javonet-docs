@@ -21,6 +21,7 @@ To get static field from the custom `{called_name}`:
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_GetStaticField
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Fields
 :display: calling
 :::
 
@@ -30,6 +31,7 @@ To set static field from the custom `{called_name}` library:
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_SetStaticField
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Fields
 :display: calling
 :::
 

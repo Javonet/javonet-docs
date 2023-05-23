@@ -21,6 +21,7 @@ To get instance field of a class inside the custom `{called_name}`
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_GetInstanceField
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Fields
 :display: calling
 :::
 
