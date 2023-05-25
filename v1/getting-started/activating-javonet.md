@@ -63,19 +63,8 @@ Simply name the file "javonet.xml" and place it in the root directory of your Ja
 
 Sample Javonet XML configuration file
 
-:::code 
-:calling_source: v1/snippets/`{calling_technology}`/common/sampleProgram.`{calling_ext}`
-:display: calling
-:::
-
-<!-- :::code 
-:calling_source: v1/snippets/xml-configuration-files/short-file/javonet.xml
-:display: calling
-::: -->
+:::code source="v1/snippets/xml-configuration-files/short-file/javonet.xml":::
 
 Starting with version 1.3, Javonet supports proxy settings for activations. These settings can be defined as activate method arguments or as an optional tag in your XML configuration file using the following syntax:
 
-<!-- :::code 
-:calling_source: v1/snippets/xml-configuration-files/with-proxy/javonet.xml
-:display: calling
-::: -->
+:::code source="v1/snippets/xml-configuration-files/with-proxy/javonet.xml":::
