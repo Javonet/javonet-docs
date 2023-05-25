@@ -1,13 +1,14 @@
-class Actiavation {
+class SampleProgram {
   public static void main(String[] args) {
-    //<Javonet_activate>
-    Javonet.activate("your@email.com", "YOUR-LICENSE-KEY", JavonetFramework.v40);
-    //</Javonet_activate>
+    // <Activation>
+    Javonet.activate("your-email", "your-license-key", JavonetFramework.v40);
+    //Todo: Your Javonet powered application code 
+    // <Activation>
 
-    //<Javonet_activate_with_proxy>
+    // <Activation_with_proxy>
     Javonet.activate(String email, String licenceKey, String proxyHost, JavonetFramework framework);
     Javonet.activate(String email, String licenceKey, String proxyHost, String proxyUsername, String proxyPassword, JavonetFramework framework);
     Javonet.activate(String email, String licenceKey, String proxyHost, String proxyUsername, String proxyPassword, String proxyDomain, JavonetFramework framework);
-    //</Javonet_activate_with_proxy>
+    // </Activation_with_proxy>
     }
 }
