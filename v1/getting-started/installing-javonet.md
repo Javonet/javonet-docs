@@ -1,6 +1,7 @@
 :::options
 :title: Installing Javonet
 :description: This article provides an information about installing Javonet
+:related_articles: /getting-started/activating-javonet.md
 :::
 
 # Installing Javonet

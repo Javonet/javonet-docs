@@ -53,6 +53,10 @@ items:
     href: /calling-methods/create-instance-and-calling-instance-methods.md
     calling_technology: csharp, java
     called_technology: clr, jvm
+  - name: Calling generic methods
+    href: /calling-methods/calling-generic-methods.md
+    calling_technology: csharp, java
+    called_technology: clr, jvm
 
 - name: Working with objects
   items: 
