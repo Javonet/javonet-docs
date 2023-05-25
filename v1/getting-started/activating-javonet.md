@@ -38,10 +38,10 @@ Using these new arguments proxy details, used by Javonet while performing activa
 - Without authentication
 - With authentication
 - With authentication based on Active Directory accounts  
-
+  
 
 **NOTE**  
-In environments where proxy settings are required to access the Internet, use these activate method overloads:
+In environments where proxy settings are required to access the Internet, use these activate method overloads:  
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/sampleProgram.java
@@ -57,13 +57,10 @@ Specify the hostname and port or IP address in standard formats in the proxyHost
 ## Activating Javonet using XML configuration file
 
 There are many benefits to activating and setting up Javonet using an XML configuration file. It simplifies distribution of your application to your team, lets you update the Javonet license more quickly, and avoids hardcoded activation details.  
-
+  
 During the first application use, Javonet searches for, and then automatically uses the XML configuration file to activate your application.  
-
+  
 Simply name the file "javonet.xml" and place it in the root directory of your Java application.  
-
-Sample Javonet XML configuration file
-
 :::code source="v1/snippets/xml-configuration-files/short-file/javonet.xml":::
 
 Starting with version 1.3, Javonet supports proxy settings for activations. These settings can be defined as activate method arguments or as an optional tag in your XML configuration file using the following syntax:
