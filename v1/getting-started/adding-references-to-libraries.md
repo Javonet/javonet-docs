@@ -13,7 +13,7 @@ Javonet allows you to use any library from `{called_name}`. As with any regular 
 :display: calling
 :::
 
-As argument you provide the relative or full path to `{called_technology}`. If your package has dependencies on other packages you should add reference to each package first.  
+As argument you provide the relative or full path to `{called_name}`. If your package has dependencies on other packages you should add reference to each package first.  
 
 Now you can access any objects stored in this package. Use static classes, create instances, call methods, use fields and properties and much more.
 
