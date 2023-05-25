@@ -42,8 +42,8 @@ items:
     called_technology: netframework-dll, jar-library
   - name: Using the Javonet Fluent Interface
     href: /getting-started/fluent-interface.md
-    calling_technology: java
-    called_technology: netframework-dll
+    calling_technology: csharp, java
+    called_technology: netframework-dll, jar-library
   - name: Using Back-end and UI Components
     href: /getting-started/using-backend-and-ui-components.md
     calling_technology: csharp, java
