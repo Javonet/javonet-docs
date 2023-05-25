@@ -36,35 +36,37 @@ Using these new arguments proxy details, used by Javonet while performing activa
 
 - Without authentication
 - With authentication
-- With authentication based on Active Directory accounts
+- With authentication based on Active Directory accounts  
 
----
-**NOTE**
 
+**NOTE**  
 In environments where proxy settings are required to access the Internet, use these activate method overloads:
-
----
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/common/sampleProgram.`{calling_ext}`
-:calling_id: Activation
+:calling_id: Activation_with_proxy
 :display: calling
 :::
 
-Specify the hostname and port or IP address in standard formats in the proxyHost field.  
+Specify the hostname and port or IP address in standard formats in the proxyHost field.
 
 - hostname:port
-- ip_address:port
+- ip_address:port  
 
 ## Activating Javonet using XML configuration file
 
-There are many benefits to activating and setting up Javonet using an XML configuration file. It simplifies distribution of your application to your team, lets you update the Javonet license more quickly, and avoids hardcoded activation details.
+There are many benefits to activating and setting up Javonet using an XML configuration file. It simplifies distribution of your application to your team, lets you update the Javonet license more quickly, and avoids hardcoded activation details.  
 
-During the first application use, Javonet searches for, and then automatically uses the XML configuration file to activate your application.
+During the first application use, Javonet searches for, and then automatically uses the XML configuration file to activate your application.  
 
-Simply name the file "javonet.xml" and place it in the root directory of your Java application.
+Simply name the file "javonet.xml" and place it in the root directory of your Java application.  
 
 Sample Javonet XML configuration file
+
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/common/sampleProgram.`{calling_ext}`
+:display: calling
+:::
 
 <!-- :::code 
 :calling_source: v1/snippets/xml-configuration-files/short-file/javonet.xml
