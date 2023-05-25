@@ -1,6 +1,7 @@
 :::options
 :title: Adding references to libraries
 :description: Adding references to libraries
+:related_articles: getting-started/installing-javonet, getting-started/activating-javonet, getting-started/xml-configuration-file
 :::
 
 # Adding references
@@ -22,10 +23,12 @@ Now you can access any objects stored in this package. Use static classes, creat
 ## Adding references to `{called_name}` through an XML configuration file
 
 here are many benefits to setting up Javonet using an XML configuration file. It simplifies distribution of your application to your team, lets you update the Javonet references more quickly, and avoids hardcoded referenced DLLs details.  
+  
+Before the first usage Javonet looks for XML configuration file and loads defined references. Using XML references you can still add additional libraries in Java code using standard approach.  
+  
+Sample Javonet XML configuration file with references:  
 
-Before the first usage Javonet looks for XML configuration file and loads defined references. Using XML references you can still add additional libraries in Java code using standard approach.
-
-Sample Javonet XML configuration file with references:
+:::code source="v1/snippets/xml-configuration-files/references/javonet.xml":::
 
 ## Java 
 

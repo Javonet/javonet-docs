@@ -9,15 +9,5 @@
     <username>your-username</username>
     <email>your-email</email>
     <licencekey>your-license-key</licencekey>
-    <proxy> <!-- optional -->
-         <host>my_host</host>
-         <username>my_email</username>
-         <password>my_password</password>
-         <domain>my_domain</domain>
-    </proxy>
 </activation>
-<settings> <!-- optional (default .NET v35 and MTA) -->
-    <apartmentState>STA</apartmentState> <!-- optional (default MTA) -->
-    <framework>v40</framework> <!-- optional (default .NET v35) -->
-</settings>
 </javonet>

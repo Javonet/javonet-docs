@@ -1,6 +1,7 @@
 :::options
 :title: Activating Javonet
 :description: This article provides an information about activating Javonet
+:related_articles: getting-started/installing-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
 :::
 
 # Activating Javonet
@@ -52,7 +53,7 @@ Specify the hostname and port or IP address in standard formats in the proxyHost
 
 - hostname:port
 - ip_address:port  
-
+  
 ## Activating Javonet using XML configuration file
 
 There are many benefits to activating and setting up Javonet using an XML configuration file. It simplifies distribution of your application to your team, lets you update the Javonet license more quickly, and avoids hardcoded activation details.  
