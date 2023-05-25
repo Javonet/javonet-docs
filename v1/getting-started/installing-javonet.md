@@ -1,15 +1,15 @@
 :::options
 :title: Installing Javonet
 :description: This article provides an information about installing Javonet
-:related_articles: /getting-started/activating-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
+:related_articles: getting-started/activating-javonet.md, getting-started/adding-references-to-libraries.md, getting-started/xml-configuration-file.md
 :::
 
 # Installing Javonet
 
 ## Prerequisites
 
-Before using Javonet, make sure you have following pre-requisites installed:
-- [JDK 1.6](https://www.oracle.com/pl/java/technologies/javase-java-archive-javase6-downloads.html) or newer  
+Before using Javonet, make sure you have following pre-requisites installed:  
+[JDK 1.6](https://www.oracle.com/pl/java/technologies/javase-java-archive-javase6-downloads.html) or newer  
 
 ## For use with .NET Framework 3.5 (supports .NET 3.5 DLLs)
 [Visual C++ Runtime 2008](https://www.microsoft.com/en-us/download/details.aspx?id=26368)  
