@@ -7,7 +7,7 @@
 
 ## Getting licence
 
-In order to activate Javonet you need to get licence key. Please register on: 
+<!-- In order to activate Javonet you need to get licence key. Please register on: 
 
 https://my.javonet.com/signup/?type=free
 
@@ -69,4 +69,4 @@ Sample Javonet XML configuration file
 
 Starting with version 1.3, Javonet supports proxy settings for activations. These settings can be defined as activate method arguments or as an optional tag in your XML configuration file using the following syntax:
 
-:::code source="v1/snippets/common/xml-configuration-files/with-proxy/javonet.xml":::
+:::code source="v1/snippets/common/xml-configuration-files/with-proxy/javonet.xml"::: -->
