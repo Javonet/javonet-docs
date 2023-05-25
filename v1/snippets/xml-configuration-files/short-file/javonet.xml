@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <javonet>
 <activation>
-    <username>YOUR NAME</username>
-    <email>your@email.com</email>
-    <licencekey>YOUR-LICENSE-KEY</licencekey>
+    <username>your-username</username>
+    <email>your-email</email>
+    <licencekey>your-license-key</licencekey>
 </activation>
 <settings>
     <framework>v40</framework>
