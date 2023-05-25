@@ -1,7 +1,7 @@
 :::options
 :title: Installing Javonet
 :description: This article provides an information about installing Javonet
-:related_articles: getting-started/activating-javonet.md, getting-started/adding-references-to-libraries.md, getting-started/xml-configuration-file.md
+:related_articles: getting-started/activating-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
 :::
 
 # Installing Javonet
