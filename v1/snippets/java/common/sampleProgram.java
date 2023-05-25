@@ -3,7 +3,7 @@ class SampleProgram {
     // <Activation>
     Javonet.activate("your-email", "your-license-key", JavonetFramework.v40);
     //Todo: Your Javonet powered application code 
-    // <Activation>
+    // </Activation>
 
     // <Activation_with_proxy>
     Javonet.activate(String email, String licenceKey, String proxyHost, JavonetFramework framework);
