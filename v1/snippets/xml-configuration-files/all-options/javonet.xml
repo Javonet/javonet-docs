@@ -3,7 +3,7 @@
 <references> <!-- optional -->
     <reference>System.Windows.Forms</reference>
     <reference>System.Drawing</reference>
-    <reference>yourDotNet.dll</reference>
+    <reference>TestClass.dll</reference>
 </references>
 <activation> <!-- mandatory -->
     <username>YOUR NAME</username>

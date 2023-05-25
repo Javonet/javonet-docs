@@ -13,7 +13,7 @@ class SampleProgram {
 
     // <AddReference>
     Javonet.addReference("System.Windows.Forms","System.Drawing");
-    Javonet.addReference("yourDotNet.dll");
+    Javonet.addReference("TestClass.dll");
     // </AddReference>
     }
 }

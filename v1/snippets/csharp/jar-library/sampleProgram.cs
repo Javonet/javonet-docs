@@ -8,7 +8,7 @@ class SampleProgram
         // </Activation>
 
         // <AddReference>
-        Javonet.AddReference(@"path/to/SampleJavaJar.jar");
+        Javonet.AddReference(@"TestClass.jar");
         // </AddReference>
     }
 }
