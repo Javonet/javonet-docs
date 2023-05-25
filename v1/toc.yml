@@ -19,7 +19,7 @@ blocked_pairs:
 - calling_technology: csharp
   called_technology: netframework-dll
 - calling_technology: java
-  called_technology: jar-package  
+  called_technology: jar-library
 
 items:
 - name: Getting started
