@@ -6,5 +6,9 @@ class SampleProgram
         Javonet.Activate("your-email", "your-license-key", @"C:\Program Files (x86)\Java\jdk1.8.0_144");
         //Todo: Your Javonet powered application code 
         // </Activation>
+
+        // <AddReference>
+        Javonet.AddReference(@"path/to/SampleJavaJar.jar");
+        // </AddReference>
     }
 }

@@ -16,7 +16,7 @@ An e-mail and license key is necessary to activate Javonet.
 Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
 
 :::code 
-:calling_source: v1/snippets/`{calling_technology}`/common/sampleProgram.`{calling_ext}`
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/sampleProgram.`{calling_ext}`
 :calling_id: Activation
 :display: calling
 :::
@@ -43,7 +43,7 @@ Using these new arguments proxy details, used by Javonet while performing activa
 In environments where proxy settings are required to access the Internet, use these activate method overloads:
 
 :::code 
-:calling_source: v1/snippets/java/common/sampleProgram.java
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/sampleProgram.java
 :calling_id: Activation_with_proxy
 :display: calling
 :::
