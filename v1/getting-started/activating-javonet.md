@@ -65,8 +65,8 @@ Sample Javonet XML configuration file
 
 :::code source="v2/snippets/cpp/common/sampleProgram.cpp":::
 
-<!-- :::code source="v1/snippets/xml-configuration-files/short-file/javonet.xml"::: -->
+:::code source="v1/snippets/xml-configuration-files/short-file/javonet.xml":::
 
 Starting with version 1.3, Javonet supports proxy settings for activations. These settings can be defined as activate method arguments or as an optional tag in your XML configuration file using the following syntax:
 
-<!-- :::code source="v1/snippets/xml-configuration-files/with-proxy/javonet.xml"::: -->
+:::code source="v1/snippets/xml-configuration-files/with-proxy/javonet.xml":::
