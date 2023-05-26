@@ -26,12 +26,27 @@ As each module is loaded and executed by its own runtime the performance and rel
   
 Javonet consists of multiple modules:  
   
-- **Javonet API** -  set of classes for Java developers which simplify and allow any operations on any .NET object from Java code. The standard API is generic and flexible to be used with any object. You can use the .NET APIs as they are by creating instances of .NET objects in Java, calling .NET methods, setting or getting properties and even subscribing to .NET events.For UI components Javonet API exposes the dedicated NControlContainer class which allows to easily put any .NET user control within Java AWT, Swing or JavaFX interface and interact with it like with any other Java component. The control will automatically adjust to the Java layout and will live within the Java window.  
+**Javonet API** -  set of classes for Java developers which simplify and allow any operations on any .NET object from Java code. The standard API is generic and flexible to be used with any object. You can use the .NET APIs as they are by creating instances of .NET objects in Java, calling .NET methods, setting or getting properties and even subscribing to .NET events.For UI components Javonet API exposes the dedicated NControlContainer class which allows to easily put any .NET user control within Java AWT, Swing or JavaFX interface and interact with it like with any other Java component. The control will automatically adjust to the Java layout and will live within the Java window.  
+  
 Javonet API is prepared to allow easy creation of strongly-typed interfaces for particular .NET classes or entire .NET libraries. This kind of interfaces replicate the methods signatures from .NET and provide completely pure Java experience for all other developers using these objects. From development and end-user perspective it is unnoticeable that anything is process by other runtime.  
 
-- **Core Engine** - internal infrastructure which takes care of initializing .NET CLR runtime within Java process and creating native bounds between Java operations on .NET objects to .NET methods, properties, events or classes. Core modules take care also of on-the-fly data-types conversions, objects lifecycle management or threads synchronization. 
+**Core Engine** - internal infrastructure which takes care of initializing .NET CLR runtime within Java process and creating native bounds between Java operations on .NET objects to .NET methods, properties, events or classes. Core modules take care also of on-the-fly data-types conversions, objects lifecycle management or threads synchronization. 
   
-- **CLR Module** - this module is responsible of coordinating the .NET execution of operations performed on Java side and keeping the .NET environment in sync with your Java application.  
+**CLR Module** - this module is responsible of coordinating the .NET execution of operations performed on Java side and keeping the .NET environment in sync with your Java application.  
   
 Using Javonet API you can do everything what you normally would do with the classes provided in third-party component. You can use static types, created instances of objects, work with these objects, pass and retrieve data or embed them in the Java UI if these are UI elements. It means that now you can treat anything created in .NET as modules available for your Java project.  
   
+## Partners and Samples
+
+Everyday you can find more .NET back-end and UI component vendors who officially open their products for Java markets through Javonet. For some vendors you need to use Javonet on your own to access their products whereas others might already provide ready to use Java JAR packages which encapsulate their .NET code-base, Javonet and strongly-typed interfaces inside.  
+  
+ **Dragon Medical speech solutions for Clinicians**  
+Dragon Medical solutions accurately translate the doctor’s voice into a rich, detailed clinical narrative that feeds directly into the EHR. Now the Dragon Speech Recognition controls are available for Java desktop applications. The solution is provided natively by the Nuance Company, for more details check [https://www.nuance.com](https://www.nuance.com)
+  
+**Eyeshot Ultimate 10**  
+Eyeshot is a CAD control based on the Microsoft .NET Framework. It allows developers to add CAD functionalities to WinForms and WPF applications in a snap. Eyeshot provides tools for building geometry from scratch, for analyzing it with finite element method and to generate toolpaths on it. Geometry can also be imported or exported using CAD exchange file formats. Now devDept Eyeshot package is available for Java AWT, Swing and JavaFX applications. [http://devdept.com/](http://devdept.com/)
+
+[Check live sample](https://www.javonet.com/java-devs/samples/using-devdept-net-winforms-eyeshot-cad-ui-components-java-awt/)  
+  
+**New-Doors Medical UI Components**  
+New-Doors is providing customized solutions for medical applications, dedicated dictation UI component is now available for Java Swing applications. For more details contact New-Doors at [http://www.new-doors.net/](http://www.new-doors.net/)
