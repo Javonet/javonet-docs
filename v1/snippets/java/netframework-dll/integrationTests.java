@@ -61,7 +61,7 @@ public class integrationTests {
         // call static method
         String res = sampleType.invoke("SayHello", "Student");
 
-        // write result to console
+        // write response to console
         System.out.println(res);
         // </TestResources_InvokeStaticMethod>
         Assertions.assertEquals("Hello Student", res);
@@ -78,7 +78,7 @@ public class integrationTests {
         // call static method
         String res = Javonet.getType("TestClass.TestClass").invoke("SayHello", "Student");
 
-        // write result to console
+        // write response to console
         System.out.println(res);
         // </TestResources_InvokeStaticMethodFluent>
         Assertions.assertEquals("Hello Student", res);
@@ -86,21 +86,41 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void Test_StandardLibrary_InvokeInstanceMethod() throws JavonetException {
-        // <StandardLibrary_InvokeStaticMethod>
+    public void Test_TestResources_CreateInstanceAndInvokeMethod() throws JavonetException {
+        // <TestResources_CreateInstanceAndInvokeMethod>
+        // Todo: activate Javonet
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance
+        NObject objRandom = Javonet.New("TestClass.TestClass");
+
+        // call instance method
+        Integer response = objRandom.invoke("MultiplyByTwo", 50);
+
+        // write response to console
+        System.out.println(response);
+        // </TestResources_CreateInstanceAndInvokeMethod>
+        Assertions.assertEquals(100, response);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_CreateInstanceAndInvokeMethod() throws JavonetException {
+        // <StandardLibrary_CreateInstanceAndInvokeMethod>
         // Todo: activate Javonet
 
         // create instance
         NObject objRandom = Javonet.New("System.Random");
 
         // call instance method
-        Integer result = objRandom.invoke("Next", 10, 20);
+        Integer response = objRandom.invoke("Next", 10, 20);
 
-        // write result to console
-        System.out.println(result);
-        // </StandardLibrary_InvokeStaticMethod>
-        Assertions.assertTrue(result >= 10);
-        Assertions.assertTrue(result < 20);
+        // write response to console
+        System.out.println(response);
+        // </StandardLibrary_CreateInstanceAndInvokeMethod>
+        Assertions.assertTrue(response >= 10);
+        Assertions.assertTrue(response < 20);
     }
 
     @Test
@@ -116,18 +136,18 @@ public class integrationTests {
         NObject genSample = Javonet.New("TestClass.TestClass");
 
         // invoke generic method with one type
-        String result1 = genSample.generic(Javonet.getType("String")).invoke("MyGenericMethod", "sample");
+        String response1 = genSample.generic(Javonet.getType("String")).invoke("MyGenericMethod", "sample");
 
         // invoke generic method with two types
-        Integer result2 = genSample.generic(Javonet.getType("String"), Javonet.getType("Int32")).invoke("MyGenericMethodWithTwoTypes", "sample");
+        Integer response2 = genSample.generic(Javonet.getType("String"), Javonet.getType("Int32")).invoke("MyGenericMethodWithTwoTypes", "sample");
 
-        // write result to console
-        System.out.println(result1);
-        System.out.println(result2);
+        // write response to console
+        System.out.println(response1);
+        System.out.println(response2);
 
         // </TestResources_GenericMethods>
-        Assertions.assertEquals("sample", result1);
-        Assertions.assertEquals(0, result2);
+        Assertions.assertEquals("sample", response1);
+        Assertions.assertEquals(0, response2);
     }
 
 

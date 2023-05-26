@@ -1,17 +1,27 @@
 :::options
-:title: Invoking static method
-:description: This section describes how to invoke static methods
+:title: Creating instance and calling instance methods
+:description: This section describes how to invoke instance methods
 :::
 
-# Invoking Static Methods
+# Creating instance and calling instance methods
 
-To invoke the static method, first get the particular type and call invoke providing method arguments.
+JavOnet lets you create instances of any type from `{called_name}`.
 
-Sample code:
+Assuming we have a custom .NET Framework DLL with the following class inside
 
-:::code source="~/v1/snippets/`{called_technology}`/SampleClass.`{ext}`" ID="SampleClass":::
+:::code 
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:display: called
+:::
 
-:::code source="~/v1/snippets/`{calling_technology}`/`{called_technology}`/Samples.`{calling_ext}`" ID="InvokeStaticMethod":::
+To create instance and invoke instance method from this class:
 
-The invoke method allows you to call any static or method with or without arguments. Value-type arguments are automatically translated to appropriate types, and you can also pass referenced arguments. If method has no arguments you just call it using **Invoke(“methodName”)**. If your Jmethod expects arguments you can pass them as arguments to Invoke method.
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_CreateInstanceAndInvokeMethod
+:display: calling
+:::
 
+JavOnet calls are very similar to regular .NET or Java calls, with a little bit of reflection style. Value-type results are automatically converted into `{called_name}` types so you can safely assign them to `{called_name}` variables. Reference-type results must be assigned to NObject\JObject variable.
+
+Any calls to .NET objects using Javonet can be shortened and simplified using our Fluent interface

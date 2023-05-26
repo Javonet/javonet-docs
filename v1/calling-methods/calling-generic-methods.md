@@ -7,7 +7,7 @@
 
 To invoke the static method, first get the particular type and call invoke providing method arguments.
 
-Sample code:
+Assuming we have a custom .NET Framework DLL with the following class inside
 
 :::code source="~/v1/snippets/`{called_technology}`/SampleClass.`{ext}`" ID="SampleClass":::
 

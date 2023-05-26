@@ -16,7 +16,7 @@ namespace Integration.Tests
 			this.output = output;
 			Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenceKey, @"C:\Program Files\Java\jdk1.8.0_271");
 		}
-		private static readonly string resourcesDirectory = "";
+		private static readonly string resourcesDirectory = System.IO.Directory.GetCurrentDirectory() + @"\..\..\..\..\..\testsResources\jar-library";
 
 		[Fact]
 		[Trait("Test", "Integration")]
@@ -47,7 +47,7 @@ namespace Integration.Tests
 			// Todo: activate Javonet
 
 			// add reference to library
-			Javonet.AddReference(resourcesDirectory + "TestClass.jar");
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
 			// </TestResources_AddReference>
 		}
 
@@ -59,18 +59,18 @@ namespace Integration.Tests
 			// Todo: activate Javonet
 
 			// add reference to library
-			Javonet.AddReference(resourcesDirectory + "TestClass.jar");
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
 
 			// get Java type
 			JType sampleType = Javonet.GetType("TestClass");
 
 			// call static method
-			string res = sampleType.Invoke<string>("SayHello", "Student");
+			string response = sampleType.Invoke<string>("SayHello", "Student");
 
 			// write result to console
-			Console.WriteLine("Java static method 'SayHello' returned: " + res);
+			Console.WriteLine(response);
 			// </TestResources_InvokeStaticMethod>
-			Assert.Equal("Hello Student", res);
+			Assert.Equal("Hello Student", response);
 		}
 
 		[Fact]
@@ -81,15 +81,15 @@ namespace Integration.Tests
 			// Todo: activate Javonet
 
 			// add reference to library
-			Javonet.AddReference(resourcesDirectory + "TestClass.jar");
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
 
 			// call static method
-			string res = Javonet.GetType("TestClass").Invoke<string>("SayHello", "Student");
+			string response = Javonet.GetType("TestClass").Invoke<string>("SayHello", "Student");
 
 			// write result to console
-			Console.WriteLine("Java static method 'SayHello' returned: " + res);
+			Console.WriteLine(response);
 			// </TestResources_InvokeStaticMethodFluent>
-			Assert.Equal("Hello Student", res);
+			Assert.Equal("Hello Student", response);
 		}
 
 		[Fact]
@@ -100,7 +100,7 @@ namespace Integration.Tests
 			// Todo: activate Javonet
 
 			// add reference to library
-			Javonet.AddReference(resourcesDirectory + "TestClass.jar");
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
 
 			// get Java type
 			JType sampleType = Javonet.GetType("TestClass");
@@ -108,32 +108,55 @@ namespace Integration.Tests
 			int argValue = 5;
 
 			// call static method with primitive representation of value type argument
-			int res = sampleType.Invoke<int>("MethodExpectingPrimitiveInt", new JPrimitive(argValue));
-			Console.WriteLine("Java static method 'MethodExpectingPrimitiveInt' returned: " + res);
+			int response = sampleType.Invoke<int>("MethodExpectingPrimitiveInt", new JPrimitive(argValue));
+			Console.WriteLine(response);
 
-			// calli static method with class representation of value type argument
-			int res2 = sampleType.Invoke<int>("MethodExpectingClassInteger", argValue);
-			Console.WriteLine("Java static method 'MethodExpectingClassInteger' returned: " + res);
+			// call static method with class representation of value type argument
+			int response2 = sampleType.Invoke<int>("MethodExpectingClassInteger", argValue);
+			Console.WriteLine(response2);
 			// </TestResources_InvokeStaticMethodWithPrimitive>
-			Assert.Equal(10, res);
-			Assert.Equal(10, res2);
+			Assert.Equal(10, response);
+			Assert.Equal(10, response2);
 		}
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_StandardLibrary_CreateInstance()
+		public void Test_TestResources_CreateInstanceAndInvokeMethod()
 		{
-			// <StandardLibrary_CreateInstance>
+			// <TestResources_CreateInstanceAndInvokeMethod>
+			// Todo: activate Javonet
+			// add reference to library
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
+
+			// create Java object
+			JObject testClassObject = Javonet.New("TestClass");
+			
+			// invoke instance method
+			int response = testClassObject.Invoke<int>("MultiplyByTwo", 50);
+
+			// write result to console
+			Console.WriteLine(response);
+			// </TestResources_CreateInstanceAndInvokeMethod>
+			Assert.Equal(100, response);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_StandardLibrary_CreateInstanceAndInvokeMethod()
+		{
+			// <StandardLibrary_CreateInstanceAndInvokeMethod>
 			// Todo: activate Javonet
 
-			var rand = Javonet.New("java.util.Random");
-			int n = rand.Invoke<int>("nextInt", 50) + 1;
-			output.WriteLine(n.ToString());
+			// create Java object
+			JObject randomClassObject = Javonet.New("java.util.Random");
 
-			var rand2 = Javonet.New("java.util.Random", new JPrimitive(1000L));
-			int n2 = rand2.Invoke<int>("nextInt", 50) + 1;
-			output.WriteLine(n2.ToString());
-			// </StandardLibrary_CreateInstance>
+			// invoke instance method
+			int response = randomClassObject.Invoke<int>("nextInt", new JPrimitive(50)) + 1;
+
+			// write result to console
+			Console.WriteLine(response);
+
+			// </StandardLibrary_CreateInstanceAndInvokeMethod>
 		}
 	}
 }
