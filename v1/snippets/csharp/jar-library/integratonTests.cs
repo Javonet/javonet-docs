@@ -133,7 +133,7 @@ namespace Integration.Tests
 			var rand2 = Javonet.New("java.util.Random", new JPrimitive(1000L));
 			int n2 = rand2.Invoke<int>("nextInt", 50) + 1;
 			output.WriteLine(n2.ToString());
-
+			// </StandardLibrary_CreateInstance>
 		}
 	}
 }
