@@ -4,9 +4,9 @@
 :related_articles: getting-started/installing-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
 :::
 
-# Using .NET Back-end and UI Components in Java
-
-##  Introduction to Using .NET Back-end and UI Components in Java
+# Using .NET Back-end and UI Components in Java  
+  
+##  Introduction to Using .NET Back-end and UI Components in Java  
 
 Using back-end and/or UI .NET components in Java can be as easy as working with regular pure Java components. With Javonet you can take any existing .NET component in form of DLL libraries and just use them directly within any Java console, service, web, EJB or desktop project. Javonet framework is based on native integration so the performance of using any component is almost the same as working with single technology.  
   
@@ -27,9 +27,8 @@ As each module is loaded and executed by its own runtime the performance and rel
 Javonet consists of multiple modules:  
   
 **Javonet API** -  set of classes for Java developers which simplify and allow any operations on any .NET object from Java code. The standard API is generic and flexible to be used with any object. You can use the .NET APIs as they are by creating instances of .NET objects in Java, calling .NET methods, setting or getting properties and even subscribing to .NET events.For UI components Javonet API exposes the dedicated NControlContainer class which allows to easily put any .NET user control within Java AWT, Swing or JavaFX interface and interact with it like with any other Java component. The control will automatically adjust to the Java layout and will live within the Java window.  
-  
 Javonet API is prepared to allow easy creation of strongly-typed interfaces for particular .NET classes or entire .NET libraries. This kind of interfaces replicate the methods signatures from .NET and provide completely pure Java experience for all other developers using these objects. From development and end-user perspective it is unnoticeable that anything is process by other runtime.  
-
+  
 **Core Engine** - internal infrastructure which takes care of initializing .NET CLR runtime within Java process and creating native bounds between Java operations on .NET objects to .NET methods, properties, events or classes. Core modules take care also of on-the-fly data-types conversions, objects lifecycle management or threads synchronization. 
   
 **CLR Module** - this module is responsible of coordinating the .NET execution of operations performed on Java side and keeping the .NET environment in sync with your Java application.  
@@ -44,7 +43,7 @@ Everyday you can find more .NET back-end and UI component vendors who officially
 Dragon Medical solutions accurately translate the doctor’s voice into a rich, detailed clinical narrative that feeds directly into the EHR. Now the Dragon Speech Recognition controls are available for Java desktop applications. The solution is provided natively by the Nuance Company, for more details check [https://www.nuance.com](https://www.nuance.com)
   
 **Eyeshot Ultimate 10**  
-Eyeshot is a CAD control based on the Microsoft .NET Framework. It allows developers to add CAD functionalities to WinForms and WPF applications in a snap. Eyeshot provides tools for building geometry from scratch, for analyzing it with finite element method and to generate toolpaths on it. Geometry can also be imported or exported using CAD exchange file formats. Now devDept Eyeshot package is available for Java AWT, Swing and JavaFX applications. [http://devdept.com/](http://devdept.com/)
+Eyeshot is a CAD control based on the Microsoft .NET Framework. It allows developers to add CAD functionalities to WinForms and WPF applications in a snap. Eyeshot provides tools for building geometry from scratch, for analyzing it with finite element method and to generate toolpaths on it. Geometry can also be imported or exported using CAD exchange file formats. Now devDept Eyeshot package is available for Java AWT, Swing and JavaFX applications. [http://devdept.com/](http://devdept.com/)  
 
 [Check live sample](https://www.javonet.com/java-devs/samples/using-devdept-net-winforms-eyeshot-cad-ui-components-java-awt/)  
   
