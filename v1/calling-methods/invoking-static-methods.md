@@ -5,12 +5,12 @@
 
 # Invoking Static Methods
 
-To invoke the static method, first get the particular type and call invoke providing method arguments.
+To invoke the static method, first get the particular type and call invoke providing method arguments.  
 
 Sample code:
 
 :::code 
-:calling_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :display: called
 :::
 
