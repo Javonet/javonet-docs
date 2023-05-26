@@ -9,6 +9,6 @@ Javonet offers a robust fluent interface that lets you simplify and shorten oper
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: FluentInterface
+:calling_id: TestResources_InvokeStaticMethodFluent
 :display: calling
 :::

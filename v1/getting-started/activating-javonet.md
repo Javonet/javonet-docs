@@ -45,7 +45,7 @@ In environments where proxy settings are required to access the Internet, use th
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.java
-:calling_id: Activation_with_proxy
+:calling_id: ActivationWithProxy
 :display: calling
 :::
 

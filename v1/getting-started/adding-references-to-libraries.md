@@ -12,7 +12,7 @@ Javonet allows you to use any library from `{called_name}`. As with any regular 
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: AddReference
+:calling_id: TestResources_AddReference
 :display: calling
 :::
 

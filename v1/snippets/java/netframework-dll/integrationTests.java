@@ -39,6 +39,16 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_TestResources_AddReference() throws JavonetException {
+        // <TestResources_AddReference>
+        // Todo: activate Javonet
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        // </TestResources_AddReference>
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_TestResources_InvokeStaticMethod() throws JavonetException {
         // <TestResources_InvokeStaticMethod>
         // Todo: activate Javonet
@@ -120,6 +130,6 @@ public class integrationTests {
         Assertions.assertEquals(0, result2);
     }
 
-    
+
 
 }

@@ -41,6 +41,18 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
+		public void Test_TestResources_AddReference()
+		{
+			// <TestResources_AddReference>
+			// Todo: activate Javonet
+
+			// add reference to library
+			Javonet.AddReference(resourcesDirectory + "TestClass.jar");
+			// </TestResources_AddReference>
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
 		public void Test_TestResources_InvokeStaticMethod()
 		{
 			// <TestResources_InvokeStaticMethod>
