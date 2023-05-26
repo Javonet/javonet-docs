@@ -7,12 +7,14 @@
 
 To invoke the static method, first get the particular type and call invoke providing method arguments.  
 
-Sample code:
+Assuming we have a custom `{called_name}` with the following class inside:
 
 :::code 
 :called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :display: called
 :::
+
+To invoke static method from this class:
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
