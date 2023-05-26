@@ -11,7 +11,7 @@
 Javonet allows you to use any library from `{called_name}`. As with any regular application, you need to reference the libraries you are planning to use. You can reference any JAR file or DLL file on your computer or registered in GAC, as well as any library from the .NET Framework.  
 
 :::code 
-:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/sampleProgram.`{calling_ext}`
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: AddReference
 :display: calling
 :::
