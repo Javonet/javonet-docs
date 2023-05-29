@@ -215,4 +215,44 @@ public class integrationTests {
         System.out.println(response);
         // </StandardLibrary_GetStaticField>
     }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_CreateInstanceOfGenericObject() throws JavonetException {
+        // <StandardLibrary_CreateInstanceOfGenericObject>
+
+        // how to create instance of .NET generic class Dictionary<String,List<String>>
+        // Todo: activate Javonet
+
+        // initialize List <String> type
+        NType typeList = Javonet.getType("List`1","String");
+
+        // get String type
+        NType typeString = Javonet.getType("String");
+
+        // initialize Dictionary<String,List<String>> type
+        NType type = Javonet.getType("Dictionary`2",typeString,typeList);
+
+        // create instance of generic Dictionary
+        NObject newDict = type.create();
+
+        // create instance of generic List
+        NObject newList = typeList.create();
+
+        // add items to generic list
+        newList.invoke("Add","a");
+        newList.invoke("Add","b");
+
+        // add items to generic Dictionary passing string as key and generic List as value
+        newDict.invoke("Add","List1",newList);
+        newDict.invoke("Add","List2",newList);
+
+        // Retrieve dictionary item by string key
+        NObject result = newDict.getIndex("List1");
+
+        // Display second item from generic List retrieved from dictionary
+        System.out.println((String) result.getIndex(1)); //displays "b"
+        // </StandardLibrary_CreateInstanceOfGenericObject>
+    }
+
 }

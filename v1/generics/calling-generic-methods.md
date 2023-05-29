@@ -1,6 +1,7 @@
 :::options
 :title: Calling generic methods
 :description: This section describes how to invoke static methods
+:related_articles: working-with-objects/creating-instance-of-generic-object
 :::
 
 # Calling generic methods
