@@ -6,7 +6,7 @@
 
 # Get/Set Values for Instance Fields and Properties
 
-To set or get values of instance fields and properties, get or create an instance of the object from `{called_name}`, and call “get(fieldOrPropertyName)” or “set(fieldOrPropertyName,newValue)” methods on NObject\JObject containing this field.
+To set or get values of instance fields and properties, get or create an instance of the object from `{called_name}`, and call "get(fieldOrPropertyName)" or "set(fieldOrPropertyName,newValue)" methods on NObject\JObject containing this field.
 
 Assuming we have a custom `{called_name}` with the following class inside:
 

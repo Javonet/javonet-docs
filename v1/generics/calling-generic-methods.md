@@ -1,17 +1,21 @@
 :::options
-:title: Invoking static method
+:title: Calling generic methods
 :description: This section describes how to invoke static methods
 :::
 
-# Invoking Static Methods
+# Calling generic methods
 
-To invoke the static method, first get the particular type and call invoke providing method arguments.
+With Javonet you can very easily invoke any generic instance or static method. To call a generic method, you need to provide types that will be used during the method invocation. Those types can be passed as an instance of NType objects initialized with particular .NET types. Let's assume you have following .NET object you want to use from Java:   
 
-Assuming we have a custom .NET Framework DLL with the following class inside
+:::code 
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:display: called
+:::
 
-:::code source="~/v1/snippets/`{called_technology}`/SampleClass.`{ext}`" ID="SampleClass":::
+To use generic methods from this class:
 
-:::code source="~/v1/snippets/`{calling_technology}`/`{called_technology}`/Samples.`{calling_ext}`" ID="InvokeStaticMethod":::
-
-The invoke method allows you to call any static or method with or without arguments. Value-type arguments are automatically translated to appropriate types, and you can also pass referenced arguments. If method has no arguments you just call it using **Invoke(“methodName”)**. If your Jmethod expects arguments you can pass them as arguments to Invoke method.
-
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_GenericMethods
+:display: calling
+:::
