@@ -1,17 +1,25 @@
 :::options
-:title: Invoking static method
-:description: This section describes how to invoke static methods
+:title: Get/Set values for instance fields and properties
+:description: Get/Set values for instance fields and properties
+:related_articles: fields-and-properties/get-set-values-for-static-fields-and-properties, getting-started/fluent-interface
 :::
 
-# Invoking Static Methods
+# Get/Set Values for Instance Fields and Properties
 
-To invoke the static method, first get the particular type and call invoke providing method arguments.
+To set or get values of instance fields and properties, get or create an instance of the object from `{called_name}`, and call “get(fieldOrPropertyName)” or “set(fieldOrPropertyName,newValue)” methods on NObject\JObject containing this field.
 
-Sample code:
+Assuming we have a custom `{called_name}` with the following class inside:
 
-:::code source="~/v1/snippets/`{called_technology}`/SampleClass.`{ext}`" ID="SampleClass":::
+:::code 
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:display: called
+:::
 
-:::code source="~/v1/snippets/`{calling_technology}`/`{called_technology}`/Samples.`{calling_ext}`" ID="InvokeStaticMethod":::
+To set and get instance field from this class:
 
-The invoke method allows you to call any static or method with or without arguments. Value-type arguments are automatically translated to appropriate types, and you can also pass referenced arguments. If method has no arguments you just call it using **Invoke(“methodName”)**. If your Jmethod expects arguments you can pass them as arguments to Invoke method.
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_GetSetInstanceField
+:display: calling
+:::
 

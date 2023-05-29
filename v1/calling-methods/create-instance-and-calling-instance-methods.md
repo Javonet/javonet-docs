@@ -1,13 +1,14 @@
 :::options
 :title: Creating instance and calling instance methods
 :description: This section describes how to invoke instance methods
+:related_articles: calling-methods/invoking-static-methods, getting-started/fluent-interface
 :::
 
 # Creating instance and calling instance methods
 
-JavOnet lets you create instances of any type from `{called_name}`.
+Javonet lets you create instances of any type from `{called_name}`.
 
-Assuming we have a custom .NET Framework DLL with the following class inside
+Assuming we have a custom `{called_name}` with the following class inside
 
 :::code 
 :called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
@@ -22,6 +23,6 @@ To create instance and invoke instance method from this class:
 :display: calling
 :::
 
-JavOnet calls are very similar to regular .NET or Java calls, with a little bit of reflection style. Value-type results are automatically converted into `{called_name}` types so you can safely assign them to `{called_name}` variables. Reference-type results must be assigned to NObject\JObject variable.
-
-Any calls to .NET objects using Javonet can be shortened and simplified using our Fluent interface
+Javonet calls are very similar to regular .NET or Java calls, with a little bit of reflection style. Value-type results are automatically converted into `{called_name}` types so you can safely assign them to `{called_name}` variables. Reference-type results must be assigned to NObject\JObject variable.   
+  
+Any calls to .NET or Java objects using Javonet can be shortened and simplified using Javonet Fluent interface.

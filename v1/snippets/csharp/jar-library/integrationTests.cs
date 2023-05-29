@@ -129,15 +129,65 @@ namespace Integration.Tests
 			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
 
 			// create Java object
-			JObject testClassObject = Javonet.New("TestClass");
+			JObject sampleObject = Javonet.New("TestClass");
 			
 			// invoke instance method
-			int response = testClassObject.Invoke<int>("MultiplyByTwo", 50);
+			int response = sampleObject.Invoke<int>("MultiplyByTwo", 50);
 
 			// write result to console
 			Console.WriteLine(response);
 			// </TestResources_CreateInstanceAndInvokeMethod>
 			Assert.Equal(100, response);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_TestResources_GetSetStaticField()
+		{
+			// <TestResources_GetSetStaticField>
+			// Todo: activate Javonet
+
+			// add reference to library
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
+
+			// get Java type
+			JType sampleType = Javonet.GetType("TestClass");
+
+			// set static field
+			sampleType.Set("MyStaticField", 10);
+
+			// get static field
+			int response = sampleType.Get<int>("MyStaticField");
+
+			// write result to console
+			Console.WriteLine(response);
+			// </TestResources_GetSetStaticField>
+			Assert.Equal(10, response);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_TestResources_GetSetInstanceField()
+		{
+			// <TestResources_GetSetInstanceField>
+			// Todo: activate Javonet
+
+			// add reference to library
+			Javonet.AddReference(resourcesDirectory + @"\TestClass.jar");
+
+			// create Java object
+			JObject sampleObject = Javonet.New("TestClass");
+
+			// set instance field
+			sampleObject.Set("MyInstanceField", 11);
+
+			// get instance field
+			int response = sampleObject.Get<int>("MyInstanceField");
+
+			// write result to console
+			Console.WriteLine(response);
+			// </TestResources_GetSetInstanceField>
+			Assert.Equal(11, response);
 		}
 
 		[Fact]
@@ -155,8 +205,26 @@ namespace Integration.Tests
 
 			// write result to console
 			Console.WriteLine(response);
-
 			// </StandardLibrary_CreateInstanceAndInvokeMethod>
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_StandardLibrary_GetStaticField()
+		{
+			// <StandardLibrary_GetStaticField>
+			// Todo: activate Javonet
+
+			// get Java type
+			JType sampleType = Javonet.GetType("java.lang.Math");
+
+			// get static field
+			double response = sampleType.Get<double>("PI");
+
+			// write result to console
+			Console.WriteLine(response);
+			// </StandardLibrary_GetStaticField>
+			Assert.Equal(System.Math.PI, response);
 		}
 	}
 }
