@@ -298,7 +298,7 @@ public class integrationTests {
         String response = sampleObject.invoke("MethodA", new NNull("String"));
 
         // call MethodA with generic int? argument
-        String response2 = sampleObject.invoke("MethodA",new NNull("System.Nullable`[System.Int32]"));
+        String response2 = sampleObject.invoke("MethodA", new NNull("System.Nullable`[System.Int32]"));
 
         // write response to console
         System.out.println(response);
@@ -308,6 +308,35 @@ public class integrationTests {
         // </TestResources_CallOverloadedMethodPassingNullArg>
         Assertions.assertEquals("Method with String argument called", response);
         Assertions.assertEquals("Method with nullable int argument called", response2);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_UseNestedTypes() throws JavonetException {
+        // <TestResources_UseNestedTypes>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
+
+        //Getting nested type
+        NType nestedTypeObj = Javonet.getType("TestNamespace.Container+Nested");
+
+        //Creating instance of nested type
+        NObject nestedTypeInstanceObj = Javonet.New("TestNamespace.Container+Nested");
+
+        //Passing nested type as method argument
+        sampleObject.invoke("PassTypeArg", nestedTypeObj);
+
+        //Creating generic object with nested type as generic argument
+        NObject genList = Javonet.getType("List`1", nestedTypeObj).create();
+
+        //Calling generic method with nested type as generic argument
+        sampleObject.generic(nestedTypeObj).invoke("MyGenericMethod", nestedTypeInstanceObj);
+        // </TestResources_UseNestedTypes>
     }
 
     @Test

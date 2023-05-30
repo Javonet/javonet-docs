@@ -1,7 +1,7 @@
 :::options
 :title: Passing typeof(Type) as method argument
 :description: Passing typeof(Type) as method argument
-:related_articles: methods-arguments/passing-reference-type-argument, methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/calling-overloaded-method-passing-null-argument
+:related_articles: methods-arguments/passing-reference-type-arguments, methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/calling-overloaded-method-passing-null-argument
 :::
 
 # Passing typeof(Type) as method argument 
