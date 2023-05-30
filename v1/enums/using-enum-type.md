@@ -28,9 +28,8 @@ Enum usage:
 :display: calling
 :::
 
-How to pass enum as method argument
-
-
+How to pass enum as method argument:  
+  
 Assuming we have a custom `{called_name}` with the following class inside:
 
 :::code 
@@ -38,8 +37,8 @@ Assuming we have a custom `{called_name}` with the following class inside:
 :display: called
 :::
 
-To enum as method argument
-
+To use enum as method argument:  
+  
 :::code
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_UseEnumTypeAsArgument
