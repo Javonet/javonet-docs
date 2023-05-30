@@ -1,6 +1,7 @@
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import com.javonet.api.NEnum;
 import com.javonet.api.NNull;
 import com.javonet.api.NObject;
 import com.javonet.api.NType;
@@ -337,6 +338,32 @@ public class integrationTests {
         //Calling generic method with nested type as generic argument
         sampleObject.generic(nestedTypeObj).invoke("MyGenericMethod", nestedTypeInstanceObj);
         // </TestResources_UseNestedTypes>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_UseEnumType() throws JavonetException {
+        // <TestResources_UseEnumType>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance of enum value
+        NEnum sampleEnumValueOne = new NEnum("SampleEnum","ValueOne");
+
+        // get value name
+        String response = sampleEnumValueOne.getValueName();
+
+        // get enum value
+        Integer response2 = sampleEnumValueOne.getValue();
+
+        // write response to console
+        System.out.println(response);
+        System.out.println(response2);
+        // </TestResources_UseEnumType>
+        Assertions.assertEquals("ValueOne", response);
+        Assertions.assertEquals(0, response2);
     }
 
     @Test
