@@ -9,7 +9,14 @@ Nested types are the classes defined within other class or struct. Javonet is ab
   
 More about nested types you can read in MSDN documentation: [Nested Types](http://msdn.microsoft.com/en-us/library/ms173120.aspx)  
   
-Assuming we have a custom `{called_name}` with the following class inside:
+Assuming we have a custom `{called_name}` with the following classes inside:
+
+:::code 
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:display: called
+:::
+
+And
 
 :::code 
 :called_source: v1/snippets/`{called_technology}`/Container.`{called_ext}`
