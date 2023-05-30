@@ -3,10 +3,8 @@ namespace TestClass
 	public class TestClass
 	{
 		public TestClass() { }
-
-		public static int MyStaticField {get;set; }
-
-		public int MyInstanceField { get;set; }
+		public static int MyStaticField { get; set; }
+		public int MyInstanceField { get; set; }
 
 		public static string SayHello(string name)
 		{
@@ -25,6 +23,11 @@ namespace TestClass
 		public K MyGenericMethodWithTwoTypes<T, K>(T arg1)
 		{
 			return default(K);
+		}
+
+		public void MethodWithRefArg(ref int arg)
+		{
+			arg = arg + 44;
 		}
 	}
 }
