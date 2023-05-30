@@ -37,7 +37,7 @@ Example of a **out** argument method from Java using Javonet
 :::
 
   
-Example of a **out** argument method from Java using Javonet
+Example of a **out** argument method from .NET standard library which can be invoked using Javonet:
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`

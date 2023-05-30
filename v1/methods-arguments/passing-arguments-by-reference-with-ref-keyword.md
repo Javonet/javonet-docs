@@ -4,7 +4,7 @@
 :related_articles: methods-arguments/passing-reference-type-arguments, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/passing-typeof-type-as-method-argument, methods-arguments/calling-overloaded-method-passing-null-argument
 :::
 
-## Passing Arguments by Reference with "ref" keyword
+## Passing Arguments by Reference with "ref" keyword  
   
 Microsoft .NET allows you to create methods that expect arguments to be passed by reference.  
 Passing by reference is introduced by explicitly setting **ref** or **out** keywords before argument type within the method definition. For example, **void MethodWithRefArg(ref int arg)**.  

@@ -227,6 +227,36 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_TestResources_PassArgumentWithOutKeyword() throws JavonetException {
+        // <TestResources_PassArgumentWithOutKeyword>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        NObject populator = Javonet.New("PopulateItems");
+
+        //Wrap null Java array in atomic reference to pass the reference as out argument
+        AtomicReference<NObject[]> items = new AtomicReference<NObject[]>(null);
+
+        populator.invoke("Populate", new NOut(items,"Item[]"));
+
+        // write response to console
+        for (NObject element: items.get()) {
+            System.out.println((String)element.get("ItemName"));
+        }
+        //expected output:
+        //Item 0
+        //Item 1
+        //Item 2
+        //Item 3
+        //Item 4
+        // </TestResources_PassArgumentWithOutKeyword>
+        Assertions.assertEquals("Item 4", items.get()[4].get("ItemName"));
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_StandardLibrary_CreateInstanceAndInvokeMethod() throws JavonetException {
         // <StandardLibrary_CreateInstanceAndInvokeMethod>
         // Todo: activate Javonet
@@ -340,6 +370,7 @@ public class integrationTests {
         if (Javonet.getType("Int32").invoke("TryParse", strNumber, new NOut(myInt, "System.Int32"))) {
             System.out.println(myInt.get());
         }
+
         // </StandardLibrary_PassArgumentWithOutKeyword>
         Assertions.assertEquals(4, myInt.get());
     }
