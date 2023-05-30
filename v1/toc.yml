@@ -195,8 +195,8 @@ items:
 #     calling_technology: java
 #     called_technology: netframework-dll
 
-# - name: Advanced activation and licencing
-#   items: 
+- name: Advanced activation and licencing
+  items: 
 #   - name: Runtime vs. offline vs. compile time activation
 #     href: /advanced-activation-and-licensing/runtime-offline-compile-time-activation.md
 #     calling_technology: csharp, java
@@ -205,7 +205,7 @@ items:
 #     href: /advanced-activation-and-licensing/project-activation-tool.md
 #     calling_technology: csharp, java
 #     called_technology: netframework-dll, jar-library
-#   - name: Delegating activation server
-#     href: /advanced-activation-and-licensing/delegating-activation-server.md
-#     calling_technology: csharp, java
-#     called_technology: netframework-dll, jar-library
+  - name: Delegating activation server
+    href: /advanced-activation-and-licensing/delegating-activation-server.md
+    calling_technology: csharp, java
+    called_technology: netframework-dll, jar-library
