@@ -3,12 +3,15 @@ import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
 import com.javonet.api.NObject;
 import com.javonet.api.NType;
+import com.javonet.api.keywords.NOut;
+import com.javonet.api.keywords.NRef;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class integrationTests {
 
@@ -160,13 +163,13 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create instance
-        NObject genSample = Javonet.New("TestClass.TestClass");
+        NObject sampleObject = Javonet.New("TestClass.TestClass");
 
         // invoke generic method with one type
-        String response1 = genSample.generic(Javonet.getType("String")).invoke("MyGenericMethod", "sample");
+        String response1 = sampleObject.generic(Javonet.getType("String")).invoke("MyGenericMethod", "sample");
 
         // invoke generic method with two types
-        Integer response2 = genSample.generic(Javonet.getType("String"), Javonet.getType("Int32")).invoke("MyGenericMethodWithTwoTypes", "sample");
+        Integer response2 = sampleObject.generic(Javonet.getType("String"), Javonet.getType("Int32")).invoke("MyGenericMethodWithTwoTypes", "sample");
 
         // write response to console
         System.out.println(response1);
@@ -196,6 +199,30 @@ public class integrationTests {
         System.out.println(response);
         // </TestResources_ExtendClassAndWrapMethod>
         Assertions.assertEquals(154, response);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_PassArgumentWithRefKeyword() throws JavonetException {
+        // <TestResources_PassArgumentWithRefKeyword>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance
+        NObject sampleObject = Javonet.New("TestClass.TestClass");
+
+        // wrap Java integer in AtomicReference to allow passing by reference
+        AtomicReference<Integer> myInt = new AtomicReference<Integer>(10);
+
+        // use method which expects reference type argument
+        sampleObject.invoke("MethodWithRefArg", new NRef(myInt));
+
+        // write response to console
+        System.out.println(myInt.get());
+        // </TestResources_PassArgumentWithRefKeyword>
+        Assertions.assertEquals(54, myInt.get());
     }
 
     @Test
@@ -246,13 +273,13 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // initialize List <String> type
-        NType typeList = Javonet.getType("List`1","String");
+        NType typeList = Javonet.getType("List`1", "String");
 
         // get String type
         NType typeString = Javonet.getType("String");
 
         // initialize Dictionary<String,List<String>> type
-        NType type = Javonet.getType("Dictionary`2",typeString,typeList);
+        NType type = Javonet.getType("Dictionary`2", typeString, typeList);
 
         // create instance of generic Dictionary
         NObject newDict = type.create();
@@ -261,12 +288,12 @@ public class integrationTests {
         NObject newList = typeList.create();
 
         // add items to generic list
-        newList.invoke("Add","a");
-        newList.invoke("Add","b");
+        newList.invoke("Add", "a");
+        newList.invoke("Add", "b");
 
         // add items to generic Dictionary passing string as key and generic List as value
-        newDict.invoke("Add","List1",newList);
-        newDict.invoke("Add","List2",newList);
+        newDict.invoke("Add", "List1", newList);
+        newDict.invoke("Add", "List2", newList);
 
         // Retrieve dictionary item by string key
         NObject result = newDict.getIndex("List1");
@@ -282,20 +309,38 @@ public class integrationTests {
         // <StandardLibrary_PassReferenceTypeArgument>
         // Todo: activate Javonet
 
-        //  "Now" field gets a value from DateTime
-        NObject nowDateObj= Javonet.getType("DateTime").get("Now");
+        //  “Now” field gets a value from DateTime
+        NObject nowDateObj = Javonet.getType("DateTime").get("Now");
 
         // create a new DateTime value, passing a date of 1980-01-01 as constructor arguments
-        NObject date = Javonet.New("DateTime",1980,1,1);
+        NObject date = Javonet.New("DateTime", 1980, 1, 1);
 
         // subtract two dates
         // The datesDiff variable will store an instance of the TimeSpan object,
         // that holds the difference between now and 1980-01-01
-        NObject datesDiff = nowDateObj.invoke("Subtract",date);
+        NObject datesDiff = nowDateObj.invoke("Subtract", date);
 
         // write response to console
         String result = datesDiff.invoke("ToString");
         System.out.println(result);
         // </StandardLibrary_PassReferenceTypeArgument>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_PassArgumentWithOutKeyword() throws JavonetException {
+        // <StandardLibrary_PassArgumentWithOutKeyword>
+        // Todo: activate Javonet
+
+        String strNumber = "4";
+        AtomicReference<Integer> myInt = new AtomicReference<Integer>();
+
+        //NOut constructor with argument type is used because myInt has NULL value. Without specifying explicitly
+        //argument type .NET would not be able to locate proper method to execute.
+        if (Javonet.getType("Int32").invoke("TryParse", strNumber, new NOut(myInt, "System.Int32"))) {
+            System.out.println(myInt.get());
+        }
+        // </StandardLibrary_PassArgumentWithOutKeyword>
+        Assertions.assertEquals(4, myInt.get());
     }
 }
