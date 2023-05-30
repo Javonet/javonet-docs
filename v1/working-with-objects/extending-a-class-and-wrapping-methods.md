@@ -18,7 +18,7 @@ Assuming we have a custom `{called_name}` with the following class inside:
 To extend this class and wrap method from this class create the following class:
 
 :::code 
-:called_source: v1/snippets/`{calling_technology}`/`{called_technology}`/ExtendedTestClass.`{calling_ext}`
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{calling_ext}`
 :calling_id: All
 :display: calling
 :::
