@@ -1,17 +1,19 @@
 :::options
-:title: Invoking static method
-:description: This section describes how to invoke static methods
+:title: Passing reference-type arguments
+:description: Passing reference-type arguments
+:related_articles: methods-arguments/installing-javonet, methods-arguments/passing-reference-type-arguments, methods-arguments/calling-overloaded-method-passing-null-argument
 :::
 
-# Invoking Static Methods
+# Passing reference-type arguments
 
-To invoke the static method, first get the particular type and call invoke providing method arguments.
+With Javonet, you can very easily pass any object from `{called_name}` as argument to any method from `{called_name}`, or substitute a field or property from `{called_name}`. Instances of objects from `{called_tech}` can be stored in your `{calling_name}` application using the special NObject\JObject type variable. When passing the NObject\JObject object to the called method, Javonet just pass it as a reference.  
+  
+Example:  
+  
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: StandardLibrary_PassReferenceTypeArgument
+:display: calling
+:::
 
-Sample code:
-
-:::code source="~/v1/snippets/`{called_technology}`/SampleClass.`{ext}`" ID="SampleClass":::
-
-:::code source="~/v1/snippets/`{calling_technology}`/`{called_technology}`/Samples.`{calling_ext}`" ID="InvokeStaticMethod":::
-
-The invoke method allows you to call any static or method with or without arguments. Value-type arguments are automatically translated to appropriate types, and you can also pass referenced arguments. If method has no arguments you just call it using **Invoke(“methodName”)**. If your Jmethod expects arguments you can pass them as arguments to Invoke method.
 

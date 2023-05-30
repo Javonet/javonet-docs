@@ -275,4 +275,27 @@ public class integrationTests {
         System.out.println((String) result.getIndex(1)); //displays "b"
         // </StandardLibrary_CreateInstanceOfGenericObject>
     }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_PassReferenceTypeArgument() throws JavonetException {
+        // <StandardLibrary_PassReferenceTypeArgument>
+        // Todo: activate Javonet
+
+        //  "Now" field gets a value from DateTime
+        NObject nowDateObj= Javonet.getType("DateTime").get("Now");
+
+        // create a new DateTime value, passing a date of 1980-01-01 as constructor arguments
+        NObject date = Javonet.New("DateTime",1980,1,1);
+
+        // subtract two dates
+        // The datesDiff variable will store an instance of the TimeSpan object,
+        // that holds the difference between now and 1980-01-01
+        NObject datesDiff = nowDateObj.invoke("Subtract",date);
+
+        // write response to console
+        String result = datesDiff.invoke("ToString");
+        System.out.println(result);
+        // </StandardLibrary_PassReferenceTypeArgument>
+    }
 }
