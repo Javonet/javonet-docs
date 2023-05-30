@@ -350,7 +350,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create instance of enum value
-        NEnum sampleEnumValueOne = new NEnum("SampleEnum","ValueOne");
+        NEnum sampleEnumValueOne = new NEnum("SampleEnum", "ValueOne");
 
         // get value name
         String response = sampleEnumValueOne.getValueName();
@@ -364,6 +364,30 @@ public class integrationTests {
         // </TestResources_UseEnumType>
         Assertions.assertEquals("ValueOne", response);
         Assertions.assertEquals(0, response2);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_UseEnumTypeAsArgument() throws JavonetException {
+        // <TestResources_UseEnumTypeAsArgument>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
+
+        // create instance of enum value
+        NEnum sampleEnumValueOne = new NEnum("SampleEnum", "ValueTwo");
+
+        // invoke method with enum argument
+        String response = sampleObject.invoke("MethodWithEnumArg", sampleEnumValueOne);
+
+        // write response to console
+        System.out.println(response);
+        // </TestResources_UseEnumTypeAsArgument>
+        Assertions.assertEquals("ValueTwo", response);
     }
 
     @Test

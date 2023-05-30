@@ -36,5 +36,10 @@ namespace TestNamespace
 		{
 			return myType.ToString();
 		}
+
+		public string MethodWithEnumArg(SampleEnum value)
+		{
+			return value.ToString();
+		}
 	}
 }

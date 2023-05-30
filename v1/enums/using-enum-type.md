@@ -12,8 +12,6 @@ To initialize reference to .NET enum type you can use the NEnum(String enumTypeN
 When namespace is not provided Javonet will automatically lookup the enum type in all loaded assemblies, if there is only one type with provided name it will be used. 
 In second argument selected enum value should be provided.  
   
-
-  
 Assuming we have a custom `{called_name}` with the following enum inside:
 
 :::code 
@@ -30,3 +28,20 @@ Enum usage:
 :display: calling
 :::
 
+How to pass enum as method argument
+
+
+Assuming we have a custom `{called_name}` with the following class inside:
+
+:::code 
+:called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:display: called
+:::
+
+To enum as method argument
+
+:::code
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_UseEnumTypeAsArgument
+:display: calling
+:::
