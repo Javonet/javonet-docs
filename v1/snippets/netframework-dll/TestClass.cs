@@ -1,4 +1,6 @@
-namespace TestClass
+using System;
+
+namespace TestNamespace
 {
 	public class TestClass
 	{
@@ -28,6 +30,11 @@ namespace TestClass
 		public void MethodWithRefArg(ref int arg)
 		{
 			arg = arg + 44;
+		}
+
+		public string PassTypeArg(Type myType)
+		{
+			return myType.ToString();
 		}
 	}
 }

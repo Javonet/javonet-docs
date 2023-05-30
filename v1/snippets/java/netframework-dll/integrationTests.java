@@ -1,6 +1,7 @@
 import com.javonet.Javonet;
 import com.javonet.JavonetException;
 import com.javonet.JavonetFramework;
+import com.javonet.api.NNull;
 import com.javonet.api.NObject;
 import com.javonet.api.NType;
 import com.javonet.api.keywords.NOut;
@@ -239,11 +240,11 @@ public class integrationTests {
         //Wrap null Java array in atomic reference to pass the reference as out argument
         AtomicReference<NObject[]> items = new AtomicReference<NObject[]>(null);
 
-        populator.invoke("Populate", new NOut(items,"TestNamespace.Item[]"));
+        populator.invoke("Populate", new NOut(items, "TestNamespace.Item[]"));
 
         // write response to console
-        for (NObject element: items.get()) {
-            System.out.println((String)element.get("ItemName"));
+        for (NObject element : items.get()) {
+            System.out.println((String) element.get("ItemName"));
         }
         //expected output:
         //Item 0
@@ -271,14 +272,42 @@ public class integrationTests {
         NType typeOfString = Javonet.getType("String");
 
         // invoke method with argument of type Type
-        String response = sampleObject.invoke("PassTypeArg",typeOfString);
+        String response = sampleObject.invoke("PassTypeArg", typeOfString);
 
         // write response to console
         System.out.println(response);
         // expected output:
-        //System.String
+        // System.String
         // </TestResources_PassTypeAsMethodArgument>
         Assertions.assertEquals("System.String", response);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_CallOverloadedMethodPassingNullArg() throws JavonetException {
+        // <TestResources_CallOverloadedMethodPassingNullArg>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass2");
+
+        // call MethodA with String argument passing null
+        String response = sampleObject.invoke("MethodA", new NNull("String"));
+
+        // call MethodA with generic int? argument
+        String response2 = sampleObject.invoke("MethodA",new NNull("System.Nullable`[System.Int32]"));
+
+        // write response to console
+        System.out.println(response);
+        System.out.println(response2);
+        // expected output:
+        // System.String
+        // </TestResources_CallOverloadedMethodPassingNullArg>
+        Assertions.assertEquals("Method with String argument called", response);
+        Assertions.assertEquals("Method with nullable int argument called", response2);
     }
 
     @Test

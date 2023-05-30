@@ -6,13 +6,20 @@
 
 # Calling overloaded method passing null argument 
   
-With Javonet, you can very easily pass any object from `{called_name}` as argument to any method from `{called_name}`, or substitute a field or property from `{called_name}`. Instances of objects from `{called_name}` can be stored in your `{calling_name}` application using the special NObject\JObject type variable. When passing the NObject\JObject object to the called method, Javonet just pass it as a reference.  
+In some cases you might need to call a method - that has multiple overloads with the same number of arguments - passing null. Considering following case:  
   
-Example:  
+:::code 
+:called_source: v1/snippets/`{called_technology}`/TestClass2.`{called_ext}`
+:display: called
+:::
+  
+If you call MethodA passing "null" as argument .NET side will not be able to resolve which method should be called as in both overloads null can be passed. Ambigous invocation exception will be thrown. To overcome this issue Javonet introduces "NNull" type which allows to pass type-specific null value.
+
+How to call .NET method passing type-specific null value  
   
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: StandardLibrary_PassReferenceTypeArgument
+:calling_id: TestResources_CallOverloadedMethodPassingNullArg
 :display: calling
 :::
 
