@@ -187,10 +187,10 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create extended class instance
-        ExtendedNetTestClass myExtendedForm = new ExtendedNetTestClass();
+        ExtendedTestClass myExtendedTestClass = new ExtendedTestClass();
 
         // use method from this class
-        Integer response = myExtendedForm.MultiplyByTwo(77);
+        Integer response = myExtendedTestClass.MultiplyByTwo(77);
 
         // write response to console
         System.out.println(response);
