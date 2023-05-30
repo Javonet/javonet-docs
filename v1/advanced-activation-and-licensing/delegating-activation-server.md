@@ -28,16 +28,16 @@ Moving delegation file and delegation license to the project activation tool dir
   
 ## Delegating New Activation Server  
   
-1) Download latest Project Activation Tool: Javonet.ProjectLicenseGenerator.exe
-2) Copy Project Activation Tool to target server that will be used to generate Javonet license for your project
-3) Run following command: "Javonet.ProjectLicenseGenerator.exe -hid"
-4) Write down the hardware ID of target machine
-5) Copy Project Activation Tool to any local physical machine with USB port
-6) Copy javonet.delegation.lic to the folder of PAT tool
-7) Plugin dongle and make sure drivers are properly identified
-8) Run following command: "Javonet.ProjectLicenseGenerator.exe -delegate HARDWARE_ID" (in place of HARDWARE_ID put the id received in step 4)
-9) Save the javonet.delegate file generated
-10)Copy javonet.delegate file and javonet.delegation.lic to the PAT tool directory on target server
+1) Download latest Project Activation Tool: Javonet.ProjectLicenseGenerator.exe  
+2) Copy Project Activation Tool to target server that will be used to generate Javonet license for your project  
+3) Run following command: "Javonet.ProjectLicenseGenerator.exe -hid"  
+4) Write down the hardware ID of target machine  
+5) Copy Project Activation Tool to any local physical machine with USB port  
+6) Copy javonet.delegation.lic to the folder of PAT tool  
+7) Plugin dongle and make sure drivers are properly identified  
+8) Run following command: "Javonet.ProjectLicenseGenerator.exe -delegate HARDWARE_ID" (in place of HARDWARE_ID put the id received in step 4)  
+9) Save the javonet.delegate file generated  
+10)Copy javonet.delegate file and javonet.delegation.lic to the PAT tool directory on target server  
 11)Run your activation command. New license should be generated even if there is no internet access or no connectivity to Javonet Activation Server.  
   
 Generated license for particular state of the project will be respecting all rules of your license and therefore will allow to be used on any machine and without time limits.  
