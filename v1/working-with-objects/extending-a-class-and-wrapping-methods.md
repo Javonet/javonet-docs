@@ -19,7 +19,6 @@ To extend this class and wrap method from this class create the following class:
 
 :::code 
 :called_source: v1/snippets/`{calling_technology}`/`{called_technology}`/ExtendedTestClass.`{calling_ext}`
-:calling_id: All
 :display: calling
 :::
 

@@ -1,4 +1,3 @@
-// <All>
 import com.javonet.JavonetException;
 import com.javonet.api.NObject;
 
@@ -14,4 +13,3 @@ public class ExtendedTestClass extends NObject {
         return this.invoke("MultiplyByTwo", arg);
     }
 }
-// </All>
