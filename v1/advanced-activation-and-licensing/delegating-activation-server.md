@@ -4,8 +4,8 @@
 :related_articles: advanced-activation-and-licensing/project-activation-tool, advanced-activation-and-licensing/runtime-offline-compile-time-activation
 :::
 
-# Delegating Activation Server
-
+# Delegating Activation Server  
+  
 ## Overview  
   
 Activation server delegation means temporary delegation of performing compile time activation to one of the local on-premise or cloud servers. Delegation can be used to achieve 100% availability of activation service even if Javonet activation server is not accessible. To delegate activation server role to one of the local machines you need Enterprise License with "No Hardware ID Check" and "Never Expiry" options and activation server delegation hardware dongle.
