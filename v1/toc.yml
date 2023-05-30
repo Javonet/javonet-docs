@@ -92,7 +92,7 @@ items:
     calling_technology: java
     called_technology: netframework-dll
   - name: Passing arguments by reference with 'ref' and 'out' keywords
-    href: /methods-arguments/passing-arguments-by-reference-wth-keywords.md
+    href: /methods-arguments/passing-arguments-by-reference-with-keywords.md
     calling_technology: java
     called_technology: netframework-dll
   - name: Passing typeof(Type) as method argument
