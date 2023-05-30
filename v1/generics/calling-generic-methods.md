@@ -6,7 +6,9 @@
 
 # Calling generic methods
 
-With Javonet you can very easily invoke any generic instance or static method. To call a generic method, you need to provide types that will be used during the method invocation. Those types can be passed as an instance of NType objects initialized with particular .NET types. Let's assume you have following .NET object you want to use from Java:   
+With Javonet you can very easily invoke any generic instance or static method. To call a generic method, you need to provide types that will be used during the method invocation. Those types can be passed as an instance of NType objects initialized with particular .NET types.  
+  
+Assuming we have a custom `{called_name}` with the following class inside:
 
 :::code 
 :called_source: v1/snippets/`{called_technology}`/TestClass.`{called_ext}`

@@ -179,6 +179,27 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_TestResources_ExtendClassAndWrapMethod() throws JavonetException {
+        // <TestResources_ExtendClassAndWrapMethod>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create extended class instance
+        ExtendedNetTestClass myExtendedForm = new ExtendedNetTestClass();
+
+        // use method from this class
+        Integer response = myExtendedForm.MultiplyByTwo(77);
+
+        // write response to console
+        System.out.println(response);
+        // </TestResources_ExtendClassAndWrapMethod>
+        Assertions.assertEquals(154, response);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_StandardLibrary_CreateInstanceAndInvokeMethod() throws JavonetException {
         // <StandardLibrary_CreateInstanceAndInvokeMethod>
         // Todo: activate Javonet
@@ -254,5 +275,4 @@ public class integrationTests {
         System.out.println((String) result.getIndex(1)); //displays "b"
         // </StandardLibrary_CreateInstanceOfGenericObject>
     }
-
 }
