@@ -257,6 +257,32 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_TestResources_PassTypeAsMethodArgument() throws JavonetException {
+        // <TestResources_PassTypeAsMethodArgument>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // create instance
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
+
+        // create NType
+        NType typeOfString = Javonet.getType("String");
+
+        // invoke method with argument of type Type
+        String response = sampleObject.invoke("PassTypeArg",typeOfString);
+
+        // write response to console
+        System.out.println(response);
+        // expected output:
+        //System.String
+        // </TestResources_PassTypeAsMethodArgument>
+        Assertions.assertEquals("System.String", response);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_StandardLibrary_CreateInstanceAndInvokeMethod() throws JavonetException {
         // <StandardLibrary_CreateInstanceAndInvokeMethod>
         // Todo: activate Javonet

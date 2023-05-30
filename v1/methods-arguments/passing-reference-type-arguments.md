@@ -1,7 +1,7 @@
 :::options
 :title: Passing reference-type arguments
 :description: Passing reference-type arguments
-:related_articles: methods-arguments/passing-arguments-by-reference-with-keywords, methods-arguments/passing-typeof-type-as-method-argument, methods-arguments/calling-overloaded-method-passing-null-argument
+:related_articles: methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/passing-typeof-type-as-method-argument, methods-arguments/calling-overloaded-method-passing-null-argument
 :::
 
 # Passing reference-type arguments  
