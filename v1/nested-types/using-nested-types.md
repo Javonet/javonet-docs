@@ -16,10 +16,9 @@ Assuming we have a custom `{called_name}` with the following class inside:
 :display: called
 :::
 
-To reference nested type with full namespace the name of the nested class should be prefixed with namespace, name of parent class and "+" sign. For example the "Nested" class defined above could be access using following path "TestNamespace.Container+Nested". Following examples show how to initialize and work with nested types using full namespace.
-
-
-::code 
+To reference nested type with full namespace the name of the nested class should be prefixed with namespace, name of parent class and "+" sign. For example the "Nested" class defined above could be access using following path "TestNamespace.Container+Nested". Following examples show how to initialize and work with nested types using full namespace.  
+  
+:::code
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_UseNestedTypes
 :display: calling
