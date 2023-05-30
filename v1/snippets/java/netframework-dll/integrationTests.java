@@ -59,7 +59,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // get .NET type
-        NType sampleType = Javonet.getType("TestClass.TestClass");
+        NType sampleType = Javonet.getType("TestNamespace.TestClass");
 
         // call static method
         String response = sampleType.invoke("SayHello", "Student");
@@ -79,7 +79,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // call static method
-        String response = Javonet.getType("TestClass.TestClass").invoke("SayHello", "Student");
+        String response = Javonet.getType("TestNamespace.TestClass").invoke("SayHello", "Student");
 
         // write response to console
         System.out.println(response);
@@ -96,7 +96,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create instance
-        NObject sampleObject = Javonet.New("TestClass.TestClass");
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
 
         // call instance method
         Integer response = sampleObject.invoke("MultiplyByTwo", 50);
@@ -116,7 +116,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // get .NET type
-        NType sampleType = Javonet.getType("TestClass.TestClass");
+        NType sampleType = Javonet.getType("TestNamespace.TestClass");
 
         // set static field
         sampleType.set("MyStaticField", 10);
@@ -139,7 +139,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create instance
-        NObject sampleObject = Javonet.New("TestClass.TestClass");
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
 
         // set instance field
         sampleObject.set("MyInstanceField", 11);
@@ -163,7 +163,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create instance
-        NObject sampleObject = Javonet.New("TestClass.TestClass");
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
 
         // invoke generic method with one type
         String response1 = sampleObject.generic(Javonet.getType("String")).invoke("MyGenericMethod", "sample");
@@ -211,7 +211,7 @@ public class integrationTests {
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
         // create instance
-        NObject sampleObject = Javonet.New("TestClass.TestClass");
+        NObject sampleObject = Javonet.New("TestNamespace.TestClass");
 
         // wrap Java integer in AtomicReference to allow passing by reference
         AtomicReference<Integer> myInt = new AtomicReference<Integer>(10);
@@ -234,12 +234,12 @@ public class integrationTests {
         // add reference to library
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
 
-        NObject populator = Javonet.New("PopulateItems");
+        NObject populator = Javonet.New("TestNamespace.PopulateItems");
 
         //Wrap null Java array in atomic reference to pass the reference as out argument
         AtomicReference<NObject[]> items = new AtomicReference<NObject[]>(null);
 
-        populator.invoke("Populate", new NOut(items,"Item[]"));
+        populator.invoke("Populate", new NOut(items,"TestNamespace.Item[]"));
 
         // write response to console
         for (NObject element: items.get()) {

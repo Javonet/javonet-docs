@@ -1,16 +1,19 @@
-class Item
+namespace TestNamespace
 {
-	public string ItemName { get; set; }
-}
-class PopulateItems
-{
-	public void Populate(out Item[] items)
+	class Item
 	{
-		items = new Item[5];
-		for (int i = 0; i < 5; i++)
+		public string ItemName { get; set; }
+	}
+	class PopulateItems
+	{
+		public void Populate(out Item[] items)
 		{
-			items[i] = new Item();
-			items[i].ItemName = "Item " + i.ToString();
+			items = new Item[5];
+			for (int i = 0; i < 5; i++)
+			{
+				items[i] = new Item();
+				items[i].ItemName = "Item " + i.ToString();
+			}
 		}
 	}
 }

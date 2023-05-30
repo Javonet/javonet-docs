@@ -5,7 +5,7 @@ public class ExtendedTestClass extends NObject {
 
     public ExtendedTestClass() throws JavonetException
     {
-        super("TestClass.TestClass");
+        super("TestNamespace.TestClass");
     }
 
     public int MultiplyByTwo(int arg) throws JavonetException
