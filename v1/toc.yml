@@ -144,12 +144,12 @@ items:
     calling_technology: java
     called_technology: netframework-dll
 
-# - name: Offline activation
-#   items: 
-#   - name: Using Javonet hardware dongle
-#     href: /offline-activation/using-javonet-hardware-dongle.md
-#     calling_technology: java
-#     called_technology: netframework-dll
+- name: Offline activation
+  items: 
+  - name: Using Javonet hardware dongle
+    href: /offline-activation/using-javonet-hardware-dongle.md
+    calling_technology: java
+    called_technology: netframework-dll
 
 # - name: Events and delegates
 #   items: 

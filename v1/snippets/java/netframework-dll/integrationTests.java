@@ -58,6 +58,26 @@ public class integrationTests {
         // </AccessNetAppConfigFile>
     }
 
+    @Test
+    @Tag("integration")
+    public void Test_UseJavonetHardwareDongle() throws JavonetException, IOException {
+        // <UseJavonetHardwareDongle>
+        // javonet.lic file should not exist
+        File f = new File("javonet.lic");
+        Assertions.assertFalse(f.exists());
+
+        // use hardware dongle
+        Javonet.setUseHardwareKey(true);
+        Javonet.activate("your@mail.com", "your-javonet-license-key", JavonetFramework.v45);
+
+        // javonet.lic file should exist
+        f = new File("javonet.lic");
+        Assertions.assertTrue(f.exists());
+
+        // Todo: Your Javonet powered application code
+        // </UseJavonetHardwareDongle>
+    }
+
 
     @Test
     @Tag("integration")
