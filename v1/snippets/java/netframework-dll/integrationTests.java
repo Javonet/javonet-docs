@@ -1,6 +1,4 @@
-import com.javonet.Javonet;
-import com.javonet.JavonetException;
-import com.javonet.JavonetFramework;
+import com.javonet.*;
 import com.javonet.api.NEnum;
 import com.javonet.api.NNull;
 import com.javonet.api.NObject;
@@ -76,6 +74,19 @@ public class integrationTests {
 
         // Todo: Your Javonet powered application code
         // </UseJavonetHardwareDongle>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_HandlingActivationIssues() throws JavonetException, IOException {
+        // <HandlingActivationIssues>
+        Javonet.addActivationStateListener(new JavonetActivationStateListener() {
+            @Override
+            public void activationStateUpdated(JavonetActivationState arg0, String arg1) {
+                System.out.println("Notification Received: "+arg0.name()+" : " +arg1);
+            }
+        });
+        // </HandlingActivationIssues>
     }
 
 
