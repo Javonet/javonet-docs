@@ -169,15 +169,15 @@ items:
 #     calling_technology: java
 #     called_technology: netframework-dll 
 
-# - name: .NET configuration files (AppConfig, WebConfig)
-#   items: 
-#   - name: Accessing the .NET AppConfig File (connectionStrings and appSettings)
-#     href: /net-configuration-files/accessing-the-net-appconfig-file.md
-#     calling_technology: java
-#     called_technology: netframework-dll 
+- name: .NET configuration files (AppConfig, WebConfig)
+  items: 
+  - name: Accessing the .NET AppConfig File (connectionStrings and appSettings)
+    href: /net-configuration-files/accessing-the-net-appconfig-file.md
+    calling_technology: java
+    called_technology: netframework-dll 
 
-# - name: Exceptions, debugging, testing
-#   items: 
+- name: Exceptions, debugging, testing
+  items: 
 #   - name: Handling activation issues
 #     href: /exceptions-debugging-testing/handling-activation-issues.md
 #     calling_technology: java
@@ -187,13 +187,13 @@ items:
 #     calling_technology: java
 #     called_technology: netframework-dll
 #   - name: Debugging
-#     href: /exceptions-debugging-testing/debugging.md
+#     href: /exceptions-debugging-testing/debug-net-code-called-from-java.md
 #     calling_technology: java
 #     called_technology: netframework-dll
-#   - name: Debugging Javonet enabled application
-#     href: /exceptions-debugging-testing/debugging-javonet-enabled-application.md
-#     calling_technology: java
-#     called_technology: netframework-dll
+  - name: Debugging Javonet enabled application
+    href: /exceptions-debugging-testing/debugging-javonet-enabled-application.md
+    calling_technology: java
+    called_technology: netframework-dll
 
 - name: Advanced activation and licencing
   items: 

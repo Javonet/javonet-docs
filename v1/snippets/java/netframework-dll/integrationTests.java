@@ -12,6 +12,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -41,6 +43,21 @@ public class integrationTests {
         // Todo: Your Javonet powered application code
         // </ActivationWithProxy>
     }
+
+    @Test
+    @Tag("integration")
+    public void Test_AccessNetAppConfigFile() throws JavonetException, IOException {
+        // <AccessNetAppConfigFile>
+        Javonet.activate("your@mail.com", "your-license-key", JavonetFramework.v40);
+
+        String configFilePath = new File( "." ).getCanonicalPath()+"\\app.config";
+        Javonet.getType("AppDomain")
+                .getRef("CurrentDomain")
+                .invoke("SetData","APP_CONFIG_FILE", configFilePath);
+        // Todo: Your Javonet powered application code
+        // </AccessNetAppConfigFile>
+    }
+
 
     @Test
     @Tag("integration")
