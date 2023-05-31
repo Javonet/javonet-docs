@@ -1,7 +1,7 @@
 :::options
 :title: Project Activation Tool
 :description: This section describes the usage of the Project Activation Tool
-:related_articles: advanced-activation-and-licensing/delegation-activation-server, advanced-activation-and-licensing/runtime-offline-compile-time-activation
+:related_articles: advanced-activation-and-licensing/delegating-activation-server, advanced-activation-and-licensing/runtime-offline-compile-time-activation
 :::
   
 # Project Activation Tool  
@@ -28,24 +28,24 @@ Project Activation Tool is a console application. To generate the license one of
   
 Activate the Javonet license by binding it to the project libraries and particular target machines:  
 
-``` 
-   Javonet.ProjectLicenseGenerator [licenseKey] [email] [licenseType] [hardwareId] [library path or name 1] [library path or name 2] ...
-   Javonet.ProjectLicenseGenerator -d [licenseKey] [email] [licenseType] [hardwareId] [path to folder with DLL or JAR files]
-```
+:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.xml ID="Snippet1":::
+
 Generate multiple license files providing list of hardware IDs and project libraries:  
   
-``` 
-   Javonet.ProjectLicenseGenerator -f [licenseKey] [email] [licenseType] [path to text file with hardware ids] [path to text file with libraries paths]
-```
+:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.xml ID="Snippet2":::
   
 ## For Javonet Enterprise License:  
   
 Generate license file for project libraries and now target machine limits.  
 
-```
-   Javonet.ProjectLicenseGenerator -nohid [licenseKey] [email] [licenseType] [library path or name 1] [library path or name 2] ...
-   Javonet.ProjectLicenseGenerator -nohid -d [licenseKey] [email] [licenseType] [path to folder with DLL or JAR files]
-   Javonet.ProjectLicenseGenerator -nohid -f [licenseKey] [email] [licenseType] [path to text file with libraries paths]
-```
+:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.xml ID="Snippet3":::
   
 In each case you can provide project libraries directly as command arguments, by specifying directory with your target JAR files or by pointing to text files which lists libraries that will be used by Javonet. 
+
+
+ZMIENIĆ KODY  NA SNIPPETY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!
+
+!!!!

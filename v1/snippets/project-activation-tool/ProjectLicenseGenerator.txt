@@ -1,0 +1,14 @@
+// <Snippet1>
+Javonet.ProjectLicenseGenerator [licenseKey] [email] [licenseType] [hardwareId] [library path or name 1] [library path or name 2] ...
+Javonet.ProjectLicenseGenerator -d [licenseKey] [email] [licenseType] [hardwareId] [path to folder with DLL or JAR files]
+//</Snippet1>
+
+//< Snippet2>
+Javonet.ProjectLicenseGenerator -f [licenseKey] [email] [licenseType] [path to text file with hardware ids] [path to text file with libraries paths]
+//</Snippet2>
+
+// <Snippet3>
+Javonet.ProjectLicenseGenerator -nohid [licenseKey] [email] [licenseType] [library path or name 1] [library path or name 2] ...
+Javonet.ProjectLicenseGenerator -nohid -d [licenseKey] [email] [licenseType] [path to folder with DLL or JAR files]
+Javonet.ProjectLicenseGenerator -nohid -f [licenseKey] [email] [licenseType] [path to text file with libraries paths]
+// </Snippet3>

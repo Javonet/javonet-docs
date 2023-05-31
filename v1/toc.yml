@@ -197,10 +197,10 @@ items:
 
 - name: Advanced activation and licencing
   items: 
-#   - name: Runtime vs. offline vs. compile time activation
-#     href: /advanced-activation-and-licensing/runtime-offline-compile-time-activation.md
-#     calling_technology: csharp, java
-#     called_technology: netframework-dll, jar-library
+  - name: Runtime vs. offline vs. compile time activation
+    href: /advanced-activation-and-licensing/runtime-offline-compile-time-activation.md
+    calling_technology: csharp, java
+    called_technology: netframework-dll, jar-library
   - name: Project activation tool
     href: /advanced-activation-and-licensing/project-activation-tool.md
     calling_technology: csharp, java
