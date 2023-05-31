@@ -28,24 +28,16 @@ Project Activation Tool is a console application. To generate the license one of
   
 Activate the Javonet license by binding it to the project libraries and particular target machines:  
 
-:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.xml" ID="Snippet1":::
+:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.txt" ID="Snippet1":::
 
 Generate multiple license files providing list of hardware IDs and project libraries:  
   
-:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.xml" ID="Snippet2":::
+:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.txt" ID="Snippet2":::
   
 ## For Javonet Enterprise License:  
   
 Generate license file for project libraries and now target machine limits.  
 
-:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.xml" ID="Snippet3":::
+:::code source="v1/snippets/project-activation-tool/ProjectLicenseGenerator.txt" ID="Snippet3":::
   
 In each case you can provide project libraries directly as command arguments, by specifying directory with your target JAR files or by pointing to text files which lists libraries that will be used by Javonet. 
-
-
-ZMIENIĆ KODY  NA SNIPPETY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-!!!!!
-
-!!!!
