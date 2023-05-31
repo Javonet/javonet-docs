@@ -1,3 +1,5 @@
+package test;
+
 import com.javonet.*;
 import com.javonet.api.NEnum;
 import com.javonet.api.NNull;
@@ -9,15 +11,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import utils.ActivationCredentials;
+import utils.Constants;
+import utils.ExtendedTestClass;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class integrationTests {
-
-    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "\\testsResources\\netframework-dll";
 
     @BeforeAll
     public static void initialization() throws JavonetException {
@@ -48,7 +50,7 @@ public class integrationTests {
         // <HandlingExceptions>
         try {
             // add reference to library
-            Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+            Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
             // get .NET type
             NType sampleType = Javonet.getType("TestNamespace.TestClass");
@@ -56,10 +58,12 @@ public class integrationTests {
             // call static method
             String response = sampleType.invoke("SayHello", 12.34);
         } catch (JavonetException jex) {
-            //Todo: Your exception handling code
+            // Todo: your exception handling code
             System.out.println(jex.toString());
+
             // expected output:
-            // com.javonet.api.NException: Static method 'SayHello(Double)' on class 'TestClass' from assembly 'TestClass, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' was not found.
+            // com.javonet.api.NException: Static method 'SayHello(Double)' on class 'TestClass'
+            // from assembly 'TestClass, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' was not found.
             //
             // Available methods are:
             // System.String SayHello(System.String)
@@ -124,7 +128,7 @@ public class integrationTests {
         // <TestResources_AddReference>
         // Todo: activate Javonet
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
         // </TestResources_AddReference>
     }
 
@@ -134,7 +138,7 @@ public class integrationTests {
         // <TestResources_InvokeStaticMethod>
         // Todo: activate Javonet
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // get .NET type
         NType sampleType = Javonet.getType("TestNamespace.TestClass");
@@ -154,7 +158,7 @@ public class integrationTests {
         // <TestResources_InvokeStaticMethodFluent>
         // Todo: activate Javonet
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // call static method
         String response = Javonet.getType("TestNamespace.TestClass").invoke("SayHello", "Student");
@@ -171,7 +175,7 @@ public class integrationTests {
         // <TestResources_CreateInstanceAndInvokeMethod>
         // Todo: activate Javonet
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
@@ -191,7 +195,7 @@ public class integrationTests {
         // <TestResources_GetSetStaticField>
         // Todo: activate Javonet
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // get .NET type
         NType sampleType = Javonet.getType("TestNamespace.TestClass");
@@ -214,7 +218,7 @@ public class integrationTests {
         // <TestResources_GetSetInstanceField>
         // Todo: activate Javonet
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
@@ -238,7 +242,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
@@ -265,7 +269,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create extended class instance
         ExtendedTestClass myExtendedTestClass = new ExtendedTestClass();
@@ -286,7 +290,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
@@ -310,7 +314,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         NObject populator = Javonet.New("TestNamespace.PopulateItems");
 
@@ -340,7 +344,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
@@ -366,7 +370,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass2");
@@ -394,7 +398,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
@@ -423,7 +427,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance of enum value
         NEnum sampleEnumValueOne = new NEnum("SampleEnum", "ValueOne");
@@ -449,7 +453,7 @@ public class integrationTests {
         // Todo: activate Javonet
 
         // add reference to library
-        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+        Javonet.addReference(Constants.resourcesDirectory + "\\TestClass.dll");
 
         // create instance
         NObject sampleObject = Javonet.New("TestNamespace.TestClass");
