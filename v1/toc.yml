@@ -182,10 +182,10 @@ items:
     href: /exceptions-debugging-testing/handling-activation-issues.md
     calling_technology: java
     called_technology: netframework-dll
-#   - name: Handling exceptions
-#     href: /exceptions-debugging-testing/handling-exceptions.md
-#     calling_technology: java
-#     called_technology: netframework-dll
+  - name: Handling exceptions
+    href: /exceptions-debugging-testing/handling-exceptions.md
+    calling_technology: java
+    called_technology: netframework-dll
 #   - name: Debugging
 #     href: /exceptions-debugging-testing/debug-net-code-called-from-java.md
 #     calling_technology: java

@@ -44,14 +44,56 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_HandlingExceptions() throws JavonetException, IOException {
+        // <HandlingExceptions>
+        try {
+            // add reference to library
+            Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+            // get .NET type
+            NType sampleType = Javonet.getType("TestNamespace.TestClass");
+
+            // call static method
+            String response = sampleType.invoke("SayHello", 12.34);
+        } catch (JavonetException jex) {
+            //Todo: Your exception handling code
+            System.out.println(jex.toString());
+            // expected output:
+            // com.javonet.api.NException: Static method 'SayHello(Double)' on class 'TestClass' from assembly 'TestClass, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null' was not found.
+            //
+            // Available methods are:
+            // System.String SayHello(System.String)
+            // Int32 get_MyStaticField()
+            // Void set_MyStaticField(Int32)
+            // Boolean Equals(System.Object, System.Object)
+            // Boolean ReferenceEquals(System.Object, System.Object)
+        }
+        // </HandlingExceptions>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_HandlingActivationIssues() throws JavonetException, IOException {
+        // <HandlingActivationIssues>
+        Javonet.addActivationStateListener(new JavonetActivationStateListener() {
+            @Override
+            public void activationStateUpdated(JavonetActivationState arg0, String arg1) {
+                System.out.println("Notification Received: " + arg0.name() + " : " + arg1);
+            }
+        });
+        // </HandlingActivationIssues>
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_AccessNetAppConfigFile() throws JavonetException, IOException {
         // <AccessNetAppConfigFile>
         Javonet.activate("your@mail.com", "your-license-key", JavonetFramework.v40);
 
-        String configFilePath = new File( "." ).getCanonicalPath()+"\\app.config";
+        String configFilePath = new File(".").getCanonicalPath() + "\\app.config";
         Javonet.getType("AppDomain")
                 .getRef("CurrentDomain")
-                .invoke("SetData","APP_CONFIG_FILE", configFilePath);
+                .invoke("SetData", "APP_CONFIG_FILE", configFilePath);
         // Todo: Your Javonet powered application code
         // </AccessNetAppConfigFile>
     }
@@ -75,20 +117,6 @@ public class integrationTests {
         // Todo: Your Javonet powered application code
         // </UseJavonetHardwareDongle>
     }
-
-    @Test
-    @Tag("integration")
-    public void Test_HandlingActivationIssues() throws JavonetException, IOException {
-        // <HandlingActivationIssues>
-        Javonet.addActivationStateListener(new JavonetActivationStateListener() {
-            @Override
-            public void activationStateUpdated(JavonetActivationState arg0, String arg1) {
-                System.out.println("Notification Received: "+arg0.name()+" : " +arg1);
-            }
-        });
-        // </HandlingActivationIssues>
-    }
-
 
     @Test
     @Tag("integration")

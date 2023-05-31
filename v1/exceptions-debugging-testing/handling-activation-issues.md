@@ -1,7 +1,7 @@
 :::options
 :title: Handling activation issues
 :description: Handling activation issues
-:related_articles: exceptions-debugging-testing/debugging-javonet-enabled-application, exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debug-net-code-called-from-java
+:related_articles: exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debug-net-code-called-from-java, exceptions-debugging-testing/debugging-javonet-enabled-application
 :::
 
 # Handling activation issues  
