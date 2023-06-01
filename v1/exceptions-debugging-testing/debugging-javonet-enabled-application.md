@@ -1,7 +1,7 @@
 :::options
 :title: Debugging Javonet enabled application
 :description: Debugging Javonet enabled application
-:related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debug-net-code-called-from-java
+:related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debugging-net-code-called-from-java
 :::
 
 # Debugging Javonet enabled application  

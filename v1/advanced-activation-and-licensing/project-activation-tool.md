@@ -18,7 +18,7 @@ Currently Project Activation Tool is available for the customers with Javonet Pr
   
 ## Activation Workflow  
   
-![Activation workflow](/v1/images/compiletimeactivationworkflow.png?raw=true "Title")
+![Activation workflow](/v1/images/compiletimeactivationworkflow.png?raw=true "Activation workflow")
   
 ## Usage  
   

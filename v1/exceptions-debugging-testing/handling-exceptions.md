@@ -1,7 +1,7 @@
 :::options
 :title: Handling exceptions
 :description: Handling exceptions
-:related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/debug-net-code-called-from-java, exceptions-debugging-testing/debugging-javonet-enabled-application
+:related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/debugging-net-code-called-from-java, exceptions-debugging-testing/debugging-javonet-enabled-application
 :::
 
 # Handling exceptions 

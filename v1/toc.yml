@@ -186,8 +186,8 @@ items:
     href: /exceptions-debugging-testing/handling-exceptions.md
     calling_technology: java
     called_technology: netframework-dll
-  - name: Debugging
-    href: /exceptions-debugging-testing/debug-net-code-called-from-java.md
+  - name: Debugging .NET code called from Java
+    href: /exceptions-debugging-testing/debugging-net-code-called-from-java.md
     calling_technology: java
     called_technology: netframework-dll
   - name: Debugging Javonet enabled application
