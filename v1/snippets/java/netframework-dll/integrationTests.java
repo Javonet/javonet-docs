@@ -8,11 +8,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import sun.misc.IOUtils;
 import utils.ExtendedTestClass;
 import utils.MyEventListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static utils.ActivationCredentials.yourEmail;
@@ -20,6 +25,17 @@ import static utils.ActivationCredentials.yourLicenseKey;
 import static utils.Constants.resourcesDirectory;
 
 public class integrationTests {
+
+    // <AddEmbeddedDllReference>
+    static void AddEmbeddedDllReference(String fileName) throws IOException, JavonetException {
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream input = classLoader.getResourceAsStream(fileName);
+        byte[] dllBytes = new byte[input.available()];
+        input.read(dllBytes);
+
+        Javonet.addReference(fileName, dllBytes);
+    }
+    // </AddEmbeddedDllReference>
 
     @BeforeAll
     public static void initialization() throws JavonetException {
@@ -128,8 +144,34 @@ public class integrationTests {
         // <TestResources_AddReference>
         // Todo: activate Javonet
         // add reference to library
+        Javonet.addReference("System.Windows.Forms", "System.Drawing");
         Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
         // </TestResources_AddReference>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_AddReferenceMemoryStream() throws JavonetException, IOException {
+        // <TestResources_AddReferenceMemoryStream>
+        // Todo: activate Javonet
+
+        // create Byte array from DLL
+        Path path = Paths.get(resourcesDirectory + "\\TestClass.dll");
+        byte[] data = Files.readAllBytes(path);
+
+        // add reference to library
+        Javonet.addReference("TestClass.dll", data);
+        // </TestResources_AAddReferenceMemoryStream>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_AddReferenceMemoryStream2() throws JavonetException, IOException {
+        // <TestResources_AddReferenceMemoryStream>
+        // Todo: activate Javonet
+
+        AddEmbeddedDllReference(resourcesDirectory + "\\TestClass.dll");
+        // </TestResources_AAddReferenceMemoryStream>
     }
 
     @Test
@@ -481,13 +523,12 @@ public class integrationTests {
 
         NObject sampleObj = Javonet.New("TestNamespace.EventExample");
 
-        sampleObj.addEventListener("SampleEvent",new INEventListener()
-        {
-            public void eventOccurred(Object[] arguments)
-            {
+        sampleObj.addEventListener("SampleEvent", new INEventListener() {
+            public void eventOccurred(Object[] arguments) {
                 System.out.println(arguments[1]);
             }
         });
+
         sampleObj.invoke("EventInvoke");
         // </TestResources_SubscribeToEvent>
     }
