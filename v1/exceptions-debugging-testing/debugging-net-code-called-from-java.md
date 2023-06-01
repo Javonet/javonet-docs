@@ -60,7 +60,7 @@ Next, we'll get a returned display name value of our Person object instance.
 
 ![debugging-net-code-called-from-java-9](/v1/images/debugging-net-code-called-from-java-9.png?raw=true "debugging-net-code-called-from-java-9") 
 
-As the program finishes. both debuggers will stop execution.  
+As the program finishes, both debuggers will stop execution.  
   
 ## Debugging Without .NET Source Project  
   
@@ -86,4 +86,4 @@ At this point, we are ready to debug our .NET application, therefore let's proce
 
 ## Summary  
   
-n this article we've learnt how to properly attach Visual Studio debugger to Java process hosting CLR managed code run by Javonet. The approach has been presented for two scenarios, distinguished by the availability of source code, proving easy access to all of the features offered by Visual Studio debugger that can be used during development of Java application using .NET libraries, drivers or SDKs with Javonet.
+In this article we've learnt how to properly attach Visual Studio debugger to Java process hosting CLR managed code run by Javonet. The approach has been presented for two scenarios, distinguished by the availability of source code, proving easy access to all of the features offered by Visual Studio debugger that can be used during development of Java application using .NET libraries, drivers or SDKs with Javonet.

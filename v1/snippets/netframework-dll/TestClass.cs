@@ -5,6 +5,10 @@ namespace TestNamespace
 	public class TestClass
 	{
 		public TestClass() { }
+		~TestClass()
+		{
+			Console.WriteLine("Displaying object from .NET destructor message");
+		}
 		public static int MyStaticField { get; set; }
 		public int MyInstanceField { get; set; }
 
