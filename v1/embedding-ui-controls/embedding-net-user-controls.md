@@ -18,11 +18,7 @@ You can see the sample project in action on [this video](https://www.youtube.com
   
 To embed user control in Java UI you need to wrap the control in NControlContainer class and add to your layout:
 
-:::code 
-:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: StandardLibrary_EmbedNetUserControl1
-:display: calling
-:::
+:::code source="v1/snippets/java/netframework-dll/integrationTests.java" ID="StandardLibrary_EmbedNetUserControl1":::
 
 In order to subscribe any event expose by the control just reference to the control instance NObject class:
 
