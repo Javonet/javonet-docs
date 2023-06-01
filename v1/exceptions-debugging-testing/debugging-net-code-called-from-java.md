@@ -52,11 +52,38 @@ As you can see, we can now use .NET debugger for all our intended activities, li
   
 ![debugging-net-code-called-from-java-7](/v1/images/debugging-net-code-called-from-java-7.png?raw=true "debugging-net-code-called-from-java-7")  
     
-Once our work with debugging Person class is done and normal code execution is resumed in Visual Studdio debugger, it'll be transferred back to Java.  
+Once our work with debugging Person class is done and normal code execution is resumed in Visual Studio debugger, it'll be transferred back to Java.  
   
 ![debugging-net-code-called-from-java-8](/v1/images/debugging-net-code-called-from-java-8.png?raw=true "debugging-net-code-called-from-java-8") 
 
-As the program finishes, we'll get a returned display name value of our Person object instance.  
+Next, we'll get a returned display name value of our Person object instance.  
 
 ![debugging-net-code-called-from-java-9](/v1/images/debugging-net-code-called-from-java-9.png?raw=true "debugging-net-code-called-from-java-9") 
+
+As the program finishes. both debuggers will stop execution.  
   
+## Debugging Without .NET Source Project  
+  
+Presented debugging method is available also in situations when we do not have access to library source code, provided that the related debugging symbols .pdb file for analysed program or library is available on the Javonet classpath at runtime. We would also need to know full namespace, class name and target method, where to put a breakpoint.  
+  
+Rerun Java code from Java IDE, breaking its execution at line with Javonet.addReference... to launch a new Java CLR-enabled process. In Visual Studio make sure you've closed solution for our previous example. As done before, attach debugger to respective managed java.exe or javaw.exe process.  
+  
+Our next step would be to insert new breakpoint. As we do not have the source code available, we'll need to specify its location manually. In order to do that we can go either to the breakpoint window **New > Break at function**, go to **Debug > New Breakpoint > Break** at function or use the Ctrl + B shortcut. Any of these paths will result in opening new window where we're asked to put the location of our breakpoint by specifying fully qualified method name.  
+  
+![debugging-net-code-called-from-java-10](/v1/images/debugging-net-code-called-from-java-10.png?raw=true "debugging-net-code-called-from-java-10")  
+   
+Once we are happy with our input, Visual Studio might notify us about not being able to find the specified location, which is understandable due to lack of source code. After accepting this notification we should be presented with a breakpoint entry similar to the one in the following picture. The circle will be hollow again, since we've not loaded our .NET library via Javonet API yet.  
+  
+![debugging-net-code-called-from-java-11](/v1/images/debugging-net-code-called-from-java-11.png?raw=true "debugging-net-code-called-from-java-11")  
+  
+If we proceed with Java code execution, the breakpoint symbol will again get filled, similarly to how it behaved in previous example. Also, the breakpoint location now contains fully qualified signature of the targeted method.  
+  
+![debugging-net-code-called-from-java-12](/v1/images/debugging-net-code-called-from-java-12.png?raw=true "debugging-net-code-called-from-java-12")  
+  
+At this point, we are ready to debug our .NET application, therefore let's proceed with Java code execution. Running line with String displayName = ... will hit our specified breakpoint, returning control to Visual Studio, where we'll be presented with a source code generated based on the supplied debugging symbols file.
+  
+![debugging-net-code-called-from-java-13](/v1/images/debugging-net-code-called-from-java-13.png?raw=true "debugging-net-code-called-from-java-13") 
+
+## Summary  
+  
+n this article we've learnt how to properly attach Visual Studio debugger to Java process hosting CLR managed code run by Javonet. The approach has been presented for two scenarios, distinguished by the availability of source code, proving easy access to all of the features offered by Visual Studio debugger that can be used during development of Java application using .NET libraries, drivers or SDKs with Javonet.
