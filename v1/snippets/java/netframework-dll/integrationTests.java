@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import utils.ActivationCredentials;
-import utils.Constants;
 import utils.ExtendedTestClass;
 import utils.MyEventListener;
 
@@ -474,6 +472,28 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_TestResources_SubscribeToEvent() throws JavonetException {
+        // <TestResources_SubscribeToEvent>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        NObject sampleObj = Javonet.New("TestNamespace.EventExample");
+
+        sampleObj.addEventListener("SampleEvent",new INEventListener()
+        {
+            public void eventOccurred(Object[] arguments)
+            {
+                System.out.println(arguments[1]);
+            }
+        });
+        sampleObj.invoke("EventInvoke");
+        // </TestResources_SubscribeToEvent>
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_TestResources_DisposeObject() throws JavonetException {
         // <TestResources_DisposeObject>
         // Todo: activate Javonet
@@ -499,8 +519,8 @@ public class integrationTests {
         // Todo: activate Javonet
 
         DelayGcContext.Begin();
-        for (int i=0; i<5000000;i++) {
-            NObject objA = Javonet.New("SampleType",i);
+        for (int i = 0; i < 5000000; i++) {
+            NObject objA = Javonet.New("SampleType", i);
             NObject objB = objA.get("B");
 
             //processItem(objB);
@@ -645,9 +665,9 @@ public class integrationTests {
         NObject button = Javonet.New("System.Windows.Forms.Button");
         button.set("Text", "Click me!");
 
-        button.addEventListener("Click",new INEventListener() {
+        button.addEventListener("Click", new INEventListener() {
             public void eventOccurred(Object[] arguments) {
-                System.out.println(".NET event occured");
+                System.out.println(".NET event occurred");
             }
         });
         // </StandardLibrary_SubscribeToEvent>
@@ -665,7 +685,7 @@ public class integrationTests {
         button.set("Text", "Click me!");
 
         MyEventListener listener = new MyEventListener();
-        button.addEventListener("Click",listener);
+        button.addEventListener("Click", listener);
         // </StandardLibrary_SubscribeToEvent2>
     }
 }

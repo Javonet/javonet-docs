@@ -8,7 +8,25 @@
 Subscribe to any .NET event with Javonet. Event subscription works the same way as listening Java events. The performance of event subscription is extremely high and allows you to interact with .NET code like it was native Java code. When the event occurs, your Java listener callback is called in a separate thread.  
 
 The simplest way to subscribe an event is to use an anonymous Java class.  
-  
+
+Assuming we have a custom `{called_name}` with the following class inside:
+
+:::code 
+:called_source: v1/snippets/`{called_technology}`/EventExample.`{called_ext}`
+:display: called
+:::
+
+The anonymous class should implement special **INEventListener** interface.
+
+:::code
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_SubscribeToEvent
+:display: calling
+:::
+
+
+## Using .NET standard library elements
+
 To create a .NET button and listen for a "Click" event::
 
 :::code
