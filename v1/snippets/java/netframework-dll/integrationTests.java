@@ -513,6 +513,61 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_TestResources_Arrays() throws JavonetException {
+        // <TestResources_Arrays>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        // retrieve array of strings
+        NObject sampleObj = Javonet.New("TestNamespace.ArrayTestClass");
+        String[] items = sampleObj.invoke("GetItems");
+        System.out.println("Java: Displaying array values");
+        for (int i=0; i<items.length;i++)
+        {
+            System.out.println(items[i]);
+        }
+
+        // pass array of strings
+        String[] stringArray = new String[] {"Item1","Item2","Item3"};
+        sampleObj.invoke("DisplayArray",new Object[] {stringArray});
+
+        // retrieve array of .NET objects
+        NObject[] refArray = sampleObj.invoke("GetRefItems");
+
+        System.out.println("Java: Displaying array of .NET objects' item names");
+        for (NObject element : refArray)
+        {
+            System.out.println((String)element.get("ItemName"));
+        }
+
+        // pass array of .NET objects
+        sampleObj.invoke("DisplayArray",new Object[] {refArray});
+
+        // expected output:
+        //Java: Displaying array values
+        //item1
+        //item2
+        //item3
+        //.NET: Displaying value-typed array
+        //Item1
+        //Item2
+        //Item3
+        //Java: Displaying array of .NET objects' item names
+        //Item1
+        //Item2
+        //Item3
+        //.NET: Displaying ref-typed array
+        //Item1
+        //Item2
+        //Item3
+        // </TestResources_Arrays>
+        Assertions.assertArrayEquals(new String[] {"item1", "item2", "item3"}, items);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_TestResources_SubscribeToEvent() throws JavonetException {
         // <TestResources_SubscribeToEvent>
         // Todo: activate Javonet

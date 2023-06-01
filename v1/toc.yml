@@ -122,16 +122,16 @@ items:
     calling_technology: java
     called_technology: netframework-dll
 
-# - name: Arrays and collections
-#   items: 
-#   - name: Using value-type and reference-type arrays
-#     href: /arrays-and-collections/using-value-type-and-reference-type-arrays.md
-#     calling_technology: java
-#     called_technology: netframework-dll
-#   - name: Working with arrays and collections
-#     href: /arrays-and-collections/working-with-arrays-and-collections.md
-#     calling_technology: java
-#     called_technology: netframework-dll
+- name: Arrays and collections
+  items: 
+  - name: Using value-type and reference-type arrays
+    href: /arrays-and-collections/using-value-type-and-reference-type-arrays.md
+    calling_technology: java
+    called_technology: netframework-dll
+  - name: Working with arrays and collections
+    href: /arrays-and-collections/working-with-arrays-and-collections.md
+    calling_technology: java
+    called_technology: netframework-dll
 
 - name: Embedding UI controls
   items: 
