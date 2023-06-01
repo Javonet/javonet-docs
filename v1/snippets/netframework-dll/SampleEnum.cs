@@ -1,4 +1,4 @@
-public enum SampleEnum
+﻿public enum SampleEnum
 {
 	ValueOne,
 	ValueTwo,

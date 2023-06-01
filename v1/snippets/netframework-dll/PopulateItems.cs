@@ -1,4 +1,4 @@
-namespace TestNamespace
+﻿namespace TestNamespace
 {
 	class Item
 	{

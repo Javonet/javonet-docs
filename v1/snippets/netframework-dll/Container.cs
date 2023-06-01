@@ -1,10 +1,10 @@
-namespace TestNamespace
+﻿namespace TestNamespace
 {
 	public class Container
 	{
 		public class Nested
 		{
-			Nested() { }
+			public Nested() { }
 		}
 	}
 }

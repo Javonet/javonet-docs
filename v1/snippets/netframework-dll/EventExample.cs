@@ -1,4 +1,4 @@
-namespace TestNamespace
+﻿namespace TestNamespace
 {
 	public delegate void EventExampleHandler(object sender, string e);
 
