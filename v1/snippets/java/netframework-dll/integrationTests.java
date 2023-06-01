@@ -8,10 +8,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import sun.misc.IOUtils;
 import utils.ExtendedTestClass;
 import utils.MyEventListener;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -111,9 +112,7 @@ public class integrationTests {
         Javonet.activate("your@mail.com", "your-license-key", JavonetFramework.v40);
 
         String configFilePath = new File(".").getCanonicalPath() + "\\app.config";
-        Javonet.getType("AppDomain")
-                .getRef("CurrentDomain")
-                .invoke("SetData", "APP_CONFIG_FILE", configFilePath);
+        Javonet.getType("AppDomain").getRef("CurrentDomain").invoke("SetData", "APP_CONFIG_FILE", configFilePath);
         // Todo: Your Javonet powered application code
         // </AccessNetAppConfigFile>
     }
@@ -728,5 +727,36 @@ public class integrationTests {
         MyEventListener listener = new MyEventListener();
         button.addEventListener("Click", listener);
         // </StandardLibrary_SubscribeToEvent2>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_EmbedNetUserControl() throws JavonetException {
+        // <StandardLibrary_EmbedNetUserControl1>
+        // Todo: activate Javonet
+
+        //  create new instance of your WPF control
+        NObject userControl = Javonet.New("Javonet.WpfUserControlSample.UserControl1");
+        // wrap the control with NControlContainer
+        NControlContainer dotNetUserControl = new NControlContainer(userControl);
+
+        // create your layout
+        JPanel panel = new JPanel();
+
+        // add wrapper to your layout
+        panel.add(dotNetUserControl, BorderLayout.EAST);
+        //this.add(panel, BorderLayout.CENTER);
+        // </StandardLibrary_EmbedNetUserControl1>
+        // <StandardLibrary_EmbedNetUserControl2>
+        userControl.addEventListener("ButtonClicked", new NEventListener() {
+            public void eventOccurred(Object[] arguments) {
+                //do the event handler work
+            }
+        });
+        // </StandardLibrary_EmbedNetUserControl2>
+        // <StandardLibrary_EmbedNetUserControl3>
+        dotNetUserControl.setPreferredSize(new Dimension(200, 300));
+        dotNetUserControl.revalidate();
+        // </StandardLibrary_EmbedNetUserControl3>
     }
 }

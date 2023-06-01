@@ -135,10 +135,10 @@ items:
 
 - name: Embedding UI controls
   items: 
-# - name: Embedding .NET User Controls in Java AWT, Swing or JAvaFX
-#   href: /embedding-ui-controls/embedding-net-user-controls.md
-#   calling_technology: java
-#   called_technology: netframework-dll
+  - name: Embedding .NET User Controls in Java AWT, Swing or JavaFX
+    href: /embedding-ui-controls/embedding-net-user-controls.md
+    calling_technology: java
+    called_technology: netframework-dll
   - name: Using Back-end and UI Components
     href: /embedding-ui-controls/using-backend-and-ui-components.md
     calling_technology: java

@@ -1,7 +1,7 @@
 :::options
 :title:  Introduction to Using .NET Back-end and UI Components in Java
 :description: Introduction to Using .NET Back-end and UI Components in Java
-:related_articles: getting-started/installing-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
+:related_articles: getting-started/installing-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file, embedding-ui-controls/embedding-net-user-controls
 :::
 
 # Using .NET Back-end and UI Components in Java  
