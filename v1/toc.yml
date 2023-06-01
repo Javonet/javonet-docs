@@ -164,10 +164,10 @@ items:
     href: /disposing-and-garbage-collection/disposing-of-objects.md
     calling_technology: java
     called_technology: netframework-dll
-#   - name: Batching GC with DelayGcContext
-#     href: /disposing-and-garbage-collection/batching-gc-with-delaygccontext.md
-#     calling_technology: java
-#     called_technology: netframework-dll 
+  - name: Batching GC with DelayGcContext
+    href: /disposing-and-garbage-collection/batching-gc-with-delaygccontext.md
+    calling_technology: java
+    called_technology: netframework-dll 
 
 - name: .NET configuration files (AppConfig, WebConfig)
   items: 

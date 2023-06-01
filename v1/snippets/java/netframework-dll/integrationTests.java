@@ -1,10 +1,7 @@
 package test;
 
 import com.javonet.*;
-import com.javonet.api.NEnum;
-import com.javonet.api.NNull;
-import com.javonet.api.NObject;
-import com.javonet.api.NType;
+import com.javonet.api.*;
 import com.javonet.api.keywords.NOut;
 import com.javonet.api.keywords.NRef;
 import org.junit.jupiter.api.Assertions;
@@ -492,6 +489,28 @@ public class integrationTests {
         //Clearing the object reference so it will be removed by garbage collector
         sampleObject = null;
         // </TestResources_DisposeObject>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_BatchingGC() throws JavonetException {
+        // <TestResources_BatchingGC>
+        // Todo: activate Javonet
+
+        DelayGcContext.Begin();
+        for (int i=0; i<5000000;i++) {
+            NObject objA = Javonet.New("SampleType",i);
+            NObject objB = objA.get("B");
+
+            //processItem(objB);
+            //(... some other operations ...)
+            NObject objC = objB.getRef("subProp").getRef("subProp").invoke("GetC");
+
+            //in this block objA, objB, and objC instance if not referenced in other parts of code
+            //will be subjected for garbage collection after each iteration of the loop
+        }
+        DelayGcContext.End();
+        // </TestResources_BatchingGC>
     }
 
     @Test

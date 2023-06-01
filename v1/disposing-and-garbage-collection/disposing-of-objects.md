@@ -1,7 +1,7 @@
 :::options
 :title: Disposing of objects
 :description: Disposing of objects
-:related_articles: disposing-of-objects/batching-gc-with-delaygccontext
+:related_articles: disposing-and-garbage-collection/batching-gc-with-delaygccontext
 :::
 
 # Disposing of objects  
