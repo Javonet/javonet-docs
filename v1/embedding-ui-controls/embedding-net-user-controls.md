@@ -22,16 +22,8 @@ To embed user control in Java UI you need to wrap the control in NControlContain
 
 In order to subscribe any event expose by the control just reference to the control instance NObject class:
 
-:::code 
-:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: StandardLibrary_EmbedNetUserControl2
-:display: calling
-:::
+:::code source="v1/snippets/java/netframework-dll/integrationTests.java" ID="StandardLibrary_EmbedNetUserControl2":::
 
 Starting 1.4hf34 we have exposed updated revalidate method which allows you to refresh the control layout after programmatic changes of layout or control size
 
-:::code 
-:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: StandardLibrary_EmbedNetUserControl3
-:display: calling
-:::
+:::code source="v1/snippets/java/netframework-dll/integrationTests.java" ID="StandardLibrary_EmbedNetUserControl3":::
