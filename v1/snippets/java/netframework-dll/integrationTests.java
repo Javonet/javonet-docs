@@ -167,11 +167,11 @@ public class integrationTests {
     @Test
     @Tag("integration")
     public void Test_TestResources_AddReferenceMemoryStream2() throws JavonetException, IOException {
-        // <TestResources_AddReferenceMemoryStream>
+        // <TestResources_AddReferenceMemoryStream2>
         // Todo: activate Javonet
 
         AddEmbeddedDllReference(resourcesDirectory + "\\TestClass.dll");
-        // </TestResources_AAddReferenceMemoryStream>
+        // </TestResources_AddReferenceMemoryStream2>
     }
 
     @Test
