@@ -151,12 +151,12 @@ items:
     calling_technology: java
     called_technology: netframework-dll
 
-# - name: Events and delegates
-#   items: 
-#   - name: Subscribing to events
-#     href: /events-and-delegates/subscribing-to-events.md
-#     calling_technology: java
-#     called_technology: netframework-dll
+- name: Events and delegates
+  items: 
+  - name: Subscribing to events
+    href: /events-and-delegates/subscribing-to-events.md
+    calling_technology: java
+    called_technology: netframework-dll
 
 - name: Disposing and garbage collection
   items: 

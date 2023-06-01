@@ -18,5 +18,4 @@ The beginning of delayed garbage collection section should be indicated by calli
 :display: calling
 :::
   
-
 More about DelayGcContext you can read in our docs section for [DelayGcContext class](http://doc.javonet.com/com/javonet/api/DelayGcContext.html)

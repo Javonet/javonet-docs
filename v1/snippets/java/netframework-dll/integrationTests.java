@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import utils.ActivationCredentials;
 import utils.Constants;
 import utils.ExtendedTestClass;
+import utils.MyEventListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -631,5 +632,40 @@ public class integrationTests {
 
         // </StandardLibrary_PassArgumentWithOutKeyword>
         Assertions.assertEquals(4, myInt.get());
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_SubscribeToEvent() throws JavonetException {
+        // <StandardLibrary_SubscribeToEvent>
+        // Todo: activate Javonet
+
+        Javonet.addReference("System.Windows.Forms.dll");
+
+        NObject button = Javonet.New("System.Windows.Forms.Button");
+        button.set("Text", "Click me!");
+
+        button.addEventListener("Click",new INEventListener() {
+            public void eventOccurred(Object[] arguments) {
+                System.out.println(".NET event occured");
+            }
+        });
+        // </StandardLibrary_SubscribeToEvent>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_StandardLibrary_SubscribeToEvent2() throws JavonetException {
+        // <StandardLibrary_SubscribeToEvent2>
+        // Todo: activate Javonet
+
+        Javonet.addReference("System.Windows.Forms.dll");
+
+        NObject button = Javonet.New("System.Windows.Forms.Button");
+        button.set("Text", "Click me!");
+
+        MyEventListener listener = new MyEventListener();
+        button.addEventListener("Click",listener);
+        // </StandardLibrary_SubscribeToEvent2>
     }
 }
