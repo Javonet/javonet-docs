@@ -66,10 +66,6 @@ items:
     href: /fields-and-properties/get-set-values-for-instance-fields-and-properties.md
     calling_technology: csharp, java
     called_technology: netframework-dll, jar-library
-  - name: Test
-    href: /fields-and-properties/get-set-values-for-instance-fields-and-properties.md
-    calling_technology: csharp
-    called_technology: jar-library
 
 - name: Generics
   items:
