@@ -677,7 +677,7 @@ public class integrationTests {
         // [Java] Set size: 5
         // [Java] Set contents:
         // strings  in  set  from  .NET
-        // </TestResources_Arrays_GetSet>
+        // </TestResources_Collections_GetSet>
     }
 
     @Test
@@ -710,7 +710,7 @@ public class integrationTests {
         // [Java] Second element: in
         // [Java] List contents:
         // strings  in  list  from  .NET
-        // </TestResources_Arrays_GetList>
+        // </TestResources_Collections_GetList>
     }
 
     @Test
@@ -745,7 +745,62 @@ public class integrationTests {
         // 'key1' = 'value1'
         // 'key2' = 'value2'
         // 'key3' = 'value3'
-        // </TestResources_Arrays_GetDictionary>
+        // </TestResources_Collections_GetDictionary>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_Collections_UseList() throws JavonetException {
+        // <TestResources_Collections_UseList>
+        // Todo: activate Javonet and add reference to .NET library
+
+        // get generic type with a single type-parameter
+        NType listType = Javonet.getType("List`1", "String");
+
+        // instantiate new object of that type
+        NObject list = listType.create();
+
+        // use object, to add dictionary entries
+        list.invoke("Add", "Strings");
+        list.invoke("Add", "in");
+        list.invoke("Add", "the");
+        list.invoke("Add", "list");
+        list.invoke("Add", "from");
+        list.invoke("Add", "Java");
+
+        NObject collectionService = Javonet.New("TestNamespace.CollectionService");
+
+        collectionService.invoke("UseList", list);
+        // expected output:
+        // [.NET] List contents:
+        // Strings in the list from Java
+        // </TestResources_Collections_UseList>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_Collections_UseDictionary() throws JavonetException {
+        // <TestResources_Collections_UseDictionary>
+        // Todo: activate Javonet and add reference to .NET library
+
+        // get generic type with two type-parameters
+        NType dictionaryType = Javonet.getType("Dictionary`2", "String", "String");
+
+        // instantiate new object of that type
+        NObject dictionary = dictionaryType.create();
+
+        // use object, to add dictionary entries
+        dictionary.invoke("Add", "key1", "value1");
+        dictionary.invoke("Add", "key2", "value2");
+        dictionary.invoke("Add", "key3", "value3");
+
+        NObject collectionService = Javonet.New("TestNamespace.CollectionService");
+
+        collectionService.invoke("UseDictionary", dictionary);
+        // expected output:
+        // [.NET] Dictionary contents:
+        // 'key1' = 'value1';  'key2' = 'value2';  'key3' = 'value3';
+        // </TestResources_Collections_UseDictionary>
     }
 
     @Test
