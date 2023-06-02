@@ -1,10 +1,10 @@
 :::options
-:title: Using Value-Type and Reference-Type Arrays
-:description: Using Value-Type and Reference-Type Arrays
-:related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays.md
+:title: Working with arrays
+:description: Working with arrays
+:related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays.md, arrays-and-collections/working-with-collections.md
 :::
   
-# Working with arrays and collections  
+# Working with arrays  
 
 Data structures are one of the essential aspects of every piece of software that has ever been written. Any
 application, from simple command line util to scalable enterprise systems, constantly process various
@@ -28,17 +28,14 @@ purpose is to produce and consume various array-typed objects.
 Javonet framework allows for simple retrieval of arrays of objects, as presented in the
 following examples. Such objects are treated as usual `{calling_name}` arrays, therefore all the standard `{calling_name}` programming techniques apply. Although examples present objects' retrieval in result to method calls, the same approach is applicable for getting class properties, direct member access etc.  
   
-**For Java developers**    
---------------  
-It's worth mentioning that, when dealing with primitive, value-typed .NET arrays, Javonet framework
+**For Java developers** - It's worth mentioning that, when dealing with primitive, value-typed .NET arrays, Javonet framework
 automatically translates them to respective Java primitive type. In such cases, it is necessary to keep in mind, that the returned array will contain boxing-type objects, otherwise we might face an InvalidClassCastException.
---------------  
   
 Example of calling method which returns array of Integers:
   
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_ArraysAndCollections_GetIntArray
+:calling_id: TestResources_Arrays_GetIntArray
 :display: calling
 :::
 
@@ -48,7 +45,7 @@ Example of calling method which returns array of Objects:
   
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_ArraysAndCollections_GetCustomObjectArray
+:calling_id: TestResources_Arrays_GetCustomObjectArray
 :display: calling
 :::
 
@@ -58,7 +55,7 @@ Value-typed nested arrays:
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_ArraysAndCollections_GetArrayOfIntArrays
+:calling_id: TestResources_Arrays_GetArrayOfIntArrays
 :display: calling
 :::
 
@@ -66,13 +63,11 @@ Reference-type nested arrays:
   
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_ArraysAndCollections_GetArrayOfCustomObjectArrays
+:calling_id: TestResources_Arrays_GetArrayOfCustomObjectArrays
 :display: calling
 :::
 
-**For Java developers**  
---------------  
-Unfortunately, current version of Javonet framework does not support retrieval of arrays containing arraytype objects, nested more than once. Also, the multidimensional arrays (in the .NET way of things) are not
+**For Java developers** - Unfortunately, current version of Javonet framework does not support retrieval of arrays containing arraytype objects, nested more than once. Also, the multidimensional arrays (in the .NET way of things) are not
 supported either. Thankfully, despite the fact, that such cases are not that common and/or easy
 workarounds exist, it is considered as viable enhancement, which most probably will be shipped in one of the upcoming versions.
 --------------  
@@ -80,20 +75,31 @@ workarounds exist, it is considered as viable enhancement, which most probably w
 
 ## Passing arrays
 
-**For Java developers**  
---------------  
-Being aware of the automatic type conversion for value-typed arrays, it is absolutely safe to pass regular Java arrays as arguments to the .NET code. Similarily as when retrieving primitive arrays, it is necessary to work with the boxed wrappers.
+**For Java developers** - Being aware of the automatic type conversion for value-typed arrays, it is absolutely safe to pass regular Java arrays as arguments to the .NET code. Similarily as when retrieving primitive arrays, it is necessary to work with the boxed wrappers.
 --------------   
   
-
-
-
+Passing array of primitive types:  
+  
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_Arrays_UseIntArray
+:display: calling
+:::
+  
+In case we need to send a reference-type array, all we need to do is create an array of NObjects/JObjects and
+populate it, as shown in the next example.  
+  
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_Arrays_UseCustomObjectArray
+:display: calling
+:::
+  
+  
+Unlike the array-retrieval scenario, sending nested arrays is not supported at the moment, it is however considered for shipment, depending on the demand for such feature.  
+  
 
 ## Summary  
   
-In this article we've focused on working with arrays and collections using Javonet
-framework. As for array objects, differences of handling arrays of value- and reference-type objects have
-been discussed, as well as framework's current limitations have been presented. We've briefly explained
-basic techniques of handling collection objects, covering retrieval, enumeration- and index-based
-access to their contents, as well as instantiation and usage as arguments in the method calls.
+In this article we've focused on working with arrays using Javonet framework. As for array objects, differences of handling arrays of value- and reference-type objects have been discussed, as well as framework's current limitations have been presented.
   

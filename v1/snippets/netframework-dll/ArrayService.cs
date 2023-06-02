@@ -2,7 +2,6 @@ namespace TestNamespace
 {
 	class ArrayService
 	{
-
 		public int[] GetIntArray()
 		{
 			return new int[] { 1, 2, 3, 4 };
@@ -11,10 +10,9 @@ namespace TestNamespace
 		public void UseIntArray(int[] intArray)
 		{
 			System.Console.WriteLine("[.NET] Contents of primitive-type array:");
-
 			foreach (int intVal in intArray)
 			{
-				System.Console.WriteLine("{0} ", intVal);
+				System.Console.Write("{0} ", intVal);
 			}
 		}
 
@@ -38,10 +36,9 @@ namespace TestNamespace
 		public void UseCustomObjectArray(CustomObject[] cuArray)
 		{
 			System.Console.WriteLine("[.NET] Contents of the reference-type array:");
-
 			foreach (CustomObject cu in cuArray)
 			{
-				System.Console.WriteLine("{0}[{1}] ", cu.Name, cu.Value);
+				System.Console.Write("{0}[{1}] ", cu.Name, cu.Value);
 			}
 		}
 
@@ -65,7 +62,6 @@ namespace TestNamespace
 
 	class CustomObject
 	{
-
 		public string Name { get; set; }
 		public int Value { get; set; }
 

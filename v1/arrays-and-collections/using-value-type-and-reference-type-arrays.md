@@ -1,7 +1,7 @@
 :::options
 :title: Using Value-Type and Reference-Type Arrays
 :description: Using Value-Type and Reference-Type Arrays
-:related_articles: arrays-and-collections/working-with-arrays-and-collections.md
+:related_articles: arrays-and-collections/working-with-arrays.md, arrays-and-collections/working-with-collections.md
 :::
   
 # Using Value-Type and Reference-Type Arrays  
@@ -21,7 +21,7 @@ To use method from this class in `{calling_name}`:
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_Arrays
+:calling_id: TestResources_Arrays_ValueTypeAndReferenceType
 :display: calling
 ::: 
 
