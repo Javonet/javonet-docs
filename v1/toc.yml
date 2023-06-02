@@ -195,7 +195,7 @@ items:
     calling_technology: java
     called_technology: netframework-dll
 
-- name: Advanced activation and licencing
+- name: Advanced activation and licensing
   items: 
   - name: Runtime vs. offline vs. compile time activation
     href: /advanced-activation-and-licensing/runtime-offline-compile-time-activation.md

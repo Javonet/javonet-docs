@@ -30,8 +30,10 @@ following examples. Such objects are treated as usual `{calling_name}` arrays, t
   
 ## Java  
    
+--------------   
 It's worth mentioning that, when dealing with primitive, value-typed .NET arrays, Javonet framework
 automatically translates them to respective Java primitive type. In such cases, it is necessary to keep in mind, that the returned array will contain boxing-type objects, otherwise we might face an InvalidClassCastException.  
+--------------    
   
 Example of calling method which returns array of Integers:
   
@@ -51,6 +53,39 @@ Example of calling method which returns array of Objects:
 :display: calling
 :::
 
+In the previous examples, we've been retrieving a single-dimensional arrays.  It is possible however, to get an array of arrays, either for primitive- and reference-type objects. Here are the examples:  
+  
+Value-typed nested arrays:  
+
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_ArraysAndCollections_GetArrayOfIntArrays
+:display: calling
+:::
+
+Reference-type nested arrays:  
+  
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_ArraysAndCollections_GetArrayOfCustomObjectArrays
+:display: calling
+:::
+
+## Java 
+  
+--------------  
+Unfortunately, current version of Javonet framework does not support retrieval of arrays containing arraytype objects, nested more than once. Also, the multidimensional arrays (in the .NET way of things) are not
+supported either. Thankfully, despite the fact, that such cases are not that common and/or easy
+workarounds exist, it is considered as viable enhancement, which most probably will be shipped in one of the upcoming versions.
+--------------  
+  
+## Passing arrays
+
+## Java  
+  
+--------------  
+Being aware of the automatic type conversion for value-typed arrays, it is absolutely safe to pass regular Java arrays as arguments to the .NET code. Similarily as when retrieving primitive arrays, it is necessary to work with the boxed wrappers.
+--------------   
 
 
 ## Summary  
@@ -61,12 +96,3 @@ been discussed, as well as framework's current limitations have been presented. 
 basic techniques of handling collection objects, covering retrieval, enumeration- and index-based
 access to their contents, as well as instantiation and usage as arguments in the method calls.
   
-In the previous examples, we've been retrieving a single-dimensional arrays.  It is possible however, to get an array of arrays, either for primitive- and reference-type objects. Here are the examples:  
-  
-Value-typed nested arrays:  
-
-:::code 
-:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_ArraysAndCollections_GetArrayOfIntArrays
-:display: calling
-:::
