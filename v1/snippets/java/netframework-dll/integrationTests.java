@@ -162,7 +162,7 @@ public class integrationTests {
 
         // add reference to library
         Javonet.addReference("CustomName.dll", data);
-        // </TestResources_AAddReferenceMemoryStream>
+        // </TestResources_AddReferenceMemoryStream>
     }
 
     @Test

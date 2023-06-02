@@ -1,7 +1,7 @@
 :::options
 :title: Working with collections
 :description: Working with collections
-:related_articles: arrays-and-collections/working-with-arrays, arrays-and-collections/using-value-type-and-reference-type-arrays
+:related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays, arrays-and-collections/working-with-arrays
 :::
   
 # Working with collections  
