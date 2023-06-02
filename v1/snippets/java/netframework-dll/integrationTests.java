@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static utils.ActivationCredentials.yourEmail;
 import static utils.ActivationCredentials.yourLicenseKey;
+import static utils.ArrayHelper.*;
 import static utils.Constants.resourcesDirectory;
 
 public class integrationTests {
@@ -564,6 +565,84 @@ public class integrationTests {
         //Item3
         // </TestResources_Arrays>
         Assertions.assertArrayEquals(new String[] {"item1", "item2", "item3"}, items);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_ArraysAndCollections_GetIntArray() throws JavonetException {
+        // <TestResources_ArraysAndCollections_GetIntArray>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        NObject arrayService = Javonet.New("ArrayService");
+
+        Integer[] intArray = arrayService.invoke("GetIntArray");
+
+        System.out.format("[Java] Contents of primitive-type array: %n");
+
+        for (int intVal : intArray) {
+            System.out.print(intVal + "\t");
+        }
+        // expected output
+        // [Java] Contents of primitive-type array:
+        // 1    2   3   4
+        // </TestResources_ArraysAndCollections_GetIntArray>
+        Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4}, intArray);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_ArraysAndCollections_GetCustomObjectArray() throws JavonetException {
+        // <TestResources_ArraysAndCollections_GetCustomObjectArray>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        NObject arrayService = Javonet.New("ArrayService")
+                ;
+        NObject[] coArray = arrayService.invoke("GetCustomObjectArray");
+
+        System.out.format("[Java] Contents of reference-type array: %n");
+
+        for (NObject co : coArray) {
+            System.out.format("%10s[%d]", co.get("Name"), co.get("Value"));
+        }
+        // expected output:
+        // [Java] Contents of reference-type array:
+        // A[1]         B[2]         C[3]
+        // </TestResources_ArraysAndCollections_GetCustomObjectArray>
+        Assertions.assertEquals(3, coArray.length);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_ArraysAndCollections_GetArrayOfIntArrays() throws JavonetException {
+        // <TestResources_ArraysAndCollections_GetArrayOfIntArrays>
+        // Todo: activate Javonet
+
+        // add reference to library
+        Javonet.addReference(resourcesDirectory + "\\TestClass.dll");
+
+        NObject arrayService = Javonet.New("ArrayService");
+        NObject[] arrayOfIntArrays = arrayService.invoke("GetArrayOfIntArrays");
+
+        System.out.format("[Java] Contents of primitive-type array of arrays: %n");
+
+        for (NObject intArray : arrayOfIntArrays) {
+            for (int i = 0; i < intArray.<Integer>get("Length"); i++) {
+                System.out.format("%s ", intArray.<Integer>getIndex(i));
+            }
+            System.out.println();
+        }
+        // expected output:
+        // [Java] Contents of primitive-type array of arrays:
+        // 1 2 3 4
+        // 11 22 33 44
+        // </TestResources_ArraysAndCollections_GetArrayOfIntArrays>
+        Assertions.assertEquals(2, arrayOfIntArrays.length);
     }
 
     @Test

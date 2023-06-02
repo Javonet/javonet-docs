@@ -31,8 +31,8 @@ namespace TestNamespace
 		public CustomObject[] GetCustomObjectArray()
 		{
 			return new CustomObject[]{ new CustomObject("A",1),
-	  new CustomObject("B", 2),
-	  new CustomObject("C", 3)};
+						new CustomObject("B", 2),
+						new CustomObject("C", 3)};
 		}
 
 		public void UseCustomObjectArray(CustomObject[] cuArray)
@@ -50,14 +50,14 @@ namespace TestNamespace
 			CustomObject[][] arrayOfCustomObjectArrays = new CustomObject[2][];
 
 			arrayOfCustomObjectArrays[0] = new CustomObject[]{
-	  new CustomObject("A1",1),
-	  new CustomObject("A2", 2),
-	  new CustomObject("A3", 3)};
+					new CustomObject("A1",1),
+					new CustomObject("A2", 2),
+					new CustomObject("A3", 3)};
 
 			arrayOfCustomObjectArrays[1] = new CustomObject[]{
-	  new CustomObject("B1",1),
-	  new CustomObject("B2", 2),
-	  new CustomObject("B3", 3)};
+					new CustomObject("B1",1),
+					new CustomObject("B2", 2),
+					new CustomObject("B3", 3)};
 
 			return arrayOfCustomObjectArrays;
 		}

@@ -23,9 +23,33 @@ purpose is to produce and consume various array-typed objects.
 :display: called
 :::
   
+## Retrieving and handling array from `{called_name}`  
+  
+Javonet framework allows for simple retrieval of arrays of objects, as presented in the
+following examples. Such objects are treated as usual `{calling_name}` arrays, therefore all the standard `{calling_name}` programming techniques apply. Although examples present objects' retrieval in result to method calls, the same approach is applicable for getting class properties, direct member access etc.  
+  
+## Java  
+   
+It's worth mentioning that, when dealing with primitive, value-typed .NET arrays, Javonet framework
+automatically translates them to respective Java primitive type. In such cases, it is necessary to keep in mind, that the returned array will contain boxing-type objects, otherwise we might face an InvalidClassCastException.  
+  
+Example of calling method which returns array of Integers:
+  
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_ArraysAndCollections_GetIntArray
+:display: calling
+:::
 
-
-
+As for arrays containing reference-type objects, we're simply dealing with an NObject/JObject array. Working with such object is no different that for any other NObject/JObject provided by the framework from the `{called_name}`  
+  
+Example of calling method which returns array of Objects:  
+  
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_ArraysAndCollections_GetCustomObjectArray
+:display: calling
+:::
 
 
 
@@ -37,3 +61,12 @@ been discussed, as well as framework's current limitations have been presented. 
 basic techniques of handling collection objects, covering retrieval, enumeration- and index-based
 access to their contents, as well as instantiation and usage as arguments in the method calls.
   
+In the previous examples, we've been retrieving a single-dimensional arrays.  It is possible however, to get an array of arrays, either for primitive- and reference-type objects. Here are the examples:  
+  
+Value-typed nested arrays:  
+
+:::code 
+:calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_ArraysAndCollections_GetArrayOfIntArrays
+:display: calling
+:::
