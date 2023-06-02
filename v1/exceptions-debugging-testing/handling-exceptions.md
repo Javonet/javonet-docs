@@ -11,7 +11,7 @@ Any exception thrown by called technology can be handled in your `{calling_name}
 
 :::code 
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: HandlingExceptions
+:calling_id: TestResources_HandlingExceptions
 :display: calling
 :::
   
