@@ -12,6 +12,13 @@ information, that very often require specific grouping and access strategies. Th
 arrays and more advanced collection types available both in Java and .NET environments. By using the
 Javonet framework, users gain ability to easily and effectively work with data structures originating
 from the other platform.  
+ 
+I'll be working with the following pseudo-service class, which main purpose is to produce and consume various collection types.
+
+:::code 
+:called_source: v1/snippets/`{called_technology}`/CollectionService.`{called_ext}`
+:display: called
+:::
   
 
 

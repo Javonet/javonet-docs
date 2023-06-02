@@ -13,10 +13,7 @@ arrays and more advanced collection types available both in Java and .NET enviro
 Javonet framework, users gain ability to easily and effectively work with data structures originating
 from the other platform.  
   
-## Working with Arrays
-
-During the array part of this tutorial, I'll be working with the following pseudo-service class, which main
-purpose is to produce and consume various array-typed objects.
+I'll be working with the following pseudo-service class, which main purpose is to produce and consume various array-typed objects.
 
 :::code 
 :called_source: v1/snippets/`{called_technology}`/ArrayService.`{called_ext}`
