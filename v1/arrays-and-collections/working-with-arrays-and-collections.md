@@ -28,7 +28,7 @@ purpose is to produce and consume various array-typed objects.
 Javonet framework allows for simple retrieval of arrays of objects, as presented in the
 following examples. Such objects are treated as usual `{calling_name}` arrays, therefore all the standard `{calling_name}` programming techniques apply. Although examples present objects' retrieval in result to method calls, the same approach is applicable for getting class properties, direct member access etc.  
   
-## For Java developers  
+**For Java developers**    
 --------------  
 It's worth mentioning that, when dealing with primitive, value-typed .NET arrays, Javonet framework
 automatically translates them to respective Java primitive type. In such cases, it is necessary to keep in mind, that the returned array will contain boxing-type objects, otherwise we might face an InvalidClassCastException.
@@ -70,8 +70,7 @@ Reference-type nested arrays:
 :display: calling
 :::
 
-## For Java developers  
-  
+**For Java developers**  
 --------------  
 Unfortunately, current version of Javonet framework does not support retrieval of arrays containing arraytype objects, nested more than once. Also, the multidimensional arrays (in the .NET way of things) are not
 supported either. Thankfully, despite the fact, that such cases are not that common and/or easy
@@ -81,7 +80,7 @@ workarounds exist, it is considered as viable enhancement, which most probably w
 
 ## Passing arrays
 
-## Java    
+**For Java developers**  
 --------------  
 Being aware of the automatic type conversion for value-typed arrays, it is absolutely safe to pass regular Java arrays as arguments to the .NET code. Similarily as when retrieving primitive arrays, it is necessary to work with the boxed wrappers.
 --------------   
