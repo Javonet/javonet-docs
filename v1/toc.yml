@@ -124,7 +124,7 @@ items:
 
 - name: Arrays and collections
   items: 
-  - name: Working with arrays and collections
+  - name: Working with arrays
     href: /arrays-and-collections/working-with-arrays.md
     calling_technology: java
     called_technology: netframework-dll

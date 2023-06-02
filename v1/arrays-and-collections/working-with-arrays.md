@@ -1,7 +1,7 @@
 :::options
 :title: Working with arrays
 :description: Working with arrays
-:related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays.md, arrays-and-collections/working-with-collections.md
+:related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays, arrays-and-collections/working-with-collections
 :::
   
 # Working with arrays  
@@ -69,14 +69,11 @@ Reference-type nested arrays:
 
 **For Java developers** - Unfortunately, current version of Javonet framework does not support retrieval of arrays containing arraytype objects, nested more than once. Also, the multidimensional arrays (in the .NET way of things) are not
 supported either. Thankfully, despite the fact, that such cases are not that common and/or easy
-workarounds exist, it is considered as viable enhancement, which most probably will be shipped in one of the upcoming versions.
---------------  
+workarounds exist, it is considered as viable enhancement, which most probably will be shipped in one of the upcoming versions.  
   
-
 ## Passing arrays
 
-**For Java developers** - Being aware of the automatic type conversion for value-typed arrays, it is absolutely safe to pass regular Java arrays as arguments to the .NET code. Similarily as when retrieving primitive arrays, it is necessary to work with the boxed wrappers.
---------------   
+**For Java developers** - Being aware of the automatic type conversion for value-typed arrays, it is absolutely safe to pass regular Java arrays as arguments to the .NET code. Similarily as when retrieving primitive arrays, it is necessary to work with the boxed wrappers.  
   
 Passing array of primitive types:  
   

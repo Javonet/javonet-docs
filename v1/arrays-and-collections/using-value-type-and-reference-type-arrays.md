@@ -1,7 +1,7 @@
 :::options
 :title: Using Value-Type and Reference-Type Arrays
 :description: Using Value-Type and Reference-Type Arrays
-:related_articles: arrays-and-collections/working-with-arrays.md, arrays-and-collections/working-with-collections.md
+:related_articles: arrays-and-collections/working-with-arrays, arrays-and-collections/working-with-collections
 :::
   
 # Using Value-Type and Reference-Type Arrays  
