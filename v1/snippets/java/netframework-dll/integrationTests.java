@@ -535,7 +535,7 @@ public class integrationTests {
         // <TestResources_Arrays_GetIntArray>
         // Todo: activate Javonet and add reference to .NET library
 
-        NObject arrayService = Javonet.New("ArrayService");
+        NObject arrayService = Javonet.New("TestNamespace.ArrayService");
 
         Integer[] intArray = arrayService.invoke("GetIntArray");
 
@@ -557,7 +557,7 @@ public class integrationTests {
         // <TestResources_Arrays_GetCustomObjectArray>
         // Todo: activate Javonet and add reference to .NET library
 
-        NObject arrayService = Javonet.New("ArrayService");
+        NObject arrayService = Javonet.New("TestNamespace.ArrayService");
         NObject[] coArray = arrayService.invoke("GetCustomObjectArray");
 
         System.out.format("[Java] Contents of reference-type array: %n");
@@ -577,7 +577,7 @@ public class integrationTests {
         // <TestResources_Arrays_GetArrayOfIntArrays>
         // Todo: activate Javonet and add reference to .NET library
 
-        NObject arrayService = Javonet.New("ArrayService");
+        NObject arrayService = Javonet.New("TestNamespace.ArrayService");
         NObject[] arrayOfIntArrays = arrayService.invoke("GetArrayOfIntArrays");
 
         System.out.format("[Java] Contents of primitive-type array of arrays: %n");
@@ -602,7 +602,7 @@ public class integrationTests {
         // <TestResources_Arrays_GetArrayOfCustomObjectArrays>
         // Todo: activate Javonet and add reference to .NET library
 
-        NObject arrayService = Javonet.New("ArrayService");
+        NObject arrayService = Javonet.New("TestNamespace.ArrayService");
         NObject[] arrayOfCOArrays = arrayService.invoke("GetArrayOfCustomObjectArrays");
 
         System.out.format("[Java] Contents of reference-type array of arrays: %n");
@@ -628,7 +628,7 @@ public class integrationTests {
         // <TestResources_Arrays_UseIntArray>
         // Todo: activate Javonet and add reference to .NET library
 
-        NObject arrayService = Javonet.New("ArrayService");
+        NObject arrayService = Javonet.New("TestNamespace.ArrayService");
         Integer[] intArray = {1, 2, 3, 4};
         arrayService.invoke("UseIntArray", new Object[]{intArray});
         // expected output:
@@ -643,7 +643,7 @@ public class integrationTests {
         // <TestResources_Arrays_UseCustomObjectArray>
         // Todo: activate Javonet and add reference to .NET library
 
-        NObject arrayService = Javonet.New("ArrayService");
+        NObject arrayService = Javonet.New("TestNamespace.ArrayService");
         NObject[] cuArray = {Javonet.New("CustomObject", "D", 1), Javonet.New("CustomObject", "E", 2)};
         arrayService.invoke("UseCustomObjectArray", new Object[]{cuArray});
         // expected output:
@@ -651,6 +651,103 @@ public class integrationTests {
         // D[1] E[2]
         // </TestResources_Arrays_UseCustomObjectArray>
     }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_Collections_GetSet() throws JavonetException {
+        // <TestResources_Collections_GetSet>
+        // Todo: activate Javonet and add reference to .NET library
+
+        NObject collectionService = Javonet.New("TestNamespace.CollectionService");
+        NObject list = collectionService.invoke("GetSet");
+
+        // check size
+        System.out.format("[Java] Set size: %d%n", list.<Integer>get("Count"));
+
+        // iterate over contents
+        System.out.format("[Java] Set contents:%n");
+
+        NObject enumerator = list.invoke("GetEnumerator");
+
+        while (enumerator.<Boolean>invoke("MoveNext")) {
+            String current = enumerator.get("Current");
+            System.out.format("%s  ", current);
+        }
+        // expected output:
+        // [Java] Set size: 5
+        // [Java] Set contents:
+        // strings  in  set  from  .NET
+        // </TestResources_Arrays_GetSet>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_Collections_GetList() throws JavonetException {
+        // <TestResources_Collections_GetList>
+        // Todo: activate Javonet and add reference to .NET library
+
+        NObject collectionService = Javonet.New("TestNamespace.CollectionService");
+
+        NObject list = collectionService.invoke("GetList");
+
+        // check size
+        System.out.format("[Java] List size: %d%n", list.<Integer>get("Count"));
+
+        // get arbitrary value assigned to given key
+        System.out.format("[Java] Second element: %s%n", list.<String>getIndex(1));
+
+        // iterate over contents
+        System.out.format("[Java] List contents:%n");
+
+        NObject enumerator = list.invoke("GetEnumerator");
+
+        while (enumerator.<Boolean>invoke("MoveNext")) {
+            String current = enumerator.get("Current");
+            System.out.format("%s  ", current);
+        }
+        // expected output:
+        // [Java] List size: 5
+        // [Java] Second element: in
+        // [Java] List contents:
+        // strings  in  list  from  .NET
+        // </TestResources_Arrays_GetList>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_TestResources_Collections_GetDictionary() throws JavonetException {
+        // <TestResources_Collections_GetDictionary>
+        // Todo: activate Javonet and add reference to .NET library
+
+        NObject collectionService = Javonet.New("TestNamespace.CollectionService");
+
+        NObject dictionary = collectionService.invoke("GetDictionary");
+
+        // check size
+        System.out.format("[Java] Dictionary size: %d%n", dictionary.<Integer>get("Count"));
+
+        // get arbitrary value assigned to given key
+        System.out.format("[Java] Value for '%s' key: %s%n", "key1", dictionary.getIndex("key1"));
+
+        // iterate over contents
+        System.out.format("[Java] Dictionary contents:%n");
+
+        NObject enumerator = dictionary.invoke("GetEnumerator");
+
+        while (enumerator.<Boolean>invoke("MoveNext")) {
+            NObject current = enumerator.get("Current");
+            System.out.format("'%s' = '%s'%n", current.get("Key"), current.get("Value"));
+        }
+        // expected output:
+        // [Java] Dictionary size: 3
+        // [Java] Value for 'key1' key: value1
+        // [Java] Dictionary contents:
+        // 'key1' = 'value1'
+        // 'key2' = 'value2'
+        // 'key3' = 'value3'
+        // </TestResources_Arrays_GetDictionary>
+    }
+
     @Test
     @Tag("integration")
     public void Test_TestResources_SubscribeToEvent() throws JavonetException {
@@ -658,13 +755,11 @@ public class integrationTests {
         // Todo: activate Javonet and add reference to .NET library
 
         NObject sampleObj = Javonet.New("TestNamespace.EventExample");
-
         sampleObj.addEventListener("SampleEvent", new INEventListener() {
             public void eventOccurred(Object[] arguments) {
                 System.out.println(arguments[1]);
             }
         });
-
         sampleObj.invoke("EventInvoke");
         // </TestResources_SubscribeToEvent>
     }
