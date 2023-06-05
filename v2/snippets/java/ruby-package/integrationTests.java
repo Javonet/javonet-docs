@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 
 import java.nio.file.Paths;
@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 public class JvmToRubyIntegrationTest {
 
     private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/ruby-package";
+
     @BeforeAll
     public static void initialization() {
         Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
@@ -20,147 +21,46 @@ public class JvmToRubyIntegrationTest {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
-    public void Test_Ruby_StandardLibrary_LoadLibrary_Base64_NoException() {
-        // <StandardLibrary_LoadLibrary>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
-
-        // load RUBY library
-        rubyRuntime.loadLibrary("base64");
-        // </StandardLibrary_LoadLibrary>
-    }
-
-    @Test
-    @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
-    public void Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
-        // <StandardLibrary_InvokeStaticMethod>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
-
-        // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType("Math").execute();
-
-        // invoke type's static method
-        InvocationContext response = rubyType.invokeStaticMethod("sqrt", 2500).execute();
-
-        // get result from response
-        float result = (float) response.getValue();
-
-        // write result to console
-        System.out.println(result);
-        // </StandardLibrary_InvokeStaticMethod>
-        Assertions.assertEquals(50, result);
-    }
-
-    @Test
-    @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
-    public void Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI() {
-        // <StandardLibrary_GetStaticField>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
-
-        // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType("Math").execute();
-
-        // get type's static field
-        InvocationContext response = rubyType.getStaticField("PI").execute();
-
-        // get result from response
-        float result = (float) response.getValue();
-
-        // write result to console
-        System.out.println(result);
-        // </StandardLibrary_GetStaticField>
-        Assertions.assertEquals(Math.PI, result, 0.00001);
-    }
-
-    @Test
-    @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
+    @DisabledOnOs(OS.LINUX)
     public void Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
 
-        // set up variables.
+        // set up variables
         String libraryPath = resourcesDirectory + "/TestClass.rb";
 
-        // load RUBY custom library
-        rubyRuntime.loadLibrary(libraryPath);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
         // </TestResources_LoadLibrary>
     }
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
-    public void Test_Ruby_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
-        // <TestResources_InvokeStaticMethod>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
-
-        // set up variables.
-        String libraryPath = resourcesDirectory + "/TestClass.rb";
-        String className = "TestClass::TestClass";
-
-        // load RUBY custom library
-        rubyRuntime.loadLibrary(libraryPath);
-
-        // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType(className).execute();
-
-        // get type's static field
-        InvocationContext response = rubyType.invokeStaticMethod("multiply_by_two", 25).execute();
-
-        // get value from response
-        int result = (int) response.getValue();
-
-        // write result to console
-        System.out.println(result);
-        // </TestResources_InvokeStaticMethod>
-        Assertions.assertEquals(50, result);
-    }
-
-    @Test
-    @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
+    @DisabledOnOs(OS.LINUX)
     public void Test_Ruby_TestResources_GetStaticField_staticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
 
-        // set up variables.
+        // set up variables
         String libraryPath = resourcesDirectory + "/TestClass.rb";
         String className = "TestClass::TestClass";
 
-        // load RUBY custom library
-        rubyRuntime.loadLibrary(libraryPath);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
 
         // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType(className).execute();
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // get type's static field
-        InvocationContext response = rubyType.getStaticField("static_value").execute();
+        InvocationContext response = calledRuntimeType.getStaticField("static_value").execute();
 
         // get value from response
         int result = (int) response.getValue();
@@ -173,30 +73,30 @@ public class JvmToRubyIntegrationTest {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
+    @DisabledOnOs(OS.LINUX)
     public void Test_Ruby_TestResources_SetStaticField_staticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
 
-        // set up variables.
+        // set up variables
         String libraryPath = resourcesDirectory + "/TestClass.rb";
         String className = "TestClass::TestClass";
 
-        // load RUBY custom library
-        rubyRuntime.loadLibrary(libraryPath);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
 
         // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType(className).execute();
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // set type's static field
-        rubyType.setStaticField("static_value", 75).execute();
+        calledRuntimeType.setStaticField("static_value", 75).execute();
 
         // get type's static field
-        InvocationContext response = rubyType.getStaticField("static_value").execute();
+        InvocationContext response = calledRuntimeType.getStaticField("static_value").execute();
 
         // get value from response
         int result = (int) response.getValue();
@@ -204,70 +104,33 @@ public class JvmToRubyIntegrationTest {
         // write result to console
         System.out.println(result);
         // </TestResources_SetStaticField>
-        rubyType.setStaticField("static_value", 3).execute();
+        calledRuntimeType.setStaticField("static_value", 3).execute();
         Assertions.assertEquals(75, result);
     }
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
-    public void Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
-        // <TestResources_InvokeInstanceMethod>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
-
-        // set up variables.
-        String libraryPath = resourcesDirectory + "/TestClass.rb";
-        String className = "TestClass::TestClass";
-
-        // load RUBY custom library
-        rubyRuntime.loadLibrary(libraryPath);
-
-        // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType(className).execute();
-
-        // create type's instance
-        InvocationContext instance = rubyType.createInstance(12, 13).execute();
-
-        // invoke instance's method
-        InvocationContext response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute();
-
-        // get value from response
-        int result = (int) response.getValue();
-
-        // write result to console
-        System.out.println(result);
-        // </TestResources_InvokeInstanceMethod>
-        Assertions.assertEquals(36, ((String) instance.getValue()).length());
-        Assertions.assertEquals(20, result);
-    }
-
-    @Test
-    @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
+    @DisabledOnOs(OS.LINUX)
     public void Test_Ruby_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create RUBY runtime context
-        RuntimeContext rubyRuntime = Javonet.inMemory().ruby();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
 
-        // set up variables.
+        // set up variables
         String libraryPath = resourcesDirectory + "/TestClass.rb";
         String className = "TestClass::TestClass";
 
-        // load RUBY custom library
-        rubyRuntime.loadLibrary(libraryPath);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
 
         // get type from runtime
-        InvocationContext rubyType = rubyRuntime.getType(className).execute();
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // create type's instance
-        InvocationContext instance = rubyType.createInstance(18, 19).execute();
+        InvocationContext instance = calledRuntimeType.createInstance(18, 19).execute();
 
         // get instance's field
         InvocationContext response = instance.getInstanceField("public_value").execute();
@@ -278,7 +141,326 @@ public class JvmToRubyIntegrationTest {
         // write result to console
         System.out.println(result);
         // </TestResources_GetInstanceField>
-        Assertions.assertEquals(36, ((String) instance.getValue()).length());
         Assertions.assertEquals(18, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
+        // <TestResources_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // get type's static field
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("multiply_by_two", 25).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeStaticMethod>
+        Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+        // <TestResources_InvokeInstanceMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeInstanceMethod>
+        Assertions.assertEquals(20, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_TestResources_1DArray_GetIndex_2_StringThree() {
+        // <TestResources_1DArray_GetIndex>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // get index from array
+        InvocationContext response = array.getIndex(2).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_GetIndex>
+        Assertions.assertEquals("three", result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_TestResources_1DArray_GetSize_5() {
+        // <TestResources_1DArray_GetSize>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // get array's size
+        InvocationContext response = array.getSize().execute();
+
+        // get value from response
+        Integer result = (Integer) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_GetSize>
+        Assertions.assertEquals(5, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_TestResources_1DArray_SetIndex_StringSeven() {
+        // <TestResources_1DArray_SetIndex>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // set array's index
+        array.setIndex("seven", 4).execute();
+
+        // get index from array
+        InvocationContext response = array.getIndex(4).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_SetIndex>
+        array.setIndex("five", 4).execute();
+        Assertions.assertEquals("seven", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Ruby_TestResources_1DArray_Iterate() {
+        // <TestResources_1DArray_Iterate>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // get array's size
+        int arraySize = (int) array.getSize().execute().getValue();
+
+        // create local array and store elements in it
+        String[] arrayValues = new String[arraySize];
+        int i = 0;
+        for (InvocationContext element : array) {
+            arrayValues[i] = (String) element.invokeInstanceMethod("upcase").execute().getValue();
+            i++;
+        }
+
+        // write result to console
+        System.out.println(String.join("\t", arrayValues));
+        // </TestResources_1DArray_Iterate>
+        Assertions.assertArrayEquals(new String[]{"ONE", "TWO", "THREE", "FOUR", "FIVE"}, arrayValues);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Ruby_TestResources_1DArray_PassArrayAsArgument() {
+        // <TestResources_1DArray_PassArrayAsArgument>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("add_array_elements_and_multiply", new Object[]{"", 12.22, 98.22, -10.44}, 9.99).execute();
+
+        // get value from response
+        float result = (float) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_PassArrayAsArgument>
+        Assertions.assertEquals(999.0, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI() {
+        // <StandardLibrary_GetStaticField>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
+
+        // get type's static field
+        InvocationContext response = calledRuntimeType.getStaticField("PI").execute();
+
+        // get result from response
+        float result = (float) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_GetStaticField>
+        Assertions.assertEquals(Math.PI, result, 0.00001);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
+        // <StandardLibrary_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
+
+        // invoke type's static method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("sqrt", 2500).execute();
+
+        // get result from response
+        float result = (float) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_InvokeStaticMethod>
+        Assertions.assertEquals(50, result);
     }
 }

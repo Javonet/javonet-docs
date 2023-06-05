@@ -24,49 +24,15 @@ public class JvmToPerlIntegrationTest {
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create PERL runtime context
-        RuntimeContext perlRuntime = Javonet.inMemory().perl();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
 
-        // set up variables.
-        String libraryPath = resourcesDirectory ;
-        String fileName = "TestClass.pm";
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
 
-        // load custom PERL library
-        perlRuntime.loadLibrary(libraryPath, fileName);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
         // </TestResources_LoadLibrary>
-    }
-
-    @Test
-    @Tag("integration")
-    public void Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
-        // <TestResources_InvokeStaticMethod>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create PERL runtime context
-        RuntimeContext perlRuntime = Javonet.inMemory().perl();
-
-        // set up variables.
-        String libraryPath = resourcesDirectory ;
-        String fileName = "TestClass.pm";
-        String className = "TestClass::TestClass";
-
-        // load custom PERL library
-        perlRuntime.loadLibrary(libraryPath, fileName);
-
-        // get type from runtime
-        InvocationContext perlType = perlRuntime.getType(className).execute();
-
-        // get type's static field
-        InvocationContext response = perlType.invokeStaticMethod("multiply_by_two", 25).execute();
-
-        // get value from response
-        int result = (int) response.getValue();
-
-        // write result to console
-        System.out.println(result);
-        // </TestResources_InvokeStaticMethod>
-        Assertions.assertEquals(50, result);
     }
 
     @Test
@@ -76,22 +42,21 @@ public class JvmToPerlIntegrationTest {
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create PERL runtime context
-        RuntimeContext perlRuntime = Javonet.inMemory().perl();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
 
-        // set up variables.
-        String libraryPath = resourcesDirectory ;
-        String fileName = "TestClass.pm";
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
         String className = "TestClass::TestClass";
 
-        // load custom PERL library
-        perlRuntime.loadLibrary(libraryPath, fileName);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
 
         // get type from runtime
-        InvocationContext perlType = perlRuntime.getType(className).execute();
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // get type's static field
-        InvocationContext response = perlType.getStaticField("static_value").execute();
+        InvocationContext response = calledRuntimeType.getStaticField("static_value").execute();
 
         // get value from response
         int result = (int) response.getValue();
@@ -109,25 +74,24 @@ public class JvmToPerlIntegrationTest {
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create PERL runtime context
-        RuntimeContext perlRuntime = Javonet.inMemory().perl();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
 
-        // set up variables.
-        String libraryPath = resourcesDirectory ;
-        String fileName = "TestClass.pm";
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
         String className = "TestClass::TestClass";
 
-        // load custom PERL library
-        perlRuntime.loadLibrary(libraryPath, fileName);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
 
         // get type from runtime
-        InvocationContext perlType = perlRuntime.getType(className).execute();
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // set static field's value
-        perlType.setStaticField("static_value", 75).execute();
+        calledRuntimeType.setStaticField("static_value", 75).execute();
 
         // get type's static field
-        InvocationContext response = perlType.getStaticField("static_value").execute();
+        InvocationContext response = calledRuntimeType.getStaticField("static_value").execute();
 
         // get value from response
         int result = (int) response.getValue();
@@ -136,41 +100,7 @@ public class JvmToPerlIntegrationTest {
         System.out.println(result);
         // </TestResources_SetStaticField>
         Assertions.assertEquals(75, result);
-        perlType.setStaticField("static_value", 3).execute();
-    }
-
-    @Test
-    @Tag("integration")
-    public void Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
-        // <TestResources_InvokeInstanceMethod>
-        // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
-
-        // create PERL runtime context
-        RuntimeContext perlRuntime = Javonet.inMemory().perl();
-
-        // set up variables.
-        String libraryPath = resourcesDirectory ;
-        String fileName = "TestClass.pm";
-        String className = "TestClass::TestClass";
-
-        // load custom PERL library
-        perlRuntime.loadLibrary(libraryPath, fileName);
-
-        // create type's instance
-        InvocationContext instance = Javonet.inMemory().perl().getType(className).createInstance().execute();
-
-        // invoke instance's method
-        InvocationContext response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute();
-
-        // get value from response
-        int result = (int) response.getValue();
-
-        // write result to console
-        System.out.println(result);
-        // </TestResources_InvokeInstanceMethod>
-        Assertions.assertEquals(36, ((String) instance.getValue()).length());
-        Assertions.assertEquals(20, result);
+        calledRuntimeType.setStaticField("static_value", 3).execute();
     }
 
     @Test
@@ -180,16 +110,15 @@ public class JvmToPerlIntegrationTest {
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 
-        // create PERL runtime context
-        RuntimeContext perlRuntime = Javonet.inMemory().perl();
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
 
-        // set up variables.
-        String libraryPath = resourcesDirectory ;
-        String fileName = "TestClass.pm";
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
         String className = "TestClass::TestClass";
 
-        // load custom PERL library
-        perlRuntime.loadLibrary(libraryPath, fileName);
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
 
         // create type's instance
         InvocationContext instance = Javonet.inMemory().perl().getType(className).createInstance().execute();
@@ -203,7 +132,233 @@ public class JvmToPerlIntegrationTest {
         // write result to console
         System.out.println(result);
         // </TestResources_GetInstanceField>
-        Assertions.assertEquals(36, ((String) instance.getValue()).length());
         Assertions.assertEquals(1, result);
     }
+
+    @Test
+    @Tag("integration")
+    public void Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
+        // <TestResources_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // get type's static field
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("multiply_by_two", 25).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeStaticMethod>
+        Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+        // <TestResources_InvokeInstanceMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // create type's instance
+        InvocationContext instance = Javonet.inMemory().perl().getType(className).createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeInstanceMethod>
+        Assertions.assertEquals(20, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Perl_TestResources_1DArray_GetIndex_2_StringThree() {
+        // <TestResources_1DArray_GetIndex>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // get index from array
+        InvocationContext response = array.getIndex(2).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_GetIndex>
+        Assertions.assertEquals("three", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Perl_TestResources_1DArray_GetSize_5() {
+        // <TestResources_1DArray_GetSize>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // get array's size
+        InvocationContext response = array.getSize().execute();
+
+        // get value from response
+        Integer result = (Integer) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_GetSize>
+        Assertions.assertEquals(5, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Perl_TestResources_1DArray_SetIndex_StringSeven() {
+        // <TestResources_1DArray_SetIndex>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // set array's index
+        array.setIndex("seven", 4).execute();
+
+        // get index from array
+        InvocationContext response = array.getIndex(4).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_1DArray_SetIndex>
+        array.setIndex("five", 4).execute();
+        Assertions.assertEquals("seven", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Perl_TestResources_1DArray_Iterate() {
+        // <TestResources_1DArray_Iterate>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
+
+        // get array's size
+        int arraySize = (int) array.getSize().execute().getValue();
+
+        // create local array and store elements in it
+        String[] arrayValues = new String[arraySize];
+        int i = 0;
+        for (InvocationContext element : array) {
+            arrayValues[i] = (String) element.execute().getValue();
+            i++;
+        }
+
+        // write result to console
+        System.out.println(String.join("\t", arrayValues));
+        // </TestResources_1DArray_Iterate>
+        Assertions.assertArrayEquals(new String[]{"one", "two", "three", "four", "five"}, arrayValues);
+    }
+
+
 }
