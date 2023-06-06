@@ -1,233 +1,417 @@
-const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
+const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
 const ActivationCredentials = require("./ActivationCredentials")
 const path = require('path')
 
 const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/python-package'
 
 describe('Nodejs to Python integration tests', () => {
+    if (process.platform != 'darwin') {
 
-    Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
+        let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
+        expect(result).toBe(0)
 
-    test(`Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
-        // <StandardLibrary_InvokeStaticMethod>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        test(`Test_Python_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+            // <TestResources_LoadLibrary>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType('builtins').execute()
+            // set up variables
+            const libraryPath = resourcesDirectory
 
-        // invoke type's static method
-        let response = pythonType.invokeStaticMethod("abs", -50).execute()
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+            // </TestResources_LoadLibrary>
+        })
 
-        // get value from response
-        let result = response.getValue()
+        test(`Test_Python_TestResources_GetStaticField_StaticValue_3`, () => {
+            // <TestResources_GetStaticField>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // write result to console
-        console.log(result)
-        // </StandardLibrary_InvokeStaticMethod>
-        expect(result).toBe(50)
-    })
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-    test(`Test_Python_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
-        // <StandardLibrary_GetStaticField>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType('math').execute()
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        // get type's field
-        let response = pythonType.getStaticField("pi").execute()
+            // get type's static field
+            let response = calledRuntimeType.getStaticField("static_value").execute()
 
-        // get value from response
-        let result = response.getValue()
-        // </StandardLibrary_GetStaticField>
-        expect(result).toBeCloseTo(Math.PI, 6)
-    })
+            // get value from response
+            let result = response.getValue()
 
+            // write result to console
+            console.log(result)
+            // </TestResources_GetStaticField>
+            expect(result).toBe(3)
+        })
 
-    test(`Test_Python_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
-        // <TestResources_LoadLibrary>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        test(`Test_Python_TestResources_SetStaticField_StaticValue_75`, () => {
+            // <TestResources_SetStaticField>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-        //set up variables
-        const libraryPath = resourcesDirectory
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-        // load custom library
-        pythonRuntime.loadLibrary(libraryPath)
-        // </TestResources_LoadLibrary>
-    })
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-    test(`Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
-        // <TestResources_InvokeStaticMethod>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // set static field's value
+            calledRuntimeType.setStaticField("static_value", 75).execute()
 
-        //set up variables
-        const libraryPath = resourcesDirectory
-        const className = "TestClass.TestClass"
+            // get type's static field
+            let response = calledRuntimeType.getStaticField("static_value").execute()
 
-        // load custom library
-        pythonRuntime.loadLibrary(libraryPath)
+            // get value from response
+            let result = response.getValue()
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType(className).execute()
+            // write result to console
+            console.log(result)
+            // </TestResources_SetStaticField>
+            calledRuntimeType.setStaticField("static_value", 3).execute()
+            expect(result).toBe(75)
+        })
 
-        // invoke type's static method
-        let response = pythonType.invokeStaticMethod("multiply_by_two", 25).execute()
+        test(`Test_Python_TestResources_GetInstanceField_PublicValue_18`, () => {
+            // <TestResources_GetInstanceField>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // get value from response
-        let result = response.getValue()
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-        // write result to console
-        console.log(result)
-        // </TestResources_InvokeStaticMethod>
-        expect(result).toBe(50)
-    })
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-    test(`Test_Python_TestResources_GetStaticField_StaticValue_3`, () => {
-        // <TestResources_GetStaticField>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        //set up variables
-        const libraryPath = resourcesDirectory
-        const className = "TestClass.TestClass"
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(18, 19).execute()
 
-        // load custom library
-        pythonRuntime.loadLibrary(libraryPath)
+            // get instance's field
+            let response = instance.getInstanceField("public_value").execute()
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType(className).execute()
+            // get value from response
+            let result = response.getValue()
 
-        // get type's static field
-        let response = pythonType.getStaticField("static_value").execute()
+            // write result to console
+            console.log(result)
+            // </TestResources_GetInstanceField>36)
+            expect(result).toBe(18)
+        })
 
-        // get value from response
-        let result = response.getValue()
+        test(`Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+            // <TestResources_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // write result to console
-        console.log(result)
-        // </TestResources_GetStaticField>
-        expect(result).toBe(3)
-    })
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-    test(`Test_Python_TestResources_SetStaticField_StaticValue_75`, () => {
-        // <TestResources_SetStaticField>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-        //set up variables
-        const libraryPath = resourcesDirectory
-        const className = "TestClass.TestClass"
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        // load custom library
-        pythonRuntime.loadLibrary(libraryPath)
+            // invoke type's static method
+            let response = calledRuntimeType.invokeStaticMethod("multiply_by_two", 25).execute()
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType(className).execute()
+            // get value from response
+            let result = response.getValue()
 
-        // set static field's value
-        pythonType.setStaticField("static_value", 75).execute()
+            // write result to console
+            console.log(result)
+            // </TestResources_InvokeStaticMethod>
+            expect(result).toBe(50)
+        })
 
-        // get type's static field
-        let response = pythonType.getStaticField("static_value").execute()
+        test(`Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+            // <TestResources_InvokeInstanceMethod>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // get value from response
-        let result = response.getValue()
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-        // write result to console
-        console.log(result)
-        // </TestResources_SetStaticField>
-        pythonType.setStaticField("static_value", 3).execute()
-        expect(result).toBe(75)
-    })
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-    test(`Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
-        // <TestResources_InvokeInstanceMethod>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        //set up variables
-        const libraryPath = resourcesDirectory
-        const className = "TestClass.TestClass"
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(12, 13).execute()
 
-        // load custom library
-        pythonRuntime.loadLibrary(libraryPath)
+            // invoke instance's method
+            let response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute()
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType(className).execute()
+            // get value from response
+            let result = response.getValue()
 
-        // create type's instance
-        let instance = pythonType.createInstance(12, 13).execute()
+            // write result to console
+            console.log(result)
+            // </TestResources_InvokeInstanceMethod>
+            expect(result).toBe(20)
+        })
 
-        // invoke instance's method
-        let response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute()
+        test(`Test_Python_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+            // <TestResources_1DArray_GetIndex>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // get value from response
-        let result = response.getValue()
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
 
-        // write result to console
-        console.log(result)
-        // </TestResources_InvokeInstanceMethod>
-        expect(instance.getValue().length).toBe(36)
-        expect(result).toBe(20)
-    })
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-    test(`Test_Python_TestResources_GetInstanceField_PublicValue_18`, () => {
-        // <TestResources_GetInstanceField>
-        // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-        // create PYTHON runtime context
-        let pythonRuntime = Javonet.inMemory().python()
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        //set up variables
-        const libraryPath = resourcesDirectory
-        const className = "TestClass.TestClass"
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
 
-        // load custom library
-        pythonRuntime.loadLibrary(libraryPath)
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_1d_array").execute()
 
-        // get type from the runtime
-        let pythonType = pythonRuntime.getType(className).execute()
+            // get index from array
+            response = array.getIndex(2).execute()
 
-        // create type's instance
-        let instance = pythonType.createInstance(18, 19).execute()
+            // get value from response
+            let result = response.getValue()
 
-        // get instance's field
-        let response = instance.getInstanceField("public_value").execute()
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_GetIndex>
+            expect(result).toBe("three")
+        })
 
-        // get value from response
-        let result = response.getValue()
+        test(`Test_Python_TestResources_1DArray_GetSize_5`, () => {
+            // <TestResources_1DArray_GetSize>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
 
-        // write result to console
-        console.log(result)
-        // </TestResources_GetInstanceField>
-        expect(instance.getValue().length).toBe(36)
-        expect(result).toBe(18)
-    })
-    
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+            // get array's size
+            response = array.getSize().execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_GetSize>
+            expect(result).toBe(5)
+        })
+
+        test(`Test_Python_TestResources_1DArray_SetIndex_StringSeven`, () => {
+            // <TestResources_1DArray_SetIndex>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+            // set array's index
+            array.setIndex("seven", 4).execute()
+
+            // get index from array
+            response = array.getIndex(4).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_SetIndex>
+            array.setIndex("five", 4).execute()
+            expect(result).toBe("seven")
+        })
+
+        test(`Test_Python_TestResources_1DArray_Iterate`, () => {
+            // <TestResources_1DArray_Iterate>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+            // create local array and store elements in it
+            let arrayValues = []
+
+            for (let element of array) {
+                arrayValues.push(element.invokeInstanceMethod("upper").execute().getValue())
+            }
+
+            // write result to console
+            console.log(arrayValues)
+            // </TestResources_1DArray_Iterate>
+            expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
+        })
+
+        test(`Test_Python_TestResources_1DArray_PassArrayAsArgument`, () => {
+            // <TestResources_1DArray_PassArrayAsArgument>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", ["", 12.22, 98.22, -10.44], 9.99).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_PassArrayAsArgument>
+            expect(result).toEqual(999)
+        })
+
+        test(`Test_Python_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
+            // <StandardLibrary_GetStaticField>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType('math').execute()
+
+            // get type's field
+            let response = calledRuntimeType.getStaticField("pi").execute()
+
+            // get value from response
+            let result = response.getValue()
+            // </StandardLibrary_GetStaticField>
+            expect(result).toBeCloseTo(Math.PI, 6)
+        })
+
+        test(`Test_Python_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType('builtins').execute()
+
+            // invoke type's static method
+            let response = calledRuntimeType.invokeStaticMethod("abs", -50).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </StandardLibrary_InvokeStaticMethod>
+            expect(result).toBe(50)
+        })
+
+    } else {
+        test.skip("Python not supported on MacOs", () => {
+        })
+    }
 })

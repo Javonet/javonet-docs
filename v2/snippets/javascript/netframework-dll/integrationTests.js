@@ -5,287 +5,438 @@ const path = require('path')
 const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/netframework-dll'
 
 
-describe('Nodejs to CLR integration tests', () => {
-    if (process.platform === 'win32') {
-        Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
+describe('Nodejs to Clr integration tests', () => {
+        if (process.platform === 'win32') {
 
-        test(`Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
-            // <StandardLibrary_InvokeStaticMethod>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+            let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
+            expect(result).toBe(0)
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+            test(`Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+                // <TestResources_LoadLibrary>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType("System.Math").execute()
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // invoke type's static method
-            let response = clrType.invokeStaticMethod("Abs", -50).execute()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
 
-            // get value from response
-            let result = response.getValue()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+                // </TestResources_LoadLibrary>
+            })
 
-            // write result to console
-            console.log(result)
-            // </StandardLibrary_InvokeStaticMethod>
-            expect(result).toBe(50)
-        })
+            test(`Test_Clr_TestResources_GetStaticField_StaticValue_3`, () => {
+                // <TestResources_GetStaticField>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-        test(`Test_Clr_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
-            // <StandardLibrary_GetStaticField>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType("System.Math").execute()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // get type's static field
-            let response = clrType.getStaticField("PI").execute()
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // get value from response
-            let result = response.getValue()
+                // get type's static field
+                let response = calledRuntimeType.getStaticField("StaticValue").execute()
 
-            // write result to console
-            console.log(result)
-            // </StandardLibrary_GetStaticField>
-            expect(result).toBe(Math.PI)
-        })
+                // get value from response
+                let result = response.getValue()
 
-        test(`Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022`, () => {
-            // <StandardLibrary_InvokeInstanceMethod>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // write result to console
+                console.log(result)
+                // </TestResources_GetStaticField>
+                expect(result).toBe(3)
+            })
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+            test(`Test_Clr_TestResources_SetStaticField_StaticValue_75`, () => {
+                // <TestResources_SetStaticField>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType("System.DateTime").execute()
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // create type's instance
-            let instance = clrType.createInstance(2022, 9, 2).execute()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // invoke instance's method
-            let response = instance.invokeInstanceMethod("ToShortDateString").execute()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // get value from response
-            let result = response.getValue()
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // write result to console
-            console.log(result)
-            // </StandardLibrary_InvokeInstanceMethod>
-            expect(result).toContain("2022")
-        })
+                // set static field's value
+                calledRuntimeType.setStaticField("StaticValue", 75).execute()
 
-        test(`Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022`, () => {
-            // <StandardLibrary_InvokeInstanceMethod>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // get static field's value
+                let response = calledRuntimeType.getStaticField("StaticValue").execute()
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+                // get value from response
+                let result = response.getValue()
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType("System.DateTime").execute()
+                // write result to console
+                console.log(result)
+                // </TestResources_SetStaticField>
+                calledRuntimeType.setStaticField("StaticValue", 3).execute()
+                expect(result).toBe(75)
+            })
 
-            // create type's instance
-            let instance = clrType.createInstance(2022, 9, 2).execute()
+            test(`Test_Clr_TestResources_GetInstanceField_PublicValue_18`, () => {
+                // <TestResources_GetInstanceField>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // get instance's field
-            let response = instance.getInstanceField("Year").execute()
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // get value from response
-            let result = response.getValue()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // write result to console
-            console.log(result)
-            // </StandardLibrary_InvokeInstanceMethod>
-            expect(result).toBe(2022)
-        })
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-        test(`Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
-            // <TestResources_LoadLibrary>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+                // create type's instance
+                let instance = calledRuntimeType.createInstance(18, 19).execute()
 
-            // set up variables
-            let libraryPath = resourcesDirectory + '/TestClass.dll'
+                // get instance's field
+                let response = instance.getInstanceField("PublicValue").execute()
 
-            // load custom library
-            clrRuntime.loadLibrary(libraryPath)
-            // </TestResources_LoadLibrary>
-        })
+                // get value from response
+                let result = response.getValue()
 
-        test(`Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
-            // <TestResources_InvokeStaticMethod>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // write result to console
+                console.log(result)
+                // </TestResources_GetInstanceField>
+                expect(result).toBe(18)
+            })
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+            test(`Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+                // <TestResources_InvokeStaticMethod>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // set up variables
-            let libraryPath = resourcesDirectory + '/TestClass.dll'
-            let className = 'TestClass.TestClass'
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // load custom library
-            clrRuntime.loadLibrary(libraryPath)
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType(className).execute()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // invoke type's static method
-            let response = clrType.invokeStaticMethod("MultiplyByTwo", 25).execute()
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // get value from response
-            let result = response.getValue()
+                // invoke type's static method
+                let response = calledRuntimeType.invokeStaticMethod("MultiplyByTwo", 25).execute()
 
-            // write result to console
-            console.log(result)
-            // </TestResources_InvokeStaticMethod>
-            expect(result).toBe(50)
-        })
+                // get value from response
+                let result = response.getValue()
 
-        test(`Test_Clr_TestResources_GetStaticField_StaticValue_3`, () => {
-            // <TestResources_GetStaticField>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // write result to console
+                console.log(result)
+                // </TestResources_InvokeStaticMethod>
+                expect(result).toBe(50)
+            })
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+            test(`Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+                // <TestResources_InvokeInstanceMethod>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // set up variables
-            let libraryPath = resourcesDirectory + '/TestClass.dll'
-            let className = 'TestClass.TestClass'
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // load custom library
-            clrRuntime.loadLibrary(libraryPath)
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType(className).execute()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // get type's static field
-            let response = clrType.getStaticField("StaticValue").execute()
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // get value from response
-            let result = response.getValue()
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
 
-            // write result to console
-            console.log(result)
-            // </TestResources_GetStaticField>
-            expect(result).toBe(3)
-        })
+                // invoke instance's method
+                let response = instance.invokeInstanceMethod("MultiplyTwoNumbers", 5, 4).execute()
 
-        test(`Test_Clr_TestResources_SetStaticField_StaticValue_75`, () => {
-            // <TestResources_SetStaticField>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // get value from response
+                let result = response.getValue()
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+                // write result to console
+                console.log(result)
+                // </TestResources_InvokeInstanceMethod>
+                expect(result).toBe(20)
+            })
 
-            // set up variables
-            let libraryPath = resourcesDirectory + '/TestClass.dll'
-            let className = 'TestClass.TestClass'
+            test(`Test_Clr_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+                // <TestResources_1DArray_GetIndex>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // load custom library
-            clrRuntime.loadLibrary(libraryPath)
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType(className).execute()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // set static field's value
-            clrType.setStaticField("StaticValue", 75).execute()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // get static field's value
-            let response = clrType.getStaticField("StaticValue").execute()
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // get value from response
-            let result = response.getValue()
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
 
-            // write result to console
-            console.log(result)
-            // </TestResources_SetStaticField>
-            clrType.setStaticField("StaticValue", 3).execute()
-            expect(result).toBe(75)
-        })
+                // invoke instance's method
+                let array = instance.invokeInstanceMethod("Get1DArray").execute()
 
-        test(`Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
-            // <TestResources_InvokeInstanceMethod>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // get index from array
+                response = array.getIndex(2).execute()
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+                // get value from response
+                let result = response.getValue()
 
-            // set up variables
-            let libraryPath = resourcesDirectory + '/TestClass.dll'
-            let className = 'TestClass.TestClass'
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_GetIndex>
+                expect(result).toBe("three")
+            })
 
-            // load custom library
-            clrRuntime.loadLibrary(libraryPath)
+            test(`Test_Clr_TestResources_1DArray_GetSize_5`, () => {
+                // <TestResources_1DArray_GetSize>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType(className).execute()
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // create type's instance
-            let instance = clrType.createInstance(2, 3).execute()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // invoke instance's method
-            let response = instance.invokeInstanceMethod("MultiplyTwoNumbers", 5, 4).execute()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // get value from response
-            let result = response.getValue()
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
 
-            // write result to console
-            console.log(result)
-            // </TestResources_InvokeInstanceMethod>
-            expect(instance.getValue().length).toBe(36)
-            expect(result).toBe(20)
-        })
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
 
-        test(`Test_Clr_TestResources_GetInstanceField_PublicValue_18`, () => {
-            // <TestResources_GetInstanceField>
-            // use Activate only once in your app
-            Javonet.activate("your-email", "your-license-key")
+                // invoke instance's method
+                let array = instance.invokeInstanceMethod("Get1DArray").execute()
 
-            // create CLR runtime context
-            let clrRuntime = Javonet.inMemory().clr()
+                // get array's size
+                response = array.getSize().execute()
 
-            // set up variables
-            let libraryPath = resourcesDirectory + '/TestClass.dll'
-            let className = 'TestClass.TestClass'
+                // get value from response
+                let result = response.getValue()
 
-            // load custom library
-            clrRuntime.loadLibrary(libraryPath)
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_GetSize>
+                expect(result).toBe(5)
+            })
 
-            // get type from the runtime
-            let clrType = clrRuntime.getType(className).execute()
+            test(`Test_Clr_TestResources_1DArray_SetIndex_StringSeven`, () => {
+                // <TestResources_1DArray_SetIndex>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
 
-            // create type's instance
-            let instance = clrType.createInstance(18, 19).execute()
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
 
-            // get instance's field
-            let response = instance.getInstanceField("PublicValue").execute()
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
 
-            // get value from response
-            let result = response.getValue()
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
 
-            // write result to console
-            console.log(result)
-            // </TestResources_GetInstanceField>
-            expect(instance.getValue().length).toBe(36)
-            expect(result).toBe(18)
-        })
-    } else {
-        test.skip("Clr supported only on Windows", () => {
-        })
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
+
+                // invoke instance's method
+                let array = instance.invokeInstanceMethod("Get1DArray").execute()
+
+                // set array's index
+                array.setIndex("seven", 4).execute()
+
+                // get index from array
+                response = array.getIndex(4).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_SetIndex>
+                array.setIndex("five", 4).execute()
+                expect(result).toBe("seven")
+            })
+
+            test(`Test_Clr_TestResources_1DArray_Iterate`, () => {
+                // <TestResources_1DArray_Iterate>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
+
+                // invoke instance's method
+                let array = instance.invokeInstanceMethod("Get1DArray").execute()
+
+                // create local array and store elements in it
+                let arrayValues = []
+
+                for (let element of array) {
+                    arrayValues.push(element.invokeInstanceMethod("ToUpper").execute().getValue())
+                }
+
+                // write result to console
+                console.log(arrayValues)
+                // </TestResources_1DArray_Iterate>
+                expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
+            })
+
+            test(`Test_Clr_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
+                // <StandardLibrary_GetStaticField>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType("System.Math").execute()
+
+                // get type's static field
+                let response = calledRuntimeType.getStaticField("PI").execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </StandardLibrary_GetStaticField>
+                expect(result).toBe(Math.PI)
+            })
+
+            test(`Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022`, () => {
+                // <StandardLibrary_InvokeInstanceMethod>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType("System.DateTime").execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance(2022, 9, 2).execute()
+
+                // get instance's field
+                let response = instance.getInstanceField("Year").execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </StandardLibrary_InvokeInstanceMethod>
+                expect(result).toBe(2022)
+            })
+
+            test(`Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
+                // <StandardLibrary_InvokeStaticMethod>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType("System.Math").execute()
+
+                // invoke type's static method
+                let response = calledRuntimeType.invokeStaticMethod("Abs", -50).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </StandardLibrary_InvokeStaticMethod>
+                expect(result).toBe(50)
+            })
+
+            test(`Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022`, () => {
+                // <StandardLibrary_InvokeInstanceMethod>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType("System.DateTime").execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance(2022, 9, 2).execute()
+
+                // invoke instance's method
+                let response = instance.invokeInstanceMethod("ToShortDateString").execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </StandardLibrary_InvokeInstanceMethod>
+                expect(result).toContain("2022")
+            })
+
+        } else {
+            test.skip("Clr supported only on Windows", () => {
+            })
+        }
     }
-})
+)
