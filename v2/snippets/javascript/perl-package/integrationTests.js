@@ -84,7 +84,6 @@ describe('Nodejs to Perl integration tests', () => {
                 // write result to console
                 console.log(result)
                 // </TestResources_SetStaticField>
-
                 calledRuntimeType.setStaticField("static_value", 3).execute()
                 expect(result).toBe(75)
             })
@@ -115,6 +114,9 @@ describe('Nodejs to Perl integration tests', () => {
 
                 // get value from response
                 let result = response.getValue()
+
+                // write result to console
+                console.log(result)
                 // </TestResources_GetInstanceField>
                 expect(result).toBe(1)
             })
