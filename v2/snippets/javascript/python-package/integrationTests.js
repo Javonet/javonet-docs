@@ -211,7 +211,7 @@ describe('Nodejs to Python integration tests', () => {
             let array = instance.invokeInstanceMethod("get_1d_array").execute()
 
             // get index from array
-            response = array.getIndex(2).execute()
+            let response = array.getIndex(2).execute()
 
             // get value from response
             let result = response.getValue()
@@ -247,7 +247,7 @@ describe('Nodejs to Python integration tests', () => {
             let array = instance.invokeInstanceMethod("get_1d_array").execute()
 
             // get array's size
-            response = array.getSize().execute()
+            let response = array.getSize().execute()
 
             // get value from response
             let result = response.getValue()
@@ -286,7 +286,7 @@ describe('Nodejs to Python integration tests', () => {
             array.setIndex("seven", 4).execute()
 
             // get index from array
-            response = array.getIndex(4).execute()
+            let response = array.getIndex(4).execute()
 
             // get value from response
             let result = response.getValue()
