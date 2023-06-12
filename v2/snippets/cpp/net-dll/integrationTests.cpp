@@ -188,7 +188,7 @@ namespace CppToNetcoreIntegrationTests {
 	}
 
 	TEST(Integration, Test_Netcore_TestResources_1DArray_GetIndex_2_StringThree) {
-		// <TestResources_InvokeInstanceMethod>
+		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
@@ -219,12 +219,12 @@ namespace CppToNetcoreIntegrationTests {
 
 		// write result to console
 		std::cout << result << std::endl;
-		// </TestResources_InvokeInstanceMethod>
+		// </TestResources_1DArray_GetIndex>
 		EXPECT_EQ("three", result);
 	}
 
 	TEST(Integration, Test_Netcore_TestResources_1DArray_GetSize_5) {
-		// <TestResources_InvokeInstanceMethod>
+		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
@@ -255,12 +255,12 @@ namespace CppToNetcoreIntegrationTests {
 
 		// write result to console
 		std::cout << result << std::endl;
-		// </TestResources_InvokeInstanceMethod>
+		// </TestResources_1DArray_GetSize>
 		EXPECT_EQ(5, result);
 	}
 
 	TEST(Integration, Test_Netcore_TestResources_1DArray_SetIndex_StringSeven) {
-		// <TestResources_InvokeInstanceMethod>
+		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
@@ -294,7 +294,7 @@ namespace CppToNetcoreIntegrationTests {
 
 		// write result to console
 		std::cout << result << std::endl;
-		// </TestResources_InvokeInstanceMethod>
+		// </TestResources_1DArray_SetIndex>
 		EXPECT_EQ("seven", result);
 	}
 
