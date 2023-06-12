@@ -322,7 +322,7 @@ namespace CppToJvmIntegrationTests {
 
 	TEST(Integration, Test_Jvm_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022) {
 
-		// <StandardLibrary_InvokeInstanceMethod>
+		// <StandardLibrary_GetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
@@ -343,7 +343,7 @@ namespace CppToJvmIntegrationTests {
 
 		// write result to console
 		std::cout << result << std::endl;
-		// </StandardLibrary_InvokeInstanceMethod>		
+		// </StandardLibrary_GetInstanceField>		
 		EXPECT_EQ("sample value", result);
 	}
 
