@@ -22,3 +22,11 @@ To use generic methods from this class:
 :calling_id: TestResources_GenericMethods
 :display: calling
 :::
+  
+- Create an instance of our GenericSample class.
+- Using the generic method, initialize the generic method invocation by passing one or many generic types of arguments.
+- Invoke your method with a sample argument.  
+  
+Javonet.getType(typeName) returns an instance of NType object attached to a specific .NET type. The instruction NType myType = Javonet.getType("String") is the Java equivalent of the .NET Type myType = typeof(String).
+
+(See Live Example!)[http://lab.javonet.com/e/3]

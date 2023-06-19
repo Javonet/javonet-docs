@@ -25,4 +25,6 @@ To create instance and invoke instance method from this class:
 
 Javonet calls are very similar to regular .NET or Java calls, with a little bit of reflection style. Value-type results are automatically converted into `{called_name}` types so you can safely assign them to `{called_name}` variables. Reference-type results must be assigned to NObject\JObject variable.   
   
-Any calls to .NET or Java objects using Javonet can be shortened and simplified using Javonet Fluent interface.
+Any calls to .NET or Java objects using Javonet can be shortened and simplified using Javonet Fluent interface.  
+  
+(See Live Example!)[http://lab.javonet.com/e/1]

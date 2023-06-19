@@ -12,3 +12,7 @@ Javonet offers a robust fluent interface that lets you simplify and shorten oper
 :calling_id: TestResources_InvokeStaticMethodFluent
 :display: calling
 :::
+  
+  
+  
+(See Live Example!)[http://lab.javonet.com/e/7]
