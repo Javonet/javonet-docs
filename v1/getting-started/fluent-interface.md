@@ -14,5 +14,4 @@ Javonet offers a robust fluent interface that lets you simplify and shorten oper
 :::
   
   
-  
-(See Live Example!)[http://lab.javonet.com/e/7]
+[**See Live Example!**](http://lab.javonet.com/e/7)

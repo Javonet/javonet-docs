@@ -27,4 +27,4 @@ Javonet calls are very similar to regular .NET or Java calls, with a little bit 
   
 Any calls to .NET or Java objects using Javonet can be shortened and simplified using Javonet Fluent interface.  
   
-(See Live Example!)[http://lab.javonet.com/e/1]
+[**See Live Example!**](http://lab.javonet.com/e/1)
