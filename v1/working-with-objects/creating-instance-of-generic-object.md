@@ -17,4 +17,6 @@ To create instance of generic class:
 :calling_id: StandardLibrary_CreateInstanceOfGenericObject
 :display: calling
 :::
+    
   
+[**See Live Example!**](http://lab.javonet.com/e/17)

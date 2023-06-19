@@ -69,6 +69,6 @@ Before the first usage Javonet looks for XML configuration file and loads define
 Sample Javonet XML configuration file with references:  
 
 :::code source="v1/snippets/xml-configuration-files/references/javonet.xml":::
-
-
-
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/12)
