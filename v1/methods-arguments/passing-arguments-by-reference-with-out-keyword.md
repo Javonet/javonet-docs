@@ -44,3 +44,7 @@ Example of a **out** argument method from .NET standard library which can be inv
 :calling_id: StandardLibrary_PassArgumentWithOutKeyword
 :display: calling
 :::
+
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/11)

@@ -35,3 +35,7 @@ Example of a **ref** argument method from Java using Javonet
 :calling_id: TestResources_PassArgumentWithRefKeyword
 :display: calling
 :::
+
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/10)

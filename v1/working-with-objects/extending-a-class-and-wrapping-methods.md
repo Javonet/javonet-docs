@@ -28,4 +28,6 @@ And use it like any other `{calling_name}` class
 :calling_source: v1/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_ExtendClassAndWrapMethod
 :display: calling
-:::
+:::  
+  
+[**See Live Example!**](http://lab.javonet.com/e/13)

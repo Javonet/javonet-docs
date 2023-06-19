@@ -22,4 +22,6 @@ To set and get instance field from this class:
 :calling_id: TestResources_GetSetInstanceField
 :display: calling
 :::
-
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/2)

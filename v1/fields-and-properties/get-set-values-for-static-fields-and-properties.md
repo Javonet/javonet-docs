@@ -36,3 +36,6 @@ To get static field from the standard `{called_name}`:
 :calling_id: StandardLibrary_GetStaticField
 :display: calling
 :::
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/2)

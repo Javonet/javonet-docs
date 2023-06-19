@@ -44,3 +44,7 @@ To use enum as method argument:
 :calling_id: TestResources_UseEnumTypeAsArgument
 :display: calling
 :::
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/14)
+

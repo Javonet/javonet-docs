@@ -27,7 +27,6 @@ To use method from this class in `{calling_name}`:
 
 ## Java  
   
-Starting with version 1.4hf34 you can also retrieve a mixed arrays of value and reference types. In such case you will received on Java side an Object[] which will consist of NObject items and Java value types like (float, double, int, etc..).
-
-
+Starting with version 1.4hf34 you can also retrieve a mixed arrays of value and reference types. In such case you will received on Java side an Object[] which will consist of NObject items and Java value types like (float, double, int, etc..).  
   
+[**See Live Example!**](http://lab.javonet.com/e/4)

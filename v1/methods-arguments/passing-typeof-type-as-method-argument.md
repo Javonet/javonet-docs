@@ -25,4 +25,6 @@ To use method which expects type as argument:
 :calling_id: TestResources_PassTypeAsMethodArgument
 :display: calling
 :::
-
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/16)

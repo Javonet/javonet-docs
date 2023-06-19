@@ -30,4 +30,6 @@ To reference nested type with full namespace the name of the nested class should
 :calling_id: TestResources_UseNestedTypes
 :display: calling
 :::
-
+  
+  
+[**See Live Example!**](http://lab.javonet.com/e/18)
