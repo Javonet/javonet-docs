@@ -25,11 +25,8 @@ Javonet needs to be imported as any other dependency.
 
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Import":::
 
-If Javonet.Clr.Sdk package is used replace it with:
-```
-using Javonet.Clr.Sdk.
-```
-
+If Javonet.Clr.Sdk package is used replace it with "using Javonet.Clr.Sdk."  
+  
 Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
 
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Activation":::
@@ -60,4 +57,3 @@ To sum up, the whole code snippet looks like:
 :called_source: v2/snippets/python-package/TestClass.py
 :display: calling
 :::
-
