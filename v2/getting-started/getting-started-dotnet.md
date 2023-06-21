@@ -51,9 +51,4 @@ The returned value needs to be cast to calling technology type and can be used a
 
 To sum up, the whole code snippet looks like:
 
-:::code 
-:calling_source: v2/snippets/csharp/common/sampleProgram.cs 
-:calling_id: WholeSnippet
-:called_source: v2/snippets/python-package/TestClass.py
-:display: calling
-:::
+:::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="WholeSnippet":::

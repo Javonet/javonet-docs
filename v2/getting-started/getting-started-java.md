@@ -44,5 +44,3 @@ The returned value needs to be cast to calling technology type and can be used a
 To sum up, the whole code snippet looks like:
 
 :::code source="v2/snippets/java/common/sampleProgram.java" ID="WholeSnippet":::
-
-
