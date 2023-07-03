@@ -28,8 +28,8 @@ Code example below represents the sample code from `{called_name}` that will be 
 
 It is possible to invoke method which returns array from `{called_name}` using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}`, and next retrieves reference to specific type, create object of the type, and invoke method which returns array. Result of the invocation is returned as a reference to the array.
 
-## Get element of the array:
-
+## Get element of the array  
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_GetIndex
@@ -38,18 +38,8 @@ It is possible to invoke method which returns array from `{called_name}` using f
 :display: calling
 :::
 
-For technologies which supports operator overloading it is possible to use array's get operator as for any other `{calling_name}` array:
-
-:::code 
-:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_1DArray_GetElement
-:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
-:called_id: Arrays
-:display: calling
-:::
-
-## Set element of the array:
-
+## Set element of the array  
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_SetIndex
@@ -58,18 +48,8 @@ For technologies which supports operator overloading it is possible to use array
 :display: calling
 :::
 
-For technologies which supports operator overloading it is possible to use array's set operator as for any other `{calling_name}` array:
-
-:::code 
-:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_1DArray_SetElement
-:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
-:called_id: Arrays
-:display: calling
-:::
-
-## Get size of the array
-
+## Get size of the array  
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_GetSize
@@ -79,8 +59,8 @@ For technologies which supports operator overloading it is possible to use array
 :::
 
 
-## Iterate over the array:
-
+## Iterate over the array  
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_Iterate
@@ -89,8 +69,8 @@ For technologies which supports operator overloading it is possible to use array
 :display: calling
 :::
 
-## Pass array as argument:
-
+## Pass array as argument  
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_PassArrayAsArgument
@@ -99,11 +79,33 @@ For technologies which supports operator overloading it is possible to use array
 :display: calling
 :::
 
-## Retrieve array:
-
+## Retrieve array  
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_1DArray_RetrieveArray
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
+:display: calling
+:::
+
+## Optional [] Operator
+
+For technologies which supports operator overloading it is possible to use array's [] operator as for any other `{calling_name}` array:
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_1DArray_GetElement
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
+:display: calling
+:::
+
+And  
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_1DArray_SetElement
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Arrays
 :display: calling
