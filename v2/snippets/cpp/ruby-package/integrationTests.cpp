@@ -297,6 +297,51 @@ namespace CppToRubyIntegrationTests {
 		EXPECT_EQ("seven", result);
 	}
 
+	TEST(Integration, Test_Ruby_TestResources_1DArray_RetrieveArray) {
+		// <TestResources_1DArray_RetrieveArray>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Ruby();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.rb";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto arrayReference = instance->InvokeInstanceMethod("get_1d_array")->Execute();
+
+		// get array from reference
+		auto response = arrayReference->RetrieveArray();
+
+		auto result = std::any_cast<std::deque<std::any>>(response);
+
+		auto resultArray = std::vector<std::string>(result.size());
+
+		for (int i = 0; i < result.size(); i++) {
+			resultArray[i] = std::any_cast<std::string>(result[i]);
+			// write result to console
+			std::cout << resultArray[i] << "\t";
+		}
+		// </TestResources_1DArray_RetrieveArray>
+		std::cout << std::endl;
+		auto expectedResponse = std::vector<std::string>{ "one", "two" , "three", "four", "five" };
+		EXPECT_EQ(expectedResponse.size(), resultArray.size());
+		for (int i = 0; i < resultArray.size(); ++i) {
+			EXPECT_EQ(expectedResponse[i], resultArray[i]);
+		}
+	}
+
 	TEST(Integration, Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app

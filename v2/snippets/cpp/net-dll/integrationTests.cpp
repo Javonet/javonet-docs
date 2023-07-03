@@ -298,6 +298,111 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ("seven", result);
 	}
 
+	TEST(Integration, Test_Netcore_TestResources_1DArray_RetrieveArray) {
+		// <TestResources_1DArray_RetrieveArray>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto arrayReference = instance->InvokeInstanceMethod("Get1DArray")->Execute();
+
+		// get array from reference
+		auto response = arrayReference->RetrieveArray();
+
+		auto result = std::any_cast<std::deque<std::any>>(response);
+
+		auto resultArray = std::vector<std::string>(result.size());
+
+		for (int i = 0; i < result.size(); i++) {
+			resultArray[i] = std::any_cast<std::string>(result[i]);
+			// write result to console
+			std::cout << resultArray[i] << "\t";
+		}
+		// </TestResources_1DArray_RetrieveArray>
+		std::cout << std::endl;
+		auto expectedResponse = std::vector<std::string>{ "one", "two" , "three", "four", "five" };
+		EXPECT_EQ(expectedResponse.size(), resultArray.size());
+		for (int i = 0; i < resultArray.size(); ++i) {
+			EXPECT_EQ(expectedResponse[i], resultArray[i]);
+		}
+	}
+
+	TEST(Integration, Test_Netcore_TestResources_Cast_ToUInt32) {
+		// <TestResources_Cast_ToUInt32>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method 
+		auto response = calledRuntimeType->InvokeStaticMethod({ "CastSampleMethod", calledRuntime->Cast("System.UInt32", 5.2) })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_Cast_ToUInt32>
+		EXPECT_EQ("CastSampleMethod with System.UInt32 called", result);
+	}
+
+	TEST(Integration, Test_Netcore_TestResources_Cast_Float) {
+		// <TestResources_Cast_ToFloat>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method 
+		auto response = calledRuntimeType->InvokeStaticMethod({ "CastSampleMethod", calledRuntime->Cast("System.Single", 5) })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_Cast_ToFloat>
+		EXPECT_EQ("CastSampleMethod with System.Single called", result);
+	}
+
 	TEST(Integration, Test_Netcore_StandardLibrary_GetStaticField_SystemMathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app

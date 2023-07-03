@@ -8,8 +8,13 @@ namespace CppActivationTests {
 
 	TEST(Integration, Test_Activation_WrongCredentials_Returns1) {
 		remove("javonet.lic");
-		auto result = Javonet::Activate("your@email.com", "your-licence-key");
-		EXPECT_NE(0, result);
+		try {
+			Javonet::Activate(ActivationCredentials::yourEmail, "your-licence-key");
+		}
+		catch (std::exception &e) {
+			EXPECT_EQ(std::string("Javonet activation result: -34. Error message from activation server: ERROR:Activation key incorrect"), std::string(e.what()));
+		}
+		
 	}
 
 	TEST(Integration, Test_Activation_CorrectCredentials_Returns0) {
@@ -17,12 +22,12 @@ namespace CppActivationTests {
 		// <Javonet_activate>
 		auto result = Javonet::Activate(ActivationCredentials::yourEmail, ActivationCredentials::yourLicenseKey);
 		// </Javonet_activate>
-		EXPECT_EQ(0, result);
+		EXPECT_EQ((int)0, result);
 
 		// <Javonet_activate_without_credentials>
 		auto result2 = Javonet::Activate("", "");
 		// </Javonet_activate_without_credentials>
-		EXPECT_EQ(0, result2);
+		EXPECT_EQ((int)0, result2);
 	}
 
 }
