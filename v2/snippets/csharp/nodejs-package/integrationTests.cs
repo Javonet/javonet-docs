@@ -484,7 +484,7 @@ namespace Integration.Tests
 
 			// write result to console
 			System.Console.WriteLine(string.Join("\t", result));
-			// <TestResources_1DArray_RetrieveArray>
+			// </TestResources_1DArray_RetrieveArray>
 			Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, result);
 		}
 
