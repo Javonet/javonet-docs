@@ -168,7 +168,7 @@ def test_jvm_TestResources_InvokeInstanceMethod():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(13, 14).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     response = instance.invoke_instance_method("multiplyTwoNumbers", 2, 25).execute()
