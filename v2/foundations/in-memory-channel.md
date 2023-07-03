@@ -1,6 +1,7 @@
 :::options
 :title: In memory connection
 :description: The article describes how to use Javonet with inMemory channel type
+:related_articles: foundations/javonet-static-class, foundations/tcp-channel, foundations/runtime-context, foundations/invocation-context, foundations/execute-method
 :::
 
 # In memory channel

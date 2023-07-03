@@ -1,6 +1,7 @@
 :::options
 :title: TCP channel
 :description: The article describes how to use Javonet with TPC/IP channel
+:related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/runtime-context, foundations/invocation-context, foundations/execute-method
 :::
 
 # TCP channel

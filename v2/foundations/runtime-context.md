@@ -1,6 +1,7 @@
 :::options
 :title: Runtime Context
 :description: The article describes the concept of Runtime Context
+:related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/invocation-context, foundations/execute-method
 :::
 
 # Runtime Context
