@@ -38,7 +38,7 @@ It is possible to invoke one of the declared static methods from `{called_name}`
    
 ## Calling static methods from standard `{called_name}`
   
-To invoke static method from standard `{called_name}`:
+The same steps are required to use types and methods from standard `{called_name}`:
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
