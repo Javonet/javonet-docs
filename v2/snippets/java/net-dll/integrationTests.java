@@ -22,7 +22,8 @@ public class JvmToNetcoreIntegrationTest {
 
     @BeforeAll
     public static void initialization() {
-        Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        int result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        Assertions.assertEquals(0, result);
     }
 
     @Test
@@ -397,7 +398,7 @@ public class JvmToNetcoreIntegrationTest {
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
         // invoke instance's method
-        InvocationContext response = instance.invokeInstanceMethod("AddArrayElementsAndMultiply", new Object[]{"System.Double", 12.22, 98.22, -10.44}, 9.99).execute();
+        InvocationContext response = instance.invokeInstanceMethod("AddArrayElementsAndMultiply", new Double[]{12.22, 98.22, -10.44}, 9.99).execute();
 
         // get value from response
         double result = (double) response.getValue();
@@ -406,6 +407,108 @@ public class JvmToNetcoreIntegrationTest {
         System.out.println(result);
         // </TestResources_1DArray_PassArrayAsArgument>
         Assertions.assertEquals(999.0, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Netcore_TestResources_1DArray_RetrieveArray() {
+        // <TestResources_1DArray_RetrieveArray>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext arrayReference = instance.invokeInstanceMethod("Get1DArray").execute();
+
+        // get value from array reference
+        Object[] response = arrayReference.retrieveArray();
+
+        // write to string array
+        String[] result = java.util.Arrays.copyOf(response, response.length, String[].class);
+
+        // write result to console
+        System.out.println(String.join("\t", result));
+        // </TestResources_1DArray_RetrieveArray>
+        Assertions.assertArrayEquals(new String[]{"one", "two", "three", "four", "five"}, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Netcore_TestResources_Cast_ToUInt() {
+        // <TestResources_Cast_ToUInt>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // get type's static field
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.UInt32", 5.2)).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_Cast_ToUInt>
+        Assertions.assertEquals("CastSampleMethod with System.UInt32 called", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Netcore_TestResources_Cast_ToFloat() {
+        // <TestResources_Cast_ToFloat>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // get type's static field
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.Single", 5)).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_Cast_ToFloat>
+        Assertions.assertEquals("CastSampleMethod with System.Single called", result);
     }
 
     @Test

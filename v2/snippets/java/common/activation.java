@@ -1,8 +1,7 @@
+import com.javonet.sdk.java.Javonet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import com.javonet.sdk.java.Javonet;
-
 
 public class JvmActivationTests {
 
@@ -13,5 +12,10 @@ public class JvmActivationTests {
         int result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
         // </Javonet_activate>
         Assertions.assertEquals(0, result);
+
+        // <Javonet_activate_without_credentials>
+        int result2 = Javonet.activate("", "");
+        // </Javonet_activate_without_credentials>
+        Assertions.assertEquals(0, result2);
     }
 }

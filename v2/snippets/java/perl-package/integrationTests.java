@@ -14,7 +14,8 @@ public class JvmToPerlIntegrationTest {
 
     @BeforeAll
     public static void initialization() {
-        Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        int result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        Assertions.assertEquals(0, result);
     }
 
     @Test
