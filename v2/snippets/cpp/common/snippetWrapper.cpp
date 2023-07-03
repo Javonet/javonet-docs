@@ -1,5 +1,6 @@
 #include "Javonet.h"
 #include <iostream>
+#include <vector>
 
 using namespace JavonetNS::Cpp::Sdk;
 
