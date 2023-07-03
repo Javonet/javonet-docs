@@ -26,11 +26,11 @@ Javonet needs to be activated first. Activation must be called only once at the 
 
 :::code source="v2/snippets/python/common/sampleProgram.py" ID="Activation":::
 
-To use other programming technology, [Runtime Context](/guides/v2/foundations/runtime-context.md) of called technology needs to be created.
+To use other programming technology, [Runtime Context](/guides/v2/foundations/runtime-context.md) of the called technology needs to be created.
 
 :::code source="v2/snippets/python/common/sampleProgram.py" ID="RuntimeContextCreation":::
 
-RuntimeContext refers to single instance of an runtime. Once it is created it is used to interact with called runtime.
+RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.
 
 The simplest use case is to get from target technology a type from a built-in library:
 

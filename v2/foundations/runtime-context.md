@@ -8,7 +8,7 @@
 
 Runtime Context represents the single context which allows to interact with selected technology.  
 
-RuntimeContext refers to single instance of an runtime within particular target OS process either the local currently running process (inMemory) or particular remote process identified by IP Address and PORT of target Javonet instance.  
+RuntimeContext refers to single instance of the called runtime within particular target OS process either the local currently running process (inMemory) or particular remote process identified by IP Address and PORT of target Javonet instance.  
 
 Multiple Runtime Contexts can be initialized within one process.  
 
