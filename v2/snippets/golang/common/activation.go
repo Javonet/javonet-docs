@@ -10,7 +10,7 @@ import (
 
 func Test_Activation_CorrectCredentials_Returns0(t *testing.T) {
 	// <Javonet_activate>
-	result := Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenceKey)
+	result := Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenseKey)
 	// </Javonet_activate>
 	expectedResponse := 0
 	if result != expectedResponse {
@@ -18,7 +18,7 @@ func Test_Activation_CorrectCredentials_Returns0(t *testing.T) {
 	}
 }
 
-func Test_Activation_LicenceFile_Returns0(t *testing.T) {
+func Test_Activation_LicenseFile_Returns0(t *testing.T) {
 	// <Javonet_activate_without_credentials>
 	result := Javonet.ActivateWithCredentials("","")
 	// </Javonet_activate_without_credentials>

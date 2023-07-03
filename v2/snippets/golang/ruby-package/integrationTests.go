@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"reflect"
 	"testing"
 
 	"javonet.com/integrationTests/integrationtests/activationcredentials"
@@ -327,6 +328,48 @@ func Test_Ruby_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	array.SetIndex("five", 4).Execute()
 	expectedResponse := "seven"
 	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_Ruby_TestResources_1DArray_RetrieveArray(t *testing.T) {
+	// <TestResources_1DArray_RetrieveArray>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Ruby()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.rb"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := calledRuntimeType.CreateInstance().Execute()
+
+	// invoke instance's method
+	arrayReference := instance.InvokeInstanceMethod("get_1d_array").Execute()
+
+	// get array from reference
+	response := arrayReference.RetrieveArray()
+
+	// create new array to copy response
+	result := make([]string, len(response))
+	for i, v := range response {
+		result[i] = v.(string)
+	}
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_1DArray_RetrieveArray>
+	expectedResponse := []string{"one", "two", "three", "four", "five"}
+	if !reflect.DeepEqual(result, expectedResponse) {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
 }
