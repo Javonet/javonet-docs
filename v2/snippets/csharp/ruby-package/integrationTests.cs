@@ -454,6 +454,42 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
+		public void Test_Ruby_TestResources_1DArray_RetrieveArray()
+		{
+			// <TestResources_1DArray_RetrieveArray>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Ruby();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var arrayReference = instance.InvokeInstanceMethod("get_1d_array").Execute();
+
+			// get value from array reference
+			var result = (string[])arrayReference.RetrieveArray();
+
+			// write result to console
+			System.Console.WriteLine(string.Join("\t", result));
+			// <TestResources_1DArray_RetrieveArray>
+			Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
 		public void Test_Ruby_StandardLibrary_InvokeStaticMethod()
 		{
 			// <StandardLibrary_InvokeStaticMethod>

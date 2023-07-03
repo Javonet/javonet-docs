@@ -455,6 +455,42 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
+		public void Test_Jvm_TestResources_1DArray_RetrieveArray()
+		{
+			// <TestResources_1DArray_RetrieveArray>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Jvm();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance().Execute();
+
+			// invoke instance's method
+			var arrayReference = instance.InvokeInstanceMethod("get1DArray").Execute();
+
+			// get value from array reference
+			var result = (string[])arrayReference.RetrieveArray();
+
+			// write result to console
+			System.Console.WriteLine(string.Join("\t", result));
+			// <TestResources_1DArray_RetrieveArray>
+			Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
 		public void Test_Jvm_StandardLibrary_GetStaticField()
 		{
 			// <StandardLibrary_GetStaticField>

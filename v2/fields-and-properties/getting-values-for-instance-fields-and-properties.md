@@ -1,7 +1,7 @@
 :::options
 :title: Getting values for instance fields and properties
 :description: This article provides an overview of getting values for instance fields and properties
-:related_articles: fields-and-properties/getting-values-for-static-fields-and-properties
+:related_articles: fields-and-properties/getting-and-setting-values-for-static-fields-and-properties
 :::
 
 # Instance fields and properties  
