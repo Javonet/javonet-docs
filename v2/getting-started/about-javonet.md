@@ -1,11 +1,16 @@
+:::options
+:title: About Javonet
+:description: This article provides general information about Javonet
+:related_articles: getting-started/activating-javonet, getting-started/getting-started-dotnet, getting-started/getting-started-java, getting-started/getting-started-perl, getting-started/getting-started-python, getting-started/getting-started-ruby, getting-started/getting-started-nodejs, getting-started/getting-started-cpp, getting-started/getting-started-golang, getting-started/adding-references-to-libraries
+:::
+
 # About Javonet
 
 Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article describes how to use Javonet in selected technology and install prerequisites. 
 
-# Getting started
-
+## Getting started  
   
-
+  
 [Getting started for .NET developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet)  
 
   
@@ -30,8 +35,8 @@ Javonet enables software developers to instantly integrate several programming l
 [Getting started for Golang developers](https://www.javonet.com/guides/v2/getting-started/getting-started-golang)    
   
 
-# Install prerequisites
-
+## Install prerequisites  
+  
 To use Javonet to call library/package/module which was designed for another technology, runtime of this technology has to be installed. List below present prerequisites to be installed:
 
 ## .NET Framework DLL Library

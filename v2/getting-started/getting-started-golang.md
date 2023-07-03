@@ -1,6 +1,7 @@
 :::options
 :title: Getting started for GoLang developers
 :description: This article provides Javonet getting started guide for GoLang developers
+:related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
 ## Install Javonet for GoLang

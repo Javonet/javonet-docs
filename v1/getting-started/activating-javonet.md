@@ -6,7 +6,7 @@
 
 # Activating Javonet
 
-## Getting licence
+## Getting license
 
 Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to obtain license key.
 
@@ -22,13 +22,13 @@ Javonet needs to be activated first. Activation must be called only once at the 
 :display: calling
 :::
 
-Activation must be called only once at the start-up of your application. During the first activation, Javonet contacts our servers and generates a javonet.lic file in your application directory. All subsequent calls simply verify this file.
+During the first activation, Javonet contacts our servers and generates a javonet.lic file in your application directory. All subsequent calls simply verify this file.
 
 ## Java 
 Last argument of activate method allows you to specify which .NET framework version should be used by Javonet to load your DLLs. Higher frameworks are backward compatible. If you have .NET 4.5 installed you can run Javonet in JavonetFramework.v45 mode and use .NET 3.5, 4.0 and 4.5 DLLs. This argument is of com.javonet.JavonetFramework enum type.  
 
 ## .NET
-Last argument of activate method allows you to specify path to your Java runtime JRE or Java development kit (JDK)  
+Last argument of activate method allows you to specify path to your Java Runtime Environment (JRE) or Java Development Kit (JDK)  
 
 ## Activating Javonet using proxy
 

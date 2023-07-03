@@ -1,6 +1,7 @@
 :::options
 :title: Getting started for Ruby developers
 :description: This article provides Javonet getting started guide for Ruby developers
+:related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
 ## Install Javonet for Ruby

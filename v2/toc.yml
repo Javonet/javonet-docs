@@ -103,7 +103,6 @@ items:
     href: /getting-started/getting-started-cpp.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-
   - name: Activating Javonet
     href: /getting-started/activating-javonet.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
