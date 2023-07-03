@@ -164,11 +164,9 @@ items:
 - name: Arrays and collections 
   items: 
   - name: Arrays
-    items:
-    - name: Arrays-test
-      href: /arrays-and-collections/arrays.md
-      calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-      called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+    href: /arrays-and-collections/arrays.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Value types arrays
     href: /arrays-and-collections/value-types-arrays.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
