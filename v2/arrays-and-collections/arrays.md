@@ -5,17 +5,30 @@
 
 # Working with arrays
 
-## Custom `{called_name}`
+Data structures are one of the essential aspects of every piece of software. Any application, from simple command line util to scalable enterprise systems, constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by
+arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`.  
+  
+This article provides an introduction to cross-technology handling of arrays from `{called_name}` using `{calling_name}`. The article explains how to work with arrays between calling and called technology.  
 
-Assuming we have a custom `{called_name}` with the following class inside:
+With Javonet you can interact with arrays from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API. 
 
+## Working with arrays custom `{called_name}`  
+  
+With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with arrays declared on types defined within that module almost the same as with any other `{calling_name}` library.  
+  
+This section present sample custom `{called_name}` with class declaring method which returns array and Javonet SDK syntax required to use that array and consume the results in `{calling_name}`.  
+  
+Code example below represents the sample code from `{called_name}` that will be used in following sections.  
+  
 :::code 
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Arrays
 :display: called
 :::
 
-To get element of the array:
+It is possible to invoke method which returns array from `{called_name}` using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}`, and next retrieves reference to specific type, create object of the type, and invoke method which returns array. Result of the invocation is returned as a reference to the array.
+
+## Get element of the array:
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -25,17 +38,17 @@ To get element of the array:
 :display: calling
 :::
 
-To get size of the array
+For technologies which supports operator overloading it is possible to use array's get operator as for any other `{calling_name}` array:
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_1DArray_GetSize
+:calling_id: TestResources_1DArray_GetElement
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Arrays
 :display: calling
 :::
 
-To set element of the array:
+## Set element of the array:
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -45,7 +58,28 @@ To set element of the array:
 :display: calling
 :::
 
-To iterate over the array:
+For technologies which supports operator overloading it is possible to use array's set operator as for any other `{calling_name}` array:
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_1DArray_SetElement
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
+:display: calling
+:::
+
+## Get size of the array
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_1DArray_GetSize
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
+:display: calling
+:::
+
+
+## Iterate over the array:
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -55,3 +89,22 @@ To iterate over the array:
 :display: calling
 :::
 
+## Pass array as argument:
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_1DArray_PassArrayAsArgument
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
+:display: calling
+:::
+
+## Retrieve array:
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: TestResources_1DArray_RetrieveArray
+:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
+:called_id: Arrays
+:display: calling
+:::
