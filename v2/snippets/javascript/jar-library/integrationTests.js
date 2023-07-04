@@ -334,6 +334,72 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     })
 
+    test(`Test_Jvm_TestResources_1DArray_PassArrayAsArgument`, () => {
+        // <TestResources_1DArray_PassArrayAsArgument>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let response = instance.invokeInstanceMethod("addArrayElementsAndMultiply", [12.22, 98.22, -10.44], 9.99).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_1DArray_PassArrayAsArgument>
+        expect(result).toEqual(999)
+    })
+
+    test(`Test_Jvm_TestResources_1DArray_RetrieveArray`, () => {
+        // <TestResources_1DArray_RetrieveArray>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let arrayReference = instance.invokeInstanceMethod("get1DArray").execute()
+
+        // get value from response
+        let result = arrayReference.retrieveArray()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_1DArray_RetrieveArray>
+        expect(result).toEqual(["one", "two", "three", "four", "five"])
+    })
+
     test(`Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI`, () => {
         // <StandardLibrary_GetStaticField>
         // use Activate only once in your app

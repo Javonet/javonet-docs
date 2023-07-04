@@ -357,7 +357,7 @@ describe('Nodejs to Ruby integration tests', () => {
         let instance = calledRuntimeType.createInstance().execute()
 
         // invoke instance's method
-        let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", ["", 12.22, 98.22, -10.44 ], 9.99).execute()
+        let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", [12.22, 98.22, -10.44 ], 9.99).execute()
 
         // get value from response
         let result = response.getValue()
@@ -366,6 +366,39 @@ describe('Nodejs to Ruby integration tests', () => {
         console.log(result)
         // </TestResources_1DArray_PassArrayAsArgument>
         expect(result).toEqual(999)
+    })
+
+    test(`Test_Ruby_TestResources_1DArray_RetrieveArray`, () => {
+        // <TestResources_1DArray_RetrieveArray>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let arrayReference = instance.invokeInstanceMethod("get_1d_array").execute()
+
+        // get value from response
+        let result = arrayReference.retrieveArray()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_1DArray_RetrieveArray>
+        expect(result).toEqual(["one", "two", "three", "four", "five"])
     })
 
     test(`Test_Ruby_StandardLibrary_GetStaticField_Math_PI_PI`, () => {

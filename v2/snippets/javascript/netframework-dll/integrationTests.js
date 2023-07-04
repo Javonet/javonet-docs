@@ -336,6 +336,132 @@ describe('Nodejs to Clr integration tests', () => {
                 expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
             })
 
+            test(`Test_Clr_TestResources_1DArray_PassArrayAsArgument`, () => {
+                // <TestResources_1DArray_PassArrayAsArgument>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
+
+                // invoke instance's method
+                let response = instance.invokeInstanceMethod("AddArrayElementsAndMultiply", [12.22, 98.22, -10.44], 9.99).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_PassArrayAsArgument>
+                expect(result).toEqual(999)
+            })
+
+            test(`Test_Clr_TestResources_1DArray_RetrieveArray`, () => {
+                // <TestResources_1DArray_RetrieveArray>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
+
+                // invoke instance's method
+                let arrayReference = instance.invokeInstanceMethod("Get1DArray").execute()
+
+                // get value from response
+                let result = arrayReference.retrieveArray()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_RetrieveArray>
+                expect(result).toEqual(["one", "two", "three", "four", "five"])
+            })
+
+            test(`Test_Clr_TestResources_Cast_ToUInt32`, () => {
+                // <TestResources_Cast_ToUInt>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // invoke type's static method
+                let response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.UInt32", 5.2)).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_Cast_ToUInt>
+                expect(result).toBe("CastSampleMethod with System.UInt32 called")
+            })
+
+            test(`Test_Clr_TestResources_Cast_ToFloat`, () => {
+                // <TestResources_Cast_ToFloat>
+                // use Activate only once in your app
+                Javonet.activate("your-email", "your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().clr()
+
+                // set up variables
+                let libraryPath = resourcesDirectory + '/TestClass.dll'
+                let className = 'TestClass.TestClass'
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // invoke type's static method
+                let response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.Single", 5)).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_Cast_ToFloat>
+                expect(result).toBe("CastSampleMethod with System.Single called")
+            })
+
             test(`Test_Clr_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
                 // <StandardLibrary_GetStaticField>
                 // use Activate only once in your app

@@ -356,7 +356,7 @@ describe('Nodejs to Python integration tests', () => {
             let instance = calledRuntimeType.createInstance(0, 1).execute()
 
             // invoke instance's method
-            let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", ["", 12.22, 98.22, -10.44], 9.99).execute()
+            let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", [12.22, 98.22, -10.44], 9.99).execute()
 
             // get value from response
             let result = response.getValue()
@@ -365,6 +365,39 @@ describe('Nodejs to Python integration tests', () => {
             console.log(result)
             // </TestResources_1DArray_PassArrayAsArgument>
             expect(result).toEqual(999)
+        })
+
+        test(`Test_Python_TestResources_1DArray_RetrieveArray`, () => {
+            // <TestResources_1DArray_RetrieveArray>
+            // use Activate only once in your app
+            Javonet.activate("your-email", "your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let arrayReference = instance.invokeInstanceMethod("get_1d_array").execute()
+
+            // get value from response
+            let result = arrayReference.retrieveArray()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_RetrieveArray>
+            expect(result).toEqual(["one", "two", "three", "four", "five"])
         })
 
         test(`Test_Python_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
