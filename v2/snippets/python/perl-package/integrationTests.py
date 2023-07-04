@@ -302,3 +302,116 @@ def test_perl_TestResources_1DArray_SetIndex():
     # </TestResources_1DArray_SetIndex>
     array.set_index("five", 4).execute()
     assert (result == "seven")
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
+def test_perl_TestResources_1DArray_Iterate():
+    # <TestResources_1DArray_Iterate>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.pm'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # iterate through elements and invoke method on them
+    array_upper = list()
+    for element in array:
+        array_upper.append(element.execute().get_value())
+
+    # write result to console
+    print(array_upper)
+    # </TestResources_1DArray_Iterate>
+    assert array_upper == ["one", "two", "three", "four", "five"]
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
+def test_perl_TestResources_1DArray_GetElement():
+    # <TestResources_1DArray_GetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.pm'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get element of array and invoke method on it
+    response = array[2].execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_GetElement>
+    assert result == "three"
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
+def test_perl_TestResources_1DArray_SetElement():
+    # <TestResources_1DArray_SetElement>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.pm'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get_1d_array").execute()
+
+    # set element of array
+    array[2] = "zero"
+
+    # get element of array and invoke method on it
+    response = array[2].execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_SetElement>
+    assert result == "zero"

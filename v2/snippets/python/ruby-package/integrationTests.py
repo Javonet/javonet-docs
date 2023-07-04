@@ -403,6 +403,74 @@ def test_ruby_TestResources_1DArray_SetElement():
     assert result == "ZERO"
 
 
+def test_ruby_TestResources_1DArray_PassArrayAsArgument():
+    # <TestResources_1DArray_PassArrayAsArgument>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("add_array_elements_and_multiply",
+                                               [12.22, 98.22, -10.44],
+                                               9.99).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_PassArrayAsArgument>
+    assert round(result, 3) == 999.0
+
+
+def test_ruby_TestResources_1DArray_RetrieveArray():
+    # <TestResources_1DArray_RetrieveArray>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array_reference = instance.invoke_instance_method("get_1d_array").execute()
+
+    # get value from array reference
+    result = array_reference.retrieve_array()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_RetrieveArray>
+    assert result == ["one", "two", "three", "four", "five"]
+
+
 def test_ruby_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app

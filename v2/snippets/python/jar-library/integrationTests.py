@@ -404,6 +404,39 @@ def test_jvm_TestResources_1DArray_SetElement():
     assert result == "ZERO"
 
 
+def test_jvm_TestResources_1DArray_RetrieveArray():
+    # <TestResources_1DArray_RetrieveArray>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array_reference = instance.invoke_instance_method("get1DArray").execute()
+
+    # get value from array reference
+    result = array_reference.retrieve_array()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_RetrieveArray>
+    assert result == ["one", "two", "three", "four", "five"]
+
+
 def test_jvm_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
