@@ -188,3 +188,9 @@ items:
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
 
+- name: Casting 
+  items: 
+  - name: Casting
+    href: /casting/casting.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll

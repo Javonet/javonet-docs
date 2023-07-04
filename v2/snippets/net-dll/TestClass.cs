@@ -63,6 +63,23 @@
 		}
 		// </Exceptions>
 
+		// <Cast>
+		public static string CastSampleMethod(System.UInt32 value)
+		{
+			return "CastSampleMethod with System.UInt32 called";
+		}
+
+		public static string CastSampleMethod(System.Single value)
+		{
+			return "CastSampleMethod with System.Single called";
+		}
+
+		public static string CastSampleMethod(System.Double[] value)
+		{
+			return "CastSampleMethod with System.Double[] called";
+		}
+		// </Cast>
+
 		// <Empty>
 		// empty
 		// </Empty>
