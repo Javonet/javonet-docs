@@ -241,7 +241,7 @@ sub Test_Netcore_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $netcore_type = $netcore_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $netcore_type->create_instance(12, 13)->execute();
+    my $instance = $netcore_type->create_instance()->execute();
 
     # invoke instance's method
     my $response = $instance->invoke_instance_method("MultiplyTwoNumbers", 5, 4)->execute();
@@ -307,7 +307,7 @@ sub Test_Netcore_TestResources_1DArray_GetIndex_2_StringThree {
     my $netcore_type = $netcore_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $netcore_type->create_instance(0, 1)->execute();
+    my $instance = $netcore_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("Get1DArray")->execute();
@@ -343,7 +343,7 @@ sub Test_Netcore_TestResources_1DArray_GetSize_5 {
     my $netcore_type = $netcore_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $netcore_type->create_instance(0, 1)->execute();
+    my $instance = $netcore_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("Get1DArray")->execute();
@@ -379,7 +379,7 @@ sub Test_Netcore_TestResources_1DArray_SetIndex_StringSeven {
     my $netcore_type = $netcore_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $netcore_type->create_instance(0, 1)->execute();
+    my $instance = $netcore_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("Get1DArray")->execute();

@@ -189,7 +189,7 @@ sub Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance(12, 13)->execute();
+    my $instance = $nodejs_type->create_instance()->execute();
 
     # invoke instance's method
     my $response = $instance->invoke_instance_method("multiplyTwoNumbers", 5, 4)->execute();
@@ -255,7 +255,7 @@ sub Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree {
     my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance(0, 1)->execute();
+    my $instance = $nodejs_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -291,7 +291,7 @@ sub Test_Nodejs_TestResources_1DArray_GetSize_5 {
     my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance(0, 1)->execute();
+    my $instance = $nodejs_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -327,7 +327,7 @@ sub Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven {
     my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance(0, 1)->execute();
+    my $instance = $nodejs_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();

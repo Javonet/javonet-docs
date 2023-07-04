@@ -191,7 +191,7 @@ sub Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $python_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(12, 13)->execute();
+    my $instance = $python_type->create_instance(0, 1)->execute();
 
     # invoke instance's method
     my $response = $instance->invoke_instance_method("multiply_two_numbers", 5, 4)->execute();

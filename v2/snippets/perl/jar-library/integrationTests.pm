@@ -242,7 +242,7 @@ sub Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $jvm_type->create_instance(12, 13)->execute();
+    my $instance = $jvm_type->create_instance()->execute();
 
     # invoke instance's method
     my $response = $instance->invoke_instance_method("multiplyTwoNumbers", 5, 4)->execute();
@@ -308,7 +308,7 @@ sub Test_Jvm_TestResources_1DArray_GetIndex_2_StringThree {
     my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $jvm_type->create_instance(0, 1)->execute();
+    my $instance = $jvm_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -344,7 +344,7 @@ sub Test_Jvm_TestResources_1DArray_GetSize_5 {
     my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $jvm_type->create_instance(0, 1)->execute();
+    my $instance = $jvm_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -380,7 +380,7 @@ sub Test_Jvm_TestResources_1DArray_SetIndex_StringSeven {
     my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $jvm_type->create_instance(0, 1)->execute();
+    my $instance = $jvm_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();

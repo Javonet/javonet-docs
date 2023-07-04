@@ -309,7 +309,7 @@ sub Test_Clr_TestResources_1DArray_GetIndex_2_StringThree {
     my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $clr_type->create_instance(0, 1)->execute();
+    my $instance = $clr_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("Get1DArray")->execute();
@@ -345,7 +345,7 @@ sub Test_Clr_TestResources_1DArray_GetSize_5 {
     my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $clr_type->create_instance(0, 1)->execute();
+    my $instance = $clr_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("Get1DArray")->execute();
@@ -381,7 +381,7 @@ sub Test_Clr_TestResources_1DArray_SetIndex_StringSeven {
     my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $clr_type->create_instance(0, 1)->execute();
+    my $instance = $clr_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("Get1DArray")->execute();
