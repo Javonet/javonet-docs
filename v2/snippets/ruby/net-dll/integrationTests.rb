@@ -411,6 +411,132 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("SEVEN")
   end
 
+  it 'Test_Netcore_TestResources_1DArray_PassArrayAsArgument' do
+    # <TestResources_1DArray_PassArrayAsArgument>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("AddArrayElementsAndMultiply", called_runtime.cast("System.Double[]", [12.22, 98.22, -10.44]), 9.99).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_1DArray_PassArrayAsArgument>
+    expect(result.round(1)).to eq(999.0)
+  end
+
+  it 'Test_Netcore_TestResources_1DArray_RetrieveArray' do
+    # <TestResources_1DArray_RetrieveArray>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke instance's method
+    array_reference = instance.invoke_instance_method("Get1DArray").execute
+
+    # get array from reference
+    result = array_reference.retrieve_array
+
+    # write result to console
+    puts result
+    # </TestResources_1DArray_RetrieveArray>
+    expect(result).to eq(["one", "two", "three", "four", "five"])
+  end
+
+  it 'Test_Netcore_TestResources_TestResources_Cast_ToUInt' do
+    # <TestResources_TestResources_Cast_ToUInt>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("CastSampleMethod", called_runtime.cast("System.UInt32", 5.2)).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_TestResources_Cast_ToUInt>
+    expect(result).to eq("CastSampleMethod with System.UInt32 called")
+  end
+
+  it 'Test_Netcore_TestResources_TestResources_Cast_ToFloat' do
+    # <TestResources_TestResources_Cast_ToFloat>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("CastSampleMethod", called_runtime.cast("System.Single", 5)).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_TestResources_Cast_ToFloat>
+    expect(result).to eq("CastSampleMethod with System.Single called")
+  end
+
   it 'Test_Netcore_StandardLibrary_GetStaticField_MathPI_PI' do
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app

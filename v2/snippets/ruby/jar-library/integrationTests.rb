@@ -411,6 +411,39 @@ RSpec.describe 'Ruby To Jvm Integration Tests' do
     expect(result).to eq("SEVEN")
   end
 
+  it 'Test_Jvm_TestResources_1DArray_RetrieveArray' do
+    # <TestResources_1DArray_RetrieveArray>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke instance's method
+    array_reference = instance.invoke_instance_method("get1DArray").execute
+
+    # get array from reference
+    result = array_reference.retrieve_array
+
+    # write result to console
+    puts result
+    # </TestResources_1DArray_RetrieveArray>
+    expect(result).to eq(["one", "two", "three", "four", "five"])
+  end
+
   it 'Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI' do
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app

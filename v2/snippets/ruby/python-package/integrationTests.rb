@@ -434,7 +434,7 @@ unless OS.mac?
       instance = called_runtime_type.create_instance(0, 1).execute
 
       # invoke instance's method
-      response = instance.invoke_instance_method("add_array_elements_and_multiply", ["", 12.22, 98.22, -10.44], 9.99).execute
+      response = instance.invoke_instance_method("add_array_elements_and_multiply", [12.22, 98.22, -10.44], 9.99).execute
 
       # get value from response
       result = response.get_value
@@ -443,6 +443,39 @@ unless OS.mac?
       puts result
       # </TestResources_1DArray_PassArrayAsArgument>
       expect(result.round(1)).to eq(999.0)
+    end
+
+    it 'Test_Python_TestResources_1DArray_RetrieveArray' do
+      # <TestResources_1DArray_RetrieveArray>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.python
+
+      # set up variables
+      library_path = resources_directory
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create type's instance
+      instance = called_runtime_type.create_instance(0, 1).execute
+
+      # invoke instance's method
+      array_reference = instance.invoke_instance_method("get_1d_array").execute
+
+      # get array from reference
+      result = array_reference.retrieve_array
+
+      # write result to console
+      puts result
+      # </TestResources_1DArray_RetrieveArray>
+      expect(result).to eq(["one", "two", "three", "four", "five"])
     end
 
     it 'Test_Python_StandardLibrary_GetStaticField_Math_PI_PI' do

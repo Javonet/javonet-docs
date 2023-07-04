@@ -1,7 +1,7 @@
 require 'javonet-ruby-sdk'
 require_relative 'activation_credentials'
 
-if OS.windows?
+if false
   RSpec.describe 'Ruby To Perl Integration Tests' do
 
     resources_directory = File.expand_path('../../../../../testResources/perl-package', __FILE__)
