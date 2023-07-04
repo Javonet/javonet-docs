@@ -13,7 +13,7 @@ Code example below represents the sample code from `{called_name}` that will be 
 :display: called
 :::
     
-  
+----  
   
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -22,7 +22,8 @@ Code example below represents the sample code from `{called_name}` that will be 
 :called_id: Cast
 :display: calling
 :::
-   
+
+----   
   
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
