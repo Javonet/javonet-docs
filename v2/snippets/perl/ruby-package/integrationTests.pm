@@ -13,19 +13,6 @@ Javonet->activate(ActivationCredentials::YOUR_EMAIL, ActivationCredentials::YOUR
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
 my $resources_directory = "${this_file_path}/../../../testResources/ruby-package";
 
-sub Test_Ruby_StandardLibrary_LoadLibrary_Base64_NoException {
-    # <StandardLibrary_LoadLibrary>
-    # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
-
-    # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
-
-    $ruby_runtime->load_library("base64");
-    # </StandardLibrary_LoadLibrary>
-    return 0;
-}
-
 sub Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Abs_Sqrt_2500_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
@@ -249,7 +236,118 @@ sub Test_Ruby_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
-my $test_result_1 = Test_Ruby_StandardLibrary_LoadLibrary_Base64_NoException();
+sub Test_Ruby_TestResources_1DArray_GetIndex_2_StringThree {
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Ruby runtime context
+    my $ruby_runtime = Javonet->in_memory()->ruby();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
+
+    # load Ruby custom library
+    $ruby_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $ruby_type->create_instance(0, 1)->execute();
+
+    # invoke instance's method
+    my $array = $instance->invoke_instance_method("get_1d_array")->execute();
+
+    # get array's index
+    my $response = $array->get_index(2)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_1DArray_GetIndex>
+    return $result;
+}
+
+sub Test_Ruby_TestResources_1DArray_GetSize_5 {
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Ruby runtime context
+    my $ruby_runtime = Javonet->in_memory()->ruby();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
+
+    # load Ruby custom library
+    $ruby_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $ruby_type->create_instance(0, 1)->execute();
+
+    # invoke instance's method
+    my $array = $instance->invoke_instance_method("get_1d_array")->execute();
+
+    # get array's size
+    my $response = $array->get_size()->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_1DArray_GetSize>
+    return $result;
+}
+
+sub Test_Ruby_TestResources_1DArray_SetIndex_StringSeven {
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Ruby runtime context
+    my $ruby_runtime = Javonet->in_memory()->ruby();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
+
+    # load Ruby custom library
+    $ruby_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $ruby_type->create_instance(0, 1)->execute();
+
+    # invoke instance's method
+    my $array = $instance->invoke_instance_method("get_1d_array")->execute();
+
+    # set array's index
+    $array->set_index("seven", 4)->execute();
+
+    # get array's index
+    my $response = $array->get_index(4)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_1DArray_SetIndex>
+    $array->set_index("five", 4)->execute();
+    return $result;
+}
+
 my $test_result_2 = Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Abs_Sqrt_2500_50();
 my $test_result_3 = Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI();
 my $test_result_4 = Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException
@@ -258,8 +356,10 @@ my $test_result_6 = Test_Ruby_TestResources_GetStaticField_StaticValue_3();
 my $test_result_7 = Test_Ruby_TestResources_SetStaticField_StaticValue_75();
 my $test_result_8 = Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
 my $test_result_9 = Test_Ruby_TestResources_GetInstanceField_PublicValue_18();
+my $test_result_11 = Test_Ruby_TestResources_1DArray_GetIndex_2_StringThree();
+my $test_result_12 = Test_Ruby_TestResources_1DArray_GetSize_5();
+my $test_result_13 = Test_Ruby_TestResources_1DArray_SetIndex_StringSeven();
 
-is($test_result_1, 0, 'Test_Ruby_StandardLibrary_LoadLibrary_Base64_NoException');
 is($test_result_2, 50, 'Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Abs_Sqrt_2500_50');
 is(sprintf("%.5f", $test_result_3), sprintf("%.5f", pi), 'Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI');
 is($test_result_4, 0, 'Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException');
@@ -268,6 +368,9 @@ is($test_result_6, 3, 'Test_Ruby_TestResources_GetStaticField_StaticValue_3');
 is($test_result_7, 75, 'Test_Ruby_TestResources_SetStaticField_StaticValue_3');
 is($test_result_8, 20, 'Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
 is($test_result_9, 18, 'Test_Ruby_TestResources_GetInstanceField_PublicValue_18');
+is($test_result_11, "three", 'Test_Ruby_TestResources_1DArray_GetIndex_2_StringThree');
+is($test_result_12, 5, 'Test_Ruby_TestResources_1DArray_GetSize_5');
+is($test_result_13, "seven", 'Test_Ruby_TestResources_1DArray_SetIndex_StringSeven');
 
 done_testing();
 

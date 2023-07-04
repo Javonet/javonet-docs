@@ -20,7 +20,7 @@ sub Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
@@ -43,7 +43,7 @@ sub Test_Clr_StandardLibrary_GetStaticField_MathPI_PI {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
@@ -66,7 +66,7 @@ sub Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateStri
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
@@ -92,7 +92,7 @@ sub Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
@@ -118,13 +118,13 @@ sub Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
 
-    # load CLR custom library
+    # load Clr custom library
     $clr_runtime->load_library($library_path);
     # </TestResources_LoadLibrary>
     return 0;
@@ -135,14 +135,14 @@ sub Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
-    # load CLR custom library
+    # load Clr custom library
     $clr_runtime->load_library($library_path);
 
     # get type from the runtime
@@ -165,14 +165,14 @@ sub Test_Clr_TestResources_GetStaticField_StaticValue_3 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
-    # load CLR custom library
+    # load Clr custom library
     $clr_runtime->load_library($library_path);
 
     # get type from the runtime
@@ -195,14 +195,14 @@ sub Test_Clr_TestResources_SetStaticField_StaticValue_75 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
-    # load CLR custom library
+    # load Clr custom library
     $clr_runtime->load_library($library_path);
 
     # get type from the runtime
@@ -229,14 +229,14 @@ sub Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
-    # load CLR custom library
+    # load Clr custom library
     $clr_runtime->load_library($library_path);
 
     # get type from the runtime
@@ -262,14 +262,14 @@ sub Test_Clr_TestResources_GetInstanceField_PublicValue_18 {
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
 
-    # create CLR runtime context
+    # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
-    # load CLR custom library
+    # load Clr custom library
     $clr_runtime->load_library($library_path);
 
     # get type from the runtime
@@ -290,6 +290,118 @@ sub Test_Clr_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
+sub Test_Clr_TestResources_1DArray_GetIndex_2_StringThree {
+    # <TestResources_1DArray_GetIndex>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Clr runtime context
+    my $clr_runtime = Javonet->in_memory()->clr();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
+
+    # load Clr custom library
+    $clr_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $clr_type->create_instance(0, 1)->execute();
+
+    # invoke instance's method
+    my $array = $instance->invoke_instance_method("Get1DArray")->execute();
+
+    # get array's index
+    my $response = $array->get_index(2)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_1DArray_GetIndex>
+    return $result;
+}
+
+sub Test_Clr_TestResources_1DArray_GetSize_5 {
+    # <TestResources_1DArray_GetSize>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Clr runtime context
+    my $clr_runtime = Javonet->in_memory()->clr();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
+
+    # load Clr custom library
+    $clr_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $clr_type->create_instance(0, 1)->execute();
+
+    # invoke instance's method
+    my $array = $instance->invoke_instance_method("Get1DArray")->execute();
+
+    # get array's size
+    my $response = $array->get_size()->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_1DArray_GetSize>
+    return $result;
+}
+
+sub Test_Clr_TestResources_1DArray_SetIndex_StringSeven {
+    # <TestResources_1DArray_SetIndex>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Clr runtime context
+    my $clr_runtime = Javonet->in_memory()->clr();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
+
+    # load Clr custom library
+    $clr_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $clr_type->create_instance(0, 1)->execute();
+
+    # invoke instance's method
+    my $array = $instance->invoke_instance_method("Get1DArray")->execute();
+
+    # set array's index
+    $array->set_index("seven", 4)->execute();
+
+    # get array's index
+    my $response = $array->get_index(4)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_1DArray_SetIndex>
+    $array->set_index("five", 4)->execute();
+    return $result;
+}
+
 if ("$osname" eq 'MSWin32') {
     my $test_result_1 = Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
     my $test_result_2 = Test_Clr_StandardLibrary_GetStaticField_MathPI_PI();
@@ -301,6 +413,9 @@ if ("$osname" eq 'MSWin32') {
     my $test_result_8 = Test_Clr_TestResources_SetStaticField_StaticValue_75();
     my $test_result_9 = Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
     my $test_result_10 = Test_Clr_TestResources_GetInstanceField_PublicValue_18();
+    my $test_result_11 = Test_Clr_TestResources_1DArray_GetIndex_2_StringThree();
+    my $test_result_12 = Test_Clr_TestResources_1DArray_GetSize_5();
+    my $test_result_13 = Test_Clr_TestResources_1DArray_SetIndex_StringSeven();
 
     is($test_result_1, 50, 'Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
     is($test_result_2, pi, 'Test_Clr_StandardLibrary_GetStaticField_MathPI_PI');
@@ -312,9 +427,12 @@ if ("$osname" eq 'MSWin32') {
     is($test_result_8, 75, 'Test_Clr_TestResources_SetStaticField_StaticValue_3');
     is($test_result_9, 20, 'Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
     is($test_result_10, 18, 'Test_Clr_TestResources_GetInstanceField_PublicValue_18');
+    is($test_result_11, "three", 'Test_Clr_TestResources_1DArray_GetIndex_2_StringThree');
+    is($test_result_12, 5, 'Test_Clr_TestResources_1DArray_GetSize_5');
+    is($test_result_13, "seven", 'Test_Clr_TestResources_1DArray_SetIndex_StringSeven');
 }
 else {
-    is(0, 0, 'Test_Clr_DoesNot RunOnLinux');
+    is(0, 0, 'Clr supported on Windows only');
 }
 
 done_testing();
