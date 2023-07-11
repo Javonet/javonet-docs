@@ -12,13 +12,14 @@ module TestClass
     # </Fields>
 
     # <Methods>
-    def self.multiply_by_two(value)
-      return value * 2
+    def self.multiply_by_two(a)
+      return 2 * a
     end
 
-    def multiply_two_numbers(first, second)
-      return first * second
+    def multiply_two_numbers(a, b)
+      return a * b
     end
+
     # </Methods>
 
     # <Arrays>
@@ -32,8 +33,16 @@ module TestClass
     # </Arrays>
 
     # <Exceptions>
-    def self.divide_two_numbers(value_one, value_two)
-      return value_one / value_two
+    def self.divide_by(x, y)
+      return self.divide_by_second(x, y)
+    end
+
+    def self.divide_by_second(x, y)
+      return self.divide_by_third(x, y)
+    end
+
+    def self.divide_by_third(x, y)
+      return x / y
     end
     # </Exceptions>
 

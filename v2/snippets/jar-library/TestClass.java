@@ -38,16 +38,16 @@ public class TestClass {
     // </Arrays>
 
     // <Exceptions>
-    public static int divideBy(int a, int b) {
-        return divideBySecond(a, b);
+    public static int divideBy(int x, int y) {
+        return divideBySecond(x, y);
     }
 
-    public static int divideBySecond(int a, int b) {
-        return divideByThird(a, b);
+    public static int divideBySecond(int x, int y) {
+        return divideByThird(x, y);
     }
 
-    public static int divideByThird(int a, int b) {
-        return a / b;
+    public static int divideByThird(int x, int y) {
+        return x / y;
     }
     // </Exceptions>
 

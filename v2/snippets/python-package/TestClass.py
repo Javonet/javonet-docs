@@ -10,11 +10,11 @@ class TestClass:
 
     # <Methods>
     @staticmethod
-    def multiply_by_two(value):
-        return value * 2
+    def multiply_by_two(a):
+        return 2 * a
 
-    def multiply_two_numbers(self, first, second):
-        return first * second
+    def multiply_two_numbers(self, a, b):
+        return a * b
     # </Methods>
 
     # <Arrays>
@@ -27,16 +27,16 @@ class TestClass:
 
     # <Exceptions>
     @staticmethod
-    def divideby(first, second):
-        return TestClass.divideby_second(first, second)
+    def divide_by(x, y):
+        return TestClass.divide_by_second(x, y)
 
     @staticmethod
-    def divideby_second(first, second):
-        return TestClass.divideby_third(first, second)
+    def divide_by_second(x, y):
+        return TestClass.divide_by_third(x, y)
 
     @staticmethod
-    def divideby_third(first, second):
-        return first / second
+    def divide_by_third(x, y):
+        return x / y
     # </Exceptions>
 
     #<Empty>

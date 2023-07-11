@@ -19,13 +19,13 @@ sub new {
 
 # <Methods>
 sub multiply_by_two {
-    my ($first_arg) = @_;
-    return $first_arg * 2;
+    my ($a) = @_;
+    return $a * 2;
 }
 
 sub multiply_two_numbers {
-    my ($self, $first_arg, $second_arg) = @_;
-    return $first_arg * $second_arg;
+    my ($self, $a, $b) = @_;
+    return $a * $b;
 }
 # </Methods>
 
@@ -44,9 +44,17 @@ sub add_number_to_1d_array {
 # </Arrays>
 
 # <Exceptions>
-sub divide_two_numbers {
-    my ($self, $first_arg, $second_arg) = @_;
-    return $first_arg / $second_arg;
+sub divide_by {
+    return divide_by_second(@_);
+}
+
+sub divide_by_second {
+    return divide_by_third(@_);
+}
+
+sub divide_by_third {
+    my ($x, $y) = @_;
+    return $x / $y;
 }
 # </Exceptions>
 

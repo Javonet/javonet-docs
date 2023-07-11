@@ -1,4 +1,6 @@
-﻿namespace TestClass
+﻿using System.Linq;
+
+namespace TestClass
 {
 	public class TestClass
 	{
@@ -22,9 +24,9 @@
 			return 2 * a;
 		}
 
-		public int MultiplyTwoNumbers(int first, int second)
+		public int MultiplyTwoNumbers(int a, int b)
 		{
-			return first * second;
+			return a * b;
 		}
 		// </Methods>
 
@@ -47,19 +49,19 @@
 		// </Arrays>
 
 		// <Exceptions>
-		public static int DivideBy(int a, int b)
+		public static int DivideBy(int x, int y)
 		{
-			return DivideBySecond(a, b);
+			return DivideBySecond(x, y);
 		}
 
-		public static int DivideBySecond(int a, int b)
+		public static int DivideBySecond(int x, int y)
 		{
-			return DivideByThird(a, b);
+			return DivideByThird(x, y);
 		}
 
-		public static int DivideByThird(int a, int b)
+		public static int DivideByThird(int x, int y)
 		{
-			return a / b;
+			return x / y;
 		}
 		// </Exceptions>
 

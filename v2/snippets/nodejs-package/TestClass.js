@@ -12,13 +12,14 @@ class TestClass {
     // </Fields>
 
     // <Methods>
-    static multiplyByTwo(value) {
-        return value * 2;
+    static multiplyByTwo(a) {
+        return 2 * a;
     }
 
-    multiplyTwoNumbers(first, second) {
-        return first * second
+    multiplyTwoNumbers(a, b) {
+        return a * b
     }
+
     // </Methods>
 
     // <Arrays>
@@ -27,18 +28,24 @@ class TestClass {
     }
 
     addArrayElementsAndMultiply(myArray, myValue) {
-        return myArray.reduce(
-            (accumulator, currentValue) => accumulator + currentValue) * myValue
+        return myArray.reduce((accumulator, currentValue) => accumulator + currentValue) * myValue
     }
     // </Arrays>
 
     // <Exceptions>
-    divideTwoNumbers(first, second) {
-        if (second === 0) {
+    static divideBy(x, y) {
+        return TestClass.divideBySecond(x, y)
+    }
+
+    static divideBySecond(x, y) {
+        return TestClass.divideByThird(x, y)
+    }
+
+    static divideByThird(x, y) {
+        if (y === 0) {
             throw new Error("ZeroDivisionException")
-        }
-        else {
-            return first / second;
+        } else {
+            return x / y
         }
     }
     // </Exceptions>
