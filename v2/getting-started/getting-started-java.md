@@ -6,7 +6,7 @@
 
 ## Install Javonet for Java
 
-Javonet is available as a [JAR library](https://download.javonet.com/Javonet_2.0_JVM.zip) and can be used as any other JAR package. Javonet 2 is recommended for most applications.  
+Javonet is available as a [JAR library](https://central.sonatype.com/artifact/com.javonet/javonet-java-sdk) and can be used as any other JAR package. Javonet 2 is recommended for most applications.  
   
 Javonet 1.0 in some cases may be more appropriate (f.e. for embedding .NET UI controls (WPF or WinForms) in Java AWT/Swing or JavaFX). 
 

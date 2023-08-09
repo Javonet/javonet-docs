@@ -6,7 +6,7 @@
 
 ## Install Javonet for C++
 
-Javonet is available as a dynamic c++ library. To get the library please contact support@javonet.com.
+Javonet is available as a dynamic c++ library and can be downloaded after [registering](https://my.javonet.com/signup/?type=free).
 
 ## Activate Javonet
 

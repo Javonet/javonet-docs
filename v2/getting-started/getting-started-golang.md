@@ -6,7 +6,7 @@
 
 ## Install Javonet for GoLang
 
-Javonet is available as a GoLang library. To get the library please contact support@javonet.com.
+Javonet is available as a GoLang library and can be downloaded after [registering](https://my.javonet.com/signup/?type=free).
 
 ## Activate Javonet
 
