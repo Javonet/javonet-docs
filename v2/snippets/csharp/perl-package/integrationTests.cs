@@ -1,15 +1,15 @@
+﻿using Javonet.Netcore.Sdk.Tests.Utils;
+using Javonet.Netcore.Utils;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Integration.Tests
+namespace Javonet.Netcore.Sdk.Tests.perlpackage
 {
-	using Javonet.Netcore.Utils;
-	using Javonet.Netcore.Sdk;
-	public class NetcoreToPerlIntegrationTests
+	    public class integrationTests
 	{
 		private readonly ITestOutputHelper output;
 		// this constructor is called only once, before first test
-		public NetcoreToPerlIntegrationTests(ITestOutputHelper output)
+		public integrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
@@ -19,7 +19,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_LoadLibrary()
+		public void Test_PerlPackage_TestResources_LoadLibrary()
 		{
 			// <TestResources_LoadLibrary>
 			// use Activate only once in your app
@@ -38,7 +38,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_GetStaticField()
+		public void Test_PerlPackage_TestResources_GetStaticField()
 		{
 			// <TestResources_GetStaticField>
 			// use Activate only once in your app
@@ -71,7 +71,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_SetStaticField()
+		public void Test_PerlPackage_TestResources_SetStaticField()
 		{
 			// <TestResources_SetStaticField>
 			// use Activate only once in your app
@@ -108,7 +108,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_GetInstanceField()
+		public void Test_PerlPackage_TestResources_GetInstanceField()
 		{
 			// <TestResources_GetInstanceField>
 			// use Activate only once in your app
@@ -144,7 +144,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_InvokeStaticMethod()
+		public void Test_PerlPackage_TestResources_InvokeStaticMethod()
 		{
 			// <TestResources_InvokeStaticMethod>
 			// use Activate only once in your app
@@ -173,7 +173,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_InvokeInstanceMethod()
+		public void Test_PerlPackage_TestResources_InvokeInstanceMethod()
 		{
 			// <TestResources_InvokeInstanceMethod>
 			// use Activate only once in your app
@@ -210,7 +210,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_1DArray_GetIndex()
+		public void Test_PerlPackage_TestResources_1DArray_GetIndex()
 		{
 			// <TestResources_1DArray_GetIndex>
 			// use Activate only once in your app
@@ -249,7 +249,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_1DArray_GetSize()
+		public void Test_PerlPackage_TestResources_1DArray_GetSize()
 		{
 			// <TestResources_1DArray_GetSize>
 			// use Activate only once in your app
@@ -288,7 +288,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_1DArray_SetIndex()
+		public void Test_PerlPackage_TestResources_1DArray_SetIndex()
 		{
 			// <TestResources_1DArray_SetIndex>
 			// use Activate only once in your app
@@ -330,7 +330,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_1DArray_Iterate()
+		public void Test_PerlPackage_TestResources_1DArray_Iterate()
 		{
 			// <TestResources_1DArray_Iterate>
 			// use Activate only once in your app
@@ -375,7 +375,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Perl_TestResources_1DArray_GetElement()
+		public void Test_PerlPackage_TestResources_1DArray_GetElement()
 		{
 			// <TestResources_1DArray_GetElement>
 			// use Activate only once in your app
