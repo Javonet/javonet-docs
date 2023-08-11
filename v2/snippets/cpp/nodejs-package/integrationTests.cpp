@@ -6,12 +6,12 @@
 
 using namespace JavonetNS::Cpp::Sdk;
 
-namespace CppToNodejsIntegrationTests {
+namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/nodejs-package";
 
-	TEST(Integration, Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoExeption) {
+	TEST(Integration, Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -27,7 +27,7 @@ namespace CppToNodejsIntegrationTests {
 		// </TestResources_LoadLibrary>
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_GetStaticField_StaticValue_3) {
+	TEST(Integration, Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -57,7 +57,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(3, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_SetStaticField_StaticValue_75) {
+	TEST(Integration, Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -91,7 +91,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(75, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_GetInstanceField_PublicValue_18) {
+	TEST(Integration, Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -124,7 +124,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(18, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_SetInstanceField_PublicValue_44) {
+	TEST(Integration, Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44) {
 		// <TestResources_SetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -160,7 +160,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(44, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
+	TEST(Integration, Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -190,7 +190,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
+	TEST(Integration, Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -223,7 +223,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(20, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree) {
+	TEST(Integration, Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -259,7 +259,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ("three", result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_1DArray_GetSize_5) {
+	TEST(Integration, Test_NodejsPackage_TestResources_1DArray_GetSize_5) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -295,7 +295,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ(5, result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven) {
+	TEST(Integration, Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -334,7 +334,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ("seven", result);
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_1DArray_RetrieveArray) {
+	TEST(Integration, Test_NodejsPackage_TestResources_1DArray_RetrieveArray) {
 		// <TestResources_1DArray_RetrieveArray>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -380,7 +380,7 @@ namespace CppToNodejsIntegrationTests {
 		}
 	}
 
-	TEST(Integration, Test_Nodejs_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
+	TEST(Integration, Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
 		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -411,7 +411,7 @@ namespace CppToNodejsIntegrationTests {
 		GTEST_FAIL();
 	}
 
-	TEST(Integration, Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI) {
+	TEST(Integration, Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -434,7 +434,7 @@ namespace CppToNodejsIntegrationTests {
 		EXPECT_EQ((double)M_PI, result);
 	}
 
-	TEST(Integration, Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50) {
+	TEST(Integration, Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50) {
 		// <StandardLibrary_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
