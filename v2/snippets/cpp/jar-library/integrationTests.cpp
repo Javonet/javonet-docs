@@ -124,6 +124,42 @@ namespace CppToJvmIntegrationTests {
 		EXPECT_EQ(18, result);
 	}
 
+	TEST(Integration, Test_Jvm_TestResources_SetInstanceField_PublicValue_44) {
+		// <TestResources_SetInstanceField>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
+
+		// set instance's field
+		instance->SetInstanceField({ "publicValue", 44 })->Execute();
+
+		// get instance's field
+		auto response = instance->GetInstanceField("publicValue")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_SetInstanceField>
+		EXPECT_EQ(44, result);
+	}
+
 	TEST(Integration, Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
@@ -340,6 +376,37 @@ namespace CppToJvmIntegrationTests {
 		for (int i = 0; i < resultArray.size(); ++i) {
 			EXPECT_EQ(expectedResponse[i], resultArray[i]);
 		}
+	}
+
+	TEST(Integration, Test_Jvm_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
+		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method which throws exception 
+		try {
+			calledRuntimeType->InvokeStaticMethod({ "divideBy", 10, 0 })->Execute();
+		}
+		catch (std::exception& e) {
+			// write exception to console
+			std::cout << e.what() << std::endl;
+			return;
+		}
+		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		GTEST_FAIL();
 	}
 
 	TEST(Integration, Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI) {
