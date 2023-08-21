@@ -4,7 +4,7 @@
 
 using namespace JavonetNS::Cpp::Sdk;
 
-namespace CppToPerlIntegrationTests {
+namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/perl-package";

@@ -6,12 +6,12 @@
 
 using namespace JavonetNS::Cpp::Sdk;
 
-namespace CppToNetcoreIntegrationTests {
+namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/net-dll";
 
-	TEST(Integration, Test_Netcore_TestResources_LoadLibrary_libraryPath_NoExeption) {
+	TEST(Integration, Test_NetDll_TestResources_LoadLibrary_libraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -27,7 +27,7 @@ namespace CppToNetcoreIntegrationTests {
 		// </TestResources_LoadLibrary>
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_GetStaticField_StaticValue_3) {
+	TEST(Integration, Test_NetDll_TestResources_GetStaticField_StaticValue_3) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -57,7 +57,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(3, result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_SetStaticField_StaticValue_75) {
+	TEST(Integration, Test_NetDll_TestResources_SetStaticField_StaticValue_75) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -91,7 +91,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(75, result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_GetInstanceField_PublicValue_18) {
+	TEST(Integration, Test_NetDll_TestResources_GetInstanceField_PublicValue_18) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -124,7 +124,43 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(18, result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
+	TEST(Integration, Test_NetDll_TestResources_SetInstanceField_PublicValue_44) {
+		// <TestResources_SetInstanceField>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
+
+		// set instance's field
+		instance->SetInstanceField({ "PublicValue", 44 })->Execute();
+
+		// get instance's field
+		auto response = instance->GetInstanceField("PublicValue")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_SetInstanceField>
+		EXPECT_EQ(44, result);
+	}
+
+	TEST(Integration, Test_NetDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -154,7 +190,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
+	TEST(Integration, Test_NetDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -187,7 +223,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(20, result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_1DArray_GetIndex_2_StringThree) {
+	TEST(Integration, Test_NetDll_TestResources_1DArray_GetIndex_2_StringThree) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -223,7 +259,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ("three", result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_1DArray_GetSize_5) {
+	TEST(Integration, Test_NetDll_TestResources_1DArray_GetSize_5) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -259,7 +295,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(5, result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_1DArray_SetIndex_StringSeven) {
+	TEST(Integration, Test_NetDll_TestResources_1DArray_SetIndex_StringSeven) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -298,7 +334,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ("seven", result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_1DArray_RetrieveArray) {
+	TEST(Integration, Test_NetDll_TestResources_1DArray_RetrieveArray) {
 		// <TestResources_1DArray_RetrieveArray>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -343,7 +379,7 @@ namespace CppToNetcoreIntegrationTests {
 		}
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_Cast_ToUInt32) {
+	TEST(Integration, Test_NetDll_TestResources_Cast_ToUInt32) {
 		// <TestResources_Cast_ToUInt32>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -362,7 +398,10 @@ namespace CppToNetcoreIntegrationTests {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "CastSampleMethod", calledRuntime->Cast("System.UInt32", 5.2) })->Execute();
+		auto response = calledRuntimeType->
+			InvokeStaticMethod({ "CastSampleMethod",
+				calledRuntime->Cast("System.UInt32", 5.2) })->
+			Execute();
 
 		// get value from response
 		auto result = std::any_cast<std::string>(response->GetValue());
@@ -373,7 +412,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ("CastSampleMethod with System.UInt32 called", result);
 	}
 
-	TEST(Integration, Test_Netcore_TestResources_Cast_Float) {
+	TEST(Integration, Test_NetDll_TestResources_Cast_Float) {
 		// <TestResources_Cast_ToFloat>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -392,7 +431,10 @@ namespace CppToNetcoreIntegrationTests {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "CastSampleMethod", calledRuntime->Cast("System.Single", 5) })->Execute();
+		auto response = calledRuntimeType->
+			InvokeStaticMethod({ "CastSampleMethod",
+				calledRuntime->Cast("System.Single", 5) })->
+			Execute();
 
 		// get value from response
 		auto result = std::any_cast<std::string>(response->GetValue());
@@ -403,7 +445,105 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ("CastSampleMethod with System.Single called", result);
 	}
 
-	TEST(Integration, Test_Netcore_StandardLibrary_GetStaticField_SystemMathPI_PI) {
+	TEST(Integration, Test_NetDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
+		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method which throws exception 
+		try {
+			calledRuntimeType->InvokeStaticMethod({ "DivideBy", 10, 0 })->Execute();
+		}
+		catch (std::exception& e) {
+			// write exception to console
+			std::cout << e.what() << std::endl;
+			return;
+		}
+		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		GTEST_FAIL();
+	}
+
+	TEST(Integration, Test_NetDll_TestResources_GenericStaticMethod) {
+		// <TestResources_GenericStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's generic static method
+		auto response = calledRuntimeType->
+			InvokeGenericStaticMethod({ "GenericSampleStaticMethod", "System.Int32", 7, 5 })->
+			Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_GenericStaticMethod>
+		EXPECT_EQ("7 and 5", result);
+	}
+
+	TEST(Integration, Test_NetDll_TestResources_GenericMethod) {
+		// <TestResources_GenericMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance generic method
+		auto response = instance->
+			InvokeGenericMethod({ "GenericSampleMethod", "System.Int32", 7, 5 })->
+			Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_GenericMethod>
+		EXPECT_EQ("7 or 5", result);
+	}
+
+	TEST(Integration, Test_NetDll_StandardLibrary_GetStaticField_SystemMathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -426,7 +566,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(M_PI, result);
 	}
 
-	TEST(Integration, Test_Netcore_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022) {
+	TEST(Integration, Test_NetDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022) {
 
 		// <StandardLibrary_GetInstanceField>
 		// use Activate only once in your app
@@ -453,7 +593,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(2022, result);
 	}
 
-	TEST(Integration, Test_Netcore_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50) {
+	TEST(Integration, Test_NetDll_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50) {
 		// <StandardLibrary_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -476,7 +616,7 @@ namespace CppToNetcoreIntegrationTests {
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_Netcore_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022) {
+	TEST(Integration, Test_NetDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022) {
 
 		// <StandardLibrary_InvokeInstanceMethod>
 		// use Activate only once in your app

@@ -1,16 +1,16 @@
+using Javonet.Netcore.Sdk.Tests.Utils;
+using Javonet.Netcore.Utils;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Integration.Tests
-{
-	using Javonet.Netcore.Utils;
-	using Javonet.Netcore.Sdk;
 
-	public class NetcoreToJvmIntegrationTests
+namespace Javonet.Netcore.Sdk.Tests.jarlibrary
+{
+    public class integrationTests
 	{
 		private readonly ITestOutputHelper output;
 		// this constructor is called only once, before first test
-		public NetcoreToJvmIntegrationTests(ITestOutputHelper output)
+		public integrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
@@ -20,7 +20,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_LoadLibrary()
+		public void Test_JarLibrary_TestResources_LoadLibrary()
 		{
 			// <TestResources_LoadLibrary>
 			// use Activate only once in your app
@@ -39,7 +39,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_GetStaticField()
+		public void Test_JarLibrary_TestResources_GetStaticField()
 		{
 			// <TestResources_GetStaticField>
 			// use Activate only once in your app
@@ -72,7 +72,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_SetStaticField()
+		public void Test_JarLibrary_TestResources_SetStaticField()
 		{
 			// <TestResources_SetStaticField>
 			// use Activate only once in your app
@@ -109,7 +109,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_GetInstanceField()
+		public void Test_JarLibrary_TestResources_GetInstanceField()
 		{
 			// <TestResources_GetInstanceField>
 			// use Activate only once in your app
@@ -145,7 +145,46 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_InvokeStaticMethod()
+		public void Test_JarLibrary_TestResources_SetInstanceField()
+		{
+			// <TestResources_SetInstanceField>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Jvm();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
+
+			// set instance's field
+			instance.SetInstanceField("publicValue", 44).Execute();
+
+			// get instance's field
+			var response = instance.GetInstanceField("publicValue").Execute();
+
+			// get value from response
+			var result = (int)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// </TestResources_SetInstanceField>
+			Assert.Equal(44, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_JarLibrary_TestResources_InvokeStaticMethod()
 		{
 			// <TestResources_InvokeStaticMethod>
 			// use Activate only once in your app
@@ -178,7 +217,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_InvokeInstanceMethod()
+		public void Test_JarLibrary_TestResources_InvokeInstanceMethod()
 		{
 			// <TestResources_InvokeInstanceMethod>
 			// use Activate only once in your app
@@ -214,7 +253,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_GetIndex()
+		public void Test_JarLibrary_TestResources_1DArray_GetIndex()
 		{
 			// <TestResources_1DArray_GetIndex>
 			// use Activate only once in your app
@@ -253,7 +292,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_GetSize()
+		public void Test_JarLibrary_TestResources_1DArray_GetSize()
 		{
 			// <TestResources_1DArray_GetSize>
 			// use Activate only once in your app
@@ -292,7 +331,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_SetIndex()
+		public void Test_JarLibrary_TestResources_1DArray_SetIndex()
 		{
 			// <TestResources_1DArray_SetIndex>
 			// use Activate only once in your app
@@ -335,7 +374,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_Iterate()
+		public void Test_JarLibrary_TestResources_1DArray_Iterate()
 		{
 			// <TestResources_1DArray_Iterate>
 			// use Activate only once in your app
@@ -380,7 +419,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_GetElement()
+		public void Test_JarLibrary_TestResources_1DArray_GetElement()
 		{
 			// <TestResources_1DArray_GetElement>
 			// use Activate only once in your app
@@ -419,7 +458,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_PassArrayAsArgument()
+		public void Test_JarLibrary_TestResources_1DArray_PassArrayAsArgument()
 		{
 			// <TestResources_1DArray_PassArrayAsArgument>
 			// use Activate only once in your app
@@ -455,7 +494,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_TestResources_1DArray_RetrieveArray()
+		public void Test_JarLibrary_TestResources_1DArray_RetrieveArray()
 		{
 			// <TestResources_1DArray_RetrieveArray>
 			// use Activate only once in your app
@@ -491,7 +530,43 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_StandardLibrary_GetStaticField()
+		public void Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
+		{
+			// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Jvm();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.jar";
+			string className = "TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// invoke type's static method which throws exception
+			try
+			{
+				var response = calledRuntimeType.InvokeStaticMethod("divideBy", 10, 0).Execute();
+			}
+			catch (System.ArithmeticException e)
+			{
+				// write result to console
+				System.Console.WriteLine(e.Message);
+				return;
+			}
+			// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+			Assert.Fail("No exception occurred - test failed");
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_JarLibrary_StandardLibrary_GetStaticField()
 		{
 			// <StandardLibrary_GetStaticField>
 			// use Activate only once in your app
@@ -517,7 +592,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_StandardLibrary_GetInstanceField()
+		public void Test_JarLibrary_StandardLibrary_GetInstanceField()
 		{
 			// <StandardLibrary_GetInstanceField>
 			// use Activate only once in your app
@@ -546,7 +621,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_StandardLibrary_InvokeStaticMethod()
+		public void Test_JarLibrary_StandardLibrary_InvokeStaticMethod()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			// use Activate only once in your app
@@ -572,7 +647,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Jvm_StandardLibrary_InvokeInstanceMethod()
+		public void Test_JarLibrary_StandardLibrary_InvokeInstanceMethod()
 		{
 			// <StandardLibrary_InvokeInstanceMethod>
 			// use Activate only once in your app

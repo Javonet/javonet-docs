@@ -1,8 +1,8 @@
 require 'javonet-ruby-sdk'
-require_relative 'activation_credentials'
+require_relative '../../utils/activation_credentials'
 
 if false
-  RSpec.describe 'Ruby To Perl Integration Tests' do
+  RSpec.describe 'Ruby To Perl Package Integration Tests' do
 
     resources_directory = File.expand_path('../../../../../testResources/perl-package', __FILE__)
 
@@ -11,7 +11,7 @@ if false
       expect(result).to eq(0)
     end
 
-    it 'Test_Perl_TestResources_LoadLibrary_LibraryPath_NoException' do
+    it 'Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException' do
       # <TestResources_LoadLibrary>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -27,7 +27,7 @@ if false
       # </TestResources_LoadLibrary>
     end
 
-    it 'Test_Perl_TestResources_GetStaticField_StaticValue_3' do
+    it 'Test_PerlPackage_TestResources_GetStaticField_StaticValue_3' do
       # <TestResources_GetStaticField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -57,7 +57,7 @@ if false
       expect(result).to eq(3)
     end
 
-    it 'Test_Perl_TestResources_SetStaticField_StaticValue_75' do
+    it 'Test_PerlPackage_TestResources_SetStaticField_StaticValue_75' do
       # <TestResources_SetStaticField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -91,7 +91,7 @@ if false
       expect(result).to eq(75)
     end
 
-    it 'Test_Perl_TestResources_GetInstanceField_PublicValue_1' do
+    it 'Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1' do
       # <TestResources_GetInstanceField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -124,7 +124,7 @@ if false
       expect(result).to eq(1)
     end
 
-    it 'Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
+    it 'Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
       # <TestResources_InvokeStaticMethod>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -154,7 +154,7 @@ if false
       expect(result).to eq(50)
     end
 
-    it 'Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
+    it 'Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
       # <TestResources_InvokeInstanceMethod>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -187,7 +187,7 @@ if false
       expect(result).to eq(20)
     end
 
-    it 'Test_Perl_TestResources_1DArray_GetIndex_2_StringThree' do
+    it 'Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree' do
       # <TestResources_1DArray_GetIndex>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -223,7 +223,7 @@ if false
       expect(result).to eq("three")
     end
 
-    it 'Test_Perl_TestResources_1DArray_GetSize_5' do
+    it 'Test_PerlPackage_TestResources_1DArray_GetSize_5' do
       # <TestResources_1DArray_GetSize>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -260,7 +260,7 @@ if false
 
     end
 
-    it 'Test_Perl_TestResources_1DArray_SetIndex_StringSeven' do
+    it 'Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven' do
       # <TestResources_1DArray_SetIndex>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -300,7 +300,7 @@ if false
       expect(result).to eq("seven")
     end
 
-    it 'Test_Perl_TestResources_1DArray_Iterate' do
+    it 'Test_PerlPackage_TestResources_1DArray_Iterate' do
       # <TestResources_1DArray_Iterate>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -337,7 +337,7 @@ if false
       expect(array_values).to eq(["one", "two", "three", "four", "five"])
     end
 
-    it 'Test_Perl_TestResources_1DArray_GetElement' do
+    it 'Test_PerlPackage_TestResources_1DArray_GetElement' do
       # <TestResources_1DArray_GetElement>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -373,7 +373,7 @@ if false
       expect(result).to eq("three")
     end
 
-    it 'Test_Perl_TestResources_1DArray_SetElement' do
+    it 'Test_PerlPackage_TestResources_1DArray_SetElement' do
       # <TestResources_1DArray_SetElement>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")

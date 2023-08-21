@@ -1,10 +1,10 @@
-package activationtests
+package common
 
 import (
 	"fmt"
 	"testing"
 
-	"javonet.com/integrationTests/integrationtests/activationcredentials"
+	"javonet.com/integrationTests/utils/activationcredentials"
 	Javonet "javonet.com/javonet"
 )
 

@@ -1,15 +1,15 @@
 const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
-const ActivationCredentials = require("./ActivationCredentials")
+const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
 
-const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/jar-library'
+const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/jar-library'
 
-describe('Nodejs to Jvm integration tests', () => {
+describe('Nodejs to Jar Library integration tests', () => {
 
     let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
-    test(`Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+    test(`Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
         // <TestResources_LoadLibrary>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -25,7 +25,7 @@ describe('Nodejs to Jvm integration tests', () => {
         // </TestResources_LoadLibrary>
     })
 
-    test(`Test_Jvm_TestResources_GetStaticField_StaticValue_3`, () => {
+    test(`Test_JarLibrary_TestResources_GetStaticField_StaticValue_3`, () => {
         // <TestResources_GetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -55,7 +55,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(3)
     })
 
-    test(`Test_Jvm_TestResources_SetStaticField_StaticValue_75`, () => {
+    test(`Test_JarLibrary_TestResources_SetStaticField_StaticValue_75`, () => {
         // <TestResources_SetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -89,7 +89,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(75)
     })
 
-    test(`Test_Jvm_TestResources_GetInstanceField_PublicValue_18`, () => {
+    test(`Test_JarLibrary_TestResources_GetInstanceField_PublicValue_18`, () => {
         // <TestResources_GetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -122,7 +122,43 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(18)
     })
 
-    test(`Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+    test(`Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44`, () => {
+        // <TestResources_SetInstanceField>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance(18, 19).execute()
+
+        // set instance field
+        instance.setInstanceField("publicValue", 44).execute()
+
+        // get instance's field
+        let response = instance.getInstanceField("publicValue").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_SetInstanceField>
+        expect(result).toBe(44)
+    })
+
+    test(`Test_JarLibrary_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
         // <TestResources_InvokeStaticMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -152,7 +188,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(50)
     })
 
-    test(`Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+    test(`Test_JarLibrary_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
         // <TestResources_InvokeInstanceMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -185,7 +221,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(20)
     })
 
-    test(`Test_Jvm_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThree`, () => {
         // <TestResources_1DArray_GetIndex>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -221,7 +257,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe("three")
     })
 
-    test(`Test_Jvm_TestResources_1DArray_GetSize_5`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_GetSize_5`, () => {
         // <TestResources_1DArray_GetSize>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -257,7 +293,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(5)
     })
 
-    test(`Test_Jvm_TestResources_1DArray_SetIndex_StringSeven`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven`, () => {
         // <TestResources_1DArray_SetIndex>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -297,7 +333,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe("seven")
     })
 
-    test(`Test_Jvm_TestResources_1DArray_Iterate`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_Iterate`, () => {
         // <TestResources_1DArray_Iterate>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -334,7 +370,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     })
 
-    test(`Test_Jvm_TestResources_1DArray_PassArrayAsArgument`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_PassArrayAsArgument`, () => {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -367,7 +403,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toEqual(999)
     })
 
-    test(`Test_Jvm_TestResources_1DArray_RetrieveArray`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_RetrieveArray`, () => {
         // <TestResources_1DArray_RetrieveArray>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -400,7 +436,37 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toEqual(["one", "two", "three", "four", "five"])
     })
 
-    test(`Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI`, () => {
+    test(`Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException`, () => {
+        // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // invoke type's static method which throws exception
+        try {
+            let response = calledRuntimeType.invokeStaticMethod("divideBy", 10, 0).execute()
+        } catch (e) {
+            // write exception to console
+            console.log(e)
+            return
+        }
+        // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        expect(false).toBe(true)
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI`, () => {
         // <StandardLibrary_GetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -423,7 +489,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(Math.PI)
     })
 
-    test(`Test_Jvm_StandardLibrary_GetInstanceField`, () => {
+    test(`Test_JarLibrary_StandardLibrary_GetInstanceField`, () => {
         // <StandardLibrary_GetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -449,9 +515,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe("sample value")
     })
 
-
-
-    test(`Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
+    test(`Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
         // <StandardLibrary_InvokeStaticMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -474,7 +538,7 @@ describe('Nodejs to Jvm integration tests', () => {
         expect(result).toBe(50)
     })
 
-    test(`Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9`, () => {
+    test(`Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9`, () => {
         // <StandardLibrary_InvokeInstanceMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")

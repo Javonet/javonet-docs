@@ -1,5 +1,5 @@
 require 'javonet-ruby-sdk'
-require_relative 'activation_credentials'
+require_relative '../../utils/activation_credentials'
 
 RSpec.describe 'Ruby Activation Tests' do
 

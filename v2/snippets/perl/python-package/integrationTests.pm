@@ -13,9 +13,9 @@ my $osname = $^O;
 Javonet->activate(ActivationCredentials::YOUR_EMAIL, ActivationCredentials::YOUR_LICENSE_KEY);
 
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
-my $resources_directory = "${this_file_path}/../../../testResources/python-package";
+my $resources_directory = "${this_file_path}/../../../../testResources/python-package";
 
-sub Test_Python_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
+sub Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -38,7 +38,7 @@ sub Test_Python_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     return $result;
 }
 
-sub Test_Python_StandardLibrary_GetStaticField_MathPI_PI {
+sub Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI {
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -61,7 +61,7 @@ sub Test_Python_StandardLibrary_GetStaticField_MathPI_PI {
     return $result;
 }
 
-sub Test_Python_TestResources_LoadLibrary_LibraryPath_NoException {
+sub Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException {
     # <TestResources_LoadLibrary>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -78,7 +78,7 @@ sub Test_Python_TestResources_LoadLibrary_LibraryPath_NoException {
     return 0;
 }
 
-sub Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
+sub Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -108,7 +108,7 @@ sub Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     return $result;
 }
 
-sub Test_Python_TestResources_GetStaticField_StaticValue_3 {
+sub Test_PythonPackage_TestResources_GetStaticField_StaticValue_3 {
     # <TestResources_GetStaticField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -138,7 +138,7 @@ sub Test_Python_TestResources_GetStaticField_StaticValue_3 {
     return $result;
 }
 
-sub Test_Python_TestResources_SetStaticField_StaticValue_75 {
+sub Test_PythonPackage_TestResources_SetStaticField_StaticValue_75 {
     # <TestResources_SetStaticField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -172,7 +172,7 @@ sub Test_Python_TestResources_SetStaticField_StaticValue_75 {
     return $result;
 }
 
-sub Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
+sub Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -205,7 +205,7 @@ sub Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     return $result;
 }
 
-sub Test_Python_TestResources_GetInstanceField_PublicValue_18 {
+sub Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18 {
     # <TestResources_GetInstanceField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -238,7 +238,7 @@ sub Test_Python_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
-sub Test_Python_TestResources_1DArray_GetIndex_2_StringThree {
+sub Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree {
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -274,7 +274,7 @@ sub Test_Python_TestResources_1DArray_GetIndex_2_StringThree {
     return $result;
 }
 
-sub Test_Python_TestResources_1DArray_GetSize_5 {
+sub Test_PythonPackage_TestResources_1DArray_GetSize_5 {
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -310,7 +310,7 @@ sub Test_Python_TestResources_1DArray_GetSize_5 {
     return $result;
 }
 
-sub Test_Python_TestResources_1DArray_SetIndex_StringSeven {
+sub Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven {
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -350,30 +350,68 @@ sub Test_Python_TestResources_1DArray_SetIndex_StringSeven {
     return $result;
 }
 
-if ("$osname" ne 'darwin') {
-    my $test_result_1 = Test_Python_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
-    my $test_result_2 = Test_Python_StandardLibrary_GetStaticField_MathPI_PI();
-    my $test_result_3 = Test_Python_TestResources_LoadLibrary_LibraryPath_NoException();
-    my $test_result_4 = Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50();
-    my $test_result_5 = Test_Python_TestResources_GetStaticField_StaticValue_3();
-    my $test_result_6 = Test_Python_TestResources_SetStaticField_StaticValue_75();
-    my $test_result_7 = Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
-    my $test_result_8 = Test_Python_TestResources_GetInstanceField_PublicValue_18();
-    my $test_result_11 = Test_Python_TestResources_1DArray_GetIndex_2_StringThree();
-    my $test_result_12 = Test_Python_TestResources_1DArray_GetSize_5();
-    my $test_result_13 = Test_Python_TestResources_1DArray_SetIndex_StringSeven();
+sub Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44 {
+    # <TestResources_SetInstanceField>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
 
-    is($test_result_1, 50, 'Test_Python_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
-    is(sprintf("%.5f", $test_result_2), sprintf("%.5f", pi), 'Test_Python_StandardLibrary_GetStaticField_MathPI_PI');
-    is($test_result_3, 0, 'Test_Python_TestResources_LoadLibrary_LibraryPath_NoException');
-    is($test_result_4, 50, 'Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
-    is($test_result_5, 3, 'Test_Python_TestResources_GetStaticField_StaticValue_3');
-    is($test_result_6, 75, 'Test_Python_TestResources_SetStaticField_StaticValue_3');
-    is($test_result_7, 20, 'Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
-    is($test_result_8, 18, 'Test_Python_TestResources_GetInstanceField_PublicValue_18');
-    is($test_result_11, "three", 'Test_Python_TestResources_1DArray_GetIndex_2_StringThree');
-    is($test_result_12, 5, 'Test_Python_TestResources_1DArray_GetSize_5');
-    is($test_result_13, "seven", 'Test_Python_TestResources_1DArray_SetIndex_StringSeven');
+    # create Python runtime context
+    my $python_runtime = Javonet->in_memory()->python();
+
+    # set up variables
+    my $library_path = $resources_directory;
+    my $class_name = "TestClass.TestClass";
+
+    # load python custom library
+    $python_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $python_type = $python_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $python_type->create_instance(18, 19)->execute();
+
+    # set instance's field
+    $instance->set_instance_field("public_value", 44)->execute();
+
+    # get instance's field
+    my $response = $instance->get_instance_field("public_value")->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_SetInstanceField>
+    return $result;
+}
+
+if ("$osname" ne 'darwin') {
+    my $test_result_1 = Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
+    my $test_result_2 = Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI();
+    my $test_result_3 = Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException();
+    my $test_result_4 = Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50();
+    my $test_result_5 = Test_PythonPackage_TestResources_GetStaticField_StaticValue_3();
+    my $test_result_6 = Test_PythonPackage_TestResources_SetStaticField_StaticValue_75();
+    my $test_result_7 = Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
+    my $test_result_8 = Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18();
+    my $test_result_11 = Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree();
+    my $test_result_12 = Test_PythonPackage_TestResources_1DArray_GetSize_5();
+    my $test_result_13 = Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven();
+    my $test_result_14 = Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44();
+
+    is($test_result_1, 50, 'Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
+    is(sprintf("%.5f", $test_result_2), sprintf("%.5f", pi), 'Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI');
+    is($test_result_3, 0, 'Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException');
+    is($test_result_4, 50, 'Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
+    is($test_result_5, 3, 'Test_PythonPackage_TestResources_GetStaticField_StaticValue_3');
+    is($test_result_6, 75, 'Test_PythonPackage_TestResources_SetStaticField_StaticValue_3');
+    is($test_result_7, 20, 'Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
+    is($test_result_8, 18, 'Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18');
+    is($test_result_11, "three", 'Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree');
+    is($test_result_12, 5, 'Test_PythonPackage_TestResources_1DArray_GetSize_5');
+    is($test_result_13, "seven", 'Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven');
+    is($test_result_14, 44, 'Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44');
 }
 else {
     is(0, 0, 'Python not implemented on MacOs yet');

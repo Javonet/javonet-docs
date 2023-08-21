@@ -1,8 +1,8 @@
 require 'javonet-ruby-sdk'
-require_relative 'activation_credentials'
+require_relative '../../utils/activation_credentials'
 
 unless OS.mac?
-  RSpec.describe 'Ruby To Python Integration Tests' do
+  RSpec.describe 'Ruby To Python Package Integration Tests' do
 
     resources_directory = File.expand_path('../../../../../testResources/python-package', __FILE__)
 
@@ -11,7 +11,7 @@ unless OS.mac?
       expect(result).to eq(0)
     end
 
-    it 'Test_Python_TestResources_LoadLibrary_LibraryPath_NoException' do
+    it 'Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException' do
       # <TestResources_LoadLibrary>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -27,7 +27,7 @@ unless OS.mac?
       # </TestResources_LoadLibrary>
     end
 
-    it 'Test_Python_TestResources_GetStaticField_StaticValue_3' do
+    it 'Test_PythonPackage_TestResources_GetStaticField_StaticValue_3' do
       # <TestResources_GetStaticField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -57,7 +57,7 @@ unless OS.mac?
       expect(result).to eq(3)
     end
 
-    it 'Test_Python_TestResources_SetStaticField_StaticValue_75' do
+    it 'Test_PythonPackage_TestResources_SetStaticField_StaticValue_75' do
       # <TestResources_SetStaticField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -91,7 +91,7 @@ unless OS.mac?
       expect(result).to eq(75)
     end
 
-    it 'Test_Python_TestResources_GetInstanceField_PublicValue_18' do
+    it 'Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18' do
       # <TestResources_GetInstanceField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -124,7 +124,43 @@ unless OS.mac?
       expect(result).to eq(18)
     end
 
-    it 'Test_Python_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
+    it 'Test_Ruby_TestResources_SetInstanceField_PublicValue_44' do
+      # <TestResources_SetInstanceField>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.python
+
+      # set up variables
+      library_path = resources_directory
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create type's instance
+      instance = called_runtime_type.create_instance(18, 19).execute
+
+      # set instance field
+      instance.set_instance_field("public_value", 44).execute
+
+      # get instance's field
+      response = instance.get_instance_field("public_value").execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_SetInstanceField>
+      expect(result).to eq(44)
+    end
+
+    it 'Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
       # <TestResources_InvokeStaticMethod>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -154,7 +190,7 @@ unless OS.mac?
       expect(result).to eq(50)
     end
 
-    it 'Test_Python_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
+    it 'Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
       # <TestResources_InvokeInstanceMethod>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -187,7 +223,7 @@ unless OS.mac?
       expect(result).to eq(20)
     end
 
-    it 'Test_Python_TestResources_1DArray_GetIndex_2_StringThree' do
+    it 'Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree' do
       # <TestResources_1DArray_GetIndex>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -223,7 +259,7 @@ unless OS.mac?
       expect(result).to eq("three")
     end
 
-    it 'Test_Python_TestResources_1DArray_GetSize_5' do
+    it 'Test_PythonPackage_TestResources_1DArray_GetSize_5' do
       # <TestResources_1DArray_GetSize>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -260,7 +296,7 @@ unless OS.mac?
 
     end
 
-    it 'Test_Python_TestResources_1DArray_SetIndex_StringSeven' do
+    it 'Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven' do
       # <TestResources_1DArray_SetIndex>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -300,7 +336,7 @@ unless OS.mac?
       expect(result).to eq("seven")
     end
 
-    it 'Test_Python_TestResources_1DArray_Iterate' do
+    it 'Test_PythonPackage_TestResources_1DArray_Iterate' do
       # <TestResources_1DArray_Iterate>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -337,7 +373,7 @@ unless OS.mac?
       expect(array_values).to eq(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     end
 
-    it 'Test_Python_TestResources_1DArray_GetElement' do
+    it 'Test_PythonPackage_TestResources_1DArray_GetElement' do
       # <TestResources_1DArray_GetElement>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -373,7 +409,7 @@ unless OS.mac?
       expect(result).to eq("THREE")
     end
 
-    it 'Test_Python_TestResources_1DArray_SetElement' do
+    it 'Test_PythonPackage_TestResources_1DArray_SetElement' do
       # <TestResources_1DArray_SetElement>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -412,7 +448,7 @@ unless OS.mac?
       expect(result).to eq("SEVEN")
     end
 
-    it 'Test_Python_TestResources_1DArray_PassArrayAsArgument' do
+    it 'Test_PythonPackage_TestResources_1DArray_PassArrayAsArgument' do
       # <TestResources_1DArray_PassArrayAsArgument>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -445,7 +481,7 @@ unless OS.mac?
       expect(result.round(1)).to eq(999.0)
     end
 
-    it 'Test_Python_TestResources_1DArray_RetrieveArray' do
+    it 'Test_PythonPackage_TestResources_1DArray_RetrieveArray' do
       # <TestResources_1DArray_RetrieveArray>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -478,7 +514,35 @@ unless OS.mac?
       expect(result).to eq(["one", "two", "three", "four", "five"])
     end
 
-    it 'Test_Python_StandardLibrary_GetStaticField_Math_PI_PI' do
+    it 'Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+      begin
+        # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        # use activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        # create called runtime context
+        called_runtime = Javonet.in_memory.python
+
+        # set up variables
+        library_path = resources_directory
+        class_name = "TestClass.TestClass"
+
+        # load custom library
+        called_runtime.load_library(library_path)
+
+        # get type from the runtime
+        called_runtime_type = called_runtime.get_type(class_name).execute
+
+        # invoke type's static method
+        called_runtime_type.invoke_static_method("divide_by", 10, 0).execute
+      rescue Exception => e
+        # write exception to console
+        puts e.full_message
+      end
+      # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    end
+
+    it 'Test_PythonPackage_StandardLibrary_GetStaticField_Math_PI_PI' do
       # <StandardLibrary_GetStaticField>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")
@@ -501,7 +565,7 @@ unless OS.mac?
       expect(result.round(5)).to eq(Math::PI.round(5))
     end
 
-    it 'Test_Python_StandardLibrary_InvokeStaticMethod_Builtins_Abs_Minus50_50' do
+    it 'Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Builtins_Abs_Minus50_50' do
       # <StandardLibrary_InvokeStaticMethod>
       # use activate only once in your app
       Javonet.activate("your-email", "your-license-key")

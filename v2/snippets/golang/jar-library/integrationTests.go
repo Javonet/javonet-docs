@@ -1,4 +1,4 @@
-package gotojvmintegrationtests
+package jarlibrary
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"javonet.com/integrationTests/integrationtests/activationcredentials"
+	"javonet.com/integrationTests/utils/activationcredentials"
 	Javonet "javonet.com/javonet"
 )
 
@@ -19,7 +19,7 @@ func init() {
 	Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenseKey)
 }
 
-func Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
+func Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -35,7 +35,7 @@ func Test_Jvm_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// </TestResources_LoadLibrary>
 }
 
-func Test_Jvm_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
+func Test_JarLibrary_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -68,7 +68,7 @@ func Test_Jvm_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	}
 }
 
-func Test_Jvm_TestResources_SetStaticField_StaticValue75(t *testing.T) {
+func Test_JarLibrary_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -105,7 +105,7 @@ func Test_Jvm_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	calledRuntimeType.SetStaticField("staticValue", 3).Execute()
 }
 
-func Test_Jvm_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
+func Test_JarLibrary_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -138,7 +138,46 @@ func Test_Jvm_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	}
 }
 
-func Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
+func Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
+	// <TestResources_SetInstanceField>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := calledRuntimeType.CreateInstance(18, 19).Execute()
+
+	// set instance's field
+	instance.SetInstanceField("publicValue", 44).Execute()
+
+	// get instance's field
+	response := instance.GetInstanceField("publicValue").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_SetInstanceField>
+	expectedResponse := int32(44)
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_JarLibrary_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -171,7 +210,7 @@ func Test_Jvm_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T)
 	}
 }
 
-func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
+func Test_JarLibrary_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -204,7 +243,7 @@ func Test_Jvm_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *te
 	}
 }
 
-func Test_Jvm_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
+func Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -243,7 +282,7 @@ func Test_Jvm_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	}
 }
 
-func Test_Jvm_TestResources_1DArray_GetSize_5(t *testing.T) {
+func Test_JarLibrary_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -282,7 +321,7 @@ func Test_Jvm_TestResources_1DArray_GetSize_5(t *testing.T) {
 	}
 }
 
-func Test_Jvm_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
+func Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -325,7 +364,7 @@ func Test_Jvm_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	}
 }
 
-func Test_Jvm_TestResources_1DArray_RetrieveArray(t *testing.T) {
+func Test_JarLibrary_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -367,7 +406,7 @@ func Test_Jvm_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	}
 }
 
-func Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
+func Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -393,7 +432,7 @@ func Test_Jvm_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	}
 }
 
-func Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9(t *testing.T) {
+func Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9(t *testing.T) {
 	// <StandardLibrary_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -420,7 +459,7 @@ func Test_Jvm_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_bet
 	}
 }
 
-func Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
+func Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -446,7 +485,7 @@ func Test_Jvm_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.
 	}
 }
 
-func Test_Jvm_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver_Name(t *testing.T) {
+func Test_JarLibrary_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver_Name(t *testing.T) {
 	// <StandardLibrary_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")

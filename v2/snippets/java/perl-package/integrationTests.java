@@ -1,3 +1,5 @@
+package perlpackage;
+
 import com.javonet.sdk.internal.InvocationContext;
 import com.javonet.sdk.internal.RuntimeContext;
 import com.javonet.sdk.java.Javonet;
@@ -5,10 +7,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import utils.ActivationCredentials;
 
 import java.nio.file.Paths;
 
-public class JvmToPerlIntegrationTest {
+public class integrationTests {
 
     private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/perl-package";
 
@@ -20,7 +23,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_LoadLibrary_LibraryPath_NoException() {
+    public void Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -38,7 +41,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_GetStaticField_StaticValue_3() {
+    public void Test_PerlPackage_TestResources_GetStaticField_StaticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -70,7 +73,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_SetStaticField_StaticValue_75() {
+    public void Test_PerlPackage_TestResources_SetStaticField_StaticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -106,7 +109,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_GetInstanceField_PublicValue_1() {
+    public void Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1() {
         // <TestResources_GetInstanceField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -138,7 +141,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
+    public void Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -156,7 +159,7 @@ public class JvmToPerlIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.invokeStaticMethod("multiply_by_two", 25).execute();
 
         // get value from response
@@ -170,7 +173,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+    public void Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -202,7 +205,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_1DArray_GetIndex_2_StringThree() {
+    public void Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -240,7 +243,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_1DArray_GetSize_5() {
+    public void Test_PerlPackage_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -278,7 +281,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_1DArray_SetIndex_StringSeven() {
+    public void Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -320,7 +323,7 @@ public class JvmToPerlIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Perl_TestResources_1DArray_Iterate() {
+    public void Test_PerlPackage_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");

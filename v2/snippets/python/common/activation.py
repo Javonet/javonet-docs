@@ -1,5 +1,5 @@
 from javonet.sdk import Javonet
-from tests.ActivationCredentials import *
+from utils.activation_credentials import *
 
 
 def test_activation_correct_credentials_0():

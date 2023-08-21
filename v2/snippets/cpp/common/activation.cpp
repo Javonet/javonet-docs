@@ -11,10 +11,10 @@ namespace CppActivationTests {
 		try {
 			Javonet::Activate(ActivationCredentials::yourEmail, "your-licence-key");
 		}
-		catch (std::exception &e) {
-			EXPECT_EQ(std::string("Javonet activation result: -34. Error message from activation server: ERROR:Activation key incorrect"), std::string(e.what()));
+		catch (std::exception& e) {
+			EXPECT_EQ(std::string("Javonet activation result: -1. Javonet licence is invalid. \nMessage: ERROR:Activation key incorrect"), std::string(e.what()));
 		}
-		
+
 	}
 
 	TEST(Integration, Test_Activation_CorrectCredentials_Returns0) {
