@@ -1,3 +1,5 @@
+package netframeworkdll;
+
 import com.javonet.sdk.internal.InvocationContext;
 import com.javonet.sdk.internal.RuntimeContext;
 import com.javonet.sdk.java.Javonet;
@@ -7,10 +9,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
+import utils.ActivationCredentials;
 
 import java.nio.file.Paths;
 
-public class JvmToClrIntegrationTest {
+public class integrationTests {
 
     private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/netframework-dll";
 
@@ -23,7 +26,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException() {
+    public void Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -42,7 +45,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_GetStaticField_StaticValue_3() {
+    public void Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -75,7 +78,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_SetStaticField_StaticValue_75() {
+    public void Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -112,7 +115,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_GetInstanceField_PublicValue_18() {
+    public void Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
         Javonet.activate("your-email", "your-license-key");
 
@@ -147,7 +150,45 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
+    public void Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44() {
+        // <TestResources_SetInstanceField>
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance(18, 19).execute();
+
+        // set instance's field
+        instance.setInstanceField("PublicValue", 44).execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("PublicValue").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_SetInstanceField>
+        Assertions.assertEquals(44, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -165,7 +206,7 @@ public class JvmToClrIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.invokeStaticMethod("MultiplyByTwo", 25).execute();
 
         // get value from response
@@ -180,7 +221,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+    public void Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -216,7 +257,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_1DArray_GetIndex_2_StringThree() {
+    public void Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -255,7 +296,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_1DArray_GetSize_5() {
+    public void Test_NetframeworkDll_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -294,7 +335,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_1DArray_SetIndex_StringSeven() {
+    public void Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -337,7 +378,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_1DArray_Iterate() {
+    public void Test_NetframeworkDll_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -380,7 +421,7 @@ public class JvmToClrIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Clr_TestResources_1DArray_PassArrayAsArgument() {
+    public void Test_NetframeworkDll_TestResources_1DArray_PassArrayAsArgument() {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -415,7 +456,7 @@ public class JvmToClrIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Clr_TestResources_1DArray_RetrieveArray() {
+    public void Test_NetframeworkDll_TestResources_1DArray_RetrieveArray() {
         // <TestResources_1DArray_RetrieveArray>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -454,7 +495,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_Cast_ToUInt() {
+    public void Test_NetframeworkDll_TestResources_Cast_ToUInt() {
         // <TestResources_Cast_ToUInt>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -472,7 +513,7 @@ public class JvmToClrIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.UInt32", 5.2)).execute();
 
         // get value from response
@@ -487,7 +528,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_TestResources_Cast_ToFloat() {
+    public void Test_NetframeworkDll_TestResources_Cast_ToFloat() {
         // <TestResources_Cast_ToFloat>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -505,7 +546,7 @@ public class JvmToClrIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.Single", 5)).execute();
 
         // get value from response
@@ -520,7 +561,120 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
+    public void Test_NetframeworkDll_TestResources_GenericStaticMethod() {
+        // <TestResources_GenericStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's method
+        InvocationContext response = calledRuntimeType.
+                invokeGenericStaticMethod("GenericSampleStaticMethod", "System.Int32", 7, 5).
+                execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_GenericStaticMethod>
+        Assertions.assertEquals("7 and 5", result);
+    }
+
+    @Test
+    @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_NetframeworkDll_TestResources_GenericMethod() {
+        // <TestResources_GenericMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke type's method
+        InvocationContext response = instance.
+                invokeGenericMethod("GenericSampleMethod", "System.Int32", 7, 5).
+                execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_GenericMethod>
+        Assertions.assertEquals("7 or 5", result);
+    }
+
+    @Test
+    @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes() {
+        // <TestResources_GenericMethodWithTwoTypes>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke type's method
+        InvocationContext response = instance.
+                invokeGenericMethod("GenericSampleMethodWithTwoTypes",
+                        new String[] { "System.String", "System.Int32" },
+                        "test").
+                execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_GenericMethodWithTwoTypes>
+        Assertions.assertEquals(0, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -546,7 +700,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_StandardLibrary_GetStaticField_MathPI_PI() {
+    public void Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -572,7 +726,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022() {
+    public void Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022() {
         // <StandardLibrary_InvokeInstanceMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -601,7 +755,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022() {
+    public void Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022() {
         // <StandardLibrary_GetInstanceField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -630,7 +784,7 @@ public class JvmToClrIntegrationTest {
     @Test
     @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
-    public void Test_Clr_StandardLibrary_PassInstanceAsArgument() {
+    public void Test_NetframeworkDll_StandardLibrary_PassInstanceAsArgument() {
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
 

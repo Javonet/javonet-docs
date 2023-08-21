@@ -1,3 +1,5 @@
+package rubypackage;
+
 import com.javonet.sdk.internal.InvocationContext;
 import com.javonet.sdk.internal.RuntimeContext;
 import com.javonet.sdk.java.Javonet;
@@ -7,10 +9,11 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
+import utils.ActivationCredentials;
 
 import java.nio.file.Paths;
 
-public class JvmToRubyIntegrationTest {
+public class integrationTests {
 
     private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/ruby-package";
 
@@ -23,7 +26,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException() {
+    public void Test_RubyPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -42,7 +45,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_GetStaticField_staticValue_3() {
+    public void Test_RubyPackage_TestResources_GetStaticField_staticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -75,7 +78,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_SetStaticField_staticValue_75() {
+    public void Test_RubyPackage_TestResources_SetStaticField_staticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -112,7 +115,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_GetInstanceField_PublicValue_18() {
+    public void Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -148,7 +151,45 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
+    public void Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44() {
+        // <TestResources_SetInstanceField>
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance(18, 19).execute();
+
+        // set instance's field
+        instance.setInstanceField("public_value", 44).execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("public_value").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_SetInstanceField>
+        Assertions.assertEquals(44, result);
+    }
+
+    @Test
+    @Tag("integration")
+    @DisabledOnOs(OS.LINUX)
+    public void Test_RubyPackage_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -166,7 +207,7 @@ public class JvmToRubyIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.invokeStaticMethod("multiply_by_two", 25).execute();
 
         // get value from response
@@ -181,7 +222,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+    public void Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -217,7 +258,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_1DArray_GetIndex_2_StringThree() {
+    public void Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -256,7 +297,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_1DArray_GetSize_5() {
+    public void Test_RubyPackage_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -295,7 +336,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_TestResources_1DArray_SetIndex_StringSeven() {
+    public void Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -337,7 +378,7 @@ public class JvmToRubyIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Ruby_TestResources_1DArray_Iterate() {
+    public void Test_RubyPackage_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -380,7 +421,7 @@ public class JvmToRubyIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Ruby_TestResources_1DArray_PassArrayAsArgument() {
+    public void Test_RubyPackage_TestResources_1DArray_PassArrayAsArgument() {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -415,7 +456,7 @@ public class JvmToRubyIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Ruby_TestResources_1DArray_RetrieveArray() {
+    public void Test_RubyPackage_TestResources_1DArray_RetrieveArray() {
         // <TestResources_1DArray_RetrieveArray>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -454,7 +495,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_StandardLibrary_GetStaticField_MathPI_PI() {
+    public void Test_RubyPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -480,7 +521,7 @@ public class JvmToRubyIntegrationTest {
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.LINUX)
-    public void Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
+    public void Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
