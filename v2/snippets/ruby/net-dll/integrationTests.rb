@@ -1,7 +1,7 @@
 require 'javonet-ruby-sdk'
-require_relative 'activation_credentials'
+require_relative '../../utils/activation_credentials'
 
-RSpec.describe 'Ruby To Netcore Integration Tests' do
+RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
   resources_directory = File.expand_path('../../../../../testResources/net-dll', __FILE__)
 
@@ -10,7 +10,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(0)
   end
 
-  it 'Test_Netcore_TestResources_LoadLibrary_LibraryPath_NoException' do
+  it 'Test_NetDll_TestResources_LoadLibrary_LibraryPath_NoException' do
     # <TestResources_LoadLibrary>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -26,7 +26,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     # </TestResources_LoadLibrary>
   end
 
-  it 'Test_Netcore_TestResources_GetStaticField_StaticValue_3' do
+  it 'Test_NetDll_TestResources_GetStaticField_StaticValue_3' do
     # <TestResources_GetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -56,7 +56,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(3)
   end
 
-  it 'Test_Netcore_TestResources_SetStaticField_StaticValue_75' do
+  it 'Test_NetDll_TestResources_SetStaticField_StaticValue_75' do
     # <TestResources_SetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -90,7 +90,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(75)
   end
 
-  it 'Test_Netcore_TestResources_GetInstanceField_PublicValue_18' do
+  it 'Test_NetDll_TestResources_GetInstanceField_PublicValue_18' do
     # <TestResources_GetInstanceField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -123,7 +123,43 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(18)
   end
 
-  it 'Test_Netcore_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
+  it 'Test_NetDll_TestResources_SetInstanceField_PublicValue_44' do
+    # <TestResources_SetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(18, 19).execute
+
+    # set instance field
+    instance.set_instance_field("PublicValue", 44).execute
+
+    # get instance's field
+    response = instance.get_instance_field("PublicValue").execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_SetInstanceField>
+    expect(result).to eq(44)
+  end
+
+  it 'Test_NetDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -153,7 +189,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(50)
   end
 
-  it 'Test_Netcore_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
+  it 'Test_NetDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -186,7 +222,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(20)
   end
 
-  it 'Test_Netcore_TestResources_1DArray_GetIndex_2_StringThree' do
+  it 'Test_NetDll_TestResources_1DArray_GetIndex_2_StringThree' do
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -222,7 +258,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("three")
   end
 
-  it 'Test_Netcore_TestResources_1DArray_GetSize_5' do
+  it 'Test_NetDll_TestResources_1DArray_GetSize_5' do
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -259,7 +295,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
 
   end
 
-  it 'Test_Netcore_TestResources_1DArray_SetIndex_StringSeven' do
+  it 'Test_NetDll_TestResources_1DArray_SetIndex_StringSeven' do
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -299,7 +335,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("seven")
   end
 
-  it 'Test_Netcore_TestResources_1DArray_Iterate' do
+  it 'Test_NetDll_TestResources_1DArray_Iterate' do
     # <TestResources_1DArray_Iterate>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -336,7 +372,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(array_values).to eq(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
   end
 
-  it 'Test_Netcore_TestResources_1DArray_GetElement' do
+  it 'Test_NetDll_TestResources_1DArray_GetElement' do
     # <TestResources_1DArray_GetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -372,7 +408,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("THREE")
   end
 
-  it 'Test_Netcore_TestResources_1DArray_SetElement' do
+  it 'Test_NetDll_TestResources_1DArray_SetElement' do
     # <TestResources_1DArray_SetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -411,7 +447,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("SEVEN")
   end
 
-  it 'Test_Netcore_TestResources_1DArray_PassArrayAsArgument' do
+  it 'Test_NetDll_TestResources_1DArray_PassArrayAsArgument' do
     # <TestResources_1DArray_PassArrayAsArgument>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -444,7 +480,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result.round(1)).to eq(999.0)
   end
 
-  it 'Test_Netcore_TestResources_1DArray_RetrieveArray' do
+  it 'Test_NetDll_TestResources_1DArray_RetrieveArray' do
     # <TestResources_1DArray_RetrieveArray>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -477,7 +513,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(["one", "two", "three", "four", "five"])
   end
 
-  it 'Test_Netcore_TestResources_TestResources_Cast_ToUInt' do
+  it 'Test_NetDll_TestResources_TestResources_Cast_ToUInt' do
     # <TestResources_TestResources_Cast_ToUInt>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -507,7 +543,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("CastSampleMethod with System.UInt32 called")
   end
 
-  it 'Test_Netcore_TestResources_TestResources_Cast_ToFloat' do
+  it 'Test_NetDll_TestResources_TestResources_Cast_ToFloat' do
     # <TestResources_TestResources_Cast_ToFloat>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -537,7 +573,140 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq("CastSampleMethod with System.Single called")
   end
 
-  it 'Test_Netcore_StandardLibrary_GetStaticField_MathPI_PI' do
+  it 'Test_NetDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+    begin
+      # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.netcore
+
+      # set up variables
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # invoke type's static method
+      called_runtime_type.invoke_static_method("DivideBy", 10, 0).execute
+    rescue Exception => e
+      # write exception to console
+      puts e.full_message
+    end
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+  end
+
+  it 'Test_NetDll_TestResources_GenericStaticMethod' do
+    # <TestResources_GenericStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's generic static method
+    response = called_runtime_type.
+      invoke_generic_static_method("GenericSampleStaticMethod", "System.Int32", 7, 5).
+      execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_GenericStaticMethod>
+    expect(result).to eq("7 and 5")
+  end
+
+  it 'Test_NetDll_TestResources_GenericMethod' do
+    # <TestResources_GenericMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke type's generic method
+    response = instance.
+      invoke_generic_method("GenericSampleMethod", "System.Int32", 7, 5).
+      execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_GenericMethod>
+    expect(result).to eq("7 or 5")
+  end
+
+  it 'Test_NetDll_TestResources_GenericMethodWithTwoTypes' do
+
+    # <TestResources_GenericMethodWithTwoTypes>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.netcore
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke type's generic method
+    response = instance.
+      invoke_generic_method("GenericSampleMethodWithTwoTypes",
+                            ["System.String", "System.Int32"], "test").
+      execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_GenericMethodWithTwoTypes>
+    expect(result).to eq(0)
+
+  end
+
+  it 'Test_NetDll_StandardLibrary_GetStaticField_MathPI_PI' do
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -560,7 +729,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result.round(5)).to eq(Math::PI.round(5))
   end
 
-  it 'Test_Netcore_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022' do
+  it 'Test_NetDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022' do
     # <StandardLibrary_GetInstanceField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -586,7 +755,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to be(2022)
   end
 
-  it 'Test_Netcore_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
+  it 'Test_NetDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -609,7 +778,7 @@ RSpec.describe 'Ruby To Netcore Integration Tests' do
     expect(result).to eq(50)
   end
 
-  it 'Test_Netcore_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022' do
+  it 'Test_NetDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022' do
     # <StandardLibrary_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
