@@ -11,9 +11,9 @@ use ActivationCredentials;
 Javonet->activate(ActivationCredentials::YOUR_EMAIL, ActivationCredentials::YOUR_LICENSE_KEY);
 
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
-my $resources_directory = "${this_file_path}/../../../testResources/nodejs-package";
+my $resources_directory = "${this_file_path}/../../../../testResources/nodejs-package";
 
-sub Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
+sub Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -36,7 +36,7 @@ sub Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     return $result;
 }
 
-sub Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI {
+sub Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI {
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -59,7 +59,7 @@ sub Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException {
+sub Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException {
     # <TestResources_LoadLibrary>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -76,7 +76,7 @@ sub Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException {
     return 0;
 }
 
-sub Test_Nodejs_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
+sub Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -106,7 +106,7 @@ sub Test_Nodejs_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_GetStaticField_StaticValue_3 {
+sub Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3 {
     # <TestResources_GetStaticField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -136,7 +136,7 @@ sub Test_Nodejs_TestResources_GetStaticField_StaticValue_3 {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_SetStaticField_StaticValue_75 {
+sub Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75 {
     # <TestResources_SetStaticField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -170,7 +170,7 @@ sub Test_Nodejs_TestResources_SetStaticField_StaticValue_75 {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
+sub Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -203,7 +203,7 @@ sub Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_GetInstanceField_PublicValue_18 {
+sub Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18 {
     # <TestResources_GetInstanceField>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -236,7 +236,7 @@ sub Test_Nodejs_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree {
+sub Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree {
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -272,7 +272,7 @@ sub Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_1DArray_GetSize_5 {
+sub Test_NodejsPackage_TestResources_1DArray_GetSize_5 {
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -308,7 +308,7 @@ sub Test_Nodejs_TestResources_1DArray_GetSize_5 {
     return $result;
 }
 
-sub Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven {
+sub Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven {
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
     Javonet->activate("your-email", "your-license-key");
@@ -348,28 +348,66 @@ sub Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven {
     return $result;
 }
 
-my $test_result_1 = Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
-my $test_result_2 = Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI();
-my $test_result_3 = Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException();
-my $test_result_4 = Test_Nodejs_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50();
-my $test_result_5 = Test_Nodejs_TestResources_GetStaticField_StaticValue_3();
-my $test_result_6 = Test_Nodejs_TestResources_SetStaticField_StaticValue_75();
-my $test_result_7 = Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
-my $test_result_8 = Test_Nodejs_TestResources_GetInstanceField_PublicValue_18();
-my $test_result_11 = Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree();
-my $test_result_12 = Test_Nodejs_TestResources_1DArray_GetSize_5();
-my $test_result_13 = Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven();
+sub Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44 {
+    # <TestResources_SetInstanceField>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
 
-is($test_result_1, 50, 'Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
-is(sprintf("%.5f", $test_result_2), sprintf("%.5f", pi), 'Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI');
-is($test_result_3, 0, 'Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException');
-is($test_result_4, 50, 'Test_Nodejs_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
-is($test_result_5, 3, 'Test_Nodejs_TestResources_GetStaticField_StaticValue_3');
-is($test_result_6, 75, 'Test_Nodejs_TestResources_SetStaticField_StaticValue_3');
-is($test_result_7, 20, 'Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
-is($test_result_8, 18, 'Test_Nodejs_TestResources_GetInstanceField_PublicValue_18');
-is($test_result_11, "three", 'Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree');
-is($test_result_12, 5, 'Test_Nodejs_TestResources_1DArray_GetSize_5');
-is($test_result_13, "seven", 'Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven');
+    # create Nodejs runtime context
+    my $clr_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
+
+    # load Clr custom library
+    $clr_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $clr_type->create_instance(18,19)->execute();
+
+    # set instance's field
+    $instance->set_instance_field("publicValue", 44)->execute();
+
+    # get instance's field
+    my $response = $instance->get_instance_field("publicValue")->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_SetInstanceField>
+    return $result;
+}
+
+my $test_result_1 = Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
+my $test_result_2 = Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI();
+my $test_result_3 = Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException();
+my $test_result_4 = Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50();
+my $test_result_5 = Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3();
+my $test_result_6 = Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75();
+my $test_result_7 = Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
+my $test_result_8 = Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18();
+my $test_result_11 = Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree();
+my $test_result_12 = Test_NodejsPackage_TestResources_1DArray_GetSize_5();
+my $test_result_13 = Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven();
+my $test_result_14 = Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44();
+
+is($test_result_1, 50, 'Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
+is(sprintf("%.5f", $test_result_2), sprintf("%.5f", pi), 'Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI');
+is($test_result_3, 0, 'Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException');
+is($test_result_4, 50, 'Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
+is($test_result_5, 3, 'Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3');
+is($test_result_6, 75, 'Test_NodejsPackage_TestResources_SetStaticField_StaticValue_3');
+is($test_result_7, 20, 'Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
+is($test_result_8, 18, 'Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18');
+is($test_result_11, "three", 'Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree');
+is($test_result_12, 5, 'Test_NodejsPackage_TestResources_1DArray_GetSize_5');
+is($test_result_13, "seven", 'Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven');
+is($test_result_14, 44, 'Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44');
 
 done_testing();
