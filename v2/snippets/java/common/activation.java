@@ -1,9 +1,12 @@
+package common;
+
 import com.javonet.sdk.java.Javonet;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import utils.ActivationCredentials;
 
-public class JvmActivationTests {
+public class activation {
 
     @Test
     @Tag("integration")

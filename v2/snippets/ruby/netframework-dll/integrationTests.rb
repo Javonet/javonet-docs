@@ -1,7 +1,7 @@
 require 'javonet-ruby-sdk'
-require_relative 'activation_credentials'
+require_relative '../../utils/activation_credentials'
 
-RSpec.describe 'Ruby To Clr Integration Tests' do
+RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
 
   resources_directory = File.expand_path('../../../../../testResources/netframework-dll', __FILE__)
 
@@ -10,7 +10,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     expect(result).to eq(0)
   end
 
-  it 'Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException' do
+  it 'Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException' do
     if OS.windows?
       # <TestResources_LoadLibrary>
       # use activate only once in your app
@@ -30,7 +30,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_GetStaticField_StaticValue_3' do
+  it 'Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3' do
     if OS.windows?
       # <TestResources_GetStaticField>
       # use activate only once in your app
@@ -64,7 +64,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_SetStaticField_StaticValue_75' do
+  it 'Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75' do
     if OS.windows?
       # <TestResources_SetStaticField>
       # use activate only once in your app
@@ -102,7 +102,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_GetInstanceField_PublicValue_18' do
+  it 'Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18' do
     if OS.windows?
       # <TestResources_GetInstanceField>
       # use activate only once in your app
@@ -139,7 +139,47 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
+  it 'Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44' do
+    if OS.windows?
+      # <TestResources_SetInstanceField>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create type's instance
+      instance = called_runtime_type.create_instance(18, 19).execute
+
+      # set instance field
+      instance.set_instance_field("PublicValue", 44).execute
+
+      # get instance's field
+      response = instance.get_instance_field("PublicValue").execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_SetInstanceField>
+      expect(result).to eq(44)
+    else
+      skip("Clr supported on Windows only")
+    end
+  end
+
+  it 'Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
     if OS.windows?
       # <TestResources_InvokeStaticMethod>
       # use activate only once in your app
@@ -173,7 +213,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
+  it 'Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
     if OS.windows?
       # <TestResources_InvokeInstanceMethod>
       # use activate only once in your app
@@ -210,7 +250,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_GetIndex_2_StringThree' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree' do
     if OS.windows?
       # <TestResources_1DArray_GetIndex>
       # use activate only once in your app
@@ -250,7 +290,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_GetSize_5' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_GetSize_5' do
     if OS.windows?
       # <TestResources_1DArray_GetSize>
       # use activate only once in your app
@@ -290,7 +330,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_SetIndex_StringSeven' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven' do
     if OS.windows?
       # <TestResources_1DArray_SetIndex>
       # use activate only once in your app
@@ -333,7 +373,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_Iterate' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_Iterate' do
     if OS.windows?
       # <TestResources_1DArray_Iterate>
       # use activate only once in your app
@@ -374,7 +414,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_GetElement' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_GetElement' do
     if OS.windows?
       # <TestResources_1DArray_GetElement>
       # use activate only once in your app
@@ -414,7 +454,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_SetElement' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_SetElement' do
     if OS.windows?
       # <TestResources_1DArray_SetElement>
       # use activate only once in your app
@@ -457,7 +497,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_PassArrayAsArgument' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_PassArrayAsArgument' do
     if OS.windows?
       # <TestResources_1DArray_PassArrayAsArgument>
       # use activate only once in your app
@@ -480,7 +520,11 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       instance = called_runtime_type.create_instance.execute
 
       # invoke instance's method
-      response = instance.invoke_instance_method("AddArrayElementsAndMultiply", called_runtime.cast("System.Double[]",[12.22, 98.22, -10.44]), 9.99).execute
+      response = instance.
+        invoke_instance_method("AddArrayElementsAndMultiply",
+                               called_runtime.cast("System.Double[]", [12.22, 98.22, -10.44]),
+                               9.99).
+        execute
 
       # get value from response
       result = response.get_value
@@ -494,7 +538,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_1DArray_RetrieveArray' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_RetrieveArray' do
     if OS.windows?
       # <TestResources_1DArray_RetrieveArray>
       # use activate only once in your app
@@ -531,7 +575,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_TestResources_Cast_ToUInt' do
+  it 'Test_NetframeworkDll_TestResources_TestResources_Cast_ToUInt' do
     if OS.windows?
       # <TestResources_Cast_ToUInt>
       # use activate only once in your app
@@ -551,7 +595,10 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       called_runtime_type = called_runtime.get_type(class_name).execute
 
       # invoke type's static method
-      response = called_runtime_type.invoke_static_method("CastSampleMethod", called_runtime.cast("System.UInt32", 5.2)).execute
+      response = called_runtime_type.
+        invoke_static_method("CastSampleMethod",
+                             called_runtime.cast("System.UInt32", 5.2)).
+        execute
 
       # get value from response
       result = response.get_value
@@ -565,7 +612,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_TestResources_TestResources_Cast_ToFloat' do
+  it 'Test_NetframeworkDll_TestResources_TestResources_Cast_ToFloat' do
     if OS.windows?
       # <TestResources_Cast_ToFloat>
       # use activate only once in your app
@@ -585,7 +632,10 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
       called_runtime_type = called_runtime.get_type(class_name).execute
 
       # invoke type's static method
-      response = called_runtime_type.invoke_static_method("CastSampleMethod", called_runtime.cast("System.Single", 5)).execute
+      response = called_runtime_type.
+        invoke_static_method("CastSampleMethod",
+                             called_runtime.cast("System.Single", 5)).
+        execute
 
       # get value from response
       result = response.get_value
@@ -599,7 +649,154 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_StandardLibrary_GetStaticField_MathPI_PI' do
+  it 'Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+    if OS.windows?
+      begin
+        # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        # use activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        # create called runtime context
+        called_runtime = Javonet.in_memory.clr
+
+        # set up variables
+        library_path = resources_directory + "/TestClass.dll"
+        class_name = "TestClass.TestClass"
+
+        # load custom library
+        called_runtime.load_library(library_path)
+
+        # get type from the runtime
+        called_runtime_type = called_runtime.get_type(class_name).execute
+
+        # invoke type's static method
+        called_runtime_type.invoke_static_method("DivideBy", 10, 0).execute
+      rescue Exception => e
+        # write exception to console
+        puts e.full_message
+      end
+      # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    else
+      skip("Clr supported on Windows only")
+    end
+  end
+
+  it 'Test_NetframeworkDll_TestResources_GenericStaticMethod' do
+    if OS.windows?
+      # <TestResources_GenericStaticMethod>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # invoke type's generic static method
+      response = called_runtime_type.
+        invoke_generic_static_method("GenericSampleStaticMethod", "System.Int32", 7, 5).
+        execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_GenericStaticMethod>
+      expect(result).to eq("7 and 5")
+    else
+      skip("Clr supported on Windows only")
+    end
+  end
+
+  it 'Test_NetframeworkDll_TestResources_GenericMethod' do
+    if OS.windows?
+      # <TestResources_GenericMethod>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create type's instance
+      instance = called_runtime_type.create_instance.execute
+
+      # invoke type's generic method
+      response = instance.
+        invoke_generic_method("GenericSampleMethod", "System.Int32", 7, 5).
+        execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_GenericMethod>
+      expect(result).to eq("7 or 5")
+    else
+      skip("Clr supported on Windows only")
+    end
+  end
+
+  it 'Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes' do
+    if OS.windows?
+      # <TestResources_GenericMethodWithTwoTypes>
+      # use activate only once in your app
+      Javonet.activate("your-email", "your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = resources_directory + "/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create type's instance
+      instance = called_runtime_type.create_instance.execute
+
+      # invoke type's generic method
+      response = instance.
+        invoke_generic_method("GenericSampleMethodWithTwoTypes",
+                              ["System.String", "System.Int32"], "test").
+        execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_GenericMethodWithTwoTypes>
+      expect(result).to eq(0)
+    else
+      skip("Clr supported on Windows only")
+    end
+  end
+
+  it 'Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI' do
     if OS.windows?
       # <StandardLibrary_GetStaticField>
       # use activate only once in your app
@@ -626,7 +823,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022' do
+  it 'Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022' do
     if OS.windows?
       # <StandardLibrary_GetInstanceField>
       # use activate only once in your app
@@ -656,7 +853,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
+  it 'Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
     if OS.windows?
       # <StandardLibrary_InvokeStaticMethod>
       # use activate only once in your app
@@ -683,7 +880,7 @@ RSpec.describe 'Ruby To Clr Integration Tests' do
     end
   end
 
-  it 'Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022' do
+  it 'Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022' do
     if OS.windows?
       # <StandardLibrary_InvokeInstanceMethod>
       # use activate only once in your app

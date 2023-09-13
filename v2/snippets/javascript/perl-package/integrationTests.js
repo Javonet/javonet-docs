@@ -1,14 +1,14 @@
 const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
-const ActivationCredentials = require("./ActivationCredentials")
+const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
 
-const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/perl-package'
+const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/perl-package'
 
-describe('Nodejs to Perl integration tests', () => {
+describe('Nodejs to Perl Package integration tests', () => {
         if (process.platform != 'darwin') {
             Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
 
-            test(`Test_Perl_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+            test(`Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
                 // <TestResources_LoadLibrary>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -24,7 +24,7 @@ describe('Nodejs to Perl integration tests', () => {
                 // </TestResources_LoadLibrary>
             })
 
-            test(`Test_Perl_TestResources_GetStaticField_StaticValue_3`, () => {
+            test(`Test_PerlPackage_TestResources_GetStaticField_StaticValue_3`, () => {
                 // <TestResources_GetStaticField>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -54,7 +54,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe(3)
             })
 
-            test(`Test_Perl_TestResources_SetStaticField_StaticValue_75`, () => {
+            test(`Test_PerlPackage_TestResources_SetStaticField_StaticValue_75`, () => {
                 // <TestResources_SetStaticField>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -88,7 +88,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe(75)
             })
 
-            test(`Test_Perl_TestResources_GetInstanceField_PublicValue_1`, () => {
+            test(`Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1`, () => {
                 // <TestResources_GetInstanceField>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -121,7 +121,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe(1)
             })
 
-            test(`Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+            test(`Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
                 // <TestResources_InvokeStaticMethod>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -151,7 +151,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe(50)
             })
 
-            test(`Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+            test(`Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
                 // <TestResources_InvokeInstanceMethod>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -182,7 +182,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe(20)
             })
 
-            test(`Test_Perl_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree`, () => {
                 // <TestResources_1DArray_GetIndex>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -218,7 +218,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe("three")
             })
 
-            test(`Test_Perl_TestResources_1DArray_GetSize_5`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_GetSize_5`, () => {
                 // <TestResources_1DArray_GetSize>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -254,7 +254,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe(5)
             })
 
-            test(`Test_Perl_TestResources_1DArray_SetIndex_StringSeven`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven`, () => {
                 // <TestResources_1DArray_SetIndex>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")
@@ -294,7 +294,7 @@ describe('Nodejs to Perl integration tests', () => {
                 expect(result).toBe("seven")
             })
 
-            test(`Test_Perl_TestResources_1DArray_Iterate`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_Iterate`, () => {
                 // <TestResources_1DArray_Iterate>
                 // use Activate only once in your app
                 Javonet.activate("your-email", "your-license-key")

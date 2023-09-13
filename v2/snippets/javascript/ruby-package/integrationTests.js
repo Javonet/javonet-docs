@@ -1,16 +1,16 @@
 const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
-const ActivationCredentials = require("./ActivationCredentials")
+const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
 
-const resourcesDirectory = path.resolve(__dirname, '../../..') + '/testResources/ruby-package'
+const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/ruby-package'
 
 
-describe('Nodejs to Ruby integration tests', () => {
+describe('Nodejs to Ruby Package integration tests', () => {
 
     let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
-    test(`Test_Ruby_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+    test(`Test_RubyPackage_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
         // <TestResources_LoadLibrary>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -26,7 +26,7 @@ describe('Nodejs to Ruby integration tests', () => {
         // </TestResources_LoadLibrary>
     })
 
-    test(`Test_Ruby_TestResources_GetStaticField_StaticValue_3`, () => {
+    test(`Test_RubyPackage_TestResources_GetStaticField_StaticValue_3`, () => {
         // <TestResources_GetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -56,7 +56,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe(3)
     })
 
-    test(`Test_Ruby_TestResources_SetStaticField_StaticValue_75`, () => {
+    test(`Test_RubyPackage_TestResources_SetStaticField_StaticValue_75`, () => {
         // <TestResources_SetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -90,7 +90,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe(75)
     })
 
-    test(`Test_Ruby_TestResources_GetInstanceField_PublicValue_18`, () => {
+    test(`Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18`, () => {
         // <TestResources_GetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -123,7 +123,43 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe(18)
     })
 
-    test(`Test_Ruby_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+    test(`Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44`, () => {
+        // <TestResources_SetInstanceField>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance(18, 19).execute()
+
+        // set instance field
+        instance.setInstanceField("public_value", 44).execute()
+
+        // get instance's field
+        let response = instance.getInstanceField("public_value").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_SetInstanceField>
+        expect(result).toBe(44)
+    })
+
+    test(`Test_RubyPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
         // <TestResources_InvokeStaticMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -153,7 +189,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe(50)
     })
 
-    test(`Test_Ruby_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+    test(`Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
         // <TestResources_InvokeInstanceMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -186,7 +222,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe(20)
     })
 
-    test(`Test_Ruby_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree`, () => {
         // <TestResources_1DArray_GetIndex>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -222,7 +258,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe("three")
     })
 
-    test(`Test_Ruby_TestResources_1DArray_GetSize_5`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_GetSize_5`, () => {
         // <TestResources_1DArray_GetSize>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -258,7 +294,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe(5)
     })
 
-    test(`Test_Ruby_TestResources_1DArray_SetIndex_StringSeven`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven`, () => {
         // <TestResources_1DArray_SetIndex>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -298,7 +334,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBe("seven")
     })
 
-    test(`Test_Ruby_TestResources_1DArray_Iterate`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_Iterate`, () => {
         // <TestResources_1DArray_Iterate>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -335,7 +371,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     })
 
-    test(`Test_Ruby_TestResources_1DArray_PassArrayAsArgument`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_PassArrayAsArgument`, () => {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -368,7 +404,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toEqual(999)
     })
 
-    test(`Test_Ruby_TestResources_1DArray_RetrieveArray`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_RetrieveArray`, () => {
         // <TestResources_1DArray_RetrieveArray>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -401,7 +437,37 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toEqual(["one", "two", "three", "four", "five"])
     })
 
-    test(`Test_Ruby_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
+    test(`Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException`, () => {
+        // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = 'TestClass::TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // invoke type's static method which throws exception
+        try {
+            let response = calledRuntimeType.invokeStaticMethod("divide_by", 10, 0).execute()
+        } catch (e) {
+            // write exception to console
+            console.log(e)
+            return
+        }
+        // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        expect(false).toBe(true)
+    })
+
+    test(`Test_RubyPackage_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
         // <StandardLibrary_GetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")
@@ -424,7 +490,7 @@ describe('Nodejs to Ruby integration tests', () => {
         expect(result).toBeCloseTo(Math.PI, 6)
     })
 
-    test(`Test_Ruby_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50`, () => {
+    test(`Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50`, () => {
         // <StandardLibrary_InvokeStaticMethod>
         // use Activate only once in your app
         Javonet.activate("your-email", "your-license-key")

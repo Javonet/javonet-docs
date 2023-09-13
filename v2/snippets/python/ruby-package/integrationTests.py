@@ -1,12 +1,13 @@
 import math
 from pathlib import Path
 
+from javonet.core.exception.JavonetException import JavonetException
 from javonet.sdk import Javonet
 
-resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/ruby-package'
+resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/ruby-package'
 
 
-def test_ruby_TestResources_LoadLibrary():
+def test_RubyPackage_TestResources_LoadLibrary():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -22,7 +23,7 @@ def test_ruby_TestResources_LoadLibrary():
     # </TestResources_LoadLibrary>
 
 
-def test_ruby_TestResources_GetStaticField():
+def test_RubyPackage_TestResources_GetStaticField():
     # <TestResources_GetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -52,7 +53,7 @@ def test_ruby_TestResources_GetStaticField():
     assert (result == 3)
 
 
-def test_ruby_TestResources_SetStaticField():
+def test_RubyPackage_TestResources_SetStaticField():
     # <TestResources_SetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -86,7 +87,7 @@ def test_ruby_TestResources_SetStaticField():
     assert (result == 75)
 
 
-def test_ruby_TestResources_GetInstanceField():
+def test_RubyPackage_TestResources_GetInstanceField():
     # <TestResources_GetInstanceField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -118,7 +119,44 @@ def test_ruby_TestResources_GetInstanceField():
     # </TestResources_GetInstanceField>
     assert (result == 18)
 
-def test_ruby_TestResources_InvokeStaticMethod():
+
+def test_RubyPackage_TestResources_SetInstanceField():
+    # <TestResources_SetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().ruby()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.rb'
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(18, 19).execute()
+
+    # set instance's field
+    instance.set_instance_field("public_value", 44).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("public_value").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_SetInstanceField>
+    assert result == 44
+
+
+def test_RubyPackage_TestResources_InvokeStaticMethod():
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -148,7 +186,7 @@ def test_ruby_TestResources_InvokeStaticMethod():
     assert (result == 50)
 
 
-def test_ruby_TestResources_InvokeInstanceMethod():
+def test_RubyPackage_TestResources_InvokeInstanceMethod():
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -181,7 +219,7 @@ def test_ruby_TestResources_InvokeInstanceMethod():
     assert (result == 50)
 
 
-def test_ruby_TestResources_1DArray_GetIndex():
+def test_RubyPackage_TestResources_1DArray_GetIndex():
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -217,7 +255,7 @@ def test_ruby_TestResources_1DArray_GetIndex():
     assert (result == "three")
 
 
-def test_ruby_TestResources_1DArray_GetSize():
+def test_RubyPackage_TestResources_1DArray_GetSize():
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -253,7 +291,7 @@ def test_ruby_TestResources_1DArray_GetSize():
     assert (result == 5)
 
 
-def test_ruby_TestResources_1DArray_SetIndex():
+def test_RubyPackage_TestResources_1DArray_SetIndex():
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -293,7 +331,7 @@ def test_ruby_TestResources_1DArray_SetIndex():
     assert (result == "seven")
 
 
-def test_ruby_TestResources_1DArray_Iterate():
+def test_RubyPackage_TestResources_1DArray_Iterate():
     # <TestResources_1DArray_Iterate>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -328,7 +366,7 @@ def test_ruby_TestResources_1DArray_Iterate():
     assert array_upper == ["ONE", "TWO", "THREE", "FOUR", "FIVE"]
 
 
-def test_ruby_TestResources_1DArray_GetElement():
+def test_RubyPackage_TestResources_1DArray_GetElement():
     # <TestResources_1DArray_GetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -364,7 +402,7 @@ def test_ruby_TestResources_1DArray_GetElement():
     assert result == "THREE"
 
 
-def test_ruby_TestResources_1DArray_SetElement():
+def test_RubyPackage_TestResources_1DArray_SetElement():
     # <TestResources_1DArray_SetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -403,7 +441,7 @@ def test_ruby_TestResources_1DArray_SetElement():
     assert result == "ZERO"
 
 
-def test_ruby_TestResources_1DArray_PassArrayAsArgument():
+def test_RubyPackage_TestResources_1DArray_PassArrayAsArgument():
     # <TestResources_1DArray_PassArrayAsArgument>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -438,7 +476,7 @@ def test_ruby_TestResources_1DArray_PassArrayAsArgument():
     assert round(result, 3) == 999.0
 
 
-def test_ruby_TestResources_1DArray_RetrieveArray():
+def test_RubyPackage_TestResources_1DArray_RetrieveArray():
     # <TestResources_1DArray_RetrieveArray>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -471,7 +509,36 @@ def test_ruby_TestResources_1DArray_RetrieveArray():
     assert result == ["one", "two", "three", "four", "five"]
 
 
-def test_ruby_StandardLibrary_GetStaticField():
+def test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException():
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    try:
+        Javonet.activate("your-email", "your-license-key")
+
+        # create called runtime context
+        called_runtime = Javonet.in_memory().ruby()
+
+        # set up variables
+        library_path = resources_directory + '/TestClass.rb'
+        class_name = "TestClass::TestClass"
+
+        # load custom library
+        called_runtime.load_library(library_path)
+
+        # get type from the runtime
+        called_runtime_type = called_runtime.get_type(class_name).execute()
+
+        # invoke static method
+        response = called_runtime_type.invoke_static_method("divide_by", 10, 0).execute()
+    except Exception as e:
+        # write exception to console
+        print(e)
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        assert type(e) == JavonetException
+        assert "divide_by_third" in str(e)
+
+
+def test_RubyPackage_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -494,7 +561,7 @@ def test_ruby_StandardLibrary_GetStaticField():
     assert (round(result, 6) == round(math.pi, 6))
 
 
-def test_ruby_StandardLibrary_InvokeStaticMethod():
+def test_RubyPackage_StandardLibrary_InvokeStaticMethod():
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")

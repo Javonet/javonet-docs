@@ -1,3 +1,5 @@
+package nodejspackage;
+
 import com.javonet.sdk.internal.InvocationContext;
 import com.javonet.sdk.internal.RuntimeContext;
 import com.javonet.sdk.java.Javonet;
@@ -5,10 +7,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import utils.ActivationCredentials;
 
 import java.nio.file.Paths;
 
-public class JvmToNodejsIntegrationTest {
+public class integrationTests {
 
     private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/nodejs-package";
 
@@ -20,7 +23,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_LoadLibrary_LibraryPath_NoException() {
+    public void Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -38,7 +41,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_GetStaticField_staticValue_3() {
+    public void Test_NodejsPackage_TestResources_GetStaticField_staticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -70,7 +73,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_SetStaticField_staticValue_75() {
+    public void Test_NodejsPackage_TestResources_SetStaticField_staticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -106,7 +109,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_GetInstanceField_PublicValue_18() {
+    public void Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -141,7 +144,44 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
+    public void Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44() {
+        // <TestResources_SetInstanceField>
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance(18, 19).execute();
+
+        // set instance's field
+        instance.setInstanceField("publicValue", 44).execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("publicValue").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_SetInstanceField>
+        Assertions.assertEquals(44, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_InvokeStaticMethod_multiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -159,7 +199,7 @@ public class JvmToNodejsIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.invokeStaticMethod("multiplyByTwo", 25).execute();
 
         // get value from response
@@ -173,7 +213,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
+    public void Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -208,7 +248,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_1DArray_GetIndex_2_StringThree() {
+    public void Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -246,7 +286,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_1DArray_GetSize_5() {
+    public void Test_NodejsPackage_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -284,7 +324,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_1DArray_SetIndex_StringSeven() {
+    public void Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -326,7 +366,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_1DArray_Iterate() {
+    public void Test_NodejsPackage_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -369,7 +409,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_1DArray_PassArrayAsArgument() {
+    public void Test_NodejsPackage_TestResources_1DArray_PassArrayAsArgument() {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -404,7 +444,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_TestResources_1DArray_RetrieveArray() {
+    public void Test_NodejsPackage_TestResources_1DArray_RetrieveArray() {
         // <TestResources_1DArray_RetrieveArray>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -442,7 +482,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_StandardLibrary_GetStaticField_MathPI_PI() {
+    public void Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");
@@ -453,7 +493,7 @@ public class JvmToNodejsIntegrationTest {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
 
-        // get type's static field
+        // invoke type's method
         InvocationContext response = calledRuntimeType.getStaticField("PI").execute();
 
         // get result from response
@@ -467,7 +507,7 @@ public class JvmToNodejsIntegrationTest {
 
     @Test
     @Tag("integration")
-    public void Test_Nodejs_StandardLibrary_InvokeStaticMethod_Math_Abs_minus50_50() {
+    public void Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-email", "your-license-key");

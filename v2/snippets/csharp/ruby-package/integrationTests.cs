@@ -1,15 +1,15 @@
+﻿using Javonet.Netcore.Sdk.Tests.Utils;
+using Javonet.Netcore.Utils;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Integration.Tests
+namespace Javonet.Netcore.Sdk.Tests.rubypackage
 {
-	using Javonet.Netcore.Utils;
-	using Javonet.Netcore.Sdk;
-	public class NetcoreToRubyIntegrationTests
+    public class integrationTests
 	{
 		private readonly ITestOutputHelper output;
 		// this constructor is called only once, before first test
-		public NetcoreToRubyIntegrationTests(ITestOutputHelper output)
+		public integrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
 			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
@@ -19,7 +19,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_LoadLibrary()
+		public void Test_RubyPackage_TestResources_LoadLibrary()
 		{
 			// <TestResources_LoadLibrary>
 			// use Activate only once in your app
@@ -38,7 +38,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_GetStaticField()
+		public void Test_RubyPackage_TestResources_GetStaticField()
 		{
 			// <TestResources_GetStaticField>
 			// use Activate only once in your app
@@ -72,7 +72,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_SetStaticField()
+		public void Test_RubyPackage_TestResources_SetStaticField()
 		{
 			// use Activate only once in your app
 			Javonet.Activate("your-email", "your-license-key");
@@ -108,7 +108,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_GetInstanceField()
+		public void Test_RubyPackage_TestResources_GetInstanceField()
 		{
 			// <TestResources_GetInstanceField>
 			// use Activate only once in your app
@@ -144,7 +144,46 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_InvokeStaticMethod()
+		public void Test_RubyPackage_TestResources_SetInstanceField()
+		{
+			// <TestResources_SetInstanceField>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Ruby();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// create type's instance
+			var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
+
+			// set instance's field
+			instance.SetInstanceField("public_value", 44).Execute();
+
+			// get instance's field
+			var response = instance.GetInstanceField("public_value").Execute();
+
+			// get value from response
+			var result = (int)response.GetValue();
+
+			// write result to console
+			System.Console.WriteLine(result);
+			// </TestResources_SetInstanceField>
+			Assert.Equal(44, result);
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_RubyPackage_TestResources_InvokeStaticMethod()
 		{
 			// <TestResources_InvokeStaticMethod>
 			// use Activate only once in your app
@@ -177,7 +216,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_InvokeInstanceMethod()
+		public void Test_RubyPackage_TestResources_InvokeInstanceMethod()
 		{
 			// <TestResources_InvokeInstanceMethod>
 			// use Activate only once in your app
@@ -213,7 +252,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_GetIndex()
+		public void Test_RubyPackage_TestResources_1DArray_GetIndex()
 		{
 			// <TestResources_1DArray_GetIndex>
 			// use Activate only once in your app
@@ -252,7 +291,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_GetSize()
+		public void Test_RubyPackage_TestResources_1DArray_GetSize()
 		{
 			// <TestResources_1DArray_GetSize>
 			// use Activate only once in your app
@@ -291,7 +330,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_SetIndex()
+		public void Test_RubyPackage_TestResources_1DArray_SetIndex()
 		{
 			// <TestResources_1DArray_SetIndex>
 			// use Activate only once in your app
@@ -334,7 +373,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_Iterate()
+		public void Test_RubyPackage_TestResources_1DArray_Iterate()
 		{
 			// <TestResources_1DArray_Iterate>
 			// use Activate only once in your app
@@ -379,7 +418,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_GetElement()
+		public void Test_RubyPackage_TestResources_1DArray_GetElement()
 		{
 			// <TestResources_1DArray_GetElement>
 			// use Activate only once in your app
@@ -418,7 +457,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_PassArrayAsArgument()
+		public void Test_RubyPackage_TestResources_1DArray_PassArrayAsArgument()
 		{
 			// <TestResources_1DArray_PassArrayAsArgument>
 			// use Activate only once in your app
@@ -454,7 +493,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_TestResources_1DArray_RetrieveArray()
+		public void Test_RubyPackage_TestResources_1DArray_RetrieveArray()
 		{
 			// <TestResources_1DArray_RetrieveArray>
 			// use Activate only once in your app
@@ -490,7 +529,43 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_StandardLibrary_InvokeStaticMethod()
+		public void Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
+		{
+			// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+			// use Activate only once in your app
+			Javonet.Activate("your-email", "your-license-key");
+
+			// create called runtime context
+			var calledRuntime = Javonet.InMemory().Ruby();
+
+			// set up variables
+			string libraryPath = resourcesDirectory + "/TestClass.rb";
+			string className = "TestClass::TestClass";
+
+			// load custom library
+			calledRuntime.LoadLibrary(libraryPath);
+
+			// get type from the runtime
+			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+			// invoke type's static method which throws exception
+			try
+			{
+				var response = calledRuntimeType.InvokeStaticMethod("divide_by", 10, 0).Execute();
+			}
+			catch (System.ArithmeticException e)
+			{
+				// write result to console
+				System.Console.WriteLine(e.Message);
+				return;
+			}
+			// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+			Assert.Fail("No exception occurred - test failed");
+		}
+
+		[Fact]
+		[Trait("Test", "Integration")]
+		public void Test_RubyPackage_StandardLibrary_InvokeStaticMethod()
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			// use Activate only once in your app
@@ -516,7 +591,7 @@ namespace Integration.Tests
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_Ruby_StandardLibrary_GetStaticField()
+		public void Test_RubyPackage_StandardLibrary_GetStaticField()
 		{
 			// <StandardLibrary_GetStaticField>
 			// use Activate only once in your app

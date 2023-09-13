@@ -1,12 +1,13 @@
 import math
 from pathlib import Path
 
+from javonet.core.exception.JavonetException import JavonetException
 from javonet.sdk import Javonet
 
-resources_directory = str(Path(__file__).parent.parent.parent.parent) + '/testResources/net-dll'
+resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/net-dll'
 
 
-def test_netcore_TestResources_LoadLibrary():
+def test_NetDll_TestResources_LoadLibrary():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -22,7 +23,7 @@ def test_netcore_TestResources_LoadLibrary():
     # </TestResources_LoadLibrary>
 
 
-def test_netcore_TestResources_GetStaticField():
+def test_NetDll_TestResources_GetStaticField():
     # <TestResources_GetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -52,7 +53,7 @@ def test_netcore_TestResources_GetStaticField():
     assert result == 3
 
 
-def test_netcore_TestResources_SetStaticField():
+def test_NetDll_TestResources_SetStaticField():
     # <TestResources_SetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -86,7 +87,7 @@ def test_netcore_TestResources_SetStaticField():
     assert result == 75
 
 
-def test_netcore_TestResources_GetInstanceField():
+def test_NetDll_TestResources_GetInstanceField():
     # <TestResources_GetInstanceField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -119,7 +120,43 @@ def test_netcore_TestResources_GetInstanceField():
     assert result == 18
 
 
-def test_netcore_TestResources_InvokeStaticMethod():
+def test_NetDll_TestResources_SetInstanceField():
+    # <TestResources_SetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(18, 19).execute()
+
+    # set instance's field
+    instance.set_instance_field("PublicValue", 44).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("PublicValue").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_SetInstanceField>
+    assert result == 44
+
+
+def test_NetDll_TestResources_InvokeStaticMethod():
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -149,7 +186,7 @@ def test_netcore_TestResources_InvokeStaticMethod():
     assert (result == 50)
 
 
-def test_netcore_TestResources_InvokeInstanceMethod():
+def test_NetDll_TestResources_InvokeInstanceMethod():
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -182,7 +219,7 @@ def test_netcore_TestResources_InvokeInstanceMethod():
     assert result == 50
 
 
-def test_netcore_TestResources_1DArray_GetIndex():
+def test_NetDll_TestResources_1DArray_GetIndex():
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -218,7 +255,7 @@ def test_netcore_TestResources_1DArray_GetIndex():
     assert result == "three"
 
 
-def test_netcore_TestResources_1DArray_GetSize():
+def test_NetDll_TestResources_1DArray_GetSize():
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -254,7 +291,7 @@ def test_netcore_TestResources_1DArray_GetSize():
     assert result == 5
 
 
-def test_netcore_TestResources_1DArray_SetIndex():
+def test_NetDll_TestResources_1DArray_SetIndex():
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -294,7 +331,7 @@ def test_netcore_TestResources_1DArray_SetIndex():
     assert result == "seven"
 
 
-def test_netcore_TestResources_1DArray_Iterate():
+def test_NetDll_TestResources_1DArray_Iterate():
     # <TestResources_1DArray_Iterate>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -329,7 +366,7 @@ def test_netcore_TestResources_1DArray_Iterate():
     assert array_upper == ["ONE", "TWO", "THREE", "FOUR", "FIVE"]
 
 
-def test_netcore_TestResources_1DArray_GetElement():
+def test_NetDll_TestResources_1DArray_GetElement():
     # <TestResources_1DArray_GetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -365,7 +402,7 @@ def test_netcore_TestResources_1DArray_GetElement():
     assert result == "THREE"
 
 
-def test_netcore_TestResources_1DArray_SetElement():
+def test_NetDll_TestResources_1DArray_SetElement():
     # <TestResources_1DArray_SetElement>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -404,7 +441,7 @@ def test_netcore_TestResources_1DArray_SetElement():
     assert result == "ZERO"
 
 
-def test_netcore_TestResources_1DArray_PassArrayAsArgument():
+def test_NetDll_TestResources_1DArray_PassArrayAsArgument():
     # <TestResources_1DArray_PassArrayAsArgument>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -439,7 +476,7 @@ def test_netcore_TestResources_1DArray_PassArrayAsArgument():
     assert round(result, 3) == 999.0
 
 
-def test_netcore_TestResources_1DArray_RetrieveArray():
+def test_NetDll_TestResources_1DArray_RetrieveArray():
     # <TestResources_1DArray_RetrieveArray>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -472,7 +509,7 @@ def test_netcore_TestResources_1DArray_RetrieveArray():
     assert result == ["one", "two", "three", "four", "five"]
 
 
-def test_netcore_TestResources_Cast_ToUInt():
+def test_NetDll_TestResources_Cast_ToUInt():
     # <TestResources_Cast_ToUInt>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -502,7 +539,7 @@ def test_netcore_TestResources_Cast_ToUInt():
     assert result == "CastSampleMethod with System.UInt32 called"
 
 
-def test_netcore_TestResources_Cast_ToFloat():
+def test_NetDll_TestResources_Cast_ToFloat():
     # <TestResources_Cast_ToFloat>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -532,7 +569,139 @@ def test_netcore_TestResources_Cast_ToFloat():
     assert result == "CastSampleMethod with System.Single called"
 
 
-def test_netcore_StandardLibrary_GetStaticField():
+def test_NetDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException():
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    try:
+        Javonet.activate("your-email", "your-license-key")
+
+        # create called runtime context
+        called_runtime = Javonet.in_memory().netcore()
+
+        # set up variables
+        library_path = resources_directory + '/TestClass.dll'
+        class_name = 'TestClass.TestClass'
+
+        # load custom library
+        called_runtime.load_library(library_path)
+
+        # get type from the runtime
+        called_runtime_type = called_runtime.get_type(class_name).execute()
+
+        # invoke static method
+        response = called_runtime_type.invoke_static_method("DivideBy", 10, 0).execute()
+    except Exception as e:
+        # write exception to console
+        print(e)
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        assert type(e) == JavonetException
+        assert "DivideByThird" in str(e)
+
+
+def test_NetDll_TestResources_GenericStaticMethod():
+    # <TestResources_GenericStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke static method
+    response = called_runtime_type.\
+        invoke_generic_static_method("GenericSampleStaticMethod", "System.Int32", 7, 5).\
+        execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_GenericStaticMethod>
+    assert (result == "7 and 5")
+
+
+def test_NetDll_TestResources_GenericMethod():
+    # <TestResources_GenericMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance method
+    response = instance.\
+        invoke_generic_method("GenericSampleMethod", "System.Int32", 7, 5).\
+        execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_GenericMethod>
+    assert (result == "7 or 5")
+
+
+def test_NetDll_TestResources_GenericMethodWithTwoTypes():
+    # <TestResources_GenericMethodWithTwoTypes>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance method
+    response = instance.\
+        invoke_generic_method("GenericSampleMethodWithTwoTypes",
+                              ["System.String", "System.Int32"], "test").\
+        execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_GenericMethodWithTwoTypes>
+    assert (result == 0)
+    
+
+def test_NetDll_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -555,7 +724,7 @@ def test_netcore_StandardLibrary_GetStaticField():
     assert result == math.pi
 
 
-def test_netcore_StandardLibrary_GetInstanceField():
+def test_NetDll_StandardLibrary_GetInstanceField():
     # <StandardLibrary_GetInstanceField>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -578,7 +747,7 @@ def test_netcore_StandardLibrary_GetInstanceField():
     assert result == 2022
 
 
-def test_netcore_StandardLibrary_InvokeStaticMethod():
+def test_NetDll_StandardLibrary_InvokeStaticMethod():
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")
@@ -601,7 +770,7 @@ def test_netcore_StandardLibrary_InvokeStaticMethod():
     assert result == 50
 
 
-def test_netcore_StandardLibrary_InvokeInstanceMethod():
+def test_NetDll_StandardLibrary_InvokeInstanceMethod():
     # <StandardLibrary_InvokeInstanceMethod>
     # use activate only once in your app
     Javonet.activate("your-email", "your-license-key")

@@ -1,14 +1,14 @@
 //go:build !darwin
 // +build !darwin
 
-package gotoperlintegrationtests
+package perlpackage
 
 import (
 	"fmt"
 	"os"
 	"testing"
 
-	"javonet.com/integrationTests/integrationtests/activationcredentials"
+	"javonet.com/integrationTests/utils/activationcredentials"
 	Javonet "javonet.com/javonet"
 )
 
@@ -20,7 +20,7 @@ func init() {
 	Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenseKey)
 }
 
-func Test_Perl_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
+func Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -36,7 +36,7 @@ func Test_Perl_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// </TestResources_LoadLibrary>
 }
 
-func Test_Perl_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
+func Test_PerlPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -69,7 +69,7 @@ func Test_Perl_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	}
 }
 
-func Test_Perl_TestResources_SetStaticField_StaticValue75(t *testing.T) {
+func Test_PerlPackage_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -106,7 +106,7 @@ func Test_Perl_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	}
 }
 
-func Test_Perl_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
+func Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -142,7 +142,7 @@ func Test_Perl_TestResources_GetInstanceField_PublicValue_1(t *testing.T) {
 	}
 }
 
-func Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
+func Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -175,7 +175,7 @@ func Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T
 	}
 }
 
-func Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
+func Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -208,7 +208,7 @@ func Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *t
 	}
 }
 
-func Test_Perl_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
+func Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -247,7 +247,7 @@ func Test_Perl_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	}
 }
 
-func Test_Perl_TestResources_1DArray_GetSize_5(t *testing.T) {
+func Test_PerlPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -286,7 +286,7 @@ func Test_Perl_TestResources_1DArray_GetSize_5(t *testing.T) {
 	}
 }
 
-func Test_Perl_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
+func Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")

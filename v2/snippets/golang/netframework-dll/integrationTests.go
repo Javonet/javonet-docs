@@ -1,7 +1,7 @@
 //go:build !linux && !darwin
 // +build !linux,!darwin
 
-package gotoclrintegrationtests
+package netframeworkdll
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"javonet.com/integrationTests/integrationtests/activationcredentials"
+	"javonet.com/integrationTests/utils/activationcredentials"
 	Javonet "javonet.com/javonet"
 )
 
@@ -23,7 +23,7 @@ func init() {
 	Javonet.ActivateWithCredentials(activationcredentials.YourEmail, activationcredentials.YourLicenseKey)
 }
 
-func Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
+func Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -39,7 +39,7 @@ func Test_Clr_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// </TestResources_LoadLibrary>
 }
 
-func Test_Clr_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
+func Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -72,7 +72,7 @@ func Test_Clr_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_SetStaticField_StaticValue75(t *testing.T) {
+func Test_NetframeworkDll_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -109,7 +109,7 @@ func Test_Clr_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
+func Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -145,7 +145,47 @@ func Test_Clr_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
+func Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
+	// <TestResources_SetInstanceField>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Clr()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.dll"
+	className := "TestClass.TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := calledRuntimeType.CreateInstance(18, 19).Execute()
+
+	// set instance's field
+	instance.SetInstanceField("PublicValue", 44).Execute()
+
+	// get instance's field
+	response := instance.GetInstanceField("PublicValue").Execute()
+
+	// get value from response
+	result := response.GetValue().(int32)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_SetInstanceField>
+	expectedResponse := int32(44)
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+
+func Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -178,7 +218,7 @@ func Test_Clr_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T)
 	}
 }
 
-func Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
+func Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -214,7 +254,7 @@ func Test_Clr_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *te
 	}
 }
 
-func Test_Clr_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
+func Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -253,7 +293,7 @@ func Test_Clr_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_1DArray_GetSize_5(t *testing.T) {
+func Test_NetframeworkDll_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -292,7 +332,7 @@ func Test_Clr_TestResources_1DArray_GetSize_5(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
+func Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -335,7 +375,7 @@ func Test_Clr_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_1DArray_RetrieveArray(t *testing.T) {
+func Test_NetframeworkDll_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -376,7 +416,7 @@ func Test_Clr_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_Cast_ToUInt32(t *testing.T) {
+func Test_NetframeworkDll_TestResources_Cast_ToUInt32(t *testing.T) {
 	// <TestResources_Cast_ToUInt32>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -409,7 +449,7 @@ func Test_Clr_TestResources_Cast_ToUInt32(t *testing.T) {
 	}
 }
 
-func Test_Clr_TestResources_Cast_ToFloat(t *testing.T) {
+func Test_NetframeworkDll_TestResources_Cast_ToFloat(t *testing.T) {
 	// <TestResources_Cast_ToFloat>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -442,7 +482,80 @@ func Test_Clr_TestResources_Cast_ToFloat(t *testing.T) {
 	}
 }
 
-func Test_Clr_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
+func Test_NetframeworkDll_TestResources_GenericStaticMethod(t *testing.T) {
+	// <TestResources_GenericStaticMethod>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Clr()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.dll"
+	className := "TestClass.TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// invoke type's generic static method
+	response := calledRuntimeType.
+	InvokeGenericStaticMethod("GenericSampleStaticMethod", "System.Int32", 7, 5).
+	Execute()
+
+	// get value from response
+	result := response.GetValue().(string)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_GenericStaticMethod>
+	expectedResponse := "7 and 5"
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_NetframeworkDll_TestResources_GenericMethod(t *testing.T) {
+	// <TestResources_GenericMethod>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Clr()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.dll"
+	className := "TestClass.TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// invoke type's generic static method
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := calledRuntimeType.CreateInstance().Execute()
+
+	// invoke type's generic method
+	response := instance.
+	InvokeGenericMethod("GenericSampleMethod", "System.Int32", 7, 5).
+	Execute()
+
+	// get value from response
+	result := response.GetValue().(string)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_GenericMethod>
+	expectedResponse := "7 or 5"
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -468,7 +581,7 @@ func Test_Clr_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	}
 }
 
-func Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022(t *testing.T) {
+func Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022(t *testing.T) {
 	// <StandardLibrary_GetInstanceField>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -497,7 +610,7 @@ func Test_Clr_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022(t *testi
 	}
 }
 
-func Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
+func Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
@@ -523,7 +636,7 @@ func Test_Clr_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.
 	}
 }
 
-func Test_Clr_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022(t *testing.T) {
+func Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022(t *testing.T) {
 	// <StandardLibrary_InvokeInstanceMethod>
 	// use Activate only once in your app
 	Javonet.ActivateWithCredentials("your-email", "your-license-key")
