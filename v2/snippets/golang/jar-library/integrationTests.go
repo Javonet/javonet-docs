@@ -406,6 +406,119 @@ func Test_JarLibrary_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	}
 }
 
+
+func Test_JarLibrary_TestResources_GenericStaticMethod(t *testing.T) {
+	// <TestResources_GenericStaticMethod>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// invoke type's generic static method
+	response := calledRuntimeType.
+	InvokeGenericStaticMethod("genericSampleStaticMethod", 7, 5).
+	Execute()
+
+	// get value from response
+	result := response.GetValue().(string)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_GenericStaticMethod>
+	expectedResponse := "7 and 5"
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_JarLibrary_TestResources_GenericMethod(t *testing.T) {
+	// <TestResources_GenericMethod>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// invoke type's generic static method
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := calledRuntimeType.CreateInstance().Execute()
+
+	// invoke type's generic method
+	response := instance.
+	InvokeGenericMethod("genericSampleMethod", 7, 5).
+	Execute()
+
+	// get value from response
+	result := response.GetValue().(string)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_GenericMethod>
+	expectedResponse := "7 or 5"
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+
+func Test_JarLibrary_TestResources_GenericMethodWithTwoTypes(t *testing.T) {
+	// <TestResources_GenericMethodWithTwoTypes>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-email", "your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+	className := "TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// invoke type's generic static method
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	// create type's instance
+	instance := calledRuntimeType.CreateInstance().Execute()
+
+	// invoke type's generic method
+	response := instance.
+	InvokeGenericMethod("genericSampleMethodWithTwoTypes", 7).
+	Execute()
+
+	// get value from response
+	result := response.GetValue().(string)
+
+	// write result to console
+	fmt.Println(result)
+	// </TestResources_GenericMethodWithTwoTypes>
+	expectedResponse := "genericSampleMethodWithTwoTypes invoked"
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
 func Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
