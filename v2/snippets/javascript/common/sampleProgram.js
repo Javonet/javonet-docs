@@ -4,7 +4,7 @@ const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
 
 // <WholeSnippet>
 // <Activation>
-Javonet.activate("your-license-key")
+Javonet.activate("your-email", "your-license-key")
 // </Activation>
 
 // <RuntimeContextCreation>

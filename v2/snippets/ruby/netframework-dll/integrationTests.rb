@@ -519,11 +519,13 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       # create type's instance
       instance = called_runtime_type.create_instance.execute
 
+      # get type for casting
+      target_type = called_runtime.get_type("System.Double[]")
+
       # invoke instance's method
       response = instance.
         invoke_instance_method("AddArrayElementsAndMultiply",
-                               called_runtime.cast("System.Double[]", [12.22, 98.22, -10.44]),
-                               9.99).
+                               called_runtime.cast(target_type, [12.22, 98.22, -10.44]), 9.99).
         execute
 
       # get value from response
@@ -594,10 +596,12 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       # get type from the runtime
       called_runtime_type = called_runtime.get_type(class_name).execute
 
+      # get type for casting
+      target_type = called_runtime.get_type("System.UInt32")
+
       # invoke type's static method
       response = called_runtime_type.
-        invoke_static_method("CastSampleMethod",
-                             called_runtime.cast("System.UInt32", 5.2)).
+        invoke_static_method("CastSampleMethod", called_runtime.cast(target_type, 5.2)).
         execute
 
       # get value from response
@@ -631,11 +635,14 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       # get type from the runtime
       called_runtime_type = called_runtime.get_type(class_name).execute
 
+      # get type for casting
+      target_type = called_runtime.get_type("System.Single")
+
       # invoke type's static method
       response = called_runtime_type.
-        invoke_static_method("CastSampleMethod",
-                             called_runtime.cast("System.Single", 5)).
+        invoke_static_method("CastSampleMethod", called_runtime.cast(target_type, 5)).
         execute
+
 
       # get value from response
       result = response.get_value
@@ -700,9 +707,12 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       # get type from the runtime
       called_runtime_type = called_runtime.get_type(class_name).execute
 
+      # get type for generic method
+      target_type = called_runtime.get_type("System.Int32")
+
       # invoke type's generic static method
       response = called_runtime_type.
-        invoke_generic_static_method("GenericSampleStaticMethod", "System.Int32", 7, 5).
+        invoke_generic_static_method("GenericSampleStaticMethod", target_type, 7, 5).
         execute
 
       # get value from response
@@ -739,9 +749,12 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       # create type's instance
       instance = called_runtime_type.create_instance.execute
 
+      # get type for generic method
+      target_type = called_runtime.get_type("System.Int32")
+
       # invoke type's generic method
       response = instance.
-        invoke_generic_method("GenericSampleMethod", "System.Int32", 7, 5).
+        invoke_generic_method("GenericSampleMethod", target_type, 7, 5).
         execute
 
       # get value from response
@@ -778,10 +791,14 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       # create type's instance
       instance = called_runtime_type.create_instance.execute
 
+      # get type for generic method
+      target_type_1 = called_runtime.get_type("System.String")
+      target_type_2 = called_runtime.get_type("System.Int32")
+
       # invoke type's generic method
       response = instance.
         invoke_generic_method("GenericSampleMethodWithTwoTypes",
-                              ["System.String", "System.Int32"], "test").
+                              [target_type_1, target_type_2], "test").
         execute
 
       # get value from response
