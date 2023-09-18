@@ -8,7 +8,7 @@ class SampleProgram
 	{
 		// <WholeSnippet>
 		// <Activation>
-		Javonet.Activate("your-email", "your-license-key");
+		Javonet.Activate("your-license-key");
 		// </Activation>
 
 		// <RuntimeContextCreation>

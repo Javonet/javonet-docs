@@ -4,7 +4,7 @@ from javonet.sdk import Javonet
 
 # <WholeSnippet>
 # <Activation>
-Javonet.activate("your-email", "your-license-key")
+Javonet.activate("your-license-key")
 # </Activation>
 
 # <RuntimeContextCreation>
