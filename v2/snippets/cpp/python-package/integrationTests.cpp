@@ -185,6 +185,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto result = std::any_cast<int>(response->GetValue());
 
 		// write result to console
+		std::cout << result << std::endl;
 		// </TestResources_InvokeStaticMethod>
 		EXPECT_EQ(50, result);
 	}

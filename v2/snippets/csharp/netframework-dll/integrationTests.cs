@@ -1,4 +1,5 @@
-﻿using Javonet.Netcore.Sdk.Tests.Utils;
+﻿using Javonet.Netcore.Sdk.Internal;
+using Javonet.Netcore.Sdk.Tests.Utils;
 using Javonet.Netcore.Utils;
 using Xunit;
 using Xunit.Abstractions;
@@ -541,14 +542,20 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 			// load custom library
 			calledRuntime.LoadLibrary(libraryPath);
 
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
-			// invoke type's static method
-			var response = calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast("System.UInt32", 5.2)).Execute();
+            // get type for casting
+            var targetType = calledRuntime.GetType("System.UInt32");
 
-			// get value from response
-			string result = (string)response.GetValue();
+            // invoke type's static method
+            var response = calledRuntimeType.
+                InvokeStaticMethod("CastSampleMethod",
+                                    calledRuntime.Cast(targetType, 5.2)).
+                Execute();
+
+            // get value from response
+            string result = (string)response.GetValue();
 
 			// write result to console
 			System.Console.WriteLine(result);
@@ -571,20 +578,23 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 			string libraryPath = resourcesDirectory + "/TestClass.dll";
 			string className = "TestClass.TestClass";
 
-			// load custom library
-			calledRuntime.LoadLibrary(libraryPath);
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
 
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType(className).Execute();
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
-			// invoke type's static method
-			var response = calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast("System.Single", 5)).Execute();
+            // get type for casting
+            var targetType = calledRuntime.GetType("System.Single");
 
-			// get value from response
-			string result = (string)response.GetValue();
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5)).Execute();
 
-			// write result to console
-			System.Console.WriteLine(result);
+            // get value from response
+            string result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
 			// </TestResources_Cast_ToFloat>
 			Assert.Equal("CastSampleMethod with System.Single called", result);
 		}
@@ -646,10 +656,13 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
             // get type from the runtime
             var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
+            // get type for generic method
+            var targetType = calledRuntime.GetType("System.Int32");
+
             // invoke type's generic static method
             var response = calledRuntimeType.
-                InvokeGenericStaticMethod("GenericSampleStaticMethod", "System.Int32", 7, 5).
-                Execute();
+                           InvokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
+                            Execute();
 
             // get value from response
             string result = (string)response.GetValue();
@@ -684,10 +697,14 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
             // create type's instance
             var instance = calledRuntimeType.CreateInstance().Execute();
 
+            // get type for generic method
+            var targetType = calledRuntime.GetType("System.Int32");
+
             // invoke type's generic method
             var response = instance.
-                InvokeGenericMethod("GenericSampleMethod", "System.Int32", 7, 5).
-                Execute();
+                            InvokeGenericMethod("GenericSampleMethod",
+                                                targetType, 7, 5).
+                            Execute();
 
             // get value from response
             string result = (string)response.GetValue();
@@ -722,10 +739,16 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
             // create type's instance
             var instance = calledRuntimeType.CreateInstance().Execute();
 
+            // get types for generic method
+            var targetType1 = calledRuntime.GetType("System.String");
+            var targetType2 = calledRuntime.GetType("System.Int32");
+
             // invoke type's generic method
             var response = instance.
-                InvokeGenericMethod("GenericSampleMethodWithTwoTypes", new string[] { "System.String", "System.Int32" }, "test").
-            Execute();
+                           InvokeGenericMethod("GenericSampleMethodWithTwoTypes",
+                                                new InvocationContext[] { targetType1, targetType2 },
+                                                "test").
+                           Execute();
 
             // get value from response
             int result = (int)response.GetValue();

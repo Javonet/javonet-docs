@@ -185,6 +185,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto result = std::any_cast<int>(response->GetValue());
 
 		// write result to console
+		std::cout << result << std::endl;
 		// </TestResources_InvokeStaticMethod>
 		EXPECT_EQ(50, result);
 	}
@@ -434,7 +435,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 
 	TEST(Integration, Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50) {
 		// <StandardLibrary_InvokeStaticMethod>
-				// use Activate only once in your app
+		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
 
 		// create called runtime context

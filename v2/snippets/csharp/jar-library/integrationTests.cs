@@ -564,7 +564,118 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
 			Assert.Fail("No exception occurred - test failed");
 		}
 
-		[Fact]
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_TestResources_GenericStaticMethod()
+        {
+            // <TestResources_GenericStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-email", "your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // invoke type's generic static method
+            var response = calledRuntimeType.
+                           InvokeGenericStaticMethod("genericSampleStaticMethod", 7, 5).
+                            Execute();
+
+            // get value from response
+            string result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_GenericStaticMethod>
+            Assert.Equal("7 and 5", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_TestResources_GenericMethod()
+        {
+            // <TestResources_GenericMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-email", "your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance().Execute();
+
+            // invoke type's generic method
+            var response = instance.
+                            InvokeGenericMethod("genericSampleMethod", 7, 5).
+                            Execute();
+
+            // get value from response
+            string result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_GenericMethod>
+            Assert.Equal("7 or 5", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_TestResources_GenericMethodWithTwoTypes()
+        {
+            // <TestResources_GenericMethodWithTwoTypes>
+            // use Activate only once in your app
+            Javonet.Activate("your-email", "your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance().Execute();
+
+            // invoke type's generic method
+            var response = instance.
+                           InvokeGenericMethod("genericSampleMethodWithTwoTypes", 7).
+                           Execute();
+
+            // get value from response
+            string result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_GenericMethodWithTwoTypes>
+            Assert.Equal("genericSampleMethodWithTwoTypes invoked", result);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_JarLibrary_StandardLibrary_GetStaticField()
 		{

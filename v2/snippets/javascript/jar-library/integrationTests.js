@@ -466,6 +466,102 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(false).toBe(true)
     })
 
+    test(`Test_JarLibrary_TestResources_GenericStaticMethod`, () => {
+        // <TestResources_GenericStaticMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // invoke type's static method
+        let response = calledRuntimeType.invokeGenericStaticMethod("genericSampleStaticMethod", 7, 5).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_GenericStaticMethod>
+        expect(result).toBe("7 and 5")
+    })
+
+    test(`Test_JarLibrary_TestResources_GenericMethod`, () => {
+        // <TestResources_GenericMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke type's method
+        let response = instance.invokeGenericMethod("genericSampleMethod", 7, 5).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_GenericMethod>
+        expect(result).toBe("7 or 5")
+    })
+
+    test(`Test_JarLibrary_TestResources_GenericMethodWithTwoTypes`, () => {
+        // <TestResources_GenericMethodWithTwoTypes>
+        // use Activate only once in your app
+        Javonet.activate("your-email", "your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke type's method
+        let response = instance.invokeGenericMethod("genericSampleMethodWithTwoTypes", 7).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_GenericMethodWithTwoTypes>
+        expect(result).toBe("genericSampleMethodWithTwoTypes invoked")
+    })
+
     test(`Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI`, () => {
         // <StandardLibrary_GetStaticField>
         // use Activate only once in your app
