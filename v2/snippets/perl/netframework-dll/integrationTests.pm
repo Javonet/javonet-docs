@@ -456,9 +456,12 @@ sub Test_NetframeworkDll_TestResources_GenericStaticMethod {
     # get type from the runtime
     my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
+    # get type for generic method
+    my $target_type = $clr_runtime->get_type("System.Int32")->execute();
+
     # invoke static method
     my $response = $clr_type->
-        invoke_generic_static_method("GenericSampleStaticMethod", "System.Int32", 7, 5)->
+        invoke_generic_static_method("GenericSampleStaticMethod", $target_type, 7, 5)->
         execute();
 
     # get value from response
@@ -491,9 +494,12 @@ sub Test_NetframeworkDll_TestResources_GenericMethod {
     # create type's instance
     my $instance = $clr_type->create_instance()->execute();
 
+    # get type for generic method
+    my $target_type = $clr_runtime->get_type("System.Int32")->execute();
+
     # invoke generic method
     my $response = $instance->
-        invoke_generic_method("GenericSampleMethod", "System.Int32", 7, 5)->
+        invoke_generic_method("GenericSampleMethod", $target_type, 7, 5)->
         execute();
 
     # get value from response
