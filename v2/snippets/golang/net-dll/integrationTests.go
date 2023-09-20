@@ -430,8 +430,11 @@ func Test_NetDll_TestResources_Cast_ToUInt32(t *testing.T) {
 	// get type from the runtime
 	calledRuntimeType := calledRuntime.GetType(className).Execute()
 
+	// get type for casting
+	targetType := calledRuntime.GetType("System.UInt32")
+
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast("System.UInt32", 5.2)).Execute()
+	response := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5.2)).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -463,8 +466,11 @@ func Test_NetDll_TestResources_Cast_ToFloat(t *testing.T) {
 	// get type from the runtime
 	calledRuntimeType := calledRuntime.GetType(className).Execute()
 
+	// get type for casting
+	targetType := calledRuntime.GetType("System.Single")
+
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast("System.Single", 5)).Execute()
+	response := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5)).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -496,9 +502,12 @@ func Test_NetDll_TestResources_GenericStaticMethod(t *testing.T) {
 	// get type from the runtime
 	calledRuntimeType := calledRuntime.GetType(className).Execute()
 
+	// get type for generic method
+	targetType := calledRuntime.GetType("System.Int32")
+
 	// invoke type's generic static method
 	response := calledRuntimeType.
-	InvokeGenericStaticMethod("GenericSampleStaticMethod", "System.Int32", 7, 5).
+	InvokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
 	Execute()
 
 	// get value from response
@@ -534,9 +543,12 @@ func Test_NetDll_TestResources_GenericMethod(t *testing.T) {
 	// create type's instance
 	instance := calledRuntimeType.CreateInstance().Execute()
 
+	// get type for generic method
+	targetType := calledRuntime.GetType("System.Int32")
+
 	// invoke type's generic method
 	response := instance.
-	InvokeGenericMethod("GenericSampleMethod", "System.Int32", 7, 5).
+	InvokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
 	Execute()
 
 	// get value from response

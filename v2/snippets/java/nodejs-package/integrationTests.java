@@ -482,6 +482,39 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
+        // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method which throws exception
+        try {
+            calledRuntimeType.invokeStaticMethod("divideBy", 10, 0).execute();
+        }
+        catch (Exception ex) {
+            // write exception message to console
+            ex.printStackTrace();
+            return;
+        }
+        // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        Assertions.fail();
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app

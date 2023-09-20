@@ -409,6 +409,108 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		GTEST_FAIL();
 	}
 
+	TEST(Integration, Test_JarLibrary_TestResources_GenericStaticMethod) {
+		// <TestResources_GenericStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's generic static method
+		auto response = calledRuntimeType->
+			InvokeGenericStaticMethod({ "genericSampleStaticMethod", 7, 5 })->
+			Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_GenericStaticMethod>
+		EXPECT_EQ("7 and 5", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_GenericMethod) {
+		// <TestResources_GenericMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance generic method
+		auto response = instance->
+			InvokeGenericMethod({ "genericSampleMethod", 7, 5 })->
+			Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_GenericMethod>
+		EXPECT_EQ("7 or 5", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_GenericMethodWithTwoTypes) {
+		// <TestResources_GenericMethodWithTwoTypes>
+		// use Activate only once in your app
+		Javonet::Activate("your-email", "your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance generic method
+		auto response = instance->
+			InvokeGenericMethod({ "genericSampleMethodWithTwoTypes", 7})->
+			Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_GenericMethodWithTwoTypes>
+		EXPECT_EQ("genericSampleMethodWithTwoTypes invoked", result);
+	}
+
 	TEST(Integration, Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app

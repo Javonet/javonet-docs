@@ -437,6 +437,108 @@ sub Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44 {
     return $result;
 }
 
+sub Test_JarLibrary_TestResources_GenericStaticMethod {
+    # <TestResources_GenericStaticMethod>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Jvm runtime context
+    my $jvm_runtime = Javonet->in_memory()->jvm();
+
+    # set up variables
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
+
+    # load jvm custom library
+    $jvm_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+
+    # invoke static method
+    my $response = $jvm_type->
+        invoke_generic_static_method("genericSampleStaticMethod", 7, 5)->
+        execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_GenericStaticMethod>
+    return $result;
+}
+
+sub Test_JarLibrary_TestResources_GenericMethod {
+    # <TestResources_GenericMethod>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Jvm runtime context
+    my $jvm_runtime = Javonet->in_memory()->jvm();
+
+    # set up variables
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
+
+    # load jvm custom library
+    $jvm_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $jvm_type->create_instance()->execute();
+
+    # invoke generic method
+    my $response = $instance->
+        invoke_generic_method("genericSampleMethod", 7, 5)->
+        execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_GenericMethod>
+    return $result;
+}
+
+sub Test_JarLibrary_TestResources_GenericMethodWithTwoTypes {
+    # <TestResources_GenericMethod>
+    # use activate only once in your app
+    Javonet->activate("your-email", "your-license-key");
+
+    # create Jvm runtime context
+    my $jvm_runtime = Javonet->in_memory()->jvm();
+
+    # set up variables
+    my $library_path = "$resources_directory/TestClass.jar";
+    my $class_name = "TestClass";
+
+    # load jvm custom library
+    $jvm_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+
+    # create type's instance
+    my $instance = $jvm_type->create_instance()->execute();
+
+    # invoke generic method
+    my $response = $instance->
+        invoke_generic_method("genericSampleMethodWithTwoTypes", 7)->
+        execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # print result to console
+    print("$result\n");
+    # </TestResources_GenericMethod>
+    return $result;
+}
+
 my $test_result_1 = Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
 my $test_result_2 = Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI();
 my $test_result_3 = Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9();
@@ -451,6 +553,9 @@ my $test_result_11 = Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThre
 my $test_result_12 = Test_JarLibrary_TestResources_1DArray_GetSize_5();
 my $test_result_13 = Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven();
 my $test_result_14 = Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44();
+my $test_result_15 = Test_JarLibrary_TestResources_GenericStaticMethod();
+my $test_result_16 = Test_JarLibrary_TestResources_GenericMethod();
+my $test_result_17 = Test_JarLibrary_TestResources_GenericMethodWithTwoTypes();
 
 
 is($test_result_1, 50, 'Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
@@ -467,6 +572,9 @@ is($test_result_11, "three", 'Test_JarLibrary_TestResources_1DArray_GetIndex_2_S
 is($test_result_12, 5, 'Test_JarLibrary_TestResources_1DArray_GetSize_5');
 is($test_result_13, "seven", 'Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven');
 is($test_result_14, 44, 'Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44');
+is($test_result_15, "7 and 5", 'Test_JarLibrary_TestResources_GenericStaticMethod');
+is($test_result_16, "7 or 5", 'Test_JarLibrary_TestResources_GenericMethod');
+is($test_result_17, "genericSampleMethodWithTwoTypes invoked", 'Test_JarLibrary_TestResources_GenericMethodWithTwoTypes');
 
 done_testing();
 

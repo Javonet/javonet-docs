@@ -1,7 +1,7 @@
 require 'javonet-ruby-sdk'
 require_relative '../../utils/activation_credentials'
 
-RSpec.describe 'Ruby To Jar LibraryIntegration Tests' do
+RSpec.describe 'Ruby To Jar Library Integration Tests' do
 
   resources_directory = File.expand_path('../../../../../testResources/jar-library', __FILE__)
 
@@ -506,6 +506,109 @@ RSpec.describe 'Ruby To Jar LibraryIntegration Tests' do
       puts e.full_message
     end
     # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+  end
+
+  it 'Test_JarLibrary_TestResources_GenericStaticMethod' do
+    # <TestResources_GenericStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's generic static method
+    response = called_runtime_type.
+      invoke_generic_static_method("genericSampleStaticMethod", 7, 5).
+      execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_GenericStaticMethod>
+    expect(result).to eq("7 and 5")
+  end
+
+  it 'Test_JarLibrary_TestResources_GenericMethod' do
+    # <TestResources_GenericMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke type's generic method
+    response = instance.
+      invoke_generic_method("genericSampleMethod", 7, 5).
+      execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_GenericMethod>
+    expect(result).to eq("7 or 5")
+  end
+
+  it 'Test_JarLibrary_TestResources_GenericMethodWithTwoTypes' do
+
+    # <TestResources_GenericMethodWithTwoTypes>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.jar"
+    class_name = "TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # invoke type's generic method
+    response = instance.
+      invoke_generic_method("genericSampleMethodWithTwoTypes", 7).
+      execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_GenericMethodWithTwoTypes>
+    expect(result).to eq("genericSampleMethodWithTwoTypes invoked")
   end
 
   it 'Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI' do

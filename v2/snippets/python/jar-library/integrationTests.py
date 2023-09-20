@@ -498,9 +498,114 @@ def test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_Di
     except Exception as e:
         # write exception to console
         print(e)
-    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         assert type(e) == JavonetException
         assert "divideByThird" in str(e)
+
+
+def test_JarLibrary_TestResources_GenericStaticMethod():
+    # <TestResources_GenericStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke static method
+    response = called_runtime_type. \
+        invoke_generic_static_method("genericSampleStaticMethod", 7, 5). \
+        execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_GenericStaticMethod>
+    assert (result == "7 and 5")
+
+
+def test_JarLibrary_TestResources_GenericMethod():
+    # <TestResources_GenericMethod>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance method
+    response = instance. \
+        invoke_generic_method("genericSampleMethod", 7, 5). \
+        execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_GenericMethod>
+    assert (result == "7 or 5")
+
+
+def test_JarLibrary_TestResources_GenericMethodWithTwoTypes():
+    # <TestResources_GenericMethodWithTwoTypes>
+    # use activate only once in your app
+    Javonet.activate("your-email", "your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance method
+    response = instance. \
+        invoke_generic_method("genericSampleMethodWithTwoTypes", 7). \
+        execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_GenericMethodWithTwoTypes>
+    assert (result == "genericSampleMethodWithTwoTypes invoked")
 
 
 def test_JarLibrary_StandardLibrary_GetStaticField():

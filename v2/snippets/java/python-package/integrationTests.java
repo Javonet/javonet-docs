@@ -489,6 +489,40 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
+        // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().python();
+
+        // set up variables
+        // path to directory with .py files
+        String libraryPath = resourcesDirectory;
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method which throws exception
+        try {
+            calledRuntimeType.invokeStaticMethod("divide_by", 10, 0).execute();
+        }
+        catch (Exception ex) {
+            // write exception message to console
+            ex.printStackTrace();
+            return;
+        }
+        // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        Assertions.fail();
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app

@@ -513,8 +513,13 @@ public class integrationTests {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
+        //get type for casting
+        InvocationContext targetType = calledRuntime.getType("System.UInt32");
+
         // invoke type's method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.UInt32", 5.2)).execute();
+        InvocationContext response = calledRuntimeType.
+                invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5.2)).
+                execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -546,8 +551,13 @@ public class integrationTests {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
+        //get type for casting
+        InvocationContext targetType = calledRuntime.getType("System.Single");
+
         // invoke type's method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.Single", 5)).execute();
+        InvocationContext response = calledRuntimeType.
+                invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5)).
+                execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -556,6 +566,40 @@ public class integrationTests {
         System.out.println(result);
         // </TestResources_Cast_ToFloat>
         Assertions.assertEquals("CastSampleMethod with System.Single called", result);
+    }
+
+    @Test
+    @Tag("integration")
+    @EnabledOnOs(OS.WINDOWS)
+    public void Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
+        // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-email", "your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method which throws exception
+        try {
+            calledRuntimeType.invokeStaticMethod("DivideBy", 10, 0).execute();
+        }
+        catch (Exception ex) {
+            // write exception message to console
+            ex.printStackTrace();
+            return;
+        }
+        // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        Assertions.fail();
     }
 
     @Test
@@ -579,9 +623,12 @@ public class integrationTests {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
+        //get type for generic method
+        InvocationContext targetType = calledRuntime.getType("System.Int32");
+
         // invoke type's method
         InvocationContext response = calledRuntimeType.
-                invokeGenericStaticMethod("GenericSampleStaticMethod", "System.Int32", 7, 5).
+                invokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
                 execute();
 
         // get value from response
@@ -617,9 +664,12 @@ public class integrationTests {
         // create type's instance
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
+        //get type for generic method
+        InvocationContext targetType = calledRuntime.getType("System.Int32");
+
         // invoke type's method
         InvocationContext response = instance.
-                invokeGenericMethod("GenericSampleMethod", "System.Int32", 7, 5).
+                invokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
                 execute();
 
         // get value from response
@@ -655,11 +705,14 @@ public class integrationTests {
         // create type's instance
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
+        //get type for generic method
+        InvocationContext targetType1 = calledRuntime.getType("System.String");
+        InvocationContext targetType2 = calledRuntime.getType("System.Int32");
+
         // invoke type's method
         InvocationContext response = instance.
                 invokeGenericMethod("GenericSampleMethodWithTwoTypes",
-                        new String[] { "System.String", "System.Int32" },
-                        "test").
+                        new InvocationContext[]{targetType1, targetType2}, "test").
                 execute();
 
         // get value from response

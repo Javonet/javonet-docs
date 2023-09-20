@@ -455,8 +455,11 @@ describe('Nodejs to Net Dll integration tests', () => {
         // get type from the runtime
         let calledRuntimeType = calledRuntime.getType(className).execute()
 
+        // get type for casting
+        let targetType = calledRuntime.getType("System.UInt32")
+
         // invoke type's static method
-        let response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.UInt32", 5.2)).execute()
+        let response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5.2)).execute()
 
         // get value from response
         let result = response.getValue()
@@ -485,8 +488,11 @@ describe('Nodejs to Net Dll integration tests', () => {
         // get type from the runtime
         let calledRuntimeType = calledRuntime.getType(className).execute()
 
+        // get type for casting
+        let targetType = calledRuntime.getType("System.Single")
+
         // invoke type's static method
-        let response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast("System.Single", 5)).execute()
+        let response = calledRuntimeType.invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5)).execute()
 
         // get value from response
         let result = response.getValue()
@@ -545,8 +551,13 @@ describe('Nodejs to Net Dll integration tests', () => {
         // get type from the runtime
         let calledRuntimeType = calledRuntime.getType(className).execute()
 
+        // get type for generic method
+        let targetType = calledRuntime.getType("System.Int32")
+
         // invoke type's static method
-        let response = calledRuntimeType.invokeGenericStaticMethod("GenericSampleStaticMethod", "System.Int32", 7, 5).execute()
+        let response = calledRuntimeType.
+            invokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
+            execute()
 
         // get value from response
         let result = response.getValue()
@@ -578,10 +589,13 @@ describe('Nodejs to Net Dll integration tests', () => {
         // create type's instance
         let instance = calledRuntimeType.createInstance().execute()
 
+        // get type for generic method
+        let targetType = calledRuntime.getType("System.Int32")
+
         // invoke type's method
         let response = instance.
-        invokeGenericMethod("GenericSampleMethod", "System.Int32", 7, 5).
-        execute()
+            invokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
+            execute()
 
         // get value from response
         let result = response.getValue()
@@ -613,11 +627,13 @@ describe('Nodejs to Net Dll integration tests', () => {
         // create type's instance
         let instance = calledRuntimeType.createInstance().execute()
 
+        // get types for generic method
+        let targetType1 = calledRuntime.getType("System.String")
+        let targetType2 = calledRuntime.getType("System.Int32")
+
         // invoke type's method
-        let response = instance.
-        invokeGenericMethod("GenericSampleMethodWithTwoTypes",
-            ["System.String", "System.Int32"],
-            "test").
+        let response = instance.invokeGenericMethod("GenericSampleMethodWithTwoTypes",
+            [targetType1, targetType2], "test").
         execute()
 
         // get value from response

@@ -397,10 +397,13 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		// get type from the runtime
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
+		// get type for casting
+		auto targetType = calledRuntime->GetType("System.UInt32");
+
 		// invoke type's static method 
 		auto response = calledRuntimeType->
 			InvokeStaticMethod({ "CastSampleMethod",
-				calledRuntime->Cast("System.UInt32", 5.2) })->
+				calledRuntime->Cast({targetType, 5.2}) })->
 			Execute();
 
 		// get value from response
@@ -430,10 +433,13 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		// get type from the runtime
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
+		// get type for casting
+		auto targetType = calledRuntime->GetType("System.Single");
+
 		// invoke type's static method 
 		auto response = calledRuntimeType->
 			InvokeStaticMethod({ "CastSampleMethod",
-				calledRuntime->Cast("System.Single", 5) })->
+				calledRuntime->Cast({targetType, 5}) })->
 			Execute();
 
 		// get value from response
@@ -494,9 +500,12 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		// get type from the runtime
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
+		// get type for generic method
+		auto targetType = calledRuntime->GetType("System.Int32");
+
 		// invoke type's generic static method
 		auto response = calledRuntimeType->
-			InvokeGenericStaticMethod({ "GenericSampleStaticMethod", "System.Int32", 7, 5 })->
+			InvokeGenericStaticMethod({ "GenericSampleStaticMethod", targetType, 7, 5 })->
 			Execute();
 
 		// get value from response
@@ -529,9 +538,12 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		// create type's instance
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
+		// get type for generic method
+		auto targetType = calledRuntime->GetType("System.Int32");
+
 		// invoke instance generic method
 		auto response = instance->
-			InvokeGenericMethod({ "GenericSampleMethod", "System.Int32", 7, 5 })->
+			InvokeGenericMethod({ "GenericSampleMethod", targetType, 7, 5 })->
 			Execute();
 
 		// get value from response

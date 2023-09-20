@@ -9,7 +9,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/perl-package";
 
-	TEST(Integration, Test_Perl_TestResources_LoadLibrary_LibraryPath_NoExeption) {
+	TEST(Integration, Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -25,7 +25,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		// </TestResources_LoadLibrary>
 	}
 
-	TEST(Integration, Test_Perl_TestResources_GetStaticField_StaticValue_3) {
+	TEST(Integration, Test_PerlPackage_TestResources_GetStaticField_StaticValue_3) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -55,7 +55,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(3, result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_SetStaticField_StaticValue_75) {
+	TEST(Integration, Test_PerlPackage_TestResources_SetStaticField_StaticValue_75) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -89,7 +89,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(75, result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_GetInstanceField_PublicValue_1) {
+	TEST(Integration, Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -122,7 +122,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(1, result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
+	TEST(Integration, Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -152,7 +152,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
+	TEST(Integration, Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -185,7 +185,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(20, result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_1DArray_GetIndex_2_StringThree) {
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -221,7 +221,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ("three", result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_1DArray_GetSize_5) {
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetSize_5) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
@@ -257,7 +257,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(5, result);
 	}
 
-	TEST(Integration, Test_Perl_TestResources_1DArray_SetIndex_StringSeven) {
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-email", "your-license-key");
