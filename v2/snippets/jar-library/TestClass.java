@@ -51,6 +51,33 @@ public class TestClass {
     }
     // </Exceptions>
 
+    // <Cast>
+    public static String castSampleMethod(Vehicle v) {
+        return "castSampleMethod with Vehicle called";
+    }
+
+    public static String castSampleMethod(Car c) {
+        return "castSampleMethod with Car called";
+    }
+
+    public static String castSampleMethod(Boat b) {
+        return "castSampleMethod with Boat called";
+    }
+    // </Cast>
+
+    // <Generics>
+    public static <T> String genericSampleStaticMethod(T x, T y) {
+        return x.toString() + " and " + y.toString();
+    }
+
+    public <T> String genericSampleMethod(T x, T y) {
+        return x.toString() + " or " + y.toString();
+    }
+
+    public <T, K> String genericSampleMethodWithTwoTypes(T x) {
+        return "genericSampleMethodWithTwoTypes invoked";
+    }
+    // </Generics>
     // <Empty>
     // empty
     // </Empty>
