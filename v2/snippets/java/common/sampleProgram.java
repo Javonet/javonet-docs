@@ -11,7 +11,7 @@ public class SampleProgram {
     public static void main(String[] args) {
 		// <WholeSnippet>
 		// <Activation>
-        Javonet.activate("your-license-key");
+        Javonet.activate("your-email", "your-license-key");
 		// </Activation>
 
 		// <RuntimeContextCreation>
