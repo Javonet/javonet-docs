@@ -6,7 +6,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
   resources_directory = File.expand_path('../../../../../testResources/netframework-dll', __FILE__)
 
   before(:all) do
-    result = Javonet.activate(ActivationCredentials.your_email, ActivationCredentials.your_license_key)
+    result = Javonet.activate(ActivationCredentials.your_license_key)
     expect(result).to eq(0)
   end
 
@@ -14,7 +14,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_LoadLibrary>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -34,7 +34,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_GetStaticField>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -68,7 +68,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_SetStaticField>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -106,7 +106,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_GetInstanceField>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -143,7 +143,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_SetInstanceField>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -183,7 +183,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_InvokeStaticMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -217,7 +217,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_InvokeInstanceMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -254,7 +254,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_GetIndex>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -294,7 +294,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_GetSize>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -334,7 +334,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_SetIndex>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -377,7 +377,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_Iterate>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -418,7 +418,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_GetElement>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -458,7 +458,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_SetElement>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -501,7 +501,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_PassArrayAsArgument>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -544,7 +544,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_1DArray_RetrieveArray>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -581,7 +581,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_Cast_ToUInt>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -620,7 +620,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_Cast_ToFloat>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -661,7 +661,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
       begin
         # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         # use activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         # create called runtime context
         called_runtime = Javonet.in_memory.clr
@@ -692,7 +692,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_GenericStaticMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -731,7 +731,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_GenericMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -773,7 +773,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <TestResources_GenericMethodWithTwoTypes>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -817,7 +817,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <StandardLibrary_GetStaticField>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -844,7 +844,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <StandardLibrary_GetInstanceField>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -874,7 +874,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <StandardLibrary_InvokeStaticMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr
@@ -901,7 +901,7 @@ RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
     if OS.windows?
       # <StandardLibrary_InvokeInstanceMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.clr

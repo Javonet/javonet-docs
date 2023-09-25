@@ -8,7 +8,7 @@ import Javonet "javonet.com/javonet"
 func main() {
 	// <WholeSnippet>
 	// <Activation>
-	Javonet.ActivateWithCredentials("your-email", "your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key");
 	// </Activation>
 
 	// <RuntimeContextCreation>

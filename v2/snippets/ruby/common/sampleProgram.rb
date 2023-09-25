@@ -4,7 +4,7 @@ require 'javonet-ruby-sdk'
 
 # <WholeSnippet>
 # <Activation>
-Javonet.activate("your-email", "your-license-key")
+Javonet.activate("your-license-key")
 # </Activation>
 
 # <RuntimeContextCreation>

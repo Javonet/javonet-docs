@@ -11,7 +11,7 @@ resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '
 def test_PerlPackage_TestResources_LoadLibrary():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -28,7 +28,7 @@ def test_PerlPackage_TestResources_LoadLibrary():
 def test_PerlPackage_TestResources_GetStaticField():
     # <TestResources_GetStaticField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -59,7 +59,7 @@ def test_PerlPackage_TestResources_GetStaticField():
 def test_PerlPackage_TestResources_SetStaticField():
     # <TestResources_SetStaticField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -94,7 +94,7 @@ def test_PerlPackage_TestResources_SetStaticField():
 def test_PerlPackage_TestResources_GetInstanceField():
     # <TestResources_GetInstanceField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -128,7 +128,7 @@ def test_PerlPackage_TestResources_GetInstanceField():
 def test_PerlPackage_TestResources_InvokeStaticMethod():
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -159,7 +159,7 @@ def test_PerlPackage_TestResources_InvokeStaticMethod():
 def test_PerlPackage_TestResources_InvokeInstanceMethod():
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -193,7 +193,7 @@ def test_PerlPackage_TestResources_InvokeInstanceMethod():
 def test_PerlPackage_TestResources_1DArray_GetIndex():
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -230,7 +230,7 @@ def test_PerlPackage_TestResources_1DArray_GetIndex():
 def test_PerlPackage_TestResources_1DArray_GetSize():
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -267,7 +267,7 @@ def test_PerlPackage_TestResources_1DArray_GetSize():
 def test_PerlPackage_TestResources_1DArray_SetIndex():
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -308,7 +308,7 @@ def test_PerlPackage_TestResources_1DArray_SetIndex():
 def test_PerlPackage_TestResources_1DArray_Iterate():
     # <TestResources_1DArray_Iterate>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -344,7 +344,7 @@ def test_PerlPackage_TestResources_1DArray_Iterate():
 def test_PerlPackage_TestResources_1DArray_GetElement():
     # <TestResources_1DArray_GetElement>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()
@@ -381,7 +381,7 @@ def test_PerlPackage_TestResources_1DArray_GetElement():
 def test_PerlPackage_TestResources_1DArray_SetElement():
     # <TestResources_1DArray_SetElement>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().perl()

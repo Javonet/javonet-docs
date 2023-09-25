@@ -8,7 +8,7 @@ use lib 'utils';
 use aliased 'Javonet::Javonet' => 'Javonet';
 use ActivationCredentials;
 
-Javonet->activate(ActivationCredentials::YOUR_EMAIL, ActivationCredentials::YOUR_LICENSE_KEY);
+Javonet->activate(ActivationCredentials::YOUR_LICENSE_KEY);
 
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
 my $resources_directory = "${this_file_path}/../../../../testResources/netframework-dll";
@@ -18,7 +18,7 @@ my $osname = $^O;
 sub Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -41,7 +41,7 @@ sub Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 
 sub Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI {
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -64,7 +64,7 @@ sub Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI {
 sub Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022 {
     # <StandardLibrary_InvokeInstanceMethod>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -90,7 +90,7 @@ sub Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToS
 sub Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022 {
     # <StandardLibrary_GetInstanceField>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -116,7 +116,7 @@ sub Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_20
 sub Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException {
     # <TestResources_LoadLibrary>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -133,7 +133,7 @@ sub Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException {
 sub Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -163,7 +163,7 @@ sub Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
 sub Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3 {
     # <TestResources_GetStaticField>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -193,7 +193,7 @@ sub Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3 {
 sub Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75 {
     # <TestResources_SetStaticField>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -227,7 +227,7 @@ sub Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75 {
 sub Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20 {
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -260,7 +260,7 @@ sub Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4
 sub Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18 {
     # <TestResources_GetInstanceField>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -293,7 +293,7 @@ sub Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18 {
 sub Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree {
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -329,7 +329,7 @@ sub Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree {
 sub Test_NetframeworkDll_TestResources_1DArray_GetSize_5 {
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -365,7 +365,7 @@ sub Test_NetframeworkDll_TestResources_1DArray_GetSize_5 {
 sub Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven {
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -405,7 +405,7 @@ sub Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven {
 sub Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44 {
     # <TestResources_SetInstanceField>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -441,7 +441,7 @@ sub Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44 {
 sub Test_NetframeworkDll_TestResources_GenericStaticMethod {
     # <TestResources_GenericStaticMethod>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();
@@ -476,7 +476,7 @@ sub Test_NetframeworkDll_TestResources_GenericStaticMethod {
 sub Test_NetframeworkDll_TestResources_GenericMethod {
     # <TestResources_GenericMethod>
     # use activate only once in your app
-    Javonet->activate("your-email", "your-license-key");
+    Javonet->activate("your-license-key");
 
     # create Clr runtime context
     my $clr_runtime = Javonet->in_memory()->clr();

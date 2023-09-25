@@ -17,7 +17,7 @@ public class integrationTests {
 
     @BeforeAll
     public static void initialization() {
-        int result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        int result = Javonet.activate(ActivationCredentials.yourLicenseKey);
         Assertions.assertEquals(0, result);
     }
 
@@ -26,7 +26,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -45,7 +45,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_GetStaticField_StaticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -78,7 +78,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_SetStaticField_StaticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -115,7 +115,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -147,7 +147,7 @@ public class integrationTests {
     @Tag("integration")
     public void Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44() {
         // <TestResources_SetInstanceField>
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -186,7 +186,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -219,7 +219,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -252,7 +252,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -291,7 +291,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -330,7 +330,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -373,7 +373,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -417,7 +417,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_1DArray_PassArrayAsArgument() {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -453,7 +453,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_1DArray_RetrieveArray() {
         // <TestResources_1DArray_RetrieveArray>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -492,7 +492,7 @@ public class integrationTests {
     public void Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
         // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.Activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -526,7 +526,7 @@ public class integrationTests {
     public void Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
@@ -551,7 +551,7 @@ public class integrationTests {
     public void Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Builtins_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().python();
