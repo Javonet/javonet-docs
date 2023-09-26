@@ -193,4 +193,15 @@ items:
   - name: Casting
     href: /casting/casting.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-    called_technology: netframework-dll, net-dll
+    called_technology: netframework-dll, net-dll, jar-library
+
+- name: Generics
+  items: 
+  - name: Calling generic static method
+    href: /generics/calling-generic-static-method.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library
+  - name: Calling generic instance method
+    href: /generics/calling-generic-instance-method.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library
