@@ -6,12 +6,12 @@ const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResour
 
 describe('Nodejs to Perl Package integration tests', () => {
         if (process.platform != 'darwin') {
-            Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
+            Javonet.activate(ActivationCredentials.yourLicenseKey)
 
             test(`Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
                 // <TestResources_LoadLibrary>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -27,7 +27,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_GetStaticField_StaticValue_3`, () => {
                 // <TestResources_GetStaticField>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -57,7 +57,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_SetStaticField_StaticValue_75`, () => {
                 // <TestResources_SetStaticField>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -91,7 +91,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1`, () => {
                 // <TestResources_GetInstanceField>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -124,7 +124,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
                 // <TestResources_InvokeStaticMethod>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -154,7 +154,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
                 // <TestResources_InvokeInstanceMethod>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
                 let calledRuntime = Javonet.inMemory().perl()
 
                 // set up variables
@@ -185,7 +185,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree`, () => {
                 // <TestResources_1DArray_GetIndex>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -221,7 +221,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_1DArray_GetSize_5`, () => {
                 // <TestResources_1DArray_GetSize>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -257,7 +257,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven`, () => {
                 // <TestResources_1DArray_SetIndex>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()
@@ -297,7 +297,7 @@ describe('Nodejs to Perl Package integration tests', () => {
             test(`Test_PerlPackage_TestResources_1DArray_Iterate`, () => {
                 // <TestResources_1DArray_Iterate>
                 // use Activate only once in your app
-                Javonet.activate("your-email", "your-license-key")
+                Javonet.activate("your-license-key")
 
                 // create called runtime context
                 let calledRuntime = Javonet.inMemory().perl()

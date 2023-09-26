@@ -12,7 +12,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		public integrationTests(ITestOutputHelper output)
 		{
 			this.output = output;
-			var result = Javonet.Activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+			var result = Javonet.Activate(ActivationCredentials.yourLicenseKey);
 			Assert.Equal(0, result);
 		}
 		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/python-package";
@@ -23,7 +23,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_LoadLibrary>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -43,7 +43,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_GetStaticField>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -77,7 +77,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_SetStaticField>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -115,7 +115,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_GetInstanceField>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -152,7 +152,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_SetInstanceField>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -192,7 +192,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_InvokeStaticMethod>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -226,7 +226,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_InvokeInstanceMethod>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -264,7 +264,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_GetIndex>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -303,7 +303,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_GetSize>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -342,7 +342,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_SetIndex>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -385,7 +385,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_Iterate>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -430,7 +430,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_GetElement>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -469,7 +469,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_PassArrayAsArgument>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -505,7 +505,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_1DArray_RetrieveArray>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -541,7 +541,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -577,7 +577,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <StandardLibrary_InvokeStaticMethod>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();
@@ -603,7 +603,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		{
 			// <StandardLibrary_GetStaticField>
 			// use Activate only once in your app
-			Javonet.Activate("your-email", "your-license-key");
+			Javonet.Activate("your-license-key");
 
 			// create called runtime context
 			var calledRuntime = Javonet.InMemory().Python();

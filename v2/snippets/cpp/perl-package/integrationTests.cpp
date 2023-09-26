@@ -12,7 +12,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -28,7 +28,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_GetStaticField_StaticValue_3) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -58,7 +58,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_SetStaticField_StaticValue_75) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -92,7 +92,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -125,7 +125,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -155,7 +155,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -188,7 +188,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -224,7 +224,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetSize_5) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();
@@ -260,7 +260,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	TEST(Integration, Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Perl();

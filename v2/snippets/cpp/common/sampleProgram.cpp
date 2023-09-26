@@ -10,7 +10,7 @@ std::string resourcesDirectory = ".";
 int main(int argc, char* argv[]) {
 	// <WholeSnippet>
 	// <Activation>
-	Javonet::Activate("your-email", "your-license-key");
+	Javonet::Activate("your-license-key");
 	// </Activation>
 
 	// <RuntimeContextCreation>

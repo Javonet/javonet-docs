@@ -6,13 +6,13 @@ const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResour
 
 describe('Nodejs to Jar Library integration tests', () => {
 
-    let result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey)
+    let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
     test(`Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
         // <TestResources_LoadLibrary>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -28,7 +28,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_GetStaticField_StaticValue_3`, () => {
         // <TestResources_GetStaticField>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -58,7 +58,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_SetStaticField_StaticValue_75`, () => {
         // <TestResources_SetStaticField>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -92,7 +92,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_GetInstanceField_PublicValue_18`, () => {
         // <TestResources_GetInstanceField>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -125,7 +125,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44`, () => {
         // <TestResources_SetInstanceField>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -161,7 +161,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
         // <TestResources_InvokeStaticMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -191,7 +191,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
         // <TestResources_InvokeInstanceMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -224,7 +224,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThree`, () => {
         // <TestResources_1DArray_GetIndex>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -260,7 +260,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_1DArray_GetSize_5`, () => {
         // <TestResources_1DArray_GetSize>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -296,7 +296,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven`, () => {
         // <TestResources_1DArray_SetIndex>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -336,7 +336,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_1DArray_Iterate`, () => {
         // <TestResources_1DArray_Iterate>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -373,7 +373,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_1DArray_PassArrayAsArgument`, () => {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -406,7 +406,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_1DArray_RetrieveArray`, () => {
         // <TestResources_1DArray_RetrieveArray>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -439,7 +439,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException`, () => {
         // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -469,7 +469,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_GenericStaticMethod`, () => {
         // <TestResources_GenericStaticMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -499,7 +499,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_GenericMethod`, () => {
         // <TestResources_GenericMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -532,7 +532,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_TestResources_GenericMethodWithTwoTypes`, () => {
         // <TestResources_GenericMethodWithTwoTypes>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -565,7 +565,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI`, () => {
         // <StandardLibrary_GetStaticField>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -588,7 +588,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_StandardLibrary_GetInstanceField`, () => {
         // <StandardLibrary_GetInstanceField>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -614,7 +614,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
         // <StandardLibrary_InvokeStaticMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
@@ -637,7 +637,7 @@ describe('Nodejs to Jar Library integration tests', () => {
     test(`Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9`, () => {
         // <StandardLibrary_InvokeInstanceMethod>
         // use Activate only once in your app
-        Javonet.activate("your-email", "your-license-key")
+        Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()

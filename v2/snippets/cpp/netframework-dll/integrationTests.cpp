@@ -15,7 +15,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_LoadLibrary_libraryPath_NoExeption) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -31,7 +31,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -61,7 +61,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -95,7 +95,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -128,7 +128,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44) {
 		// <TestResources_SetInstanceField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -164,7 +164,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -194,7 +194,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -227,7 +227,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -263,7 +263,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_1DArray_GetSize_5) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -299,7 +299,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -338,7 +338,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_1DArray_RetrieveArray) {
 		// <TestResources_1DArray_RetrieveArray>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -383,7 +383,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_Cast_ToUInt32) {
 		// <TestResources_Cast_ToUInt32>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -419,7 +419,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_Cast_Float) {
 		// <TestResources_Cast_ToFloat>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -455,7 +455,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
 		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -486,7 +486,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_GenericStaticMethod) {
 		// <TestResources_GenericStaticMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -521,7 +521,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_TestResources_GenericMethod) {
 		// <TestResources_GenericMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -559,7 +559,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_StandardLibrary_GetStaticField_SystemMathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -583,7 +583,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// <StandardLibrary_GetInstanceField>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -609,7 +609,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_SystemMath_Abs_minus50_50) {
 		// <StandardLibrary_InvokeStaticMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();
@@ -632,7 +632,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 	TEST(Integration, Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022) {
 		// <StandardLibrary_InvokeInstanceMethod>
 		// use Activate only once in your app
-		Javonet::Activate("your-email", "your-license-key");
+		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Clr();

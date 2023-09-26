@@ -25,7 +25,7 @@ public class integrationTests {
 
     @BeforeAll
     public static void initialization() {
-        int result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        int result = Javonet.activate(ActivationCredentials.yourLicenseKey);
         Assertions.assertEquals(0, result);
     }
 
@@ -34,7 +34,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -52,7 +52,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_GetStaticField_StaticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -84,7 +84,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_SetStaticField_StaticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -119,7 +119,7 @@ public class integrationTests {
     @Tag("integration")
     public void Test_NetDll_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -153,7 +153,7 @@ public class integrationTests {
     @Tag("integration")
     public void Test_NetDll_TestResources_SetInstanceField_PublicValue_44() {
         // <TestResources_SetInstanceField>
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -191,7 +191,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -223,7 +223,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -258,7 +258,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -296,7 +296,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -334,7 +334,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -376,7 +376,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -419,7 +419,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_1DArray_PassArrayAsArgument() {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -454,7 +454,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_1DArray_RetrieveArray() {
         // <TestResources_1DArray_RetrieveArray>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -492,7 +492,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_Cast_ToUInt() {
         // <TestResources_Cast_ToUInt>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -529,7 +529,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_Cast_ToFloat() {
         // <TestResources_Cast_ToFloat>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -566,7 +566,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
         // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.Activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -598,7 +598,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_GenericStaticMethod() {
         // <TestResources_GenericStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.Activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -635,7 +635,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_GenericMethod() {
         // <TestResources_GenericMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.Activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -675,7 +675,7 @@ public class integrationTests {
     public void Test_NetDll_TestResources_GenericMethodWithTwoTypes() {
         // <TestResources_GenericMethodWithTwoTypes>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.Activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -716,7 +716,7 @@ public class integrationTests {
     @Tag("integration")
     public void Test_NetDll_TestResources_ExchangeLibrary_ExchangeCalculator_GetExchangeRate() {
         // <TestResources_GetInstanceField>
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -750,7 +750,7 @@ public class integrationTests {
     public void Test_NetDll_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -775,7 +775,7 @@ public class integrationTests {
     public void Test_NetDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022() {
         // <StandardLibrary_GetInstanceField>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -803,7 +803,7 @@ public class integrationTests {
     public void Test_NetDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
@@ -828,7 +828,7 @@ public class integrationTests {
     public void Test_NetDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022() {
         // <StandardLibrary_InvokeInstanceMethod>
         // use activate only once in your app
-        Javonet.activate("your-email", "your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();

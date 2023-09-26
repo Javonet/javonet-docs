@@ -6,14 +6,14 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   resources_directory = File.expand_path('../../../../../testResources/nodejs-package', __FILE__)
 
   before(:all) do
-    result = Javonet.activate(ActivationCredentials.your_email, ActivationCredentials.your_license_key)
+    result = Javonet.activate(ActivationCredentials.your_license_key)
     expect(result).to eq(0)
   end
 
   it 'Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException' do
     # <TestResources_LoadLibrary>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -29,7 +29,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3' do
     # <TestResources_GetStaticField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -59,7 +59,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75' do
     # <TestResources_SetStaticField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -93,7 +93,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_1' do
     # <TestResources_GetInstanceField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -126,7 +126,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44' do
     # <TestResources_SetInstanceField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -162,7 +162,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
     # <TestResources_InvokeStaticMethod>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -192,7 +192,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
     # <TestResources_InvokeInstanceMethod>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -225,7 +225,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree' do
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -261,7 +261,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_GetSize_5' do
     # <TestResources_1DArray_GetSize>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -298,7 +298,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven' do
     # <TestResources_1DArray_SetIndex>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -338,7 +338,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_Iterate' do
     # <TestResources_1DArray_Iterate>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -375,7 +375,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_GetElement' do
     # <TestResources_1DArray_GetElement>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -411,7 +411,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_SetElement' do
     # <TestResources_1DArray_SetElement>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -450,7 +450,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_PassArrayAsArgument' do
     # <TestResources_1DArray_PassArrayAsArgument>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -483,7 +483,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_TestResources_1DArray_RetrieveArray' do
     # <TestResources_1DArray_RetrieveArray>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -517,7 +517,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
     begin
       # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
       # use activate only once in your app
-      Javonet.activate("your-email", "your-license-key")
+      Javonet.activate("your-license-key")
 
       # create called runtime context
       called_runtime = Javonet.in_memory.nodejs
@@ -544,7 +544,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_StandardLibrary_GetStaticField_Math_PI_PI' do
     # <StandardLibrary_GetStaticField>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs
@@ -567,7 +567,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
   it 'Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
-    Javonet.activate("your-email", "your-license-key")
+    Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory.nodejs

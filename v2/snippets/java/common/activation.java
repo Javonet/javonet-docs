@@ -12,12 +12,12 @@ public class activation {
     @Tag("integration")
     public void Test_Activation_CorrectCredentials_Returns0() {
         // <Javonet_activate>
-        int result = Javonet.activate(ActivationCredentials.yourEmail, ActivationCredentials.yourLicenseKey);
+        int result = Javonet.activate(ActivationCredentials.yourLicenseKey);
         // </Javonet_activate>
         Assertions.assertEquals(0, result);
 
         // <Javonet_activate_without_credentials>
-        int result2 = Javonet.activate("", "");
+        int result2 = Javonet.activate("");
         // </Javonet_activate_without_credentials>
         Assertions.assertEquals(0, result2);
     }
