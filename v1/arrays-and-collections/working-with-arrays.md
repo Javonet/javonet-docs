@@ -6,6 +6,11 @@
   
 # Working with arrays  
 
+:::note
+You are browsing legacy Javonet 1.5 (Java <> .NET bridge for Windows) documentation. Use the left side menu or [click here](/v2/guides/`{calling_technology}`/`{called_technology}`/arrays-and-collections/arrays) to switch to latest Javonet 2.0 documentation. Javonet 2.0 allows you to use any module from JVM, CLR, Netcore, Python, Ruby, Perl, NodeJS on Windows, Linux and MacOs from any application created in Java, Clojure, Groovy, Kotlin, C#, F#, J#, VB.NET, Python, Perl, Ruby, JavaScript, TypeScript, C++ and GoLang
+[Switch to Javonet 2.0](/v2/guides/`{calling_technology}`/`{called_technology}`/arrays-and-collections/arrays)
+:::
+
 Data structures are one of the essential aspects of every piece of software that has ever been written. Any
 application, from simple command line util to scalable enterprise systems, constantly process various
 information, that very often require specific grouping and access strategies. This aspect is addressed by
