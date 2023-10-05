@@ -6,20 +6,10 @@
   
 # Working with arrays  
 
-<div style="width: 1000px; height: 179px; padding: 24px; background: #F0F5FF; border-radius: 8px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-  <div style="justify-content: flex-start; align-items: center; gap: 24px; display: inline-flex">
-    <div style="width: 717px; color: #353D5A; font-size: 17px; font-weight: 400; line-height: 27px; letter-spacing: 0.03px; word-wrap: break-word">
 You are browsing legacy Javonet 1.5 (Java<>.NET bridge for Windows) documentation. Use the left side menu or click here to switch to latest Javonet 2.0 documentation. Javonet 2.0 allows you to use any module from
 JVM, CLR, Netcore, Python, Ruby, Perl, NodeJS on Windows, Linux and MacOs
 from any application created in Java, Clojure, Groovy, Kotlin, C#, F#, J#, VB.NET, Python, Perl, Ruby, JavaScript, TypeScript, C++ and GoLang
-</div>
-    <div style="justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
-      <div style="padding-left: 16px; padding-right: 16px; padding-top: 2px; padding-bottom: 2px; border-radius: 4px; border: 1px #001E87 solid; justify-content: center; align-items: center; gap: 10px; display: flex">
-        <div style="color: #001E87; font-size: 17px; font-weight: 400; line-height: 27px; letter-spacing: 0.03px; word-wrap: break-word">[Switch to Javonet 2.0](/v2/guides/`{calling_technology}`/`{called_technology}`/arrays-and-collections/arrays)</div>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 Data structures are one of the essential aspects of every piece of software that has ever been written. Any
 application, from simple command line util to scalable enterprise systems, constantly process various
