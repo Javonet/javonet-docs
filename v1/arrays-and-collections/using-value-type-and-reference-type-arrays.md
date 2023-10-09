@@ -5,7 +5,15 @@
 :::
   
 # Using Value-Type and Reference-Type Arrays  
-  
+  <div style="padding: 24px; background: #F0F5FF; border-radius: 8px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+  <div style="justify-content: flex-start; align-items: center; gap: 24px; display: inline-flex">
+    <div style="color: #353D5A; font-size: 17px; font-weight: 400; line-height: 27px; letter-spacing: 0.03px; word-wrap: break-word">
+You are browsing legacy Javonet 1.5 (Java<>.NET bridge for Windows) documentation. Use the left side menu or <a style="font-weight: bold; text-decoration: underline;" href="/guides/v2/`{calling_technology}`/`{called_technology}`/arrays-and-collections/arrays">click here</a> to switch to latest Javonet 2.0 documentation. Javonet 2.0 allows you to use any module from
+JVM, CLR, Netcore, Python, Ruby, Perl, NodeJS on Windows, Linux and MacOs
+from any application created in Java, Clojure, Groovy, Kotlin, C#, F#, J#, VB.NET, Python, Perl, Ruby, JavaScript, TypeScript, C++ and GoLang
+    </div>
+  </div>
+</div>
 With Javonet, you can use any value-type or reference-type arrays. Arrays can be retrieved from field or property values, returned as method invocation results, or passed as arguments or set to fields and properties. All array operations can be performed both on instance and static elements.  
   
 Using arrays is very simple. Value-typed arrays are translated into regular arrays of corresponding `{calling_name}` types. Reference-typed arrays are represented as array of NObject/JObject objects.  
