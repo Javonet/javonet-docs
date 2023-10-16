@@ -403,7 +403,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		catch (std::exception& e) {
 			// write exception to console
 			std::cout << e.what() << std::endl;
-			return;
+			return 0;
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		GTEST_FAIL();

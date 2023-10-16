@@ -6,3 +6,4 @@ obj
 __pycache__
 eclipse-formatter.xml
 *.pdb
+_JavonetNativeErrorLogger*
