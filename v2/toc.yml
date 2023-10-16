@@ -205,3 +205,10 @@ items:
     href: /generics/calling-generic-instance-method.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library
+
+- name: Exceptions 
+  items: 
+  - name: Exceptions
+    href: /exceptions/exceptions.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
