@@ -476,9 +476,16 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		catch (std::exception& e) {
 			// write exception to console
 			std::cout << e.what() << std::endl;
-			return 0;
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		try {
+			calledRuntimeType->InvokeStaticMethod({ "DivideBy", 10, 0 })->Execute();
+		}
+		catch (std::exception& e) {
+			// write exception to console
+			std::cout << e.what() << std::endl;
+			return;
+		}
 		GTEST_FAIL();
 	}
 

@@ -380,6 +380,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 	}
 
 	TEST(Integration, Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
+		std::exception e1;
 		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -404,9 +405,16 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		catch (std::exception& e) {
 			// write exception to console
 			std::cout << e.what() << std::endl;
-			return 0;
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		try {
+			calledRuntimeType->InvokeStaticMethod({ "divide_by", 10, 0 })->Execute();
+		}
+		catch (std::exception& e) {
+			// write exception to console
+			std::cout << e.what() << std::endl;
+			return;
+		}
 		GTEST_FAIL();
 	}
 
