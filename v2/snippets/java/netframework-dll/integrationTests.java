@@ -574,7 +574,7 @@ public class integrationTests {
     public void Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
         // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         // use activate only once in your app
-        Javonet.Activate("your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().clr();
@@ -608,7 +608,7 @@ public class integrationTests {
     public void Test_NetframeworkDll_TestResources_GenericStaticMethod() {
         // <TestResources_GenericStaticMethod>
         // use activate only once in your app
-        Javonet.Activate("your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().clr();
@@ -646,7 +646,7 @@ public class integrationTests {
     public void Test_NetframeworkDll_TestResources_GenericMethod() {
         // <TestResources_GenericMethod>
         // use activate only once in your app
-        Javonet.Activate("your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().clr();
@@ -687,7 +687,7 @@ public class integrationTests {
     public void Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes() {
         // <TestResources_GenericMethodWithTwoTypes>
         // use activate only once in your app
-        Javonet.Activate("your-license-key");
+        Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().clr();
