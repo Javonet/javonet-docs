@@ -7,7 +7,7 @@
   
 Code example below represents the sample code from `{called_name}` that will be used in following sections.  
 
-Any exception thrown by called technology can be handled in your `{calling_technology}` code. All Javonet methods that operate on objects from `{called_technology}` throw an `{calling_technology}` exception when exceptions occur. You can catch exceptions, and then perform the appropriate exception handling logic.  
+Any exception thrown by called technology can be handled in your `{calling_name}` code. All Javonet methods that operate on objects from `{called_name}` throw an `{calling_name}` exception when exceptions occur. You can catch exceptions, and then perform the appropriate exception handling logic.  
 
 :::code 
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
@@ -15,7 +15,7 @@ Any exception thrown by called technology can be handled in your `{calling_techn
 :display: called
 :::
     
-To catch and handle exception thrown from `{called_technology}`:  
+To catch and handle exception thrown from `{called_name}`:  
   
 ----  
   
