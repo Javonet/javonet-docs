@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class TestClass {
     public TestClass() {
     }
@@ -78,6 +80,24 @@ public class TestClass {
         return "genericSampleMethodWithTwoTypes invoked";
     }
     // </Generics>
+
+    // <Enums>
+    public enum Fruit {
+        Apple,
+        Banana,
+        Orange,
+        Mango
+    }
+
+    public static ArrayList<Fruit> Fruits = new ArrayList<Fruit>();
+
+    public static String addFruitsToList(Fruit[] fruits) {
+        Fruits.addAll(Arrays.asList(fruits));
+        return String.format("%d fruits on the list", Fruits.size());
+    }
+
+    // </Enums>
+
     // <Empty>
     // empty
     // </Empty>
