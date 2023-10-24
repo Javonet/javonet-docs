@@ -49,13 +49,13 @@ To use Javonet to call library/package/module which was designed for another tec
 For example [OpenJDK](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=All&field_architecture_target_id=391&field_java_package_target_id=All) or [Oracle](https://www.oracle.com/pl/java/technologies/javase/javase8u211-later-archive-downloads.html)
 
 ## Python Package
-[Python 3.11](https://www.python.org/downloads/release/python-3113/)
+[Python 3.11](https://www.python.org/downloads/release/python-3113/). On Linux - if some packages are missing - it may be necessary to install libpython3.11-dev package too.
 
 ## Ruby Package
 [Ruby 2.7](https://rubyinstaller.org/downloads/) 
 
 ## Perl Package
-On Windows [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi). On Linux and MacOS use Perl 5.30 or higher
+On Windows [Strawberry Perl 5.38](https://github.com/StrawberryPerl/Perl-Dist-Strawberry/releases/download/SP_5380_5361/strawberry-perl-5.38.0.1-64bit.msi). On Linux and MacOS use Perl 5.30 or higher
 
 ## Node.js package: 
 [Node.js 18.16 or higher](https://nodejs.org/en/download/)
