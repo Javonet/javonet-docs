@@ -1,4 +1,3 @@
-
 class TestClass:
 
     def __init__(self, public_value, private_value):
@@ -39,22 +38,6 @@ class TestClass:
     def divide_by_third(x, y):
         return x / y
     # </Exceptions>
-
-    # <Enums>
-    from enum import Enum
-    class Fruit(Enum):
-        Apple = 1
-        Banana = 2
-        Orange = 3
-        Mango = 4
-
-    Fruits = []
-
-    @staticmethod
-    def add_fruits_to_list(fruits):
-        TestClass.Fruits.extend(fruits)
-        return "{0} fruits on the list".format(len(TestClass.Fruits))
-    # </Enums>
 
     #<Empty>
     # empty

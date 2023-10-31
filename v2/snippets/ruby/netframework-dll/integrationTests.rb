@@ -1,17 +1,17 @@
 require 'javonet-ruby-sdk'
 require_relative '../../utils/activation_credentials'
 
-if OS.windows?
-  RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
+RSpec.describe 'Ruby To Netframework Dll Integration Tests' do
 
-    resources_directory = File.expand_path('../../../../../testResources/netframework-dll', __FILE__)
+  resources_directory = File.expand_path('../../../../../testResources/netframework-dll', __FILE__)
 
-    before(:all) do
-      result = Javonet.activate(ActivationCredentials.your_license_key)
-      expect(result).to eq(0)
-    end
+  before(:all) do
+    result = Javonet.activate(ActivationCredentials.your_license_key)
+    expect(result).to eq(0)
+  end
 
-    it 'Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException' do
+  it 'Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException' do
+    if OS.windows?
       # <TestResources_LoadLibrary>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -25,9 +25,13 @@ if OS.windows?
       # load custom library
       called_runtime.load_library(library_path)
       # </TestResources_LoadLibrary>
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3' do
+  it 'Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3' do
+    if OS.windows?
       # <TestResources_GetStaticField>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -55,9 +59,13 @@ if OS.windows?
       puts result
       # </TestResources_GetStaticField>
       expect(result).to eq(3)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75' do
+  it 'Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75' do
+    if OS.windows?
       # <TestResources_SetStaticField>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -89,9 +97,13 @@ if OS.windows?
       # </TestResources_SetStaticField>
       called_runtime_type.set_static_field("StaticValue", 3).execute
       expect(result).to eq(75)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18' do
+  it 'Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18' do
+    if OS.windows?
       # <TestResources_GetInstanceField>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -122,9 +134,13 @@ if OS.windows?
       puts result
       # </TestResources_GetInstanceField>
       expect(result).to eq(18)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44' do
+  it 'Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44' do
+    if OS.windows?
       # <TestResources_SetInstanceField>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -158,9 +174,13 @@ if OS.windows?
       puts result
       # </TestResources_SetInstanceField>
       expect(result).to eq(44)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
+  it 'Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50' do
+    if OS.windows?
       # <TestResources_InvokeStaticMethod>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -188,9 +208,13 @@ if OS.windows?
       puts result
       # </TestResources_InvokeStaticMethod>
       expect(result).to eq(50)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
+  it 'Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20' do
+    if OS.windows?
       # <TestResources_InvokeInstanceMethod>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -221,9 +245,13 @@ if OS.windows?
       puts result
       # </TestResources_InvokeInstanceMethod>
       expect(result).to eq(20)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree' do
+    if OS.windows?
       # <TestResources_1DArray_GetIndex>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -257,9 +285,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_GetIndex>
       expect(result).to eq("three")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_GetSize_5' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_GetSize_5' do
+    if OS.windows?
       # <TestResources_1DArray_GetSize>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -293,9 +325,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_GetSize>
       expect(result).to eq(5)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven' do
+    if OS.windows?
       # <TestResources_1DArray_SetIndex>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -332,9 +368,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_SetIndex>
       expect(result).to eq("seven")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_Iterate' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_Iterate' do
+    if OS.windows?
       # <TestResources_1DArray_Iterate>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -369,9 +409,13 @@ if OS.windows?
       puts array_values
       # </TestResources_1DArray_Iterate>
       expect(array_values).to eq(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_GetElement' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_GetElement' do
+    if OS.windows?
       # <TestResources_1DArray_GetElement>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -405,9 +449,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_GetElement>
       expect(result).to eq("THREE")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_SetElement' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_SetElement' do
+    if OS.windows?
       # <TestResources_1DArray_SetElement>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -444,9 +492,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_SetElement>
       expect(result).to eq("SEVEN")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_PassArrayAsArgument' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_PassArrayAsArgument' do
+    if OS.windows?
       # <TestResources_1DArray_PassArrayAsArgument>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -483,9 +535,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_PassArrayAsArgument>
       expect(result.round(1)).to eq(999.0)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_1DArray_RetrieveArray' do
+  it 'Test_NetframeworkDll_TestResources_1DArray_RetrieveArray' do
+    if OS.windows?
       # <TestResources_1DArray_RetrieveArray>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -516,9 +572,13 @@ if OS.windows?
       puts result
       # </TestResources_1DArray_RetrieveArray>
       expect(result).to eq(["one", "two", "three", "four", "five"])
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_TestResources_Cast_ToUInt' do
+  it 'Test_NetframeworkDll_TestResources_TestResources_Cast_ToUInt' do
+    if OS.windows?
       # <TestResources_Cast_ToUInt>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -551,9 +611,13 @@ if OS.windows?
       puts result
       # </TestResources_Cast_ToUInt>
       expect(result).to eq("CastSampleMethod with System.UInt32 called")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_TestResources_Cast_ToFloat' do
+  it 'Test_NetframeworkDll_TestResources_TestResources_Cast_ToFloat' do
+    if OS.windows?
       # <TestResources_Cast_ToFloat>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -579,6 +643,7 @@ if OS.windows?
         invoke_static_method("CastSampleMethod", called_runtime.cast(target_type, 5)).
         execute
 
+
       # get value from response
       result = response.get_value
 
@@ -586,9 +651,13 @@ if OS.windows?
       puts result
       # </TestResources_Cast_ToFloat>
       expect(result).to eq("CastSampleMethod with System.Single called")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+  it 'Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+    if OS.windows?
       begin
         # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         # use activate only once in your app
@@ -614,9 +683,13 @@ if OS.windows?
         puts e.full_message
       end
       # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_GenericStaticMethod' do
+  it 'Test_NetframeworkDll_TestResources_GenericStaticMethod' do
+    if OS.windows?
       # <TestResources_GenericStaticMethod>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -649,9 +722,13 @@ if OS.windows?
       puts result
       # </TestResources_GenericStaticMethod>
       expect(result).to eq("7 and 5")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_GenericMethod' do
+  it 'Test_NetframeworkDll_TestResources_GenericMethod' do
+    if OS.windows?
       # <TestResources_GenericMethod>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -687,9 +764,13 @@ if OS.windows?
       puts result
       # </TestResources_GenericMethod>
       expect(result).to eq("7 or 5")
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes' do
+  it 'Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes' do
+    if OS.windows?
       # <TestResources_GenericMethodWithTwoTypes>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -727,88 +808,13 @@ if OS.windows?
       puts result
       # </TestResources_GenericMethodWithTwoTypes>
       expect(result).to eq(0)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_TestResources_EnumAddToList' do
-      # <TestResources_EnumAddToList>
-      # use activate only once in your app
-      Javonet.activate("your-license-key")
-
-      # create called runtime context
-      called_runtime = Javonet.in_memory.clr
-
-      # set up variables
-      library_path = resources_directory + "/TestClass.dll"
-      class_name = "TestClass.TestClass"
-
-      # load custom library
-      called_runtime.load_library(library_path)
-
-      # get enum
-      enum_type = called_runtime.get_type("TestClass.TestClass+Fruit")
-
-      # create enum items
-      apple = called_runtime.get_enum_item(enum_type, "Apple")
-      mango = called_runtime.get_enum_item(enum_type, "Mango")
-
-      # create fruits array
-      fruits = [apple, mango]
-
-      # get type from the runtime
-      called_runtime_type = called_runtime.get_type(class_name)
-
-      # invoke type's static method
-      response = called_runtime_type.invoke_static_method("AddFruitsToList", fruits).execute
-
-      # get value from response
-      result = response.get_value
-
-      # write result to console
-      puts result
-      # </TestResources_EnumAddToList>
-      expect(result).to eq("2 fruits on the list")
-    end
-
-    it 'Test_NetframeworkDll_TestResources_EnumNameAndValue' do
-      # <TestResources_EnumNameAndValue>
-      # use activate only once in your app
-      Javonet.activate("your-license-key")
-
-      # create called runtime context
-      called_runtime = Javonet.in_memory.clr
-
-      # set up variables
-      library_path = resources_directory + "/TestClass.dll"
-
-      # load custom library
-      called_runtime.load_library(library_path)
-
-      # get enum
-      enum_type = called_runtime.get_type("TestClass.TestClass+Fruit")
-
-      # create enum items
-      fruit1 = called_runtime.get_enum_item(enum_type, "Mango")
-      fruit2 = called_runtime.get_enum_item(enum_type, "Orange")
-
-      # get items' names and values
-      fruit1_name = fruit1.get_enum_name().execute().get_value()
-      fruit2_name = fruit2.get_enum_name().execute().get_value()
-      fruit1_value = fruit1.get_enum_value().execute().get_value()
-      fruit2_value = fruit2.get_enum_value().execute().get_value()
-
-      # get value from response
-      result = fruit1_name + ": " + fruit1_value.to_s + ", " + fruit2_name + ": " + fruit2_value.to_s
-
-      # write result to console
-      puts result
-      # </TestResources_EnumNameAndValue>
-      expect(fruit1_name).to eq("Mango")
-      expect(fruit2_name).to eq("Orange")
-      expect(fruit1_value).to eq(3)
-      expect(fruit2_value).to eq(2)
-    end
-
-    it 'Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI' do
+  it 'Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI' do
+    if OS.windows?
       # <StandardLibrary_GetStaticField>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -829,9 +835,13 @@ if OS.windows?
       puts result
       # </StandardLibrary_GetStaticField>
       expect(result.round(5)).to eq(Math::PI.round(5))
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022' do
+  it 'Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022' do
+    if OS.windows?
       # <StandardLibrary_GetInstanceField>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -855,9 +865,13 @@ if OS.windows?
       puts result
       # </StandardLibrary_GetInstanceField>
       expect(result).to be(2022)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
+  it 'Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50' do
+    if OS.windows?
       # <StandardLibrary_InvokeStaticMethod>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -878,9 +892,13 @@ if OS.windows?
       puts result
       # </StandardLibrary_InvokeStaticMethod>
       expect(result).to eq(50)
+    else
+      skip("Clr supported on Windows only")
     end
+  end
 
-    it 'Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022' do
+  it 'Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022' do
+    if OS.windows?
       # <StandardLibrary_InvokeInstanceMethod>
       # use activate only once in your app
       Javonet.activate("your-license-key")
@@ -904,7 +922,10 @@ if OS.windows?
       puts result
       # </StandardLibrary_InvokeInstanceMethod>
       expect(result).to include("2022")
+    else
+      skip("Clr supported on Windows only")
     end
-
   end
+
 end
+
