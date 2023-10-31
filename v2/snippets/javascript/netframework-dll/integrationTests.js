@@ -1,6 +1,7 @@
 const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
 const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
+const {expect, describe, test} = require("@jest/globals");
 
 const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/netframework-dll'
 
@@ -556,9 +557,7 @@ describe('Nodejs to Netframework Dll integration tests', () => {
             let targetType = calledRuntime.getType("System.Int32")
 
             // invoke type's static method
-            let response = calledRuntimeType.
-            invokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
-            execute()
+            let response = calledRuntimeType.invokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).execute()
 
             // get value from response
             let result = response.getValue()
@@ -594,9 +593,7 @@ describe('Nodejs to Netframework Dll integration tests', () => {
             let targetType = calledRuntime.getType("System.Int32")
 
             // invoke type's method
-            let response = instance.
-            invokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
-            execute()
+            let response = instance.invokeGenericMethod("GenericSampleMethod", targetType, 7, 5).execute()
 
             // get value from response
             let result = response.getValue()
@@ -634,8 +631,7 @@ describe('Nodejs to Netframework Dll integration tests', () => {
 
             // invoke type's method
             let response = instance.invokeGenericMethod("GenericSampleMethodWithTwoTypes",
-                [targetType1, targetType2], "test").
-            execute()
+                [targetType1, targetType2], "test").execute()
 
             // get value from response
             let result = response.getValue()
@@ -644,6 +640,83 @@ describe('Nodejs to Netframework Dll integration tests', () => {
             console.log(result)
             // </TestResources_GenericMethodWithTwoTypes>
             expect(result).toBe(0)
+        })
+
+
+        test(`Test_NetframeworkDll_TestResources_EnumAddToList`, () => {
+            // <TestResources_EnumAddToList>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().clr()
+
+            // set up variables
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+            let className = 'TestClass.TestClass'
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get enum
+            let enumType = calledRuntime.getType("TestClass.TestClass+Fruit");
+
+            // create enum items
+            let apple = calledRuntime.getEnumItem(enumType, "Apple");
+            let mango = calledRuntime.getEnumItem(enumType, "Mango");
+
+            // create fruits array
+            let fruits = [apple, mango]
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // invoke type's static method
+            let response = calledRuntimeType.invokeStaticMethod("AddFruitsToList",
+                fruits).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_EnumAddToList>
+            expect(result).toBe("2 fruits on the list")
+        })
+
+        test(`Test_NetframeworkDll_TestResources_EnumNameAndValue`, () => {
+            // <TestResources_EnumNameAndValue>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().clr()
+
+            // set up variables
+            let libraryPath = resourcesDirectory + '/TestClass.dll'
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get enum
+            let enumType = calledRuntime.getType("TestClass.TestClass+Fruit");
+
+            // create enum items
+            let fruit1 = calledRuntime.getEnumItem(enumType, "Mango");
+            let fruit2 = calledRuntime.getEnumItem(enumType, "Orange");
+
+            let fruit1Name = fruit1.getEnumName().execute().getValue()
+            let fruit2Name = fruit2.getEnumName().execute().getValue()
+            let fruit1Value = fruit1.getEnumValue().execute().getValue()
+            let fruit2Value = fruit2.getEnumValue().execute().getValue()
+
+            // write result to console
+            console.log("%s: %d, %s: %d", fruit1Name, fruit1Value, fruit2Name, fruit2Value)
+            // </TestResources_EnumNameAndValue>
+            expect(fruit1Name).toBe("Mango")
+            expect(fruit2Name).toBe("Orange")
+            expect(fruit1Value).toBe(3)
+            expect(fruit2Value).toBe(2)
         })
 
         test(`Test_NetframeworkDll_StandardLibrary_GetStaticField_Math_PI_PI`, () => {

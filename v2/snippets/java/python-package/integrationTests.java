@@ -523,6 +523,86 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_PythonPackage_TestResources_EnumAddToList() {
+        // <TestResources_EnumAddToList>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().python();
+
+        // set up variables
+        // path to directory with .py files
+        String libraryPath = resourcesDirectory;
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create enum's items
+        InvocationContext apple = calledRuntime.getEnumItem(calledRuntimeType, "Fruit", "Apple");
+        InvocationContext mango = calledRuntime.getEnumItem(calledRuntimeType, "Fruit","Mango");
+
+        // create fruits arrays
+        InvocationContext[] fruits1ToAdd = new InvocationContext[] {apple, mango};
+
+        // invoke type's method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("add_fruits_to_list", fruits1ToAdd).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_EnumAddToList>
+        Assertions.assertEquals("2 fruits on the list", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_PythonPackage_TestResources_EnumNameAndValue() {
+        // <TestResources_EnumNameAndValue>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().python();
+
+        // set up variables
+        // path to directory with .py files
+        String libraryPath = resourcesDirectory;
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create enum's items
+        InvocationContext fruit1 = calledRuntime.getEnumItem(calledRuntimeType, "Fruit","Mango");
+        InvocationContext fruit2 = calledRuntime.getEnumItem(calledRuntimeType, "Fruit","Orange");
+
+        //get items' names and values
+        String fruit1Name = (String) fruit1.getEnumName().execute().getValue();
+        String fruit2Name = (String) fruit2.getEnumName().execute().getValue();
+        Integer fruit1Value = (Integer) fruit1.getEnumValue().execute().getValue();
+        Integer fruit2Value = (Integer) fruit2.getEnumValue().execute().getValue();
+
+        // write result to console
+        System.out.println(fruit1Name + ": " + fruit1Value + ", " + fruit2Name + ": " + fruit2Value);
+        // </TestResources_EnumNameAndValue>
+        Assertions.assertEquals("Mango", fruit1Name);
+        Assertions.assertEquals("Orange", fruit2Name);
+        Assertions.assertEquals(4, fruit1Value);
+        Assertions.assertEquals(3, fruit2Value);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
