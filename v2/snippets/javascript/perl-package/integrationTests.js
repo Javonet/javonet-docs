@@ -1,7 +1,6 @@
 const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
 const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
-const {expect, describe, test} = require("@jest/globals");
 
 const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/perl-package'
 

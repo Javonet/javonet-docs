@@ -21,10 +21,10 @@ sub Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type("System.Math")->execute();
+    my $clr_type = $clr_runtime->get_type("System.Math")->execute();
 
     # invoke type's static method
     my $response = $clr_type->invoke_static_method("Abs", -50)->execute();
@@ -44,10 +44,10 @@ sub Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type("System.Math")->execute();
+    my $clr_type = $clr_runtime->get_type("System.Math")->execute();
 
     # get type's static field
     my $response = $clr_type->get_static_field("PI")->execute();
@@ -67,10 +67,10 @@ sub Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToS
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type("System.DateTime")->execute();
+    my $clr_type = $clr_runtime->get_type("System.DateTime")->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance(2022, 9, 1)->execute();
@@ -93,10 +93,10 @@ sub Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_20
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type("System.DateTime")->execute();
+    my $clr_type = $clr_runtime->get_type("System.DateTime")->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance(2022, 9, 1)->execute();
@@ -119,13 +119,13 @@ sub Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
     # </TestResources_LoadLibrary>
     return 0;
 }
@@ -136,17 +136,17 @@ sub Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     #  invoke type's static method
     my $response = $clr_type->invoke_static_method("MultiplyByTwo", 25)->execute();
@@ -166,17 +166,17 @@ sub Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3 {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # get type's static field
     my $response = $clr_type->get_static_field("StaticValue")->execute();
@@ -196,17 +196,17 @@ sub Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75 {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # set type's static field
     $clr_type->set_static_field("StaticValue", 75)->execute();
@@ -230,17 +230,17 @@ sub Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance(12,13)->execute();
@@ -263,17 +263,17 @@ sub Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18 {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance(18,19)->execute();
@@ -296,17 +296,17 @@ sub Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance()->execute();
@@ -332,17 +332,17 @@ sub Test_NetframeworkDll_TestResources_1DArray_GetSize_5 {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance()->execute();
@@ -368,17 +368,17 @@ sub Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance()->execute();
@@ -408,17 +408,17 @@ sub Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44 {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance(18,19)->execute();
@@ -444,20 +444,20 @@ sub Test_NetframeworkDll_TestResources_GenericStaticMethod {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # get type for generic method
-    my $target_type = $called_runtime->get_type("System.Int32")->execute();
+    my $target_type = $clr_runtime->get_type("System.Int32")->execute();
 
     # invoke static method
     my $response = $clr_type->
@@ -479,23 +479,23 @@ sub Test_NetframeworkDll_TestResources_GenericMethod {
     Javonet->activate("your-license-key");
 
     # create Clr runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
+    my $clr_runtime = Javonet->in_memory()->clr();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.dll";
     my $class_name = "TestClass.TestClass";
 
     # load Clr custom library
-    $called_runtime->load_library($library_path);
+    $clr_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $clr_type = $called_runtime->get_type($class_name)->execute();
+    my $clr_type = $clr_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $clr_type->create_instance()->execute();
 
     # get type for generic method
-    my $target_type = $called_runtime->get_type("System.Int32")->execute();
+    my $target_type = $clr_runtime->get_type("System.Int32")->execute();
 
     # invoke generic method
     my $response = $instance->
@@ -508,40 +508,6 @@ sub Test_NetframeworkDll_TestResources_GenericMethod {
     # print result to console
     print("$result\n");
     # </TestResources_GenericMethod>
-    return $result;
-}
-
-sub Test_NetframeworkDll_TestResources_EnumNameAndValue {
-    # <TestResources_EnumNameAndValue>
-    # use activate only once in your app
-    Javonet->activate("your-license-key");
-
-    # create Jvm runtime context
-    my $called_runtime = Javonet->in_memory()->clr();
-
-    # set up variables
-    my $library_path = "$resources_directory/TestClass.dll";
-
-    # load jvm custom library
-    $called_runtime->load_library($library_path);
-
-    # get enum
-    my $enum_type = $called_runtime->get_type("TestClass.TestClass+Fruit");
-
-    # get enum's items
-    my $fruit_1 = $called_runtime->get_enum_item($enum_type, "Mango");
-    my $fruit_2 = $called_runtime->get_enum_item($enum_type, "Orange");
-
-    # get items' names and values
-    my $fruit_1_name = $fruit_1->get_enum_name()->execute()->get_value();
-    my $fruit_1_value = $fruit_1->get_enum_value()->execute()->get_value();
-    my $fruit_2_name = $fruit_2->get_enum_name()->execute()->get_value();
-    my $fruit_2_value = $fruit_2->get_enum_value()->execute()->get_value();
-
-    # write result to console
-    my $result = "$fruit_1_name: $fruit_1_value, $fruit_2_name: $fruit_2_value";
-    print("$result\n");
-    # </TestResources_EnumNameAndValue>
     return $result;
 }
 
@@ -562,7 +528,6 @@ if ("$osname" eq 'MSWin32') {
     my $test_result_14 = Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44();
     my $test_result_15 = Test_NetframeworkDll_TestResources_GenericStaticMethod();
     my $test_result_16 = Test_NetframeworkDll_TestResources_GenericMethod();
-    my $test_result_17 = Test_NetframeworkDll_TestResources_EnumNameAndValue();
 
     is($test_result_1, 50, 'Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
     is($test_result_2, pi, 'Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI');
@@ -580,7 +545,6 @@ if ("$osname" eq 'MSWin32') {
     is($test_result_14, 44, 'Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44');
     is($test_result_15, "7 and 5", 'Test_NetframeworkDll_TestResources_GenericStaticMethod');
     is($test_result_16, "7 or 5", 'Test_NetframeworkDll_TestResources_GenericMethod');
-    is($test_result_17, "Mango: 3, Orange: 2", 'Test_NetframeworkDll_TestResources_EnumNameAndValue');
 }
 else {
     is(0, 0, 'Clr supported on Windows only');

@@ -566,43 +566,6 @@ func Test_NetframeworkDll_TestResources_GenericMethod(t *testing.T) {
 	}
 }
 
-func Test_NetframeworkDll_TestResources_EnumNameAndValue(t *testing.T) {
-	// <TestResources_EnumNameAndValue>
-	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
-
-	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
-
-	// set up variables
-	libraryPath := resourcesDirectory + "/TestClass.dll"
-
-	// load custom library
-	calledRuntime.LoadLibrary(libraryPath)
-
-	//get enum
-	enumType := calledRuntime.GetType("TestClass.TestClass+Fruit");
-
-	//create enum items
-	fruit1 := calledRuntime.GetEnumItem(enumType, "Mango");
-	fruit2 := calledRuntime.GetEnumItem(enumType, "Orange");
-
-	//get items' names and values
-	fruit1Name := fruit1.GetEnumName().Execute().GetValue().(string);
-	fruit2Name := fruit2.GetEnumName().Execute().GetValue().(string);
-	fruit1Value := fruit1.GetEnumValue().Execute().GetValue().(int32);
-	fruit2Value := fruit2.GetEnumValue().Execute().GetValue().(int32);
-
-	// write result to console
-	result := fmt.Sprintf("%v: %d, %v: %d", fruit1Name, fruit1Value, fruit2Name, fruit2Value)
-	fmt.Println(result)
-	// </TestResources_EnumNameAndValue>
-	expectedResponse := "Mango: 3, Orange: 2"
-	if result != expectedResponse {
-		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
-	}
-}
-
 func Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app

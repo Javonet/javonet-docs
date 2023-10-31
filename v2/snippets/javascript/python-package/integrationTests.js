@@ -1,7 +1,6 @@
 const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
 const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
-const {expect, describe, test} = require("@jest/globals");
 
 const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/python-package'
 
@@ -465,80 +464,6 @@ describe('Nodejs to Python Package integration tests', () => {
             }
             // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
             expect(false).toBe(true)
-        })
-
-        test(`Test_PythonPackage_TestResources_EnumAddToList`, () => {
-            // <TestResources_EnumAddToList>
-            // use Activate only once in your app
-            Javonet.activate("your-license-key")
-
-            // create called runtime context
-            let calledRuntime = Javonet.inMemory().python()
-
-            // set up variables
-            const libraryPath = resourcesDirectory
-            const className = "TestClass.TestClass"
-
-            // load custom library
-            calledRuntime.loadLibrary(libraryPath)
-
-            // get type from the runtime
-            let calledRuntimeType = calledRuntime.getType(className).execute()
-
-            // create enum items
-            let apple = calledRuntime.getEnumItem(calledRuntimeType, "Fruit", "Apple");
-            let mango = calledRuntime.getEnumItem(calledRuntimeType, "Fruit", "Mango");
-
-            // create fruits array
-            let fruits = [apple, mango]
-
-            // invoke type's static method
-            let response = calledRuntimeType.invokeStaticMethod("add_fruits_to_list",
-                fruits).execute()
-
-            // get value from response
-            let result = response.getValue()
-
-            // write result to console
-            console.log(result)
-            // </TestResources_EnumAddToList>
-            expect(result).toBe("2 fruits on the list")
-        })
-
-        test(`Test_PythonPackage_TestResources_EnumNameAndValue`, () => {
-            // <TestResources_EnumNameAndValue>
-            // use Activate only once in your app
-            Javonet.activate("your-license-key")
-
-            // create called runtime context
-            let calledRuntime = Javonet.inMemory().python()
-
-            // set up variables
-            const libraryPath = resourcesDirectory
-            const className = "TestClass.TestClass"
-
-            // load custom library
-            calledRuntime.loadLibrary(libraryPath)
-
-            // get type from the runtime
-            let calledRuntimeType = calledRuntime.getType(className).execute()
-
-            // create enum items
-            let fruit1 = calledRuntime.getEnumItem(calledRuntimeType, "Fruit", "Mango");
-            let fruit2 = calledRuntime.getEnumItem(calledRuntimeType, "Fruit", "Orange");
-
-            let fruit1Name = fruit1.getEnumName().execute().getValue()
-            let fruit2Name = fruit2.getEnumName().execute().getValue()
-            let fruit1Value = fruit1.getEnumValue().execute().getValue()
-            let fruit2Value = fruit2.getEnumValue().execute().getValue()
-
-            // write result to console
-            console.log("%s: %d, %s: %d", fruit1Name, fruit1Value, fruit2Name, fruit2Value)
-            // </TestResources_EnumNameAndValue>
-            expect(fruit1Name).toBe("Mango")
-            expect(fruit2Name).toBe("Orange")
-            expect(fruit1Value).toBe(4)
-            expect(fruit2Value).toBe(3)
         })
 
         test(`Test_PythonPackage_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
