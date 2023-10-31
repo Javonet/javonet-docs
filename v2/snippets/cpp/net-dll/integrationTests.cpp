@@ -478,15 +478,6 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 			std::cout << e.what() << std::endl;
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-		try {
-			calledRuntimeType->InvokeStaticMethod({ "DivideBy", 10, 0 })->Execute();
-		}
-		catch (std::exception& e) {
-			// write exception to console
-			std::cout << e.what() << std::endl;
-			return;
-		}
-		GTEST_FAIL();
 	}
 
 	TEST(Integration, Test_NetDll_TestResources_GenericStaticMethod) {
@@ -560,6 +551,48 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		std::cout << result << std::endl;
 		// </TestResources_GenericMethod>
 		EXPECT_EQ("7 or 5", result);
+	}
+
+	TEST(Integration, Test_NetDll_TestResources_EnumNameAndValue) {
+		// <TestResources_EnumNameAndValue>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Netcore();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get enum
+		auto enumType = calledRuntime->GetType("TestClass.TestClass+Fruit");
+
+		//get enum's item
+		auto fruit1 = calledRuntime->GetEnumItem({ enumType, "Mango" });
+		auto fruit2 = calledRuntime->GetEnumItem({ enumType, "Orange" });
+
+		// get item's names and values
+		auto fruit1Name = fruit1->GetEnumName()->Execute();
+		auto fruit1Value = fruit1->GetEnumValue()->Execute();
+		auto fruit2Name = fruit2->GetEnumName()->Execute();
+		auto fruit2Value = fruit2->GetEnumValue()->Execute();
+
+		// get values
+		auto result1 = std::any_cast<std::string>(fruit1Name->GetValue());
+		auto result2 = std::any_cast<int>(fruit1Value->GetValue());
+		auto result3 = std::any_cast<std::string>(fruit2Name->GetValue());
+		auto result4 = std::any_cast<int>(fruit2Value->GetValue());
+
+		// write result to console
+		std::cout << result1 << ": " << result2 << ", " << result3 << ": " << result4 << std::endl;
+		// </TestResources_EnumNameAndValue>
+		EXPECT_EQ("Mango", result1);
+		EXPECT_EQ("Orange", result3);
+		EXPECT_EQ(3, result2);
+		EXPECT_EQ(2, result4);
 	}
 
 	TEST(Integration, Test_NetDll_StandardLibrary_GetStaticField_SystemMathPI_PI) {

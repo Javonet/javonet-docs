@@ -726,6 +726,86 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_EnumAddToList() {
+        // <TestResources_EnumAddToList>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get enum
+        InvocationContext enumType = calledRuntime.getType("TestClass.TestClass+Fruit");
+
+        // create enum's items
+        InvocationContext apple = calledRuntime.getEnumItem(enumType, "Apple");
+        InvocationContext mango = calledRuntime.getEnumItem(enumType, "Mango");
+
+        // create fruits arrays
+        InvocationContext[] fruits1ToAdd = new InvocationContext[] {apple, mango};
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", fruits1ToAdd).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_EnumAddToList>
+        Assertions.assertEquals("2 fruits on the list", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_EnumNameAndValue() {
+        // <TestResources_EnumNameAndValue>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get enum
+        InvocationContext enumType = calledRuntime.getType("TestClass.TestClass+Fruit");
+
+        // create enum's items
+        InvocationContext fruit1 = calledRuntime.getEnumItem(enumType, "Mango");
+        InvocationContext fruit2 = calledRuntime.getEnumItem(enumType, "Orange");
+
+        //get items' names and values
+        String fruit1Name = (String) fruit1.getEnumName().execute().getValue();
+        String fruit2Name = (String) fruit2.getEnumName().execute().getValue();
+        Integer fruit1Value = (Integer) fruit1.getEnumValue().execute().getValue();
+        Integer fruit2Value = (Integer) fruit2.getEnumValue().execute().getValue();
+
+        // write result to console
+        System.out.println(fruit1Name + ": " + fruit1Value + ", " + fruit2Name + ": " + fruit2Value);
+        // </TestResources_EnumNameAndValue>
+        Assertions.assertEquals("Mango", fruit1Name);
+        Assertions.assertEquals("Orange", fruit2Name);
+        Assertions.assertEquals(3, fruit1Value);
+        Assertions.assertEquals(2, fruit2Value);
+    }
+
+    @Test
+    @Tag("integration")
     @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
