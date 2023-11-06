@@ -542,6 +542,86 @@ unless OS.mac?
       # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
     end
 
+    it 'Test_PythonPackage_TestResources_EnumAddToList' do
+      # <TestResources_EnumAddToList>
+      # use activate only once in your app
+      Javonet.activate("your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.python
+
+      # set up variables
+      library_path = resources_directory
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create enum items
+      apple = called_runtime.get_enum_item(called_runtime_type, "Fruit", "Apple")
+      mango = called_runtime.get_enum_item(called_runtime_type, "Fruit", "Mango")
+
+      # create fruits array
+      fruits = [apple, mango]
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name)
+
+      # invoke type's static method
+      response = called_runtime_type.invoke_static_method("add_fruits_to_list", fruits).execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_EnumAddToList>
+      expect(result).to eq("2 fruits on the list")
+    end
+
+    it 'Test_PythonPackage_TestResources_EnumNameAndValue' do
+      # <TestResources_EnumNameAndValue>
+      # use activate only once in your app
+      Javonet.activate("your-license-key")
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.python
+
+      # set up variables
+      library_path = resources_directory
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # create enum items
+      fruit1 = called_runtime.get_enum_item(called_runtime_type, "Fruit", "Mango")
+      fruit2 = called_runtime.get_enum_item(called_runtime_type, "Fruit", "Orange")
+
+      # get items' names and values
+      fruit1_name = fruit1.get_enum_name().execute().get_value()
+      fruit2_name = fruit2.get_enum_name().execute().get_value()
+      fruit1_value = fruit1.get_enum_value().execute().get_value()
+      fruit2_value = fruit2.get_enum_value().execute().get_value()
+
+      # get value from response
+      result = fruit1_name + ": " + fruit1_value.to_s + ", " + fruit2_name + ": " + fruit2_value.to_s
+
+      # write result to console
+      puts result
+      # </TestResources_EnumNameAndValue>
+      expect(fruit1_name).to eq("Mango")
+      expect(fruit2_name).to eq("Orange")
+      expect(fruit1_value).to eq(4)
+      expect(fruit2_value).to eq(3)
+    end
+
     it 'Test_PythonPackage_StandardLibrary_GetStaticField_Math_PI_PI' do
       # <StandardLibrary_GetStaticField>
       # use activate only once in your app

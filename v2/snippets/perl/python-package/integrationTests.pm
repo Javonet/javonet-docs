@@ -386,32 +386,55 @@ sub Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44 {
     return $result;
 }
 
-if ("$osname" ne 'darwin') {
-    my $test_result_1 = Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
-    my $test_result_2 = Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI();
-    my $test_result_3 = Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException();
-    my $test_result_4 = Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50();
-    my $test_result_5 = Test_PythonPackage_TestResources_GetStaticField_StaticValue_3();
-    my $test_result_6 = Test_PythonPackage_TestResources_SetStaticField_StaticValue_75();
-    my $test_result_7 = Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
-    my $test_result_8 = Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18();
-    my $test_result_11 = Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree();
-    my $test_result_12 = Test_PythonPackage_TestResources_1DArray_GetSize_5();
-    my $test_result_13 = Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven();
-    my $test_result_14 = Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44();
+sub Test_PythonPackage_TestResources_EnumNameAndValue {
+    # <TestResources_EnumNameAndValue>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
 
-    is($test_result_1, 50, 'Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
-    is(sprintf("%.5f", $test_result_2), sprintf("%.5f", pi), 'Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI');
-    is($test_result_3, 0, 'Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException');
-    is($test_result_4, 50, 'Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
-    is($test_result_5, 3, 'Test_PythonPackage_TestResources_GetStaticField_StaticValue_3');
-    is($test_result_6, 75, 'Test_PythonPackage_TestResources_SetStaticField_StaticValue_3');
-    is($test_result_7, 20, 'Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
-    is($test_result_8, 18, 'Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18');
-    is($test_result_11, "three", 'Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree');
-    is($test_result_12, 5, 'Test_PythonPackage_TestResources_1DArray_GetSize_5');
-    is($test_result_13, "seven", 'Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven');
-    is($test_result_14, 44, 'Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44');
+    # create Jvm runtime context
+    my $called_runtime = Javonet->in_memory()->python();
+
+    # set up variables
+    my $library_path = "$resources_directory";
+    my $class_name = "TestClass.TestClass";
+
+    # load jvm custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $python_type = $called_runtime->get_type($class_name)->execute();
+
+    # get enum's items
+    my $fruit_1 = $called_runtime->get_enum_item($python_type, "Fruit", "Mango");
+    my $fruit_2 = $called_runtime->get_enum_item($python_type, "Fruit", "Orange");
+
+    # get items' names and values
+    my $fruit_1_name = $fruit_1->get_enum_name()->execute()->get_value();
+    my $fruit_1_value = $fruit_1->get_enum_value()->execute()->get_value();
+    my $fruit_2_name = $fruit_2->get_enum_name()->execute()->get_value();
+    my $fruit_2_value = $fruit_2->get_enum_value()->execute()->get_value();
+
+    # write result to console
+    my $result = "$fruit_1_name: $fruit_1_value, $fruit_2_name: $fruit_2_value";
+    print("$result\n");
+    # </TestResources_EnumNameAndValue>
+    return $result;
+}
+
+if ("$osname" ne 'darwin') {
+    is(Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(), 50, 'Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
+    is(sprintf("%.5f", Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI()), sprintf("%.5f", pi), 'Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI');
+    is(Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException(), 0, 'Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException');
+    is(Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(), 50, 'Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
+    is(Test_PythonPackage_TestResources_GetStaticField_StaticValue_3(), 3, 'Test_PythonPackage_TestResources_GetStaticField_StaticValue_3');
+    is(Test_PythonPackage_TestResources_SetStaticField_StaticValue_75(), 75, 'Test_PythonPackage_TestResources_SetStaticField_StaticValue_3');
+    is(Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(), 20, 'Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
+    is(Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18(), 18, 'Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18');
+    is(Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree(), "three", 'Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree');
+    is(Test_PythonPackage_TestResources_1DArray_GetSize_5(), 5, 'Test_PythonPackage_TestResources_1DArray_GetSize_5');
+    is(Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven(), "seven", 'Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven');
+    is(Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44(), 44, 'Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44');
+    is(Test_PythonPackage_TestResources_EnumNameAndValue(), "Mango: 4, Orange: 3", 'Test_PythonPackage_TestResources_EnumNameAndValue');
 }
 else {
     is(0, 0, 'Python not implemented on MacOs yet');
