@@ -1,3 +1,4 @@
+using Javonet.Netcore.Sdk.Internal;
 using Javonet.Netcore.Sdk.Tests.Utils;
 using Javonet.Netcore.Utils;
 using Xunit;
@@ -673,6 +674,91 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
             System.Console.WriteLine(result);
             // </TestResources_GenericMethodWithTwoTypes>
             Assert.Equal("genericSampleMethodWithTwoTypes invoked", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_TestResources_EnumAddToList()
+        {
+            // <TestResources_EnumAddToList>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            //get enum
+            var enumType = calledRuntime.GetType("TestClass$Fruit");
+
+            //create enum items
+            var apple = calledRuntime.GetEnumItem(enumType, "Apple");
+            var mango = calledRuntime.GetEnumItem(enumType, "Mango");
+
+            // create fruits array
+            InvocationContext[] fruitsList = { apple, mango };
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className);
+
+            // invoke type's static method
+            var response = calledRuntimeType.
+                           InvokeStaticMethod("addFruitsToList", fruitsList).
+                           Execute();
+
+            // get value from response
+            string result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_EnumAddToList>
+            Assert.Equal("2 fruits on the list", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_TestResources_EnumNameAndValue()
+        {
+            // <TestResources_EnumNameAndValue>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            //get enum
+            var enumType = calledRuntime.GetType("TestClass$Fruit");
+
+            //create enum items
+            var fruit1 = calledRuntime.GetEnumItem(enumType, "Mango");
+            var fruit2 = calledRuntime.GetEnumItem(enumType, "Orange");
+
+            //get items' names and values
+            var fruit1Name = (string)fruit1.GetEnumName().Execute().GetValue();
+            var fruit2Name = (string)fruit2.GetEnumName().Execute().GetValue();
+            var fruit1Value = (int)fruit1.GetEnumValue().Execute().GetValue();
+            var fruit2Value = (int)fruit2.GetEnumValue().Execute().GetValue();
+
+
+            // write result to console
+            System.Console.WriteLine("{0}: {1}, {2}: {3}", fruit1Name, fruit1Value, fruit2Name, fruit2Value);
+            // </TestResources_EnumNameAndValue>
+            Assert.Equal("Mango", fruit1Name);
+            Assert.Equal("Orange", fruit2Name);
+            Assert.Equal(3, fruit1Value);
+            Assert.Equal(2, fruit2Value);
         }
 
         [Fact]

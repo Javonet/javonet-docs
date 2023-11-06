@@ -1,4 +1,6 @@
-﻿namespace TestClass
+﻿using System.Collections.Generic;
+
+namespace TestClass
 {
     public class TestClass
     {
@@ -117,6 +119,23 @@
         }
         // </Generics>
 
+        // <Enums>
+        public enum Fruit
+        {
+            Apple,
+            Banana,
+            Orange,
+            Mango
+        }
+
+        public static List<Fruit> Fruits = new List<Fruit>();
+
+        public static string AddFruitsToList(Fruit[] fruits)
+        {
+            Fruits.AddRange(fruits);
+            return string.Format("{0} fruits on the list", Fruits.Count);
+        }
+        // </Enums>
 
         // <Empty>
         // empty
