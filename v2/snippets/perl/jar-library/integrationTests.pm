@@ -20,10 +20,10 @@ sub Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type("java.lang.Math")->execute();
+    my $jvm_type = $called_runtime->get_type("java.lang.Math")->execute();
 
     # invoke type's static method
     my $response = $jvm_type->invoke_static_method("abs", -50)->execute();
@@ -43,10 +43,10 @@ sub Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type("java.lang.Math")->execute();
+    my $jvm_type = $called_runtime->get_type("java.lang.Math")->execute();
 
     # get type's static field
     my $response = $jvm_type->get_static_field("PI")->execute();
@@ -66,10 +66,10 @@ sub Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type("java.util.Random")->execute();
+    my $jvm_type = $called_runtime->get_type("java.util.Random")->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -92,10 +92,10 @@ sub Test_JarLibrary_StandardLibrary_GetInstanceField_javaSqlDriverPropertyDriver
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type("java.sql.DriverPropertyInfo")->execute();
+    my $jvm_type = $called_runtime->get_type("java.sql.DriverPropertyInfo")->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance("sample value", "sample value2")->execute();
@@ -118,13 +118,13 @@ sub Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
 
     # load JVM custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
     # </TestResources_LoadLibrary>
     return 0;
 }
@@ -135,17 +135,17 @@ sub Test_JarLibrary_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load JVM custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     #  invoke type's static method
     my $response = $jvm_type->invoke_static_method("multiplyByTwo", 25)->execute();
@@ -165,17 +165,17 @@ sub Test_JarLibrary_TestResources_GetStaticField_StaticValue_3 {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load JVM custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # get type's static field
     my $response  = $jvm_type->get_static_field("staticValue")->execute();
@@ -195,17 +195,17 @@ sub Test_JarLibrary_TestResources_SetStaticField_StaticValue_75 {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load JVM custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # set type's static field
     $jvm_type->set_static_field("staticValue", 75)->execute();
@@ -229,17 +229,17 @@ sub Test_JarLibrary_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load JVM custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -262,17 +262,17 @@ sub Test_JarLibrary_TestResources_GetInstanceField_PublicValue_18 {
     Javonet->activate("your-license-key");
 
     # create JVM runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load JVM custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance(18, 19)->execute();
@@ -295,17 +295,17 @@ sub Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThree {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load Jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -331,17 +331,17 @@ sub Test_JarLibrary_TestResources_1DArray_GetSize_5 {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load Jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -367,17 +367,17 @@ sub Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load Jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -407,17 +407,17 @@ sub Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44 {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance(18,19)->execute();
@@ -443,17 +443,17 @@ sub Test_JarLibrary_TestResources_GenericStaticMethod {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # invoke static method
     my $response = $jvm_type->
@@ -475,17 +475,17 @@ sub Test_JarLibrary_TestResources_GenericMethod {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -510,17 +510,17 @@ sub Test_JarLibrary_TestResources_GenericMethodWithTwoTypes {
     Javonet->activate("your-license-key");
 
     # create Jvm runtime context
-    my $jvm_runtime = Javonet->in_memory()->jvm();
+    my $called_runtime = Javonet->in_memory()->jvm();
 
     # set up variables
     my $library_path = "$resources_directory/TestClass.jar";
     my $class_name = "TestClass";
 
     # load jvm custom library
-    $jvm_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $jvm_type = $jvm_runtime->get_type($class_name)->execute();
+    my $jvm_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $jvm_type->create_instance()->execute();
@@ -536,6 +536,40 @@ sub Test_JarLibrary_TestResources_GenericMethodWithTwoTypes {
     # print result to console
     print("$result\n");
     # </TestResources_GenericMethod>
+    return $result;
+}
+
+sub Test_JarLibrary_TestResources_EnumNameAndValue {
+    # <TestResources_EnumNameAndValue>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create Jvm runtime context
+    my $called_runtime = Javonet->in_memory()->jvm();
+
+    # set up variables
+    my $library_path = "$resources_directory/TestClass.jar";
+
+    # load jvm custom library
+    $called_runtime->load_library($library_path);
+
+    # get enum
+    my $enum_type = $called_runtime->get_type("TestClass\$Fruit");
+
+    # get enum's items
+    my $fruit_1 = $called_runtime->get_enum_item($enum_type, "Mango");
+    my $fruit_2 = $called_runtime->get_enum_item($enum_type, "Orange");
+
+    # get items' names and values
+    my $fruit_1_name = $fruit_1->get_enum_name()->execute()->get_value();
+    my $fruit_1_value = $fruit_1->get_enum_value()->execute()->get_value();
+    my $fruit_2_name = $fruit_2->get_enum_name()->execute()->get_value();
+    my $fruit_2_value = $fruit_2->get_enum_value()->execute()->get_value();
+
+    # write result to console
+    my $result = "$fruit_1_name: $fruit_1_value, $fruit_2_name: $fruit_2_value";
+    print("$result\n");
+    # </TestResources_EnumNameAndValue>
     return $result;
 }
 
@@ -556,6 +590,7 @@ my $test_result_14 = Test_JarLibrary_TestResources_SetInstanceField_PublicValue_
 my $test_result_15 = Test_JarLibrary_TestResources_GenericStaticMethod();
 my $test_result_16 = Test_JarLibrary_TestResources_GenericMethod();
 my $test_result_17 = Test_JarLibrary_TestResources_GenericMethodWithTwoTypes();
+my $test_result_18 = Test_JarLibrary_TestResources_EnumNameAndValue();
 
 
 is($test_result_1, 50, 'Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
@@ -575,6 +610,7 @@ is($test_result_14, 44, 'Test_JarLibrary_TestResources_SetInstanceField_PublicVa
 is($test_result_15, "7 and 5", 'Test_JarLibrary_TestResources_GenericStaticMethod');
 is($test_result_16, "7 or 5", 'Test_JarLibrary_TestResources_GenericMethod');
 is($test_result_17, "genericSampleMethodWithTwoTypes invoked", 'Test_JarLibrary_TestResources_GenericMethodWithTwoTypes');
+is($test_result_18, "Mango: 3, Orange: 2", 'Test_JarLibrary_TestResources_EnumNameAndValue');
 
 done_testing();
 

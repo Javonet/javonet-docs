@@ -414,6 +414,44 @@ func Test_PythonPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	}
 }
 
+func Test_PythonPackage_TestResources_EnumNameAndValue(t *testing.T) {
+	// <TestResources_EnumNameAndValue>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-license-key")
+
+	// create called runtime context
+	calledRuntime := Javonet.InMemory().Python()
+
+	// set up variables
+	libraryPath := resourcesDirectory
+	className := "TestClass.TestClass"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+
+	// get type from the runtime
+	calledRuntimeType := calledRuntime.GetType(className).Execute()
+
+	//create enum items
+	fruit1 := calledRuntime.GetEnumItem(calledRuntimeType, "Fruit", "Mango");
+	fruit2 := calledRuntime.GetEnumItem(calledRuntimeType, "Fruit", "Orange");
+
+	//get items' names and values
+	fruit1Name := fruit1.GetEnumName().Execute().GetValue().(string);
+	fruit2Name := fruit2.GetEnumName().Execute().GetValue().(string);
+	fruit1Value := fruit1.GetEnumValue().Execute().GetValue().(int32);
+	fruit2Value := fruit2.GetEnumValue().Execute().GetValue().(int32);
+
+	// write result to console
+	result := fmt.Sprintf("%v: %d, %v: %d", fruit1Name, fruit1Value, fruit2Name, fruit2Value)
+	fmt.Println(result)
+	// </TestResources_EnumNameAndValue>
+	expectedResponse := "Mango: 4, Orange: 3"
+	if result != expectedResponse {
+		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
 func Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app

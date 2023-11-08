@@ -417,6 +417,49 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		GTEST_FAIL();
 	}
 
+	TEST(Integration, Test_PythonPackage_TestResources_EnumNameAndValue) {
+		// <TestResources_EnumNameAndValue>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Python();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory;
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className);
+
+		//get enum's item
+		auto fruit1 = calledRuntime->GetEnumItem({ calledRuntimeType, "Fruit", "Mango" });
+		auto fruit2 = calledRuntime->GetEnumItem({ calledRuntimeType, "Fruit","Orange" });
+
+		// get item's names and values
+		auto fruit1Name = fruit1->GetEnumName()->Execute();
+		auto fruit1Value = fruit1->GetEnumValue()->Execute();
+		auto fruit2Name = fruit2->GetEnumName()->Execute();
+		auto fruit2Value = fruit2->GetEnumValue()->Execute();
+
+		// get values
+		auto result1 = std::any_cast<std::string>(fruit1Name->GetValue());
+		auto result2 = std::any_cast<int>(fruit1Value->GetValue());
+		auto result3 = std::any_cast<std::string>(fruit2Name->GetValue());
+		auto result4 = std::any_cast<int>(fruit2Value->GetValue());
+
+		// write result to console
+		std::cout << result1 << ": " << result2 << ", " << result3 << ": " << result4 << std::endl;
+		// </TestResources_EnumNameAndValue>
+		EXPECT_EQ("Mango", result1);
+		EXPECT_EQ("Orange", result3);
+		EXPECT_EQ(4, result2);
+		EXPECT_EQ(3, result4);
+	}
+
 	TEST(Integration, Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app
