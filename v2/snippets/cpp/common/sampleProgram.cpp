@@ -9,7 +9,6 @@ using namespace JavonetNS::Cpp::Sdk;
 std::string resourcesDirectory = ".";
 
 int main(int argc, char* argv[]) {
-
 	// <Activation>
 	Javonet::Activate("your-license-key");
 	// </Activation>

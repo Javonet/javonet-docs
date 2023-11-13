@@ -7,7 +7,6 @@ import Javonet "javonet.com/javonet"
 // </Import>
 
 func main() {
-
 	// <Activation>
 	Javonet.ActivateWithCredentials("your-license-key");
 	// </Activation>

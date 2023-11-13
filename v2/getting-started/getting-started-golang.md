@@ -12,7 +12,7 @@ Javonet is an advanced library enabling direct method calls between programming 
 
 To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.  
 
-Javonet is available as a GoLang library and can be downloaded from [My Javonet Portal](https://my.javonet.com).  
+Javonet is available as a GoLang package and can be downloaded from [My Javonet Portal](https://my.javonet.com).  
 
 ## Get activation key
 

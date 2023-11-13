@@ -53,4 +53,11 @@ The returned value needs to be cast to calling technology type and can be used a
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="GetValue":::
 
 To sum up, the whole code snippet looks like:
-:::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="WholeSnippet":::
+
+:::code 
+:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_id: StandardLibrary_GetStaticField
+:called_source: v2/snippets/python-package/TestClass.py
+:called_id: Empty
+:display: calling
+:::
