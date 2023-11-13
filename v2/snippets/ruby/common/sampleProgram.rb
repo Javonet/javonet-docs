@@ -1,8 +1,8 @@
+# <WholeSnippet>
 # <Import>
 require 'javonet-ruby-sdk'
 # </Import>
 
-# <WholeSnippet>
 # <Activation>
 Javonet.activate("your-license-key")
 # </Activation>

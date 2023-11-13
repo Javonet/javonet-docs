@@ -7,7 +7,7 @@
 ## Install Javonet for Java
 
 Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".  
-
+  
 Javonet 2 is recommended for most applications.  
   
 Javonet 1.0 in some cases may be more appropriate (f.e. for embedding .NET UI controls (WPF or WinForms) in Java AWT/Swing or JavaFX). 
@@ -18,7 +18,7 @@ To call library/package/module from another technology, corresponding runtime ha
 
 Javonet is available as a JAR library which can be downloaded from [public repository](https://central.sonatype.com/artifact/com.javonet/javonet-java-sdk) or from [My Javonet Portal](https://my.javonet.com).  
 
-:::code source="v2/snippets/java/common/install.xml" ID="Dependecy":::
+:::code source="v2/snippets/java/common/install.xml" ID="Dependency":::
 
 ## Activate Javonet
 

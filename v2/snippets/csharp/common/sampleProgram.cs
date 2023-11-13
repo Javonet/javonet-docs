@@ -28,6 +28,6 @@ class SampleProgram
 		var result = (float)response.GetValue();
 		System.Console.WriteLine(result);
 		// </GetValue>	
-		// </WholeSnippet>
 	}
 }
+// </WholeSnippet>

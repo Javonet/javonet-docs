@@ -1,10 +1,10 @@
+# <WholeSnippet>
 use strict;
 use warnings;
 # <Import>
 use aliased 'Javonet::Javonet' => 'Javonet';
 # </Import>
 
-# <WholeSnippet>
 # <Activation>
 Javonet->activate("your-license-key");
 # </Activation>

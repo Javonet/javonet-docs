@@ -1,8 +1,8 @@
+# <WholeSnippet>
 # <Import>
 from javonet.sdk import Javonet
 # </Import>
 
-# <WholeSnippet>
 # <Activation>
 Javonet.activate("your-license-key")
 # </Activation>

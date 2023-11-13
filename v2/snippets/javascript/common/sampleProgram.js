@@ -1,8 +1,8 @@
+// <WholeSnippet>
 // <Import>
 const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
 // </Import>
 
-// <WholeSnippet>
 // <Activation>
 Javonet.activate("your-license-key")
 // </Activation>

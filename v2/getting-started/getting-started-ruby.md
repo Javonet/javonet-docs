@@ -6,9 +6,16 @@
 
 ## Install Javonet for Ruby
 
-Javonet is available as a Ruby gem package, which can be installed using Ruby package manager or any other method which supports Ruby gem packages.
+Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use". 
 
-For applications using Ruby 2.7 and higher use [javonet-ruby-sdk Package](https://rubygems.org/gems/javonet-ruby-sdk)  
+## Prerequisites 
+
+To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime. 
+
+Javonet is available as a javonet-ruby-sdk GEM package which can be downloaded from [RubyGems public repository](https://rubygems.org/gems/javonet-ruby-sdk) or from [My Javonet Portal](https://my.javonet.com).
+
+Package can be installed with CLI:
+:::code source="v2/snippets/ruby/common/install.ps1" ID="Install":::
 
 ## Activate Javonet
 
@@ -20,15 +27,13 @@ Javonet needs to be imported as any other dependency.
 
 :::code source="v2/snippets/ruby/common/sampleProgram.rb" ID="Import":::
 
-Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
+Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/activating-javonet.md).
 
 :::code source="v2/snippets/ruby/common/sampleProgram.rb" ID="Activation":::
 
-To use other programming technology, [Runtime Context](/guides/v2/foundations/runtime-context.md) of the called technology needs to be created.
+As a second step, [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.
 
 :::code source="v2/snippets/ruby/common/sampleProgram.rb" ID="RuntimeContextCreation":::
-
-RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.
 
 The simplest use case is to get from target technology a type from a built-in library:
 

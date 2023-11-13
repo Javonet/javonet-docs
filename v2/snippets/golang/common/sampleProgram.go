@@ -1,3 +1,4 @@
+// <WholeSnippet>
 package main
 
 import "fmt"
@@ -6,7 +7,7 @@ import Javonet "javonet.com/javonet"
 // </Import>
 
 func main() {
-	// <WholeSnippet>
+
 	// <Activation>
 	Javonet.ActivateWithCredentials("your-license-key");
 	// </Activation>
@@ -27,5 +28,5 @@ func main() {
 	result := response.GetValue().(float32)
 	fmt.Println(result)
 	// </GetValue>	
-	// </WholeSnippet>
 }
+// </WholeSnippet>

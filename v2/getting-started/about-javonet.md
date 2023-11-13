@@ -55,7 +55,7 @@ Javonet is available as a package which can be downloaded from public repository
 [Getting started for Ruby developers](/guides/v2/ruby/`{called_technology}`/getting-started/getting-started-ruby)  
 
   
-[Getting started for Nodejs developers](/guides/v2/nodejs/`{called_technology}`/getting-started/getting-started-nodejs)  
+[Getting started for Nodejs developers](/guides/v2/javascript/`{called_technology}`/getting-started/getting-started-nodejs)  
 
   
 [Getting started for C++ developers++](/guides/v2/cpp/`{called_technology}`/getting-started/getting-started-cpp)  

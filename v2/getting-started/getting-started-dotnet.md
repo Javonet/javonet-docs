@@ -18,13 +18,13 @@ For application using .NET (Core) 3.1 or higher use [Javonet.Netcore.Sdk](https:
   
 For applications using .NET Framework 4.7.2 and higher use [Javonet.Clr.Sdk](https://www.nuget.org/packages/Javonet.Clr.Sdk) Package. 
   
-Package can be installed with Nuget Package Manager  
-    
+Package can be installed with Nuget Package Manager:
+  
 ![Install Javonet in Nuget](/v2/images/getting-started-dotnet-nuget.png?raw=true "Install Javonet in Nuget")  
   
-Or with .NET CLI:  
+Or with .NET CLI:
 :::code source="v2/snippets/csharp/common/install.ps1" ID="Netcore_Install":::
-or   
+or
 :::code source="v2/snippets/csharp/common/install.ps1" ID="Clr_Install":::  
 
 ## Activate Javonet
@@ -39,26 +39,22 @@ Javonet needs to be imported as any other dependency.
 
 If Javonet.Clr.Sdk package is used replace it with "using Javonet.Clr.Sdk."  
   
-Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/activating-javonet.md)
+Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/activating-javonet.md).
 
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Activation":::
 
-As a second step, [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.  
-  
+As a second step, [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.
+
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="RuntimeContextCreation":::
 
 The simplest use case is to get from target technology a type from a built-in library:
-
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="GetType":::
 
 And then get static field from the type:
-
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="GetStaticField":::
 
 The returned value needs to be cast to calling technology type and can be used as any other variable:
-
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="GetValue":::
 
 To sum up, the whole code snippet looks like:
-
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="WholeSnippet":::

@@ -1,3 +1,4 @@
+// <WholeSnippet>
 // <Import>
 #include "Javonet.h"
 // </Import>
@@ -8,7 +9,7 @@ using namespace JavonetNS::Cpp::Sdk;
 std::string resourcesDirectory = ".";
 
 int main(int argc, char* argv[]) {
-	// <WholeSnippet>
+
 	// <Activation>
 	Javonet::Activate("your-license-key");
 	// </Activation>
@@ -29,5 +30,5 @@ int main(int argc, char* argv[]) {
 	auto result = std::any_cast<float>(response->GetValue());
 	std::cout << result << std::endl;
 	// </GetValue>	
-	// </WholeSnippet>
 }
+// </WholeSnippet>

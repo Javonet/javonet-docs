@@ -12,7 +12,7 @@ Javonet is an advanced library enabling direct method calls between programming 
 
 To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.  
 
-Javonet is available as a dynamic c++ library and can be downloaded after [registering](https://my.javonet.com/signup/?type=free).
+Javonet is available as a dynamic c++ library and can be downloaded from [My Javonet Portal](https://my.javonet.com).  
 
 ## Activate Javonet
 
