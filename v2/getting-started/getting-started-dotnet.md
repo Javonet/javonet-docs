@@ -4,7 +4,7 @@
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
-## Install Javonet for .NET  
+# Getting started for .NET  
 
 Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use". 
 
@@ -15,19 +15,17 @@ To call library/package/module from another technology, corresponding runtime ha
 Javonet is available as a Nuget package which can be downloaded from Nuget public repository or from [My Javonet Portal](https://my.javonet.com).  
 
 For application using .NET (Core) 3.1 or higher use [Javonet.Netcore.Sdk](https://www.nuget.org/packages/Javonet.Netcore.Sdk) Package  
-  
-For applications using .NET Framework 4.7.2 and higher use [Javonet.Clr.Sdk](https://www.nuget.org/packages/Javonet.Clr.Sdk) Package. 
-  
+For applications using .NET Framework 4.7.2 and higher use [Javonet.Clr.Sdk](https://www.nuget.org/packages/Javonet.Clr.Sdk) Package.   
 Package can be installed with Nuget Package Manager:
   
 ![Install Javonet in Nuget](/v2/images/getting-started-dotnet-nuget.png?raw=true "Install Javonet in Nuget")  
   
-Or with .NET CLI:
+Or with .NET CLI for .NET applications:
 :::code source="v2/snippets/csharp/common/install.ps1" ID="Netcore_Install":::
-or
+or for .NET Framework applications
 :::code source="v2/snippets/csharp/common/install.ps1" ID="Clr_Install":::  
 
-## Activate Javonet
+## Get activation key
 
 Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 
@@ -35,9 +33,7 @@ Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.
 
 Javonet needs to be imported as any other dependency.
 
-:::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Import":::
-
-If Javonet.Clr.Sdk package is used replace it with "using Javonet.Clr.Sdk."  
+:::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Import"::: 
   
 Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/activating-javonet.md).
 

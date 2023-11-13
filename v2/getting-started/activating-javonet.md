@@ -6,9 +6,7 @@
 
 
 # Activating Javonet
-
-## Getting license
-
+  
 Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to get license key, which is necessary to activate Javonet.
 
 ## Activating Javonet in your application

@@ -4,20 +4,20 @@
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
-## Install Javonet for Perl
+# Getting started for Perl
 
 Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use". 
 
 ## Prerequisites 
 
-To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.
+To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.  
 
 Javonet is available as a JavonetPerlSdk CPAN package which can be downloaded from [CPAN public repository](https://metacpan.org/author/JAVONET/releases) or from [My Javonet Portal](https://my.javonet.com).  
 
 Package can be installed with CLI:
 :::code source="v2/snippets/perl/common/install.ps1" ID="Install":::
 
-## Activate Javonet
+## Get activation key
 
 Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 

@@ -4,7 +4,7 @@
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
-## Install Javonet for GoLang
+# Getting started for GoLang
 
 Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use". 
 
@@ -14,7 +14,7 @@ To call library/package/module from another technology, corresponding runtime ha
 
 Javonet is available as a GoLang library and can be downloaded from [My Javonet Portal](https://my.javonet.com).  
 
-## Activate Javonet
+## Get activation key
 
 Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 

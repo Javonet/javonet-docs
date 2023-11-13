@@ -1,13 +1,12 @@
 ﻿// <WholeSnippet>
 namespace SampleProgram;
 // <Import>
-using Javonet.Netcore.Sdk;
+using Javonet.Netcore.Sdk; //or using Javonet.Clr.Sdk for .NET Framework apps
 // </Import>
 class SampleProgram
 {
 	static void Main(string[] args)
 	{
-
 		// <Activation>
 		Javonet.Activate("your-license-key");
 		// </Activation>
