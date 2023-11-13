@@ -1,3 +1,4 @@
+// <WholeSnippet>
 // <Import>
 import com.javonet.sdk.internal.InvocationContext;
 import com.javonet.sdk.internal.RuntimeContext;
@@ -6,10 +7,7 @@ import com.javonet.sdk.java.Javonet;
 
 public class SampleProgram {
 
-    private static final String resourcesDirectory = ".";
-
     public static void main(String[] args) {
-		// <WholeSnippet>
 		// <Activation>
         Javonet.activate("your-license-key");
 		// </Activation>
@@ -30,6 +28,6 @@ public class SampleProgram {
         float result = (float) response.getValue();
         System.out.println(result);
 		// </GetValue>
-        // </WholeSnippet>
     }
 }
+// </WholeSnippet>

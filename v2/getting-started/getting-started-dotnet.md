@@ -10,9 +10,9 @@ Javonet is an advanced library enabling direct method calls between programming 
 
 ## Prerequisites 
 
-To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/getting-started/about-javonet.md) for details about installing called technology runtime.
+To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.
   
-Javonet is available as a Nuget package which can be downloaded from Nuget public repository or from [My Javonet Portal](https://my.javonet.com). 
+Javonet is available as a Nuget package which can be downloaded from Nuget public repository or from [My Javonet Portal](https://my.javonet.com).  
 
 For application using .NET (Core) 3.1 or higher use [Javonet.Netcore.Sdk](https://www.nuget.org/packages/Javonet.Netcore.Sdk) Package  
   
@@ -23,16 +23,13 @@ Package can be installed with Nuget Package Manager
 ![Install Javonet in Nuget](/v2/images/getting-started-dotnet-nuget.png?raw=true "Install Javonet in Nuget")  
   
 Or with .NET CLI:  
-  
 :::code source="v2/snippets/csharp/common/install.ps1" ID="Netcore_Install":::
-  
-or 
-  
+or   
 :::code source="v2/snippets/csharp/common/install.ps1" ID="Clr_Install":::  
 
 ## Activate Javonet
 
-Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to get license key, which is necessary to activate Javonet.
+Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 
 ## First sample application
 
@@ -42,11 +39,11 @@ Javonet needs to be imported as any other dependency.
 
 If Javonet.Clr.Sdk package is used replace it with "using Javonet.Clr.Sdk."  
   
-Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/getting-started/activating-javonet.md)
+Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/activating-javonet.md)
 
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Activation":::
 
-As a second step, [Runtime Context](/guides/v2/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.  
+As a second step, [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.  
   
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="RuntimeContextCreation":::
 

@@ -6,15 +6,23 @@
 
 ## Install Javonet for Java
 
-Javonet is available as a [JAR library](https://central.sonatype.com/artifact/com.javonet/javonet-java-sdk) and can be used as any other JAR package. Javonet 2 is recommended for most applications.  
+Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".  
+
+Javonet 2 is recommended for most applications.  
   
 Javonet 1.0 in some cases may be more appropriate (f.e. for embedding .NET UI controls (WPF or WinForms) in Java AWT/Swing or JavaFX). 
 
+## Prerequisites 
+
+To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.  
+
+Javonet is available as a JAR library which can be downloaded from [public repository](https://central.sonatype.com/artifact/com.javonet/javonet-java-sdk) or from [My Javonet Portal](https://my.javonet.com).  
+
+:::code source="v2/snippets/java/common/install.xml" ID="Dependecy":::
+
 ## Activate Javonet
 
-Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to obtain license key.
-
-An e-mail and license key is necessary to activate Javonet.
+Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 
 ## First sample application
 
@@ -22,15 +30,13 @@ Javonet needs to be imported as any other dependency.
 
 :::code source="v2/snippets/java/common/sampleProgram.java" ID="Import":::
 
-Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
+Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/activating-javonet.md)
 
 :::code source="v2/snippets/java/common/sampleProgram.java" ID="Activation":::
 
-To use other programming technology, [Runtime Context](/guides/v2/foundations/runtime-context.md) of the called technology needs to be created.
+As a second step, [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.  
 
 :::code source="v2/snippets/java/common/sampleProgram.java" ID="RuntimeContextCreation":::
-
-RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.
 
 The simplest use case is to get from target technology a type from a built-in library:
 

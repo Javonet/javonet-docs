@@ -40,26 +40,26 @@ On Windows [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/s
   
 Javonet is available as a package which can be downloaded from public repository appropriate for developer's language or from [My Javonet Portal](https://my.javonet.com). Detailed instructions are presented in the following sections:  
   
-[Getting started for .NET developers](/guides/v2/getting-started/getting-started-dotnet)  
+[Getting started for .NET developers](/guides/v2/csharp/`{called_technology}`/getting-started/getting-started-dotnet)  
 
   
-[Getting started for Java developers](/guides/v2/getting-started/getting-started-java)  
+[Getting started for Java developers](/guides/v2/java/`{called_technology}`/getting-started/getting-started-java)  
 
   
-[Getting started for Perl developers](/guides/v2/getting-started/getting-started-perl)  
+[Getting started for Perl developers](/guides/v2/perl/`{called_technology}`/getting-started/getting-started-perl)  
 
   
-[Getting started for Python developers](/guides/v2/getting-started/getting-started-python)  
+[Getting started for Python developers](/guides/v2/python/`{called_technology}`/getting-started/getting-started-python)  
 
   
-[Getting started for Ruby developers](/guides/v2/getting-started/getting-started-ruby)  
+[Getting started for Ruby developers](/guides/v2/ruby/`{called_technology}`/getting-started/getting-started-ruby)  
 
   
-[Getting started for Nodejs developers](/guides/v2/getting-started/getting-started-nodejs)  
+[Getting started for Nodejs developers](/guides/v2/nodejs/`{called_technology}`/getting-started/getting-started-nodejs)  
 
   
-[Getting started for C++ developers++](/guides/v2/getting-started/getting-started-cpp)  
+[Getting started for C++ developers++](/guides/v2/cpp/`{called_technology}`/getting-started/getting-started-cpp)  
 
   
-[Getting started for Golang developers](/guides/v2/getting-started/getting-started-golang)    
+[Getting started for Golang developers](/guides/v2/golang/`{called_technology}`/getting-started/getting-started-golang)    
   

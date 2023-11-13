@@ -12,9 +12,7 @@ For applications using Python 3.6 and higher use [javonet-python-sdk Package](ht
 
 ## Activate Javonet
 
-Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to obtain license key.
-
-An e-mail and license key is necessary to activate Javonet.
+Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 
 ## First sample application
 

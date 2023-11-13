@@ -12,9 +12,7 @@ For applications using Perl 5 use [JavonetPerlSdk Package](https://metacpan.org/
 
 ## Activate Javonet
 
-Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to obtain license key.
-
-An e-mail and license key is necessary to activate Javonet.
+Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) page to get license key, which is necessary to activate Javonet.  
 
 ## First sample application
 
