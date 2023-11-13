@@ -55,7 +55,7 @@ The returned value needs to be cast to calling technology type and can be used a
 To sum up, the whole code snippet looks like:
 
 :::code 
-:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
+:calling_source: v2/snippets/csharp/python-package/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_GetStaticField
 :called_source: v2/snippets/python-package/TestClass.py
 :called_id: Empty
