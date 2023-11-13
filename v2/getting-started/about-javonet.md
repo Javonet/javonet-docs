@@ -1,14 +1,14 @@
 :::options
 :title: About Javonet
 :description: This article provides general information about Javonet
-:related_articles: getting-started/activating-javonet, getting-started/getting-started-dotnet, getting-started/getting-started-java, getting-started/getting-started-perl, getting-started/getting-started-python, getting-started/getting-started-ruby, getting-started/getting-started-nodejs, getting-started/getting-started-cpp, getting-started/getting-started-golang, getting-started/adding-references-to-libraries
+:related_articles: getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
 # About Javonet  
       
-Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article describes how to use Javonet in selected technology and install prerequisites.   
+Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article describes how to install prerequisites and lists getting started sections for supported technologies.
   
-## Install prerequisites  
+## Prerequisites  
   
 Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use". 
   
@@ -38,28 +38,28 @@ On Windows [Strawberry Perl 5.32](https://strawberryperl.com/download/5.32.1.1/s
 
 ## Getting started  
   
-Javonet is available as a package which can be downloaded from public repository appropriate for developer's language or from [My Javonet Portal](https://my.javonet.com). Detailed instructions are presented in following sections:  
+Javonet is available as a package which can be downloaded from public repository appropriate for developer's language or from [My Javonet Portal](https://my.javonet.com). Detailed instructions are presented in the following sections:  
   
-[Getting started for .NET developers](https://www.javonet.com/guides/v2/getting-started/getting-started-dotnet)  
+[Getting started for .NET developers](/guides/v2/getting-started/getting-started-dotnet)  
 
   
-[Getting started for Java developers](https://www.javonet.com/guides/v2/getting-started/getting-started-java)  
+[Getting started for Java developers](/guides/v2/getting-started/getting-started-java)  
 
   
-[Getting started for Perl developers](https://www.javonet.com/guides/v2/getting-started/getting-started-perl)  
+[Getting started for Perl developers](/guides/v2/getting-started/getting-started-perl)  
 
   
-[Getting started for Python developers](https://www.javonet.com/guides/v2/getting-started/getting-started-python)  
+[Getting started for Python developers](/guides/v2/getting-started/getting-started-python)  
 
   
-[Getting started for Ruby developers](https://www.javonet.com/guides/v2/getting-started/getting-started-ruby)  
+[Getting started for Ruby developers](/guides/v2/getting-started/getting-started-ruby)  
 
   
-[Getting started for Nodejs developers](https://www.javonet.com/guides/v2/getting-started/getting-started-nodejs)  
+[Getting started for Nodejs developers](/guides/v2/getting-started/getting-started-nodejs)  
 
   
-[Getting started for C++ developers++](https://www.javonet.com/guides/v2/getting-started/getting-started-cpp)  
+[Getting started for C++ developers++](/guides/v2/getting-started/getting-started-cpp)  
 
   
-[Getting started for Golang developers](https://www.javonet.com/guides/v2/getting-started/getting-started-golang)    
+[Getting started for Golang developers](/guides/v2/getting-started/getting-started-golang)    
   

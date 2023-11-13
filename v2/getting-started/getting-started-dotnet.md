@@ -4,21 +4,35 @@
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :::
 
-## Install Javonet for .NET
+## Install Javonet for .NET  
 
-Javonet is available as a Nuget package, which can be installed using Nuget package manager or any other method which supports Nuget packages. Detailed instructions can be found at [Nuget Documentation](https://learn.microsoft.com/en-us/nuget/)    
+Javonet is an advanced library enabling direct method calls between programming languages and modules. To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use". 
 
-For applications using .NET Framework 4.7.2 and higher use [Javonet.Clr.Sdk Package](https://www.nuget.org/packages/Javonet.Clr.Sdk)  
+## Prerequisites 
 
-For application using .NET Core 3.1 or .NET 5.0 and higher use [Javonet.Netcore.Sdk Package](https://www.nuget.org/packages/Javonet.Netcore.Sdk)  
+To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/getting-started/about-javonet.md) for details about installing called technology runtime.
+  
+Javonet is available as a Nuget package which can be downloaded from Nuget public repository or from [My Javonet Portal](https://my.javonet.com). 
 
+For application using .NET (Core) 3.1 or higher use [Javonet.Netcore.Sdk](https://www.nuget.org/packages/Javonet.Netcore.Sdk) Package  
+  
+For applications using .NET Framework 4.7.2 and higher use [Javonet.Clr.Sdk](https://www.nuget.org/packages/Javonet.Clr.Sdk) Package. 
+  
+Package can be installed with Nuget Package Manager  
+    
 ![Install Javonet in Nuget](/v2/images/getting-started-dotnet-nuget.png?raw=true "Install Javonet in Nuget")  
+  
+Or with .NET CLI:  
+  
+:::code source="v2/snippets/csharp/common/install.ps1" ID="Netcore_Install":::
+  
+or 
+  
+:::code source="v2/snippets/csharp/common/install.ps1" ID="Clr_Install":::  
 
 ## Activate Javonet
 
-Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to obtain license key.
-
-An e-mail and license key is necessary to activate Javonet.
+Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to get license key, which is necessary to activate Javonet.
 
 ## First sample application
 
@@ -28,15 +42,13 @@ Javonet needs to be imported as any other dependency.
 
 If Javonet.Clr.Sdk package is used replace it with "using Javonet.Clr.Sdk."  
   
-Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated. 
+Javonet needs to be activated first. Activation must be called only once at the start-up of an application. More about activation in [Activating Javonet section](/guides/v2/getting-started/activating-javonet.md)
 
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="Activation":::
 
-To use other programming technology, [Runtime Context](/guides/v2/foundations/runtime-context.md) of the called technology needs to be created.
-
+As a second step, [Runtime Context](/guides/v2/foundations/runtime-context.md) of the called technology needs to be created. RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.  
+  
 :::code source="v2/snippets/csharp/common/sampleProgram.cs" ID="RuntimeContextCreation":::
-
-RuntimeContext refers to single instance of the called runtime. Once it is created it is used to interact with called runtime.  
 
 The simplest use case is to get from target technology a type from a built-in library:
 
