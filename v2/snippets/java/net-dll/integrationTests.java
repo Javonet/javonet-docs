@@ -356,7 +356,7 @@ public class integrationTests {
         InvocationContext array = instance.invokeInstanceMethod("Get1DArray").execute();
 
         // set array's index
-        array.setIndex("seven", 4).execute();
+        array.setIndex(4, "seven").execute();
 
         // get index from array
         InvocationContext response = array.getIndex(4).execute();
@@ -367,7 +367,7 @@ public class integrationTests {
         // write result to console
         System.out.println(result);
         // </TestResources_1DArray_SetIndex>
-        array.setIndex("five", 4).execute();
+        array.setIndex(4, "five").execute();
         Assertions.assertEquals("seven", result);
     }
 
@@ -737,7 +737,7 @@ public class integrationTests {
         InvocationContext mango = calledRuntime.getEnumItem(enumType, "Mango");
 
         // create fruits arrays
-        InvocationContext[] fruits1ToAdd = new InvocationContext[] {apple, mango};
+        InvocationContext[] fruits1ToAdd = new InvocationContext[]{apple, mango};
 
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
@@ -794,35 +794,379 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void Test_NetDll_TestResources_ExchangeLibrary_ExchangeCalculator_GetExchangeRate() {
-        // <TestResources_GetInstanceField>
+    public void Test_NetDll_TestResources_2DArray_GetIndex() {
+        // <TestResources_2DArray_GetIndex>
+        // use activate only once in your app
         Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().netcore();
 
         // set up variables
-        String libraryPath = resourcesDirectory + "/ExchangeLibrary.dll";
-        String className = "ExchangeLibrary.ExchangeCalculator";
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
 
         // load custom library
         calledRuntime.loadLibrary(libraryPath);
 
-        // get type from the runtime
+        // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // create type's instance
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("Get2DArray").execute();
+
+        // two ways to get index from array
+        InvocationContext response1 = array.getIndex(1, 1).execute();
+        InvocationContext response2 = array.getIndex((Object) new Integer[]{0, 1}).execute();
+
+        // get value from response
+        String result1 = (String) response1.getValue();
+        String result2 = (String) response2.getValue();
+
+        // write result to console
+        System.out.println(result1);
+        System.out.println(result2);
+        // </TestResources_2DArray_GetIndex>
+        Assertions.assertEquals("S11", result1);
+        Assertions.assertEquals("S01", result2);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_TestResources_2DArray_GetSizeAndRank() {
+        // <TestResources_2DArray_GetSizeAndRank>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("Get2DArray").execute();
+
+        // get array's size
+        Integer size = (Integer) array.getSize().execute().getValue();
+
+        // get array's rank
+        Integer rank = (Integer) array.getRank().execute().getValue();
+
+        // write result to console
+        System.out.println("Size: " + size);
+        System.out.println("Rank: " + rank);
+        // </TestResources_2DArray_GetSizeAndRank>
+        Assertions.assertEquals(4, size);
+        Assertions.assertEquals(2, rank);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_TestResources_2DArray_SetIndex() {
+        // <TestResources_2DArray_SetIndex>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("Get2DArray").execute();
+
+        // set index in array
+        array.setIndex(new Integer[]{0, 1}, "new value").execute();
+
+        // get index from array
+        InvocationContext response = array.getIndex(0, 1).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_2DArray_SetIndex>
+        array.setIndex(new Integer[]{0, 1}, "S01").execute();
+        Assertions.assertEquals("new value", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_StandardLibrary_CreateInstanceOfGenericClass() {
+        // <StandardLibrary_CreateInstanceOfGenericClass>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // get string type
+        InvocationContext stringType = calledRuntime.getType("System.String");
+
+        // get generic calls with string type as parameter
+        InvocationContext listType = calledRuntime.getType("System.Collections.Generic.List`1", stringType);
+
+        // create generic type's instance
+        InvocationContext list = listType.createInstance().execute();
+
         // invoke instance's methods
-        InvocationContext response1 = instance.invokeInstanceMethod("GetExchangeRate", "PLNEUR").execute();
-        InvocationContext response2 = instance.invokeInstanceMethod("GetExchangeRate", "PLNUSD").execute();
+        list.invokeInstanceMethod("Add", "one").execute();
+        list.invokeInstanceMethod("Add", "two").execute();
+        list.invokeInstanceMethod("Add", "three").execute();
+        list.invokeInstanceMethod("AddRange", new String[]{"four", "five", "six"}).execute();
 
-        Float PLNEUR = (Float) response1.getValue();
-        Float PLNUSD = (Float) response2.getValue();
+        // check number of elements
+        int count = (int) list.getInstanceField("Count").execute().getValue();
 
-        Assertions.assertEquals(4.6f, PLNEUR);
-        Assertions.assertEquals(4.0f, PLNUSD);
+        // write result to console
+        System.out.println(count);
+        // </StandardLibrary_CreateInstanceOfGenericClass>
+        Assertions.assertEquals(6, count);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_StandardLibrary_HandleList() {
+        // <StandardLibrary_HandleList>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // get string type
+        InvocationContext doubleType = calledRuntime.getType("System.Double");
+
+        // get generic calls with string type as parameter
+        InvocationContext listType = calledRuntime.getType("System.Collections.Generic.List`1", doubleType);
+
+        // create generic type's instance
+        InvocationContext list = listType.createInstance().execute();
+
+        // invoke instance's method
+        list.invokeInstanceMethod("AddRange", new Double[]{1.1, 2.2, 3.3, 4.4, 5.5, 6.6}).execute();
+
+        // get element from list
+        InvocationContext response1 = list.getIndex(3).execute();
+
+        // get size of list
+        InvocationContext response2 = list.getSize().execute();
+
+        // get value from response
+        double result = (double) response1.getValue();
+        int result2 = (int) response2.getValue();
+
+        // write result to console
+        System.out.println(result);
+        System.out.println(result2);
+        // </StandardLibrary_HandleList>
+        Assertions.assertEquals(4.4, result);
+        Assertions.assertEquals(6, result2);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_StandardLibrary_HandleDictionary() {
+        // <StandardLibrary_HandleDictionary>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // get string and double types
+        InvocationContext stringType = calledRuntime.getType("System.String");
+        InvocationContext doubleType = calledRuntime.getType("System.Double");
+
+        //get generic calls with string and double types as parameters
+        InvocationContext dictionaryType = calledRuntime.getType("System.Collections.Generic.Dictionary`2", stringType, doubleType);
+
+        // create generic type's instance
+        InvocationContext dictionary = dictionaryType.createInstance().execute();
+
+        // invoke instance's method
+        dictionary.invokeInstanceMethod("Add", "pi", Math.PI).execute();
+        dictionary.invokeInstanceMethod("Add", "e", Math.E).execute();
+        dictionary.invokeInstanceMethod("Add", "c", 299792458.0).execute();
+
+        // get element from dictionary
+        InvocationContext response = dictionary.getIndex("pi").execute();
+
+        // get value from response
+        double result = (double) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_HandleDictionary>
+        Assertions.assertEquals(Math.PI, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_TestResources_Refs_OneArg() {
+        // <TestResources_Refs_OneArg>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create values for refs
+
+        // first way - pass only value
+        InvocationContext refValue1 = calledRuntime.asRef(10).execute();
+
+        // second way - pass value and type
+        // ref variable should have specific type to be able to invoke methods on it
+        // this way enables to cast value to specific type needed by called method
+        InvocationContext intType = calledRuntime.getType("System.Int32").execute();
+        InvocationContext refValue2 = calledRuntime.asRef(20.0, intType).execute();
+
+        // invoke type's static method with ref values
+        calledRuntimeType.invokeStaticMethod("RefSampleMethod", refValue1).execute();
+        calledRuntimeType.invokeStaticMethod("RefSampleMethod", refValue2).execute();
+
+        // get refs' values
+        int result1 = (int) refValue1.getRefValue().execute().getValue();
+        int result2 = (int) refValue2.getRefValue().execute().getValue();
+
+        // write result to console
+        System.out.println(result1);
+        System.out.println(result2);
+
+        // </TestResources_Refs_OneArg>
+        Assertions.assertEquals(20, result1);
+        Assertions.assertEquals(40, result2);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_TestResources_Refs_MultipleArg() {
+        // <TestResources_Refs_MultipleArg>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get types from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create values for refs
+        // ref variable should have specific type to be able to invoke methods on it
+        // This way enables to cast value to specific type needed by called method
+        InvocationContext refToInt = calledRuntime.asRef(10).execute();
+        InvocationContext doubleType = calledRuntime.getType("System.Double").execute();
+        InvocationContext refToDouble = calledRuntime.asRef(5, doubleType).execute();
+        InvocationContext refToString = calledRuntime.asRef("Before execution").execute();
+        
+        // invoke type's static method with ref values
+        calledRuntimeType.invokeStaticMethod("RefSampleMethod2", refToInt, refToDouble, refToString).execute();
+        
+        // get refs' values
+        int result1 = (int) refToInt.getRefValue().execute().getValue();
+        double result2 = (double) refToDouble.getRefValue().execute().getValue();
+        String result3 = (String) refToString.getRefValue().execute().getValue();
+
+        // write result to console
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        // </TestResources_Refs_MultipleArg>
+        Assertions.assertEquals(20, result1);
+        Assertions.assertEquals(2.5, result2);
+        Assertions.assertEquals("Done", result3);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetDll_TestResources_Outs() {
+        // <TestResources_Outs>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().netcore();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+        InvocationContext stringType = calledRuntime.getType("System.String").execute();
+
+        // create values for outs
+        // out variable should have specific type to be able to invoke methods on it
+        // first way - pass only type
+        InvocationContext outValue1 = calledRuntime.asOut(stringType).execute();
+        // second way - pass initial value and type to cast on
+        InvocationContext outValue2 = calledRuntime.asOut('c', stringType).execute();
+        // third way - pass initial value without specific type
+        InvocationContext outValue3 = calledRuntime.asOut("Test string").execute();
+
+        // invoke type's static method with out values
+        calledRuntimeType.invokeStaticMethod("OutSampleMethod", outValue1).execute();
+        calledRuntimeType.invokeStaticMethod("OutSampleMethod", outValue2).execute();
+        calledRuntimeType.invokeStaticMethod("OutSampleMethod", outValue3).execute();
+
+        // get outs' values
+        String result1 = (String) outValue1.getRefValue().execute().getValue();
+        String result2 = (String) outValue2.getRefValue().execute().getValue();
+        String result3 = (String) outValue3.getRefValue().execute().getValue();
+
+        // write result to console
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        // </TestResources_Outs>
+        Assertions.assertEquals("String from OutSampleMethod", result1);
+        Assertions.assertEquals("String from OutSampleMethod", result2);
+        Assertions.assertEquals("String from OutSampleMethod", result3);
     }
 
     @Test

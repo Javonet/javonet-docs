@@ -320,7 +320,7 @@ if OS.windows?
       array = instance.invoke_instance_method("Get1DArray").execute
 
       # set array's index
-      array.set_index("seven", 4).execute
+      array.set_index(4, "seven").execute
 
       # get index from array
       response = array.get_index(4).execute

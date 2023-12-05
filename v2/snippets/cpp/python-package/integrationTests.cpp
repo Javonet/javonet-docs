@@ -320,7 +320,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto arrayReference = instance->InvokeInstanceMethod("get_1d_array")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ "seven", 4 })->Execute();
+		arrayReference->SetIndex({ 4, "seven"})->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();
@@ -475,12 +475,12 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto response = calledRuntimeType->GetStaticField("pi")->Execute();
 
 		// get value from response
-		auto result = std::any_cast<float>(response->GetValue());
+		auto result = std::any_cast<double>(response->GetValue());
 
 		// write result to console
 		std::cout << result << std::endl;
 		// </StandardLibrary_GetStaticField>
-		EXPECT_EQ((float)M_PI, result);
+		EXPECT_EQ(M_PI, result);
 	}
 
 	TEST(Integration, Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Builtins_Abs_Minus50_50) {

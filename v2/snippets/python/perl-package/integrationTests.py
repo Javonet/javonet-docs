@@ -289,7 +289,7 @@ def test_PerlPackage_TestResources_1DArray_SetIndex():
     array = instance.invoke_instance_method("get_1d_array").execute()
 
     # set array's index
-    array.set_index("seven", 4).execute()
+    array.set_index(4, "seven").execute()
 
     # get index from array
     response = array.get_index(4).execute()
@@ -300,7 +300,7 @@ def test_PerlPackage_TestResources_1DArray_SetIndex():
     # write result to console
     print(result)
     # </TestResources_1DArray_SetIndex>
-    array.set_index("five", 4).execute()
+    array.set_index(4, "five").execute()
     assert (result == "seven")
 
 

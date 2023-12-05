@@ -365,7 +365,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 			var array = instance.InvokeInstanceMethod("get_1d_array").Execute();
 
 			// set array's index
-			array.SetIndex("seven", 4).Execute();
+			array.SetIndex(4, "seven").Execute();
 
 			// get index from array
 			var response = array.GetIndex(4).Execute();
@@ -376,7 +376,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 			// write result to console
 			System.Console.WriteLine(result);
 			// </TestResources_1DArray_SetIndex>
-			array.SetIndex("five", 4).Execute();
+			array.SetIndex(4, "five").Execute();
 			Assert.Equal("seven", result);
 		}
 
@@ -492,7 +492,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 			var response = instance.InvokeInstanceMethod("add_array_elements_and_multiply", new double[] { 12.22, 98.22, -10.44 }, 9.99).Execute();
 
 			// get value from response
-			var result = (float)response.GetValue();
+			var result = (double)response.GetValue();
 
 			// write result to console
 			System.Console.WriteLine(result);
@@ -699,12 +699,12 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 			var response = calledRuntimeType.GetStaticField("pi").Execute();
 
 			// get value from response
-			var result = (float)response.GetValue();
+			var result = (double)response.GetValue();
 
 			// write result to console
 			System.Console.WriteLine(result);
 			// </StandardLibrary_GetStaticField>
-			Assert.Equal(System.Math.PI, result, 7);
+			Assert.Equal(System.Math.PI, result);
 		}
 	}
 }

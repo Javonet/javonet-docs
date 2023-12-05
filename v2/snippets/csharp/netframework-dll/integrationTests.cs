@@ -353,7 +353,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 			var array = instance.InvokeInstanceMethod("Get1DArray").Execute();
 
 			// set array's index
-			array.SetIndex("seven", 4).Execute();
+			array.SetIndex(4, "seven").Execute();
 
 			// get index from array
 			var response = array.GetIndex(4).Execute();
@@ -364,7 +364,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 			// write result to console
 			System.Console.WriteLine(result);
 			// </TestResources_1DArray_SetIndex>
-			array.SetIndex("five", 4).Execute();
+			array.SetIndex(4, "five").Execute();
 			Assert.Equal("seven", result);
 		}
 

@@ -30,6 +30,10 @@ public class TestClass {
         return new String[]{"one", "two", "three", "four", "five"};
     }
 
+    public String[][] get2DArray() {
+        return new String[][]{{"S00", "S01"},{"S10", "S11"}};
+    }
+
     public double addArrayElementsAndMultiply(Double[] myArray, double myValue) {
         Double sum = 0.0;
         for (Double value : myArray) {

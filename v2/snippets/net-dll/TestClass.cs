@@ -36,7 +36,12 @@ namespace TestClass
 			return new string[] { "one", "two", "three", "four", "five" };
 		}
 
-		public double AddArrayElementsAndMultiply(double[] myArray, double myValue)
+        public string[,] Get2DArray()
+        {
+            return new string[,] { { "S00", "S01" }, { "S10", "S11" } };
+        }
+
+        public double AddArrayElementsAndMultiply(double[] myArray, double myValue)
 		{
 			double sum = 0;
 			foreach (double element in myArray)
@@ -116,6 +121,27 @@ namespace TestClass
 			return string.Format("{0} fruits on the list", Fruits.Count);
 		}
         // </Enums>
+
+		// <Refs>
+		public static void RefSampleMethod(ref int x)
+		{
+			x = x * 2;
+		}
+
+        public static void RefSampleMethod2(ref int x, ref double y, ref string z)
+        {
+            x = x * 2;
+			y = y / 2;
+			z = "Done";
+        }
+        // </Refs>
+
+        // <Outs>
+        public static void OutSampleMethod(out string outStr)
+        {
+			outStr = "String from OutSampleMethod";
+        }
+        // </Outs>
 
         // <Empty>
         // empty

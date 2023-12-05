@@ -361,7 +361,7 @@ public class integrationTests {
         InvocationContext array = instance.invokeInstanceMethod("get_1d_array").execute();
 
         // set array's index
-        array.setIndex("seven", 4).execute();
+        array.setIndex(4, "seven").execute();
 
         // get index from array
         InvocationContext response = array.getIndex(4).execute();
@@ -372,7 +372,7 @@ public class integrationTests {
         // write result to console
         System.out.println(result);
         // </TestResources_1DArray_SetIndex>
-        array.setIndex("five", 4).execute();
+        array.setIndex(4, "five").execute();
         Assertions.assertEquals("seven", result);
     }
 

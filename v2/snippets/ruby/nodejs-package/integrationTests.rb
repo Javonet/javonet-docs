@@ -320,7 +320,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
     array = instance.invoke_instance_method("get1DArray").execute
 
     # set array's index
-    array.set_index("seven", 4).execute
+    array.set_index(4, "seven").execute
 
     # get index from array
     response = array.get_index(4).execute
@@ -331,7 +331,7 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
     # write result to console
     puts result
     # </TestResources_1DArray_SetIndex>
-    array.set_index("five", 4).execute
+    array.set_index(4, "five").execute
     expect(result).to eq("seven")
   end
 

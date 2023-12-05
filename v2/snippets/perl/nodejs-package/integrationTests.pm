@@ -333,7 +333,7 @@ sub Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven {
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
 
     # set array's index
-    $array->set_index("seven", 4)->execute();
+    $array->set_index(4, "seven")->execute();
 
     # get array's index
     my $response = $array->get_index(4)->execute();
@@ -344,7 +344,7 @@ sub Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven {
     # print result to console
     print("$result\n");
     # </TestResources_1DArray_SetIndex>
-    $array->set_index("five", 4)->execute();
+    $array->set_index(4, "five")->execute();
     return $result;
 }
 
