@@ -228,10 +228,10 @@ items:
   items:
   - name: Passing arguments by reference with "ref" keyword
     href: /methods-arguments/passing-arguments-by-reference-with-ref-keyword.md
-    calling_technology: java, python
+    calling_technology: java #, python, javascript, perl, ruby, cpp, golang
     called_technology: netframework-dll, net-dll
   - name: Passing arguments by reference with "out" keyword
     href: /methods-arguments/passing-arguments-by-reference-with-out-keyword.md
-    calling_technology: java, python
+    calling_technology: java #, python, javascript, perl, ruby, cpp, golang
     called_technology: netframework-dll, net-dll
   

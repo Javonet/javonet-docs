@@ -1182,8 +1182,8 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void Test_NetDll_TestResources_Refs_MultipleArg() {
-        // <TestResources_Refs_MultipleArg>
+    public void Test_NetDll_TestResources_Refs_MultipleArgs() {
+        // <TestResources_Refs_MultipleArgs>
         // use activate only once in your app
         Javonet.activate("your-license-key");
 
@@ -1220,7 +1220,7 @@ public class integrationTests {
         System.out.println(result1);
         System.out.println(result2);
         System.out.println(result3);
-        // </TestResources_Refs_MultipleArg>
+        // </TestResources_Refs_MultipleArgs>
         Assertions.assertEquals(20, result1);
         Assertions.assertEquals(2.5, result2);
         Assertions.assertEquals("Done", result3);

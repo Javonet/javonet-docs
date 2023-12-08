@@ -1261,7 +1261,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 		[Trait("Test", "Functional")]
 		public void Test_NetfframeworkDll_TestResources_Refs_MultipleArgs()
 		{
-			// <TestResources_Refs_Multiple_Args>
+			// <TestResources_Refs_MultipleArgs>
 			// use Activate only once in your app
 			Javonet.Activate("your-license-key");
 
@@ -1298,7 +1298,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 			System.Console.WriteLine(result1);
 			System.Console.WriteLine(result2);
 			System.Console.WriteLine(result3);
-			// </TestResources_Refs_Multiple_Args>
+			// </TestResources_Refs_MultipleArgs>
 			Assert.Equal(20, result1);
 			Assert.Equal(2.5, result2);
 			Assert.Equal("Done", result3);
