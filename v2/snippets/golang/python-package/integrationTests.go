@@ -354,7 +354,7 @@ func Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T)
 	array := instance.InvokeInstanceMethod("get_1d_array").Execute()
 
 	// set array's index
-	array.SetIndex("seven", 4).Execute()
+	array.SetIndex(4, "seven").Execute()
 
 	// get index from array
 	response := array.GetIndex(4).Execute()
@@ -365,7 +365,7 @@ func Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T)
 	// write result to console
 	fmt.Println(result)
 	// </TestResources_1DArray_SetIndex>
-	array.SetIndex("five", 4).Execute()
+	array.SetIndex(4, "five").Execute()
 	expectedResponse := "seven"
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
@@ -467,12 +467,12 @@ func Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	response := calledRuntimeType.GetStaticField("pi").Execute()
 
 	// get value from response
-	result := response.GetValue().(float32)
+	result := response.GetValue().(float64)
 
 	// write result to console
 	fmt.Println(result)
 	// </StandardLibrary_GetStaticField>
-	expectedResponse := float32(math.Pi)
+	expectedResponse := math.Pi
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}

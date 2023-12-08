@@ -167,24 +167,32 @@ items:
     href: /arrays-and-collections/arrays.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Value types arrays
-    href: /arrays-and-collections/value-types-arrays.md
-    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Reference types arrays
-    href: /arrays-and-collections/reference-types-arrays.md
-    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Multidimensional arrays
     href: /arrays-and-collections/multidimensional-arrays.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Jagged arrays
-    href: /arrays-and-collections/jagged-arrays.md
-    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Collections (lists, sets, queues, dictionaries )
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, python-package, ruby-package #,perl-package
+  - name: Collections (lists, dictionaries, sets, queues, stacks)
     href: /arrays-and-collections/collections.md
+    calling_technology: csharp, java, python, #javascript, perl, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, python-package, ruby-package #, perl-package
+     # - name: Value types arrays
+  #   href: /arrays-and-collections/value-types-arrays.md
+  #   calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+  #   called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+  # - name: Reference types arrays
+  #   href: /arrays-and-collections/reference-types-arrays.md
+  #   calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+  #   called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+  # - name: Jagged arrays
+  #   href: /arrays-and-collections/jagged-arrays.md
+  #   calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+  #   called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+
+
+- name: Exceptions 
+  items: 
+  - name: Exceptions
+    href: /exceptions/exceptions.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
 
@@ -205,13 +213,10 @@ items:
     href: /generics/calling-generic-instance-method.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library
-
-- name: Exceptions 
-  items: 
-  - name: Exceptions
-    href: /exceptions/exceptions.md
-    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
-    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+  - name: Creating generic class
+    href: /generics/creating-generic-class-instance.md
+    calling_technology: csharp, java, python, #javascript, perl, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library
 
 - name: Enums
   items: 
@@ -219,3 +224,15 @@ items:
     href: /enums/using-enum-type.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, python-package
+
+# - name: Methods arguments
+#   items:
+#   - name: Passing arguments by reference with "ref" keyword
+#     href: /methods-arguments/passing-arguments-by-reference-with-ref-keyword.md
+#     calling_technology: java, python
+#     called_technology: netframework-dll, net-dll
+#   - name: Passing arguments by reference with "out" keyword
+#     href: /methods-arguments/passing-arguments-by-reference-with-out-keyword.md
+#     calling_technology: java, python
+#     called_technology: netframework-dll, net-dll
+  

@@ -353,7 +353,7 @@ func Test_NetDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	array := instance.InvokeInstanceMethod("Get1DArray").Execute()
 
 	// set array's index
-	array.SetIndex("seven", 4).Execute()
+	array.SetIndex(4, "seven").Execute()
 
 	// get index from array
 	response := array.GetIndex(4).Execute()
@@ -364,7 +364,7 @@ func Test_NetDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// write result to console
 	fmt.Println(result)
 	// </TestResources_1DArray_SetIndex>
-	array.SetIndex("five", 4).Execute()
+	array.SetIndex(4, "five").Execute()
 	expectedResponse := "seven"
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))

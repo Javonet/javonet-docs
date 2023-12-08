@@ -320,7 +320,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetDll {
 		auto arrayReference = instance->InvokeInstanceMethod("Get1DArray")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ "seven", 4 })->Execute();
+		arrayReference->SetIndex({ 4, "seven"})->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();

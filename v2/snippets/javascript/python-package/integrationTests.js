@@ -320,7 +320,7 @@ describe('Nodejs to Python Package integration tests', () => {
             let array = instance.invokeInstanceMethod("get_1d_array").execute()
 
             // set array's index
-            array.setIndex("seven", 4).execute()
+            array.setIndex(4, "seven").execute()
 
             // get index from array
             let response = array.getIndex(4).execute()
@@ -331,7 +331,7 @@ describe('Nodejs to Python Package integration tests', () => {
             // write result to console
             console.log(result)
             // </TestResources_1DArray_SetIndex>
-            array.setIndex("five", 4).execute()
+            array.setIndex(4, "five").execute()
             expect(result).toBe("seven")
         })
 

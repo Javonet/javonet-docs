@@ -27,6 +27,10 @@ module TestClass
       return ["one", "two", "three", "four", "five"]
     end
 
+     def get_2d_array
+       return [["S00", "S01"],["S10", "S11"]]
+     end
+
     def add_array_elements_and_multiply(my_array, my_value)
       return my_array.sum * my_value
     end

@@ -3,6 +3,6 @@
 :description: This article provides an overview of working with collections
 :::
 
-# Collections
+# Working with collections
 
 Working with collection support coming soon

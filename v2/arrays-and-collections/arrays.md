@@ -5,8 +5,7 @@
 
 # Working with arrays
 
-Data structures are one of the essential aspects of every piece of software. Any application, from simple command line util to scalable enterprise systems, constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by
-arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`.  
+Data structures are one of the essential aspects of every piece of software. Any application, from simple command line util to scalable enterprise systems, constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`.  
   
 This article provides an introduction to cross-technology handling of arrays from `{called_name}` using `{calling_name}`. The article explains how to work with arrays between calling and called technology.  
 

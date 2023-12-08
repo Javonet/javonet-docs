@@ -22,6 +22,9 @@ class TestClass:
     def get_1d_array(self):
         return ["one", "two", "three", "four", "five"]
 
+    def get_2d_array(self):
+        return [["S00", "S01"], ["S10","S11"]]
+
     def add_array_elements_and_multiply(self, my_array, my_value):
         return sum(my_array) * my_value
     # </Arrays>

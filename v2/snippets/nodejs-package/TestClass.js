@@ -27,6 +27,9 @@ class TestClass {
         return ["one", "two", "three", "four", "five"]
     }
 
+    get2DArray() {
+        return [["S00", "S01"], ["S10", "S11"]]
+    }
     addArrayElementsAndMultiply(myArray, myValue) {
         return myArray.reduce((accumulator, currentValue) => accumulator + currentValue) * myValue
     }

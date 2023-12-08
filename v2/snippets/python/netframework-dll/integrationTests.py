@@ -3,7 +3,7 @@ import platform
 from pathlib import Path
 
 import pytest
-from javonet.core.exception.JavonetException import JavonetException
+from javonet.utils.exception.JavonetException import JavonetException
 from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/netframework-dll'
@@ -328,7 +328,7 @@ def test_NetframeworkDll_TestResources_1DArray_SetIndex():
     array = instance.invoke_instance_method("Get1DArray").execute()
 
     # set array's index
-    array.set_index("seven", 4).execute()
+    array.set_index(4, "seven").execute()
 
     # get index from array
     response = array.get_index(4).execute()
@@ -339,7 +339,7 @@ def test_NetframeworkDll_TestResources_1DArray_SetIndex():
     # write result to console
     print(result)
     # </TestResources_1DArray_SetIndex>
-    array.set_index("five", 4).execute()
+    array.set_index(4, "five").execute()
     assert result == "seven"
 
 
