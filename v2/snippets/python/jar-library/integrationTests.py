@@ -7,6 +7,104 @@ from javonet.sdk import Javonet
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/jar-library'
 
 
+def test_JarLibrary_StandardLibrary_GetStaticField():
+    # <StandardLibrary_GetStaticField>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("java.lang.Math").execute()
+
+    # get type's static field
+    response = called_runtime_type.get_static_field("PI").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetStaticField>
+    assert result == math.pi
+
+
+def test_JarLibrary_StandardLibrary_GetInstanceField():
+    # <StandardLibrary_GetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("java.sql.DriverPropertyInfo").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance("sample value", "sample value 2").execute()
+
+    # get instance's field
+    response = instance.get_instance_field("name").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetInstanceField>
+    assert result == "sample value"
+
+
+def test_JarLibrary_StandardLibrary_InvokeStaticMethod():
+    # <StandardLibrary_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("java.lang.Math").execute()
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("abs", -50).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeStaticMethod>
+    assert (result == 50)
+
+
+def test_JarLibrary_StandardLibrary_InvokeInstanceMethod():
+    # <StandardLibrary_InvokeInstanceMethod>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("java.util.Random").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("nextInt", 10).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeInstanceMethod>
+    assert (result in range(0, 10))
+
+
 def test_JarLibrary_TestResources_LoadLibrary():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
@@ -509,9 +607,6 @@ def test_JarLibrary_TestResources_GenericStaticMethod():
     Javonet.activate("your-license-key")
 
     # create called runtime context
-    called_runtime = Javonet.in_memory().netcore()
-
-    # create called runtime context
     called_runtime = Javonet.in_memory().jvm()
 
     # set up variables
@@ -684,99 +779,238 @@ def test_JarLibrary_TestResources_EnumNameAndValue():
     assert fruit2_value == 2
 
 
-def test_JarLibrary_StandardLibrary_GetStaticField():
-    # <StandardLibrary_GetStaticField>
+def test_JarLibrary_TestResources_2DArray_GetIndex():
+    # <TestResources_2DArray_GetIndex>
     # use activate only once in your app
     Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().jvm()
 
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("java.lang.Math").execute()
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
 
-    # get type's static field
-    response = called_runtime_type.get_static_field("PI").execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_GetStaticField>
-    assert result == math.pi
-
-
-def test_JarLibrary_StandardLibrary_GetInstanceField():
-    # <StandardLibrary_GetInstanceField>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().jvm()
+    # load custom library
+    called_runtime.load_library(library_path)
 
     # get type from the runtime
-    called_runtime_type = called_runtime.get_type("java.sql.DriverPropertyInfo").execute()
-
-    # create type's instance
-    instance = called_runtime_type.create_instance("sample value", "sample value 2").execute()
-
-    # get instance's field
-    response = instance.get_instance_field("name").execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_GetInstanceField>
-    assert result == "sample value"
-
-
-def test_JarLibrary_StandardLibrary_InvokeStaticMethod():
-    # <StandardLibrary_InvokeStaticMethod>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().jvm()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("java.lang.Math").execute()
-
-    # invoke type's static method
-    response = called_runtime_type.invoke_static_method("abs", -50).execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_InvokeStaticMethod>
-    assert (result == 50)
-
-
-def test_JarLibrary_StandardLibrary_InvokeInstanceMethod():
-    # <StandardLibrary_InvokeInstanceMethod>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().jvm()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("java.util.Random").execute()
+    called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
     instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
-    response = instance.invoke_instance_method("nextInt", 10).execute()
+    array = instance.invoke_instance_method("get2DArray").execute()
+
+    # three ways to get elements from array
+    response1 = array.get_index(0, 0).execute()
+    response2 = array.get_index([0, 1]).execute()
+    response3 = array[1][1].execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+    result3 = response3.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    print(result3)
+    # </TestResources_2DArray_GetIndex>
+    assert result1 == "S00"
+    assert result2 == "S01"
+    assert result3 == "S11"
+
+
+def test_JarLibrary_TestResources_2DArray_GetSizeAndRank():
+    # <TestResources_2DArray_GetSizeAndRank>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom libraries
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get2DArray").execute()
+
+    # get array's size and rank
+    response1 = array.get_size().execute()
+    response2 = array.get_rank().execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_2DArray_GetSizeAndRank>
+    assert result1 == 4
+    assert result2 == 2
+
+
+def test_JarLibrary_TestResources_2DArray_SetIndex():
+    # <TestResources_2DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom libraries
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("get2DArray").execute()
+
+    # two ways of setting elements in array
+    array.set_index([1, 1], "new value 1").execute()
+    array[0][1] = "new value 2"
+
+    # two ways of getting elements from array
+    response1 = array.get_index(1, 1).execute()
+    response2 = array[0][1].execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_2DArray_SetIndex>
+    array.set_index([1, 1], "S11").execute()
+    array.set_index([0, 1], "S01").execute()
+    assert result1 == "new value 1"
+    assert result2 == "new value 2"
+
+
+def test_JarLibrary_StandardLibrary_CreateInstanceOfGenericClass():
+    # <StandardLibrary_CreateInstanceOfGenericClass>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    list_type = called_runtime.get_type("java.util.ArrayList").execute()
+
+    # create instance of generic class
+    list_instance = list_type.create_instance().execute()
+
+    # invoke instance's method
+    list_instance.invoke_generic_method("add", "one").execute()
+    list_instance.invoke_generic_method("add", "two").execute()
+    list_instance.invoke_generic_method("add", "three").execute()
+    list_instance.invoke_generic_method("add", "four").execute()
+    list_instance.invoke_generic_method("add", "five").execute()
+    list_instance.invoke_generic_method("add", "six").execute()
+
+    # check number of elements in list
+    response = list_instance.invoke_generic_method("size").execute()
 
     # get value from response
     result = response.get_value()
 
     # write result to console
     print(result)
-    # </StandardLibrary_InvokeInstanceMethod>
-    assert (result in range(0, 10))
+    # </StandardLibrary_CreateInstanceOfGenericClass>
+    assert result == 6
+
+
+def test_JarLibrary_StandardLibrary_HandleList():
+    # <StandardLibrary_HandleList>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    list_type = called_runtime.get_type("java.util.ArrayList").execute()
+
+    # create instance of generic class
+    list_instance = list_type.create_instance().execute()
+
+    # invoke instance's method
+    list_instance.invoke_generic_method("add", "one").execute()
+    list_instance.invoke_generic_method("add", "two").execute()
+    list_instance.invoke_generic_method("add", "three").execute()
+    list_instance.invoke_generic_method("add", "four").execute()
+    list_instance.invoke_generic_method("add", "five").execute()
+    list_instance.invoke_generic_method("add", "six").execute()
+
+    # get elements from list
+    response1 = list_instance.get_index(2).execute()
+    response2 = list_instance[3].execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </StandardLibrary_HandleList>
+    assert result1 == "three"
+    assert result2 == "four"
+
+
+def test_JarLibrary_StandardLibrary_HandleDictionary():
+    # <StandardLibrary_HandleDictionary>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get type from the runtime
+    dictionary_type = called_runtime.get_type("java.util.HashMap").execute()
+
+    # create instance of generic class
+    dictionary = dictionary_type.create_instance().execute()
+
+    # invoke instance's method
+    dictionary.invoke_generic_method("put", "pi", math.pi).execute()
+    dictionary.invoke_generic_method("put", "e", math.e).execute()
+    dictionary.invoke_generic_method("put", "c", 299792458.0).execute()
+
+    # get elements from dictionary
+    response1 = dictionary.get_index("pi").execute()
+    response2 = dictionary["c"].execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </StandardLibrary_HandleDictionary>
+    assert result1 == math.pi
+    assert result2 == 299792458.0

@@ -19,7 +19,117 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
 		}
 		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/jar-library";
 
-		[Fact]
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_StandardLibrary_GetStaticField()
+        {
+            // <StandardLibrary_GetStaticField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get type from the jvmRuntime
+            var calledRuntimeType = calledRuntime.GetType("java.lang.Math").Execute();
+
+            // get type's static field
+            var response = calledRuntimeType.GetStaticField("PI").Execute();
+
+            // get value from response
+            var result = (double)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetStaticField>
+            Assert.Equal(System.Math.PI, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_StandardLibrary_GetInstanceField()
+        {
+            // <StandardLibrary_GetInstanceField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get type from the jvmRuntime
+            var calledRuntimeType = calledRuntime.GetType("java.sql.DriverPropertyInfo").Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance("sample value", "sample value 2").Execute();
+
+            // get instance's field 
+            var response = instance.GetInstanceField("name").Execute();
+
+            // get value from response
+            var result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetInstanceField>
+            Assert.Equal("sample value", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_StandardLibrary_InvokeStaticMethod()
+        {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get type from the jvmRuntime
+            var type = calledRuntime.GetType("java.lang.Math").Execute();
+
+            // invoke type's static method
+            var response = type.InvokeStaticMethod("abs", -50).Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeStaticMethod>
+            Assert.Equal(50, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_StandardLibrary_InvokeInstanceMethod()
+        {
+            // <StandardLibrary_InvokeInstanceMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get type from the jvmRuntime
+            var calledRuntimeType = calledRuntime.GetType("java.util.Random").Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance().Execute();
+
+            // invoke instance's method
+            var response = instance.InvokeInstanceMethod("nextInt", 10).Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeInstanceMethod>
+            Assert.InRange(result, 0, 10);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_JarLibrary_TestResources_LoadLibrary()
 		{
@@ -762,113 +872,256 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
         }
 
         [Fact]
-		[Trait("Test", "Integration")]
-		public void Test_JarLibrary_StandardLibrary_GetStaticField()
-		{
-			// <StandardLibrary_GetStaticField>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_TestResources_2DArray_GetIndex()
+        {
+            // <TestResources_2DArray_GetIndex>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
 
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Jvm();
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
 
-			// get type from the jvmRuntime
-			var calledRuntimeType = calledRuntime.GetType("java.lang.Math").Execute();
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
 
-			// get type's static field
-			var response = calledRuntimeType.GetStaticField("PI").Execute();
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
 
-			// get value from response
-			var result = (double)response.GetValue();
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_GetStaticField>
-			Assert.Equal(System.Math.PI, result);
-		}
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance().Execute();
 
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_JarLibrary_StandardLibrary_GetInstanceField()
-		{
-			// <StandardLibrary_GetInstanceField>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
+            // invoke instance's method
+            var array = instance.InvokeInstanceMethod("get2DArray").Execute();
 
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Jvm();
+            // three ways to get elements from array
+            var response1 = array[1, 1].Execute();
+            var response2 = array.GetIndex(1, 0).Execute();
+            var response3 = array.GetIndex(new int[] { 0, 1 }).Execute();
 
-			// get type from the jvmRuntime
-			var calledRuntimeType = calledRuntime.GetType("java.sql.DriverPropertyInfo").Execute();
 
-			// create type's instance
-			var instance = calledRuntimeType.CreateInstance("sample value", "sample value 2").Execute();
+            // get value from response
+            var result1 = response1.GetValue();
+            var result2 = response2.GetValue();
+            var result3 = response3.GetValue();
 
-			// get instance's field 
-			var response = instance.GetInstanceField("name").Execute();
+            // write result to console
+            System.Console.WriteLine(result1);
+            System.Console.WriteLine(result2);
+            System.Console.WriteLine(result3);
+            // </TestResources_2DArray_GetIndex>
 
-			// get value from response
-			var result = (string)response.GetValue();
+            Assert.Equal("S11", result1);
+            Assert.Equal("S10", result2);
+            Assert.Equal("S01", result3);
+        }
 
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_GetInstanceField>
-			Assert.Equal("sample value", result);
-		}
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_TestResources_2DArray_GetSizeAndRank()
+        {
+            // <TestResources_2DArray_GetSizeAndRank>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
 
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_JarLibrary_StandardLibrary_InvokeStaticMethod()
-		{
-			// <StandardLibrary_InvokeStaticMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
 
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Jvm();
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
 
-			// get type from the jvmRuntime
-			var type = calledRuntime.GetType("java.lang.Math").Execute();
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
 
-			// invoke type's static method
-			var response = type.InvokeStaticMethod("abs", -50).Execute();
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
-			// get value from response
-			var result = (int)response.GetValue();
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance().Execute();
 
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_InvokeStaticMethod>
-			Assert.Equal(50, result);
-		}
+            // invoke instance's method
+            var array = instance.InvokeInstanceMethod("get2DArray").Execute();
 
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_JarLibrary_StandardLibrary_InvokeInstanceMethod()
-		{
-			// <StandardLibrary_InvokeInstanceMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
+            // three ways to get elements from array
+            var response1 = array.GetSize().Execute();
+            var response2 = array.GetRank().Execute();
 
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Jvm();
+            // get value from response
+            var result1 = response1.GetValue();
+            var result2 = response2.GetValue();
 
-			// get type from the jvmRuntime
-			var calledRuntimeType = calledRuntime.GetType("java.util.Random").Execute();
+            // write result to console
+            System.Console.WriteLine(result1);
+            System.Console.WriteLine(result2);
 
-			// create type's instance
-			var instance = calledRuntimeType.CreateInstance().Execute();
+            // </TestResources_2DArray_GetSizeAndRank>
+            Assert.Equal(4, result1);
+            Assert.Equal(2, result2);
+        }
 
-			// invoke instance's method
-			var response = instance.InvokeInstanceMethod("nextInt", 10).Execute();
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_TestResources_2DArray_SetIndex()
+        {
+            // <TestResources_2DArray_SetIndex>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
 
-			// get value from response
-			var result = (int)response.GetValue();
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
 
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_InvokeInstanceMethod>
-			Assert.InRange(result, 0, 10);
-		}
-	}
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            string className = "TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance().Execute();
+
+            // invoke instance's method
+            var array = instance.InvokeInstanceMethod("get2DArray").Execute();
+
+            // set element of array
+            array.SetIndex(new int[] { 0, 1 }, "new value").Execute();
+
+            // get element from array
+            var response = array[0, 1].Execute();
+
+            // get value from response
+            var result = response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_2DArray_SetIndex>
+            Assert.Equal("new value", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_StandardLibrary_CreateInstanceOfGenericClass()
+        {
+            //<StandardLibrary_CreateInstanceOfGenericClass>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get generic class
+            var typeList = calledRuntime.GetType("java.util.LinkedList").Execute();
+
+            // create instance of generic class
+            var list = typeList.CreateInstance().Execute();
+
+            // invoke instance methods
+            list.InvokeGenericMethod("add", "one").Execute();
+            list.InvokeGenericMethod("add", "two").Execute();
+            list.InvokeGenericMethod("add", "three").Execute();
+            list.InvokeGenericMethod("add", "four").Execute();
+            list.InvokeGenericMethod("add", "five").Execute();
+            list.InvokeGenericMethod("add", "six").Execute();
+
+            // check number of elements in list
+            var response = list.InvokeGenericMethod("size").Execute();
+            var result = response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+
+            //</StandardLibrary_CreateInstanceOfGenericClass>
+            Assert.Equal(6, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_StandardLibrary_HandleList()
+        {
+            // <StandardLibrary_HandleList>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get generic class
+            var typeList = calledRuntime.GetType("java.util.ArrayList").Execute();
+
+            // create instance of generic class
+            var list = typeList.CreateInstance().Execute();
+
+            // invoke instance method
+            list.InvokeGenericMethod("add", "one").Execute();
+            list.InvokeGenericMethod("add", "two").Execute();
+            list.InvokeGenericMethod("add", "three").Execute();
+            list.InvokeGenericMethod("add", "four").Execute();
+            list.InvokeGenericMethod("add", "five").Execute();
+            list.InvokeGenericMethod("add", "six").Execute();
+
+            // get elements from list
+            var element0 = list[0].Execute();
+            var element1 = list.GetIndex(1).Execute();
+
+            var result0 = element0.GetValue();
+            var result1 = element1.GetValue();
+
+            // get size of list
+            var size = list.GetSize().Execute().GetValue();
+
+            // write results to console
+            System.Console.WriteLine(result0);
+            System.Console.WriteLine(result1);
+            System.Console.WriteLine(size);
+            // </StandardLibrary_HandleList>
+            Assert.Equal("one", result0);
+            Assert.Equal("two", result1);
+            Assert.Equal(6, size);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_JarLibrary_StandardLibrary_HandleDictionary()
+        {
+            // <StandardLibrary_HandleDictionary>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // get generic class 
+            var typeDictionary = calledRuntime.GetType("java.util.HashMap").Execute();
+
+            // create instance of generic class
+            var dictionary = typeDictionary.CreateInstance().Execute();
+
+            // invoke instance method
+            dictionary.InvokeGenericMethod("put", "pi", System.Math.PI).Execute();
+            dictionary.InvokeGenericMethod("put", "e", System.Math.E).Execute();
+            dictionary.SetIndex("c", 299792458.0).Execute();
+
+            // get elements from dictionary
+            var response1 = dictionary["c"].Execute();
+            var response2 = dictionary.GetIndex("e").Execute();
+
+            var c_value = response1.GetValue();
+            var e_value = response2.GetValue();
+
+            // write results to console
+            System.Console.WriteLine(c_value);
+            System.Console.WriteLine(e_value);
+            // </StandardLibrary_HandleDictionary>
+            Assert.Equal(299792458.0, c_value);
+            Assert.Equal(System.Math.E, e_value);
+        }
+    }
 }

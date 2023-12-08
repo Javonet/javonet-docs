@@ -23,6 +23,56 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI() {
+        // <StandardLibrary_GetStaticField>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
+
+        // invoke type's method
+        InvocationContext response = calledRuntimeType.getStaticField("PI").execute();
+
+        // get result from response
+        double result = (double) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_GetStaticField>
+        Assertions.assertEquals(Math.PI, result, 0.00001);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_minus50_50() {
+        // <StandardLibrary_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
+
+        // invoke type's static method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("abs", -50).execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_InvokeStaticMethod>
+        Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
@@ -515,51 +565,126 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI() {
-        // <StandardLibrary_GetStaticField>
+    public void Test_NodejsPackage_TestResources_2DArray_GetIndex() {
+        // <TestResources_2DArray_GetIndex>
         // use activate only once in your app
         Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
 
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
         // get type from runtime
-        InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        // invoke type's method
-        InvocationContext response = calledRuntimeType.getStaticField("PI").execute();
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
 
-        // get result from response
-        double result = (double) response.getValue();
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get2DArray").execute();
+
+        // two ways to get index from array
+        InvocationContext response1 = array.getIndex(1, 1).execute();
+        InvocationContext response2 = array.getIndex((Object) new Integer[]{0, 1}).execute();
+
+        // get value from response
+        String result1 = (String) response1.getValue();
+        String result2 = (String) response2.getValue();
 
         // write result to console
-        System.out.println(result);
-        // </StandardLibrary_GetStaticField>
-        Assertions.assertEquals(Math.PI, result, 0.00001);
+        System.out.println(result1);
+        System.out.println(result2);
+        // </TestResources_2DArray_GetIndex>
+        Assertions.assertEquals("S11", result1);
+        Assertions.assertEquals("S01", result2);
     }
 
     @Test
     @Tag("integration")
-    public void Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_minus50_50() {
-        // <StandardLibrary_InvokeStaticMethod>
+    public void Test_NodejsPackage_TestResources_2DArray_GetSizeAndRank() {
+        // <TestResources_2DArray_GetSizeAndRank>
         // use activate only once in your app
         Javonet.activate("your-license-key");
 
         // create called runtime context
         RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
 
-        // get type from runtime
-        InvocationContext calledRuntimeType = calledRuntime.getType("Math").execute();
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
 
-        // invoke type's static method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("abs", -50).execute();
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get2DArray").execute();
+
+
+        // get array's size
+        Integer size = (Integer) array.getSize().execute().getValue();
+
+        // get array's rank
+        Integer rank = (Integer) array.getRank().execute().getValue();
+
+        // write result to console
+        System.out.println("Size: " + size);
+        System.out.println("Rank: " + rank);
+        // </TestResources_2DArray_GetSizeAndRank>
+        Assertions.assertEquals(4, size);
+        Assertions.assertEquals(2, rank);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_2DArray_SetIndex() {
+        // <TestResources_2DArray_SetIndex>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String className = "TestClass";
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext type = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = type.createInstance().execute();
+
+        // invoke instance's method
+        InvocationContext array = instance.invokeInstanceMethod("get2DArray").execute();
+
+        // set index in array
+        array.setIndex(new Integer[]{0, 1}, "new value").execute();
+
+        // get index from array
+        InvocationContext response = array.getIndex(0, 1).execute();
 
         // get value from response
-        int result = (int) response.getValue();
+        String result = (String) response.getValue();
 
         // write result to console
         System.out.println(result);
-        // </StandardLibrary_InvokeStaticMethod>
-        Assertions.assertEquals(50, result);
+        // </TestResources_2DArray_SetIndex>
+        array.setIndex(new Integer[]{0, 1}, "S01").execute();
+        Assertions.assertEquals("new value", result);
     }
 }

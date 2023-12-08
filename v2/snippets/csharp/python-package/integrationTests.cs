@@ -18,7 +18,59 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		}
 		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/python-package";
 
-		[Fact]
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_StandardLibrary_InvokeStaticMethod()
+        {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("builtins").Execute();
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("abs", -50).Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeStaticMethod>
+            Assert.Equal(50, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_StandardLibrary_GetStaticField()
+        {
+            // <StandardLibrary_GetStaticField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("math").Execute();
+
+            // get type's static field
+            var response = calledRuntimeType.GetStaticField("pi").Execute();
+
+            // get value from response
+            var result = (double)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetStaticField>
+            Assert.Equal(System.Math.PI, result);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_PythonPackage_TestResources_LoadLibrary()
 		{
@@ -655,56 +707,215 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 			Assert.Fail("No exception occurred - test failed");
 		}
 
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_PythonPackage_StandardLibrary_InvokeStaticMethod()
-		{
-			// <StandardLibrary_InvokeStaticMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_TestResources_2DArray_GetIndex()
+        {
+            // <TestResources_2DArray_GetIndex>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
 
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Python();
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
 
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType("builtins").Execute();
+            // set up variables
+            string libraryPath = resourcesDirectory;
+            string className = "TestClass.TestClass";
 
-			// invoke type's static method
-			var response = calledRuntimeType.InvokeStaticMethod("abs", -50).Execute();
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
 
-			// get value from response
-			var result = (int)response.GetValue();
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_InvokeStaticMethod>
-			Assert.Equal(50, result);
-		}
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(0, 1).Execute();
 
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_PythonPackage_StandardLibrary_GetStaticField()
-		{
-			// <StandardLibrary_GetStaticField>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
+            // invoke instance's method
+            var array = instance.InvokeInstanceMethod("get_2d_array").Execute();
 
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Python();
+            // three ways to get elements from array
+            var response1 = array[1, 1].Execute();
+            var response2 = array.GetIndex(1, 0).Execute();
+            var response3 = array.GetIndex(new int[] { 0, 1 }).Execute();
 
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType("math").Execute();
 
-			// get type's static field
-			var response = calledRuntimeType.GetStaticField("pi").Execute();
+            // get value from response
+            var result1 = response1.GetValue();
+            var result2 = response2.GetValue();
+            var result3 = response3.GetValue();
 
-			// get value from response
-			var result = (double)response.GetValue();
+            // write result to console
+            System.Console.WriteLine(result1);
+            System.Console.WriteLine(result2);
+            System.Console.WriteLine(result3);
+            // </TestResources_2DArray_GetIndex>
+            Assert.Equal("S11", result1);
+            Assert.Equal("S10", result2);
+            Assert.Equal("S01", result3);
+        }
 
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_GetStaticField>
-			Assert.Equal(System.Math.PI, result);
-		}
-	}
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_TestResources_2DArray_GetSizeAndRank()
+        {
+            // <TestResources_2DArray_GetSizeAndRank>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // set up variables
+            string libraryPath = resourcesDirectory;
+            string className = "TestClass.TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(0, 1).Execute();
+
+            // invoke instance's method
+            var array = instance.InvokeInstanceMethod("get_2d_array").Execute();
+
+            // three ways to get elements from array
+            var response1 = array.GetSize().Execute();
+            var response2 = array.GetRank().Execute();
+
+            // get value from response
+            var result1 = response1.GetValue();
+            var result2 = response2.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result1);
+            System.Console.WriteLine(result2);
+
+            // </TestResources_2DArray_GetSizeAndRank>
+            Assert.Equal(4, result1);
+            Assert.Equal(2, result2);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_TestResources_2DArray_SetIndex()
+        {
+            // <TestResources_2DArray_SetIndex>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // set up variables
+            string libraryPath = resourcesDirectory;
+            string className = "TestClass.TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(0, 1).Execute();
+
+            // invoke instance's method
+            var array = instance.InvokeInstanceMethod("get_2d_array").Execute();
+
+            // set element of array
+            array.SetIndex(new int[] { 0, 1 }, "new value").Execute();
+
+            // get element from array
+            var response = array[0, 1].Execute();
+
+            // get value from response
+            var result = response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_2DArray_SetIndex>
+            Assert.Equal("new value", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_PythonPackage_StandardLibrary_HandleList()
+        {
+            // <StandardLibrary_HandleList>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // get list from built-in types
+            var typeList = calledRuntime.GetType("builtins.list").Execute();
+
+            // create instance of list
+            var list = typeList.CreateInstance().Execute();
+
+            // invoke instance method
+            list.InvokeInstanceMethod("extend", new string[] { "one", "two", "three", "four", "five", "six" }).Execute();
+
+            // get elements from list
+            var element0 = list[0].Execute();
+            var element1 = list.GetIndex(1).Execute();
+
+            var result0 = element0.GetValue();
+            var result1 = element1.GetValue();
+
+            // get size of list
+            var size = list.GetSize().Execute().GetValue();
+
+            // write results to console
+            System.Console.WriteLine(result0);
+            System.Console.WriteLine(result1);
+            System.Console.WriteLine(size);
+            // </StandardLibrary_HandleList>
+            Assert.Equal("one", result0);
+            Assert.Equal("two", result1);
+            Assert.Equal(6, size);
+        }
+
+        [Fact]
+        [Trait("Test", "Functional")]
+        public void Test_PythonPackage_StandardLibrary_HandleDictionary()
+        {
+            // <StandardLibrary_HandleDictionary>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // get generic class 
+            var typeDictionary = calledRuntime.GetType("builtins.dict").Execute();
+
+            // create instance of generic class
+            var dictionary = typeDictionary.CreateInstance().Execute();
+
+            // set elements in dictionary
+            dictionary.SetIndex("pi", System.Math.PI).Execute();
+            dictionary.SetIndex("e", System.Math.E).Execute();
+            dictionary.SetIndex("c", 299792458.0).Execute();
+
+            // get elements from dictionary
+            var response1 = dictionary["c"].Execute();
+            var response2 = dictionary.GetIndex("e").Execute();
+
+            var c_value = response1.GetValue();
+            var e_value = response2.GetValue();
+
+            // write results to console
+            System.Console.WriteLine(c_value);
+            System.Console.WriteLine(e_value);
+            // </StandardLibrary_HandleDictionary>
+            Assert.Equal(299792458.0, c_value);
+            Assert.Equal(System.Math.E, e_value);
+        }
+    }
 }

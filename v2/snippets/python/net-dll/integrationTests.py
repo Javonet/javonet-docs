@@ -7,6 +7,101 @@ from javonet.sdk import Javonet
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/net-dll'
 
 
+def test_NetDll_StandardLibrary_GetStaticField():
+    # <StandardLibrary_GetStaticField>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.Math").execute()
+
+    # get type's static field
+    response = called_runtime_type.get_static_field("PI").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetStaticField>
+    assert result == math.pi
+
+
+def test_NetDll_StandardLibrary_GetInstanceField():
+    # <StandardLibrary_GetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("Year").execute()
+
+    # get value from response
+    result = response.get_value()
+    # </StandardLibrary_GetInstanceField>
+    assert result == 2022
+
+
+def test_NetDll_StandardLibrary_InvokeStaticMethod():
+    # <StandardLibrary_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.Math").execute()
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("Abs", -50).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeStaticMethod>
+    assert result == 50
+
+
+def test_NetDll_StandardLibrary_InvokeInstanceMethod():
+    # <StandardLibrary_InvokeInstanceMethod>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("ToShortDateString").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeInstanceMethod>
+    assert "2022" in result
+
+
 def test_NetDll_TestResources_LoadLibrary():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
@@ -795,96 +890,231 @@ def test_NetDll_TestResources_EnumNameAndValue():
     assert fruit2_value == 2
 
 
-def test_NetDll_StandardLibrary_GetStaticField():
-    # <StandardLibrary_GetStaticField>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create runtime context
-    called_runtime = Javonet.in_memory().netcore()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.Math").execute()
-
-    # get type's static field
-    response = called_runtime_type.get_static_field("PI").execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_GetStaticField>
-    assert result == math.pi
-
-
-def test_NetDll_StandardLibrary_GetInstanceField():
-    # <StandardLibrary_GetInstanceField>
+def test_NetDll_TestResources_2DArray_GetIndex():
+    # <TestResources_2DArray_GetIndex>
     # use activate only once in your app
     Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().netcore()
 
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
     # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
+    called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
-
-    # get instance's field
-    response = instance.get_instance_field("Year").execute()
-
-    # get value from response
-    result = response.get_value()
-    # </StandardLibrary_GetInstanceField>
-    assert result == 2022
-
-
-def test_NetDll_StandardLibrary_InvokeStaticMethod():
-    # <StandardLibrary_InvokeStaticMethod>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().netcore()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.Math").execute()
-
-    # invoke type's static method
-    response = called_runtime_type.invoke_static_method("Abs", -50).execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_InvokeStaticMethod>
-    assert result == 50
-
-
-def test_NetDll_StandardLibrary_InvokeInstanceMethod():
-    # <StandardLibrary_InvokeInstanceMethod>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().netcore()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
-
-    # create type's instance
-    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
-    response = instance.invoke_instance_method("ToShortDateString").execute()
+    array = instance.invoke_instance_method("Get2DArray").execute()
+
+    # two ways to get elements from array
+    response1 = array.get_index(0, 0).execute()
+    response2 = array.get_index([0, 1]).execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_2DArray_GetIndex>
+    assert result1 == "S00"
+    assert result2 == "S01"
+
+
+def test_NetDll_TestResources_2DArray_GetSizeAndRank():
+    # <TestResources_2DArray_GetSizeAndRank>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom libraries
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get2DArray").execute()
+
+    # get array's size and rank
+    response1 = array.get_size().execute()
+    response2 = array.get_rank().execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_2DArray_GetSizeAndRank>
+    assert result1 == 4
+    assert result2 == 2
+
+
+def test_NetDll_TestResources_2DArray_SetIndex():
+    # <TestResources_2DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom libraries
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get2DArray").execute()
+
+    # setting elements in array
+    array.set_index([1, 1], "new value 1").execute()
+
+    # two ways of getting elements from array
+    response1 = array.get_index(1, 1).execute()
+
+    # get value from response
+    result1 = response1.get_value()
+
+    # write result to console
+    print(result1)
+    # </TestResources_2DArray_SetIndex>
+    array.set_index([1, 1], "S11").execute()
+    assert result1 == "new value 1"
+
+
+def test_NetDll_StandardLibrary_CreateInstanceOfGenericClass():
+    # <StandardLibrary_CreateInstanceOfGenericClass>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # get type for generic class
+    list_type = called_runtime.get_type("System.Collections.Generic.List`1", string_type).execute()
+
+    # create instance of generic class
+    list_instance = list_type.create_instance().execute()
+
+    # invoke instance's method
+    list_instance.invoke_instance_method("Add", "one").execute()
+    list_instance.invoke_instance_method("Add", "two").execute()
+    list_instance.invoke_instance_method("Add", "three").execute()
+    list_instance.invoke_instance_method("AddRange", ["four", "five", "six"]).execute()
+
+    # check number of elements in list
+    response = list_instance.get_instance_field("Count").execute()
 
     # get value from response
     result = response.get_value()
 
     # write result to console
     print(result)
-    # </StandardLibrary_InvokeInstanceMethod>
-    assert "2022" in result
+    # </StandardLibrary_CreateInstanceOfGenericClass>
+    assert result == 6
+
+
+def test_NetDll_StandardLibrary_HandleList():
+    # <StandardLibrary_HandleList>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # get type for generic class
+    list_type = called_runtime.get_type("System.Collections.Generic.List`1", string_type).execute()
+
+    # create instance of generic class
+    list_instance = list_type.create_instance().execute()
+
+    # invoke instance's method
+    list_instance.invoke_instance_method("Add", "one").execute()
+    list_instance.invoke_instance_method("Add", "two").execute()
+    list_instance.invoke_instance_method("Add", "three").execute()
+    list_instance.invoke_instance_method("AddRange", ["four", "five", "six"]).execute()
+
+    # get elements from list
+    response1 = list_instance.get_index(2).execute()
+    response2 = list_instance[3].execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </StandardLibrary_HandleList>
+    assert result1 == "three"
+    assert result2 == "four"
+
+
+def test_NetDll_StandardLibrary_HandleDictionary():
+    # <StandardLibrary_HandleDictionary>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    string_type = called_runtime.get_type("System.String").execute()
+    double_type = called_runtime.get_type("System.Double").execute()
+
+    # get type for generic class
+    dictionary_type = called_runtime.get_type("System.Collections.Generic.Dictionary`2", string_type, double_type).execute()
+
+    # create instance of generic class
+    dictionary = dictionary_type.create_instance().execute()
+
+    # invoke instance's method
+    dictionary.invoke_instance_method("Add", "pi", math.pi).execute()
+    dictionary.invoke_instance_method("Add", "e", math.e).execute()
+    dictionary.invoke_instance_method("Add", "c", 299792458.0).execute()
+
+
+    # get elements from dictionary
+    response1 = dictionary.get_index("pi").execute()
+
+    # get value from response
+    result1 = response1.get_value()
+
+    # write result to console
+    print(result1)
+    # </StandardLibrary_HandleDictionary>
+    assert result1 == math.pi
