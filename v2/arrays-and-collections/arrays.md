@@ -7,11 +7,11 @@
 
 Data structures are one of the essential aspects of every piece of software. Any application, from simple command line util to scalable enterprise systems, constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`.  
   
-This article provides an introduction to cross-technology handling of arrays from `{called_name}` using `{calling_name}`. The article explains how to work with arrays between calling and called technology.  
+This article provides an introduction to cross-technology handling of arrays from `{called_name}` using `{calling_name}`.
 
 With Javonet you can interact with arrays from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API. 
 
-## Working with arrays custom `{called_name}`  
+## Working with arrays
   
 With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with arrays declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
