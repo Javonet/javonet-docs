@@ -6,12 +6,55 @@ const {expect, describe, test} = require("@jest/globals");
 const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/python-package'
 
 describe('Nodejs to Python Package integration tests', () => {
-    if (process.platform != 'darwin') {
+    if (process.platform !== 'darwin') {
+
+        test(`Test_PythonPackage_StandardLibrary_GetStaticField`, () => {
+            // <StandardLibrary_GetStaticField>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType('math').execute()
+
+            // get type's field
+            let response = calledRuntimeType.getStaticField("pi").execute()
+
+            // get value from response
+            let result = response.getValue()
+            // </StandardLibrary_GetStaticField>
+            expect(result).toBeCloseTo(Math.PI, 6)
+        })
+
+        test(`Test_PythonPackage_StandardLibrary_InvokeStaticMethod`, () => {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType('builtins').execute()
+
+            // invoke type's static method
+            let response = calledRuntimeType.invokeStaticMethod("abs", -50).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </StandardLibrary_InvokeStaticMethod>
+            expect(result).toBe(50)
+        })
 
         let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
         expect(result).toBe(0)
 
-        test(`Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+        test(`Test_PythonPackage_TestResources_LoadLibrary`, () => {
             // <TestResources_LoadLibrary>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -27,7 +70,7 @@ describe('Nodejs to Python Package integration tests', () => {
             // </TestResources_LoadLibrary>
         })
 
-        test(`Test_PythonPackage_TestResources_GetStaticField_StaticValue_3`, () => {
+        test(`Test_PythonPackage_TestResources_GetStaticField`, () => {
             // <TestResources_GetStaticField>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -57,7 +100,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(3)
         })
 
-        test(`Test_PythonPackage_TestResources_SetStaticField_StaticValue_75`, () => {
+        test(`Test_PythonPackage_TestResources_SetStaticField`, () => {
             // <TestResources_SetStaticField>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -91,7 +134,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(75)
         })
 
-        test(`Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18`, () => {
+        test(`Test_PythonPackage_TestResources_GetInstanceField`, () => {
             // <TestResources_GetInstanceField>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -124,7 +167,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(18)
         })
 
-        test(`Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44`, () => {
+        test(`Test_PythonPackage_TestResources_SetInstanceField`, () => {
             // <TestResources_SetInstanceField>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -160,7 +203,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(44)
         })
 
-        test(`Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+        test(`Test_PythonPackage_TestResources_InvokeStaticMethod`, () => {
             // <TestResources_InvokeStaticMethod>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -190,7 +233,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(50)
         })
 
-        test(`Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+        test(`Test_PythonPackage_TestResources_InvokeInstanceMethod`, () => {
             // <TestResources_InvokeInstanceMethod>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -223,7 +266,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(20)
         })
 
-        test(`Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+        test(`Test_PythonPackage_TestResources_1DArray_GetIndex`, () => {
             // <TestResources_1DArray_GetIndex>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -259,7 +302,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe("three")
         })
 
-        test(`Test_PythonPackage_TestResources_1DArray_GetSize_5`, () => {
+        test(`Test_PythonPackage_TestResources_1DArray_GetSize`, () => {
             // <TestResources_1DArray_GetSize>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -295,7 +338,7 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(result).toBe(5)
         })
 
-        test(`Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven`, () => {
+        test(`Test_PythonPackage_TestResources_1DArray_SetIndex`, () => {
             // <TestResources_1DArray_SetIndex>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
@@ -403,6 +446,82 @@ describe('Nodejs to Python Package integration tests', () => {
             // </TestResources_1DArray_PassArrayAsArgument>
             expect(result).toEqual(999)
         })
+
+        test(`Test_PythonPackage_TestResources_1DArray_GetElement`, () => {
+            // <TestResources_1DArray_GetElement>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+            // get element of array and invoke method on it
+            let response = array.getIndex(2).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_GetElement>
+            expect(result).toBe("three")
+        })
+
+        test(`Test_PythonPackage_TestResources_1DArray_SetElement`, () => {
+            // <TestResources_1DArray_SetElement>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+            // set element of array
+            array.setIndex(2, "zero").execute()
+
+            // get element of array
+            let response = array.getIndex(2).execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_1DArray_SetElement>
+            expect(result).toBe("zero")
+        })
+
 
         test(`Test_PythonPackage_TestResources_1DArray_RetrieveArray`, () => {
             // <TestResources_1DArray_RetrieveArray>
@@ -541,47 +660,198 @@ describe('Nodejs to Python Package integration tests', () => {
             expect(fruit2Value).toBe(3)
         })
 
-        test(`Test_PythonPackage_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
-            // <StandardLibrary_GetStaticField>
+        test(`Test_PythonPackage_TestResources_2DArray_GetIndex`, () => {
+            // <TestResources_2DArray_GetIndex>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
 
             // create called runtime context
             let calledRuntime = Javonet.inMemory().python()
 
-            // get type from the runtime
-            let calledRuntimeType = calledRuntime.getType('math').execute()
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-            // get type's field
-            let response = calledRuntimeType.getStaticField("pi").execute()
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_2d_array").execute()
+
+            // three ways to get elements from array
+            let response1 = array.getIndex(1, 1).execute()
+            let response2 = array.getIndex(1, 0).execute()
+            let response3 = array.getIndex([0, 1]).execute()
 
             // get value from response
-            let result = response.getValue()
-            // </StandardLibrary_GetStaticField>
-            expect(result).toBeCloseTo(Math.PI, 6)
+            let result1 = response1.getValue()
+            let result2 = response2.getValue()
+            let result3 = response3.getValue()
+
+            // write result to console
+            console.log(result1)
+            console.log(result2)
+            console.log(result3)
+            // </TestResources_2DArray_GetIndex>
+            expect(result1).toBe("S11")
+            expect(result2).toBe("S10")
+            expect(result3).toBe("S01")
         })
 
-        test(`Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
-            // <StandardLibrary_InvokeStaticMethod>
+        test(`Test_PythonPackage_TestResources_2DArray_GetSizeAndRank`, () => {
+            // <TestResources_2DArray_GetSizeAndRank>
             // use Activate only once in your app
             Javonet.activate("your-license-key")
 
             // create called runtime context
             let calledRuntime = Javonet.inMemory().python()
 
-            // get type from the runtime
-            let calledRuntimeType = calledRuntime.getType('builtins').execute()
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
 
-            // invoke type's static method
-            let response = calledRuntimeType.invokeStaticMethod("abs", -50).execute()
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_2d_array").execute()
+
+            // get array's size and rank
+            let response1 = array.getSize().execute()
+            let response2 = array.getRank().execute()
+
+            // get value from response
+            let result1 = response1.getValue()
+            let result2 = response2.getValue()
+
+            // write result to console
+            console.log(result1)
+            console.log(result2)
+            // </TestResources_2DArray_GetSizeAndRank>
+            expect(result1).toBe(4)
+            expect(result2).toBe(2)
+        })
+
+        test(`Test_PythonPackage_TestResources_2DArray_SetIndex`, () => {
+            // <TestResources_2DArray_SetIndex>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // set up variables
+            const libraryPath = resourcesDirectory
+            const className = "TestClass.TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+            // invoke instance's method
+            let array = instance.invokeInstanceMethod("get_2d_array").execute()
+
+            // set element of array
+            array.setIndex([0, 1], "new value").execute()
+
+            // get element from array
+            let response = array.getIndex(0, 1).execute()
 
             // get value from response
             let result = response.getValue()
 
             // write result to console
             console.log(result)
-            // </StandardLibrary_InvokeStaticMethod>
-            expect(result).toBe(50)
+            // </TestResources_2DArray_SetIndex>
+            expect(result).toBe("new value")
+        })
+
+        test(`Test_PythonPackage_StandardLibrary_HandleList`, () => {
+            // <StandardLibrary_HandleList>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // get list from built-in types
+            let typeList = calledRuntime.getType("builtins.list").execute()
+
+            // create instance of list
+            let list = typeList.createInstance().execute()
+
+            // invoke instance method
+            list.invokeInstanceMethod("extend", ["one", "two", "three", "four", "five", "six"]).execute()
+
+            // get elements from list
+            let element0 = list.getIndex(0).execute()
+            let element1 = list.getIndex(1).execute()
+
+            let result0 = element0.getValue()
+            let result1 = element1.getValue()
+
+            // get size of list
+            let size = list.getSize().execute().getValue()
+
+            // write results to console
+            console.log(result0)
+            console.log(result1)
+            console.log(size)
+            // </StandardLibrary_HandleList>
+            expect(result0).toBe("one")
+            expect(result1).toBe("two")
+            expect(size).toBe(6)
+        })
+
+        test(`Test_PythonPackage_StandardLibrary_HandleDictionary`, () => {
+            // <StandardLibrary_HandleDictionary>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().python()
+
+            // get generic class
+            let typeDictionary = calledRuntime.getType("builtins.dict").execute()
+
+            // create instance of generic class
+            let dictionary = typeDictionary.createInstance().execute()
+
+            // set elements in dictionary
+            dictionary.setIndex("pi", Math.PI).execute()
+            dictionary.setIndex("e", Math.E).execute()
+            dictionary.setIndex("c", 299792458.0).execute()
+
+            // get elements from dictionary
+            let response1 = dictionary.getIndex("c").execute()
+            let response2 = dictionary.getIndex("e").execute()
+
+            let c_value = response1.getValue()
+            let e_value = response2.getValue()
+
+            // write results to console
+            console.log(c_value)
+            console.log(e_value)
+            // </StandardLibrary_HandleDictionary>
+            expect(c_value).toBe(299792458.0)
+            expect(e_value).toBe(Math.E)
         })
 
     } else {

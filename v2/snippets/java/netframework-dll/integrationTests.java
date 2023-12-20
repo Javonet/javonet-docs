@@ -1150,8 +1150,8 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void Test_NetframeworkDll_TestResources_Refs_OneArg() {
-        // <TestResources_Refs_OneArg>
+    public void Test_NetframeworkDll_TestResources_Refs() {
+        // <TestResources_Refs>
         Javonet.activate("your-license-key");
 
         // create called runtime context
@@ -1190,7 +1190,7 @@ public class integrationTests {
         System.out.println(result1);
         System.out.println(result2);
 
-        // </TestResources_Refs_OneArg>
+        // </TestResources_Refs>
         Assertions.assertEquals(20, result1);
         Assertions.assertEquals(40, result2);
     }

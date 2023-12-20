@@ -10,6 +10,105 @@ resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '
 
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_GetStaticField():
+    # <StandardLibrary_GetStaticField>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.Math").execute()
+
+    # get type's static field
+    response = called_runtime_type.get_static_field("PI").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetStaticField>
+    assert result == math.pi
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_GetInstanceField():
+    # <StandardLibrary_GetInstanceField>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
+
+    # get instance's field
+    response = instance.get_instance_field("Year").execute()
+
+    # get value from response
+    result = response.get_value()
+    # </StandardLibrary_GetInstanceField>
+    assert result == 2022
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_InvokeStaticMethod():
+    # <StandardLibrary_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.Math").execute()
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("Abs", -50).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeStaticMethod>
+    assert result == 50
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod():
+    # <StandardLibrary_InvokeInstanceMethod>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("ToShortDateString").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeInstanceMethod>
+    assert "2022" in result
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
 def test_NetframeworkDll_TestResources_LoadLibrary():
     # <TestResources_LoadLibrary>
     # use activate only once in your app
@@ -625,7 +724,7 @@ def test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMeth
         # write exception to console
         print(e)
         # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-        assert type(e) == JavonetException
+        assert isinstance(e, JavonetException)
         assert "DivideByThird" in str(e)
 
 
@@ -652,8 +751,8 @@ def test_NetframeworkDll_TestResources_GenericStaticMethod():
     target_type = called_runtime.get_type("System.Int32")
 
     # invoke static method
-    response = called_runtime_type.\
-        invoke_generic_static_method("GenericSampleStaticMethod", target_type, 7, 5).\
+    response = called_runtime_type. \
+        invoke_generic_static_method("GenericSampleStaticMethod", target_type, 7, 5). \
         execute()
 
     # get value from response
@@ -691,8 +790,8 @@ def test_NetframeworkDll_TestResources_GenericMethod():
     target_type = called_runtime.get_type("System.Int32")
 
     # invoke instance method
-    response = instance.\
-        invoke_generic_method("GenericSampleMethod", target_type, 7, 5).\
+    response = instance. \
+        invoke_generic_method("GenericSampleMethod", target_type, 7, 5). \
         execute()
 
     # get value from response
@@ -731,9 +830,9 @@ def test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes():
     target_type_2 = called_runtime.get_type("System.Int32")
 
     # invoke instance method
-    response = instance.\
+    response = instance. \
         invoke_generic_method("GenericSampleMethodWithTwoTypes",
-                              [target_type_1, target_type_2], "test").\
+                              [target_type_1, target_type_2], "test"). \
         execute()
 
     # get value from response
@@ -745,6 +844,7 @@ def test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes():
     assert (result == 0)
 
 
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
 def test_NetframeworkDll_TestResources_EnumAddToList():
     # <TestResources_EnumAddToList>
     # use activate only once in your app
@@ -785,6 +885,7 @@ def test_NetframeworkDll_TestResources_EnumAddToList():
     assert result == "2 fruits on the list"
 
 
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
 def test_NetframeworkDll_TestResources_EnumNameAndValue():
     # <TestResources_EnumNameAndValue>
     # use activate only once in your app
@@ -822,133 +923,376 @@ def test_NetframeworkDll_TestResources_EnumNameAndValue():
 
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
-def test_NetframeworkDll_StandardLibrary_GetStaticField():
-    # <StandardLibrary_GetStaticField>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create runtime context
-    called_runtime = Javonet.in_memory().clr()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.Math").execute()
-
-    # get type's static field
-    response = called_runtime_type.get_static_field("PI").execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_GetStaticField>
-    assert result == math.pi
-
-
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
-def test_NetframeworkDll_StandardLibrary_GetInstanceField():
-    # <StandardLibrary_GetInstanceField>
+def test_NetframeworkDll_TestResources_2DArray_GetIndex():
+    # <TestResources_2DArray_GetIndex>
     # use activate only once in your app
     Javonet.activate("your-license-key")
 
     # create called runtime context
     called_runtime = Javonet.in_memory().clr()
 
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
     # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
+    called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
-
-    # get instance's field
-    response = instance.get_instance_field("Year").execute()
-
-    # get value from response
-    result = response.get_value()
-    # </StandardLibrary_GetInstanceField>
-    assert result == 2022
-
-
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
-def test_NetframeworkDll_StandardLibrary_InvokeStaticMethod():
-    # <StandardLibrary_InvokeStaticMethod>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().clr()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.Math").execute()
-
-    # invoke type's static method
-    response = called_runtime_type.invoke_static_method("Abs", -50).execute()
-
-    # get value from response
-    result = response.get_value()
-
-    # write result to console
-    print(result)
-    # </StandardLibrary_InvokeStaticMethod>
-    assert result == 50
-
-
-@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
-def test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod():
-    # <StandardLibrary_InvokeInstanceMethod>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().clr()
-
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type("System.DateTime").execute()
-
-    # create type's instance
-    instance = called_runtime_type.create_instance(2022, 9, 2).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
-    response = instance.invoke_instance_method("ToShortDateString").execute()
+    array = instance.invoke_instance_method("Get2DArray").execute()
+
+    # two ways to get elements from array
+    response1 = array.get_index(0, 0).execute()
+    response2 = array.get_index([0, 1]).execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_2DArray_GetIndex>
+    assert result1 == "S00"
+    assert result2 == "S01"
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_TestResources_2DArray_GetSizeAndRank():
+    # <TestResources_2DArray_GetSizeAndRank>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom libraries
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get2DArray").execute()
+
+    # get array's size and rank
+    response1 = array.get_size().execute()
+    response2 = array.get_rank().execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_2DArray_GetSizeAndRank>
+    assert result1 == 4
+    assert result2 == 2
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_TestResources_2DArray_SetIndex():
+    # <TestResources_2DArray_SetIndex>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.dll'
+    class_name = 'TestClass.TestClass'
+
+    # load custom libraries
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    array = instance.invoke_instance_method("Get2DArray").execute()
+
+    # setting elements in array
+    array.set_index([1, 1], "new value 1").execute()
+
+    # two ways of getting elements from array
+    response1 = array.get_index(1, 1).execute()
+
+    # get value from response
+    result1 = response1.get_value()
+
+    # write result to console
+    print(result1)
+    # </TestResources_2DArray_SetIndex>
+    array.set_index([1, 1], "S11").execute()
+    assert result1 == "new value 1"
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_CreateInstanceOfGenericClass():
+    # <StandardLibrary_CreateInstanceOfGenericClass>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # get type from the runtime
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # get type for generic class
+    list_type = called_runtime.get_type("System.Collections.Generic.List`1", string_type).execute()
+
+    # create instance of generic class
+    list_instance = list_type.create_instance().execute()
+
+    # invoke instance's method
+    list_instance.invoke_instance_method("Add", "one").execute()
+    list_instance.invoke_instance_method("Add", "two").execute()
+    list_instance.invoke_instance_method("Add", "three").execute()
+    list_instance.invoke_instance_method("AddRange", ["four", "five", "six"]).execute()
+
+    # check number of elements in list
+    response = list_instance.get_instance_field("Count").execute()
 
     # get value from response
     result = response.get_value()
 
     # write result to console
     print(result)
-    # </StandardLibrary_InvokeInstanceMethod>
-    assert "2022" in result
+    # </StandardLibrary_CreateInstanceOfGenericClass>
+    assert result == 6
 
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
-def test_NetframeworkDll_StandardLibrary_PassInstanceAsArgument():
-    # <StandardLibrary_PassInstanceAsArgument>
-    instance = Javonet.in_memory().clr().get_type("System.DateTime").create_instance(2022, 9, 13, 8, 24,
-                                                                                     22).execute()
-    culture_info_es = Javonet.in_memory().clr().get_type("System.Globalization.CultureInfo").create_instance(
-        "es-ES",
-        False).execute();
-    culture_info_pl = Javonet.in_memory().clr().get_type("System.Globalization.CultureInfo").create_instance(
-        "pl-PL",
-        False).execute();
-    culture_info_de = Javonet.in_memory().clr().get_type("System.Globalization.CultureInfo").create_instance(
-        "de-De",
-        False).execute();
-    culture_info_ja = Javonet.in_memory().clr().get_type("System.Globalization.CultureInfo").create_instance(
-        "ja-JP",
-        False).execute();
-    culture_info_uk = Javonet.in_memory().clr().get_type("System.Globalization.CultureInfo").invoke_static_method(
-        "GetCultureInfo", "uk-Ua").execute();
+def test_NetframeworkDll_StandardLibrary_HandleList():
+    # <StandardLibrary_HandleList>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
 
-    result_es = instance.invoke_instance_method("ToString", "F", culture_info_es).execute().get_value()
-    result_pl = instance.invoke_instance_method("ToString", "F", culture_info_pl).execute().get_value()
-    result_de = instance.invoke_instance_method("ToString", "F", culture_info_de).execute().get_value()
-    result_ja = instance.invoke_instance_method("ToString", "F", culture_info_ja).execute().get_value()
-    result_uk = instance.invoke_instance_method("ToString", "F", culture_info_uk).execute().get_value()
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
 
-    assert result_es == "martes, 13 de septiembre de 2022 8:24:22"
-    assert result_pl == "wtorek, 13 września 2022 08:24:22"
-    assert result_de == "Dienstag, 13. September 2022 08:24:22"
-    assert result_ja == "2022年9月13日 8:24:22"
-    assert result_uk == "13 вересня 2022 р. 8:24:22"
-    # </StandardLibrary_PassInstanceAsArgument>
+    # get type from the runtime
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # get type for generic class
+    list_type = called_runtime.get_type("System.Collections.Generic.List`1", string_type).execute()
+
+    # create instance of generic class
+    list_instance = list_type.create_instance().execute()
+
+    # invoke instance's method
+    list_instance.invoke_instance_method("Add", "one").execute()
+    list_instance.invoke_instance_method("Add", "two").execute()
+    list_instance.invoke_instance_method("Add", "three").execute()
+    list_instance.invoke_instance_method("AddRange", ["four", "five", "six"]).execute()
+
+    # get elements from list
+    response1 = list_instance.get_index(2).execute()
+    response2 = list_instance[3].execute()
+
+    # get value from response
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </StandardLibrary_HandleList>
+    assert result1 == "three"
+    assert result2 == "four"
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_HandleDictionary():
+    # <StandardLibrary_HandleDictionary>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # get type from the runtime
+    string_type = called_runtime.get_type("System.String").execute()
+    double_type = called_runtime.get_type("System.Double").execute()
+
+    # get type for generic class
+    dictionary_type = called_runtime.get_type("System.Collections.Generic.Dictionary`2", string_type,
+                                              double_type).execute()
+
+    # create instance of generic class
+    dictionary = dictionary_type.create_instance().execute()
+
+    # invoke instance's method
+    dictionary.invoke_instance_method("Add", "pi", math.pi).execute()
+    dictionary.invoke_instance_method("Add", "e", math.e).execute()
+    dictionary.invoke_instance_method("Add", "c", 299792458.0).execute()
+
+    # get elements from dictionary
+    response1 = dictionary.get_index("pi").execute()
+
+    # get value from response
+    result1 = response1.get_value()
+
+    # write result to console
+    print(result1)
+    # </StandardLibrary_HandleDictionary>
+    assert result1 == math.pi
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_TestResources_Refs_OneArg():
+    # <TestResources_Refs>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create values for ref
+
+    # first way - pass only value
+    ref_value1 = called_runtime.as_ref(10).execute()
+
+    # second way - pass value and type
+    # ref variable should have specific type to be able to invoke methods on it
+    # this way enables to cast value to specific type needed by called method
+    int_type = called_runtime.get_type("System.Int32").execute()
+    ref_value2 = called_runtime.as_ref(20.0, int_type).execute()
+
+    # invoke type's static method with ref values
+    called_runtime_type.invoke_static_method("RefSampleMethod", ref_value1).execute()
+    called_runtime_type.invoke_static_method("RefSampleMethod", ref_value2).execute()
+
+    # get ref values
+    result1 = ref_value1.get_ref_value().execute().get_value()
+    result2 = ref_value2.get_ref_value().execute().get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_Refs>
+    assert result1 == 20
+    assert result2 == 40
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_TestResources_Refs_MultipleArgs():
+    # <TestResources_Refs_MultipleArgs>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    double_type = called_runtime.get_type("System.Double").execute()
+
+    # create values for ref
+    # ref variable should have specific type to be able to invoke methods on it
+    # This way enables to cast value to specific type needed by called method
+    ref_to_int = called_runtime.as_ref(10).execute()
+    ref_to_double = called_runtime.as_ref(5, double_type).execute()
+    ref_to_string = called_runtime.as_ref("Before execution").execute()
+
+    # invoke type's static method with ref values
+    called_runtime_type.invoke_static_method("RefSampleMethod2", ref_to_int, ref_to_double, ref_to_string).execute()
+
+    # get ref values
+    result1 = ref_to_int.get_ref_value().execute().get_value()
+    result2 = ref_to_double.get_ref_value().execute().get_value()
+    result3 = ref_to_string.get_ref_value().execute().get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    print(result3)
+    # </TestResources_Refs_MultipleArgs>
+    assert result1 == 20
+    assert result2 == 2.5
+    assert result3 == "Done"
+
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_TestResources_Outs():
+    # <TestResources_Outs>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # create values for outs
+    # out variable should have specific type to be able to invoke methods on it
+    # first way - pass only type
+    out_value_1 = called_runtime.as_out(string_type).execute()
+    # second way - pass initial value and type to cast on
+    out_value_2 = called_runtime.as_out('c', string_type).execute()
+    # third way - pass initial value without specific type
+    out_value_3 = called_runtime.as_out("Test string").execute()
+
+    # invoke type's static method with out values
+    called_runtime_type.invoke_static_method("OutSampleMethod", out_value_1).execute()
+    called_runtime_type.invoke_static_method("OutSampleMethod", out_value_2).execute()
+    called_runtime_type.invoke_static_method("OutSampleMethod", out_value_3).execute()
+
+    # get outs' values
+    result1 = out_value_1.get_ref_value().execute().get_value()
+    result2 = out_value_2.get_ref_value().execute().get_value()
+    result3 = out_value_3.get_ref_value().execute().get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    print(result3)
+    # </TestResources_Outs>
+    assert result1 == "String from OutSampleMethod"
+    assert result2 == "String from OutSampleMethod"
+    assert result3 == "String from OutSampleMethod"
