@@ -10,7 +10,106 @@ describe('Nodejs to Jar Library integration tests', () => {
     let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
-    test(`Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+    test(`Test_JarLibrary_StandardLibrary_GetStaticField`, () => {
+        // <StandardLibrary_GetStaticField>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType("java.lang.Math").execute()
+
+        // get type's field
+        let response = calledRuntimeType.getStaticField("PI").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_GetStaticField>
+        expect(result).toBe(Math.PI)
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_GetInstanceField`, () => {
+        // <StandardLibrary_GetInstanceField>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType("java.sql.DriverPropertyInfo").execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance("sample value", "sample value 2").execute()
+
+        // get instance's field
+        let response = instance.getInstanceField("name").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_GetInstanceField>
+        expect(result).toBe("sample value")
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_InvokeStaticMethod`, () => {
+        // <StandardLibrary_InvokeStaticMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType("java.lang.Math").execute()
+
+        // invoke type's static method
+        let response = calledRuntimeType.invokeStaticMethod("abs", -50).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_InvokeStaticMethod>
+        expect(result).toBe(50)
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_InvokeInstanceMethod`, () => {
+        // <StandardLibrary_InvokeInstanceMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType("java.util.Random").execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let response = instance.invokeInstanceMethod("nextInt", 10).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_InvokeInstanceMethod>
+        expect(result).toBeGreaterThanOrEqual(0)
+        expect(result).toBeLessThan(10)
+    })
+
+    test(`Test_JarLibrary_TestResources_LoadLibrary`, () => {
         // <TestResources_LoadLibrary>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -26,7 +125,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         // </TestResources_LoadLibrary>
     })
 
-    test(`Test_JarLibrary_TestResources_GetStaticField_StaticValue_3`, () => {
+    test(`Test_JarLibrary_TestResources_GetStaticField`, () => {
         // <TestResources_GetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -56,7 +155,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(3)
     })
 
-    test(`Test_JarLibrary_TestResources_SetStaticField_StaticValue_75`, () => {
+    test(`Test_JarLibrary_TestResources_SetStaticField`, () => {
         // <TestResources_SetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -90,7 +189,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(75)
     })
 
-    test(`Test_JarLibrary_TestResources_GetInstanceField_PublicValue_18`, () => {
+    test(`Test_JarLibrary_TestResources_GetInstanceField`, () => {
         // <TestResources_GetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -123,7 +222,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(18)
     })
 
-    test(`Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44`, () => {
+    test(`Test_JarLibrary_TestResources_SetInstanceField`, () => {
         // <TestResources_SetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -159,7 +258,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(44)
     })
 
-    test(`Test_JarLibrary_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+    test(`Test_JarLibrary_TestResources_InvokeStaticMethod`, () => {
         // <TestResources_InvokeStaticMethod>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -189,7 +288,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(50)
     })
 
-    test(`Test_JarLibrary_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+    test(`Test_JarLibrary_TestResources_InvokeInstanceMethod`, () => {
         // <TestResources_InvokeInstanceMethod>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -222,7 +321,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(20)
     })
 
-    test(`Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_GetIndex`, () => {
         // <TestResources_1DArray_GetIndex>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -258,7 +357,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe("three")
     })
 
-    test(`Test_JarLibrary_TestResources_1DArray_GetSize_5`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_GetSize`, () => {
         // <TestResources_1DArray_GetSize>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -294,7 +393,7 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(result).toBe(5)
     })
 
-    test(`Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven`, () => {
+    test(`Test_JarLibrary_TestResources_1DArray_SetIndex`, () => {
         // <TestResources_1DArray_SetIndex>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -370,6 +469,81 @@ describe('Nodejs to Jar Library integration tests', () => {
         // </TestResources_1DArray_Iterate>
         expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     })
+
+    test(`Test_JarLibrary_TestResources_1DArray_GetElement`, () => {
+    // <TestResources_1DArray_GetElement>
+    // use Activate only once in your app
+    Javonet.activate("your-license-key")
+
+    // create called runtime context
+    let calledRuntime = Javonet.inMemory().jvm()
+
+    // set up variables
+    const libraryPath = resourcesDirectory + '/TestClass.jar'
+    const className = 'TestClass'
+
+    // load custom library
+    calledRuntime.loadLibrary(libraryPath)
+
+    // get type from the runtime
+    let calledRuntimeType = calledRuntime.getType(className).execute()
+
+    // create type's instance
+    let instance = calledRuntimeType.createInstance().execute()
+
+    // invoke instance's method
+    let array = instance.invokeInstanceMethod("get1DArray").execute()
+
+    // get element of array and invoke method on it
+    let response = array.getIndex(2).invokeInstanceMethod("toUpperCase").execute()
+
+    // get value from response
+    let result = response.getValue()
+
+    // write result to console
+    console.log(result)
+    // </TestResources_1DArray_GetElement>
+    expect(result).toBe("THREE")
+})
+
+test(`Test_JarLibrary_TestResources_1DArray_SetElement`, () => {
+    // <TestResources_1DArray_SetElement>
+    // use Activate only once in your app
+    Javonet.activate("your-license-key")
+
+    // create called runtime context
+    let calledRuntime = Javonet.inMemory().jvm()
+
+    // set up variables
+    const libraryPath = resourcesDirectory + '/TestClass.jar'
+    const className = 'TestClass'
+
+    // load custom library
+    calledRuntime.loadLibrary(libraryPath)
+
+    // get type from the runtime
+    let calledRuntimeType = calledRuntime.getType(className).execute()
+
+    // create type's instance
+    let instance = calledRuntimeType.createInstance().execute()
+
+    // invoke instance's method
+    let array = instance.invokeInstanceMethod("get1DArray").execute()
+
+    // set element of array
+    array.setIndex(2, "zero").execute()
+
+    // get element of array and invoke method on it
+    let response = array.getIndex(2).invokeInstanceMethod("toUpperCase").execute()
+
+    // get value from response
+    let result = response.getValue()
+
+    // write result to console
+    console.log(result)
+    // </TestResources_1DArray_SetElement>
+    expect(result).toBe("ZERO")
+})
 
     test(`Test_JarLibrary_TestResources_1DArray_PassArrayAsArgument`, () => {
         // <TestResources_1DArray_PassArrayAsArgument>
@@ -639,103 +813,243 @@ describe('Nodejs to Jar Library integration tests', () => {
         expect(fruit2Value).toBe(2)
     })
 
-    test(`Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI`, () => {
-        // <StandardLibrary_GetStaticField>
+
+    test(`Test_JarLibrary_TestResources_2DArray_GetIndex`, () => {
+        // <TestResources_2DArray_GetIndex>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().jvm()
 
-        // get type from the runtime
-        let calledRuntimeType = calledRuntime.getType("java.lang.Math").execute()
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
 
-        // get type's field
-        let response = calledRuntimeType.getStaticField("PI").execute()
-
-        // get value from response
-        let result = response.getValue()
-
-        // write result to console
-        console.log(result)
-        // </StandardLibrary_GetStaticField>
-        expect(result).toBe(Math.PI)
-    })
-
-    test(`Test_JarLibrary_StandardLibrary_GetInstanceField`, () => {
-        // <StandardLibrary_GetInstanceField>
-        // use Activate only once in your app
-        Javonet.activate("your-license-key")
-
-        // create called runtime context
-        let calledRuntime = Javonet.inMemory().jvm()
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
 
         // get type from the runtime
-        let calledRuntimeType = calledRuntime.getType("java.sql.DriverPropertyInfo").execute()
-
-        // create type's instance
-        let instance = calledRuntimeType.createInstance("sample value", "sample value 2").execute()
-
-        // get instance's field
-        let response = instance.getInstanceField("name").execute()
-
-        // get value from response
-        let result = response.getValue()
-
-        // write result to console
-        console.log(result)
-        // </StandardLibrary_GetInstanceField>
-        expect(result).toBe("sample value")
-    })
-
-    test(`Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50`, () => {
-        // <StandardLibrary_InvokeStaticMethod>
-        // use Activate only once in your app
-        Javonet.activate("your-license-key")
-
-        // create called runtime context
-        let calledRuntime = Javonet.inMemory().jvm()
-
-        // get type from the runtime
-        let calledRuntimeType = calledRuntime.getType("java.lang.Math").execute()
-
-        // invoke type's static method
-        let response = calledRuntimeType.invokeStaticMethod("abs", -50).execute()
-
-        // get value from response
-        let result = response.getValue()
-
-        // write result to console
-        console.log(result)
-        // </StandardLibrary_InvokeStaticMethod>
-        expect(result).toBe(50)
-    })
-
-    test(`Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9`, () => {
-        // <StandardLibrary_InvokeInstanceMethod>
-        // use Activate only once in your app
-        Javonet.activate("your-license-key")
-
-        // create called runtime context
-        let calledRuntime = Javonet.inMemory().jvm()
-
-        // get type from the runtime
-        let calledRuntimeType = calledRuntime.getType("java.util.Random").execute()
+        let calledRuntimeType = calledRuntime.getType(className).execute()
 
         // create type's instance
         let instance = calledRuntimeType.createInstance().execute()
 
         // invoke instance's method
-        let response = instance.invokeInstanceMethod("nextInt", 10).execute()
+        let array = instance.invokeInstanceMethod("get2DArray").execute()
+
+        // three ways to get elements from array
+        let response1 = array.getIndex(0, 0).execute()
+        let response2 = array.getIndex([0, 1]).execute()
+        let response3 = array.getIndex(1, 1).execute()
+
+        // get value from response
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+        let result3 = response3.getValue()
+
+        // write result to console
+        console.log(result1)
+        console.log(result2)
+        console.log(result3)
+        // </TestResources_2DArray_GetIndex>
+        expect(result1).toBe("S00")
+        expect(result2).toBe("S01")
+        expect(result3).toBe("S11")
+    })
+
+    ''
+    test(`Test_JarLibrary_TestResources_2DArray_GetSizeAndRank`, () => {
+        // <TestResources_2DArray_GetSizeAndRank>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom libraries
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get2DArray").execute()
+
+        // get array's size and rank
+        let response1 = array.getSize().execute()
+        let response2 = array.getRank().execute()
+
+        // get value from response
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+
+        // write result to console
+        console.log(result1)
+        console.log(result2)
+        // </TestResources_2DArray_GetSizeAndRank>
+        expect(result1).toBe(4)
+        expect(result2).toBe(2)
+    })
+
+    test(`Test_JarLibrary_TestResources_2DArray_SetIndex`, () => {
+        // <TestResources_2DArray_SetIndex>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+        const className = 'TestClass'
+
+        // load custom libraries
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get2DArray").execute()
+
+        // two ways of setting elements in array
+        array.setIndex([1, 1], "new value 1").execute()
+        array.setIndex([0, 1], "new value 2").execute()
+
+        // two ways of getting elements from array
+        let response1 = array.getIndex(1, 1).execute()
+        let response2 = array.getIndex(0, 1).execute()
+
+        // get value from response
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+
+        // write result to console
+        console.log(result1)
+        console.log(result2)
+        // </TestResources_2DArray_SetIndex>
+        array.setIndex([1, 1], "S11").execute()
+        array.setIndex([0, 1], "S01").execute()
+        expect(result1).toBe("new value 1")
+        expect(result2).toBe("new value 2")
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_CreateInstanceOfGenericClass`, () => {
+        // <StandardLibrary_CreateInstanceOfGenericClass>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let listType = calledRuntime.getType("java.util.ArrayList").execute()
+
+        // create instance of generic class
+        let listInstance = listType.createInstance().execute()
+
+        // invoke instance's method
+        listInstance.invokeGenericMethod("add", "one").execute()
+        listInstance.invokeGenericMethod("add", "two").execute()
+        listInstance.invokeGenericMethod("add", "three").execute()
+        listInstance.invokeGenericMethod("add", "four").execute()
+        listInstance.invokeGenericMethod("add", "five").execute()
+        listInstance.invokeGenericMethod("add", "six").execute()
+
+        // check number of elements in list
+        let response = listInstance.invokeGenericMethod("size").execute()
 
         // get value from response
         let result = response.getValue()
 
         // write result to console
         console.log(result)
-        // </StandardLibrary_InvokeInstanceMethod>
-        expect(result).toBeGreaterThanOrEqual(0)
-        expect(result).toBeLessThan(10)
+        // </StandardLibrary_CreateInstanceOfGenericClass>
+        expect(result).toBe(6)
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_HandleList`, () => {
+        // <StandardLibrary_HandleList>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let listType = calledRuntime.getType("java.util.ArrayList").execute()
+
+        // create instance of generic class
+        let listInstance = listType.createInstance().execute()
+
+        // invoke instance's method
+        listInstance.invokeGenericMethod("add", "one").execute()
+        listInstance.invokeGenericMethod("add", "two").execute()
+        listInstance.invokeGenericMethod("add", "three").execute()
+        listInstance.invokeGenericMethod("add", "four").execute()
+        listInstance.invokeGenericMethod("add", "five").execute()
+        listInstance.invokeGenericMethod("add", "six").execute()
+
+        // get elements from list
+        let response1 = listInstance.getIndex(2).execute()
+        let response2 = listInstance.getIndex(3).execute()
+
+        // get value from response
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+
+        // write result to console
+        console.log(result1)
+        console.log(result2)
+        // </StandardLibrary_HandleList>
+        expect(result1).toBe("three")
+        expect(result2).toBe("four")
+    })
+
+    test(`Test_JarLibrary_StandardLibrary_HandleDictionary`, () => {
+        // <StandardLibrary_HandleDictionary>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // get type from the runtime
+        let dictionaryType = calledRuntime.getType("java.util.HashMap").execute()
+
+        // create instance of generic class
+        let dictionary = dictionaryType.createInstance().execute()
+
+        // invoke instance's method
+        dictionary.invokeGenericMethod("put", "pi", Math.PI).execute()
+        dictionary.invokeGenericMethod("put", "e", Math.E).execute()
+        dictionary.invokeGenericMethod("put", "c", 299792458.0).execute()
+
+        // get elements from dictionary
+        let response1 = dictionary.getIndex("pi").execute()
+        let response2 = dictionary.getIndex("c").execute()
+
+        // get value from response
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+
+        // write result to console
+        console.log(result1)
+        console.log(result2)
+        // </StandardLibrary_HandleDictionary>
+        expect(result1).toBe(Math.PI)
+        expect(result2).toBe(299792458.0)
     })
 
 })

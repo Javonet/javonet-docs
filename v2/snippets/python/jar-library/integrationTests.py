@@ -539,6 +539,39 @@ def test_JarLibrary_TestResources_1DArray_SetElement():
     assert result == "ZERO"
 
 
+def test_JarLibrary_TestResources_1DArray_PassArrayAsArgument():
+    # <TestResources_1DArray_PassArrayAsArgument>
+    # use Activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    response = instance.invoke_instance_method("addArrayElementsAndMultiply", [12.22, 98.22, -10.44], 9.99).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_1DArray_PassArrayAsArgument>
+    assert result == 999
+
+
 def test_JarLibrary_TestResources_1DArray_RetrieveArray():
     # <TestResources_1DArray_RetrieveArray>
     # use activate only once in your app
@@ -597,7 +630,7 @@ def test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_Di
         # write exception to console
         print(e)
         # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-        assert type(e) == JavonetException
+        assert isinstance(e, JavonetException)
         assert "divideByThird" in str(e)
 
 

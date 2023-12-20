@@ -9,7 +9,7 @@ describe('Nodejs to Perl Package integration tests', () => {
         if (process.platform != 'darwin') {
             Javonet.activate(ActivationCredentials.yourLicenseKey)
 
-            test(`Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+            test(`Test_PerlPackage_TestResources_LoadLibrary`, () => {
                 // <TestResources_LoadLibrary>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -25,7 +25,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 // </TestResources_LoadLibrary>
             })
 
-            test(`Test_PerlPackage_TestResources_GetStaticField_StaticValue_3`, () => {
+            test(`Test_PerlPackage_TestResources_GetStaticField`, () => {
                 // <TestResources_GetStaticField>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -55,7 +55,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe(3)
             })
 
-            test(`Test_PerlPackage_TestResources_SetStaticField_StaticValue_75`, () => {
+            test(`Test_PerlPackage_TestResources_SetStaticField`, () => {
                 // <TestResources_SetStaticField>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -89,7 +89,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe(75)
             })
 
-            test(`Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1`, () => {
+            test(`Test_PerlPackage_TestResources_GetInstanceField`, () => {
                 // <TestResources_GetInstanceField>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -122,7 +122,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe(1)
             })
 
-            test(`Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+            test(`Test_PerlPackage_TestResources_InvokeStaticMethod`, () => {
                 // <TestResources_InvokeStaticMethod>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -152,7 +152,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe(50)
             })
 
-            test(`Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+            test(`Test_PerlPackage_TestResources_InvokeInstanceMethod`, () => {
                 // <TestResources_InvokeInstanceMethod>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -183,7 +183,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe(20)
             })
 
-            test(`Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_GetIndex`, () => {
                 // <TestResources_1DArray_GetIndex>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -219,7 +219,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe("three")
             })
 
-            test(`Test_PerlPackage_TestResources_1DArray_GetSize_5`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_GetSize`, () => {
                 // <TestResources_1DArray_GetSize>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -255,7 +255,7 @@ describe('Nodejs to Perl Package integration tests', () => {
                 expect(result).toBe(5)
             })
 
-            test(`Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven`, () => {
+            test(`Test_PerlPackage_TestResources_1DArray_SetIndex`, () => {
                 // <TestResources_1DArray_SetIndex>
                 // use Activate only once in your app
                 Javonet.activate("your-license-key")
@@ -327,6 +327,81 @@ describe('Nodejs to Perl Package integration tests', () => {
                 console.log(arrayValues)
                 // </TestResources_1DArray_Iterate>
                 expect(arrayValues).toEqual(["one", "two", "three", "four", "five"])
+            })
+
+            test(`Test_PerlPackage_TestResources_1DArray_GetElement`, () => {
+                // <TestResources_1DArray_GetElement>
+                // use Activate only once in your app
+                Javonet.activate("your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().perl()
+
+                // set up variables
+                const libraryPath = resourcesDirectory + '/TestClass.pm'
+                const className = "TestClass::TestClass"
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
+
+                // invoke instance's method
+                let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+                // get element of array and invoke method on it
+                let response = array.getIndex(2).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_GetElement>
+                expect(result).toBe("three")
+            })
+
+            test(`Test_PerlPackage_TestResources_1DArray_SetElement`, () => {
+                // <TestResources_1DArray_SetElement>
+                // use Activate only once in your app
+                Javonet.activate("your-license-key")
+
+                // create called runtime context
+                let calledRuntime = Javonet.inMemory().perl()
+
+                // set up variables
+                const libraryPath = resourcesDirectory + '/TestClass.pm'
+                const className = "TestClass::TestClass"
+
+                // load custom library
+                calledRuntime.loadLibrary(libraryPath)
+
+                // get type from the runtime
+                let calledRuntimeType = calledRuntime.getType(className).execute()
+
+                // create type's instance
+                let instance = calledRuntimeType.createInstance().execute()
+
+                // invoke instance's method
+                let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+                // set element of array
+                array.setIndex(2, "zero").execute()
+
+                // get element of array
+                let response = array.getIndex(2).execute()
+
+                // get value from response
+                let result = response.getValue()
+
+                // write result to console
+                console.log(result)
+                // </TestResources_1DArray_SetElement>
+                expect(result).toBe("zero")
             })
 
         } else {

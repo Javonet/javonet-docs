@@ -697,8 +697,8 @@ def test_NetDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_Divide
     except Exception as e:
         # write exception to console
         print(e)
-    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-        assert type(e) == JavonetException
+        # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        assert isinstance(e, JavonetException)
         assert "DivideByThird" in str(e)
 
 
@@ -724,8 +724,8 @@ def test_NetDll_TestResources_GenericStaticMethod():
     target_type = called_runtime.get_type("System.Int32")
 
     # invoke static method
-    response = called_runtime_type.\
-        invoke_generic_static_method("GenericSampleStaticMethod", target_type, 7, 5).\
+    response = called_runtime_type. \
+        invoke_generic_static_method("GenericSampleStaticMethod", target_type, 7, 5). \
         execute()
 
     # get value from response
@@ -762,8 +762,8 @@ def test_NetDll_TestResources_GenericMethod():
     target_type = called_runtime.get_type("System.Int32")
 
     # invoke instance method
-    response = instance.\
-        invoke_generic_method("GenericSampleMethod", target_type, 7, 5).\
+    response = instance. \
+        invoke_generic_method("GenericSampleMethod", target_type, 7, 5). \
         execute()
 
     # get value from response
@@ -801,9 +801,9 @@ def test_NetDll_TestResources_GenericMethodWithTwoTypes():
     target_type_2 = called_runtime.get_type("System.Int32")
 
     # invoke instance method
-    response = instance.\
+    response = instance. \
         invoke_generic_method("GenericSampleMethodWithTwoTypes",
-                              [target_type_1, target_type_2], "test").\
+                              [target_type_1, target_type_2], "test"). \
         execute()
 
     # get value from response
@@ -813,7 +813,8 @@ def test_NetDll_TestResources_GenericMethodWithTwoTypes():
     print(result)
     # </TestResources_GenericMethodWithTwoTypes>
     assert (result == 0)
-    
+
+
 def test_NetDll_TestResources_EnumAddToList():
     # <TestResources_EnumAddToList>
     # use activate only once in your app
@@ -1097,7 +1098,8 @@ def test_NetDll_StandardLibrary_HandleDictionary():
     double_type = called_runtime.get_type("System.Double").execute()
 
     # get type for generic class
-    dictionary_type = called_runtime.get_type("System.Collections.Generic.Dictionary`2", string_type, double_type).execute()
+    dictionary_type = called_runtime.get_type("System.Collections.Generic.Dictionary`2", string_type,
+                                              double_type).execute()
 
     # create instance of generic class
     dictionary = dictionary_type.create_instance().execute()
@@ -1106,7 +1108,6 @@ def test_NetDll_StandardLibrary_HandleDictionary():
     dictionary.invoke_instance_method("Add", "pi", math.pi).execute()
     dictionary.invoke_instance_method("Add", "e", math.e).execute()
     dictionary.invoke_instance_method("Add", "c", 299792458.0).execute()
-
 
     # get elements from dictionary
     response1 = dictionary.get_index("pi").execute()
@@ -1118,3 +1119,140 @@ def test_NetDll_StandardLibrary_HandleDictionary():
     print(result1)
     # </StandardLibrary_HandleDictionary>
     assert result1 == math.pi
+
+
+def test_NetDll_TestResources_Refs_OneArg():
+    # <TestResources_Refs>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create values for ref
+
+    # first way - pass only value
+    ref_value1 = called_runtime.as_ref(10).execute()
+
+    # second way - pass value and type
+    # ref variable should have specific type to be able to invoke methods on it
+    # this way enables to cast value to specific type needed by called method
+    int_type = called_runtime.get_type("System.Int32").execute()
+    ref_value2 = called_runtime.as_ref(20.0, int_type).execute()
+
+    # invoke type's static method with ref values
+    called_runtime_type.invoke_static_method("RefSampleMethod", ref_value1).execute()
+    called_runtime_type.invoke_static_method("RefSampleMethod", ref_value2).execute()
+
+    # get ref values
+    result1 = ref_value1.get_ref_value().execute().get_value()
+    result2 = ref_value2.get_ref_value().execute().get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_Refs>
+    assert result1 == 20
+    assert result2 == 40
+
+
+def test_NetDll_TestResources_Refs_MultipleArgs():
+    # <TestResources_Refs_MultipleArgs>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    double_type = called_runtime.get_type("System.Double").execute()
+
+    # create values for ref
+    # ref variable should have specific type to be able to invoke methods on it
+    # This way enables to cast value to specific type needed by called method
+    ref_to_int = called_runtime.as_ref(10).execute()
+    ref_to_double = called_runtime.as_ref(5, double_type).execute()
+    ref_to_string = called_runtime.as_ref("Before execution").execute()
+
+    # invoke type's static method with ref values
+    called_runtime_type.invoke_static_method("RefSampleMethod2", ref_to_int, ref_to_double, ref_to_string).execute()
+
+    # get ref values
+    result1 = ref_to_int.get_ref_value().execute().get_value()
+    result2 = ref_to_double.get_ref_value().execute().get_value()
+    result3 = ref_to_string.get_ref_value().execute().get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    print(result3)
+    # </TestResources_Refs_MultipleArgs>
+    assert result1 == 20
+    assert result2 == 2.5
+    assert result3 == "Done"
+
+
+def test_NetDll_TestResources_Outs():
+    # <TestResources_Outs>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # create values for outs
+    # out variable should have specific type to be able to invoke methods on it
+    # first way - pass only type
+    out_value_1 = called_runtime.as_out(string_type).execute()
+    # second way - pass initial value and type to cast on
+    out_value_2 = called_runtime.as_out('c', string_type).execute()
+    # third way - pass initial value without specific type
+    out_value_3 = called_runtime.as_out("Test string").execute()
+
+    # invoke type's static method with out values
+    called_runtime_type.invoke_static_method("OutSampleMethod", out_value_1).execute()
+    called_runtime_type.invoke_static_method("OutSampleMethod", out_value_2).execute()
+    called_runtime_type.invoke_static_method("OutSampleMethod", out_value_3).execute()
+
+    # get outs' values
+    result1 = out_value_1.get_ref_value().execute().get_value()
+    result2 = out_value_2.get_ref_value().execute().get_value()
+    result3 = out_value_3.get_ref_value().execute().get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    print(result3)
+    # </TestResources_Outs>
+    assert result1 == "String from OutSampleMethod"
+    assert result2 == "String from OutSampleMethod"
+    assert result3 == "String from OutSampleMethod"

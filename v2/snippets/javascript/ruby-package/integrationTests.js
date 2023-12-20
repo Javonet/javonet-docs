@@ -11,7 +11,53 @@ describe('Nodejs to Ruby Package integration tests', () => {
     let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
-    test(`Test_RubyPackage_TestResources_LoadLibrary_LibraryPath_NoException`, () => {
+    test(`Test_RubyPackage_StandardLibrary_GetStaticField`, () => {
+        // <StandardLibrary_GetStaticField>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType("Math").execute()
+
+        // get type's field
+        let response = calledRuntimeType.getStaticField("PI").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_GetStaticField>
+        expect(result).toBeCloseTo(Math.PI, 6)
+    })
+
+    test(`Test_RubyPackage_StandardLibrary_InvokeStaticMethod`, () => {
+        // <StandardLibrary_InvokeStaticMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType("Math").execute()
+
+        // invoke type's static method
+        let response = calledRuntimeType.invokeStaticMethod("sqrt", 2500).execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_InvokeStaticMethod>
+        expect(result).toBe(50)
+    })
+
+    test(`Test_RubyPackage_TestResources_LoadLibrary`, () => {
         // <TestResources_LoadLibrary>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -27,7 +73,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         // </TestResources_LoadLibrary>
     })
 
-    test(`Test_RubyPackage_TestResources_GetStaticField_StaticValue_3`, () => {
+    test(`Test_RubyPackage_TestResources_GetStaticField`, () => {
         // <TestResources_GetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -57,7 +103,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(3)
     })
 
-    test(`Test_RubyPackage_TestResources_SetStaticField_StaticValue_75`, () => {
+    test(`Test_RubyPackage_TestResources_SetStaticField`, () => {
         // <TestResources_SetStaticField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -91,7 +137,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(75)
     })
 
-    test(`Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18`, () => {
+    test(`Test_RubyPackage_TestResources_GetInstanceField`, () => {
         // <TestResources_GetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -124,7 +170,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(18)
     })
 
-    test(`Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44`, () => {
+    test(`Test_RubyPackage_TestResources_SetInstanceField`, () => {
         // <TestResources_SetInstanceField>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -160,7 +206,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(44)
     })
 
-    test(`Test_RubyPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50`, () => {
+    test(`Test_RubyPackage_TestResources_InvokeStaticMethod`, () => {
         // <TestResources_InvokeStaticMethod>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -190,7 +236,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(50)
     })
 
-    test(`Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20`, () => {
+    test(`Test_RubyPackage_TestResources_InvokeInstanceMethod`, () => {
         // <TestResources_InvokeInstanceMethod>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -223,7 +269,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(20)
     })
 
-    test(`Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_GetIndex`, () => {
         // <TestResources_1DArray_GetIndex>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -259,7 +305,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe("three")
     })
 
-    test(`Test_RubyPackage_TestResources_1DArray_GetSize_5`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_GetSize`, () => {
         // <TestResources_1DArray_GetSize>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -295,7 +341,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(result).toBe(5)
     })
 
-    test(`Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven`, () => {
+    test(`Test_RubyPackage_TestResources_1DArray_SetIndex`, () => {
         // <TestResources_1DArray_SetIndex>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
@@ -372,6 +418,81 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     })
 
+    test(`Test_RubyPackage_TestResources_1DArray_GetElement`, () => {
+        // <TestResources_1DArray_GetElement>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = "TestClass::TestClass"
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+        // get element of array and invoke method on it
+        let response = array.getIndex(2).invokeInstanceMethod("upcase!").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_1DArray_GetElement>
+        expect(result).toBe("THREE")
+    })
+
+    test(`Test_RubyPackage_TestResources_1DArray_SetElement`, () => {
+        // <TestResources_1DArray_SetElement>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.rb'
+        const className = "TestClass::TestClass"
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance().execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get_1d_array").execute()
+
+        // set element of array
+        array.setIndex(2, "zero").execute()
+
+        // get element of array and invoke method on it
+        let response = array.getIndex(2).invokeInstanceMethod("upcase!").execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </TestResources_1DArray_SetElement>
+        expect(result).toBe("ZERO")
+    })
+
     test(`Test_RubyPackage_TestResources_1DArray_PassArrayAsArgument`, () => {
         // <TestResources_1DArray_PassArrayAsArgument>
         // use Activate only once in your app
@@ -394,7 +515,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         let instance = calledRuntimeType.createInstance().execute()
 
         // invoke instance's method
-        let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", [12.22, 98.22, -10.44 ], 9.99).execute()
+        let response = instance.invokeInstanceMethod("add_array_elements_and_multiply", [12.22, 98.22, -10.44], 9.99).execute()
 
         // get value from response
         let result = response.getValue()
@@ -468,50 +589,126 @@ describe('Nodejs to Ruby Package integration tests', () => {
         expect(false).toBe(true)
     })
 
-    test(`Test_RubyPackage_StandardLibrary_GetStaticField_Math_PI_PI`, () => {
-        // <StandardLibrary_GetStaticField>
+    test(`Test_RubyPackage_TestResources_2DArray_GetIndex`, () => {
+        // <TestResources_2DArray_GetIndex>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().ruby()
 
-        // get type from the runtime
-        let calledRuntimeType = calledRuntime.getType("Math").execute()
+        // set up variables
+        const libraryPath = resourcesDirectory + "/TestClass.rb"
+        const className = "TestClass::TestClass"
 
-        // get type's field
-        let response = calledRuntimeType.getStaticField("PI").execute()
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get_2d_array").execute()
+
+        // three ways to get elements from array
+        let response1 = array.getIndex(1, 1).execute()
+        let response2 = array.getIndex(1, 0).execute()
+        let response3 = array.getIndex([0, 1]).execute()
 
         // get value from response
-        let result = response.getValue()
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+        let result3 = response3.getValue()
 
         // write result to console
-        console.log(result)
-        // </StandardLibrary_GetStaticField>
-        expect(result).toBeCloseTo(Math.PI, 6)
+        console.log(result1)
+        console.log(result2)
+        console.log(result3)
+        // </TestResources_2DArray_GetIndex>
+        expect(result1).toBe("S11")
+        expect(result2).toBe("S10")
+        expect(result3).toBe("S01")
     })
 
-    test(`Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50`, () => {
-        // <StandardLibrary_InvokeStaticMethod>
+    test(`Test_RubyPackage_TestResources_2DArray_GetSizeAndRank`, () => {
+        // <TestResources_2DArray_GetSizeAndRank>
         // use Activate only once in your app
         Javonet.activate("your-license-key")
 
         // create called runtime context
         let calledRuntime = Javonet.inMemory().ruby()
 
-        // get type from the runtime
-        let calledRuntimeType = calledRuntime.getType("Math").execute()
+        // set up variables
+        const libraryPath = resourcesDirectory + "/TestClass.rb"
+        const className = "TestClass::TestClass"
 
-        // invoke type's static method
-        let response = calledRuntimeType.invokeStaticMethod("sqrt", 2500).execute()
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get_2d_array").execute()
+
+        // get array's size and rank
+        let response1 = array.getSize().execute()
+        let response2 = array.getRank().execute()
+
+        // get value from response
+        let result1 = response1.getValue()
+        let result2 = response2.getValue()
+
+        // write result to console
+        console.log(result1)
+        console.log(result2)
+        // </TestResources_2DArray_GetSizeAndRank>
+        expect(result1).toBe(4)
+        expect(result2).toBe(2)
+    })
+
+    test(`Test_RubyPackage_TestResources_2DArray_SetIndex`, () => {
+        // <TestResources_2DArray_SetIndex>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + "/TestClass.rb"
+        const className = "TestClass::TestClass"
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+
+        // get type from the runtime
+        let calledRuntimeType = calledRuntime.getType(className).execute()
+
+        // create type's instance
+        let instance = calledRuntimeType.createInstance(0, 1).execute()
+
+        // invoke instance's method
+        let array = instance.invokeInstanceMethod("get_2d_array").execute()
+
+        // set element of array
+        array.setIndex([0, 1], "new value").execute()
+
+        // get element from array
+        let response = array.getIndex(0, 1).execute()
 
         // get value from response
         let result = response.getValue()
 
         // write result to console
         console.log(result)
-        // </StandardLibrary_InvokeStaticMethod>
-        expect(result).toBe(50)
+        // </TestResources_2DArray_SetIndex>
+        expect(result).toBe("new value")
     })
-
 })
