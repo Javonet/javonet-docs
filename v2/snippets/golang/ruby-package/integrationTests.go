@@ -428,12 +428,12 @@ func Test_RubyPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	response := calledRuntimeType.GetStaticField("PI").Execute()
 
 	// get value from response
-	result := response.GetValue().(float32)
+	result := response.GetValue().(float64)
 
 	// write result to console
 	fmt.Println(result)
 	// </StandardLibrary_GetStaticField>
-	expectedResponse := float32(math.Pi)
+	expectedResponse := math.Pi
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}
@@ -454,12 +454,12 @@ func Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50(t *te
 	response := calledRuntimeType.InvokeStaticMethod("sqrt", 2500).Execute()
 
 	// get value from response
-	result := response.GetValue().(float32)
+	result := response.GetValue().(float64)
 
 	// write result to console
 	fmt.Println(result)
 	// </StandardLibrary_InvokeStaticMethod>
-	expectedResponse := float32(50)
+	expectedResponse := float64(50)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
 	}

@@ -169,11 +169,11 @@ items:
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Multidimensional arrays
     href: /arrays-and-collections/multidimensional-arrays.md
-    calling_technology: csharp, java, javascript, python #, perl, ruby, cpp, golang
+    calling_technology: csharp, java, python, javascript, ruby #, perl, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, python-package, ruby-package #,perl-package
   - name: Collections (lists, dictionaries, sets, queues, stacks)
     href: /arrays-and-collections/collections.md
-    calling_technology: csharp, java, python, javascript #, perl, ruby, cpp, golang
+    calling_technology: csharp, java, python, javascript, ruby #, perl, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, python-package #, nodejs-package, ruby-package, perl-package
   # - name: Value types arrays
   #   href: /arrays-and-collections/value-types-arrays.md
@@ -214,7 +214,7 @@ items:
     called_technology: netframework-dll, net-dll, jar-library
   - name: Creating generic class
     href: /generics/creating-generic-class-instance.md
-    calling_technology: csharp, java, python, javascript #, perl, ruby, cpp, golang
+    calling_technology: csharp, java, python, javascript, ruby #, perl, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library
 
 - name: Enums
@@ -228,10 +228,10 @@ items:
   items:
   - name: Passing arguments by reference with "ref" keyword
     href: /methods-arguments/passing-arguments-by-reference-with-ref-keyword.md
-    calling_technology: java, python, javascript #, perl, ruby, cpp, golang
+    calling_technology: java, python, javascript, ruby #, perl, cpp, golang
     called_technology: netframework-dll, net-dll
   - name: Passing arguments by reference with "out" keyword
     href: /methods-arguments/passing-arguments-by-reference-with-out-keyword.md
-    calling_technology: java, python, javascript #, perl, ruby, cpp, golang
+    calling_technology: java, python, javascript, ruby #, perl, cpp, golang
     called_technology: netframework-dll, net-dll
   

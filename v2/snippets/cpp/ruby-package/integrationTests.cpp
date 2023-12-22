@@ -432,12 +432,12 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto response = calledRuntimeType->GetStaticField("PI")->Execute();
 
 		// get value from response
-		auto result = std::any_cast<float>(response->GetValue());
+		auto result = std::any_cast<double>(response->GetValue());
 
 		// write result to console
 		std::cout << result << std::endl;
 		// </StandardLibrary_GetStaticField>
-		EXPECT_EQ((float)M_PI, result);
+		EXPECT_EQ(M_PI, result);
 	}
 
 	TEST(Integration, Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50) {

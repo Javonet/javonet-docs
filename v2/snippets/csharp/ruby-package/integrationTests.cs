@@ -35,7 +35,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var response = calledRuntimeType.InvokeStaticMethod("sqrt", 2500).Execute();
 
             // get value from response
-            var result = (float)response.GetValue();
+            var result = (double)response.GetValue();
 
             // write result to console
             System.Console.WriteLine(result);
@@ -62,12 +62,12 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var response = calledRuntimeType.GetStaticField("PI").Execute();
 
             // get value from response
-            var result = (float)response.GetValue();
+            var result = (double)response.GetValue();
 
             // write result to console
             System.Console.WriteLine(result);
             // </StandardLibrary_GetStaticField>
-            Assert.Equal(System.Math.PI, result, 6);
+            Assert.Equal(System.Math.PI, result);
         }
 
         [Fact]
@@ -536,7 +536,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var response = instance.InvokeInstanceMethod("add_array_elements_and_multiply", new double[] { 12.22, 98.22, -10.44 }, 9.99).Execute();
 
             // get value from response
-            var result = (float)response.GetValue();
+            var result = (double)response.GetValue();
 
             // write result to console
             System.Console.WriteLine(result);

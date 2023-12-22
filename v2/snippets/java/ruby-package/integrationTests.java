@@ -41,12 +41,12 @@ public class integrationTests {
         InvocationContext response = calledRuntimeType.getStaticField("PI").execute();
 
         // get result from response
-        float result = (float) response.getValue();
+        double result = (double) response.getValue();
 
         // write result to console
         System.out.println(result);
         // </StandardLibrary_GetStaticField>
-        Assertions.assertEquals(Math.PI, result, 0.00001);
+        Assertions.assertEquals(Math.PI, result);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class integrationTests {
         InvocationContext response = calledRuntimeType.invokeStaticMethod("sqrt", 2500).execute();
 
         // get result from response
-        float result = (float) response.getValue();
+        double result = (double) response.getValue();
 
         // write result to console
         System.out.println(result);
@@ -498,7 +498,7 @@ public class integrationTests {
         InvocationContext response = instance.invokeInstanceMethod("add_array_elements_and_multiply", new Double[]{12.22, 98.22, -10.44}, 9.99).execute();
 
         // get value from response
-        float result = (float) response.getValue();
+        double result = (double) response.getValue();
 
         // write result to console
         System.out.println(result);
