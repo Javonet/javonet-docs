@@ -1,6 +1,7 @@
 :::options
 :title: Passing arguments by reference with "ref" keyword
 :description: This article provides an overview of passing arguments by reference with "ref" keyword
+:keywords: Javonet, `{called_technology}` Passing Arguments, `{calling_technology}`, Ref Keyword, Reference Passing, Method Invocation, Argument Passing, Value Return, Multiple Return Values, Function Calls, Parameter Passing, Return Types
 :::
 
 # Argument with"ref" keyword

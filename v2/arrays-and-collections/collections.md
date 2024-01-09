@@ -1,6 +1,7 @@
 :::options
 :title: Working with collections
 :description: This article provides general description of working with collections
+:keywords: Javonet, `{called_technology}` Collections, `{calling_technology}`, Windows, Linux, MacOS, List, Dictionary, Collection Handling, Collection Manipulation, Collection Access, Collection Iteration, Collection Elements
 :::
 
 # Working with collections

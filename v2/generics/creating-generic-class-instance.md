@@ -1,6 +1,7 @@
 :::options
 :title: Creating generic class instance
 :description: This article provides an overview of creating generic class instance
+:keywords: Javonet, `{called_technology}` Generic Class Instance, `{calling_technology}`, Class Instantiation, Generic Classes, Type Parameters, Generic Arguments, Object Creation, Custom `{called_technology}`, Public Classes, Value Type Arguments, Reference Type Arguments
 :::
 
 # Create generic class instance

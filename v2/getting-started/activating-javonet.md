@@ -2,6 +2,7 @@
 :title: Activating Javonet
 :description: This article provides information about activating Javonet
 :related_articles: getting-started/about-javonet, getting-started/getting-started-dotnet, getting-started/getting-started-java, getting-started/getting-started-perl, getting-started/getting-started-python, getting-started/getting-started-ruby, getting-started/getting-started-nodejs, getting-started/getting-started-cpp, getting-started/getting-started-golang, getting-started/adding-references-to-libraries
+:keywords: Javonet, `{called_technology}` Activation, `{calling_technology}`, License Key, Software Activation, License Activation, Register, Log In, Application Startup, License Verification, javonet.lic
 :::
 
 

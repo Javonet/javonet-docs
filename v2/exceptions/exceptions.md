@@ -1,6 +1,7 @@
 :::options
 :title: Working with exceptions
 :description: This article provides an overview of working with exceptions
+:keywords: Javonet, `{called_technology}` Exceptions, `{calling_technology}`, Exception Handling, Try-Catch, Throw Exception, Catch Exception, Exception Types, Runtime Exceptions, Checked Exceptions, Unchecked Exceptions
 :::
 
 # Exceptions

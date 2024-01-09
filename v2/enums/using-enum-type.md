@@ -1,6 +1,7 @@
 :::options
 :title: Using enum type
 :description: This article provides an overview of working with enum types
+:keywords: Javonet, `{called_technology}` Enum Types, `{calling_technology}`, Enum Handling, Enum Values, Enum Names, Enum Conversion, Enum Methods, Enum Pass, Enum Return, Enum Item
 :::
 
 # Using enum type

@@ -2,6 +2,7 @@
 :title: TCP channel
 :description: The article describes how to use Javonet with TPC/IP channel
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/runtime-context, foundations/invocation-context, foundations/execute-method
+:keywords: Javonet, `{called_technology}` TCP Channel, `{calling_technology}`, TCP/IP Communication, Remote Machine, Server, Docker Container, Runtime Context, Method Invocation, Communication Channel, In Memory Channel, Static Class
 :::
 
 # TCP channel

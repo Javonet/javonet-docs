@@ -1,7 +1,7 @@
 :::options
 :title: Invoking static methods
 :description: This article provides an overview of invoking static methods from other technology with Javonet
-:related_articles: calling-methods/creating-instance-and-calling-instance-methods
+:keywords: Javonet, `{called_technology}` Static Methods, `{calling_technology}`, Static Method Invocation, Method Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
 # Invoking static methods
