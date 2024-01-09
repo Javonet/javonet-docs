@@ -2,6 +2,7 @@
 :title: Passing arguments by reference with "out" keyword
 :description: Passing arguments by reference with "out" keyword
 :related_articles: methods-arguments/passing-reference-type-arguments, methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-typeof-type-as-method-argument, methods-arguments/calling-overloaded-method-passing-null-argument
+:keywords: Javonet, Out Keyword, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Method Arguments, Reference Arguments, NOut, AtomicReference, Method Invocation
 :::
 
 # Passing arguments by reference with "out" keyword  

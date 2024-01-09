@@ -1,6 +1,7 @@
 :::options
 :title: Project Activation Tool
 :description: This section describes the usage of the Project Activation Tool
+:keywords: project activation tool, Javonet Professional, Javonet Enterprise, license file, compile time activation, activation workflow, download, usage
 :related_articles: advanced-activation-and-licensing/delegating-activation-server, advanced-activation-and-licensing/runtime-offline-compile-time-activation
 :::
   

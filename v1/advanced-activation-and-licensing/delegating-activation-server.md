@@ -1,6 +1,7 @@
 :::options
 :title: Delegation Activation Server
 :description: This section describes how to delegate activation server
+:keywords: Javonet, Delegation Activation Server, Enterprise License, Hardware Dongle, Project Activation Tool, Offline Activation, Javonet License
 :related_articles: advanced-activation-and-licensing/project-activation-tool, advanced-activation-and-licensing/runtime-offline-compile-time-activation
 :::
 

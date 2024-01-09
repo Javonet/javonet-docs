@@ -1,7 +1,8 @@
 :::options
 :title: Disposing of objects
-:description: Disposing of objects
+:description: Learn how to manage memory and dispose of objects in Javonet.
 :related_articles: disposing-and-garbage-collection/batching-gc-with-delaygccontext
+:keywords: Javonet, Disposing of Objects, Garbage Collection, Memory Management, `{called_technology}`, `{calling_technology}`, IDisposable, NObject, Dispose Method, JVM, CLR, Netcore, Windows, Linux, MacOS
 :::
 
 # Disposing of objects  

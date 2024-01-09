@@ -1,6 +1,7 @@
 :::options
 :title: Using the Javonet Fluent Interface
 :description: This article provides an information how to use Javonet Fluent Interface
+:keywords: Javonet, Fluent Interface, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Object Operations, Simplify Operations, Shorten Operations
 :::
 
 # Using the Javonet Fluent Interface

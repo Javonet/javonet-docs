@@ -2,6 +2,7 @@
 :title: Working with collections
 :description: Working with collections
 :related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays, arrays-and-collections/working-with-arrays
+:keywords: working with collections, collection types, Java, .NET, {calling_technology}, {called_technology}, {calling_technology} collections, {called_technology} collections
 :::
   
 # Working with collections  

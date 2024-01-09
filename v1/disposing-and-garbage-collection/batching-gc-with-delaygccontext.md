@@ -1,7 +1,8 @@
 :::options
-:title: Batching GC with DelayGcContext
-:description: Batching GC with DelayGcContext
-:related_articles: disposing-and-garbage-collection/disposing-of-objects
+:title: Invoking static method
+:description: This section describes how to invoke static methods
+:related_articles: calling-methods/create-instance-and-calling-instance-methods, getting-started/fluent-interface
+:keywords: Javonet, Static Methods, `{calling_technology}`, `{called_technology}`, Method Invocation, Reflection, Value-Type Conversion, Reference-Type Conversion, Fluent Interface, Legacy Javonet 1.5
 :::
 
 # Batching GC with DelayGcContext 

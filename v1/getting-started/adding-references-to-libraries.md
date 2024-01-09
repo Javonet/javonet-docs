@@ -2,6 +2,7 @@
 :title: Adding references to libraries
 :description: Adding references to libraries
 :related_articles: getting-started/installing-javonet, getting-started/activating-javonet, getting-started/xml-configuration-file
+:keywords: Javonet, Adding References, Libraries, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Runtime References, .NET Libraries, Memory Stream, XML Configuration, DLL, JAR
 :::
 
 # Adding references

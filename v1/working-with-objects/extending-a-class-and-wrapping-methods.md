@@ -2,6 +2,7 @@
 :title: Extending a class and wrapping methods
 :description: Extending a class and wrapping methods
 :related_articles: working-with-objects/creating-instance-of-generic-object
+:keywords: Javonet, Extending Class, Wrapping Methods, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, NObject, JObject, Class Extension, Method Wrapping, Constructor Invocation
 :::
 
 # Extending a class and wrapping methods
