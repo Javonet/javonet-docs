@@ -1,8 +1,8 @@
 :::options
-:title: Get/Set values for instance fields and properties
-:description: Get/Set values for instance fields and properties
+:title: Get/Set values for static fields and properties
+:description: Get/Set values for static fields and properties
 :related_articles: fields-and-properties/get-set-values-for-static-fields-and-properties, getting-started/fluent-interface
-:keywords: Javonet, Get/Set Values, Instance Fields, Instance Properties, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, NObject, JObject, Field Manipulation, Property Manipulation
+:keywords: Javonet, Get/Set Values, Static Fields, Static Properties, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, NObject, JObject, Field Manipulation, Property Manipulation
 :::
 
 # Get/Set Values for Static Fields and Properties
