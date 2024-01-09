@@ -2,6 +2,7 @@
 :title: Invocation context
 :description: The article describes the concept of Invocation Context
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/runtime-context, foundations/execute-method
+:keywords: Javonet, `{called_technology}` Invocation Context, `{calling_technology}`, Method Invocation, Invocation Chain, Non-Materialized Expression, Execute Method, Runtime Context, In Memory Channel, TCP Channel, Static Class
 :::
 
 # Invocation context

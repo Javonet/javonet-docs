@@ -1,6 +1,7 @@
 :::options
 :title: Casting
 :description: This article provides an overview of casting with Javonet
+:keywords: Javonet, `{called_technology}` Casting, `{calling_technology}`, Type Casting, Data Conversion, Primitive Types, Complex Types, Explicit Casting, Implicit Casting, Cast Operator, Type Conversion
 :::
 
 # Casting

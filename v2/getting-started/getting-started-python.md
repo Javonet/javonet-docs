@@ -2,6 +2,7 @@
 :title: Getting started for Python developers
 :description: This article provides Javonet getting started guide for Python developers
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
+:keywords: Javonet, `{called_technology}` Getting Started, `{calling_technology}`, Python Developers, Python Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
 :::
 
 # Getting started for Python

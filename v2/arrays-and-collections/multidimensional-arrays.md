@@ -1,6 +1,7 @@
 :::options
 :title: Multidimensional arrays
 :description: This article provides general description of working with multidimensional arrays
+:keywords: Javonet, `{called_technology}` Multidimensional Arrays, `{calling_technology}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements, 2D Arrays
 :::
 
 # Multidimensional arrays

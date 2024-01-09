@@ -1,6 +1,7 @@
 :::options
 :title: Calling generic instance method
 :description: This article provides an overview of calling generic instance method
+:keywords: Javonet, `{called_technology}` Generic Instance Method, `{calling_technology}`, Method Invocation, Generic Methods, Type Parameters, Generic Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
 # Call generic instance method

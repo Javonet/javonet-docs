@@ -1,6 +1,7 @@
 :::options
 :title: Using Javonet Hardware Dongle
 :description: Using Javonet Hardware Dongle
+:keywords: Javonet, Hardware Dongle, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, License Activation, USB Dongle, Hardware ID, Javonet Activation, License Flexibility
 :::
 
 # Using Javonet Hardware Dongle 

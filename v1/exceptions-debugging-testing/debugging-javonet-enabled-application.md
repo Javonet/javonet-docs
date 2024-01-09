@@ -1,7 +1,8 @@
 :::options
 :title: Debugging Javonet enabled application
-:description: Debugging Javonet enabled application
+:description: Learn how to debug a Javonet enabled application.
 :related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debugging-net-code-called-from-java
+:keywords: Javonet, Debugging, Java, .NET, `{called_technology}`, `{calling_technology}`, IDE Debugger, Eclipse, Visual Studio, JVM, CLR, Netcore, Windows, Linux, MacOS
 :::
 
 # Debugging Javonet enabled application  

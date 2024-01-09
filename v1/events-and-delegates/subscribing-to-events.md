@@ -1,6 +1,7 @@
 :::options
 :title: Subscribing to events
-:description: Subscribing to events
+:description: Learn how to subscribe to .NET events in your Java project with Javonet.
+:keywords: Javonet, .NET Events, Java, `{called_technology}`, `{calling_technology}`, INEventListener, Event Subscription, JVM, CLR, Netcore, Windows, Linux, MacOS
 :::
 
 # Subscribing to events

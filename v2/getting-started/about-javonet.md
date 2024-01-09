@@ -2,6 +2,7 @@
 :title: About Javonet
 :description: This article provides general information about Javonet
 :related_articles: getting-started/activating-javonet, getting-started/adding-references-to-libraries
+:keywords: Javonet, `{called_technology}` About, `{calling_technology}`, Language Integration, Cross-Language Communication, .NET Framework, .NET Core, JAR Library, Python Package, Ruby Package, Perl Package, Node.js Package, Getting Started, Prerequisites, Installation, Runtime
 :::
 
 # About Javonet  

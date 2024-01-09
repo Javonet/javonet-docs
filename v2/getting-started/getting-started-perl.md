@@ -2,6 +2,7 @@
 :title: Getting started for Perl developers
 :description: This article provides Javonet getting started guide for Perl developers
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
+:keywords: Javonet, `{called_technology}` Getting Started, `{calling_technology}`, Perl Developers, Perl Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
 :::
 
 # Getting started for Perl

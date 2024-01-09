@@ -1,6 +1,7 @@
 :::options
 :title: Arrays overview
 :description: This article provides general description of working with arrays
+:keywords: Javonet, `{called_technology}` Arrays, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
 # Working with arrays

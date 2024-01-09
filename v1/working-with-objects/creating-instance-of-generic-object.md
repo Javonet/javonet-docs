@@ -2,6 +2,7 @@
 :title: Creating instance of generic objects
 :description: Creating instance of generic objects
 :related_articles: generics/calling-generic-methods, working-with-objects/extending-a-class-and-wrapping-methods
+:keywords: Javonet, Generic Objects, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Generic Class, NType, Create Method, Generic Arguments, List<T>, getType Method
 :::
 
 # Creating instance of generic objects

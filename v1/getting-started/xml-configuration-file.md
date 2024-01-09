@@ -2,6 +2,7 @@
 :title: XML configuration file
 :description: This article provides an information about XML configuration file
 :related_articles: getting-started/installing-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
+:keywords: Javonet, XML Configuration, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, XML, Configuration File, Javonet Activation, Javonet Setup, Application Configuration
 :::
 
 # XML Configuration file

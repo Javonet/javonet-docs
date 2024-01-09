@@ -1,6 +1,7 @@
 :::options
 :title: Runtime vs. offline vs. compile time activation
 :description: Runtime vs. offline vs. compile time activation
+:keywords: activation, licensing, runtime, offline, compile time
 :related_articles: advanced-activation-and-licensing/delegating-activation-server, advanced-activation-and-licensing/project-activation-tool
 :::
 

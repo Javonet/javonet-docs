@@ -2,6 +2,7 @@
 :title: Handling activation issues
 :description: Handling activation issues
 :related_articles: exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debugging-net-code-called-from-java, exceptions-debugging-testing/debugging-javonet-enabled-application
+:keywords: Javonet, Activation Issues, Synchronous Activation, Asynchronous Activation, License Key, License Verification, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Grace Period, Activation State Listener
 :::
 
 # Handling activation issues  

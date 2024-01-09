@@ -2,6 +2,7 @@
 :title: Passing reference-type arguments
 :description: Passing reference-type arguments
 :related_articles: methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/passing-typeof-type-as-method-argument, methods-arguments/calling-overloaded-method-passing-null-argument
+:keywords: Javonet, Reference-Type Arguments, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Method Arguments, NObject, JObject, Method Invocation, Object References
 :::
 
 # Passing reference-type arguments  

@@ -2,6 +2,7 @@
 :title: Working with arrays
 :description: Working with arrays
 :related_articles: arrays-and-collections/using-value-type-and-reference-type-arrays, arrays-and-collections/working-with-collections
+:keywords: working with arrays, data structures, Java, .NET, Javonet, array retrieval, array handling, value-typed arrays, reference-type arrays, multidimensional arrays, passing arrays, {calling_technology}, {called_technology}
 :::
   
 # Working with arrays  

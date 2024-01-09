@@ -2,6 +2,7 @@
 :title: Creating instance and calling instance methods
 :description: This section describes how to invoke instance methods
 :related_articles: calling-methods/invoking-static-methods, getting-started/fluent-interface
+:keywords: Javonet, Instance Creation, Instance Methods, `{calling_technology}`, `{called_technology}`, Integration, Reflection, Value-Type Conversion, Reference-Type Conversion, NObject, JObject, Fluent Interface
 :::
 
 # Creating instance and calling instance methods

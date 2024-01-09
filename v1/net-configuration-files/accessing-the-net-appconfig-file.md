@@ -1,6 +1,7 @@
 :::options
 :title: Accessing the .NET AppConfig File (connectionStrings and appSettings)
 :description: Accessing the .NET AppConfig File (connectionStrings and appSettings)
+:keywords: Javonet, .NET AppConfig File, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, ConnectionStrings, AppSettings, Configuration File, Javonet Activation, Application Configuration
 :::
 
 # Accessing the .NET AppConfig File 

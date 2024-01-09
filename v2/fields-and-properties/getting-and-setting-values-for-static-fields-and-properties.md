@@ -2,6 +2,7 @@
 :title: Getting and setting values for static fields and properties
 :description: This article provides an overview of getting and setting values for static fields and properties
 :related_articles: fields-and-properties/getting-values-for-instance-fields-and-properties
+:keywords: Javonet, `{called_technology}` Static Fields, `{calling_technology}`, Static Properties, Field Access, Property Access, Field Modification, Property Modification, Static Field Values, Static Property Values, Get Field, Set Field, Get Property, Set Property
 :::
 
 # Static fields and properties
