@@ -8,7 +8,7 @@
 # Invoking static methods
   
 This article provides an introduction to cross-technology invocation of static methods when calling a static method from `{called_name}` using `{calling_name}`. The article explains how to invoke any static method, pass arguments and retrieve the results.  
-
+  
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.
   
 With Javonet you can interact with static methods from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API, passing the name of the target method as String.  
@@ -40,19 +40,19 @@ It is possible to invoke one of the declared static methods from `{called_name}`
 :::
 
 In code snippet above you can see how easily you can activate Javonet and instruct it using [inMemory()](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) method to create new [RuntimeContext](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context) that will run `{called_technology}` runtime within your current process. Next with [addLibrary](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) method it triggers the load of required `{called_technology}` module and allows you to interact with any classes and their static methods defined in that package.
-
+  
 Further calls to invokeStaticMethod() allows to call "multiplyByTwo" `{called_technology}` static method and pass the value type arguments. With Javonet you can invoke methods with any number and any type of arguments including value type arguments, reference type arguments, arrays and collections. 
-
+  
 You can receive and further process and type of result returned by called `{called_technology}` method, regardless if it is reference type that will get returned as another instance of [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) that you can use for further interaction, or value type that you can obtain as `{calling_technology}` value with getValue() method. 
-
+  
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_technology}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
-
+  
 Read more [about](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) use cases and software architecture scenarios where Javonet runtime bridging technology can support your development process.
-   
+  
 ## Calling static methods from standard `{called_name}`
   
 With Javonet you can interact not only with any custom `{called_technology}` module but also with any `{called_technology}` framework objects. The same steps are required to use types and methods from standard `{called_name}` framework class:
-
+  
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_InvokeStaticMethod
@@ -60,5 +60,5 @@ With Javonet you can interact not only with any custom `{called_technology}` mod
 :called_id: Empty
 :display: calling
 :::
-
-In sample above you see how the Javonet allows to create an instance of `{called_name}` Math class and interact with its static abs method.
+  
+In sample above you see how the Javonet allows to create an instance of `{called_name}` _Math_ class and interact with its static _abs_ method.
