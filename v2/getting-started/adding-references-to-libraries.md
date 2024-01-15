@@ -7,6 +7,11 @@
 
 # Adding references to libraries
 
+Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article lists getting started sections for supported technologies.  
+  
+Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
+
+
 Javonet allows to use any library from all supported technologies. As with any regular application, necessary libraries need to be referenced.
 
 :::code 
