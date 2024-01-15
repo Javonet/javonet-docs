@@ -1,7 +1,7 @@
 :::options
 :title: Getting started for Node.js developers
 :description: This article provides Javonet getting started guide for Node.js developers
-:related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
+:related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/activating-javonet, getting-started/adding-references-to-libraries
 :keywords: Javonet, `{called_technology}` Getting Started, `{calling_technology}`, Node.js Developers, Node.js Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
 :::
 
@@ -11,7 +11,7 @@ Javonet is an advanced library enabling direct method calls between programming 
 
 ## Prerequisites 
 
-To call library/package/module from another technology, corresponding runtime has to be installed. See [About Javonet](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet.md) for details about installing called technology runtime.  
+To call library/package/module from another technology, corresponding runtime has to be installed. See [Prerequisites](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/prerequisites.md) for details about installing called technology runtime.  
 
 Javonet is available as javonet-nodejs-sdk package which can be downloaded from [NPM public repository](https://www.npmjs.com/package/javonet-nodejs-sdk) or from [My Javonet Portal](https://my.javonet.com).  
 
@@ -53,3 +53,6 @@ To sum up, the whole code snippet looks like:
 :::code source="v2/snippets/javascript/common/sampleProgram.js" ID="WholeSnippet":::
 
 
+The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
+  
+Read more [about](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) use cases and software architecture scenarios where Javonet runtime bridging technology can support your development process.

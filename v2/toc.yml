@@ -71,6 +71,10 @@ items:
     href: /getting-started/about-javonet.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+  - name: Prerequisites
+    href: /getting-started/prerequisites.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Getting started for .NET
     href: /getting-started/getting-started-dotnet.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang

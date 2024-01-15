@@ -1,7 +1,7 @@
 :::options
 :title: Adding references to libraries
 :description: This article provides information about adding references to libraries
-:related_articles: getting-started/about-javonet, getting-started/getting-started-dotnet, getting-started/getting-started-java, getting-started/getting-started-perl, getting-started/getting-started-python, getting-started/getting-started-ruby, getting-started/getting-started-nodejs, getting-started/getting-started-cpp, getting-started/getting-started-golang, getting-started/activating-javonet
+:related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/getting-started-dotnet, getting-started/getting-started-java, getting-started/getting-started-perl, getting-started/getting-started-python, getting-started/getting-started-ruby, getting-started/getting-started-nodejs, getting-started/getting-started-cpp, getting-started/getting-started-golang, getting-started/activating-javonet
 :keywords: Javonet, `{called_technology}` Adding References, `{calling_technology}`, Library References, DLL References, JAR References, Python Package References, Ruby Package References, Perl Package References, Node.js Package References, Library Loading, Library Usage, Library Integration
 :::
 
