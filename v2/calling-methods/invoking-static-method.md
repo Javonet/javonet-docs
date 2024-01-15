@@ -29,7 +29,7 @@ Code example below represents the sample code from `{called_name}` that will be 
 :display: called
 :::
     
-It is possible to invoke one of the declared static methods from `{called_name}` using following `{calling_name}` code. This uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_technology}`, and next retrieves reference to specific type and invokes the static method passing value type arguments. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
+It is possible to invoke one of the declared static methods from `{called_name}` using following `{calling_name}` code. This uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}`, and next retrieves reference to specific type and invokes the static method passing value type arguments. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
   
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
