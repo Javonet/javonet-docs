@@ -20,32 +20,6 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_PythonPackage_StandardLibrary_InvokeStaticMethod()
-        {
-            // <StandardLibrary_InvokeStaticMethod>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Python();
-
-            // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType("builtins").Execute();
-
-            // invoke type's static method
-            var response = calledRuntimeType.InvokeStaticMethod("abs", -50).Execute();
-
-            // get value from response
-            var result = (int)response.GetValue();
-
-            // write result to console
-            System.Console.WriteLine(result);
-            // </StandardLibrary_InvokeStaticMethod>
-            Assert.Equal(50, result);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
         public void Test_PythonPackage_StandardLibrary_GetStaticField()
         {
             // <StandardLibrary_GetStaticField>
@@ -68,6 +42,32 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             System.Console.WriteLine(result);
             // </StandardLibrary_GetStaticField>
             Assert.Equal(System.Math.PI, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_StandardLibrary_InvokeStaticMethod()
+        {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("builtins").Execute();
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("abs", -50).Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeStaticMethod>
+            Assert.Equal(50, result);
         }
 
         [Fact]
@@ -589,6 +589,42 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 		}
 
         [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
+        {
+            // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // set up variables
+            string libraryPath = resourcesDirectory;
+            string className = "TestClass.TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // invoke type's static method which throws exception
+            try
+            {
+                var response = calledRuntimeType.InvokeStaticMethod("divide_by", 10, 0).Execute();
+            }
+            catch (System.Exception e)
+            {
+                // write result to console
+                System.Console.WriteLine(e.Message);
+                return;
+            }
+            // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+            Assert.Fail("No exception occurred - test failed");
+        }
+
+        [Fact]
         [Trait("Test", "Functional")]
         public void Test_PythonPackage_TestResources_EnumAddToList()
         {
@@ -670,42 +706,6 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             Assert.Equal(4, fruit1Value);
             Assert.Equal(3, fruit2Value);
         }
-
-        [Fact]
-		[Trait("Test", "Integration")]
-		public void Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
-		{
-			// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
-
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Python();
-
-			// set up variables
-			string libraryPath = resourcesDirectory;
-			string className = "TestClass.TestClass";
-
-			// load custom library
-			calledRuntime.LoadLibrary(libraryPath);
-
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType(className).Execute();
-
-			// invoke type's static method which throws exception
-			try
-			{
-				var response = calledRuntimeType.InvokeStaticMethod("divide_by", 10, 0).Execute();
-			}
-			catch (System.Exception e)
-			{
-				// write result to console
-				System.Console.WriteLine(e.Message);
-				return;
-			}
-			// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-			Assert.Fail("No exception occurred - test failed");
-		}
 
         [Fact]
         [Trait("Test", "Integration")]

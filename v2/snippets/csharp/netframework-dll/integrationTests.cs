@@ -18,7 +18,117 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 		}
 		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/netframework-dll";
 #if _WINDOWS
-		[Fact]
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_GetStaticField()
+        {
+            // <StandardLibrary_GetStaticField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("System.Math").Execute();
+
+            // get type's static field 
+            var response = calledRuntimeType.GetStaticField("PI").Execute();
+
+            // get value from response
+            var result = (double)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetStaticField>
+            Assert.Equal(System.Math.PI, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_GetInstanceField()
+        {
+            // <StandardLibrary_GetInstanceField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("System.DateTime").Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(2022, 9, 1).Execute();
+
+            // get instance's field 
+            var response = instance.GetInstanceField("Year").Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetInstanceField>
+            Assert.Equal(2022, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod()
+        {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("System.Math").Execute();
+
+            // invoke type's static method 
+            var response = calledRuntimeType.InvokeStaticMethod("Abs", -50).Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeStaticMethod>
+            Assert.Equal(50, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod()
+        {
+            // <StandardLibrary_InvokeInstanceMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("System.DateTime").Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(2022, 9, 1).Execute();
+
+            // invoke instance's method
+            var response = instance.InvokeInstanceMethod("ToShortDateString").Execute();
+
+            // get value from response
+            var result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeInstanceMethod>
+            Assert.Contains("2022", result);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_NetframeworkDll_TestResources_LoadLibrary()
 		{
@@ -601,7 +711,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
 		[Fact]
 		[Trait("Test", "Integration")]
-		public void Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
+		public void Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0()
 		{
 			// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 			// use Activate only once in your app
@@ -845,118 +955,8 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-		[Trait("Test", "Integration")]
-		public void Test_NetframeworkDll_StandardLibrary_GetStaticField()
-		{
-			// <StandardLibrary_GetStaticField>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
-
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Clr();
-
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType("System.Math").Execute();
-
-			// get type's static field 
-			var response = calledRuntimeType.GetStaticField("PI").Execute();
-
-			// get value from response
-			var result = (double)response.GetValue();
-
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_GetStaticField>
-			Assert.Equal(System.Math.PI, result);
-		}
-
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_NetframeworkDll_StandardLibrary_GetInstanceField()
-		{
-			// <StandardLibrary_GetInstanceField>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
-
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Clr();
-
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType("System.DateTime").Execute();
-
-			// create type's instance
-			var instance = calledRuntimeType.CreateInstance(2022, 9, 1).Execute();
-
-			// get instance's field 
-			var response = instance.GetInstanceField("Year").Execute();
-
-			// get value from response
-			var result = (int)response.GetValue();
-
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_GetInstanceField>
-			Assert.Equal(2022, result);
-		}
-
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod()
-		{
-			// <StandardLibrary_InvokeStaticMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
-
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Clr();
-
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType("System.Math").Execute();
-
-			// invoke type's static method 
-			var response = calledRuntimeType.InvokeStaticMethod("Abs", -50).Execute();
-
-			// get value from response
-			var result = (int)response.GetValue();
-
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_InvokeStaticMethod>
-			Assert.Equal(50, result);
-		}
-
-		[Fact]
-		[Trait("Test", "Integration")]
-		public void Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod()
-		{
-			// <StandardLibrary_InvokeInstanceMethod>
-			// use Activate only once in your app
-			Javonet.Activate("your-license-key");
-
-			// create called runtime context
-			var calledRuntime = Javonet.InMemory().Clr();
-
-			// get type from the runtime
-			var calledRuntimeType = calledRuntime.GetType("System.DateTime").Execute();
-
-			// create type's instance
-			var instance = calledRuntimeType.CreateInstance(2022, 9, 1).Execute();
-
-			// invoke instance's method
-			var response = instance.InvokeInstanceMethod("ToShortDateString").Execute();
-
-			// get value from response
-			var result = (string)response.GetValue();
-
-			// write result to console
-			System.Console.WriteLine(result);
-			// </StandardLibrary_InvokeInstanceMethod>
-			Assert.Contains("2022", result);
-		}
-
-        [Fact]
         [Trait("Test", "Integration")]
-        public void Test_NetfframeworkDll_TestResources_2DArray_GetIndex()
+        public void Test_NetframeworkDll_TestResources_2DArray_GetIndex()
         {
             // <TestResources_2DArray_GetIndex>
             // use Activate only once in your app
@@ -1004,7 +1004,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_NetfframeworkDll_TestResources_2DArray_GetSizeAndRank()
+        public void Test_NetframeworkDll_TestResources_2DArray_GetSizeAndRank()
         {
             // <TestResources_2DArray_GetSizeAndRank>
             // use Activate only once in your app
@@ -1048,7 +1048,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_NetfframeworkDll_TestResources_2DArray_SetIndex()
+        public void Test_NetframeworkDll_TestResources_2DArray_SetIndex()
         {
             // <TestResources_2DArray_SetIndex>
             // use Activate only once in your app
@@ -1090,7 +1090,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
         [Fact]
         [Trait("Test", "Functional")]
-        public void Test_NetfframeworkDll_StandardLibrary_CreateInstanceOfGenericClass()
+        public void Test_NetframeworkDll_StandardLibrary_CreateInstanceOfGenericClass()
         {
             //<StandardLibrary_CreateInstanceOfGenericClass>
             // use Activate only once in your app
@@ -1127,7 +1127,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
         [Fact]
         [Trait("Test", "Functional")]
-        public void Test_NetfframeworkDll_StandardLibrary_HandleList()
+        public void Test_NetframeworkDll_StandardLibrary_HandleList()
         {
             // <StandardLibrary_HandleList>
             // use Activate only once in your app
@@ -1170,7 +1170,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
         [Fact]
         [Trait("Test", "Functional")]
-        public void Test_NetfframeworkDll_StandardLibrary_HandleDictionary()
+        public void Test_NetframeworkDll_StandardLibrary_HandleDictionary()
         {
             // <StandardLibrary_HandleDictionary>
             // use Activate only once in your app
@@ -1211,7 +1211,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
 		[Fact]
 		[Trait("Test", "Functional")]
-		public void Test_NetfframeworkDll_TestResources_Refs_OneArg()
+		public void Test_NetframeworkDll_TestResources_Refs_OneArg()
 		{
 			// <TestResources_Refs>
 			// use Activate only once in your app
@@ -1259,7 +1259,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
 		[Fact]
 		[Trait("Test", "Functional")]
-		public void Test_NetfframeworkDll_TestResources_Refs_MultipleArgs()
+		public void Test_NetframeworkDll_TestResources_Refs_MultipleArgs()
 		{
 			// <TestResources_Refs_MultipleArgs>
 			// use Activate only once in your app
@@ -1306,7 +1306,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
 		[Fact]
 		[Trait("Test", "Functional")]
-		public void Test_NetfframeworkDll_TestResources_Outs()
+		public void Test_NetframeworkDll_TestResources_Outs()
 		{
 			// <TestResources_Outs>
 			// use Activate only once in your app

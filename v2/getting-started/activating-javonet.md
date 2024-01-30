@@ -12,9 +12,11 @@ Javonet enables software developers to instantly integrate several programming l
   
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
 
-## Get activation key
+## Get activation key  
   
-Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) pages to get license key, which is necessary to activate Javonet.
+Activation key is available on main dashboard of [My Javonet Portal](https://my.javonet.com).  
+
+Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.javonet.com/signin/) on My Javonet Portal to get license key, which is necessary to activate Javonet.  
 
 ## Activating Javonet in your application
 

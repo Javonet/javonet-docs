@@ -1071,6 +1071,7 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
             var element0 = list[0].Execute();
             var element1 = list.GetIndex(1).Execute();
 
+            // get values from elements
             var result0 = element0.GetValue();
             var result1 = element1.GetValue();
 
@@ -1113,6 +1114,7 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
             var response1 = dictionary["c"].Execute();
             var response2 = dictionary.GetIndex("e").Execute();
 
+            // get values from responses
             var c_value = response1.GetValue();
             var e_value = response2.GetValue();
 

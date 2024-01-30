@@ -19,32 +19,6 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_StandardLibrary_InvokeStaticMethod()
-        {
-            // <StandardLibrary_InvokeStaticMethod>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Ruby();
-
-            // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType("Math").Execute();
-
-            // invoke type's static method
-            var response = calledRuntimeType.InvokeStaticMethod("sqrt", 2500).Execute();
-
-            // get value from response
-            var result = (double)response.GetValue();
-
-            // write result to console
-            System.Console.WriteLine(result);
-            // </StandardLibrary_InvokeStaticMethod>
-            Assert.Equal(50, result);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
         public void Test_RubyPackage_StandardLibrary_GetStaticField()
         {
             // <StandardLibrary_GetStaticField>
@@ -68,6 +42,32 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             System.Console.WriteLine(result);
             // </StandardLibrary_GetStaticField>
             Assert.Equal(System.Math.PI, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_StandardLibrary_InvokeStaticMethod()
+        {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("Math").Execute();
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("sqrt", 2500).Execute();
+
+            // get value from response
+            var result = (double)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeStaticMethod>
+            Assert.Equal(50, result);
         }
 
         [Fact]
@@ -582,7 +582,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
+        public void Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0()
         {
             // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
             // use Activate only once in your app
@@ -638,7 +638,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
             // create type's instance
-            var instance = calledRuntimeType.CreateInstance(0, 1).Execute();
+            var instance = calledRuntimeType.CreateInstance().Execute();
 
             // invoke instance's method
             var array = instance.InvokeInstanceMethod("get_2d_array").Execute();
@@ -686,7 +686,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
             // create type's instance
-            var instance = calledRuntimeType.CreateInstance(0, 1).Execute();
+            var instance = calledRuntimeType.CreateInstance().Execute();
 
             // invoke instance's method
             var array = instance.InvokeInstanceMethod("get_2d_array").Execute();
@@ -730,7 +730,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var calledRuntimeType = calledRuntime.GetType(className).Execute();
 
             // create type's instance
-            var instance = calledRuntimeType.CreateInstance(0, 1).Execute();
+            var instance = calledRuntimeType.CreateInstance().Execute();
 
             // invoke instance's method
             var array = instance.InvokeInstanceMethod("get_2d_array").Execute();
