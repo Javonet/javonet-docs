@@ -1,6 +1,7 @@
 :::options
 :title: Calling generic instance method
 :description: This article provides an overview of calling generic instance method
+:related_articles: generics/calling-generic-static-method, generics/creating-generic-class-instance
 :keywords: Javonet, `{called_technology}` Generic Instance Method, `{calling_technology}`, Method Invocation, Generic Methods, Type Parameters, Generic Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
@@ -53,4 +54,3 @@ To invoke method which has more than one type specified:
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   
 Read more [about](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) use cases and software architecture scenarios where Javonet runtime bridging technology can support your development process.
-
