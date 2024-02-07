@@ -167,18 +167,34 @@ items:
 
 - name: Arrays and collections 
   items: 
-  - name: Arrays
-    href: /arrays-and-collections/arrays.md
+  - name: One-dimensional arrays
+    href: /arrays-and-collections/one-dimensional-arrays.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
   - name: Multidimensional arrays
     href: /arrays-and-collections/multidimensional-arrays.md
-    calling_technology: csharp, java, python, javascript, ruby #, perl, cpp, golang
+    calling_technology: csharp, java, python, javascript, ruby #, cpp #, perl, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, python-package, ruby-package #,perl-package
   - name: Collections (lists, dictionaries, sets, queues, stacks)
     href: /arrays-and-collections/collections.md
-    calling_technology: csharp, java, python, javascript, ruby #, perl, cpp, golang
+    calling_technology: csharp, java, python, javascript, ruby #, cpp #, perl, golang
     called_technology: netframework-dll, net-dll, jar-library, python-package #, nodejs-package, ruby-package, perl-package
+  - name: Retrieve array
+    href: /arrays-and-collections/retrieve-array.md
+    calling_technology: csharp, java, python, javascript, ruby, cpp, golang #, perl
+    called_technology: netframework-dll, net-dll, jar-library, python-package, nodejs-package, ruby-package #, perl-package
+  - name: Passing array as method argument
+    href: /arrays-and-collections/passing-array-as-method-argument.md
+    calling_technology: csharp, java, python, javascript, ruby #, cpp #, perl, golang
+    called_technology: netframework-dll, net-dll, jar-library, python-package, nodejs-package, ruby-package, perl-package
+  - name: Iterate over array
+    href: /arrays-and-collections/iterate-over-array.md
+    calling_technology: csharp, java, python, javascript, ruby #, cpp #, perl, golang
+    called_technology: netframework-dll, net-dll, jar-library, python-package, nodejs-package, ruby-package, perl-package
+  - name: Index operator []
+    href: /arrays-and-collections/index-operator.md
+    calling_technology: csharp, python, ruby
+    called_technology: netframework-dll, net-dll, jar-library, python-package, nodejs-package, ruby-package, perl-package
   # - name: Value types arrays
   #   href: /arrays-and-collections/value-types-arrays.md
   #   calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
@@ -218,7 +234,7 @@ items:
     called_technology: netframework-dll, net-dll, jar-library
   - name: Creating generic class
     href: /generics/creating-generic-class-instance.md
-    calling_technology: csharp, java, python, javascript, ruby #, perl, cpp, golang
+    calling_technology: csharp, java, python, javascript, ruby #, cpp #, perl, golang
     called_technology: netframework-dll, net-dll, jar-library
 
 - name: Enums
@@ -232,10 +248,10 @@ items:
   items:
   - name: Passing arguments by reference with "ref" keyword
     href: /methods-arguments/passing-arguments-by-reference-with-ref-keyword.md
-    calling_technology: java, python, javascript, ruby #, perl, cpp, golang
+    calling_technology: java, python, javascript, ruby #, cpp #, perl, golang
     called_technology: netframework-dll, net-dll
   - name: Passing arguments by reference with "out" keyword
     href: /methods-arguments/passing-arguments-by-reference-with-out-keyword.md
-    calling_technology: java, python, javascript, ruby #, perl, cpp, golang
+    calling_technology: java, python, javascript, ruby #, cpp #, perl, golang
     called_technology: netframework-dll, net-dll
   

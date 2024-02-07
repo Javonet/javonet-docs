@@ -24,7 +24,7 @@ Snippet below represents the sample code from `{called_name}` which contains enu
 :display: called
 :::
 
-It is possible to handle the declared enums from `{called_name}` using following `{calling_name}` code:
+Javonet SDK contains various methods to interact with enums and consume the results in `{calling_name}`:  
 
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
