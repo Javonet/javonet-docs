@@ -7,3 +7,4 @@ __pycache__
 eclipse-formatter.xml
 *.pdb
 _JavonetNativeErrorLogger*
+.markdownlint.json

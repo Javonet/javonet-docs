@@ -19,7 +19,7 @@ Javonet allows you to pass any `{calling_name}` value type as argument to method
   
 It is possible to create generic class instance and interact with its methods from `{called_technology}` framework using following `{calling_name}` code:
   
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_CreateInstanceOfGenericClass
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`

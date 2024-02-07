@@ -6,24 +6,36 @@
 
 # Exceptions
   
-Code example below represents the sample code from `{called_name}` that will be used in following sections.  
+This article provides an introduction to cross-technology handling of exceptions. Exceptions in programming are events that occur during the execution of programs that disrupt the normal flow of instructions.  
+  
+Any exception thrown by called technology is handled and thrown as any other exception in `{calling_name}` code. Details of exception depend on called technology, but in most cases final exception has all the information passed by called side.  
+  
+Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.  
 
-Any exception thrown by called technology can be handled in your `{calling_name}` code. All Javonet methods that operate on objects from `{called_name}` throw an `{calling_name}` exception when exceptions occur. You can catch exceptions, and then perform the appropriate exception handling logic.  
+## Custom `{called_name}` showing exception handling  
+  
+With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
+  
+Snippet below represents the sample code from `{called_name}` which contains a chain of methods:  
 
-:::code 
+:::code
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Exceptions
 :display: called
 :::
-    
-To catch and handle exception thrown from `{called_name}`:  
+
+To invoke these methods in `{calling_name}`:
   
-----  
-  
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_ExceptionsFromCalledTech_InvokeStaticMethod
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Exceptions
 :display: calling
 :::
+
+The last method throws exception which is handled and rethrown in `{calling_name}`. Then the exception in catched and printed.  
+  
+The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
+  
+Read more [about](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) use cases and software architecture scenarios where Javonet runtime bridging technology can support your development process.

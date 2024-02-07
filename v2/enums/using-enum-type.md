@@ -18,7 +18,7 @@ With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{c
   
 Snippet below represents the sample code from `{called_name}` which contains enum type.  
   
-:::code 
+:::code
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Enums
 :display: called
@@ -26,7 +26,7 @@ Snippet below represents the sample code from `{called_name}` which contains enu
 
 It is possible to handle the declared enums from `{called_name}` using following `{calling_name}` code:
 
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_EnumNameAndValue
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
@@ -38,7 +38,7 @@ This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technol
   
 Enum items can be passed to `{called_name}` method:
 
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_EnumAddToList
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
