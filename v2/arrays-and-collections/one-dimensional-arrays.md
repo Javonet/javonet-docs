@@ -61,19 +61,7 @@ In the snippet above, get1DArray method is used to get reference to 1D array fro
 :display: calling
 :::
 
-In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Method getSize is used to get size of the array.  
-
-## Get rank of the array  
-  
-:::code
-:calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_1DArray_GetRank
-:called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
-:called_id: Arrays
-:display: calling
-:::
-  
-In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Method getRank is used to get rank of the array.  
+In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Method getSize is used to get number of elements of the array.  
   
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   

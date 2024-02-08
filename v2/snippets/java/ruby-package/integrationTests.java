@@ -598,7 +598,7 @@ public class integrationTests {
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // create type's instance
-        InvocationContext instance = calledRuntimeType.createInstance(0, 1).execute();
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
 
         // invoke instance's method
         InvocationContext array = instance.invokeInstanceMethod("get_2d_array").execute();
@@ -640,7 +640,7 @@ public class integrationTests {
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // create type's instance
-        InvocationContext instance = calledRuntimeType.createInstance(0, 1).execute();
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
 
         // invoke instance's method
         InvocationContext array = instance.invokeInstanceMethod("get_2d_array").execute();
@@ -681,7 +681,7 @@ public class integrationTests {
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // create type's instance
-        InvocationContext instance = calledRuntimeType.createInstance(0, 1).execute();
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
 
         // invoke instance's method
         InvocationContext array = instance.invokeInstanceMethod("get_2d_array").execute();

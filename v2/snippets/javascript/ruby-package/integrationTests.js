@@ -533,7 +533,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         let calledRuntimeType = calledRuntime.getType(className).execute()
 
         // create type's instance
-        let instance = calledRuntimeType.createInstance(0, 1).execute()
+        let instance = calledRuntimeType.createInstance().execute()
 
         // invoke instance's method
         let array = instance.invokeInstanceMethod("get_2d_array").execute()
@@ -577,7 +577,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         let calledRuntimeType = calledRuntime.getType(className).execute()
 
         // create type's instance
-        let instance = calledRuntimeType.createInstance(0, 1).execute()
+        let instance = calledRuntimeType.createInstance().execute()
 
         // invoke instance's method
         let array = instance.invokeInstanceMethod("get_2d_array").execute()
@@ -617,7 +617,7 @@ describe('Nodejs to Ruby Package integration tests', () => {
         let calledRuntimeType = calledRuntime.getType(className).execute()
 
         // create type's instance
-        let instance = calledRuntimeType.createInstance(0, 1).execute()
+        let instance = calledRuntimeType.createInstance().execute()
 
         // invoke instance's method
         let array = instance.invokeInstanceMethod("get_2d_array").execute()

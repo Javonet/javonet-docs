@@ -603,7 +603,7 @@ def test_RubyPackage_TestResources_2DArray_GetIndex():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_2d_array").execute()
@@ -647,7 +647,7 @@ def test_RubyPackage_TestResources_2DArray_GetSizeAndRank():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_2d_array").execute()
@@ -687,7 +687,7 @@ def test_RubyPackage_TestResources_2DArray_SetIndex():
     called_runtime_type = called_runtime.get_type(class_name).execute()
 
     # create type's instance
-    instance = called_runtime_type.create_instance(0, 1).execute()
+    instance = called_runtime_type.create_instance().execute()
 
     # invoke instance's method
     array = instance.invoke_instance_method("get_2d_array").execute()
