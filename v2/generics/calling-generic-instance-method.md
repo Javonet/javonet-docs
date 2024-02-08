@@ -31,15 +31,17 @@ It is possible to invoke the declared methods from `{called_name}` using followi
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
-:calling_id: TestResources_GenericInstanceMethod
+:calling_id: TestResources_GenericMethod
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
 :called_id: Generics
 :display: calling
 :::
 
-This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.  
-
-Next, generic instance method is invoked and the result is printed to console.  
+This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}`.  
+Next, type is specified and instance of class is created.  
+Next, generic instance method is invoked.  
+While calling .NET generic method it is necessary to pass method name, type and arguments.  
+While calling Java generic method it is necessary to pass method name and arguments.  
   
 To invoke method which has more than one type specified:  
   
@@ -51,6 +53,12 @@ To invoke method which has more than one type specified:
 :display: calling
 :::
   
+This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}`.  
+Next, type is specified and instance of class is created.  
+Next, generic instance method is invoked.  
+While calling .NET generic method it is necessary to pass method name, type and arguments.  
+While calling Java generic method it is necessary to pass method name and arguments.  
+
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   
 Read more [about](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) use cases and software architecture scenarios where Javonet runtime bridging technology can support your development process.

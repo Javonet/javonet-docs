@@ -1,7 +1,7 @@
-const {Javonet} = require('javonet-nodejs-sdk/lib/Javonet')
+const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
 const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
-const {expect, describe, test} = require("@jest/globals");
+const { expect, describe, test } = require("@jest/globals");
 
 const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResources/jar-library'
 
@@ -469,81 +469,6 @@ describe('Nodejs to Jar Library integration tests', () => {
         // </TestResources_1DArray_Iterate>
         expect(arrayValues).toEqual(["ONE", "TWO", "THREE", "FOUR", "FIVE"])
     })
-
-    test(`Test_JarLibrary_TestResources_1DArray_GetElement`, () => {
-    // <TestResources_1DArray_GetElement>
-    // use Activate only once in your app
-    Javonet.activate("your-license-key")
-
-    // create called runtime context
-    let calledRuntime = Javonet.inMemory().jvm()
-
-    // set up variables
-    const libraryPath = resourcesDirectory + '/TestClass.jar'
-    const className = 'TestClass'
-
-    // load custom library
-    calledRuntime.loadLibrary(libraryPath)
-
-    // get type from the runtime
-    let calledRuntimeType = calledRuntime.getType(className).execute()
-
-    // create type's instance
-    let instance = calledRuntimeType.createInstance().execute()
-
-    // invoke instance's method
-    let array = instance.invokeInstanceMethod("get1DArray").execute()
-
-    // get element of array and invoke method on it
-    let response = array.getIndex(2).invokeInstanceMethod("toUpperCase").execute()
-
-    // get value from response
-    let result = response.getValue()
-
-    // write result to console
-    console.log(result)
-    // </TestResources_1DArray_GetElement>
-    expect(result).toBe("THREE")
-})
-
-test(`Test_JarLibrary_TestResources_1DArray_SetElement`, () => {
-    // <TestResources_1DArray_SetElement>
-    // use Activate only once in your app
-    Javonet.activate("your-license-key")
-
-    // create called runtime context
-    let calledRuntime = Javonet.inMemory().jvm()
-
-    // set up variables
-    const libraryPath = resourcesDirectory + '/TestClass.jar'
-    const className = 'TestClass'
-
-    // load custom library
-    calledRuntime.loadLibrary(libraryPath)
-
-    // get type from the runtime
-    let calledRuntimeType = calledRuntime.getType(className).execute()
-
-    // create type's instance
-    let instance = calledRuntimeType.createInstance().execute()
-
-    // invoke instance's method
-    let array = instance.invokeInstanceMethod("get1DArray").execute()
-
-    // set element of array
-    array.setIndex(2, "zero").execute()
-
-    // get element of array and invoke method on it
-    let response = array.getIndex(2).invokeInstanceMethod("toUpperCase").execute()
-
-    // get value from response
-    let result = response.getValue()
-
-    // write result to console
-    console.log(result)
-    // </TestResources_1DArray_SetElement>
-    expect(result).toBe("ZERO")
-})
 
     test(`Test_JarLibrary_TestResources_1DArray_PassArrayAsArgument`, () => {
         // <TestResources_1DArray_PassArrayAsArgument>

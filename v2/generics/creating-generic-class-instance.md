@@ -27,9 +27,12 @@ It is possible to create generic class instance and interact with its methods fr
 :display: calling
 :::
 
-This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.  
-
-Next, generic class is instantiated and sample method is used.
+This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to start called technology.  
+Next, instance of generic class is created.
+While creating instance of .NET generic class it is necessary to pass method name, type and arguments.  
+While creating instance of Java generic class it is necessary to pass method name and arguments.  
+Next, instance method are invoked to interact with created instance.  
+Finally, the result is printed to console.  
   
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   

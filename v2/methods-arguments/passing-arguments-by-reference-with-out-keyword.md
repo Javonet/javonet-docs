@@ -37,13 +37,12 @@ It is possible to invoke the declared methods from `{called_name}` using followi
 :display: calling
 :::
 
-This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.
-  
+This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.  
 Next, two reference type arguments are created. An argument that is passed to a `out` parameter do not have to be initialized before it's passed to a method. Three ways of initialization are presented in *create values for out* section of the snippet.  
 Fist way (outValue1) is initializing using asOut() method with specifying type of argument.  
 Second way (outValue2) is initializing using asOut() method with specifying value and type of argument.  
 Third way (outValue3) is initializing using asOut() method with specifying value of argument.  
-
+  
 All these values can be passed to OutSampleMethod(out string outStr) method using *invokeStaticMethod(...).execute()* invocation.  
   
 Each reference type argument is get as regular `{calling_name}` value using *getRefValue()* and can be used for further processing.  

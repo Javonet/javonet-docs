@@ -39,7 +39,9 @@ It is possible to invoke the declared methods from `{called_name}` using followi
 
 This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.
   
-Next, two reference type arguments are created. An argument that is passed to a `ref` parameter must be initialized before it's passed to a method. Two ways of initialization are presented in *create values for ref* section of the snippet. Fist argument (refValue1) is initialized using asRef() method with default type of passed value (int). This type matches the type of parameter in RefSampleMethod(ref int x) method. Second argument (refValue2) is initialized using asRef() method with specifying the exact type which should be use. "System.Int32" is an alias for int.  
+Next, two reference type arguments are created. An argument that is passed to a `ref` parameter must be initialized before it's passed to a method. Two ways of initialization are presented in *create values for ref* section of the snippet.  
+Fist argument (refValue1) is initialized using asRef() method with default type of passed value (int). This type matches the type of parameter in RefSampleMethod(ref int x) method.  
+Second argument (refValue2) is initialized using asRef() method with specifying the exact type which should be use. "System.Int32" is an alias for int.  
   
 Both values can be passed to RefSampleMethod(ref int x) method using *invokeStaticMethod(...).execute()* invocation.  
   
@@ -59,7 +61,12 @@ It is possible to invoke the declared method which contains multiple `ref` argum
   
 This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.
   
-Next, three reference type arguments are created. An argument that is passed to a `ref` parameter must be initialized before it's passed to a method. Two ways of initialization are presented in *create values for ref* section of the snippet. Fist argument (refToInt) is initialized using asRef() method with default type of passed value (int). This type matches the type of first parameter in `RefSampleMethod2` method. Second value (refToDouble) is initialized using asRef() method with specifying the exact type which should be used. "System.Double" is an alias for double. Third argument (refToString) is initialized using asRef() method with default type of passed value (string).  
+Next, three reference type arguments are created. An argument that is passed to a `ref` parameter must be initialized before it's passed to a method. Two ways of initialization are presented in *create values for ref* section of the snippet.  
+Fist argument (refToInt) is initialized using asRef() method with default type of passed value (int). This type matches the type of first parameter in `RefSampleMethod2` method.  
+Second value (refToDouble) is initialized using asRef() method with specifying the exact type which should be used. "System.Double" is an alias for double.  
+Third argument (refToString) is initialized using asRef() method with default type of passed value (string).  
+  
+All three arguments are processed in RefSampleMethod2 and changed. Their values are obtained using getRefValue() method.
   
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   

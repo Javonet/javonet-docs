@@ -17,7 +17,7 @@ With Javonet you can interact with collections from `{called_name}` like they we
   
 Javonet SDK contains various methods to interact with lists and consume the results in `{calling_name}`:  
   
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_HandleList
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
@@ -33,7 +33,7 @@ Finally, this list can be handled through Javonet SDK, f.e. with getIndex method
   
 Javonet SDK contains various methods to interact with dictionaries and consume the results in `{calling_name}`:  
   
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: StandardLibrary_HandleDictionary
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`

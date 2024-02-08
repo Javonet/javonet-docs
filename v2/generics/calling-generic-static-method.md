@@ -27,7 +27,7 @@ Snippet below represents the sample code from `{called_name}` which contains gen
 :display: called
 :::
   
-It is possible to invoke the declared methods from `{called_name}` using following `{calling_name}` code:
+It is possible to invoke the methods from `{called_name}` using following `{calling_name}` code:
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -40,6 +40,8 @@ It is possible to invoke the declared methods from `{called_name}` using followi
 This snippet uses [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) runtime bridging to load the `{called_name}` and next retrieves reference to specific type.  
 
 Next, generic static method is invoked.  
+While calling .NET generic method it is necessary to pass method name, type and arguments.  
+While calling Java generic method it is necessary to pass method name and arguments.  
   
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   

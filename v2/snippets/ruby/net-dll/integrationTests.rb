@@ -617,8 +617,8 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
     expect(result).to eq(%w[one two three four five])
   end
 
-  it 'Test_NetDll_TestResources_TestResources_Cast_ToUInt' do
-    # <TestResources_TestResources_Cast_ToUInt>
+  it 'Test_NetDll_TestResources_Cast_ToUInt' do
+    # <TestResources_Cast_ToUInt>
     # use activate only once in your app
     Javonet.activate('your-license-key')
 
@@ -648,12 +648,12 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # write result to console
     puts result
-    # </TestResources_TestResources_Cast_ToUInt>
+    # </TestResources_Cast_ToUInt>
     expect(result).to eq('CastSampleMethod with System.UInt32 called')
   end
 
-  it 'Test_NetDll_TestResources_TestResources_Cast_ToFloat' do
-    # <TestResources_TestResources_Cast_ToFloat>
+  it 'Test_NetDll_TestResources_Cast_ToFloat' do
+    # <TestResources_Cast_ToFloat>
     # use activate only once in your app
     Javonet.activate('your-license-key')
 
@@ -684,7 +684,7 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # write result to console
     puts result
-    # </TestResources_TestResources_Cast_ToFloat>
+    # </TestResources_Cast_ToFloat>
     expect(result).to eq('CastSampleMethod with System.Single called')
   end
 

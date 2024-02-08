@@ -617,8 +617,8 @@ if OS.windows?
       expect(result).to eq(%w[one two three four five])
     end
 
-    it 'Test_Netframework_Dll_TestResources_TestResources_Cast_ToUInt' do
-      # <TestResources_TestResources_Cast_ToUInt>
+    it 'Test_Netframework_Dll_TestResources_Cast_ToUInt' do
+      # <TestResources_Cast_ToUInt>
       # use activate only once in your app
       Javonet.activate('your-license-key')
 
@@ -648,12 +648,12 @@ if OS.windows?
 
       # write result to console
       puts result
-      # </TestResources_TestResources_Cast_ToUInt>
+      # </TestResources_Cast_ToUInt>
       expect(result).to eq('CastSampleMethod with System.UInt32 called')
     end
 
-    it 'Test_Netframework_Dll_TestResources_TestResources_Cast_ToFloat' do
-      # <TestResources_TestResources_Cast_ToFloat>
+    it 'Test_Netframework_Dll_TestResources_Cast_ToFloat' do
+      # <TestResources_Cast_ToFloat>
       # use activate only once in your app
       Javonet.activate('your-license-key')
 
@@ -684,7 +684,7 @@ if OS.windows?
 
       # write result to console
       puts result
-      # </TestResources_TestResources_Cast_ToFloat>
+      # </TestResources_Cast_ToFloat>
       expect(result).to eq('CastSampleMethod with System.Single called')
     end
 
