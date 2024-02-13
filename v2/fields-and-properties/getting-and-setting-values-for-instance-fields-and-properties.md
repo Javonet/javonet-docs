@@ -1,5 +1,5 @@
 :::options
-:title: Getting values for instance fields and properties
+:title: Getting and setting values for instance fields and properties
 :description: This article provides an overview of getting values for instance fields and properties
 :related_articles: fields-and-properties/getting-and-setting-values-for-static-fields-and-properties
 :keywords: Javonet, `{called_technology}` Instance Fields, `{calling_technology}`, Instance Properties, Field Access, Property Access, Field Modification, Property Modification, Instance Field Values, Instance Property Values, Get Field, Set Field, Get Property, Set Property
@@ -27,7 +27,7 @@ Code example below represents the sample code from `{called_name}` that will be 
 
 It is possible to get one of the declared instance fields from `{called_name}` using following `{calling_name}` code. This uses in memory runtime bridging to load the `{called_name}`, and next retrieves reference to specific type, creates its instance, and gets the instance field. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
-:::code 
+:::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
 :calling_id: TestResources_GetInstanceField
 :called_source: v2/snippets/`{called_technology}`/TestClass.`{called_ext}`
@@ -35,10 +35,9 @@ It is possible to get one of the declared instance fields from `{called_name}` u
 :display: calling
 :::
 
-
-## Get/Set instance field from standard `{called_name}`
-
-The same steps are required to use types and fields from standard `{called_name}`:
+## Get/Set instance field from standard `{called_name}`  
+  
+The same steps are required to use types and fields from standard `{called_name}`:  
 
 :::code 
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`

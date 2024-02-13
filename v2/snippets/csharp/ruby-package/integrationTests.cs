@@ -31,7 +31,6 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             // get type from the runtime
             var calledRuntimeType = calledRuntime.GetType("Math").Execute();
 
-
             // get type's static field
             var response = calledRuntimeType.GetStaticField("PI").Execute();
 
@@ -127,6 +126,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         [Trait("Test", "Integration")]
         public void Test_RubyPackage_TestResources_SetStaticField()
         {
+            // <TestResources_SetStaticField>
             // use Activate only once in your app
             Javonet.Activate("your-license-key");
 
