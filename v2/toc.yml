@@ -160,7 +160,7 @@ items:
     href: /fields-and-properties/getting-and-setting-values-for-static-fields-and-properties.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
-  - name: Getting values for instance fields and properties
+  - name: Getting and setting values for instance fields and properties
     href: /fields-and-properties/getting-and-setting-values-for-instance-fields-and-properties.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package

@@ -5,9 +5,8 @@
 :keywords: Javonet, `{called_technology}` Activation, `{calling_technology}`, License Key, Software Activation, License Activation, Register, Log In, Application Startup, License Verification, javonet.lic
 :::
 
-
 # Activating Javonet
-
+  
 Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article lists getting started sections for supported technologies.  
   
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
