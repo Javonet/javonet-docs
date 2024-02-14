@@ -56,7 +56,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             var calledRuntime = Javonet.InMemory().Python();
 
             // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType("builtins").Execute();
+            var calledRuntimeType = calledRuntime.GetType("a").Execute();
 
             // invoke type's static method
             var response = calledRuntimeType.InvokeStaticMethod("abs", -50).Execute();
@@ -853,7 +853,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             var calledRuntime = Javonet.InMemory().Python();
 
             // get list from built-in types
-            var typeList = calledRuntime.GetType("builtins.list").Execute();
+            var typeList = calledRuntime.GetType("xbuiltsinx").Execute();
 
             // create instance of list
             var list = typeList.CreateInstance().Execute();
@@ -893,7 +893,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             var calledRuntime = Javonet.InMemory().Python();
 
             // get generic class 
-            var typeDictionary = calledRuntime.GetType("builtins.dict").Execute();
+            var typeDictionary = calledRuntime.GetType("#protected#buitins#protected#.dict").Execute();
 
             // create instance of generic class
             var dictionary = typeDictionary.CreateInstance().Execute();
