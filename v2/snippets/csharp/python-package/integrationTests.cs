@@ -56,7 +56,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             var calledRuntime = Javonet.InMemory().Python();
 
             // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType("a").Execute();
+            var calledRuntimeType = calledRuntime.GetType("builtins").Execute();
 
             // invoke type's static method
             var response = calledRuntimeType.InvokeStaticMethod("abs", -50).Execute();
@@ -853,7 +853,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             var calledRuntime = Javonet.InMemory().Python();
 
             // get list from built-in types
-            var typeList = calledRuntime.GetType("xbuiltsinx").Execute();
+            var typeList = calledRuntime.GetType("builtins.list").Execute();
 
             // create instance of list
             var list = typeList.CreateInstance().Execute();
@@ -889,6 +889,30 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             // use Activate only once in your app
             Javonet.Activate("your-license-key");
 
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Python();
+
+            // get generic class 
+            var typeDictionary = calledRuntime.GetType("builtins.dict").Execute();
+
+            // create instance of generic class
+            var dictionary = typeDictionary.CreateInstance().Execute();
+
+            // set elements in dictionary
+            dictionary.SetIndex("pi", System.Math.PI).Execute();
+            dictionary.SetIndex("e", System.Math.E).Execute();
+            dictionary.SetIndex("c", 299792458.0).Execute();
+
+            // get elements from dictionary
+            var response1 = dictionary["c"].Execute();
+            var response2 = dictionary.GetIndex("e").Execute();
+
+            var c_value = response1.GetValue();
+            var e_value = response2.GetValue();
+
+            // write results to console
+            System.Console.WriteLine(c_value);
+            System.Console.WriteLine(e_value);
             // </StandardLibrary_HandleDictionary>
             Assert.Equal(299792458.0, c_value);
             Assert.Equal(System.Math.E, e_value);
