@@ -889,30 +889,6 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             // use Activate only once in your app
             Javonet.Activate("your-license-key");
 
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Python();
-
-            // get generic class 
-            var typeDictionary = calledRuntime.GetType("#protected#buitins#protected#.dict").Execute();
-
-            // create instance of generic class
-            var dictionary = typeDictionary.CreateInstance().Execute();
-
-            // set elements in dictionary
-            dictionary.SetIndex("pi", System.Math.PI).Execute();
-            dictionary.SetIndex("e", System.Math.E).Execute();
-            dictionary.SetIndex("c", 299792458.0).Execute();
-
-            // get elements from dictionary
-            var response1 = dictionary["c"].Execute();
-            var response2 = dictionary.GetIndex("e").Execute();
-
-            var c_value = response1.GetValue();
-            var e_value = response2.GetValue();
-
-            // write results to console
-            System.Console.WriteLine(c_value);
-            System.Console.WriteLine(e_value);
             // </StandardLibrary_HandleDictionary>
             Assert.Equal(299792458.0, c_value);
             Assert.Equal(System.Math.E, e_value);
