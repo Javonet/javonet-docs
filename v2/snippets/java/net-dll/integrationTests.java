@@ -849,7 +849,7 @@ public class integrationTests {
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", fruits1ToAdd).execute();
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", (Object)fruits1ToAdd).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -1045,7 +1045,7 @@ public class integrationTests {
         list.invokeInstanceMethod("Add", "one").execute();
         list.invokeInstanceMethod("Add", "two").execute();
         list.invokeInstanceMethod("Add", "three").execute();
-        list.invokeInstanceMethod("AddRange", new String[]{"four", "five", "six"}).execute();
+        list.invokeInstanceMethod("AddRange", (Object) new String[]{"four", "five", "six"}).execute();
 
         // check number of elements
         int count = (int) list.getInstanceField("Count").execute().getValue();
@@ -1076,7 +1076,7 @@ public class integrationTests {
         InvocationContext list = listType.createInstance().execute();
 
         // invoke instance's method
-        list.invokeInstanceMethod("AddRange", new Double[]{1.1, 2.2, 3.3, 4.4, 5.5, 6.6}).execute();
+        list.invokeInstanceMethod("AddRange", (Object)new Double[]{1.1, 2.2, 3.3, 4.4, 5.5, 6.6}).execute();
 
         // get element from list
         InvocationContext response1 = list.getIndex(3).execute();

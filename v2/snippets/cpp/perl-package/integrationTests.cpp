@@ -9,7 +9,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/perl-package";
 
-	TEST(Integration, Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoExeption) {
+	TEST(Integration, Test_PerlPackage_TestResources_LoadLibrary) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -25,7 +25,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		// </TestResources_LoadLibrary>
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_GetStaticField_StaticValue_3) {
+	TEST(Integration, Test_PerlPackage_TestResources_GetStaticField) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -55,7 +55,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(3, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_SetStaticField_StaticValue_75) {
+	TEST(Integration, Test_PerlPackage_TestResources_SetStaticField) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -89,7 +89,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(75, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_GetInstanceField_PublicValue_1) {
+	TEST(Integration, Test_PerlPackage_TestResources_GetInstanceField) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -122,7 +122,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(1, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
+	TEST(Integration, Test_PerlPackage_TestResources_InvokeStaticMethod) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -152,7 +152,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
+	TEST(Integration, Test_PerlPackage_TestResources_InvokeInstanceMethod0) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -185,7 +185,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(20, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetIndex_2_StringThree) {
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetIndex) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -221,7 +221,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ("three", result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetSize_5) {
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetSize) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -257,7 +257,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(5, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_1DArray_SetIndex_StringSeven) {
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_SetIndex) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -294,5 +294,43 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		std::cout << result << std::endl;
 		// </TestResources_1DArray_SetIndex>
 		EXPECT_EQ("seven", result);
+	}
+
+	//TODO: Test_PerlPackage_TestResources_1DArray_Iterate
+
+	TEST(Integration, Test_PerlPackage_TestResources_1DArray_GetElement) {
+		// <TestResources_1DArray_GetElement>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto arrayReference = instance->InvokeInstanceMethod("get_1d_array")->Execute();
+
+		// get index from array
+		auto response = (*arrayReference)[2]->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_1DArray_GetElement>
+		EXPECT_EQ("three", result);
 	}
 }

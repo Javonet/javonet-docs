@@ -600,7 +600,7 @@ public class integrationTests {
         InvocationContext[] fruits1ToAdd = new InvocationContext[] {apple, mango};
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("add_fruits_to_list", fruits1ToAdd).execute();
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("add_fruits_to_list", (Object)fruits1ToAdd).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -796,7 +796,7 @@ public class integrationTests {
         InvocationContext list = listType.createInstance().execute();
 
         // add items to list
-        list.invokeInstanceMethod("extend", new String[]{"one", "two", "three"}).execute();
+        list.invokeInstanceMethod("extend", (Object)new String[]{"one", "two", "three"}).execute();
 
         // get list's size
         InvocationContext response1 = list.getSize().execute();

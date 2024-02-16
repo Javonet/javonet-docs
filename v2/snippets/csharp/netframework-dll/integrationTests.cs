@@ -902,7 +902,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 
             // invoke type's static method
             var response = calledRuntimeType.
-                           InvokeStaticMethod("AddFruitsToList", fruitsList).
+                           InvokeStaticMethod("AddFruitsToList", (object)fruitsList).
                            Execute();
 
             // get value from response
@@ -1112,7 +1112,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
             list.InvokeInstanceMethod("Add", "one").Execute();
             list.InvokeInstanceMethod("Add", "two").Execute();
             list.InvokeInstanceMethod("Add", "three").Execute();
-            list.InvokeInstanceMethod("AddRange", new string[] { "four", "five", "six" }).Execute();
+            list.InvokeInstanceMethod("AddRange", (object)new string[] { "four", "five", "six" }).Execute();
 
             // check number of elements in list
             var response = list.GetInstanceField("Count").Execute();
@@ -1146,7 +1146,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
             var list = typeList.CreateInstance().Execute();
 
             // invoke instance method
-            list.InvokeInstanceMethod("AddRange", new string[] { "one", "two", "three", "four", "five", "six" }).Execute();
+            list.InvokeInstanceMethod("AddRange", (object)new string[] { "one", "two", "three", "four", "five", "six" }).Execute();
 
             // get elements from list
             var element0 = list[0].Execute();

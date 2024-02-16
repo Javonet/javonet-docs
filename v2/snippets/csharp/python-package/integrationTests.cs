@@ -654,7 +654,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
 
             // invoke type's static method
             var response = calledRuntimeType.
-                           InvokeStaticMethod("add_fruits_to_list", fruitsList).
+                           InvokeStaticMethod("add_fruits_to_list", (object)fruitsList).
                            Execute();
 
             // get value from response
@@ -859,7 +859,7 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             var list = typeList.CreateInstance().Execute();
 
             // invoke instance method
-            list.InvokeInstanceMethod("extend", new string[] { "one", "two", "three", "four", "five", "six" }).Execute();
+            list.InvokeInstanceMethod("extend", (object)new string[] { "one", "two", "three", "four", "five", "six" }).Execute();
 
             // get elements from list
             var element0 = list[0].Execute();

@@ -11,7 +11,107 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/jar-library";
 
-	TEST(Integration, Test_JarLibrary_TestResources_LoadLibrary_libraryPath_NoExeption) {
+	TEST(Integration, Test_JarLibrary_StandardLibrary_GetStaticField) {
+		// <StandardLibrary_GetStaticField>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType("java.lang.Math")->Execute();
+
+		// get type's static field
+		auto response = calledRuntimeType->GetStaticField("PI")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<double>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_GetStaticField>
+		EXPECT_EQ(M_PI, result);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_GetInstanceField) {
+
+		// <StandardLibrary_GetInstanceField>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType("java.sql.DriverPropertyInfo")->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance({ "sample value", "sample value 2" })->Execute();
+
+		// invoke instance's method
+		auto response = instance->GetInstanceField("name")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_GetInstanceField>		
+		EXPECT_EQ("sample value", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_InvokeStaticMethod) {
+		// <StandardLibrary_InvokeStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType("java.lang.Math")->Execute();
+
+		// invoke type's static method 
+		auto response = calledRuntimeType->InvokeStaticMethod({ "abs", -50 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_InvokeStaticMethod>
+		EXPECT_EQ(50, result);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_InvokeInstanceMethod) {
+		// <StandardLibrary_InvokeInstanceMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType("java.util.Random")->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod({ "nextInt", 10 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_InvokeInstanceMethod>
+		EXPECT_LE(0, result);
+		EXPECT_GT(10, result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_LoadLibrary) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -27,7 +127,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		// </TestResources_LoadLibrary>
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_GetStaticField_StaticValue_3) {
+	TEST(Integration, Test_JarLibrary_TestResources_GetStaticField) {
 		// <TestResources_GetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -57,7 +157,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(3, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_SetStaticField_StaticValue_75) {
+	TEST(Integration, Test_JarLibrary_TestResources_SetStaticField) {
 		// <TestResources_SetStaticField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -91,7 +191,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(75, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_GetInstanceField_PublicValue_18) {
+	TEST(Integration, Test_JarLibrary_TestResources_GetInstanceField) {
 		// <TestResources_GetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -124,7 +224,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(18, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_SetInstanceField_PublicValue_44) {
+	TEST(Integration, Test_JarLibrary_TestResources_SetInstanceField) {
 		// <TestResources_SetInstanceField>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -160,7 +260,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(44, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50) {
+	TEST(Integration, Test_JarLibrary_TestResources_InvokeStaticMethod) {
 		// <TestResources_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -189,7 +289,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(50, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20) {
+	TEST(Integration, Test_JarLibrary_TestResources_InvokeInstanceMethod) {
 		// <TestResources_InvokeInstanceMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -222,7 +322,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(20, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_1DArray_GetIndex_2_StringThree) {
+	TEST(Integration, Test_JarLibrary_TestResources_1DArray_GetIndex) {
 		// <TestResources_1DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -258,7 +358,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ("three", result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_1DArray_GetSize_5) {
+	TEST(Integration, Test_JarLibrary_TestResources_1DArray_GetSize) {
 		// <TestResources_1DArray_GetSize>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -294,7 +394,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(5, result);
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_1DArray_SetIndex_StringSeven) {
+	TEST(Integration, Test_JarLibrary_TestResources_1DArray_SetIndex) {
 		// <TestResources_1DArray_SetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -319,7 +419,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		auto arrayReference = instance->InvokeInstanceMethod("get1DArray")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ 4, "seven"})->Execute();
+		arrayReference->SetIndex({ 4, "seven" })->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();
@@ -331,6 +431,77 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		std::cout << result << std::endl;
 		// </TestResources_1DArray_SetIndex>
 		EXPECT_EQ("seven", result);
+	}
+
+	//TODO: Test_JarLibrary_TestResources_1DArray_Iterate
+
+	TEST(Integration, Test_JarLibrary_TestResources_1DArray_GetElement) {
+		// <TestResources_1DArray_GetElement>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto arrayReference = instance->InvokeInstanceMethod("get1DArray")->Execute();
+
+		// get index from array
+		auto response = (*arrayReference)[2]->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_1DArray_GetElement>
+		EXPECT_EQ("three", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_1DArray_PassArrayAsArgument) {
+		// <TestResources_1DArray_PassArrayAsArgument>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod({ "addArrayElementsAndMultiply", std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<double>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_1DArray_PassArrayAsArgument>
+		EXPECT_EQ((double)999, result);
 	}
 
 	TEST(Integration, Test_JarLibrary_TestResources_1DArray_RetrieveArray) {
@@ -378,7 +549,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		}
 	}
 
-	TEST(Integration, Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException) {
+	TEST(Integration, Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0) {
 		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
@@ -506,7 +677,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 
 		// invoke instance generic method
 		auto response = instance->
-			InvokeGenericMethod({ "genericSampleMethodWithTwoTypes", 7})->
+			InvokeGenericMethod({ "genericSampleMethodWithTwoTypes", 7 })->
 			Execute();
 
 		// get value from response
@@ -516,6 +687,48 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		std::cout << result << std::endl;
 		// </TestResources_GenericMethodWithTwoTypes>
 		EXPECT_EQ("genericSampleMethodWithTwoTypes invoked", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_EnumAddToList) {
+		// <TestResources_EnumAddToList>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+		auto className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		//get enum
+		auto enumType = calledRuntime->GetType("TestClass$Fruit")->Execute();
+
+		//create enum items
+		auto apple = calledRuntime->GetEnumItem({ enumType, "Apple" })->Execute();
+		auto mango = calledRuntime->GetEnumItem({ enumType, "Mango" })->Execute();
+
+		// create fruits array
+		std::vector<std::any> fruitsList = { apple, mango };
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method
+		auto response = calledRuntimeType->
+			InvokeStaticMethod({ "addFruitsToList", fruitsList })->
+			Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_EnumAddToList>
+		EXPECT_EQ("2 fruits on the list", result);
 	}
 
 	TEST(Integration, Test_JarLibrary_TestResources_EnumNameAndValue) {
@@ -560,58 +773,128 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		EXPECT_EQ(2, result4);
 	}
 
-	TEST(Integration, Test_JarLibrary_StandardLibrary_GetStaticField_MathPI_PI) {
-		// <StandardLibrary_GetStaticField>
+	TEST(Integration, Test_JarLibrary_TestResources_2DArray_GetIndex) {
+		// <TestResources_2DArray_GetIndex>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
 
 		// create called runtime context
 		auto calledRuntime = Javonet::InMemory()->Jvm();
 
-		// get type from the runtime
-		auto calledRuntimeType = calledRuntime->GetType("java.lang.Math")->Execute();
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
 
-		// get type's static field
-		auto response = calledRuntimeType->GetStaticField("PI")->Execute();
-
-		// get value from response
-		auto result = std::any_cast<double>(response->GetValue());
-
-		// write result to console
-		std::cout << result << std::endl;
-		// </StandardLibrary_GetStaticField>
-		EXPECT_EQ(M_PI, result);
-	}
-
-	TEST(Integration, Test_JarLibrary_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022) {
-
-		// <StandardLibrary_GetInstanceField>
-		// use Activate only once in your app
-		Javonet::Activate("your-license-key");
-
-		// create called runtime context
-		auto calledRuntime = Javonet::InMemory()->Jvm();
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
 
 		// get type from the runtime
-		auto calledRuntimeType = calledRuntime->GetType("java.sql.DriverPropertyInfo")->Execute();
+		auto calledRuntimeType = calledRuntime->GetType(className);
 
 		// create type's instance
-		auto instance = calledRuntimeType->CreateInstance({ "sample value", "sample value 2" })->Execute();
+		auto instance = calledRuntimeType->CreateInstance();
 
 		// invoke instance's method
-		auto response = instance->GetInstanceField("name")->Execute();
+		auto array = instance->InvokeInstanceMethod("get2DArray")->Execute();
+
+		// get index from array
+		auto response1 = array->GetIndex({ 1, 1 })->Execute();
+		std::vector<std::any> indexes = { 0, 0 };
+		auto response2 = array->GetIndex(indexes)->Execute();
+
+		// get value from response
+		auto result1 = std::any_cast<std::string>(response1->GetValue());
+		auto result2 = std::any_cast<std::string>(response2->GetValue());
+
+		// write result to console
+		std::cout << result1 << std::endl;
+		std::cout << result2 << std::endl;
+		// </TestResources_2DArray_GetIndex>
+		EXPECT_EQ("S11", result1);
+		EXPECT_EQ("S00", result2);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_2DArray_GetSizeAndRank) {
+		// <TestResources_2DArray_GetSizeAndRank>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// invoke instance's method
+		auto array = instance->InvokeInstanceMethod("get2DArray")->Execute();
+
+		// three ways to get elements from array
+		auto response1 = array->GetSize()->Execute();
+		auto response2 = array->GetRank()->Execute();
+
+		// get value from response
+		auto result1 = std::any_cast<int>(response1->GetValue());
+		auto result2 = std::any_cast<int>(response2->GetValue());
+
+		// write result to console
+		std::cout << result1 << std::endl;
+		std::cout << result2 << std::endl;
+		// </TestResources_2DArray_GetSizeAndRank>
+		EXPECT_EQ(4, result1);
+		EXPECT_EQ(2, result2);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_2DArray_SetIndex) {
+		// <TestResources_2DArray_SetIndex>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className);
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance();
+
+		// invoke instance's method
+		auto array = instance->InvokeInstanceMethod("get2DArray")->Execute();
+
+		// set element in array
+		array->SetIndex({ std::vector<std::any>{1, 1}, "new value" })->Execute();
+
+		// get index from array
+		auto response = array->GetIndex({ 1, 1 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<std::string>(response->GetValue());
 
 		// write result to console
 		std::cout << result << std::endl;
-		// </StandardLibrary_GetInstanceField>		
-		EXPECT_EQ("sample value", result);
+		// </TestResources_2DArray_SetIndex>
+		EXPECT_EQ("new value", result);
 	}
 
-	TEST(Integration, Test_JarLibrary_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50) {
-		// <StandardLibrary_InvokeStaticMethod>
+	TEST(Integration, Test_JarLibrary_StandardLibrary_CreateInstanceOfGenericClass) {
+		// <StandardLibrary_CreateInstanceOfGenericClass>
 		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
 
@@ -619,44 +902,106 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		auto calledRuntime = Javonet::InMemory()->Jvm();
 
 		// get type from the runtime
-		auto calledRuntimeType = calledRuntime->GetType("java.lang.Math")->Execute();
-
-		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "abs", -50 })->Execute();
-
-		// get value from response
-		auto result = std::any_cast<int>(response->GetValue());
-
-		// write result to console
-		std::cout << result << std::endl;
-		// </StandardLibrary_InvokeStaticMethod>
-		EXPECT_EQ(50, result);
-	}
-
-	TEST(Integration, Test_JarLibrary_StandardLibrary_InvokeInstanceMethod_javaUtilRandom_nextInt_10_between0and9) {
-		// <StandardLibrary_InvokeInstanceMethod>
-		// use Activate only once in your app
-		Javonet::Activate("your-license-key");
-
-		// create called runtime context
-		auto calledRuntime = Javonet::InMemory()->Jvm();
-
-		// get type from the runtime
-		auto calledRuntimeType = calledRuntime->GetType("java.util.Random")->Execute();
+		auto calledRuntimeType = calledRuntime->GetType("java.util.LinkedList")->Execute();
 
 		// create type's instance
-		auto instance = calledRuntimeType->CreateInstance()->Execute();
+		auto list = calledRuntimeType->CreateInstance()->Execute();
 
-		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "nextInt", 10 })->Execute();
+		//invoke instance methods
+		list->InvokeGenericMethod({ "add", "one" })->Execute();
+		list->InvokeGenericMethod({ "add", "two" })->Execute();
+		list->InvokeGenericMethod({ "add", "three" })->Execute();
+		list->InvokeGenericMethod({ "add", "four" })->Execute();
+		list->InvokeGenericMethod({ "add", "five" })->Execute();
+		list->InvokeGenericMethod({ "add", "six" })->Execute();
+
+		// check number of elements in list
+		auto response = list->InvokeGenericMethod({ "size" })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
 
 		// write result to console
 		std::cout << result << std::endl;
-		// </StandardLibrary_InvokeInstanceMethod>
-		EXPECT_LE(0, result);
-		EXPECT_GT(10, result);
+		// </StandardLibrary_CreateInstanceOfGenericClass>
+		EXPECT_EQ(6, result);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_HandleList) {
+		// <StandardLibrary_HandleList>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get generic class
+		auto typeList = calledRuntime->GetType("java.util.ArrayList")->Execute();
+
+		// create instance of generic class
+		auto list = typeList->CreateInstance()->Execute();
+
+		// invoke instance method
+		list->InvokeGenericMethod({ "add", "one" })->Execute();
+		list->InvokeGenericMethod({ "add", "two" })->Execute();
+		list->InvokeGenericMethod({ "add", "three" })->Execute();
+		list->InvokeGenericMethod({ "add", "four" })->Execute();
+		list->InvokeGenericMethod({ "add", "five" })->Execute();
+		list->InvokeGenericMethod({ "add", "six" })->Execute();
+
+		// get elements from list
+		auto element0 = list->GetIndex(0)->Execute();
+		auto element1 = (*list)[1]->Execute();
+
+		// get values from responses
+		auto result0 = std::any_cast<std::string>(element0->GetValue());
+		auto result1 = std::any_cast<std::string>(element1->GetValue());
+
+		// get size of list
+		auto size = std::any_cast<int>(list->GetSize()->Execute()->GetValue());
+
+		// write results to console
+		std::cout << result0 << std::endl;
+		std::cout << result1 << std::endl;
+		std::cout << size << std::endl;
+		// </StandardLibrary_HandleList>
+		EXPECT_EQ("one", result0);
+		EXPECT_EQ("two", result1);
+		EXPECT_EQ(6, size);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_HandleDictionary) {
+		// <StandardLibrary_HandleDictionary>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get generic class
+		auto typeDictionary = calledRuntime->GetType("java.util.HashMap")->Execute();
+
+		// create instance of generic class
+		auto dictionary = typeDictionary->CreateInstance()->Execute();
+
+		// invoke instance method
+		dictionary->InvokeGenericMethod({ "put", "pi", M_PI })->Execute();
+		dictionary->InvokeGenericMethod({ "put", "e", M_E })->Execute();
+		dictionary->InvokeGenericMethod({ "put", "c", 299792458.0 })->Execute();
+
+		// get value from dictionary
+		auto response1 = dictionary->GetIndex("e")->Execute();
+		auto response2 = (*dictionary)["pi"]->Execute();
+
+		// get value from response
+		auto result1 = std::any_cast<double>(response1->GetValue());
+		auto result2 = std::any_cast<double>(response2->GetValue());
+
+		// write result to console
+		std::cout << result1 << std::endl;
+		std::cout << result2 << std::endl;
+		// </StandardLibrary_HandleDictionary>
+		EXPECT_EQ(M_E, result1);
+		EXPECT_EQ(M_PI, result2);
 	}
 }

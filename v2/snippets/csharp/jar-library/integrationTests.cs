@@ -819,7 +819,7 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
 
             // invoke type's static method
             var response = calledRuntimeType.
-                           InvokeStaticMethod("addFruitsToList", fruitsList).
+                           InvokeStaticMethod("addFruitsToList", (object)fruitsList).
                            Execute();
 
             // get value from response
