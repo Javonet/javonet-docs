@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
 	// </GetStaticField>
 
 	// <GetValue>
-	auto result = std::any_cast<float>(response->GetValue());
+	auto result = std::any_cast<double>(response->GetValue());
 	std::cout << result << std::endl;
 	// </GetValue>	
 }

@@ -25,7 +25,7 @@ public class SampleProgram {
 		// </GetStaticField>
 
 		// <GetValue>
-        float result = (float) response.getValue();
+        float result = (double) response.getValue();
         System.out.println(result);
 		// </GetValue>
     }

@@ -24,7 +24,7 @@ class SampleProgram
 		// </GetStaticField>
 
 		// <GetValue>
-		var result = (float)response.GetValue();
+		var result = (double)response.GetValue();
 		System.Console.WriteLine(result);
 		// </GetValue>	
 	}

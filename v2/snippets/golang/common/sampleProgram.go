@@ -24,7 +24,7 @@ func main() {
 	// </GetStaticField>
 
 	// <GetValue>
-	result := response.GetValue().(float32)
+	result := response.GetValue().(float64)
 	fmt.Println(result)
 	// </GetValue>	
 }
