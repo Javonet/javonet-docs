@@ -7,8 +7,8 @@
 
 # Remote Integrations
 
-Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.
-
+Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.  
+  
 You can easily decide if you want to load your `{called_technology}` either in the same operating system process for tightly coupling integration scenarios and use foreign modules like they were created within the same technology or delegate creating required foreign objects in to any remote node, container or service. Javonet SDK provides you two methods to initialize foreign runtimes either in the same process with inMemory() or remote using tcp() method.  
   
 If you want to host your foreign module on remote node you need to run [Javonet Code Gateway](/guides/v2/`{calling_technology}`/`{called_technology}`/javonet-code-gateway/about-javonet-code-gateway.md) that will expose any public objects and methods defined in those modules for the consumption from your remote client code.  
