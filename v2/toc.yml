@@ -143,6 +143,13 @@ items:
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
 
+- name: Javonet Code Gateway
+  items:
+  - name: Javonet Code Gateway
+    href: /javonet-code-gateway/about-javonet-code-gateway.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+
 - name: Calling methods
   items:
   - name: Invoking static methods

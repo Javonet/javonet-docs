@@ -1,7 +1,7 @@
 :::options
 :title: Getting started for Python developers
 :description: This article provides Javonet getting started guide for Python developers
-:related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/activating-javonet, getting-started/adding-references-to-libraries
+:related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/activating-javonet, getting-started/adding-references-to-libraries, javonet-code-gateway/about-javonet-code-gateway
 :keywords: Javonet, `{called_technology}` Getting Started, `{calling_technology}`, Python Developers, Python Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
 :::
 
@@ -55,6 +55,6 @@ To sum up, the whole code snippet looks like:
 :::code source="v2/snippets/python/common/sampleProgram.py" ID="WholeSnippet":::
 
 
-The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service. In this way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
+The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service that hosts [Javonet Code Gateway](/guides/v2/`{calling_technology}`/`{called_technology}`/javonet-code-gateway/about-javonet-code-gateway.md). This way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   
 Read more [about](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) use cases and software architecture scenarios where Javonet runtime bridging technology can support your development process.
