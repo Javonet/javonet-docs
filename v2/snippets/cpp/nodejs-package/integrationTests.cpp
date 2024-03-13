@@ -46,7 +46,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto calledRuntimeType = calledRuntime->GetType("Math")->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "abs", -50 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("abs", -50)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -122,7 +122,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// set type's static field
-		calledRuntimeType->SetStaticField({ "staticValue", 75 })->Execute();
+		calledRuntimeType->SetStaticField("staticValue", 75)->Execute();
 
 		// get type's static field
 		auto response = calledRuntimeType->GetStaticField("staticValue")->Execute();
@@ -133,7 +133,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		// write result to console
 		std::cout << result << std::endl;
 		// </TestResources_SetStaticField>
-		calledRuntimeType->SetStaticField({ "staticValue", 3 })->Execute();
+		calledRuntimeType->SetStaticField("staticValue", 3)->Execute();
 		EXPECT_EQ(75, result);
 	}
 
@@ -192,7 +192,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
 
 		// set instance's field
-		instance->SetInstanceField({ "publicValue", 44 })->Execute();
+		instance->SetInstanceField("publicValue", 44)->Execute();
 
 		// get instance's field
 		auto response = instance->GetInstanceField("publicValue")->Execute();
@@ -225,7 +225,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "multiplyByTwo", 25 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("multiplyByTwo", 25)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -258,7 +258,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "multiplyTwoNumbers", 4, 5 })->Execute();
+		auto response = instance->InvokeInstanceMethod("multiplyTwoNumbers", { 4, 5 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -366,7 +366,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto arrayReference = instance->InvokeInstanceMethod("get1DArray")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ 4, "seven" })->Execute();
+		arrayReference->SetIndex(4, "seven")->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();
@@ -440,7 +440,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "addArrayElementsAndMultiply", std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
+		auto response = instance->InvokeInstanceMethod("addArrayElementsAndMultiply", { std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -517,7 +517,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 
 		// invoke type's static method which throws exception 
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "divideBy", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("divideBy", { 10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -525,7 +525,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "divideBy", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("divideBy", { 10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -642,7 +642,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NodejPackage {
 		auto array = instance->InvokeInstanceMethod("get2DArray")->Execute();
 
 		// set element in array
-		array->SetIndex({ std::vector<std::any>{1, 1}, "new value" })->Execute();
+		array->SetIndex(std::vector<std::any>{1, 1}, "new value")->Execute();
 
 		// get index from array
 		auto response = array->GetIndex({ 1, 1 })->Execute();

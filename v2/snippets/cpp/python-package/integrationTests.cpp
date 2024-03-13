@@ -46,7 +46,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto calledRuntimeType = calledRuntime->GetType("builtins")->Execute();
 
 		// invoke type's static method
-		auto response = calledRuntimeType->InvokeStaticMethod({ "abs", -50 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("abs", -50)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -122,7 +122,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// set type's static field
-		calledRuntimeType->SetStaticField({ "static_value", 75 })->Execute();
+		calledRuntimeType->SetStaticField("static_value", 75)->Execute();
 
 		// get type's static field
 		auto response = calledRuntimeType->GetStaticField("static_value")->Execute();
@@ -133,7 +133,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		// write result to console
 		std::cout << result << std::endl;
 		// </TestResources_SetStaticField>
-		calledRuntimeType->SetStaticField({ "staticValue", 3 })->Execute();
+		calledRuntimeType->SetStaticField("static_value", 3)->Execute();
 		EXPECT_EQ(75, result);
 	}
 
@@ -192,7 +192,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
 
 		// set instance's field
-		instance->SetInstanceField({ "public_value", 44 })->Execute();
+		instance->SetInstanceField("public_value", 44)->Execute();
 
 		// get instance's field
 		auto response = instance->GetInstanceField("public_value")->Execute();
@@ -225,7 +225,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "multiply_by_two", 25 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("multiply_by_two", 25)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -258,7 +258,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto instance = calledRuntimeType->CreateInstance({ 0,1 })->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "multiply_two_numbers", 4, 5 })->Execute();
+		auto response = instance->InvokeInstanceMethod("multiply_two_numbers", { 4, 5 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -366,7 +366,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto arrayReference = instance->InvokeInstanceMethod("get_1d_array")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ 4, "seven" })->Execute();
+		arrayReference->SetIndex(4, "seven")->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();
@@ -439,7 +439,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto instance = calledRuntimeType->CreateInstance({ 1,0 })->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "add_array_elements_and_multiply", std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
+		auto response = instance->InvokeInstanceMethod("add_array_elements_and_multiply", { std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<double>(response->GetValue());
@@ -515,7 +515,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 
 		// invoke type's static method which throws exception 
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "divide_by", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("divide_by", { 10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -523,7 +523,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "divide_by", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("divide_by", { 10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -562,7 +562,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 
 		// invoke type's static method
 		auto response = calledRuntimeType->
-			InvokeStaticMethod({ "add_fruits_to_list", fruitsList })->
+			InvokeStaticMethod("add_fruits_to_list", fruitsList)->
 			Execute();
 
 		// get value from response
@@ -723,7 +723,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto array = instance->InvokeInstanceMethod("get_2d_array")->Execute();
 
 		// set element in array
-		array->SetIndex({ std::vector<std::any>{1, 1}, "new value" })->Execute();
+		array->SetIndex(std::vector<std::any>{1, 1}, "new value")->Execute();
 
 		// get index from array
 		auto response = array->GetIndex({ 1, 1 })->Execute();
@@ -752,7 +752,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto list = typeList->CreateInstance()->Execute();
 
 		// invoke instance method
-		list->InvokeInstanceMethod({ "extend", std::vector<std::any>{ "one", "two", "three", "four", "five", "six" } })->Execute();
+		list->InvokeInstanceMethod("extend", std::vector<std::any>{ "one", "two", "three", "four", "five", "six" })->Execute();
 
 		// get elements from list
 		auto element0 = list->GetIndex(0)->Execute();
@@ -789,9 +789,9 @@ namespace JavonetNS::Cpp::Sdk::Tests::PythonPackage {
 		auto dictionary = typeDictionary->CreateInstance()->Execute();
 
 		// set elements in dictionary
-		dictionary->SetIndex({ "pi", M_PI })->Execute();
-		dictionary->SetIndex({ "e", M_E })->Execute();
-		dictionary->SetIndex({ "c", 299792458.0 })->Execute();
+		dictionary->SetIndex("pi", M_PI)->Execute();
+		dictionary->SetIndex("e", M_E)->Execute();
+		dictionary->SetIndex("c", 299792458.0)->Execute();
 
 		// get elements from dictionary
 		auto response1 = dictionary->GetIndex("c")->Execute();

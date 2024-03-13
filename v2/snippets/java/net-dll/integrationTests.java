@@ -21,7 +21,8 @@ import java.util.ArrayList;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class integrationTests {
 
-    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/net-dll";
+    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString()
+            + "/testResources/net-dll";
 
     @BeforeAll
     public static void initialization() {
@@ -517,7 +518,7 @@ public class integrationTests {
         // write result to console
         System.out.println(String.join("\t", arrayValues));
         // </TestResources_1DArray_Iterate>
-        Assertions.assertArrayEquals(new String[]{"ONE", "TWO", "THREE", "FOUR", "FIVE"}, arrayValues);
+        Assertions.assertArrayEquals(new String[] { "ONE", "TWO", "THREE", "FOUR", "FIVE" }, arrayValues);
     }
 
     @Test
@@ -544,7 +545,9 @@ public class integrationTests {
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
         // invoke instance's method
-        InvocationContext response = instance.invokeInstanceMethod("AddArrayElementsAndMultiply", new Double[]{12.22, 98.22, -10.44}, 9.99).execute();
+        InvocationContext response = instance
+                .invokeInstanceMethod("AddArrayElementsAndMultiply", new Double[] { 12.22, 98.22, -10.44 }, 9.99)
+                .execute();
 
         // get value from response
         double result = (double) response.getValue();
@@ -590,7 +593,7 @@ public class integrationTests {
         // write result to console
         System.out.println(String.join("\t", result));
         // </TestResources_1DArray_RetrieveArray>
-        Assertions.assertArrayEquals(new String[]{"one", "two", "three", "four", "five"}, result);
+        Assertions.assertArrayEquals(new String[] { "one", "two", "three", "four", "five" }, result);
     }
 
     @Test
@@ -613,13 +616,12 @@ public class integrationTests {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        //get type for casting
+        // get type for casting
         InvocationContext targetType = calledRuntime.getType("System.UInt32");
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.
-                invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5.2)).
-                execute();
+        InvocationContext response = calledRuntimeType
+                .invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5.2)).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -650,13 +652,12 @@ public class integrationTests {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        //get type for casting
+        // get type for casting
         InvocationContext targetType = calledRuntime.getType("System.Single");
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.
-                invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5)).
-                execute();
+        InvocationContext response = calledRuntimeType
+                .invokeStaticMethod("CastSampleMethod", calledRuntime.cast(targetType, 5)).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -719,13 +720,12 @@ public class integrationTests {
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
-        //get type for generic method
+        // get type for generic method
         InvocationContext targetType = calledRuntime.getType("System.Int32");
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.
-                invokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
-                execute();
+        InvocationContext response = calledRuntimeType
+                .invokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -759,13 +759,11 @@ public class integrationTests {
         // create type's instance
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
-        //get type for generic method
+        // get type for generic method
         InvocationContext targetType = calledRuntime.getType("System.Int32");
 
         // invoke type's method
-        InvocationContext response = instance.
-                invokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
-                execute();
+        InvocationContext response = instance.invokeGenericMethod("GenericSampleMethod", targetType, 7, 5).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -799,15 +797,13 @@ public class integrationTests {
         // create type's instance
         InvocationContext instance = calledRuntimeType.createInstance().execute();
 
-        //get type for generic method
+        // get type for generic method
         InvocationContext targetType1 = calledRuntime.getType("System.String");
         InvocationContext targetType2 = calledRuntime.getType("System.Int32");
 
         // invoke type's method
-        InvocationContext response = instance.
-                invokeGenericMethod("GenericSampleMethodWithTwoTypes",
-                        new InvocationContext[]{targetType1, targetType2}, "test").
-                execute();
+        InvocationContext response = instance.invokeGenericMethod("GenericSampleMethodWithTwoTypes",
+                new InvocationContext[] { targetType1, targetType2 }, "test").execute();
 
         // get value from response
         int result = (int) response.getValue();
@@ -843,13 +839,14 @@ public class integrationTests {
         InvocationContext mango = calledRuntime.getEnumItem(enumType, "Mango");
 
         // create fruits arrays
-        InvocationContext[] fruits1ToAdd = new InvocationContext[]{apple, mango};
+        InvocationContext[] fruits1ToAdd = new InvocationContext[] { apple, mango };
 
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", (Object)fruits1ToAdd).execute();
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", (Object) fruits1ToAdd)
+                .execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -883,7 +880,7 @@ public class integrationTests {
         InvocationContext fruit1 = calledRuntime.getEnumItem(enumType, "Mango");
         InvocationContext fruit2 = calledRuntime.getEnumItem(enumType, "Orange");
 
-        //get items' names and values
+        // get items' names and values
         String fruit1Name = (String) fruit1.getEnumName().execute().getValue();
         String fruit2Name = (String) fruit2.getEnumName().execute().getValue();
         Integer fruit1Value = (Integer) fruit1.getEnumValue().execute().getValue();
@@ -926,7 +923,7 @@ public class integrationTests {
 
         // two ways to get index from array
         InvocationContext response1 = array.getIndex(1, 1).execute();
-        InvocationContext response2 = array.getIndex((Object) new Integer[]{0, 1}).execute();
+        InvocationContext response2 = array.getIndex((Object) new Integer[] { 0, 1 }).execute();
 
         // get value from response
         String result1 = (String) response1.getValue();
@@ -1007,7 +1004,7 @@ public class integrationTests {
         InvocationContext array = instance.invokeInstanceMethod("Get2DArray").execute();
 
         // set index in array
-        array.setIndex(new Integer[]{0, 1}, "new value").execute();
+        array.setIndex(new Integer[] { 0, 1 }, "new value").execute();
 
         // get index from array
         InvocationContext response = array.getIndex(0, 1).execute();
@@ -1018,7 +1015,7 @@ public class integrationTests {
         // write result to console
         System.out.println(result);
         // </TestResources_2DArray_SetIndex>
-        array.setIndex(new Integer[]{0, 1}, "S01").execute();
+        array.setIndex(new Integer[] { 0, 1 }, "S01").execute();
         Assertions.assertEquals("new value", result);
     }
 
@@ -1045,7 +1042,7 @@ public class integrationTests {
         list.invokeInstanceMethod("Add", "one").execute();
         list.invokeInstanceMethod("Add", "two").execute();
         list.invokeInstanceMethod("Add", "three").execute();
-        list.invokeInstanceMethod("AddRange", (Object) new String[]{"four", "five", "six"}).execute();
+        list.invokeInstanceMethod("AddRange", (Object) new String[] { "four", "five", "six" }).execute();
 
         // check number of elements
         int count = (int) list.getInstanceField("Count").execute().getValue();
@@ -1076,7 +1073,7 @@ public class integrationTests {
         InvocationContext list = listType.createInstance().execute();
 
         // invoke instance's method
-        list.invokeInstanceMethod("AddRange", (Object)new Double[]{1.1, 2.2, 3.3, 4.4, 5.5, 6.6}).execute();
+        list.invokeInstanceMethod("AddRange", (Object) new Double[] { 1.1, 2.2, 3.3, 4.4, 5.5, 6.6 }).execute();
 
         // get element from list
         InvocationContext response1 = list.getIndex(3).execute();
@@ -1110,8 +1107,9 @@ public class integrationTests {
         InvocationContext stringType = calledRuntime.getType("System.String");
         InvocationContext doubleType = calledRuntime.getType("System.Double");
 
-        //get generic calls with string and double types as parameters
-        InvocationContext dictionaryType = calledRuntime.getType("System.Collections.Generic.Dictionary`2", stringType, doubleType);
+        // get generic calls with string and double types as parameters
+        InvocationContext dictionaryType = calledRuntime.getType("System.Collections.Generic.Dictionary`2", stringType,
+                doubleType);
 
         // create generic type's instance
         InvocationContext dictionary = dictionaryType.createInstance().execute();
@@ -1207,10 +1205,10 @@ public class integrationTests {
         InvocationContext doubleType = calledRuntime.getType("System.Double").execute();
         InvocationContext refToDouble = calledRuntime.asRef(5, doubleType).execute();
         InvocationContext refToString = calledRuntime.asRef("Before execution").execute();
-        
+
         // invoke type's static method with ref values
         calledRuntimeType.invokeStaticMethod("RefSampleMethod2", refToInt, refToDouble, refToString).execute();
-        
+
         // get refs' values
         int result1 = (int) refToInt.getRefValue().execute().getValue();
         double result2 = (double) refToDouble.getRefValue().execute().getValue();
@@ -1276,56 +1274,73 @@ public class integrationTests {
         Assertions.assertEquals("String from OutSampleMethod", result3);
     }
 
+    // Disabled because it is not possible to reproduce failing behaviour. Fails
+    // randomly every some pipeline execution.
+    // @Test
+    // @Tag("integration")
+    // @DisabledOnOs(OS.MAC)
+    // public void Test_NetDll_StandardLibrary_OptimizeRoute_SystemMathAbs() {
+
+    // InvocationContext ic =
+    // Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs",
+    // -50);
+    // ic.execute(true);
+
+    // int numberOfCalls = (int) 1e0;
+    // int i;
+    // long time;
+    // time = System.nanoTime();
+    // for (i = 0; i < numberOfCalls; i++) {
+    // Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs",
+    // -i).execute(true).getValue();
+    // }
+    // time = System.nanoTime() - time;
+    // System.out.println("Optimized route time with whole command [ns]: " + time);
+    // long optimizedMethodTime = time;
+
+    // time = System.nanoTime();
+    // for (i = 0; i < numberOfCalls; i++) {
+    // ic.execute(true).getValue();
+    // }
+    // time = System.nanoTime() - time;
+    // System.out.println("Optimized route time just with execute on
+    // InvocationContext [ns]: " + time);
+    // long optimizedMethodTimeWithIC = time;
+
+    // time = System.nanoTime();
+    // for (i = 0; i < numberOfCalls; i++) {
+    // Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs",
+    // -i).execute().getValue();
+    // }
+    // time = System.nanoTime() - time;
+    // System.out.println("Normal route time [ns]: " + time);
+    // long normalMethodTime = time;
+
+    // System.out.println("normalMethodTime / optimizedMethodTime = " +
+    // normalMethodTime / optimizedMethodTime);
+    // System.out.println("normalMethodTime / optimizedMethodTimeWithIC = " +
+    // normalMethodTime / optimizedMethodTimeWithIC);
+    // }
 
     @Test
     @Tag("integration")
     @DisabledOnOs(OS.MAC)
-    public void Test_NetDll_StandardLibrary_OptimizeRoute_SystemMathAbs() {
-
-        InvocationContext ic = Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs", -50);
-        ic.execute(true);
-
-        int numberOfCalls = (int) 1e0;
-        int i;
-        long time;
-        time = System.nanoTime();
-        for (i = 0; i < numberOfCalls; i++) {
-            Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs", -i).execute(true).getValue();
-        }
-        time = System.nanoTime() - time;
-        System.out.println("Optimized route time with whole command [ns]: " + time);
-        long optimizedMethodTime = time;
-
-        time = System.nanoTime();
-        for (i = 0; i < numberOfCalls; i++) {
-            ic.execute(true).getValue();
-        }
-        time = System.nanoTime() - time;
-        System.out.println("Optimized route time just with execute on InvocationContext [ns]: " + time);
-        long optimizedMethodTimeWithIC = time;
-
-        time = System.nanoTime();
-        for (i = 0; i < numberOfCalls; i++) {
-            Javonet.inMemory().netcore().getType("System.Math").invokeStaticMethod("Abs", -i).execute().getValue();
-        }
-        time = System.nanoTime() - time;
-        System.out.println("Normal route time [ns]: " + time);
-        long normalMethodTime = time;
-
-        System.out.println("normalMethodTime / optimizedMethodTime = " + normalMethodTime / optimizedMethodTime);
-        System.out.println("normalMethodTime / optimizedMethodTimeWithIC = " + normalMethodTime / optimizedMethodTimeWithIC);
-    }
-
-    @Test
-    @Tag("integration")
-    @DisabledOnOs(OS.MAC)
-    void Test_NetDll_StandardLibrary_CodeGenerationForClass_SystemMath() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    void Test_NetDll_StandardLibrary_CodeGenerationForClass_SystemMath()
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         String className = "System.Math";
         int initialValue = -232;
         int expectedValue = Math.abs(initialValue);
-        Command structuredCommandForClass = new Command(RuntimeName.Netcore, CommandType.GENERATE_LIB, new Object[]{new Command(RuntimeName.Netcore, CommandType.GET_TYPE, new Object[]{className, "public", new Command(RuntimeName.Netcore, CommandType.INVOKE_STATIC_METHOD, new Object[]{"Abs", Type.INTEGER, "public", className, new Object[]{Type.INTEGER,}, new Object[]{"ref",}})})});
+        Command structuredCommandForClass = new Command(RuntimeName.Netcore, CommandType.GENERATE_LIB,
+                new Object[] {
+                        new Command(RuntimeName.Netcore, CommandType.GET_TYPE,
+                                new Object[] { className, "public",
+                                        new Command(RuntimeName.Netcore, CommandType.INVOKE_STATIC_METHOD,
+                                                new Object[] { "Abs", Type.INTEGER, "public", className,
+                                                        new Object[] { Type.INTEGER, },
+                                                        new Object[] { "ref", } }) }) });
         GeneratorHandler generatorHandler = new GeneratorHandler();
-        ArrayList<File> generatedClassFiles = generatorHandler.generate(structuredCommandForClass, System.getProperty("user.dir"));
+        ArrayList<File> generatedClassFiles = generatorHandler.generate(structuredCommandForClass,
+                System.getProperty("user.dir"));
         generatorHandler.compileClass(generatedClassFiles.get(0));
         Class<?> clazz = GeneratorHandler.getClass(className, new File(System.getProperty("user.dir")));
         Assertions.assertEquals(className, clazz.getName());

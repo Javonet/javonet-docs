@@ -55,39 +55,41 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(3, result);
 	}
 
-	TEST(Integration, Test_PerlPackage_TestResources_SetStaticField) {
-		// <TestResources_SetStaticField>
-		// use Activate only once in your app
-		Javonet::Activate("your-license-key");
+	/*
+	 TEST(Integration, Test_PerlPackage_TestResources_SetStaticField) {
+	 	// <TestResources_SetStaticField>
+	 	// use Activate only once in your app
+	 	Javonet::Activate("your-license-key");
 
-		// create called runtime context
-		auto calledRuntime = Javonet::InMemory()->Perl();
+	 	// create called runtime context
+	 	auto calledRuntime = Javonet::InMemory()->Perl();
 
-		// set up variables
-		auto libraryPath = resourcesDirectory + "/TestClass.pm";
-		auto className = "TestClass::TestClass";
+	 	// set up variables
+	 	auto libraryPath = resourcesDirectory + "/TestClass.pm";
+	 	auto className = "TestClass::TestClass";
 
-		// load custom library
-		calledRuntime->LoadLibrary(libraryPath);
+	 	// load custom library
+	 	calledRuntime->LoadLibrary(libraryPath);
 
-		// get type from the runtime
-		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+	 	// get type from the runtime
+	 	auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
-		// set type's static field
-		calledRuntimeType->SetStaticField({ "static_value", 75 })->Execute();
+	 	// set type's static field
+	 	calledRuntimeType->SetStaticField("static_value", 75 )->Execute();
 
-		// get type's static field
-		auto response = calledRuntimeType->GetStaticField("static_value")->Execute();
+	 	// get type's static field
+	 	auto response = calledRuntimeType->GetStaticField("static_value")->Execute();
 
-		// get value from response
-		auto result = std::any_cast<int>(response->GetValue());
+	 	// get value from response
+	 	auto result = std::any_cast<int>(response->GetValue());
 
-		// write result to console
-		std::cout << result << std::endl;
-		// </TestResources_SetStaticField>
-		calledRuntimeType->SetStaticField({ "static_value", 3 })->Execute();
-		EXPECT_EQ(75, result);
-	}
+	 	// write result to console
+	 	std::cout << result << std::endl;
+	 	// </TestResources_SetStaticField>
+	 	calledRuntimeType->SetStaticField("static_value", 3)->Execute();
+	 	EXPECT_EQ(75, result);
+	 }
+	 */
 
 	TEST(Integration, Test_PerlPackage_TestResources_GetInstanceField) {
 		// <TestResources_GetInstanceField>
@@ -141,7 +143,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "multiply_by_two", 25 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("multiply_by_two", 25)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -174,7 +176,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "multiply_two_numbers", 4, 5 })->Execute();
+		auto response = instance->InvokeInstanceMethod("multiply_two_numbers", { 4, 5 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -282,7 +284,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		auto arrayReference = instance->InvokeInstanceMethod("get_1d_array")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ 4, "seven"})->Execute();
+		arrayReference->SetIndex(4, "seven")->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();

@@ -46,7 +46,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto calledRuntimeType = calledRuntime->GetType("Math")->Execute();
 
 		// invoke type's static method
-		auto response = calledRuntimeType->InvokeStaticMethod({ "sqrt", 2500 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("sqrt", 2500)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<double>(response->GetValue());
@@ -122,7 +122,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// set type's static field
-		calledRuntimeType->SetStaticField({ "static_value", 75 })->Execute();
+		calledRuntimeType->SetStaticField("static_value", 75)->Execute();
 
 		// get type's static field
 		auto response = calledRuntimeType->GetStaticField("static_value")->Execute();
@@ -133,7 +133,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		// write result to console
 		std::cout << result << std::endl;
 		// </TestResources_SetStaticField>
-		calledRuntimeType->SetStaticField({ "staticValue", 3 })->Execute();
+		calledRuntimeType->SetStaticField("static_value", 3)->Execute();
 		EXPECT_EQ(75, result);
 	}
 
@@ -192,7 +192,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
 
 		// set instance's field
-		instance->SetInstanceField({ "public_value", 44 })->Execute();
+		instance->SetInstanceField("public_value", 44)->Execute();
 
 		// get instance's field
 		auto response = instance->GetInstanceField("public_value")->Execute();
@@ -225,7 +225,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "multiply_by_two", 25 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("multiply_by_two", 25)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -258,7 +258,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "multiply_two_numbers", 4, 5 })->Execute();
+		auto response = instance->InvokeInstanceMethod("multiply_two_numbers", { 4, 5 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -366,7 +366,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto arrayReference = instance->InvokeInstanceMethod("get_1d_array")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ 4, "seven"})->Execute();
+		arrayReference->SetIndex(4, "seven")->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();
@@ -381,7 +381,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 	}
 
 	//TODO: Test_RubyPackage_TestResources_1DArray_Iterate
-	
+
 	TEST(Integration, Test_RubyPackage_TestResources_1DArray_GetElement) {
 		// <TestResources_1DArray_GetElement>
 		// use Activate only once in your app
@@ -440,7 +440,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "add_array_elements_and_multiply", std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
+		auto response = instance->InvokeInstanceMethod("add_array_elements_and_multiply", { std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<double>(response->GetValue());
@@ -516,7 +516,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 
 		// invoke type's static method which throws exception 
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "divide_by", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("divide_by", { 10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -524,7 +524,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		}
 		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "divide_by", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("divide_by", {10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -640,7 +640,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		auto array = instance->InvokeInstanceMethod("get_2d_array")->Execute();
 
 		// set element in array
-		array->SetIndex({ std::vector<std::any>{1, 1}, "new value" })->Execute();
+		array->SetIndex(std::vector<std::any>{1, 1}, "new value")->Execute();
 
 		// get index from array
 		auto response = array->GetIndex({ 1, 1 })->Execute();

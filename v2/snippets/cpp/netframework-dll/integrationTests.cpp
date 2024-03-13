@@ -74,7 +74,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto calledRuntimeType = calledRuntime->GetType("System.Math")->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "Abs", -50 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("Abs", -50)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -177,7 +177,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// set type's static field
-		calledRuntimeType->SetStaticField({ "StaticValue", 75 })->Execute();
+		calledRuntimeType->SetStaticField("StaticValue", 75)->Execute();
 
 		// get type's static field
 		auto response = calledRuntimeType->GetStaticField("StaticValue")->Execute();
@@ -188,7 +188,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		// write result to console
 		std::cout << result << std::endl;
 		// </TestResources_SetStaticField>
-		calledRuntimeType->SetStaticField({ "StaticValue", 3 })->Execute();
+		calledRuntimeType->SetStaticField("StaticValue", 3)->Execute();
 		EXPECT_EQ(75, result);
 	}
 
@@ -247,7 +247,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
 
 		// set instance's field
-		instance->SetInstanceField({ "PublicValue", 44 })->Execute();
+		instance->SetInstanceField("PublicValue", 44)->Execute();
 
 		// get instance's field
 		auto response = instance->GetInstanceField("PublicValue")->Execute();
@@ -280,7 +280,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
 
 		// invoke type's static method 
-		auto response = calledRuntimeType->InvokeStaticMethod({ "MultiplyByTwo", 25 })->Execute();
+		auto response = calledRuntimeType->InvokeStaticMethod("MultiplyByTwo", 25)->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -313,7 +313,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "MultiplyTwoNumbers", 4, 5 })->Execute();
+		auto response = instance->InvokeInstanceMethod("MultiplyTwoNumbers", { 4, 5 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<int>(response->GetValue());
@@ -421,7 +421,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto arrayReference = instance->InvokeInstanceMethod("Get1DArray")->Execute();
 
 		// set array's index
-		arrayReference->SetIndex({ 4, "seven" })->Execute();
+		arrayReference->SetIndex(4, "seven")->Execute();
 
 		// get index from array
 		auto response = arrayReference->GetIndex(4)->Execute();
@@ -496,7 +496,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto instance = calledRuntimeType->CreateInstance()->Execute();
 
 		// invoke instance's method
-		auto response = instance->InvokeInstanceMethod({ "AddArrayElementsAndMultiply", std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
+		auto response = instance->InvokeInstanceMethod("AddArrayElementsAndMultiply", { std::vector<std::any>{12.22, 98.22, -10.44}, 9.99 })->Execute();
 
 		// get value from response
 		auto result = std::any_cast<double>(response->GetValue());
@@ -575,8 +575,8 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's static method 
 		auto response = calledRuntimeType->
-			InvokeStaticMethod({ "CastSampleMethod",
-				calledRuntime->Cast({targetType, 5.2}) })->
+			InvokeStaticMethod("CastSampleMethod",
+				calledRuntime->Cast({ targetType, 5.2 }))->
 			Execute();
 
 		// get value from response
@@ -611,8 +611,8 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's static method 
 		auto response = calledRuntimeType->
-			InvokeStaticMethod({ "CastSampleMethod",
-				calledRuntime->Cast({targetType, 5}) })->
+			InvokeStaticMethod("CastSampleMethod",
+				calledRuntime->Cast({ targetType, 5 }))->
 			Execute();
 
 		// get value from response
@@ -644,7 +644,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's static method which throws exception 
 		try {
-			calledRuntimeType->InvokeStaticMethod({ "DivideBy", 10, 0 })->Execute();
+			calledRuntimeType->InvokeStaticMethod("DivideBy", {10, 0 })->Execute();
 		}
 		catch (std::exception& e) {
 			// write exception to console
@@ -676,7 +676,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's generic static method
 		auto response = calledRuntimeType->
-			InvokeGenericStaticMethod({ "GenericSampleStaticMethod", targetType, 7, 5 })->
+			InvokeGenericStaticMethod("GenericSampleStaticMethod", std::deque<std::any>{ targetType, 7, 5 })->
 			Execute();
 
 		// get value from response
@@ -714,7 +714,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke instance generic method
 		auto response = instance->
-			InvokeGenericMethod({ "GenericSampleMethod", targetType, 7, 5 })->
+			InvokeGenericMethod("GenericSampleMethod", { targetType, 7, 5 })->
 			Execute();
 
 		// get value from response
@@ -753,8 +753,8 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's generic method
 		auto response = instance->
-			InvokeGenericMethod({ "GenericSampleMethodWithTwoTypes",
-								  std::vector<std::any>{ targetType1, targetType2 },
+			InvokeGenericMethod("GenericSampleMethodWithTwoTypes",
+				{ std::vector<std::any>{ targetType1, targetType2 },
 								  "test" })->Execute();
 
 		// get value from response
@@ -796,7 +796,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's static method
 		auto response = calledRuntimeType->
-			InvokeStaticMethod({ "AddFruitsToList", fruitsList })->
+			InvokeStaticMethod("AddFruitsToList", fruitsList)->
 			Execute();
 
 		// get value from response
@@ -956,7 +956,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto array = instance->InvokeInstanceMethod("Get2DArray")->Execute();
 
 		// set element in array
-		array->SetIndex({ std::vector<std::any>{1, 1}, "new value" })->Execute();
+		array->SetIndex(std::vector<std::any>{1, 1}, "new value")->Execute();
 
 		// get index from array
 		auto response = array->GetIndex({ 1, 1 })->Execute();
@@ -982,18 +982,18 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto stringType = calledRuntime->GetType("System.String");
 
 		// get generic class with string type as parameter
-		auto typeList = calledRuntime->GetType({ "System.Collections.Generic.List`1", stringType })->Execute();
+		auto typeList = calledRuntime->GetType("System.Collections.Generic.List`1", stringType)->Execute();
 
 		// create type's instance
 		auto list = typeList->CreateInstance()->Execute();
 
 		//invoke instance methods
-		list->InvokeInstanceMethod({ "Add", "one" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "two" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "three" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "four" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "five" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "six" })->Execute();
+		list->InvokeInstanceMethod("Add", "one")->Execute();
+		list->InvokeInstanceMethod("Add", "two")->Execute();
+		list->InvokeInstanceMethod("Add", "three")->Execute();
+		list->InvokeInstanceMethod("Add", "four")->Execute();
+		list->InvokeInstanceMethod("Add", "five")->Execute();
+		list->InvokeInstanceMethod("Add", "six")->Execute();
 
 		// check number of elements in list
 		auto response = list->GetInstanceField("Count")->Execute();
@@ -1019,18 +1019,18 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto stringType = calledRuntime->GetType("System.String");
 
 		// get generic class with string type as parameter
-		auto typeList = calledRuntime->GetType({ "System.Collections.Generic.List`1", stringType })->Execute();
+		auto typeList = calledRuntime->GetType("System.Collections.Generic.List`1", stringType)->Execute();
 
 		// create instance of generic class
 		auto list = typeList->CreateInstance()->Execute();
 
 		//invoke instance methods
-		list->InvokeInstanceMethod({ "Add", "one" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "two" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "three" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "four" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "five" })->Execute();
-		list->InvokeInstanceMethod({ "Add", "six" })->Execute();
+		list->InvokeInstanceMethod("Add", "one")->Execute();
+		list->InvokeInstanceMethod("Add", "two")->Execute();
+		list->InvokeInstanceMethod("Add", "three")->Execute();
+		list->InvokeInstanceMethod("Add", "four")->Execute();
+		list->InvokeInstanceMethod("Add", "five")->Execute();
+		list->InvokeInstanceMethod("Add", "six")->Execute();
 
 		// get elements from list
 		auto element0 = list->GetIndex(0)->Execute();
@@ -1066,15 +1066,15 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto doubleType = calledRuntime->GetType("System.Double");
 
 		// get generic class
-		auto typeDictionary = calledRuntime->GetType({ "System.Collections.Generic.Dictionary`2", stringType, doubleType })->Execute();
+		auto typeDictionary = calledRuntime->GetType("System.Collections.Generic.Dictionary`2", { stringType, doubleType })->Execute();
 
 		// create instance of generic class
 		auto dictionary = typeDictionary->CreateInstance()->Execute();
 
 		// invoke instance method
-		dictionary->InvokeInstanceMethod({ "Add", "pi", M_PI })->Execute();
-		dictionary->InvokeInstanceMethod({ "Add", "e", M_E })->Execute();
-		dictionary->InvokeInstanceMethod({ "Add", "c", 299792458.0 })->Execute();
+		dictionary->InvokeInstanceMethod("Add", { "pi", M_PI })->Execute();
+		dictionary->InvokeInstanceMethod("Add", { "e", M_E })->Execute();
+		dictionary->InvokeInstanceMethod("Add", { "c", 299792458.0 })->Execute();
 
 		// get value from dictionary
 		auto response1 = dictionary->GetIndex("e")->Execute();
@@ -1122,8 +1122,8 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto refValue2 = calledRuntime->AsRef({ 20.0, intType })->Execute();
 
 		// invoke type's static method with ref values
-		calledRuntimeType->InvokeStaticMethod({ "RefSampleMethod", refValue1 })->Execute();
-		calledRuntimeType->InvokeStaticMethod({ "RefSampleMethod", refValue2 })->Execute();
+		calledRuntimeType->InvokeStaticMethod("RefSampleMethod", refValue1)->Execute();
+		calledRuntimeType->InvokeStaticMethod("RefSampleMethod", refValue2)->Execute();
 
 		// get ref values
 		auto result1 = std::any_cast<int>(refValue1->GetRefValue()->Execute()->GetValue());
@@ -1164,7 +1164,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto refToString = calledRuntime->AsRef("Before execution")->Execute();
 
 		// invoke type's static method with ref values
-		calledRuntimeType->InvokeStaticMethod({ "RefSampleMethod2", refToInt, refToDouble, refToString })->Execute();
+		calledRuntimeType->InvokeStaticMethod("RefSampleMethod2", { refToInt, refToDouble, refToString })->Execute();
 
 		// get ref values
 		auto result1 = std::any_cast<int>(refToInt->GetRefValue()->Execute()->GetValue());
@@ -1210,9 +1210,9 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		auto outValue_3 = calledRuntime->AsOut("Test string")->Execute();
 
 		// invoke type's static method with out values
-		calledRuntimeType->InvokeStaticMethod({ "OutSampleMethod", outValue_1 })->Execute();
-		calledRuntimeType->InvokeStaticMethod({ "OutSampleMethod", outValue_2 })->Execute();
-		calledRuntimeType->InvokeStaticMethod({ "OutSampleMethod", outValue_3 })->Execute();
+		calledRuntimeType->InvokeStaticMethod("OutSampleMethod", outValue_1)->Execute();
+		calledRuntimeType->InvokeStaticMethod("OutSampleMethod", outValue_2)->Execute();
+		calledRuntimeType->InvokeStaticMethod("OutSampleMethod", outValue_3)->Execute();
 
 		// get outs' values
 		auto result1 = std::any_cast<std::string>(outValue_1->GetRefValue()->Execute()->GetValue());
