@@ -1,8 +1,6 @@
 package netframeworkdll;
 
-import com.javonet.sdk.internal.InvocationContext;
-import com.javonet.sdk.internal.RuntimeContext;
-import com.javonet.sdk.java.Javonet;
+import com.javonet.sdk.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;

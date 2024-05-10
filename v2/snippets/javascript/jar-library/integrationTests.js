@@ -1,4 +1,4 @@
-const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
+const { Javonet } = require('javonet-nodejs-sdk/lib/sdk/Javonet')
 const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require('path')
 const { expect, describe, test } = require("@jest/globals");

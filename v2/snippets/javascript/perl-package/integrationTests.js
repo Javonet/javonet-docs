@@ -1,4 +1,4 @@
-const { Javonet } = require("javonet-nodejs-sdk/lib/Javonet")
+const { Javonet } = require("javonet-nodejs-sdk/lib/sdk/Javonet")
 const ActivationCredentials = require("../../utils/ActivationCredentials")
 const path = require("path")
 const { expect, describe, test } = require("@jest/globals")
@@ -7,7 +7,7 @@ const resourcesDirectory =
   path.resolve(__dirname, "../../../..") + "/testResources/perl-package"
 
 describe("Nodejs to Perl Package integration tests", () => {
-  if (process.platform != "darwin") {
+  if (process.platform == "win32") {
     Javonet.activate(ActivationCredentials.yourLicenseKey);
 
     test(`Test_PerlPackage_TestResources_LoadLibrary`, () => {

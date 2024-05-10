@@ -1,6 +1,6 @@
 // <WholeSnippet>
 // <Import>
-const { Javonet } = require('javonet-nodejs-sdk/lib/Javonet')
+const { Javonet } = require('javonet-nodejs-sdk/lib/sdk/Javonet')
 // </Import>
 
 // <Activation>

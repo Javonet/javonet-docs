@@ -26,10 +26,10 @@ func init() {
 func Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -42,10 +42,10 @@ func Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException(t *t
 func Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -55,10 +55,10 @@ func Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3(t *testing.
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// get type's static field
-	response := calledRuntimeType.GetStaticField("StaticValue").Execute()
+	response, _ := calledRuntimeType.GetStaticField("StaticValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -75,10 +75,10 @@ func Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3(t *testing.
 func Test_NetframeworkDll_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -88,13 +88,13 @@ func Test_NetframeworkDll_TestResources_SetStaticField_StaticValue75(t *testing.
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// set static field's value
 	calledRuntimeType.SetStaticField("StaticValue", 75).Execute()
 
 	// get type's static field
-	response := calledRuntimeType.GetStaticField("StaticValue").Execute()
+	response, _ := calledRuntimeType.GetStaticField("StaticValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -112,10 +112,10 @@ func Test_NetframeworkDll_TestResources_SetStaticField_StaticValue75(t *testing.
 func Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -125,13 +125,13 @@ func Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18(t *testi
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance(18, 19).Execute()
+	instance, _ := calledRuntimeType.CreateInstance(18, 19).Execute()
 
 	// get instance's field
-	response := instance.GetInstanceField("PublicValue").Execute()
+	response, _ := instance.GetInstanceField("PublicValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -148,10 +148,10 @@ func Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18(t *testi
 func Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
 	// <TestResources_SetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -161,16 +161,16 @@ func Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44(t *testi
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance(18, 19).Execute()
+	instance, _ := calledRuntimeType.CreateInstance(18, 19).Execute()
 
 	// set instance's field
 	instance.SetInstanceField("PublicValue", 44).Execute()
 
 	// get instance's field
-	response := instance.GetInstanceField("PublicValue").Execute()
+	response, _ := instance.GetInstanceField("PublicValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -184,14 +184,13 @@ func Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44(t *testi
 	}
 }
 
-
 func Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -201,10 +200,10 @@ func Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("MultiplyByTwo", 25).Execute()
+	response, _ := calledRuntimeType.InvokeStaticMethod("MultiplyByTwo", 25).Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -221,10 +220,10 @@ func Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t
 func Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -234,13 +233,13 @@ func Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	response := instance.InvokeInstanceMethod("MultiplyTwoNumbers", 5, 4).Execute()
+	response, _ := instance.InvokeInstanceMethod("MultiplyTwoNumbers", 5, 4).Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -257,10 +256,10 @@ func Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_
 func Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -270,16 +269,16 @@ func Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree(t *testin
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	array := instance.InvokeInstanceMethod("Get1DArray").Execute()
+	array, _ := instance.InvokeInstanceMethod("Get1DArray").Execute()
 
 	// get index from array
-	response := array.GetIndex(2).Execute()
+	response, _ := array.GetIndex(2).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -296,10 +295,10 @@ func Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree(t *testin
 func Test_NetframeworkDll_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -309,16 +308,16 @@ func Test_NetframeworkDll_TestResources_1DArray_GetSize_5(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	array := instance.InvokeInstanceMethod("Get1DArray").Execute()
+	array, _ := instance.InvokeInstanceMethod("Get1DArray").Execute()
 
 	// get array's size
-	response := array.GetSize().Execute()
+	response, _ := array.GetSize().Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -335,10 +334,10 @@ func Test_NetframeworkDll_TestResources_1DArray_GetSize_5(t *testing.T) {
 func Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -348,19 +347,19 @@ func Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	array := instance.InvokeInstanceMethod("Get1DArray").Execute()
+	array, _ := instance.InvokeInstanceMethod("Get1DArray").Execute()
 
 	// set array's index
 	array.SetIndex(4, "seven").Execute()
 
 	// get index from array
-	response := array.GetIndex(4).Execute()
+	response, _ := array.GetIndex(4).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -378,10 +377,10 @@ func Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.
 func Test_NetframeworkDll_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	libraryPath := resourcesDirectory + "/TestClass.dll"
 	className := "TestClass.TestClass"
@@ -390,16 +389,16 @@ func Test_NetframeworkDll_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	arrayReference := instance.InvokeInstanceMethod("Get1DArray").Execute()
+	arrayReference, _ := instance.InvokeInstanceMethod("Get1DArray").Execute()
 
 	// get array from reference
-	response := arrayReference.RetrieveArray()
+	response, _ := arrayReference.RetrieveArray()
 
 	// create new array to copy response
 	result := make([]string, len(response))
@@ -419,10 +418,10 @@ func Test_NetframeworkDll_TestResources_1DArray_RetrieveArray(t *testing.T) {
 func Test_NetframeworkDll_TestResources_Cast_ToUInt32(t *testing.T) {
 	// <TestResources_Cast_ToUInt32>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -432,13 +431,13 @@ func Test_NetframeworkDll_TestResources_Cast_ToUInt32(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// get type for casting
 	targetType := calledRuntime.GetType("System.UInt32")
 
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5.2)).Execute()
+	response, _ := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5.2)).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -455,10 +454,10 @@ func Test_NetframeworkDll_TestResources_Cast_ToUInt32(t *testing.T) {
 func Test_NetframeworkDll_TestResources_Cast_ToFloat(t *testing.T) {
 	// <TestResources_Cast_ToFloat>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -468,13 +467,13 @@ func Test_NetframeworkDll_TestResources_Cast_ToFloat(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// get type for casting
 	targetType := calledRuntime.GetType("System.Single")
 
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5.2)).Execute()
+	response, _ := calledRuntimeType.InvokeStaticMethod("CastSampleMethod", calledRuntime.Cast(targetType, 5.2)).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -494,7 +493,7 @@ func Test_NetframeworkDll_TestResources_GenericStaticMethod(t *testing.T) {
 	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -504,15 +503,15 @@ func Test_NetframeworkDll_TestResources_GenericStaticMethod(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// get type for generic method
 	targetType := calledRuntime.GetType("System.Int32")
 
 	// invoke type's generic static method
-	response := calledRuntimeType.
-	InvokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
-	Execute()
+	response, _ := calledRuntimeType.
+		InvokeGenericStaticMethod("GenericSampleStaticMethod", targetType, 7, 5).
+		Execute()
 	// get value from response
 	result := response.GetValue().(string)
 
@@ -531,7 +530,7 @@ func Test_NetframeworkDll_TestResources_GenericMethod(t *testing.T) {
 	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -541,18 +540,18 @@ func Test_NetframeworkDll_TestResources_GenericMethod(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// invoke type's generic static method
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// get type for generic method
 	targetType := calledRuntime.GetType("System.Int32")
 
 	// invoke type's generic method
-	response := instance.
-	InvokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
-	Execute()
+	response, _ := instance.
+		InvokeGenericMethod("GenericSampleMethod", targetType, 7, 5).
+		Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -572,7 +571,7 @@ func Test_NetframeworkDll_TestResources_EnumNameAndValue(t *testing.T) {
 	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.dll"
@@ -581,17 +580,21 @@ func Test_NetframeworkDll_TestResources_EnumNameAndValue(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	//get enum
-	enumType := calledRuntime.GetType("TestClass.TestClass+Fruit");
+	enumType := calledRuntime.GetType("TestClass.TestClass+Fruit")
 
 	//create enum items
-	fruit1 := calledRuntime.GetEnumItem(enumType, "Mango");
-	fruit2 := calledRuntime.GetEnumItem(enumType, "Orange");
+	fruit1 := calledRuntime.GetEnumItem(enumType, "Mango")
+	fruit2 := calledRuntime.GetEnumItem(enumType, "Orange")
 
 	//get items' names and values
-	fruit1Name := fruit1.GetEnumName().Execute().GetValue().(string);
-	fruit2Name := fruit2.GetEnumName().Execute().GetValue().(string);
-	fruit1Value := fruit1.GetEnumValue().Execute().GetValue().(int32);
-	fruit2Value := fruit2.GetEnumValue().Execute().GetValue().(int32);
+	response1, _ := fruit1.GetEnumName().Execute()
+	fruit1Name := response1.GetValue().(string)
+	response2, _ := fruit2.GetEnumName().Execute()
+	fruit2Name := response2.GetValue().(string)
+	response3, _ := fruit1.GetEnumValue().Execute()
+	fruit1Value := response3.GetValue().(int32)
+	response4, _ := fruit2.GetEnumValue().Execute()
+	fruit2Value := response4.GetValue().(int32)
 
 	// write result to console
 	result := fmt.Sprintf("%v: %d, %v: %d", fruit1Name, fruit1Value, fruit2Name, fruit2Value)
@@ -606,16 +609,16 @@ func Test_NetframeworkDll_TestResources_EnumNameAndValue(t *testing.T) {
 func Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType("System.Math").Execute()
+	calledRuntimeType, _ := calledRuntime.GetType("System.Math").Execute()
 
 	// get type's static field
-	response := calledRuntimeType.GetStaticField("PI").Execute()
+	response, _ := calledRuntimeType.GetStaticField("PI").Execute()
 
 	// get value from response
 	result := response.GetValue().(float64)
@@ -632,22 +635,22 @@ func Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T)
 func Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022(t *testing.T) {
 	// <StandardLibrary_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType("System.DateTime").Execute()
+	calledRuntimeType, _ := calledRuntime.GetType("System.DateTime").Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance(2022, 9, 1).Execute()
+	instance, _ := calledRuntimeType.CreateInstance(2022, 9, 1).Execute()
 
 	// get instance's field
-	call := instance.GetInstanceField("Year").Execute()
+	response, _ := instance.GetInstanceField("Year").Execute()
 
 	// get value from response
-	result := call.GetValue().(int32)
+	result := response.GetValue().(int32)
 
 	// write result to console
 	fmt.Println(result)
@@ -661,16 +664,16 @@ func Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2
 func Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType("System.Math").Execute()
+	calledRuntimeType, _ := calledRuntime.GetType("System.Math").Execute()
 
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("Abs", -50).Execute()
+	response, _ := calledRuntimeType.InvokeStaticMethod("Abs", -50).Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -687,22 +690,22 @@ func Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50
 func Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022(t *testing.T) {
 	// <StandardLibrary_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Clr()
+	calledRuntime, _ := Javonet.InMemory().Clr()
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType("System.DateTime").Execute()
+	calledRuntimeType, _ := calledRuntime.GetType("System.DateTime").Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance(2022, 9, 1).Execute()
+	instance, _ := calledRuntimeType.CreateInstance(2022, 9, 1).Execute()
 
 	// invoke instance's method
-	call := instance.InvokeInstanceMethod("ToShortDateString").Execute()
+	response, _ := instance.InvokeInstanceMethod("ToShortDateString").Execute()
 
 	// get value from response
-	result := call.GetValue().(string)
+	result := response.GetValue().(string)
 
 	// write result to console
 	fmt.Println(result)

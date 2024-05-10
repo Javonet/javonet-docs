@@ -1,4 +1,4 @@
-package perlpackage
+package nodejspackage
 
 import (
 	"fmt"
@@ -22,10 +22,10 @@ func init() {
 func Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -38,10 +38,10 @@ func Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException(t *tes
 func Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -51,10 +51,10 @@ func Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T)
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// get type's static field
-	response := calledRuntimeType.GetStaticField("staticValue").Execute()
+	response, _ := calledRuntimeType.GetStaticField("staticValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -71,10 +71,10 @@ func Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T)
 func Test_NodejsPackage_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -84,13 +84,13 @@ func Test_NodejsPackage_TestResources_SetStaticField_StaticValue75(t *testing.T)
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// set type's static field
 	calledRuntimeType.SetStaticField("staticValue", 75).Execute()
 
 	// get type's static field
-	response := calledRuntimeType.GetStaticField("staticValue").Execute()
+	response, _ := calledRuntimeType.GetStaticField("staticValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -108,10 +108,10 @@ func Test_NodejsPackage_TestResources_SetStaticField_StaticValue75(t *testing.T)
 func Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -121,13 +121,13 @@ func Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18(t *testing
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance(18, 19).Execute()
+	instance, _ := calledRuntimeType.CreateInstance(18, 19).Execute()
 
 	// get instance's field
-	response := instance.GetInstanceField("publicValue").Execute()
+	response, _ := instance.GetInstanceField("publicValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -144,10 +144,10 @@ func Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18(t *testing
 func Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
 	// <TestResources_SetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -157,16 +157,16 @@ func Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44(t *testing
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance(18, 19).Execute()
+	instance, _ := calledRuntimeType.CreateInstance(18, 19).Execute()
 
 	// set instance's field
 	instance.SetInstanceField("publicValue", 44).Execute()
 
 	// get instance's field
-	response := instance.GetInstanceField("publicValue").Execute()
+	response, _ := instance.GetInstanceField("publicValue").Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -183,10 +183,10 @@ func Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44(t *testing
 func Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -196,10 +196,10 @@ func Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("multiplyByTwo", 25).Execute()
+	response, _ := calledRuntimeType.InvokeStaticMethod("multiplyByTwo", 25).Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -216,10 +216,10 @@ func Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *
 func Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -229,13 +229,13 @@ func Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	response := instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute()
+	response, _ := instance.InvokeInstanceMethod("multiplyTwoNumbers", 5, 4).Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -252,10 +252,10 @@ func Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_
 func Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -265,16 +265,16 @@ func Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	array := instance.InvokeInstanceMethod("get1DArray").Execute()
+	array, _ := instance.InvokeInstanceMethod("get1DArray").Execute()
 
 	// get index from array
-	response := array.GetIndex(2).Execute()
+	response, _ := array.GetIndex(2).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -291,10 +291,10 @@ func Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.
 func Test_NodejsPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -304,16 +304,16 @@ func Test_NodejsPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	array := instance.InvokeInstanceMethod("get1DArray").Execute()
+	array, _ := instance.InvokeInstanceMethod("get1DArray").Execute()
 
 	// get array's size
-	response := array.GetSize().Execute()
+	response, _ := array.GetSize().Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)
@@ -330,10 +330,10 @@ func Test_NodejsPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 func Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -343,19 +343,19 @@ func Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T)
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	array := instance.InvokeInstanceMethod("get1DArray").Execute()
+	array, _ := instance.InvokeInstanceMethod("get1DArray").Execute()
 
 	// set array's index
 	array.SetIndex(4, "seven").Execute()
 
 	// get index from array
-	response := array.GetIndex(4).Execute()
+	response, _ := array.GetIndex(4).Execute()
 
 	// get value from response
 	result := response.GetValue().(string)
@@ -373,10 +373,10 @@ func Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T)
 func Test_NodejsPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// set up variables
 	libraryPath := resourcesDirectory + "/TestClass.js"
@@ -386,16 +386,16 @@ func Test_NodejsPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	calledRuntime.LoadLibrary(libraryPath)
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType(className).Execute()
+	calledRuntimeType, _ := calledRuntime.GetType(className).Execute()
 
 	// create type's instance
-	instance := calledRuntimeType.CreateInstance().Execute()
+	instance, _ := calledRuntimeType.CreateInstance().Execute()
 
 	// invoke instance's method
-	arrayReference := instance.InvokeInstanceMethod("get1DArray").Execute()
+	arrayReference, _ := instance.InvokeInstanceMethod("get1DArray").Execute()
 
 	// get array from reference
-	response := arrayReference.RetrieveArray()
+	response, _ := arrayReference.RetrieveArray()
 
 	// create new array to copy response
 	result := make([]string, len(response))
@@ -415,16 +415,16 @@ func Test_NodejsPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 func Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType("Math").Execute()
+	calledRuntimeType, _ := calledRuntime.GetType("Math").Execute()
 
 	// get type's static field
-	response := calledRuntimeType.GetStaticField("PI").Execute()
+	response, _ := calledRuntimeType.GetStaticField("PI").Execute()
 
 	// get value from response
 	result := response.GetValue().(float64)
@@ -441,16 +441,16 @@ func Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 func Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key");
+	Javonet.ActivateWithCredentials("your-license-key")
 
 	// create called runtime context
-	calledRuntime := Javonet.InMemory().Nodejs()
+	calledRuntime, _ := Javonet.InMemory().Nodejs()
 
 	// get type from the runtime
-	calledRuntimeType := calledRuntime.GetType("Math").Execute()
+	calledRuntimeType, _ := calledRuntime.GetType("Math").Execute()
 
 	// invoke type's static method
-	response := calledRuntimeType.InvokeStaticMethod("abs", -50).Execute()
+	response, _ := calledRuntimeType.InvokeStaticMethod("abs", -50).Execute()
 
 	// get value from response
 	result := response.GetValue().(int32)

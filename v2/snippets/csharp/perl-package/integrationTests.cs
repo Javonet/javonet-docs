@@ -166,9 +166,13 @@ namespace Javonet.Netcore.Sdk.Tests.perlpackage
 			// invoke type's static method
 			var response = calledRuntimeType.InvokeStaticMethod("multiply_by_two", 25).Execute();
 
-			var result = (int)response.GetValue();
-			// </TestResources_InvokeStaticMethod>
-			Assert.Equal(50, result);
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_InvokeStaticMethod>
+            Assert.Equal(50, result);
 		}
 
 		[Fact]

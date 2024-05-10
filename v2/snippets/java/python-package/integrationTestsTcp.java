@@ -1,8 +1,6 @@
 package pythonpackage;
 
-import com.javonet.sdk.internal.InvocationContext;
-import com.javonet.sdk.internal.RuntimeContext;
-import com.javonet.sdk.java.Javonet;
+import com.javonet.sdk.*;
 import com.javonet.utils.TcpConnectionData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,6 +8,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.ActivationCredentials;
 
+import java.net.UnknownHostException;
 import java.nio.file.Paths;
 
 public class integrationTestsTcp {
@@ -30,7 +29,12 @@ public class integrationTestsTcp {
         Javonet.activate("your-license-key");
 
         // create called runtime context
-        TcpConnectionData tcpConnectionData = new TcpConnectionData("127.0.0.1", 8080);
+        TcpConnectionData tcpConnectionData = null;
+        try {
+            tcpConnectionData = new TcpConnectionData("127.0.0.1", 8080);
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
         RuntimeContext calledRuntime = Javonet.tcp(tcpConnectionData).python();
         //RuntimeContext calledRuntime = Javonet.inMemory().python();
 
