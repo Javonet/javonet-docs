@@ -13,7 +13,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 It allows to load and use foreign technology modules, interact with any public methods, fields, events or other elements of public API and retrieve the value type results or interact with reference type objects. Javonet allows both to mix different technologies modules within single application in-memory loading different runtimes in single operating system process as well as delegating specific runtime to remote nodes and invoke foreign technology module remotely from other container or microservice. Ultimately Javonet allows to achieve the integration between different public methods on separate nodes without the need to implement integration layer like web services. 
   
-To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".   
+To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".  
   
 ## Getting started  
   
