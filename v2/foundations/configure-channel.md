@@ -10,5 +10,4 @@
 With Javonet it is possible to configure communication channel with foreign runtimes via configuration file.
 Example of such file is presented below:
 
-:::code source=" v2/snippets/commons/configuration-file/javonetconf.json" ID="WholeSnippet":::
-
+:::code source="v2/snippets/commons/configuration-file/javonetconf.json":::
