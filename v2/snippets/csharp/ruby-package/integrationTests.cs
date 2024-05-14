@@ -19,6 +19,68 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
+        public void Test_RubyPackage_StandardLibrary_CreateRuntimeContext()
+        {
+            //<StandardLibrary_CreateRuntimeContext>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // use calledRuntime to interact with code from other technology
+            //</StandardLibrary_CreateRuntimeContext>
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_StandardLibrary_CreateInvocationContext()
+        {
+            //<StandardLibrary_CreateInvocationContext>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("Math").
+                InvokeStaticMethod("abs", -50);
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+            //</StandardLibrary_CreateInvocationContext>
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_StandardLibrary_GetValue()
+        {
+            // <StandardLibrary_GetValue>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("Math").
+                InvokeStaticMethod("sqrt", 2500);
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+
+            // get value from response
+            var result = (double)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetValue>
+            Assert.Equal(50, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
         public void Test_RubyPackage_StandardLibrary_GetStaticField()
         {
             // <StandardLibrary_GetStaticField>
@@ -751,7 +813,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         }
 
         //[Fact]
-        //[Trait("Test", "Functional")]
+        //[Trait("Test", "Integration")]
         //public void Test_RubyPackage_StandardLibrary_HandleSet()
         //{
         //    // <StandardLibrary_HandleList>
@@ -799,7 +861,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         //}
 
         //[Fact]
-        //[Trait("Test", "Functional")]
+        //[Trait("Test", "Integration")]
         //public void Test_RubyPackage_StandardLibrary_HandleHash()
         //{
         //    // <StandardLibrary_HandleDictionary>

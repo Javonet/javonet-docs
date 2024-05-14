@@ -146,6 +146,10 @@ items:
     href: /foundations/execute-method.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
     called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+  - name: Get value method concept
+    href: /foundations/get-value-method.md
+    calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
+    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
 
 - name: Javonet Code Gateway
   items:

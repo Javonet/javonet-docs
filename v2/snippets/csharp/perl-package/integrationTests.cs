@@ -17,7 +17,69 @@ namespace Javonet.Netcore.Sdk.Tests.perlpackage
 		}
 		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/perl-package";
 
-		[Fact]
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PerlPackage_StandardLibrary_CreateRuntimeContext()
+        {
+            //<StandardLibrary_CreateRuntimeContext>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Perl();
+
+            // use calledRuntime to interact with code from other technology
+            //</StandardLibrary_CreateRuntimeContext>
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PerlPackage_StandardLibrary_CreateInvocationContext()
+        {
+            //<StandardLibrary_CreateInvocationContext>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Perl();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("CORE").
+                InvokeStaticMethod("abs", -50);
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+            //</StandardLibrary_CreateInvocationContext>
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PerlPackage_StandardLibrary_GetValue()
+        {
+            // <StandardLibrary_GetValue>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Perl();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("CORE").
+                InvokeStaticMethod("length", "sample text");
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetValue>
+            Assert.Equal(11, result);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_PerlPackage_TestResources_LoadLibrary()
 		{

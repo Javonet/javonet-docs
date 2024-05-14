@@ -18,6 +18,69 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 		}
 		private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/netframework-dll";
 #if _WINDOWS
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext()
+        {
+            //<StandardLibrary_CreateRuntimeContext>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // use calledRuntime to interact with code from other technology
+            //</StandardLibrary_CreateRuntimeContext>
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_CreateInvocationContext()
+        {
+            //<StandardLibrary_CreateInvocationContext>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("System.Math").
+                InvokeStaticMethod("Abs", -50);
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+            //</StandardLibrary_CreateInvocationContext>
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_NetframeworkDll_StandardLibrary_GetValue()
+        {
+            // <StandardLibrary_GetValue>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Clr();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("System.Math").
+                InvokeStaticMethod("Abs", -50);
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetValue>
+            Assert.Equal(50, result);
+        }
+
         [Fact]
         [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_StandardLibrary_GetStaticField()
@@ -746,7 +809,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 		}
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_TestResources_GenericStaticMethod()
         {
             // <TestResources_GenericStaticMethod>
@@ -784,7 +847,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_TestResources_GenericMethod()
         {
             // <TestResources_GenericMethod>
@@ -826,7 +889,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes()
         {
             // <TestResources_GenericMethodWithTwoTypes>
@@ -870,7 +933,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_TestResources_EnumAddToList()
         {
             // <TestResources_EnumAddToList>
@@ -915,7 +978,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_TestResources_EnumNameAndValue()
         {
             // <TestResources_EnumNameAndValue>
@@ -1089,7 +1152,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_StandardLibrary_CreateInstanceOfGenericClass()
         {
             //<StandardLibrary_CreateInstanceOfGenericClass>
@@ -1126,7 +1189,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_StandardLibrary_HandleList()
         {
             // <StandardLibrary_HandleList>
@@ -1169,7 +1232,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
         [Fact]
-        [Trait("Test", "Functional")]
+        [Trait("Test", "Integration")]
         public void Test_NetframeworkDll_StandardLibrary_HandleDictionary()
         {
             // <StandardLibrary_HandleDictionary>
@@ -1210,7 +1273,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
         }
 
 		[Fact]
-		[Trait("Test", "Functional")]
+		[Trait("Test", "Integration")]
 		public void Test_NetframeworkDll_TestResources_Refs_OneArg()
 		{
 			// <TestResources_Refs>
@@ -1258,7 +1321,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 		}
 
 		[Fact]
-		[Trait("Test", "Functional")]
+		[Trait("Test", "Integration")]
 		public void Test_NetframeworkDll_TestResources_Refs_MultipleArgs()
 		{
 			// <TestResources_Refs_MultipleArgs>
@@ -1305,7 +1368,7 @@ namespace Javonet.Netcore.Sdk.Tests.netframeworkdll
 		}
 
 		[Fact]
-		[Trait("Test", "Functional")]
+		[Trait("Test", "Integration")]
 		public void Test_NetframeworkDll_TestResources_Outs()
 		{
 			// <TestResources_Outs>
