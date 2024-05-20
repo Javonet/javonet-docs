@@ -6,12 +6,12 @@
 :::
 
 # Getting started for .NET  
- 
+  
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
   
 To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".   
 
-## Prerequisites 
+## Prerequisites  
 
 To call library/package/module from another technology, corresponding runtime has to be installed. See [Prerequisites](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/prerequisites.md) for details about installing called technology runtime.  
   
