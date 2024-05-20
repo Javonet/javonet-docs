@@ -1,11 +1,11 @@
 :::options
-:title: Invoking static methods from `{called_name}` in `{calling_technology}`  
+:title: Invoke static methods from `{called_name}` in `{calling_name}`  
 :description: This article provides an overview of invoking static methods from other technology with Javonet
 :related_articles: calling-methods/creating-instance-and-calling-instance-methods
-:keywords: Javonet, `{called_technology}` Static Methods, `{calling_technology}`, Static Method Invocation, Method Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
+:keywords: Javonet, `{called_name}` Static Methods, `{calling_name}` , Static Method Invocation, Method Arguments, Method Results, Custom `{called_name}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
-## Invoke static methods from `{called_name}` in `{calling_technology}`
+## Invoke static methods from `{called_name}` in `{calling_name}`
   
 This article provides an introduction to cross-technology invocation of static methods.  
   
@@ -15,7 +15,7 @@ With Javonet you can interact with static methods from `{called_name}` like they
   
 Javonet allows you to pass any `{calling_name}` value type as argument to static method from `{called_name}`. In example: int, float, string, char, long and other. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) variable referencing that object as argument of static method invocation.  
   
-## Custom `{called_name}` in `{calling_technology}`
+## Custom `{called_name}` in `{calling_name}`
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with public static methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -43,7 +43,7 @@ Further calls to invokeStaticMethod() allows to call "multiplyByTwo" `{called_te
   
 You can receive and further process and type of result returned by called `{called_technology}` method, regardless if it is reference type that will get returned as another instance of [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) that you can use for further interaction, or value type that you can obtain as `{calling_technology}` value with getValue() method.  
   
-## Framework static method in `{calling_technology}`
+## Framework static method in `{calling_name}`
   
 With Javonet you can interact not only with any custom `{called_technology}` module but also with any `{called_technology}` framework objects. The same steps are required to use types and methods from standard `{called_name}` framework class:
   
