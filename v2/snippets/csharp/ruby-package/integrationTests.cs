@@ -45,7 +45,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
             // construct an invocation context - this invocationContext in non-materialized 
             var invocationContext = calledRuntime.GetType("Math").
-                InvokeStaticMethod("abs", -50);
+                InvokeStaticMethod("sqrt", 2500);
 
             // execute invocation context - this will materialize the invocationContext
             var response = invocationContext.Execute();
