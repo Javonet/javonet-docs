@@ -2,7 +2,7 @@
 :title: About Javonet Code Gateway
 :description: This article provides general information about Javonet Code Gateway
 :related_articles: getting-started/about-javonet,getting-started/prerequisites, getting-started/activating-javonet
-:keywords: Javonet, `{called_technology}` About, `{calling_technology}`, Language Integration, Cross-Language Communication, .NET Framework, .NET Core, JAR Library, Python Package, Ruby Package, Perl Package, Node.js Package, Getting Started, Prerequisites, Installation, Runtime
+:keywords: Javonet, `{called_name}` About, `{calling_name}`, Language Integration, Cross-Language Communication, .NET Framework, .NET Core, JAR Library, Python Package, Ruby Package, Perl Package, Node.js Package, Getting Started, Prerequisites, Installation, Runtime
 :::
 
 # Javonet Code Gateway

@@ -2,7 +2,7 @@
 :title: Prerequisites
 :description: This article provides information about Javonet prerequisites
 :related_articles: getting-started/about-javonet, getting-started/activating-javonet, getting-started/adding-references-to-libraries
-:keywords: Javonet, `{called_technology}` About, `{calling_technology}`, Language Integration, Cross-Language Communication, .NET Framework, .NET Core, JAR Library, Python Package, Ruby Package, Perl Package, Node.js Package, Getting Started, Prerequisites, Installation, Runtime
+:keywords: Javonet, `{called_name}` About, `{calling_name}`, Language Integration, Cross-Language Communication, .NET Framework, .NET Core, JAR Library, Python Package, Ruby Package, Perl Package, Node.js Package, Getting Started, Prerequisites, Installation, Runtime
 :::
 
 # About Javonet  
@@ -12,7 +12,15 @@ Javonet enables software developers to instantly integrate several programming l
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
   
 ## Prerequisites  
+
+## Linux
   
+Javonet needs several dependencies on Linux to run:  
+  
+libxml2-dev openssl libxmlsec1-dev libxmlsec1-openssl  
+
+## Runtimes
+
 To call library/package/module from another technology, corresponding runtime has to be installed:  
   
 ## .NET Framework DLL library
