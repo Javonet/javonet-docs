@@ -2,7 +2,7 @@
 :title: Activating Javonet
 :description: This article provides an information about activating Javonet
 :related_articles: getting-started/installing-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
-:keywords: Javonet, Activating Javonet, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, License Activation, Proxy Activation, XML Configuration, Javonet Activation
+:keywords: Javonet, Activating Javonet, `{called_name}`, `{calling_name}`, Windows, Linux, MacOS, License Activation, Proxy Activation, XML Configuration, Javonet Activation
 :::
 
 # Activating Javonet

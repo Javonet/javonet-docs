@@ -2,7 +2,7 @@
 :title: Calling generic methods
 :description: This section describes how to invoke static methods
 :related_articles: working-with-objects/creating-instance-of-generic-object
-:keywords: Javonet, Calling Generic Methods, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, NType, Generic Methods, Method Invocation, Static Methods
+:keywords: Javonet, Calling Generic Methods, `{called_technology}`, `{calling_name}`, Windows, Linux, MacOS, NType, Generic Methods, Method Invocation, Static Methods
 :::
 
 # Calling generic methods

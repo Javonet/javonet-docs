@@ -1,11 +1,11 @@
 :::options
-:title: Creating generic class instance
-:description: This article provides an overview of creating generic class instance
+:title: Creating generic class instance from `{called_name}` in `{calling_name}`
+:description: This article provides an overview of creating generic class instance from `{called_name}` in `{calling_name}`
 :related_articles: generics/calling-generic-static-method, generics/calling-generic-instance-method
-:keywords: Javonet, `{called_technology}` Generic Class Instance, `{calling_technology}`, Class Instantiation, Generic Classes, Type Parameters, Generic Arguments, Object Creation, Custom `{called_technology}`, Public Classes, Value Type Arguments, Reference Type Arguments
+:keywords: Javonet, `{called_name}` Generic Class Instance, `{calling_name}`, Class Instantiation, Generic Classes, Type Parameters, Generic Arguments, Object Creation, Custom `{called_technology}`, Public Classes, Value Type Arguments, Reference Type Arguments
 :::
 
-# Create generic class instance  
+# Create generic class instance from `{called_name}` in `{calling_name}`  
 
 This article provides an introduction to cross-technology handling of generic class instance. A generic class in programming is a class that can work with any data type. The data type is specified as a parameter at the time of creating an instance of the class. This allows for type-safe code reusability. A single class or method can be used with different data types without the need for multiple implementations. It is described in detail in [article about generic classes in .NET](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-classes) and [article about generics in Java](https://docs.oracle.com/javase/tutorial/extra/generics/simple.html).  
   
@@ -15,7 +15,7 @@ With Javonet you can interact with generic classes from `{called_name}` like the
   
 Javonet allows you to pass any `{calling_name}` value type as argument to method from `{called_name}`. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) variable referencing that object as argument of method invocation.  
   
-## Generic class from framework
+## Generic class from framework in `{calling_name}`
   
 It is possible to create generic class instance and interact with its methods from `{called_technology}` framework using following `{calling_name}` code:
   

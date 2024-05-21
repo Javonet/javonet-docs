@@ -1,11 +1,11 @@
 :::options
-:title: Execute method
-:description: The article describes the concept of Execute method
+:title: Execute method in `{calling_name}`
+:description: The article describes the concept of Execute method in `{calling_name}`
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/runtime-context, foundations/invocation-context,foundations/get-value-method
-:keywords: Javonet, `{called_technology}` Execute Method, `{calling_technology}`, Method Execution, Invocation Context, Non-Materialized Context, Command Nesting, Method Invocation, Runtime Processing, Expression Transfer, Developer Control
+:keywords: Javonet, `{called_name}` Execute Method, `{calling_name}`, Method Execution, Invocation Context, Non-Materialized Context, Command Nesting, Method Invocation, Runtime Processing, Expression Transfer, Developer Control
 :::
 
-# Execute method
+# Execute method in `{calling_name}`
   
 Because invocation context is building the intent of executing particular expression on target environment, we call the initial state of invocation context as non-materialized. The non-materialized context wraps either single command or chain of recursively nested commands.  
 
@@ -17,4 +17,4 @@ Because invocation context is building the intent of executing particular expres
   
 Commands are becoming nested through each invocation of methods on Invocation Context. Each invocation triggers the creation of new Invocation Context instance wrapping the current command with new parent command valid for invoked method.  
   
-Developer can decided on any moment of the materialization for the context taking full control of the chunks of the expression being transferred and processed on target runtime.  
+Developer can decided on any moment of the materialization for the context taking full control of the chunks of the expression being transferred and processed on target runtime.

@@ -2,17 +2,17 @@
 :title: Getting started for Ruby developers
 :description: This article provides Javonet getting started guide for Ruby developers
 :related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/activating-javonet, getting-started/adding-references-to-libraries, javonet-code-gateway/about-javonet-code-gateway
-:keywords: Javonet, `{called_technology}` Getting Started, `{calling_technology}`, Ruby Developers, Ruby Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
+:keywords: Javonet, `{called_name}` Getting Started, `{calling_name}`, Ruby Developers, Ruby Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
 :::
 
 # Getting started for Ruby
 
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
   
-To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".   
+To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".  
 
-## Prerequisites 
-
+## Prerequisites
+  
 To call library/package/module from another technology, corresponding runtime has to be installed. See [Prerequisites](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/prerequisites.md) for details about installing called technology runtime.  
 
 Javonet is available as a javonet-ruby-sdk GEM package which can be downloaded from [RubyGems public repository](https://rubygems.org/gems/javonet-ruby-sdk) or from [My Javonet Portal](https://my.javonet.com).
@@ -53,7 +53,6 @@ The returned value needs to be cast to calling technology type and can be used a
 To sum up, the whole code snippet looks like:
 
 :::code source="v2/snippets/ruby/common/sampleProgram.rb" ID="WholeSnippet":::
-
 
 The same operation can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel) that will create and interact with your `{called_name}` objects on any remote node, container or service that hosts [Javonet Code Gateway](/guides/v2/`{calling_technology}`/`{called_technology}`/javonet-code-gateway/about-javonet-code-gateway.md). This way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.
   

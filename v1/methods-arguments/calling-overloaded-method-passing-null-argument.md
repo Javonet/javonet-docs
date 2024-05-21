@@ -2,7 +2,7 @@
 :title: Calling overloaded method passing null argument
 :description: Calling overloaded method passing null argument
 :related_articles: methods-arguments/passing-reference-type-arguments, methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/passing-typeof-type-as-method-argument
-:keywords: Javonet, Overloaded Method, Null Argument, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Method Overloading, Null Value, Ambiguous Invocation, NNull Type
+:keywords: Javonet, Overloaded Method, Null Argument, `{called_technology}`, `{calling_name}`, Windows, Linux, MacOS, Method Overloading, Null Value, Ambiguous Invocation, NNull Type
 :::
 
 # Calling overloaded method passing null argument 

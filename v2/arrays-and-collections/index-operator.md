@@ -1,8 +1,8 @@
 :::options
-:title: Index operator []
-:description: This article provides general description of using [] operator
+:title: Index operator [] in `{calling_name}`
+:description: This article provides general description of using [] operator in `{calling_name}`
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/multidimensional-arrays, arrays-and-collections/collections, arrays-and-collections/retrieve-array, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/iterate-over-array
-:keywords: Javonet, `{called_technology}` Arrays, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
+:keywords: Javonet, `{called_name}` Arrays, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
 # Index operator []
@@ -27,7 +27,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 
 Each array or collection from `{called_name}` returns as InvocationContext which contains reference to the target data. Javonet SDK implements [] operator on InvocationContext to interact with complex data objects in `{calling_name}`:  
 
-## Get element
+## Get element from `{called_name}` in `{calling_name}`
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -39,7 +39,7 @@ Each array or collection from `{called_name}` returns as InvocationContext which
 
 In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Operator [] is used to get element from the array.
 
-## Set element
+## Set element from `{called_name}` in `{calling_name}`
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`

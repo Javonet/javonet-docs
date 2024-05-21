@@ -2,7 +2,7 @@
 :title: Using Value-Type and Reference-Type Arrays
 :description: Using Value-Type and Reference-Type Arrays
 :related_articles: arrays-and-collections/working-with-arrays, arrays-and-collections/working-with-collections
-:keywords: value-type arrays, reference-type arrays, using arrays, array operations, instance arrays, static arrays, mixed arrays, `{calling_technology}`, `{called_technology}`
+:keywords: value-type arrays, reference-type arrays, using arrays, array operations, instance arrays, static arrays, mixed arrays, `{calling_name}`, `{called_technology}`
 :::
   
 # Using Value-Type and Reference-Type Arrays  

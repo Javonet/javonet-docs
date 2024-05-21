@@ -15,7 +15,7 @@ With Javonet you can interact with methods with `ref` parameter modifier from `{
 
 Javonet allows you to pass any `{calling_name}` value type as argument to method from `{called_name}`. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) variable referencing that object as argument of static method invocation.  
   
-## Custom `{called_name}` with ref argument
+## Custom `{called_name}` with ref argument in `{calling_name}`
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -47,7 +47,7 @@ Both values can be passed to RefSampleMethod(ref int x) method using *invokeStat
   
 Each reference type argument is get as regular `{calling_name}` value using *getRefValue()* and can be used for further processing.  
   
-## Custom `{called_name}` with multiple ref arguments
+## Custom `{called_name}` with multiple ref arguments in `{calling_name}`
   
 It is possible to invoke the declared method which contains multiple `ref` arguments from `{called_name}` using following `{calling_name}` code:
   

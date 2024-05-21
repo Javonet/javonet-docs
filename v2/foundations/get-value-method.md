@@ -1,11 +1,11 @@
 :::options
-:title: Get value method
-:description: The article describes the concept of GetValue method
+:title: Get value from `{called_name}` in `{calling_name}`
+:description: The article describes the concept of GetValue method from `{called_name}` in `{calling_name}`
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/runtime-context, foundations/invocation-context,foundations/execute-method
-:keywords: Javonet, `{called_technology}` Get Value Method, `{calling_technology}`, Method Execution, Invocation Context, Non-Materialized Context, Command Nesting, Method Invocation, Runtime Processing, Expression Transfer, Developer Control
+:keywords: Javonet, `{called_name}` Get Value Method, `{calling_name}`, Method Execution, Invocation Context, Non-Materialized Context, Command Nesting, Method Invocation, Runtime Processing, Expression Transfer, Developer Control
 :::
 
-# GetValue method
+# Get value from `{called_name}` in `{calling_name}`
   
 The GetValue method is used to retrieve the result of an operation performed by the Javonet API.
 

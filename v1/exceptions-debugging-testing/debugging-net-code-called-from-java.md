@@ -2,7 +2,7 @@
 :title: Debugging .NET code called from Java
 :description: Debugging .NET code called from Java
 :related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/handling-exceptions, exceptions-debugging-testing/debugging-javonet-enabled-application
-:keywords: Javonet, Debugging, .NET, Java, `{called_technology}`, `{calling_technology}`, IDE Debugger, Eclipse, Visual Studio, JVM, CLR, Netcore, Windows, Linux, MacOS, Breakpoints, Runtime Debugging
+:keywords: Javonet, Debugging, .NET, Java, `{called_technology}`, `{calling_name}`, IDE Debugger, Eclipse, Visual Studio, JVM, CLR, Netcore, Windows, Linux, MacOS, Breakpoints, Runtime Debugging
 :::
 
 # Debugging .NET code called from Java  

@@ -2,7 +2,7 @@
 :title: Getting and setting values for instance fields and properties
 :description: This article provides an overview of getting values for instance fields and properties
 :related_articles: fields-and-properties/getting-and-setting-values-for-static-fields-and-properties
-:keywords: Javonet, `{called_technology}` Instance Fields, `{calling_technology}`, Instance Properties, Field Access, Property Access, Field Modification, Property Modification, Instance Field Values, Instance Property Values, Get Field, Set Field, Get Property, Set Property
+:keywords: Javonet, `{called_name}` Instance Fields, `{calling_name}`, Instance Properties, Field Access, Property Access, Field Modification, Property Modification, Instance Field Values, Instance Property Values, Get Field, Set Field, Get Property, Set Property
 :::
 
 # Instance fields and properties  

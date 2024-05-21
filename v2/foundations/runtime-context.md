@@ -1,11 +1,11 @@
 :::options
-:title: Runtime Context
-:description: The article describes the concept of Runtime Context
+:title: Runtime Context of `{called_name}` in `{calling_name}`
+:description: The article describes the concept of Runtime Context of `{called_name}` in `{calling_name}`
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/invocation-context, foundations/execute-method,foundations/get-value-method
-:keywords: Javonet, `{called_technology}` Runtime Context, `{calling_technology}`, Runtime Instance, Memory Space, Communication Channel, In Memory Channel, TCP Channel, Method Invocation, Library Loading, Object Interaction, Process Interaction
+:keywords: Javonet, `{called_name}` Runtime Context, `{calling_name}`, Runtime Instance, Memory Space, Communication Channel, In Memory Channel, TCP Channel, Method Invocation, Library Loading, Object Interaction, Process Interaction
 :::
 
-# Runtime Context
+# Runtime Context of `{called_name}` in `{calling_name}`
 
 Runtime Context represents the single context which allows to interact with selected technology.  
   

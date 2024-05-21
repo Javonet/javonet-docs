@@ -1,11 +1,11 @@
 :::options
-:title: Calling generic static method
-:description: This article provides an overview of calling generic static method
+:title: Calling generic static method from `{called_name}` in `{calling_name}`
+:description: This article provides an overview of calling generic static method from `{called_name}` in `{calling_name}`
 :related_articles: generics/calling-generic-instance-method, generics/creating-generic-class-instance
-:keywords: Javonet, `{called_technology}` Generic Static Method, `{calling_technology}`, Method Invocation, Generic Methods, Type Parameters, Generic Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
+:keywords: Javonet, `{called_name}` Generic Static Method, `{calling_name}`, Method Invocation, Generic Methods, Type Parameters, Generic Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
-# Call generic static method
+# Call generic static method from `{called_name}` in `{calling_name}`
   
 This article provides an introduction to cross-technology invocation of static generic methods. Generic methods in C# (.NET) and Java technologies are methods that are declared with the type parameter in its signature, allowing it to be used with any data type. It is described in detail in [article about generic methods in .NET](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods) and [article about generic methods in Java](https://docs.oracle.com/javase/tutorial/extra/generics/methods.html).  
   
@@ -15,7 +15,7 @@ With Javonet you can interact with generic static methods from `{called_name}` l
   
 Javonet allows you to pass any `{calling_name}` value type as argument to method from `{called_name}`. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) variable referencing that object as argument of method invocation.  
   
-## Custom `{called_name}` with generic methods
+## Custom `{called_name}` with generic methods in `{calling_name}`
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   

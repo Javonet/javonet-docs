@@ -1,7 +1,7 @@
 :::options
 :title: Using nested types
 :description: Using nested types
-:keywords: Javonet, Nested Types, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Class Definition, Struct Definition, Type Argument, Field Type, Property Type, Generic Arguments
+:keywords: Javonet, Nested Types, `{called_technology}`, `{calling_name}`, Windows, Linux, MacOS, Class Definition, Struct Definition, Type Argument, Field Type, Property Type, Generic Arguments
 :::
 
 # Using nested types

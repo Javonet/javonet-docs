@@ -2,7 +2,7 @@
 :title: Batching GC with DelayGcContext
 :description: Batching GC with DelayGcContext
 :related_articles: disposing-and-garbage-collection/disposing-of-objects
-:keywords: Javonet, `{called_technology}` Batching GC, `{calling_technology}`, DelayGcContext, Garbage Collection, Memory Management, Performance Optimization, Legacy Javonet 1.5, Static Methods, Method Invocation, Reflection, Value-Type Conversion, Reference-Type Conversion
+:keywords: Javonet, `{called_name}` Batching GC, `{calling_name}`, DelayGcContext, Garbage Collection, Memory Management, Performance Optimization, Legacy Javonet 1.5, Static Methods, Method Invocation, Reflection, Value-Type Conversion, Reference-Type Conversion
 :::
 
 # Batching GC with DelayGcContext 

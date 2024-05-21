@@ -1,7 +1,7 @@
 :::options
 :title: Using enum type
 :description: Learn how to use .NET enums in your Java project with Javonet.
-:keywords: Javonet, .NET Enums, Java, `{called_technology}`, `{calling_technology}`, NEnum, Method Argument, JVM, CLR, Netcore, Windows, Linux, MacOS
+:keywords: Javonet, .NET Enums, Java, `{called_technology}`, `{calling_name}`, NEnum, Method Argument, JVM, CLR, Netcore, Windows, Linux, MacOS
 :::
 
 # Using enum type

@@ -2,20 +2,20 @@
 :title: Getting started for Java developers
 :description: This article provides Javonet getting started guide for Java developers
 :related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/activating-javonet, getting-started/adding-references-to-libraries, javonet-code-gateway/about-javonet-code-gateway
-:keywords: Javonet, `{called_technology}` Getting Started, `{calling_technology}`, Java Developers, Java Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
+:keywords: Javonet, `{called_name}` Getting Started, `{calling_name}`, Java Developers, Java Integration, Library Usage, Method Calls, Interacting Technologies, Runtime Installation, Activation Key, Sample Application, Runtime Context, Static Field Access
 :::
 
 # Getting started for Java
 
 Javonet allows you to reference and use modules or packages written in (C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
   
-To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".    
+To use the guides both interacting technologies needs to be selected from left-side dropdown lists. Developer's technology is named "I code in" and technology to be called is named "I want to use".  
   
 Javonet 2 is recommended for most applications.  
   
-Javonet 1.0 in some cases may be more appropriate (f.e. for embedding .NET UI controls (WPF or WinForms) in Java AWT/Swing or JavaFX). 
+Javonet 1.0 in some cases may be more appropriate (f.e. for embedding .NET UI controls (WPF or WinForms) in Java AWT/Swing or JavaFX).
 
-## Prerequisites 
+## Prerequisites
 
 To call library/package/module from another technology, corresponding runtime has to be installed. See [Prerequisites](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/prerequisites.md) for details about installing called technology runtime.  
 

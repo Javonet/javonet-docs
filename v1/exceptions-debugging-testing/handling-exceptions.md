@@ -2,7 +2,7 @@
 :title: Handling exceptions
 :description: Handling exceptions
 :related_articles: exceptions-debugging-testing/handling-activation-issues, exceptions-debugging-testing/debugging-net-code-called-from-java, exceptions-debugging-testing/debugging-javonet-enabled-application
-:keywords: Javonet, Handling Exceptions, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, JavonetException, Exception Handling, Error Handling
+:keywords: Javonet, Handling Exceptions, `{called_technology}`, `{calling_name}`, Windows, Linux, MacOS, JavonetException, Exception Handling, Error Handling
 :::
 
 # Handling exceptions 

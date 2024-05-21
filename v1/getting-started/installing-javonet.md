@@ -2,7 +2,7 @@
 :title: Installing Javonet
 :description: This article provides an information about installing Javonet
 :related_articles: getting-started/activating-javonet, getting-started/adding-references-to-libraries, getting-started/xml-configuration-file
-:keywords: Javonet, Installing Javonet, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, JDK, .NET Framework, Visual C++ Runtime, Javonet Package, Project Reference
+:keywords: Javonet, Installing Javonet, `{called_name}`, `{calling_name}`, Windows, Linux, MacOS, JDK, .NET Framework, Visual C++ Runtime, Javonet Package, Project Reference
 :::
 
 # Installing Javonet

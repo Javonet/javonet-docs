@@ -11,7 +11,7 @@ Javonet enables software developers to instantly integrate several programming l
   
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology.  
   
-## Prerequisites  
+## Prerequisites 
 
 ## Linux
   

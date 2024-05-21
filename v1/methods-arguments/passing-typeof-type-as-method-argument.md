@@ -2,7 +2,7 @@
 :title: Passing typeof(Type) as method argument
 :description: Passing typeof(Type) as method argument
 :related_articles: methods-arguments/passing-reference-type-arguments, methods-arguments/passing-arguments-by-reference-with-ref-keyword, methods-arguments/passing-arguments-by-reference-with-out-keyword, methods-arguments/calling-overloaded-method-passing-null-argument
-:keywords: Javonet, Typeof Type, `{called_technology}`, `{calling_technology}`, Java, .NET, JVM, CLR, Netcore, Windows, Linux, MacOS, Method Arguments, NType, GetType, Method Invocation, Type Argument
+:keywords: Javonet, Typeof Type, `{called_technology}`, `{calling_name}`, Windows, Linux, MacOS, Method Arguments, NType, GetType, Method Invocation, Type Argument
 :::
 
 # Passing typeof(Type) as method argument 

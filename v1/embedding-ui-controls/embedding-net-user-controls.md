@@ -2,7 +2,7 @@
 :title: Embedding .NET User Controls in Java AWT, Swing or JavaFX
 :description: Introduction to Using .NET Back-end and UI Components in Java
 :related_articles: embedding-ui-controls/using-backend-and-ui-components
-:keywords: Javonet, .NET User Controls, Java AWT, Swing, JavaFX, Embedding, UI Components, `{called_technology}`, `{calling_technology}`, NControlContainer, Event Subscription, Layout Management, Revalidate Method, JVM, CLR, Netcore
+:keywords: Javonet, .NET User Controls, Java AWT, Swing, JavaFX, Embedding, UI Components, `{called_technology}`, `{calling_name}`, NControlContainer, Event Subscription, Layout Management, Revalidate Method, JVM, CLR, Netcore
 :::
 
 # Embedding .NET User Controls in Java AWT, Swing or JavaFX  

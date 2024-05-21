@@ -2,7 +2,7 @@
 :title: Invoking static method
 :description: This section describes how to invoke static methods
 :related_articles: calling-methods/create-instance-and-calling-instance-methods, getting-started/fluent-interface
-:keywords: Javonet, Static Methods, `{calling_technology}`, `{called_technology}`, Method Invocation, Reflection, Value-Type Conversion, Reference-Type Conversion, Fluent Interface, Legacy Javonet 1.5
+:keywords: Javonet, Static Methods, `{calling_name}`, `{called_technology}`, Method Invocation, Reflection, Value-Type Conversion, Reference-Type Conversion, Fluent Interface, Legacy Javonet 1.5
 :::
 
 # Invoking Static Methods
