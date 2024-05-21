@@ -6,6 +6,53 @@ from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/jar-library'
 
+def test_JarLibrary_StandardLibrary_CreateRuntimeContext():
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+
+def test_JarLibrary_StandardLibrary_CreateInvocationContext():
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    invocation_context = called_runtime.get_type("java.lang.Math").invoke_static_method("abs", -50)
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute()
+    # </StandardLibrary_CreateInvocationContext>
+
+def test_JarLibrary_StandardLibrary_GetValue():
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    invocation_context = called_runtime.get_type("java.lang.Math").invoke_static_method("abs", -50)
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetValue>
+    assert result == 50
 
 def test_JarLibrary_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>

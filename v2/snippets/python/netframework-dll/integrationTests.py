@@ -8,6 +8,57 @@ from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/netframework-dll'
 
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_CreateRuntimeContext():
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_CreateInvocationContext():
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    invocation_context = called_runtime.get_type("System.Math").invoke_static_method("Abs", -50)
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute()
+    # </StandardLibrary_CreateInvocationContext>
+
+@pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
+def test_NetframeworkDll_StandardLibrary_GetValue():
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().clr()
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    invocation_context = called_runtime.get_type("System.Math").invoke_static_method("Abs", -50)
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetValue>
+    assert result == 50
+
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
 def test_NetframeworkDll_StandardLibrary_GetStaticField():
