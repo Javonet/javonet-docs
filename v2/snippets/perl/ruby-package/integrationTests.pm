@@ -37,7 +37,7 @@ sub Test_RubyPackage_StandardLibrary_CreateInvocationContext {
     my $called_runtime = Javonet->in_memory()->ruby();
 
     # construct an invocation context - this invocationContext in non-materialized
-    my $invocation_context = $called_runtime->get_type("builtins")->invoke_static_method("sqrt", 2500);
+    my $invocation_context = $called_runtime->get_type("Math")->invoke_static_method("sqrt", 2500);
 
     # execute invocation context - this will materialize the invocationContext
     my $response = $invocation_context->execute();
