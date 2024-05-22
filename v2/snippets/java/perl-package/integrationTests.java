@@ -21,6 +21,65 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void test_PerlPackage_StandardLibrary_CreateRuntimeContext() {
+        // <StandardLibrary_CreateRuntimeContext>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // use calledRuntime to interact with code from other technology
+        // </StandardLibrary_CreateRuntimeContext>
+        Assertions.assertNotNull(calledRuntime);
+    }
+
+    @Test
+    @Tag("integration")
+    public void test_PerlPackage_StandardLibrary_CreateInvocationContext() {
+        // <StandardLibrary_CreateInvocationContext>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // construct an invocation context - this invocationContext in non-materialized
+        InvocationContext invocationContext = calledRuntime.getType("CORE").invokeStaticMethod("length", "sample text");
+
+        // execute invocation context - this will materialize the invocationContext
+        InvocationContext response = invocationContext.execute();
+        // </StandardLibrary_CreateInvocationContext>
+        Assertions.assertNotNull(response);
+    }
+
+    @Test
+    @Tag("integration")
+    public void test_PerlPackage_StandardLibrary_GetValue() {
+        // <StandardLibrary_GetValue>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // construct an invocation context - this invocationContext in non-materialized
+        InvocationContext invocationContext = calledRuntime.getType("CORE").invokeStaticMethod("length", "sample text");
+
+        // execute invocation context - this will materialize the invocationContext
+        InvocationContext response = invocationContext.execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_GetValue>
+        Assertions.assertEquals(11, result);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app

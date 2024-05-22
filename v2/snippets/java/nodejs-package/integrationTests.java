@@ -21,6 +21,65 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void test_NodejsPackage_StandardLibrary_CreateRuntimeContext() {
+        // <StandardLibrary_CreateRuntimeContext>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // use calledRuntime to interact with code from other technology
+        // </StandardLibrary_CreateRuntimeContext>
+        Assertions.assertNotNull(calledRuntime);
+    }
+
+    @Test
+    @Tag("integration")
+    public void test_NodejsPackage_StandardLibrary_CreateInvocationContext() {
+        // <StandardLibrary_CreateInvocationContext>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // construct an invocation context - this invocationContext in non-materialized
+        InvocationContext invocationContext = calledRuntime.getType("Math").invokeStaticMethod("abs", -50);
+
+        // execute invocation context - this will materialize the invocationContext
+        InvocationContext response = invocationContext.execute();
+        // </StandardLibrary_CreateInvocationContext>
+        Assertions.assertNotNull(response);
+    }
+
+    @Test
+    @Tag("integration")
+    public void test_NodejsPackage_StandardLibrary_GetValue() {
+        // <StandardLibrary_GetValue>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // construct an invocation context - this invocationContext in non-materialized
+        InvocationContext invocationContext = calledRuntime.getType("Math").invokeStaticMethod("abs", -50);
+
+        // execute invocation context - this will materialize the invocationContext
+        InvocationContext response = invocationContext.execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_GetValue>
+        Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
@@ -685,4 +744,25 @@ public class integrationTests {
         array.setIndex(new Integer[]{0, 1}, "S01").execute();
         Assertions.assertEquals("new value", result);
     }
+
+//    @Test
+//    @Tag("integration")
+//    public void Test_NodejsPackage_Test() {
+//
+//        // use activate only once in your app
+//        Javonet.activate("your-license-key");
+//
+//        // create called runtime context
+//        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+//
+//        // set up variables
+//        String libraryPath = "HelloWorld.js";
+//
+//        // load custom library
+//        calledRuntime.loadLibrary(libraryPath);
+//        InvocationContext typee = calledRuntime.getType("HelloWorld").execute();
+//        InvocationContext result = typee.invokeStaticMethod("multiplyByTwo", 2).execute();
+//        System.out.println(result.getValue());
+//
+//    }
 }
