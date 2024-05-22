@@ -15,6 +15,59 @@ Javonet->activate(ActivationCredentials::YOUR_LICENSE_KEY);
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
 my $resources_directory = "${this_file_path}/../../../../testResources/python-package";
 
+sub Test_PythonPackage_StandardLibrary_CreateRuntimeContext {
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->python();
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+    ok(defined $called_runtime, 'Test_PythonPackage_StandardLibrary_CreateRuntimeContext');
+}
+
+sub Test_PythonPackage_StandardLibrary_CreateInvocationContext {
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->python();
+
+    # construct an invocation context - this invocationContext in non-materialized
+    my $invocation_context = $called_runtime->get_type("builtins")->invoke_static_method("abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+    # </StandardLibrary_CreateInvocationContext>
+    ok(defined $response, 'Test_PythonPackage_StandardLibrary_CreateInvocationContext');
+}
+
+sub Test_PythonPackage_StandardLibrary_GetValue {
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->python();
+
+    # construct an invocation context - this invocationContext in non-materialized
+    my $invocation_context = $called_runtime->get_type("builtins")->invoke_static_method("abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </StandardLibrary_GetValue>
+    is($result, 50, 'Test_PythonPackage_StandardLibrary_GetValue');
+}
+
 sub Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
@@ -422,6 +475,9 @@ sub Test_PythonPackage_TestResources_EnumNameAndValue {
 }
 
 if ("$osname" ne 'darwin') {
+    is(Test_PythonPackage_StandardLibrary_CreateRuntimeContext(), 1, 'Test_PythonPackage_StandardLibrary_CreateRuntimeContext');
+    is(Test_PythonPackage_StandardLibrary_CreateInvocationContext(), 1, 'Test_PythonPackage_StandardLibrary_CreateInvocationContext');
+    is(Test_PythonPackage_StandardLibrary_GetValue(), 1, 'Test_PythonPackage_StandardLibrary_GetValue');
     is(Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(), 50, 'Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
     is(sprintf("%.5f", Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI()), sprintf("%.5f", pi), 'Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI');
     is(Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException(), 0, 'Test_PythonPackage_TestResources_LoadLibrary_LibraryPath_NoException');

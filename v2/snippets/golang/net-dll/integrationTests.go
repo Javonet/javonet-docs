@@ -20,6 +20,79 @@ func init() {
 	Javonet.ActivateWithCredentials(activationcredentials.YourLicenseKey)
 }
 
+func Test_NetDll_StandardLibrary_CreateRuntimeContext(t *testing.T) {
+	// <StandardLibrary_CreateRuntimeContext>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-license-key")
+
+	// create called runtime context
+	calledRuntime, _ := Javonet.InMemory().Netcore()
+
+	// use calledRuntime to interact with code from other technology
+	// </StandardLibrary_CreateRuntimeContext>
+
+	if calledRuntime == nil {
+		t.Fatal("calledRuntime is nil")
+	}
+}
+
+func Test_NetDll_StandardLibrary_CreateInvocationContext(t *testing.T) {
+	// <StandardLibrary_CreateInvocationContext>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-license-key")
+
+	// create called runtime context
+	calledRuntime, _ := Javonet.InMemory().Netcore()
+
+	// construct an invocation context - this invocationContext in non-materialized
+	invocationContext := calledRuntime.GetType("System.Math").InvokeStaticMethod("Abs", -50)
+
+	// execute invocation context - this will materialize the invocationContext
+	response, err := invocationContext.Execute()
+	if err != nil {
+		fmt.Println("Error: " + err.Error())
+	}
+	// </StandardLibrary_CreateInvocationContext>
+	if err != nil {
+		t.Fatal("Error: " + err.Error())
+	}
+	if response == nil {
+		t.Fatal("response is nil")
+	}
+}
+
+func Test_NetDll_StandardLibrary_GetValue(t *testing.T) {
+	// <StandardLibrary_GetValue>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-license-key")
+
+	// create called runtime context
+	calledRuntime, _ := Javonet.InMemory().Netcore()
+
+	// construct an invocation context - this invocationContext in non-materialized
+	invocationContext := calledRuntime.GetType("System.Math").InvokeStaticMethod("Abs", -50)
+
+	// execute invocation context - this will materialize the invocationContext
+	response, err := invocationContext.Execute()
+	if err != nil {
+		fmt.Println("Error: " + err.Error())
+	}
+
+	// get value from response
+	result, ok := response.GetValue().(int32)
+	if !ok {
+		fmt.Println("Error: cannot convert response value to int32")
+	}
+
+	// write result to console
+	fmt.Println(result)
+	// </StandardLibrary_GetValue>
+	expectedResult := int32(50)
+	if err != nil || result != expectedResult {
+		t.Fatalf("Test failed. Response: %v. Expected response: %v", result, expectedResult)
+	}
+}
+
 func Test_NetDll_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app

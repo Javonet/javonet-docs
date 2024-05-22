@@ -15,6 +15,59 @@ my $resources_directory = "${this_file_path}/../../../../testResources/netframew
 
 my $osname = $^O;
 
+sub Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext {
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->clr();
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+    ok(defined $called_runtime, 'Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext');
+}
+
+sub Test_NetframeworkDll_StandardLibrary_CreateInvocationContext {
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->clr();
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    my $invocation_context = $called_runtime->get_type("System.Math")->invoke_static_method("Abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+    # </StandardLibrary_CreateInvocationContext>
+    ok(defined $response, 'Test_NetframeworkDll_StandardLibrary_CreateInvocationContext');
+}
+
+sub Test_NetframeworkDll_StandardLibrary_GetValue {
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->clr();
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    my $invocation_context = $called_runtime->get_type("System.Math")->invoke_static_method("Abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </StandardLibrary_GetValue>
+    is($result, 50, 'Test_NetframeworkDll_StandardLibrary_GetValue');
+}
+
 sub Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
@@ -546,6 +599,11 @@ sub Test_NetframeworkDll_TestResources_EnumNameAndValue {
 }
 
 if ("$osname" eq 'MSWin32') {
+
+    Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext();
+    Test_NetframeworkDll_StandardLibrary_CreateInvocationContext();
+    Test_NetframeworkDll_StandardLibrary_GetValue();
+
     my $test_result_1 = Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
     my $test_result_2 = Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI();
     my $test_result_3 = index(Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022(), "2022");

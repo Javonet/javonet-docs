@@ -11,7 +11,60 @@ use ActivationCredentials;
 Javonet->activate(ActivationCredentials::YOUR_LICENSE_KEY);
 
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
-my $resources_directory = "${this_file_path}/../../../../testResources/net-dll";
+my $resources_directory = "${this_file_path}/../../../../TestResources/net-dll";
+
+sub Test_NetDll_StandardLibrary_CreateRuntimeContext {
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->netcore();
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+    ok(defined $called_runtime, 'Test_NetDll_StandardLibrary_CreateRuntimeContext');
+}
+
+sub Test_NetDll_StandardLibrary_CreateInvocationContext {
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->netcore();
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    my $invocation_context = $called_runtime->get_type("System.Math")->invoke_static_method("Abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+    # </StandardLibrary_CreateInvocationContext>
+    ok(defined $response, 'Test_NetDll_StandardLibrary_CreateInvocationContext');
+}
+
+sub Test_NetDll_StandardLibrary_GetValue {
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->netcore();
+
+    # construct an invocation context - this invocationContext in non-materialized 
+    my $invocation_context = $called_runtime->get_type("System.Math")->invoke_static_method("Abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </StandardLibrary_GetValue>
+    is($result, 50, 'Test_NetDll_StandardLibrary_GetValue');
+}
 
 sub Test_NetDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
@@ -592,7 +645,7 @@ sub Test_NetDll_TestResources_EnumNameAndValue {
     # set up variables
     my $library_path = "$resources_directory/TestClass.dll";
 
-    # load jvm custom library
+    # load custom library
     $called_runtime->load_library($library_path);
 
     # get enum
@@ -615,6 +668,9 @@ sub Test_NetDll_TestResources_EnumNameAndValue {
     return $result;
 }
 
+is(Test_NetDll_StandardLibrary_CreateRuntimeContext(), 1, 'Test_NetDll_StandardLibrary_CreateRuntimeContext');
+is(Test_NetDll_StandardLibrary_CreateInvocationContext(), 1, 'Test_NetDll_StandardLibrary_CreateInvocationContext');
+is(Test_NetDll_StandardLibrary_GetValue(), 1, 'Test_NetDll_StandardLibrary_GetValue');
 is(Test_NetDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(), 50, 'Test_NetDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
 is(Test_NetDll_StandardLibrary_GetStaticField_MathPI_PI(), pi, 'Test_NetDll_StandardLibrary_GetStaticField_MathPI_PI');
 isnt(index(Test_NetDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022(), "2022"), -1, 'Test_NetDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022');

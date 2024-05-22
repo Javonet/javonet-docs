@@ -13,6 +13,59 @@ Javonet->activate(ActivationCredentials::YOUR_LICENSE_KEY);
 my $this_file_path = File::Spec->rel2abs(dirname(__FILE__));
 my $resources_directory = "${this_file_path}/../../../../testResources/nodejs-package";
 
+sub Test_NodejsPackage_StandardLibrary_CreateRuntimeContext {
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+    ok(defined $called_runtime, 'Test_NodejsPackage_StandardLibrary_CreateRuntimeContext');
+}
+
+sub Test_NodejsPackage_StandardLibrary_CreateInvocationContext {
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # construct an invocation context - this invocationContext in non-materialized
+    my $invocation_context = $called_runtime->get_type("Math")->invoke_static_method("abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+    # </StandardLibrary_CreateInvocationContext>
+    ok(defined $response, 'Test_NodejsPackage_StandardLibrary_CreateInvocationContext');
+}
+
+sub Test_NodejsPackage_StandardLibrary_GetValue {
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # construct an invocation context - this invocationContext in non-materialized
+    my $invocation_context = $called_runtime->get_type("Math")->invoke_static_method("abs", -50);
+
+    # execute invocation context - this will materialize the invocationContext
+    my $response = $invocation_context->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </StandardLibrary_GetValue>
+    is($result, 50, 'Test_NodejsPackage_StandardLibrary_GetValue');
+}
+
 sub Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # <StandardLibrary_InvokeStaticMethod>
     # use activate only once in your app
@@ -383,6 +436,10 @@ sub Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44 {
     # </TestResources_SetInstanceField>
     return $result;
 }
+
+Test_NodejsPackage_StandardLibrary_CreateRuntimeContext();
+Test_NodejsPackage_StandardLibrary_CreateInvocationContext();
+Test_NodejsPackage_StandardLibrary_GetValue();
 
 my $test_result_1 = Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
 my $test_result_2 = Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI();
