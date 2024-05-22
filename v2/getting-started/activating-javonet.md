@@ -22,7 +22,7 @@ Use [register](https://my.javonet.com/signup/?type=free) or [log in](https://my.
 Javonet needs to be activated first. Activation must be called only once at the start-up of an application. During the first activation, license server are called and a javonet.lic file is generated.  
 
 :::code
-:calling_source: v2/snippets/`{calling_technology}`/common/activation.`{calling_ext}`
+:calling_source: v2/snippets/`{calling_technology}`/common/activationTests.`{calling_ext}`
 :calling_id: Javonet_activate
 :display: calling
 :::
