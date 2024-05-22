@@ -82,7 +82,6 @@ namespace Javonet.Netcore.Sdk.Tests.pythonpackage
             Assert.Equal(50, result);
         }
 
-
         [Fact]
         [Trait("Test", "Integration")]
         public void Test_PythonPackage_StandardLibrary_GetStaticField()

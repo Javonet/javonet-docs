@@ -7,6 +7,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
     public class channelTests
     {
         private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/configuration-file";
+
         [Fact]
         [Trait("Test", "Integration")]
         public void Test_Channel_InMemory_Success()
@@ -51,6 +52,5 @@ namespace Javonet.Netcore.Sdk.Tests.common
             // </WithConfigurationFile>
             Assert.NotNull(communicationChannel);
         }
-
     }
 }

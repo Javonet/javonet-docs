@@ -11,6 +11,59 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/jar-library";
 
+	TEST(Integration, Test_JarLibrary_StandardLibrary_CreateRuntimeContext) {
+		// <StandardLibrary_CreateRuntimeContext>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// use calledRuntime to interact with code from other technology
+		// </StandardLibrary_CreateRuntimeContext>
+		EXPECT_NE(nullptr, calledRuntime);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_CreateInvocationContext) {
+		// <StandardLibrary_CreateInvocationContext>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// construct an invocation context - this invocationContext in non-materialized 
+		auto invocationContext = calledRuntime->GetType("java.lang.Math")->InvokeStaticMethod("abs", -50);
+
+		// execute invocation context - this will materialize the invocationContext
+		auto response = invocationContext->Execute();
+		// </StandardLibrary_CreateInvocationContext>
+		EXPECT_NE(nullptr, response);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_GetValue) {
+		// <StandardLibrary_GetValue>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// construct an invocation context - this invocationContext in non-materialized 
+		auto invocationContext = calledRuntime->GetType("java.lang.Math")->InvokeStaticMethod("abs", -50);
+
+		// execute invocation context - this will materialize the invocationContext
+		auto response = invocationContext->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_GetValue>
+		EXPECT_EQ(50, result);
+	}
+
 	TEST(Integration, Test_JarLibrary_StandardLibrary_GetStaticField) {
 		// <StandardLibrary_GetStaticField>
 		// use Activate only once in your app

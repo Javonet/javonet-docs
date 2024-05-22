@@ -7,7 +7,7 @@ const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResour
 
 
 describe('Nodejs to Ruby Package integration tests', () => {
-    
+
     let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
