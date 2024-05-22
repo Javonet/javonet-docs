@@ -12,6 +12,59 @@ describe('Nodejs to Netframework Dll integration tests', () => {
         let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
         expect(result).toBe(0)
 
+        test(`Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext`, () => {
+            // <StandardLibrary_CreateRuntimeContext>
+            // use activate only once in your app
+            Javonet.activate('your-license-key')
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().clr()
+
+            // use calledRuntime to interact with code from other technology
+            // </StandardLibrary_CreateRuntimeContext>
+            expect(calledRuntime).not.toBeNull()
+        })
+
+        test(`Test_NetframeworkDll_StandardLibrary_CreateInvocationContext`, () => {
+            // <StandardLibrary_CreateInvocationContext>
+            // use activate only once in your app
+            Javonet.activate('your-license-key')
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().clr()
+
+            // construct an invocation context - this invocationContext in non-materialized
+            let invocationContext = calledRuntime.getType('System.Math').invokeStaticMethod('Abs', -50)
+
+            // execute invocation context - this will materialize the invocationContext
+            let response = invocationContext.execute()
+            // </StandardLibrary_CreateInvocationContext>
+            expect(response).not.toBeNull()
+        })
+
+        test(`Test_NetframeworkDll_StandardLibrary_GetValue`, () => {
+            // <StandardLibrary_GetValue>
+            // use activate only once in your app
+            Javonet.activate('your-license-key')
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().clr()
+
+            // construct an invocation context - this invocationContext in non-materialized
+            let invocationContext = calledRuntime.getType('System.Math').invokeStaticMethod('Abs', -50)
+
+            // execute invocation context - this will materialize the invocationContext
+            let response = invocationContext.execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </StandardLibrary_GetValue>
+            expect(result).toBe(50)
+        })
+
         test(`Test_NetframeworkDll_StandardLibrary_GetStaticField`, () => {
             // <StandardLibrary_GetStaticField>
             // use Activate only once in your app

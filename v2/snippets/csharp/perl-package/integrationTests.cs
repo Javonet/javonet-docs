@@ -46,7 +46,7 @@ namespace Javonet.Netcore.Sdk.Tests.perlpackage
 
             // construct an invocation context - this invocationContext in non-materialized 
             var invocationContext = calledRuntime.GetType("CORE").
-                InvokeStaticMethod("abs", -50);
+                InvokeStaticMethod("length", "sample text");
 
             // execute invocation context - this will materialize the invocationContext
             var response = invocationContext.Execute();

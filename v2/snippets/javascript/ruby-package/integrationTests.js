@@ -7,10 +7,63 @@ const resourcesDirectory = path.resolve(__dirname, '../../../..') + '/testResour
 
 
 describe('Nodejs to Ruby Package integration tests', () => {
-
+    
     let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
+    test(`Test_RubyPackage_StandardLibrary_CreateRuntimeContext`, () => {
+        // <StandardLibrary_CreateRuntimeContext>
+        // use activate only once in your app
+        Javonet.activate('your-license-key')
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // use calledRuntime to interact with code from other technology
+        // </StandardLibrary_CreateRuntimeContext>
+        expect(calledRuntime).not.toBeNull()
+    })
+
+    test(`Test_RubyPackage_StandardLibrary_CreateInvocationContext`, () => {
+        // <StandardLibrary_CreateInvocationContext>
+        // use activate only once in your app
+        Javonet.activate('your-license-key')
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // construct an invocation context - this invocationContext in non-materialized
+        let invocationContext = calledRuntime.getType('Math').invokeStaticMethod('sqrt', 2500)
+
+        // execute invocation context - this will materialize the invocationContext
+        let response = invocationContext.execute()
+        // </StandardLibrary_CreateInvocationContext>
+        expect(response).not.toBeNull()
+    })
+
+    test(`Test_RubyPackage_StandardLibrary_GetValue`, () => {
+        // <StandardLibrary_GetValue>
+        // use activate only once in your app
+        Javonet.activate('your-license-key')
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().ruby()
+
+        // construct an invocation context - this invocationContext in non-materialized
+        let invocationContext = calledRuntime.getType('Math').invokeStaticMethod('sqrt', 2500)
+
+        // execute invocation context - this will materialize the invocationContext
+        let response = invocationContext.execute()
+
+        // get value from response
+        let result = response.getValue()
+
+        // write result to console
+        console.log(result)
+        // </StandardLibrary_GetValue>
+        expect(result).toBe(50)
+    })
+    
     test(`Test_RubyPackage_StandardLibrary_GetStaticField`, () => {
         // <StandardLibrary_GetStaticField>
         // use Activate only once in your app

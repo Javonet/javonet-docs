@@ -1,5 +1,4 @@
-﻿using Javonet.Netcore.Sdk;
-using Javonet.Netcore.Utils;
+﻿using Javonet.Netcore.Utils;
 using Xunit;
 
 

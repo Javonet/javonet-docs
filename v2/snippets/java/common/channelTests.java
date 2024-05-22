@@ -22,9 +22,10 @@ public class channelTests {
         // use Activate only once in your app
         Javonet.activate("your-license-key");
 
-        var communicationChannel = Javonet.inMemory();
+        RuntimeFactory communicationChannel = Javonet.inMemory();
         // use communicationChannel to create runtimes to interact with
         // </InMemoryChannel>
+        Assertions.assertNotNull(communicationChannel);
     }
 
     @Test
@@ -34,10 +35,11 @@ public class channelTests {
         // use Activate only once in your app
         Javonet.activate("your-license-key");
 
-        var connectionData = new TcpConnectionData("127.0.0.1", 8083);
-        var communicationChannel = Javonet.tcp(connectionData);
+        TcpConnectionData connectionData = new TcpConnectionData("127.0.0.1", 8083);
+        RuntimeFactory communicationChannel = Javonet.tcp(connectionData);
         // use communicationChannel to create runtimes to interact with
         // </TcpChannel>
+        Assertions.assertNotNull(communicationChannel);
     }
 
     @Test
@@ -49,8 +51,9 @@ public class channelTests {
 
         // set up variables
         String configFilePath = resourcesDirectory + "/javonetconf.json";
-        var communicationChannel = Javonet.withConfig(configFilePath);
+        ConfigRuntimeFactory communicationChannel = Javonet.withConfig(configFilePath);
         // use communicationChannel to create runtimes to interact with
         // </WithConfigurationFile>
+        Assertions.assertNotNull(communicationChannel);
     }
 }

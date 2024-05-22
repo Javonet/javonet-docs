@@ -10,6 +10,59 @@ RSpec.describe 'Ruby To Perl Package Integration Tests' do
     expect(result).to eq(0)
   end
 
+  it 'Test_PerlPackage_StandardLibrary_CreateRuntimeContext' do
+    # <StandardLibrary_CreateRuntimeContext>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # use calledRuntime to interact with code from other technology
+    # </StandardLibrary_CreateRuntimeContext>
+    expect(called_runtime).not_to be_nil
+  end
+
+  it 'Test_PerlPackage_StandardLibrary_CreateInvocationContext' do
+    # <StandardLibrary_CreateInvocationContext>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # construct an invocation context - this invocationContext in non-materialized
+    invocation_context = called_runtime.get_type('CORE').invoke_static_method("length", "sample text")
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute
+    # </StandardLibrary_CreateInvocationContext>
+    expect(response).not_to be_nil
+  end
+
+  it 'Test_PerlPackage_StandardLibrary_GetValue' do
+    # <StandardLibrary_GetValue>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # construct an invocation context - this invocationContext in non-materialized
+    invocation_context = called_runtime.get_type('CORE').invoke_static_method("length", "sample text")
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </StandardLibrary_GetValue>
+    expect(result).to eq(11)
+  end
+
   it 'Test_PerlPackage_TestResources_LoadLibrary' do
     # <TestResources_LoadLibrary>
     # use activate only once in your app

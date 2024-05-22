@@ -11,6 +11,59 @@ if OS.windows?
       expect(result).to eq(0)
     end
 
+    it 'Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext' do
+      # <StandardLibrary_CreateRuntimeContext>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # use calledRuntime to interact with code from other technology
+      # </StandardLibrary_CreateRuntimeContext>
+      expect(called_runtime).not_to be_nil
+    end
+
+    it 'Test_NetframeworkDll_StandardLibrary_CreateInvocationContext' do
+      # <StandardLibrary_CreateInvocationContext>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # construct an invocation context - this invocationContext in non-materialized 
+      invocation_context = called_runtime.get_type('System.Math').invoke_static_method('Abs', -50)
+
+      # execute invocation context - this will materialize the invocationContext
+      response = invocation_context.execute
+      # </StandardLibrary_CreateInvocationContext>
+      expect(response).not_to be_nil
+    end
+
+    it 'Test_NetframeworkDll_StandardLibrary_GetValue' do
+      # <StandardLibrary_GetValue>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # construct an invocation context - this invocationContext in non-materialized 
+      invocation_context = called_runtime.get_type('System.Math').invoke_static_method('Abs', -50)
+
+      # execute invocation context - this will materialize the invocationContext
+      response = invocation_context.execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </StandardLibrary_GetValue>
+      expect(result).to eq(50)
+    end
+
     it 'Test_Netframework_Dll_StandardLibrary_GetStaticField' do
       # <StandardLibrary_GetStaticField>
       # use activate only once in your app

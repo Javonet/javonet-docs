@@ -12,7 +12,7 @@ def test_JarLibrary_StandardLibrary_CreateRuntimeContext():
     Javonet.activate("your-license-key")
 
     # create called runtime context
-    called_runtime = Javonet.in_memory().netcore()
+    called_runtime = Javonet.in_memory().jvm()
 
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
