@@ -19,6 +19,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
             var communicationChannel = Javonet.InMemory();
             // use communicationChannel to create runtimes to interact with
             // </InMemoryChannel>
+            Assert.NotNull(communicationChannel);
         }
 
         [Fact]
@@ -33,6 +34,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
             var communicationChannel = Javonet.Tcp(connectionData);
             // use communicationChannel to create runtimes to interact with
             // </TcpChannel>
+            Assert.NotNull(communicationChannel);
         }
 
         [Fact]
@@ -48,6 +50,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
             var communicationChannel = Javonet.WithConfig(configFilePath);
             // use communicationChannel to create runtimes to interact with
             // </WithConfigurationFile>
+            Assert.NotNull(communicationChannel);
         }
 
     }

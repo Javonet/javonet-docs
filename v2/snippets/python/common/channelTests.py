@@ -11,6 +11,7 @@ def test_channel_in_memory_success():
     communication_channel = Javonet.in_memory()
     # use communicationChannel to create runtimes to interact with
     # </InMemoryChannel>
+    assert communication_channel is not None
 
 def test_channel_tcp_success():
     # <TcpChannel>
@@ -21,6 +22,7 @@ def test_channel_tcp_success():
     communication_channel = Javonet.tcp(connection_data)
     # use communicationChannel to create runtimes to interact with
     # </TcpChannel>
+    assert communication_channel is not None
 
 def test_channel_with_configuration_file_success():
     # <WithConfigurationFile>
@@ -32,3 +34,4 @@ def test_channel_with_configuration_file_success():
     communication_channel = Javonet.with_config(str(config_file_path))
     # use communicationChannel to create runtimes to interact with
     # </WithConfigurationFile>
+    assert communication_channel is not None

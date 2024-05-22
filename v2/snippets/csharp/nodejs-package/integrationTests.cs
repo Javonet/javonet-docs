@@ -30,6 +30,7 @@ namespace Javonet.Netcore.Sdk.Tests.nodejspackage
 
             // use calledRuntime to interact with code from other technology
             //</StandardLibrary_CreateRuntimeContext>
+            Assert.NotNull(calledRuntime);
         }
 
         [Fact]
@@ -50,6 +51,7 @@ namespace Javonet.Netcore.Sdk.Tests.nodejspackage
             // execute invocation context - this will materialize the invocationContext
             var response = invocationContext.Execute();
             //</StandardLibrary_CreateInvocationContext>
+            Assert.NotNull(response);
         }
 
         [Fact]

@@ -16,6 +16,7 @@ def test_NetDll_StandardLibrary_CreateRuntimeContext():
 
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
+    assert called_runtime is not None
 
 def test_NetDll_StandardLibrary_CreateInvocationContext():
     # <StandardLibrary_CreateInvocationContext>
@@ -31,6 +32,7 @@ def test_NetDll_StandardLibrary_CreateInvocationContext():
     # execute invocation context - this will materialize the invocationContext
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
+    assert response is not None
 
 def test_NetDll_StandardLibrary_GetValue():
     # <StandardLibrary_GetValue>

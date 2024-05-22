@@ -19,6 +19,7 @@ def test_NetframeworkDll_StandardLibrary_CreateRuntimeContext():
 
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
+    assert called_runtime is not None
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
 def test_NetframeworkDll_StandardLibrary_CreateInvocationContext():
@@ -35,6 +36,7 @@ def test_NetframeworkDll_StandardLibrary_CreateInvocationContext():
     # execute invocation context - this will materialize the invocationContext
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
+    assert response is not None
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Clr unsupported on Linux and MacOs")
 def test_NetframeworkDll_StandardLibrary_GetValue():

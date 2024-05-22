@@ -17,6 +17,7 @@ def test_PerlPackage_StandardLibrary_CreateRuntimeContext():
 
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
+    assert called_runtime is not None
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_PerlPackage_StandardLibrary_CreateInvocationContext():
@@ -33,6 +34,7 @@ def test_PerlPackage_StandardLibrary_CreateInvocationContext():
     # execute invocation context - this will materialize the invocationContext
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
+    assert response is not None
 
 @pytest.mark.skipif(platform.system() != 'Windows', reason="Test fail on pipeline on linux and macos")
 def test_PerlPackage_StandardLibrary_GetValue():

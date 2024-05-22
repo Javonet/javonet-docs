@@ -1,0 +1,56 @@
+package common;
+
+import com.javonet.sdk.*;
+import com.javonet.utils.TcpConnectionData;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+
+import java.net.UnknownHostException;
+import java.nio.file.Paths;
+
+
+public class channelTests {
+
+    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString()
+            + "/testResources/configuration-file";
+
+    @Test
+    @Tag("integration")
+    public void Test_Channel_InMemory_Success() {
+        // <InMemoryChannel>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        var communicationChannel = Javonet.inMemory();
+        // use communicationChannel to create runtimes to interact with
+        // </InMemoryChannel>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Channel_Tcp_Success() throws UnknownHostException {
+        // <TcpChannel>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        var connectionData = new TcpConnectionData("127.0.0.1", 8083);
+        var communicationChannel = Javonet.tcp(connectionData);
+        // use communicationChannel to create runtimes to interact with
+        // </TcpChannel>
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Channel_WithConfigurationFile_Success() {
+        // <WithConfigurationFile>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // set up variables
+        String configFilePath = resourcesDirectory + "/javonetconf.json";
+        var communicationChannel = Javonet.withConfig(configFilePath);
+        // use communicationChannel to create runtimes to interact with
+        // </WithConfigurationFile>
+    }
+}
