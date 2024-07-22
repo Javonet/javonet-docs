@@ -1,6 +1,6 @@
 programming-languages:
 - slug: csharp
-  name: "C#"
+  name: C\u0023
   ext: cs
 - slug: java
   name: Java
