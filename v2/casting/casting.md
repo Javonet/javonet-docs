@@ -1,10 +1,10 @@
 :::options
-:title: Casting from `{called_name}` in `{calling_name}`
-:description: This article provides an overview of casting with Javonet from `{called_name}` in `{calling_name}`
+:title: Casting from `{called_name}` in `{calling_name}`.
+:description: This article provides an overview of casting with Javonet from `{called_name}` in `{calling_name}`.
 :keywords: Javonet, `{called_name}` Casting, `{calling_name}`, Type Casting, Data Conversion, Primitive Types, Complex Types, Explicit Casting, Implicit Casting, Cast Operator, Type Conversion
 :::
 
-# Casting from `{called_name}` in `{calling_name}`
+# Casting from `{called_name}` in `{calling_name}`.
   
 This article provides an introduction to cross-technology handling of casting mechanism. Casting is necessary in statically-typed languages like C, C++, Java, and C#, where the data type of a variable is known at compile time. In these languages, if you want to assign a value of one type to a variable of another type, you need to perform a cast.  
   

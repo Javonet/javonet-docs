@@ -1,11 +1,11 @@
 :::options
-:title: Creating instance and calling instance method from `{called_name}` in `{calling_name}`
-:description: This article provides an overview of creating instances and calling instance methods from `{called_name}` in `{calling_name}`
+:title: Creating instance and calling instance method from `{called_name}` in `{calling_name}`.
+:description: This article provides an overview of creating instances and calling instance methods from `{called_name}` in `{calling_name}`.
 :related_articles: calling-methods/invoking-static-method
 :keywords: Javonet, `{called_name}` Instance Creation, `{calling_name}`, Instance Methods, Method Invocation, Object Creation, Method Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
-# Create instance and call instance method from `{called_name}` in `{calling_name}`
+# Create instance and call instance method from `{called_name}` in `{calling_name}`.
   
 This article provides an introduction to cross-technology creation of instances of classes and invocation of instance methods.
   
@@ -13,7 +13,7 @@ With Javonet you can interact with classes from `{called_name}` like they were a
   
 Javonet allows you to pass any `{calling_name}` value type as argument to instance method from `{called_name}`. In example: int, float, string, char, long and other. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the Invocation Context variable referencing that object as argument of static method invocation.   
   
-## Using custom `{called_name}` in `{calling_name}`
+## Using custom `{called_name}` in `{calling_name}`.
   
 With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with public methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -45,7 +45,7 @@ Calls to invokeInstanceMethod() allows to call "multiplyTwoNumbers" `{called_tec
   
 You can receive and further process and type of result returned by called `{called_technology}` method, regardless if it is reference type that will get returned as another instance of [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) that you can use for further interaction, or value type that you can obtain as `{calling_technology}` value with getValue() method.  
   
-## Using framework `{called_name}` in `{calling_name}`
+## Using framework `{called_name}` in `{calling_name}`.
 
 The same steps are required to use types and methods from standard `{called_name}`:
 

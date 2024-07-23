@@ -1,10 +1,10 @@
 :::options
-:title: Using enum type from `{called_name}` in `{calling_name}`
-:description: This article provides an overview of working with enum types from `{called_name}` in `{calling_name}`
+:title: Using enum type from `{called_name}` in `{calling_name}`.
+:description: This article provides an overview of working with enum types from `{called_name}` in `{calling_name}`.
 :keywords: Javonet, `{called_name}` Enum Types, `{calling_name}`, Enum Handling, Enum Values, Enum Names, Enum Conversion, Enum Methods, Enum Pass, Enum Return, Enum Item
 :::
 
-# Using enum type from `{called_name}` in `{calling_name}`  
+# Using enum type from `{called_name}` in `{calling_name}`.  
   
 This article provides an introduction to cross-technology handling of `enum` type. In programming, an `enum` (short for enumeration) type is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it. Enums are used to create our own data types, just like classes. They are particularly useful when we want to represent a fixed set of constants, such as days of the week, states, colors, directions, and more. This makes the code more readable and less prone to errors.  
   

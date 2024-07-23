@@ -1,10 +1,10 @@
 :::options
-:title: Working with exceptions from `{called_name}` in `{calling_name}`
-:description: This article provides an overview of working with exceptions from `{called_name}` in `{calling_name}`
+:title: Working with exceptions from `{called_name}` in `{calling_name}`.
+:description: This article provides an overview of working with exceptions from `{called_name}` in `{calling_name}`.
 :keywords: Javonet, `{called_name}` Exceptions, `{calling_name}`, Exception Handling, Try-Catch, Throw Exception, Catch Exception, Exception Types, Runtime Exceptions, Checked Exceptions, Unchecked Exceptions
 :::
 
-# Exceptions from `{called_name}` in `{calling_name}`
+# Exceptions from `{called_name}` in `{calling_name}`.
   
 This article provides an introduction to cross-technology handling of exceptions. Exceptions in programming are events that occur during the execution of programs that disrupt the normal flow of instructions.  
   

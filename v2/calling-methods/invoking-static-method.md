@@ -1,11 +1,11 @@
 :::options
-:title: Invoke static methods from `{called_name}` in `{calling_name}`  
-:description: This article provides an overview of invoking static methods from `{called_name}` in `{calling_name}`  
+:title: Invoke static methods from `{called_name}` in `{calling_name}`.  
+:description: This article provides an overview of invoking static methods from `{called_name}` in `{calling_name}`.  
 :related_articles: calling-methods/creating-instance-and-calling-instance-methods
 :keywords: Javonet, `{called_name}` Static Methods, `{calling_name}` , Static Method Invocation, Method Arguments, Method Results, Custom `{called_name}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
-# Invoke static methods from `{called_name}` in `{calling_name}`  
+# Invoke static methods from `{called_name}` in `{calling_name}`.  
   
 This article provides an introduction to cross-technology invocation of static methods.  
   

@@ -1,11 +1,11 @@
 :::options
-:title: Use 1D arrays from `{called_name}` in `{calling_name}`
-:description: This article provides general description of working with one-dimensional arrays from `{called_name}` in `{calling_name}`
+:title: Use 1D arrays from `{called_name}` in `{calling_name}`.
+:description: This article provides general description of working with one-dimensional arrays from `{called_name}` in `{calling_name}`.
 :related_articles: arrays-and-collections/multidimensional-arrays, arrays-and-collections/collections, arrays-and-collections/retrieve-array, arrays-and-collections/index-operator.md, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/iterate-over-array
 :keywords: Javonet, Arrays, `{called_name}`, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
-# Working with 1D arrays from `{called_name}` in `{calling_name}`
+# Working with 1D arrays from `{called_name}` in `{calling_name}`.
 
 This article provides an introduction to cross-technology handling of one-dimensional arrays. Data structures are one of the essential aspects of every piece of software. Any application constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`. Every array from `{called_name}` is treated as reference.
   
@@ -27,7 +27,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 
 Javonet SDK contains various methods to interact with arrays and consume the results in `{calling_name}`:  
 
-## Get element of an 1D array from `{called_name}` in `{calling_name}`
+## Get element of an 1D array from `{called_name}` in `{calling_name}`.
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -39,7 +39,7 @@ Javonet SDK contains various methods to interact with arrays and consume the res
 
 In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Method getIndex is used to get element from the array.
 
-## Set element of an 1D array from `{called_name}` in `{calling_name}`
+## Set element of an 1D array from `{called_name}` in `{calling_name}`.
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -51,7 +51,7 @@ In the snippet above, get1DArray method is used to get reference to 1D array fro
 
 In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Method setIndex is used to set element of the 1D array. First argument is index, second argument is new value.  
 
-## Get size of an array from `{called_name}` in `{calling_name}`  
+## Get size of an array from `{called_name}` in `{calling_name}`.  
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
