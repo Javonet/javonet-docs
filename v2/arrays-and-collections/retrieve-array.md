@@ -1,11 +1,11 @@
 :::options
-:title: Retrieve array from `{called_name}` to `{calling_name}`
-:description: This article provides general description of retrieving array from `{called_name}` to `{calling_name}`
+:title: Retrieve `{calling_name}` array from `{called_name}`
+:description: This article provides general description of retrieving `{calling_name}` array from `{called_name}`
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/multidimensional-arrays, arrays-and-collections/collections, arrays-and-collections/index-operator, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/iterate-over-array
 :keywords: Javonet, `{called_name}` Arrays, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
-# Retrieve array from `{called_name}` to `{calling_name}`
+# Retrieve `{calling_name}` array from `{called_name}`
 
 This article shows how to retrieve array from called technology.
   
@@ -23,7 +23,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 :display: called
 :::
 
-## Retrieving array to `{calling_name}`
+## Array in `{calling_name}` code
 
 With Javonet SDK it is possible to retrieve array from called technology and cast it to `{calling_name}` array.
   

@@ -1,11 +1,11 @@
 :::options
-:title: Invocation context from `{called_name}` in `{calling_name}`.
-:description: The article describes the concept of Invocation Context from `{called_name}` in `{calling_name}`.
+:title: `{calling_name}` invocation context from `{called_name}`
+:description: The article describes the concept of `{calling_name}` Invocation Context from `{called_name}`
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/runtime-context, foundations/execute-method,foundations/get-value-method
 :keywords: Javonet, `{called_name}` Invocation Context, `{calling_name}`, Method Invocation, Invocation Chain, Non-Materialized Expression, Execute Method, Runtime Context, In Memory Channel, TCP Channel, Static Class
 :::
 
-# Invocation context from `{called_name}` in `{calling_name}`.
+# `{calling_name}` invocation context from `{called_name}`
 
 Calling any method on [Runtime Context](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md) creates new instance of Invocation Context.  
 

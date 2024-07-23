@@ -1,11 +1,11 @@
 :::options
-:title: Passing arguments by reference with out keyword to `{called_name}` in `{calling_name}`.
-:description: This article provides an overview of passing arguments by reference with out keyword to `{called_name}` in `{calling_name}`.
+:title: Passing `{calling_name}` arguments by reference with out keyword to `{called_name}`
+:description: This article provides an overview of passing arguments by reference with out keyword to `{called_name}`
 :related_articles: methods-arguments/passing-arguments-by-reference-with-ref-keyword
 :keywords: Javonet, `{called_name}` Passing Arguments, `{calling_name}`, Out Keyword, Reference Passing, Method Invocation, Argument Passing, Value Return, Multiple Return Values, Function Calls, Parameter Passing, Return Types
 :::
 
-# Passing argument with out keyword to `{called_name}` in `{calling_name}`.
+# Passing `{calling_name}` argument with out keyword to `{called_name}`
   
 This article provides an introduction to cross-technology invocation of both static and instance methods which contains argument of type `out`. Parameter modifier `out` in C# (.NET) technology is used in a method signature to pass an argument by reference. It is described in details in [this article](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters#out-parameter-modifier).  
   
@@ -15,7 +15,7 @@ With Javonet you can interact with methods with `out` parameter modifier from `{
 
 Javonet allows you to pass any `{calling_name}` value type as argument to method from `{called_name}`. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) variable referencing that object as argument of method invocation.  
   
-## Custom `{called_name}` with out argument in `{calling_name}`
+## Custom `{called_name}` with out `{calling_name}` argument
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   

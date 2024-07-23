@@ -1,6 +1,6 @@
 :::options
-:title: Configure channel in `{calling_name}`
-:description: The article describes how to configure channel which Javonet uses to communicate in `{calling_name}`
+:title: `{calling_name}` Configure channel
+:description: The article describes how to configure `{calling_name}` channel which Javonet uses to communicate
 :related_articles: foundations/javonet-static-class, foundations/in-memory-channel, foundations/tcp-channel, foundations/runtime-context, foundations/invocation-context, foundations/execute-method
 :keywords: Javonet, `{called_name}` In Memory Connection, `{calling_name}`, In Memory Channel, Communication Channel, Runtime Context, Invocation Context, Execute Method, TCP Channel, Static Class
 :::
