@@ -1,11 +1,11 @@
 :::options
-:title: Multi-dimensional arrays from `{called_name}` in `{calling_name}`.
-:description: This article provides general description of working with multidimensional arrays from `{called_name}` in `{calling_name}`.
+:title: Multi-dimensional `{calling_name}` arrays from `{called_name}`
+:description: This article provides general description of working with multidimensional `{calling_name}` arrays from `{called_name}`
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/collections, arrays-and-collections/retrieve-array, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/iterate-over-array
 :keywords: Javonet, `{called_name}` Multidimensional Arrays, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements, 2D Arrays
 :::
 
-# Working with n-D arrays from `{called_name}` in `{calling_name}`.
+# Working with n-D `{calling_name}` arrays from `{called_name}`
 
 This article provides an introduction to cross-technology handling of multidimensional arrays. Data structures are one of the essential aspects of every piece of software. Any application constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`. Every array from `{called_name}` is treated as reference.
   
@@ -27,7 +27,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 
 Javonet SDK contains various methods to interact with arrays and consume the results in `{calling_name}`:  
 
-## Get element of 2D array from `{called_name}` in `{calling_name}`.
+## Get element of `{calling_name}` 2D array from `{called_name}`
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -39,7 +39,7 @@ Javonet SDK contains various methods to interact with arrays and consume the res
   
 In the snippet above, get2DArray method is used to get reference to 2D array from `{called_name}`. Method getIndex is used to get element from the array. Depending on calling technology there is one or more ways to get element from array.
 
-## Set element of 2D array from `{called_name}` in `{calling_name}`.
+## Set element of `{calling_name}` 2D array from `{called_name}`
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
