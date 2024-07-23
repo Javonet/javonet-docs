@@ -1,11 +1,11 @@
 :::options
-:title: Calling generic instance method from `{called_name}` in `{calling_name}`
-:description: This article provides an overview of calling generic instance method from `{called_name}` in `{calling_name}`
+:title: Calling generic instance method from `{called_name}` in `{calling_name}`.
+:description: This article provides an overview of calling generic instance method from `{called_name}` in `{calling_name}`.
 :related_articles: generics/calling-generic-static-method, generics/creating-generic-class-instance
 :keywords: Javonet, `{called_name}` Generic Instance Method, `{calling_name}`, Method Invocation, Generic Methods, Type Parameters, Generic Arguments, Method Results, Custom `{called_technology}`, Public Methods, Value Type Arguments, Reference Type Arguments
 :::
 
-# Call generic instance method from `{called_name}` in `{calling_name}`
+# Call generic instance method from `{called_name}` in `{calling_name}`.
   
 This article provides an introduction to cross-technology invocation of instance generic methods. Generic methods in C# (.NET) and Java technologies are methods that are declared with the type parameter in its signature, allowing it to be used with any data type. It is described in detail in [article about generic methods in .NET](https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/generics/generic-methods) and [article about generic methods in Java](https://docs.oracle.com/javase/tutorial/extra/generics/methods.html).  
   

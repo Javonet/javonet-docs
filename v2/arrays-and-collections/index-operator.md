@@ -27,7 +27,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 
 Each array or collection from `{called_name}` returns as InvocationContext which contains reference to the target data. Javonet SDK implements [] operator on InvocationContext to interact with complex data objects in `{calling_name}`:  
 
-## Get element from `{called_name}` in `{calling_name}`
+## Get element from `{called_name}` in `{calling_name}`.
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -39,7 +39,7 @@ Each array or collection from `{called_name}` returns as InvocationContext which
 
 In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Operator [] is used to get element from the array.
 
-## Set element from `{called_name}` in `{calling_name}`
+## Set element from `{called_name}` in `{calling_name}`.
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`

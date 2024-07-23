@@ -1,11 +1,11 @@
 :::options
-:title: Adding references to libraries from `{called_name}` in `{calling_name}`
-:description: This article provides information about adding references to libraries from `{called_name}` in `{calling_name}`
+:title: Adding references to libraries from `{called_name}` in `{calling_name}`.
+:description: This article provides information about adding references to libraries from `{called_name}` in `{calling_name}`.
 :related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/activating-javonet
 :keywords: Javonet, `{called_name}` Adding References, `{calling_name}`, Library References, DLL References, JAR References, Python Package References, Ruby Package References, Perl Package References, Node.js Package References, Library Loading, Library Usage, Library Integration
 :::
 
-# Adding references to libraries from `{called_name}` in `{calling_name}`
+# Adding references to libraries from `{called_name}` in `{calling_name}`.
 
 Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article lists getting started sections for supported technologies.  
   

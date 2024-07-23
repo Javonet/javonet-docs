@@ -1,11 +1,11 @@
 :::options
-:title: Passing arguments by reference with out keyword to `{called_name}` in `{calling_name}`
-:description: This article provides an overview of passing arguments by reference with out keyword to `{called_name}` in `{calling_name}`
+:title: Passing arguments by reference with out keyword to `{called_name}` in `{calling_name}`.
+:description: This article provides an overview of passing arguments by reference with out keyword to `{called_name}` in `{calling_name}`.
 :related_articles: methods-arguments/passing-arguments-by-reference-with-ref-keyword
 :keywords: Javonet, `{called_name}` Passing Arguments, `{calling_name}`, Out Keyword, Reference Passing, Method Invocation, Argument Passing, Value Return, Multiple Return Values, Function Calls, Parameter Passing, Return Types
 :::
 
-# Passing argument with out keyword to `{called_name}` in `{calling_name}`
+# Passing argument with out keyword to `{called_name}` in `{calling_name}`.
   
 This article provides an introduction to cross-technology invocation of both static and instance methods which contains argument of type `out`. Parameter modifier `out` in C# (.NET) technology is used in a method signature to pass an argument by reference. It is described in details in [this article](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters#out-parameter-modifier).  
   
