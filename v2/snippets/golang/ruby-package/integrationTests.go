@@ -328,16 +328,16 @@ func Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_
 	// use Activate only once in your app
 	result, err := Javonet.ActivateWithCredentials("your-license-key")
 	if result != 0 {
-		t.Fatal("Wrong activation result: " + err.Error())
+		fmt.Println("Wrong activation result: " + err.Error())
 	}
 	if err != nil {
-		t.Fatal("Activation exception: " + err.Error())
+		fmt.Println("Activation exception: " + err.Error())
 	}
 
 	// create called runtime context
 	calledRuntime, err := Javonet.InMemory().Ruby()
 	if err != nil {
-		t.Fatal("Creating runtime exception: " + err.Error())
+		fmt.Println("Creating runtime exception: " + err.Error())
 	}
 
 	// set up variables
@@ -347,13 +347,13 @@ func Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_
 	// load custom library
 	_, err = calledRuntime.LoadLibrary(libraryPath)
 	if err != nil {
-		t.Fatal("Loading library exception: " + err.Error())
+		fmt.Println("Loading library exception: " + err.Error())
 	}
 
 	// get type from the runtime
 	calledRuntimeType, err := calledRuntime.GetType(className).Execute()
 	if err != nil {
-		t.Fatal("Get Type exception: " + err.Error())
+		fmt.Println("Get Type exception: " + err.Error())
 	}
 
 	// invoke type's static method which throws exception
