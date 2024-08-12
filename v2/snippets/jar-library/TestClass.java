@@ -93,14 +93,37 @@ public class TestClass {
 		Mango
 	}
 
-	public static ArrayList<Fruit> Fruits = new ArrayList<Fruit>();
+	private static ArrayList<Fruit> Fruits = new ArrayList<Fruit>();
 
 	public static String addFruitsToList(Fruit[] fruits) {
 		Fruits.addAll(Arrays.asList(fruits));
 		return String.format("%d fruits on the list", Fruits.size());
 	}
-
 	// </Enums>
+
+	// <Multithreading>
+
+	private java.util.concurrent.ConcurrentMap<Integer, Integer> cache = new java.util.concurrent.ConcurrentHashMap<>();
+
+	public int addTwoNumbers(int x ,int y) {
+		System.out.println("Computing result in thread: " + Thread.currentThread().getId());
+		try {
+			Thread.sleep(1000); // Simulate computation delay
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+		int result = x + y;
+		System.out.println("Saving result in thread: " + Thread.currentThread().getId());
+		try {
+			Thread.sleep(50); // Simulate saving delay
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+		cache.put((int) Thread.currentThread().getId(), result);
+		System.out.println("Returning result in thread: " + Thread.currentThread().getId());
+		return result;
+	}
+	// </Multithreading>
 
 	// <Empty>
 	// empty

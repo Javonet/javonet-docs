@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace TestClass
 {
@@ -113,7 +113,7 @@ namespace TestClass
 			Mango
 		}
 
-		public static List<Fruit> Fruits = new List<Fruit>();
+		public static System.Collections.Generic.List<Fruit> Fruits = new System.Collections.Generic.List<Fruit>();
 
 		public static string AddFruitsToList(Fruit[] fruits)
 		{
@@ -141,10 +141,26 @@ namespace TestClass
 		{
 			outStr = "String from OutSampleMethod";
 		}
-		// </Outs>
+        // </Outs>
 
-		// <Empty>
-		// empty
-		// </Empty>
-	}
+        // <Multithreading>
+        System.Collections.Concurrent.ConcurrentDictionary<int, int> _cache = new System.Collections.Concurrent.ConcurrentDictionary<int, int>();
+
+        public int AddTwoNumbers(int x, int y)
+        {
+            Console.WriteLine("Computing result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            System.Threading.Thread.Sleep(1000);
+            var result = x + y;
+            Console.WriteLine("Saving result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            System.Threading.Thread.Sleep(50);
+            _cache[System.Threading.Thread.CurrentThread.ManagedThreadId] = result;
+            Console.WriteLine("Returning result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            return result;
+        }
+        // </Multithreading>
+
+        // <Empty>
+        // empty
+        // </Empty>
+    }
 }

@@ -4,6 +4,7 @@ use Test::More qw(no_plan);
 use Math::Trig;
 use File::Spec;
 use File::Basename;
+use Nice::Try;
 use lib 'utils';
 use aliased 'Javonet::Javonet' => 'Javonet';
 use ActivationCredentials;
@@ -77,10 +78,10 @@ sub Test_PythonPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     my $python_runtime = Javonet->in_memory()->python();
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type("builtins")->execute();
+    my $called_runtime_type = $python_runtime->get_type("builtins")->execute();
 
     # invoke type's static method
-    my $response = $python_type->invoke_static_method("abs", -50)->execute();
+    my $response = $called_runtime_type->invoke_static_method("abs", -50)->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -100,10 +101,10 @@ sub Test_PythonPackage_StandardLibrary_GetStaticField_MathPI_PI {
     my $python_runtime = Javonet->in_memory()->python();
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type("math")->execute();
+    my $called_runtime_type = $python_runtime->get_type("math")->execute();
 
     # get type's static field
-    my $response = $python_type->get_static_field("pi")->execute();
+    my $response = $called_runtime_type->get_static_field("pi")->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -147,10 +148,10 @@ sub Test_PythonPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     #  invoke type's static method
-    my $response = $python_type->invoke_static_method("multiply_by_two", 25)->execute();
+    my $response = $called_runtime_type->invoke_static_method("multiply_by_two", 25)->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -177,10 +178,10 @@ sub Test_PythonPackage_TestResources_GetStaticField_StaticValue_3 {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # get type's static field
-    my $response = $python_type->get_static_field("static_value")->execute();
+    my $response = $called_runtime_type->get_static_field("static_value")->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -207,13 +208,13 @@ sub Test_PythonPackage_TestResources_SetStaticField_StaticValue_75 {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # set type's static field
-    $python_type->set_static_field("static_value", 75)->execute();
+    $called_runtime_type->set_static_field("static_value", 75)->execute();
 
     # get type's static field
-    my $response = $python_type->get_static_field("static_value")->execute();
+    my $response = $called_runtime_type->get_static_field("static_value")->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -221,7 +222,7 @@ sub Test_PythonPackage_TestResources_SetStaticField_StaticValue_75 {
     # print result to console
     print("$result\n");
     # </TestResources_SetStaticField>
-    $python_type->set_static_field("static_value", 3)->execute();
+    $called_runtime_type->set_static_field("static_value", 3)->execute();
     return $result;
 }
 
@@ -241,10 +242,10 @@ sub Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(0, 1)->execute();
+    my $instance = $called_runtime_type->create_instance(0, 1)->execute();
 
     # invoke instance's method
     my $response = $instance->invoke_instance_method("multiply_two_numbers", 5, 4)->execute();
@@ -274,10 +275,10 @@ sub Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18 {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(18, 19)->execute();
+    my $instance = $called_runtime_type->create_instance(18, 19)->execute();
 
     # get instance's field
     my $response = $instance->get_instance_field("public_value")->execute();
@@ -289,6 +290,36 @@ sub Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18 {
     print("$result\n");
     # </TestResources_GetInstanceField>
     return $result;
+}
+
+sub Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException {
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create Python runtime context
+    my $python_runtime = Javonet->in_memory()->python();
+
+    # set up variables
+    my $library_path = $resources_directory;
+    my $class_name = "TestClass.TestClass";
+
+    # load Nodejs custom library
+    $python_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
+
+    # #invoke type's static method which throws exception
+    my $exception = "";
+    try {
+        my $response = $called_runtime_type->invoke_static_method("divide_by", 10, 0)->execute();
+    } catch ($ex) {
+        $exception = $ex;
+    };
+    print("Exception: $exception\n");
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    like($exception, qr/divide_by_third/, 'Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException');
 }
 
 sub Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree {
@@ -307,10 +338,10 @@ sub Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(0, 1)->execute();
+    my $instance = $called_runtime_type->create_instance(0, 1)->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get_1d_array")->execute();
@@ -343,10 +374,10 @@ sub Test_PythonPackage_TestResources_1DArray_GetSize_5 {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(0, 1)->execute();
+    my $instance = $called_runtime_type->create_instance(0, 1)->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get_1d_array")->execute();
@@ -379,10 +410,10 @@ sub Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(0, 1)->execute();
+    my $instance = $called_runtime_type->create_instance(0, 1)->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get_1d_array")->execute();
@@ -419,10 +450,10 @@ sub Test_PythonPackage_TestResources_SetInstanceField_PublicValue_44 {
     $python_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $python_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $python_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $python_type->create_instance(18, 19)->execute();
+    my $instance = $called_runtime_type->create_instance(18, 19)->execute();
 
     # set instance's field
     $instance->set_instance_field("public_value", 44)->execute();
@@ -455,11 +486,11 @@ sub Test_PythonPackage_TestResources_EnumNameAndValue {
     $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $python_type = $called_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # get enum's items
-    my $fruit_1 = $called_runtime->get_enum_item($python_type, "Fruit", "Mango");
-    my $fruit_2 = $called_runtime->get_enum_item($python_type, "Fruit", "Orange");
+    my $fruit_1 = $called_runtime->get_enum_item($called_runtime_type, "Fruit", "Mango");
+    my $fruit_2 = $called_runtime->get_enum_item($called_runtime_type, "Fruit", "Orange");
 
     # get items' names and values
     my $fruit_1_name = $fruit_1->get_enum_name()->execute()->get_value();
@@ -486,6 +517,7 @@ if ("$osname" ne 'darwin') {
     is(Test_PythonPackage_TestResources_SetStaticField_StaticValue_75(), 75, 'Test_PythonPackage_TestResources_SetStaticField_StaticValue_3');
     is(Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(), 20, 'Test_PythonPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
     is(Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18(), 18, 'Test_PythonPackage_TestResources_GetInstanceField_PublicValue_18');
+    Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException();
     is(Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree(), "three", 'Test_PythonPackage_TestResources_1DArray_GetIndex_2_StringThree');
     is(Test_PythonPackage_TestResources_1DArray_GetSize_5(), 5, 'Test_PythonPackage_TestResources_1DArray_GetSize_5');
     is(Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven(), "seven", 'Test_PythonPackage_TestResources_1DArray_SetIndex_StringSeven');

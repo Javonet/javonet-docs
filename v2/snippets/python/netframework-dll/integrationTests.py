@@ -30,7 +30,7 @@ def test_NetframeworkDll_StandardLibrary_CreateInvocationContext():
     # create called runtime context
     called_runtime = Javonet.in_memory().clr()
 
-    # construct an invocation context - this invocationContext in non-materialized 
+    # construct an invocation context - this invocationContext in non-materialized
     invocation_context = called_runtime.get_type("System.Math").invoke_static_method("Abs", -50)
 
     # execute invocation context - this will materialize the invocationContext
@@ -47,7 +47,7 @@ def test_NetframeworkDll_StandardLibrary_GetValue():
     # create called runtime context
     called_runtime = Javonet.in_memory().clr()
 
-    # construct an invocation context - this invocationContext in non-materialized 
+    # construct an invocation context - this invocationContext in non-materialized
     invocation_context = called_runtime.get_type("System.Math").invoke_static_method("Abs", -50)
 
     # execute invocation context - this will materialize the invocationContext

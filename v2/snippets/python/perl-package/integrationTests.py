@@ -26,7 +26,7 @@ def test_PerlPackage_StandardLibrary_CreateInvocationContext():
     Javonet.activate("your-license-key")
 
     # create called runtime context
-    called_runtime = Javonet.in_memory().jvm()
+    called_runtime = Javonet.in_memory().perl()
 
     # construct an invocation context - this invocationContext in non-materialized 
     invocation_context = called_runtime.get_type("CORE").invoke_static_method("length", "sample text")
@@ -43,7 +43,7 @@ def test_PerlPackage_StandardLibrary_GetValue():
     Javonet.activate("your-license-key")
 
     # create called runtime context
-    called_runtime = Javonet.in_memory().jvm()
+    called_runtime = Javonet.in_memory().perl()
 
     # construct an invocation context - this invocationContext in non-materialized 
     invocation_context = called_runtime.get_type("CORE").invoke_static_method("length", "sample text")

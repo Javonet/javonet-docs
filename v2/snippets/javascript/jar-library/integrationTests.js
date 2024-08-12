@@ -10,6 +10,22 @@ describe('Nodejs to Jar Library integration tests', () => {
     let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
     expect(result).toBe(0)
 
+    test(`Test_JarLibrary_TestResources_LoadLibrary`, () => {
+        // <TestResources_LoadLibrary>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key")
+
+        // create called runtime context
+        let calledRuntime = Javonet.inMemory().jvm()
+
+        // set up variables
+        const libraryPath = resourcesDirectory + '/TestClass.jar'
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath)
+        // </TestResources_LoadLibrary>
+    })
+
     test(`Test_JarLibrary_StandardLibrary_CreateRuntimeContext`, () => {
         // <StandardLibrary_CreateRuntimeContext>
         // use activate only once in your app
@@ -160,22 +176,6 @@ describe('Nodejs to Jar Library integration tests', () => {
         // </StandardLibrary_InvokeInstanceMethod>
         expect(result).toBeGreaterThanOrEqual(0)
         expect(result).toBeLessThan(10)
-    })
-
-    test(`Test_JarLibrary_TestResources_LoadLibrary`, () => {
-        // <TestResources_LoadLibrary>
-        // use Activate only once in your app
-        Javonet.activate("your-license-key")
-
-        // create called runtime context
-        let calledRuntime = Javonet.inMemory().jvm()
-
-        // set up variables
-        const libraryPath = resourcesDirectory + '/TestClass.jar'
-
-        // load custom library
-        calledRuntime.loadLibrary(libraryPath)
-        // </TestResources_LoadLibrary>
     })
 
     test(`Test_JarLibrary_TestResources_GetStaticField`, () => {

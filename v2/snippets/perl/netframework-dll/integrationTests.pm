@@ -4,6 +4,7 @@ use Test::More qw(no_plan);
 use Math::Trig;
 use File::Spec;
 use File::Basename;
+use Nice::Try;
 use lib 'utils';
 use aliased 'Javonet::Javonet' => 'Javonet';
 use ActivationCredentials;
@@ -343,6 +344,36 @@ sub Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
+sub Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException {
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create Netcore runtime context
+    my $called_runtime = Javonet->in_memory()->clr();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.dll";
+    my $class_name = "TestClass.TestClass";
+
+    # load Netcore custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+
+    # #invoke type's static method which throws exception
+    my $exception = "";
+    try {
+        my $response = $called_runtime_type->invoke_static_method("DivideBy", 10, 0)->execute();
+    } catch ($ex) {
+        $exception = $ex;
+    };
+    print("Exception: $exception\n");
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    like($exception, qr/DivideByThird/, 'Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException');
+}
+
 sub Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree {
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
@@ -603,6 +634,7 @@ if ("$osname" eq 'MSWin32') {
     Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext();
     Test_NetframeworkDll_StandardLibrary_CreateInvocationContext();
     Test_NetframeworkDll_StandardLibrary_GetValue();
+    Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException();
 
     my $test_result_1 = Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
     my $test_result_2 = Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI();

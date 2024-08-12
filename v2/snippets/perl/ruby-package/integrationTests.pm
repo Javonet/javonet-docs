@@ -4,6 +4,7 @@ use Test::More qw(no_plan);
 use Math::Trig;
 use File::Spec;
 use File::Basename;
+use Nice::Try;
 use lib 'utils';
 use aliased 'Javonet::Javonet' => 'Javonet';
 use ActivationCredentials;
@@ -74,10 +75,10 @@ sub Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Sqrt_2500_50 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type("Math")->execute();
+    my $ruby_type = $called_runtime->get_type("Math")->execute();
 
     # invoke type's static method
     my $response = $ruby_type->invoke_static_method("sqrt", 2500)->execute();
@@ -97,10 +98,10 @@ sub Test_RubyPackage_StandardLibrary_GetStaticField_MathPI_PI {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type("Math")->execute();
+    my $ruby_type = $called_runtime->get_type("Math")->execute();
 
     # get type's static field
     my $response = $ruby_type->get_static_field("PI")->execute();
@@ -120,13 +121,13 @@ sub Test_RubyPackage_TestResources_LoadLibrary_LibraryPath_NoException {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
     # </TestResources_LoadLibrary>
     return 0;
 }
@@ -137,17 +138,17 @@ sub Test_RubyPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     #  invoke type's static method
     my $response = $ruby_type->invoke_static_method("multiply_by_two", 25)->execute();
@@ -167,17 +168,17 @@ sub Test_RubyPackage_TestResources_GetStaticField_StaticValue_3 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # get type's static field
     my $response = $ruby_type->get_static_field("static_value")->execute();
@@ -197,17 +198,17 @@ sub Test_RubyPackage_TestResources_SetStaticField_StaticValue_75 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # set type's static field
     $ruby_type->set_static_field("static_value", 75)->execute();
@@ -231,17 +232,17 @@ sub Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_2
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $ruby_type->create_instance()->execute();
@@ -264,17 +265,17 @@ sub Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $ruby_type->create_instance(18, 19)->execute();
@@ -291,23 +292,53 @@ sub Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
+sub Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException {
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create Ruby runtime context
+    my $called_runtime = Javonet->in_memory()->ruby();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.rb";
+    my $class_name = "TestClass::TestClass";
+
+    # load Nodejs custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+
+    # #invoke type's static method which throws exception
+    my $exception = "";
+    try {
+        my $response = $called_runtime_type->invoke_static_method("divide_by", 10, 0)->execute();
+    } catch ($ex) {
+        $exception = $ex;
+    };
+    print("Exception: $exception\n");
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    like($exception, qr/divide_by_third/, 'Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException');
+}
+
 sub Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree {
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $ruby_type->create_instance()->execute();
@@ -333,17 +364,17 @@ sub Test_RubyPackage_TestResources_1DArray_GetSize_5 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $ruby_type->create_instance()->execute();
@@ -369,17 +400,17 @@ sub Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load Ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $ruby_type->create_instance()->execute();
@@ -409,17 +440,17 @@ sub Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44 {
     Javonet->activate("your-license-key");
 
     # create Ruby runtime context
-    my $ruby_runtime = Javonet->in_memory()->ruby();
+    my $called_runtime = Javonet->in_memory()->ruby();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
 
     # load ruby custom library
-    $ruby_runtime->load_library($library_path);
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $ruby_type = $ruby_runtime->get_type($class_name)->execute();
+    my $ruby_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $ruby_type->create_instance(18, 19)->execute();
@@ -464,6 +495,7 @@ if ("$osname" ne 'Linux') {
     is($test_result_7, 75, 'Test_RubyPackage_TestResources_SetStaticField_StaticValue_3');
     is($test_result_8, 20, 'Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
     is($test_result_9, 18, 'Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18');
+    Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException();
     is($test_result_11, "three", 'Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree');
     is($test_result_12, 5, 'Test_RubyPackage_TestResources_1DArray_GetSize_5');
     is($test_result_13, "seven", 'Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven');

@@ -11,6 +11,22 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 	const auto currentWorkingDir = std::filesystem::current_path();
 	const auto resourcesDirectory = currentWorkingDir.string() + "/testResources/jar-library";
 
+	TEST(Integration, Test_JarLibrary_TestResources_LoadLibrary) {
+		// <TestResources_LoadLibrary>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.jar";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+		// </TestResources_LoadLibrary>
+	}
+
 	TEST(Integration, Test_JarLibrary_StandardLibrary_CreateRuntimeContext) {
 		// <StandardLibrary_CreateRuntimeContext>
 		// use Activate only once in your app
@@ -162,22 +178,6 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		// </StandardLibrary_InvokeInstanceMethod>
 		EXPECT_LE(0, result);
 		EXPECT_GT(10, result);
-	}
-
-	TEST(Integration, Test_JarLibrary_TestResources_LoadLibrary) {
-		// <TestResources_LoadLibrary>
-		// use Activate only once in your app
-		Javonet::Activate("your-license-key");
-
-		// create called runtime context
-		auto calledRuntime = Javonet::InMemory()->Jvm();
-
-		// set up variables
-		auto libraryPath = resourcesDirectory + "/TestClass.jar";
-
-		// load custom library
-		calledRuntime->LoadLibrary(libraryPath);
-		// </TestResources_LoadLibrary>
 	}
 
 	TEST(Integration, Test_JarLibrary_TestResources_GetStaticField) {
@@ -1039,9 +1039,9 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		auto dictionary = typeDictionary->CreateInstance()->Execute();
 
 		// invoke instance method
-		dictionary->InvokeGenericMethod("put", {"pi", M_PI })->Execute();
-		dictionary->InvokeGenericMethod("put", {"e", M_E })->Execute();
-		dictionary->InvokeGenericMethod("put", {"c", 299792458.0 })->Execute();
+		dictionary->InvokeGenericMethod("put", { "pi", M_PI })->Execute();
+		dictionary->InvokeGenericMethod("put", { "e", M_E })->Execute();
+		dictionary->InvokeGenericMethod("put", { "c", 299792458.0 })->Execute();
 
 		// get value from dictionary
 		auto response1 = dictionary->GetIndex("e")->Execute();

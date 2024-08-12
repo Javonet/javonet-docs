@@ -19,6 +19,22 @@ func init() {
 	Javonet.ActivateWithCredentials(activationcredentials.YourLicenseKey)
 }
 
+func Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
+	// <TestResources_LoadLibrary>
+	// use Activate only once in your app
+	Javonet.ActivateWithCredentials("your-license-key")
+
+	// create called runtime context
+	calledRuntime, _ := Javonet.InMemory().Jvm()
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.jar"
+
+	// load custom library
+	calledRuntime.LoadLibrary(libraryPath)
+	// </TestResources_LoadLibrary>
+}
+
 func Test_JarLibrary_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 	// <StandardLibrary_CreateRuntimeContext>
 	// use Activate only once in your app
@@ -90,22 +106,6 @@ func Test_JarLibrary_StandardLibrary_GetValue(t *testing.T) {
 	if err != nil || result != expectedResult {
 		t.Fatalf("Test failed. Response: %v. Expected response: %v", result, expectedResult)
 	}
-}
-
-func Test_JarLibrary_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
-	// <TestResources_LoadLibrary>
-	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
-
-	// create called runtime context
-	calledRuntime, _ := Javonet.InMemory().Jvm()
-
-	// set up variables
-	libraryPath := resourcesDirectory + "/TestClass.jar"
-
-	// load custom library
-	calledRuntime.LoadLibrary(libraryPath)
-	// </TestResources_LoadLibrary>
 }
 
 func Test_JarLibrary_TestResources_GetStaticField_StaticValue_3(t *testing.T) {

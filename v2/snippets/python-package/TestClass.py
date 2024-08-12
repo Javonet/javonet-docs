@@ -1,64 +1,86 @@
+import threading
+import time
 
 class TestClass:
 
-	def __init__(self, public_value, private_value):
-		self.public_value = public_value
-		self.private_value = private_value
+    def __init__(self, public_value, private_value):
+        self.public_value = public_value
+        self.private_value = private_value
 
-	# <Fields>
-	static_value = 3
-	# </Fields>
+    # <Fields>
+    static_value = 3
 
-	# <Methods>
-	@staticmethod
-	def multiply_by_two(a):
-		return 2 * a
+    # </Fields>
 
-	def multiply_two_numbers(self, a, b):
-		return a * b
-	# </Methods>
+    # <Methods>
+    @staticmethod
+    def multiply_by_two(a):
+        return 2 * a
 
-	# <Arrays>
-	def get_1d_array(self):
-		return ["one", "two", "three", "four", "five"]
+    def multiply_two_numbers(self, a, b):
+        return a * b
 
-	def get_2d_array(self):
-		return [["S00", "S01"], ["S10","S11"]]
+    # </Methods>
 
-	def add_array_elements_and_multiply(self, my_array, my_value):
-		return sum(my_array) * my_value
-	# </Arrays>
+    # <Arrays>
+    def get_1d_array(self):
+        return ["one", "two", "three", "four", "five"]
 
-	# <Exceptions>
-	@staticmethod
-	def divide_by(x, y):
-		return TestClass.divide_by_second(x, y)
+    def get_2d_array(self):
+        return [["S00", "S01"], ["S10", "S11"]]
 
-	@staticmethod
-	def divide_by_second(x, y):
-		return TestClass.divide_by_third(x, y)
+    def add_array_elements_and_multiply(self, my_array, my_value):
+        return sum(my_array) * my_value
 
-	@staticmethod
-	def divide_by_third(x, y):
-		return x / y
-	# </Exceptions>
+    # </Arrays>
 
-	# <Enums>
-	from enum import Enum
-	class Fruit(Enum):
-		Apple = 1
-		Banana = 2
-		Orange = 3
-		Mango = 4
+    # <Exceptions>
+    @staticmethod
+    def divide_by(x, y):
+        return TestClass.divide_by_second(x, y)
 
-	Fruits = []
+    @staticmethod
+    def divide_by_second(x, y):
+        return TestClass.divide_by_third(x, y)
 
-	@staticmethod
-	def add_fruits_to_list(fruits):
-		TestClass.Fruits.extend(fruits)
-		return "{0} fruits on the list".format(len(TestClass.Fruits))
-	# </Enums>
+    @staticmethod
+    def divide_by_third(x, y):
+        return x / y
 
-	#<Empty>
-	# empty
-	#</Empty>
+    # </Exceptions>
+
+    # <Enums>
+    from enum import Enum
+    class Fruit(Enum):
+        Apple = 1
+        Banana = 2
+        Orange = 3
+        Mango = 4
+
+    Fruits = []
+
+    @staticmethod
+    def add_fruits_to_list(fruits):
+        TestClass.Fruits.extend(fruits)
+        return "{0} fruits on the list".format(len(TestClass.Fruits))
+
+    # </Enums>
+
+    # <Multithreading>
+    cache = {}
+
+    def add_two_numbers(self, x, y):
+        thread_id = threading.get_ident()
+        print(f"Computing result in thread: {thread_id}")
+        time.sleep(1)  # Simulate computation delay
+        result = x + y
+        print(f"Saving result in thread: {thread_id}")
+        time.sleep(0.05)  # Simulate saving delay
+        self.cache[thread_id] = result
+        print(f"Returning result in thread: {thread_id}")
+        return result
+    # </Multithreading>
+
+    #<Empty>
+    # empty
+    #</Empty>

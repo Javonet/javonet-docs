@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace TestClass
 {
@@ -142,6 +144,23 @@ namespace TestClass
 			outStr = "String from OutSampleMethod";
 		}
 		// </Outs>
+
+		// <Multithreading>
+
+		ConcurrentDictionary<int, int> _cache = new ConcurrentDictionary<int, int>();
+
+		public int AddTwoNumbers(int x, int y)
+        {
+			Console.WriteLine("Computing result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+			System.Threading.Thread.Sleep(1000);
+			var result = x + y;
+			Console.WriteLine("Saving result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            System.Threading.Thread.Sleep(50);
+            _cache[System.Threading.Thread.CurrentThread.ManagedThreadId] = result;
+			Console.WriteLine("Returning result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+			return result;
+        }
+		// </Multithreading>
 
 		// <Empty>
 		// empty

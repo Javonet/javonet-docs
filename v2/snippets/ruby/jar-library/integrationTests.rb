@@ -11,6 +11,22 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
     expect(result).to eq(0)
   end
 
+  it 'Test_JarLibrary_TestResources_LoadLibrary' do
+    # <TestResources_LoadLibrary>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.jar"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+    # </TestResources_LoadLibrary>
+  end
+
   it 'Test_JarLibrary_StandardLibrary_CreateRuntimeContext' do
     # <StandardLibrary_CreateRuntimeContext>
     # use activate only once in your app
@@ -161,22 +177,6 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
     # </StandardLibrary_InvokeInstanceMethod>
     expect(result).to be >= 0
     expect(result).to be < 10
-  end
-
-  it 'Test_JarLibrary_TestResources_LoadLibrary' do
-    # <TestResources_LoadLibrary>
-    # use activate only once in your app
-    Javonet.activate('your-license-key')
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory.jvm
-
-    # set up variables
-    library_path = "#{resources_directory}/TestClass.jar"
-
-    # load custom library
-    called_runtime.load_library(library_path)
-    # </TestResources_LoadLibrary>
   end
 
   it 'Test_JarLibrary_TestResources_GetStaticField' do

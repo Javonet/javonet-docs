@@ -4,6 +4,7 @@ use Test::More qw(no_plan);
 use Math::Trig;
 use File::Spec;
 use File::Basename;
+use Nice::Try;
 use lib 'utils';
 use aliased 'Javonet::Javonet' => 'Javonet';
 use ActivationCredentials;
@@ -75,10 +76,10 @@ sub Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type("Math")->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type("Math")->execute();
 
     # invoke type's static method
-    my $response = $nodejs_type->invoke_static_method("abs", -50)->execute();
+    my $response = $called_runtime_type->invoke_static_method("abs", -50)->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -98,10 +99,10 @@ sub Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI {
     my $nodejs_runtime = Javonet->in_memory()->nodejs();
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type("Math")->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type("Math")->execute();
 
     # get type's static field
-    my $response = $nodejs_type->get_static_field("PI")->execute();
+    my $response = $called_runtime_type->get_static_field("PI")->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -145,10 +146,10 @@ sub Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     #  invoke type's static method
-    my $response = $nodejs_type->invoke_static_method("multiplyByTwo", 25)->execute();
+    my $response = $called_runtime_type->invoke_static_method("multiplyByTwo", 25)->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -175,10 +176,10 @@ sub Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3 {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # get type's static field
-    my $response = $nodejs_type->get_static_field("staticValue")->execute();
+    my $response = $called_runtime_type->get_static_field("staticValue")->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -205,13 +206,13 @@ sub Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75 {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # set type's static field
-    $nodejs_type->set_static_field("staticValue", 75)->execute();
+    $called_runtime_type->set_static_field("staticValue", 75)->execute();
 
     # get type's static field
-    my $response = $nodejs_type->get_static_field("staticValue")->execute();
+    my $response = $called_runtime_type->get_static_field("staticValue")->execute();
 
     # get value from response
     my $result = $response->get_value();
@@ -219,7 +220,7 @@ sub Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75 {
     # print result to console
     print("$result\n");
     # </TestResources_SetStaticField>
-    $nodejs_type->set_static_field("staticValue", 3)->execute();
+    $called_runtime_type->set_static_field("staticValue", 3)->execute();
     return $result;
 }
 
@@ -239,10 +240,10 @@ sub Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance()->execute();
+    my $instance = $called_runtime_type->create_instance()->execute();
 
     # invoke instance's method
     my $response = $instance->invoke_instance_method("multiplyTwoNumbers", 5, 4)->execute();
@@ -272,10 +273,10 @@ sub Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18 {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance(18, 19)->execute();
+    my $instance = $called_runtime_type->create_instance(18, 19)->execute();
 
     # get instance's field
     my $response = $instance->get_instance_field("publicValue")->execute();
@@ -287,6 +288,36 @@ sub Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18 {
     print("$result\n");
     # </TestResources_GetInstanceField>
     return $result;
+}
+
+sub Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException {
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create Nodejs runtime context
+    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
+
+    # load Nodejs custom library
+    $nodejs_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+
+    # #invoke type's static method which throws exception
+    my $exception = "";
+    try {
+        my $response = $called_runtime_type->invoke_static_method("divideBy", 10, 0)->execute();
+    } catch ($ex) {
+        $exception = $ex;
+    };
+    print("Exception: $exception\n");
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    like($exception, qr/ZeroDivisionException/, 'Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException');
 }
 
 sub Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree {
@@ -305,10 +336,10 @@ sub Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance()->execute();
+    my $instance = $called_runtime_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -341,10 +372,10 @@ sub Test_NodejsPackage_TestResources_1DArray_GetSize_5 {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance()->execute();
+    my $instance = $called_runtime_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -377,10 +408,10 @@ sub Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven {
     $nodejs_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $nodejs_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
 
     # create type's instance
-    my $instance = $nodejs_type->create_instance()->execute();
+    my $instance = $called_runtime_type->create_instance()->execute();
 
     # invoke instance's method
     my $array = $instance->invoke_instance_method("get1DArray")->execute();
@@ -462,9 +493,11 @@ is($test_result_5, 3, 'Test_NodejsPackage_TestResources_GetStaticField_StaticVal
 is($test_result_6, 75, 'Test_NodejsPackage_TestResources_SetStaticField_StaticValue_3');
 is($test_result_7, 20, 'Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
 is($test_result_8, 18, 'Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18');
+is($test_result_14, 44, 'Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44');
+Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException
 is($test_result_11, "three", 'Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree');
 is($test_result_12, 5, 'Test_NodejsPackage_TestResources_1DArray_GetSize_5');
 is($test_result_13, "seven", 'Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven');
-is($test_result_14, 44, 'Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44');
+
 
 done_testing();

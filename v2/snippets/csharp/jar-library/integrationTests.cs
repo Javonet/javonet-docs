@@ -16,8 +16,30 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
             this.output = output;
             var result = Javonet.Activate(ActivationCredentials.yourLicenseKey);
             Assert.Equal(0, result);
+            var calledRuntime = Javonet.InMemory().Jvm();
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+            calledRuntime.LoadLibrary(libraryPath);
         }
         private static readonly string resourcesDirectory = PathResolver.GetProjectRootDirectory().Parent.Parent.FullName + "/testResources/jar-library";
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_JarLibrary_TestResources_LoadLibrary()
+        {
+            // <TestResources_LoadLibrary>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Jvm();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.jar";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+            // </TestResources_LoadLibrary>
+        }
 
         [Fact]
         [Trait("Test", "Integration")]
@@ -191,25 +213,6 @@ namespace Javonet.Netcore.Sdk.Tests.jarlibrary
             System.Console.WriteLine(result);
             // </StandardLibrary_InvokeInstanceMethod>
             Assert.InRange(result, 0, 10);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
-        public void Test_JarLibrary_TestResources_LoadLibrary()
-        {
-            // <TestResources_LoadLibrary>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Jvm();
-
-            // set up variables
-            string libraryPath = resourcesDirectory + "/TestClass.jar";
-
-            // load custom library
-            calledRuntime.LoadLibrary(libraryPath);
-            // </TestResources_LoadLibrary>
         }
 
         [Fact]

@@ -6,6 +6,23 @@ from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/jar-library'
 
+
+def test_JarLibrary_TestResources_LoadLibrary():
+    # <TestResources_LoadLibrary>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+    # </TestResources_LoadLibrary>
+
+
 def test_JarLibrary_StandardLibrary_CreateRuntimeContext():
     # <StandardLibrary_CreateRuntimeContext>
     # use activate only once in your app
@@ -152,22 +169,6 @@ def test_JarLibrary_StandardLibrary_InvokeInstanceMethod():
     print(result)
     # </StandardLibrary_InvokeInstanceMethod>
     assert (result in range(0, 10))
-
-
-def test_JarLibrary_TestResources_LoadLibrary():
-    # <TestResources_LoadLibrary>
-    # use activate only once in your app
-    Javonet.activate("your-license-key")
-
-    # create called runtime context
-    called_runtime = Javonet.in_memory().jvm()
-
-    # set up variables
-    library_path = resources_directory + '/TestClass.jar'
-
-    # load custom library
-    called_runtime.load_library(library_path)
-    # </TestResources_LoadLibrary>
 
 
 def test_JarLibrary_TestResources_GetStaticField():

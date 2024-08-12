@@ -744,25 +744,4 @@ public class integrationTests {
         array.setIndex(new Integer[]{0, 1}, "S01").execute();
         Assertions.assertEquals("new value", result);
     }
-
-//    @Test
-//    @Tag("integration")
-//    public void Test_NodejsPackage_Test() {
-//
-//        // use activate only once in your app
-//        Javonet.activate("your-license-key");
-//
-//        // create called runtime context
-//        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
-//
-//        // set up variables
-//        String libraryPath = "HelloWorld.js";
-//
-//        // load custom library
-//        calledRuntime.loadLibrary(libraryPath);
-//        InvocationContext typee = calledRuntime.getType("HelloWorld").execute();
-//        InvocationContext result = typee.invokeStaticMethod("multiplyByTwo", 2).execute();
-//        System.out.println(result.getValue());
-//
-//    }
 }

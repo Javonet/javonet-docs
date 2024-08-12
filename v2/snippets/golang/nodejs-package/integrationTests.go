@@ -5,6 +5,7 @@ import (
 	"math"
 	"os"
 	"reflect"
+	"strings"
 	"testing"
 
 	"javonet.com/integrationTests/utils/activationcredentials"
@@ -319,6 +320,51 @@ func Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_
 	expectedResponse := int32(20)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(t *testing.T) {
+	// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+	// use Activate only once in your app
+	result, err := Javonet.ActivateWithCredentials("your-license-key")
+	if result != 0 {
+		t.Fatal("Wrong activation result: " + err.Error())
+	}
+	if err != nil {
+		t.Fatal("Activation exception: " + err.Error())
+	}
+
+	// create called runtime context
+	calledRuntime, err := Javonet.InMemory().Nodejs()
+	if err != nil {
+		t.Fatal("Creating runtime exception: " + err.Error())
+	}
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.js"
+	className := "TestClass"
+
+	// load custom library
+	_, err = calledRuntime.LoadLibrary(libraryPath)
+	if err != nil {
+		t.Fatal("Loading library exception: " + err.Error())
+	}
+
+	// get type from the runtime
+	calledRuntimeType, err := calledRuntime.GetType(className).Execute()
+	if err != nil {
+		t.Fatal("Get Type exception: " + err.Error())
+	}
+
+	// invoke type's static method which throws exception
+	_, err = calledRuntimeType.InvokeStaticMethod("divideBy", 10, 0).Execute()
+	fmt.Println(err)
+	// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+	if err == nil {
+		t.Fatal("Exception was not thrown")
+	}
+	if !strings.Contains(err.Error(), "divideByThird") {
+		t.Fatal("Wrong exception message: " + err.Error())
 	}
 }
 

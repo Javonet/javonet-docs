@@ -5,6 +5,7 @@ import (
 	"math"
 	"os"
 	"reflect"
+	"strings"
 	"testing"
 
 	"javonet.com/integrationTests/utils/activationcredentials"
@@ -319,6 +320,51 @@ func Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_
 	expectedResponse := int32(20)
 	if result != expectedResponse {
 		t.Fatal(t.Name() + " failed.\tResponse: " + fmt.Sprintf("%v", result) + ".\tExpected response: " + fmt.Sprintf("%v", expectedResponse))
+	}
+}
+
+func Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(t *testing.T) {
+	// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+	// use Activate only once in your app
+	result, err := Javonet.ActivateWithCredentials("your-license-key")
+	if result != 0 {
+		t.Fatal("Wrong activation result: " + err.Error())
+	}
+	if err != nil {
+		t.Fatal("Activation exception: " + err.Error())
+	}
+
+	// create called runtime context
+	calledRuntime, err := Javonet.InMemory().Ruby()
+	if err != nil {
+		t.Fatal("Creating runtime exception: " + err.Error())
+	}
+
+	// set up variables
+	libraryPath := resourcesDirectory + "/TestClass.rb"
+	className := "TestClass::TestClass"
+
+	// load custom library
+	_, err = calledRuntime.LoadLibrary(libraryPath)
+	if err != nil {
+		t.Fatal("Loading library exception: " + err.Error())
+	}
+
+	// get type from the runtime
+	calledRuntimeType, err := calledRuntime.GetType(className).Execute()
+	if err != nil {
+		t.Fatal("Get Type exception: " + err.Error())
+	}
+
+	// invoke type's static method which throws exception
+	_, err = calledRuntimeType.InvokeStaticMethod("divide_by", 10, 0).Execute()
+	fmt.Println(err)
+	// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+	if err == nil {
+		t.Fatal("Exception was not thrown")
+	}
+	if !strings.Contains(err.Error(), "divide_by_third") {
+		t.Fatal("Wrong exception message: " + err.Error())
 	}
 }
 

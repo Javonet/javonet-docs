@@ -6,6 +6,7 @@ from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/net-dll'
 
+
 def test_NetDll_StandardLibrary_CreateRuntimeContext():
     # <StandardLibrary_CreateRuntimeContext>
     # use activate only once in your app
@@ -18,6 +19,7 @@ def test_NetDll_StandardLibrary_CreateRuntimeContext():
     # </StandardLibrary_CreateRuntimeContext>
     assert called_runtime is not None
 
+
 def test_NetDll_StandardLibrary_CreateInvocationContext():
     # <StandardLibrary_CreateInvocationContext>
     # use activate only once in your app
@@ -26,13 +28,14 @@ def test_NetDll_StandardLibrary_CreateInvocationContext():
     # create called runtime context
     called_runtime = Javonet.in_memory().netcore()
 
-    # construct an invocation context - this invocationContext in non-materialized 
+    # construct an invocation context - this invocationContext in non-materialized
     invocation_context = called_runtime.get_type("System.Math").invoke_static_method("Abs", -50)
 
     # execute invocation context - this will materialize the invocationContext
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
     assert response is not None
+
 
 def test_NetDll_StandardLibrary_GetValue():
     # <StandardLibrary_GetValue>
@@ -42,7 +45,7 @@ def test_NetDll_StandardLibrary_GetValue():
     # create called runtime context
     called_runtime = Javonet.in_memory().netcore()
 
-    # construct an invocation context - this invocationContext in non-materialized 
+    # construct an invocation context - this invocationContext in non-materialized
     invocation_context = called_runtime.get_type("System.Math").invoke_static_method("Abs", -50)
 
     # execute invocation context - this will materialize the invocationContext

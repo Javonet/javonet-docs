@@ -236,7 +236,7 @@ public class integrationTests {
         calledRuntime.loadLibrary(libraryPath);
 
         // create type's instance
-        InvocationContext instance = Javonet.inMemory().python().getType(className).createInstance(18, 19).execute();
+        InvocationContext instance = calledRuntime.getType(className).createInstance(18, 19).execute();
 
         // get instance's field
         InvocationContext response = instance.getInstanceField("public_value").execute();
@@ -340,7 +340,7 @@ public class integrationTests {
         calledRuntime.loadLibrary(libraryPath);
 
         // create type's instance
-        InvocationContext instance = Javonet.inMemory().python().getType(className).createInstance(0, 1).execute();
+        InvocationContext instance = calledRuntime.getType(className).createInstance(0, 1).execute();
 
         // invoke instance's method
         InvocationContext response = instance.invokeInstanceMethod("multiply_two_numbers", 5, 4).execute();
