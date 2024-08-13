@@ -15,6 +15,6 @@ If you want to host your foreign module on remote node you need to run Javonet C
   
 Javonet Code Gateway is available on [My Javonet Portal](https://my.javonet.com) for Windows, Linux and MacOS.  
   
-Javonet Code Gateway listens on port 8080 and serves all requests to the remote machine which was sent via [TCP Channel](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel.md).  
+Javonet Code Gateway listens on port 8080 and serves all requests to the remote machine which was sent via [TCP Channel](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel).  
   
 All the samples which are presented in this guides can be performed remotely by just changing the new Runtime Context invocation from [in memory](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/in-memory-channel) to [tcp](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/tcp-channel).  That will create and interact with your `{called_name}` objects on any remote node, container or service that hosts Javonet Code Gateway. This way you can preserve the same logic in your application and instantly switch between monolithic and microservices architecture without the need to implement the integration layer based on web services or other remote invocation methods.  

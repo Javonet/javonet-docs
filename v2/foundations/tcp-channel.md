@@ -17,8 +17,8 @@ You can easily decide if you want to load your `{called_technology}` either in t
 :display: calling
 :::
   
-Communication channel can be configured also with configuration file. Read more in [Configure Channel](guides/v2/`{calling_technology}`/`{called_technology}`/foundations/configure-channel.md).  
+Communication channel can be configured also with configuration file. Read more in [Configure Channel](guides/v2/`{calling_technology}`/`{called_technology}`/foundations/configure-channel).  
   
-If you want to host your foreign module on remote node you need to run [Javonet Code Gateway](/guides/v2/`{calling_technology}`/`{called_technology}`/javonet-code-gateway/about-javonet-code-gateway.md) that will expose any public objects and methods defined in those modules for the consumption from your remote client code.  
+If you want to host your foreign module on remote node you need to run [Javonet Code Gateway](/guides/v2/`{calling_technology}`/`{called_technology}`/javonet-code-gateway/about-javonet-code-gateway) that will expose any public objects and methods defined in those modules for the consumption from your remote client code.  
   
-After selecting channel user selects a runtime to interact with in order to create [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context.md)  
+After selecting channel user selects a runtime to interact with in order to create [Runtime Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/runtime-context)  
