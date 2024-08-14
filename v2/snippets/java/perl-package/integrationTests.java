@@ -80,6 +80,31 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
+    public void test_PerlPackage_StandardLibrary_InvokeStaticMethod() {
+        // <StandardLibrary_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // construct an invocation context - this invocationContext in non-materialized
+        InvocationContext invocationContext = calledRuntime.getType("CORE").invokeStaticMethod("abs", -50);
+
+        // execute invocation context - this will materialize the invocationContext
+        InvocationContext response = invocationContext.execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_InvokeStaticMethod>
+        Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_PerlPackage_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
@@ -194,6 +219,43 @@ public class integrationTests {
         System.out.println(result);
         // </TestResources_GetInstanceField>
         Assertions.assertEquals(1, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_PerlPackage_TestResources_SetInstanceField_PublicValue_44() {
+        // <TestResources_SetInstanceField>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance(18, 19).execute();
+
+        // set instance's field
+        instance.setInstanceField("public_value", 44).execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("public_value").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_SetInstanceField>
+        Assertions.assertEquals(44, result);
     }
 
     @Test
@@ -419,6 +481,39 @@ public class integrationTests {
         System.out.println(String.join("\t", arrayValues));
         // </TestResources_1DArray_Iterate>
         Assertions.assertArrayEquals(new String[]{"one", "two", "three", "four", "five"}, arrayValues);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_PerlPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
+        // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method which throws exception
+        try {
+            calledRuntimeType.invokeStaticMethod("divide_by", 10, 0).execute();
+        }
+        catch (Exception ex) {
+            // write exception message to console
+            ex.printStackTrace();
+            return;
+        }
+        // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+        Assertions.fail();
     }
 
 

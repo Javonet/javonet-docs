@@ -18,7 +18,8 @@ def test_channel_tcp_success():
     # use Activate only once in your app
     Javonet.activate("your-license-key")
 
-    connection_data = ("127.0.0.1", 8083)
+    from javonet.utils.TcpConnectionData import TcpConnectionData
+    connection_data = TcpConnectionData("127.0.0.1", 8083)
     communication_channel = Javonet.tcp(connection_data)
     # use communicationChannel to create runtimes to interact with
     # </TcpChannel>

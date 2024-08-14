@@ -89,7 +89,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 
 	TEST(Integration, Test_RubyPackage_StandardLibrary_InvokeStaticMethod) {
 		// <StandardLibrary_InvokeStaticMethod>
-				// use Activate only once in your app
+		// use Activate only once in your app
 		Javonet::Activate("your-license-key");
 
 		// create called runtime context

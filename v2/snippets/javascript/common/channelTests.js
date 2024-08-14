@@ -1,6 +1,8 @@
-const {Javonet} = require('javonet-nodejs-sdk/lib/sdk/Javonet')
+const {Javonet} = require('javonet-nodejs-sdk')
+const TcpConnectionData = require('javonet-nodejs-sdk')
 const {describe, expect, test} = require("@jest/globals");
 const path = require("path");
+
 
 describe('Nodejs channel tests', () => {
 
@@ -22,7 +24,7 @@ describe('Nodejs channel tests', () => {
         // use Activate only once in your app
         Javonet.activate("your-license-key")
 
-        let connectionData = ["127.0.0.1", 8083]
+        let connectionData = TcpConnectionData["127.0.0.1", 8083]
         let communicationChannel = Javonet.tcp(connectionData)
         // use communicationChannel to create runtimes to interact with
         // </TcpChannel>

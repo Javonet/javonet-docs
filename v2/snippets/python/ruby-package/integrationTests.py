@@ -6,6 +6,7 @@ from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/ruby-package'
 
+
 def test_RubyPackage_StandardLibrary_CreateRuntimeContext():
     # <StandardLibrary_CreateRuntimeContext>
     # use activate only once in your app
@@ -17,6 +18,7 @@ def test_RubyPackage_StandardLibrary_CreateRuntimeContext():
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
     assert called_runtime is not None
+
 
 def test_RubyPackage_StandardLibrary_CreateInvocationContext():
     # <StandardLibrary_CreateInvocationContext>
@@ -33,6 +35,7 @@ def test_RubyPackage_StandardLibrary_CreateInvocationContext():
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
     assert response is not None
+
 
 def test_RubyPackage_StandardLibrary_GetValue():
     # <StandardLibrary_GetValue>
@@ -55,6 +58,7 @@ def test_RubyPackage_StandardLibrary_GetValue():
     print(result)
     # </StandardLibrary_GetValue>
     assert result == 50
+
 
 def test_RubyPackage_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>

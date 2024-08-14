@@ -177,7 +177,7 @@ RSpec.describe 'Ruby To Python Package Integration Tests' do
     expect(result).to eq(18)
   end
 
-  it 'Test_Ruby_TestResources_SetInstanceField' do
+  it 'Test_PythonPackage_TestResources_SetInstanceField' do
     # <TestResources_SetInstanceField>
     # use activate only once in your app
     Javonet.activate('your-license-key')

@@ -20,7 +20,7 @@ RSpec.describe 'Ruby Channel Tests' do
     # use activate only once in your app
     Javonet.activate('your-license-key')
 
-    connection_data = ['127.0.0.1', 8083]
+    connection_data = TcpConnectionData.new('127.0.0.1', 8083)
     communication_channel = Javonet.tcp(connection_data)
     # use communicationChannel to create runtimes to interact with
     # </TcpChannel>

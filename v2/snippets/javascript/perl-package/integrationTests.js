@@ -7,7 +7,7 @@ const resourcesDirectory =
     path.resolve(__dirname, "../../../..") + "/testResources/perl-package"
 
 describe("Nodejs to Perl Package integration tests", () => {
-    if (process.platform == "win32") {
+    if (process.platform === "win32") {
         Javonet.activate(ActivationCredentials.yourLicenseKey);
 
         test(`Test_PerlPackage_StandardLibrary_CreateRuntimeContext`, () => {
@@ -63,6 +63,29 @@ describe("Nodejs to Perl Package integration tests", () => {
             expect(result).toBe(11)
         })
 
+        test(`Test_PerlPackage_StandardLibrary_InvokeStaticMethod`, () => {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use activate only once in your app
+            Javonet.activate('your-license-key')
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().perl()
+
+            // construct an invocation context - this invocationContext in non-materialized
+            let invocationContext = calledRuntime.getType('CORE').invokeStaticMethod("abs", -50)
+
+            // execute invocation context - this will materialize the invocationContext
+            let response = invocationContext.execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </StandardLibrary_InvokeStaticMethod>
+            expect(result).toBe(50)
+        })
+
         test(`Test_PerlPackage_TestResources_LoadLibrary`, () => {
             // <TestResources_LoadLibrary>
             // use Activate only once in your app
@@ -109,39 +132,39 @@ describe("Nodejs to Perl Package integration tests", () => {
             expect(result).toBe(3)
         });
 
-        // test(`Test_PerlPackage_TestResources_SetStaticField`, () => {
-        //     // <TestResources_SetStaticField>
-        //     // use Activate only once in your app
-        //     Javonet.activate("your-license-key")
+        test(`Test_PerlPackage_TestResources_SetStaticField`, () => {
+            // <TestResources_SetStaticField>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
 
-        //     // create called runtime context
-        //     let calledRuntime = Javonet.inMemory().perl()
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().perl()
 
-        //     // set up variables
-        //     const libraryPath = resourcesDirectory + '/TestClass.pm'
-        //     const className = 'TestClass::TestClass'
+            // set up variables
+            const libraryPath = resourcesDirectory + '/TestClass.pm'
+            const className = 'TestClass::TestClass'
 
-        //     // load custom library
-        //     calledRuntime.loadLibrary(libraryPath)
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
 
-        //     // get type from the runtime
-        //     let calledRuntimeType = calledRuntime.getType(className).execute()
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
 
-        //     // set static field's value
-        //     calledRuntimeType.setStaticField("static_value", 75).execute()
+            // set static field's value
+            calledRuntimeType.setStaticField("static_value", 75).execute()
 
-        //     // get type's static field
-        //     let response = calledRuntimeType.getStaticField("static_value").execute()
+            // get type's static field
+            let response = calledRuntimeType.getStaticField("static_value").execute()
 
-        //     // get value from response
-        //     let result = response.getValue()
+            // get value from response
+            let result = response.getValue()
 
-        //     // write result to console
-        //     console.log(result)
-        //     // </TestResources_SetStaticField>
-        //     calledRuntimeType.setStaticField("static_value", 3).execute()
-        //     expect(result).toBe(75)
-        // })
+            // write result to console
+            console.log(result)
+            // </TestResources_SetStaticField>
+            calledRuntimeType.setStaticField("static_value", 3).execute()
+            expect(result).toBe(75)
+        })
 
         test(`Test_PerlPackage_TestResources_GetInstanceField`, () => {
             // <TestResources_GetInstanceField>
@@ -175,6 +198,42 @@ describe("Nodejs to Perl Package integration tests", () => {
             // </TestResources_GetInstanceField>
             expect(result).toBe(1)
         });
+
+        test(`Test_PerlPackage_TestResources_SetInstanceField`, () => {
+            // <TestResources_SetInstanceField>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().perl()
+
+            // set up variables
+            const libraryPath = resourcesDirectory + "/TestClass.pm";
+            const className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // create type's instance
+            let instance = calledRuntimeType.createInstance(18, 19).execute()
+
+            // set instance field
+            instance.setInstanceField("public_value", 44).execute()
+
+            // get instance's field
+            let response = instance.getInstanceField("public_value").execute()
+
+            // get value from response
+            let result = response.getValue()
+
+            // write result to console
+            console.log(result)
+            // </TestResources_SetInstanceField>
+            expect(result).toBe(44)
+        })
 
         test(`Test_PerlPackage_TestResources_InvokeStaticMethod`, () => {
             // <TestResources_InvokeStaticMethod>
@@ -385,6 +444,36 @@ describe("Nodejs to Perl Package integration tests", () => {
             console.log(arrayValues)
             // </TestResources_1DArray_Iterate>
             expect(arrayValues).toEqual(["one", "two", "three", "four", "five"])
+        });
+
+        test(`Test_PerlPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException`, () => {
+            // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.activate("your-license-key")
+
+            // create called runtime context
+            let calledRuntime = Javonet.inMemory().perl()
+
+            // set up variables
+            const libraryPath = resourcesDirectory + "/TestClass.pm"
+            const className = "TestClass::TestClass"
+
+            // load custom library
+            calledRuntime.loadLibrary(libraryPath)
+
+            // get type from the runtime
+            let calledRuntimeType = calledRuntime.getType(className).execute()
+
+            // invoke type's static method which throws exception
+            try {
+                let response = calledRuntimeType.invokeStaticMethod("divide_by", 10, 0).execute()
+            } catch (e) {
+                // write exception to console
+                console.log(e)
+                return
+            }
+            // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+            expect(false).toBe(true)
         });
     } else {
         test.skip("Perl not supported on MacOs", () => {

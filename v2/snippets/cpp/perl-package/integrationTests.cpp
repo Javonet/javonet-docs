@@ -62,6 +62,29 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(11, result);
 	}
 
+	TEST(Integration, Test_PerlPackage_StandardLibrary_InvokeStaticMethod_Core_Abs_Minus50_50) {
+		// <StandardLibrary_InvokeStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// construct an invocation context - this invocationContext in non-materialized 
+		auto invocationContext = calledRuntime->GetType("CORE")->InvokeStaticMethod("abs", -50);
+
+		// execute invocation context - this will materialize the invocationContext
+		auto response = invocationContext->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_InvokeStaticMethod>
+		EXPECT_EQ(50, result);
+	}
+
 	TEST(Integration, Test_PerlPackage_TestResources_LoadLibrary) {
 		// <TestResources_LoadLibrary>
 		// use Activate only once in your app
@@ -108,7 +131,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		EXPECT_EQ(3, result);
 	}
 
-	/*
+	
 	 TEST(Integration, Test_PerlPackage_TestResources_SetStaticField) {
 	 	// <TestResources_SetStaticField>
 	 	// use Activate only once in your app
@@ -142,7 +165,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 	 	calledRuntimeType->SetStaticField("static_value", 3)->Execute();
 	 	EXPECT_EQ(75, result);
 	 }
-	 */
+	 
 
 	TEST(Integration, Test_PerlPackage_TestResources_GetInstanceField) {
 		// <TestResources_GetInstanceField>
@@ -175,6 +198,42 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		std::cout << result << std::endl;
 		// </TestResources_GetInstanceField>
 		EXPECT_EQ(1, result);
+	}
+
+	TEST(Integration, Test_PerlPackage_TestResources_SetInstanceField) {
+		// <TestResources_SetInstanceField>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance({ 18,19 })->Execute();
+
+		// set instance's field
+		instance->SetInstanceField("public_value", 44)->Execute();
+
+		// get instance's field
+		auto response = instance->GetInstanceField("public_value")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_SetInstanceField>
+		EXPECT_EQ(44, result);
 	}
 
 	TEST(Integration, Test_PerlPackage_TestResources_InvokeStaticMethod) {
@@ -387,5 +446,43 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 		std::cout << result << std::endl;
 		// </TestResources_1DArray_GetElement>
 		EXPECT_EQ("three", result);
+	}
+
+	TEST(Integration, Test_PerlPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0) {
+		// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method which throws exception 
+		try {
+			calledRuntimeType->InvokeStaticMethod("divide_by", { 10, 0 })->Execute();
+		}
+		catch (std::exception& e) {
+			// write exception to console
+			std::cout << e.what() << std::endl;
+		}
+		// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+		try {
+			calledRuntimeType->InvokeStaticMethod("divide_by", { 10, 0 })->Execute();
+		}
+		catch (std::exception& e) {
+			// write exception to console
+			std::cout << e.what() << std::endl;
+			return;
+		}
+		GTEST_FAIL();
 	}
 }

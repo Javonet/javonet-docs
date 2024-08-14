@@ -303,7 +303,7 @@ sub Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_D
     # set up variables
     my $library_path = "${resources_directory}/TestClass.rb";
     my $class_name = "TestClass::TestClass";
-
+    
     # load Nodejs custom library
     $called_runtime->load_library($library_path);
 

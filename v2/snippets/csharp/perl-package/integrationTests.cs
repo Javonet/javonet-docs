@@ -82,6 +82,33 @@ namespace Javonet.Netcore.Sdk.Tests.perlpackage
         }
 
         [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PerlPackage_StandardLibrary_InvokeStaticMethod_Core_Abs_Minus50_50()
+        {
+            // <StandardLibrary_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Perl();
+
+            // construct an invocation context - this invocationContext in non-materialized 
+            var invocationContext = calledRuntime.GetType("CORE").
+                InvokeStaticMethod("abs", -50);
+
+            // execute invocation context - this will materialize the invocationContext
+            var response = invocationContext.Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeStaticMethod>
+            Assert.Equal(50, result);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_PerlPackage_TestResources_LoadLibrary()
 		{
@@ -206,7 +233,46 @@ namespace Javonet.Netcore.Sdk.Tests.perlpackage
 			Assert.Equal(1, result);
 		}
 
-		[Fact]
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PerlPackage_TestResources_SetInstanceField_PublicValue_44()
+        {
+            // <TestResources_SetInstanceField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Perl();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.pm";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
+
+            // set instance's field
+            instance.SetInstanceField("public_value", 44).Execute();
+
+            // get instance's field
+            var response = instance.GetInstanceField("public_value").Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_SetInstanceField>
+            Assert.Equal(44, result);
+        }
+
+        [Fact]
 		[Trait("Test", "Integration")]
 		public void Test_PerlPackage_TestResources_InvokeStaticMethod()
 		{
@@ -479,5 +545,41 @@ namespace Javonet.Netcore.Sdk.Tests.perlpackage
 			// </TestResources_1DArray_GetElement>
 			Assert.Equal("three", result);
 		}
-	}
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_PerlPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
+        {
+            // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Perl();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.pm";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // invoke type's static method which throws exception
+            try
+            {
+                var response = calledRuntimeType.InvokeStaticMethod("divide_by", 10, 0).Execute();
+            }
+            catch (System.Exception e)
+            {
+                // write result to console
+                System.Console.WriteLine(e.Message);
+                return;
+            }
+            // </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+            Assert.Fail("No exception occurred - test failed");
+        }
+    }
 }

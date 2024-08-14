@@ -63,6 +63,29 @@ RSpec.describe 'Ruby To Perl Package Integration Tests' do
     expect(result).to eq(11)
   end
 
+  it 'Test_PerlPackage_StandardLibrary_InvokeStaticMethod' do
+    # <StandardLibrary_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # construct an invocation context - this invocationContext in non-materialized
+    invocation_context = called_runtime.get_type('CORE').invoke_static_method("abs", -50)
+
+    # execute invocation context - this will materialize the invocationContext
+    response = invocation_context.execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </StandardLibrary_InvokeStaticMethod>
+    expect(result).to eq(50)
+  end
+
   it 'Test_PerlPackage_TestResources_LoadLibrary' do
     # <TestResources_LoadLibrary>
     # use activate only once in your app
@@ -174,6 +197,42 @@ RSpec.describe 'Ruby To Perl Package Integration Tests' do
     puts result
     # </TestResources_GetInstanceField>
     expect(result).to eq(1)
+  end
+
+  it 'Test_PerlPackage_TestResources_SetInstanceField' do
+    # <TestResources_SetInstanceField>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.pm"
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance(18, 19).execute
+
+    # set instance field
+    instance.set_instance_field('public_value', 44).execute
+
+    # get instance's field
+    response = instance.get_instance_field('public_value').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_SetInstanceField>
+    expect(result).to eq(44)
   end
 
   it 'Test_PerlPackage_TestResources_InvokeStaticMethod' do
@@ -462,6 +521,32 @@ RSpec.describe 'Ruby To Perl Package Integration Tests' do
     puts result
     # </TestResources_1DArray_SetElement>
     expect(result).to eq("seven")
+  end
+
+  it 'Test_PerlPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.pm"
+    class_name = "TestClass::TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method
+    called_runtime_type.invoke_static_method('divide_by', 10, 0).execute
+  rescue Exception => e
+    # write exception to console
+    puts e.full_message
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
   end
 end
 
