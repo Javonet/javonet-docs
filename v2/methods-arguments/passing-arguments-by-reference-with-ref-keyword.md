@@ -1,11 +1,11 @@
 :::options
-:title: Passing `{calling_name}` arguments by reference with ref keyword to `{called_name}`
-:description: This article provides an overview of passing `{calling_name}` arguments by reference with ref keyword to `{called_name}`
+:title: Pass arguments by reference with ref keyword to `{called_name}` in `{calling_name}` application.
+:description: This article provides an overview of passing arguments by reference with ref keyword to `{called_name}` in `{calling_name}` application.
 :related_articles: methods-arguments/passing-arguments-by-reference-with-out-keyword
 :keywords: Javonet, `{called_name}` Passing Arguments, `{calling_name}`, Ref Keyword, Reference Passing, Method Invocation, Argument Passing, Value Return, Multiple Return Values, Function Calls, Parameter Passing, Return Types
 :::
 
-# Passing `{calling_name}` argument with ref keyword to `{called_name}`
+# Pass arguments by reference with ref keyword to `{called_name}` in `{calling_name}` app
   
 This article provides an introduction to cross-technology invocation of both static and instance methods which contains argument of type `ref`. Parameter modifier `ref` in C# (.NET) technology is used in a method signature to pass an argument by reference. It is described in details in [this article](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters#ref-parameter-modifier).  
   
@@ -47,7 +47,7 @@ Both values can be passed to RefSampleMethod(ref int x) method using *invokeStat
   
 Each reference type argument is get as regular `{calling_name}` value using *getRefValue()* and can be used for further processing.  
   
-## Custom `{called_name}` with multiple ref `{calling_name}` arguments
+## Custom `{calling_name}` with ref keyword
   
 It is possible to invoke the declared method which contains multiple `ref` arguments from `{called_name}` using following `{calling_name}` code:
   

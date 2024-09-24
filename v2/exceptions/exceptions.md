@@ -1,10 +1,10 @@
 :::options
-:title: Working with `{calling_name}` exceptions from `{called_name}`
-:description: This article provides an overview of working with `{calling_name}` exceptions from `{called_name}`
+:title: Work with `{called_name}` exceptions in `{calling_name}` application
+:description: This article provides an overview of working with exceptions from `{called_name}` in `{calling_name}` application.
 :keywords: Javonet, `{called_name}` Exceptions, `{calling_name}`, Exception Handling, Try-Catch, Throw Exception, Catch Exception, Exception Types, Runtime Exceptions, Checked Exceptions, Unchecked Exceptions
 :::
 
-# Exceptions `{calling_name}` from `{called_name}`
+# Work with `{called_name}` exceptions in `{calling_name}` app
   
 This article provides an introduction to cross-technology handling of exceptions. Exceptions in programming are events that occur during the execution of programs that disrupt the normal flow of instructions.  
   
@@ -12,7 +12,7 @@ Any exception thrown by called technology is handled and thrown as any other exc
   
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.  
 
-## Custom `{called_name}` withe `{calling_name}` exception handling 
+## Custom `{called_name}` with exception handling
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   

@@ -1,11 +1,11 @@
 :::options
-:title: Activating Javonet in `{calling_name}` language
-:description: This article provides information about activating Javonet in `{calling_name}` language
+:title: Activating Javonet in `{calling_name}` application
+:description: This article provides information about activating Javonet in `{calling_name}` application
 :related_articles: getting-started/about-javonet, getting-started/prerequisites, getting-started/adding-references-to-libraries
 :keywords: Javonet, `{called_name}` Activation, `{calling_name}`, License Key, Software Activation, License Activation, Register, Log In, Application Startup, License Verification, javonet.lic
 :::
 
-# Activating Javonet in `{calling_name}` language
+# Activating Javonet in `{calling_name}` application
   
 Javonet enables software developers to instantly integrate several programming languages. Javonet is available for Windows, Linux and Mac operating systems as a downloadable package for supported programming languages. This article lists getting started sections for supported technologies.  
   
