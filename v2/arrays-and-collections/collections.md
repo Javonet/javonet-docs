@@ -1,11 +1,11 @@
 :::options
-:title: Working with `{called_name}` collections from `{calling_name}`  
+:title: Use `{called_name}` collections in `{calling_name}` application
 :description: This article provides general description of working with `{called_name}` collections from  `{calling_name}`.
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/multidimensional-arrays, arrays-and-collections/retrieve-array, arrays-and-collections/index-operator, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/iterate-over-array
 :keywords: Javonet, `{called_name}` Collections, `{calling_name}`, Windows, Linux, MacOS, List, Dictionary, Collection Handling, Collection Manipulation, Collection Access, Collection Iteration, Collection Elements
 :::
 
-# Working with collections from `{called_name}` in `{calling_name}` 
+# Use `{called_name}` collections in `{calling_name}` app
 
 This article provides an introduction to cross-technology handling of collections. Data structures are one of the essential aspects of every piece of software. Any application constantly process various information, that very often require specific grouping and access strategies. This aspect is addressed by arrays and more advanced collection types. By using the Javonet framework, users gain ability to easily and effectively work with data structures originating from `{called_name}`. Every collection from `{called_name}` is treated as reference.
   
@@ -13,7 +13,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet you can interact with collections from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API.  
 
-## Working with `{called_name}` lists from `{calling_name}`.
+## Working with `{called_name}` lists in `{calling_name}` application
   
 Javonet SDK contains various methods to interact with lists and consume the results in `{calling_name}`:  
   
@@ -29,7 +29,7 @@ In the snippet above, list specific to called technology framework is created.
 Then, some elements are added to the list.
 Finally, this list can be handled through Javonet SDK, f.e. with getIndex method.
 
-# Working with `{calling_name}` dictionary from `{called_name}`
+# Working with `{called_name}` dictionaries in `{calling_name}` application
   
 Javonet SDK contains various methods to interact with dictionaries and consume the results in `{calling_name}`:  
   
