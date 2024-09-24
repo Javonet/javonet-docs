@@ -23,5 +23,5 @@ Javonet allows to use any library from all supported technologies. As with any r
 
 The argument is a relative or full path to `{called_name}`.  
 If the `{called_name}` has dependencies on other `{called_name}`, the latter needs to be added first.  
-After referencing the `{called_name}` any objects stored in this package can be used. 
+After referencing the `{called_name}` any objects stored in this package can be used.
 Use static classes, create instances, call methods, use fields and properties and much more.
