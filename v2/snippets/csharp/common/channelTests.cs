@@ -1,4 +1,5 @@
 ﻿using Javonet.Netcore.Utils;
+using Javonet.Netcore.Utils.ConnectionData;
 using Xunit;
 
 
@@ -34,6 +35,21 @@ namespace Javonet.Netcore.Sdk.Tests.common
             var communicationChannel = Javonet.Tcp(connectionData);
             // use communicationChannel to create runtimes to interact with
             // </TcpChannel>
+            Assert.NotNull(communicationChannel);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_Channel_Ws_Success()
+        {
+            // <WsChannel>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            var connectionData = new WsConnectionData("ws://127.0.0.1:80");
+            var communicationChannel = Javonet.WebSocket(connectionData);
+            // use communicationChannel to create runtimes to interact with
+            // </WsChannel>
             Assert.NotNull(communicationChannel);
         }
 
