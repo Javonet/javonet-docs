@@ -1,11 +1,11 @@
 :::options
-:title: Passing array from `{calling_name}` as method argument to `{called_name}`
+:title: Use array from `{calling_name}` as method argument to `{called_name}`
 :description: This article provides general description of passing array from `{calling_name}` as method argument to `{called_name}`
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/multidimensional-arrays, arrays-and-collections/collections, arrays-and-collections/retrieve-array, arrays-and-collections/index-operator, arrays-and-collections/iterate-over-array
 :keywords: Javonet, `{called_name}` Arrays, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
-# Passing array from `{calling_name}` as method argument to `{called_name}`
+# Use array from `{calling_name}` as method argument to `{called_name}`
 
 This article shows how to pass array as an argument.
   
@@ -25,7 +25,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 
 With Javonet SDK it is possible to pass array as an argument to one of this method.  
   
-## Passing `{calling_name}` array
+## Pass `{calling_name}` array
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`

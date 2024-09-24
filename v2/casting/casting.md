@@ -1,10 +1,10 @@
 :::options
-:title: Casting `{calling_name}` from `{called_name}`
-:description: This article provides an overview of casting `{calling_name}` with Javonet from `{called_name}`
+:title: Cast `{called_name}` variables in `{calling_name}` application
+:description: This article provides an overview of casting `{called_name}` variables in `{calling_name}` application.
 :keywords: Javonet, `{called_name}` Casting, `{calling_name}`, Type Casting, Data Conversion, Primitive Types, Complex Types, Explicit Casting, Implicit Casting, Cast Operator, Type Conversion
 :::
 
-# Casting `{calling_name}` from `{called_name}`
+# Cast `{called_name}` variables in `{calling_name}` app
   
 This article provides an introduction to cross-technology handling of casting mechanism. Casting is necessary in statically-typed languages like C, C++, Java, and C#, where the data type of a variable is known at compile time. In these languages, if you want to assign a value of one type to a variable of another type, you need to perform a cast.  
   
@@ -16,7 +16,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet you can interact with objects and methods from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API.  
 
-## Custom `{calling_name}` showing `{called_name}` casting
+## Custom `{calling_name}` example with `{called_name}` variables casting
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   

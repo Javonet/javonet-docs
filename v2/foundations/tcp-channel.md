@@ -5,7 +5,7 @@
 :keywords: Javonet, `{called_name}` TCP Channel, `{calling_name}`, TCP/IP Communication, Remote Machine, Server, Docker Container, Runtime Context, Method Invocation, Communication Channel, In Memory Channel, Static Class
 :::
 
-# `{calling_name}` Remote integrations
+# Remote integrations in `{calling_name}`
 
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.  
   

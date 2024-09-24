@@ -1,11 +1,11 @@
 :::options
-:title: Index `{calling_name}` operator []
-:description: This article provides general description of using `{calling_name}` [] operator
+:title: Use `{calling_name}` index operator
+:description: This article provides general description of using [] operator in `{calling_name}` application.
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/multidimensional-arrays, arrays-and-collections/collections, arrays-and-collections/retrieve-array, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/iterate-over-array
 :keywords: Javonet, `{called_name}` Arrays, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
-# Index operator []
+# Use `{calling_name}` index  operator
 
 This article shows usage of [] operator for arrays and collections. In Javonet, every array or collection from called technology is treated as a reference.  
   
@@ -13,7 +13,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet you can interact with arrays from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API.  
 
-## Custom `{called_name}` with arrays handling
+## Work with `{called_name}` arrays with `{calling_name}` operator []
   
 With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with arrays declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -27,7 +27,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 
 Each array or collection from `{called_name}` returns as InvocationContext which contains reference to the target data. Javonet SDK implements [] operator on InvocationContext to interact with complex data objects in `{calling_name}`:  
 
-## Get `{calling_name}` element from `{called_name}`
+## Get `{called_name}` element in `{calling_name}` application
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`
@@ -39,7 +39,7 @@ Each array or collection from `{called_name}` returns as InvocationContext which
 
 In the snippet above, get1DArray method is used to get reference to 1D array from `{called_name}`. Operator [] is used to get element from the array.
 
-## Set `{calling_name}` element from `{called_name}`
+## Set `{called_name}` element in `{calling_name}` application
   
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/`{called_technology}`/integrationTests.`{calling_ext}`

@@ -1,11 +1,11 @@
 :::options
-:title: Iterate over `{calling_name}` array from `{called_name}`
-:description: This article provides general description of retrieving `{calling_name}` array from `{called_name}`
+:title: Iterate over `{called_name}` array in `{calling_name}` application
+:description: This article provides general description of retrieving array from `{called_name}` in `{calling_name}` application.
 :related_articles: arrays-and-collections/one-dimensional-arrays, arrays-and-collections/multidimensional-arrays, arrays-and-collections/collections, arrays-and-collections/index-operator, arrays-and-collections/passing-array-as-method-argument, arrays-and-collections/retrieve-array
 :keywords: Javonet, `{called_name}`, Arrays, `{calling_name}`, Windows, Linux, MacOS, Array Handling, Array Manipulation, Array Access, Array Iteration, Array Size, Array Elements
 :::
 
-# Iterate over `{calling_name}` array from `{called_name}`
+# Iterate over `{called_name}` array in `{calling_name}` app
 
 This article shows how to iterate over array from called technology.
   
@@ -23,7 +23,7 @@ Snippet below represents the sample code from `{called_name}` that has methods w
 :display: called
 :::
 
-## Iterate `{calling_name}` array from `{called_name}`
+## Iterate `{called_name}` array in `{calling_name}` application
 
 With Javonet SDK it is possible to iterate over array from called technology and invoke methods on its elements.
   

@@ -1,11 +1,11 @@
 :::options
-:title: Getting and setting values for static `{calling_name}` fields and properties from `{called_name}` 
-:description: This article provides an overview of getting and setting values for `{calling_name}` static fields and properties from `{called_name}` 
+:title: Use static fields and properties from `{called_name}` in `{calling_name}` application
+:description: This article provides an overview of using static fields and properties from `{called_name}` in `{calling_name}` application
 :related_articles: fields-and-properties/getting-and-setting-values-for-instance-fields-and-properties
 :keywords: Javonet, `{called_name}` Static Fields, `{calling_name}`, Static Properties, Field Access, Property Access, Field Modification, Property Modification, Static Field Values, Static Property Values, Get Field, Set Field, Get Property, Set Property
 :::
 
-# Static `{calling_name}` fields and properties from `{called_name}`
+# Use static fields and properties from `{called_name}` in `{calling_name}` app
   
 This article provides an introduction to cross-technology handling of static fields and properties.  
 
@@ -13,7 +13,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet you can interact with static field and properties from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API.  
   
-## Get/Set static `{calling_name}` field from custom `{called_name}`
+## Custom `{called_name}` with static fields in `{calling_name}` application
   
 With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with public static fields and properties declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -49,7 +49,7 @@ It is possible to set one of the declared static fields from `{called_name}` usi
 
 This uses in memory runtime bridging to load the `{called_name}`, and next retrieves reference to specific type, then sets and gets the static field. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
-## Get/Set static `{calling_name}` field from standard `{called_name}`
+## Framework static fields in `{calling_name}` application
 
 The same steps are required to get types and fields from framework `{called_name}`:
 

@@ -1,10 +1,10 @@
 :::options
-:title: Using `{calling_name}` enum type from `{called_name}
-:description: This article provides an overview of working with `{calling_name}` enum types from `{called_name}`
+:title: Use `{called_name}` enum type in `{calling_name}` application
+:description: This article provides an overview of working with enum types from `{called_name}` in `{calling_name}` application.
 :keywords: Javonet, `{called_name}` Enum Types, `{calling_name}`, Enum Handling, Enum Values, Enum Names, Enum Conversion, Enum Methods, Enum Pass, Enum Return, Enum Item
 :::
 
-# Using `{calling_name}` enum type from `{called_name}`
+# Use `{called_name}` enum type in `{calling_name}` app
   
 This article provides an introduction to cross-technology handling of `enum` type. In programming, an `enum` (short for enumeration) type is a special data type that enables for a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it. Enums are used to create our own data types, just like classes. They are particularly useful when we want to represent a fixed set of constants, such as days of the week, states, colors, directions, and more. This makes the code more readable and less prone to errors.  
   
@@ -12,7 +12,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet, you can interact with `enum` types from `{called_name}` as if they were available in `{calling_name}`, but interaction must be performed through the Javonet SDK API. This allows you to handle and manipulate `enum` values, pass them to methods, and return them from methods, all while maintaining the type safety and readability of your `{calling_name}` code.  
   
-## Custom `{called_name}` with `{calling_name}` enum type
+## Custom `{called_name}` with enum type in `{calling_name}` application
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   

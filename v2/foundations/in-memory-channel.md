@@ -1,11 +1,11 @@
 :::options
-:title: `{calling_name}` In memory channel
-:description: The article describes how to use Javonet with `{calling_name}` inMemory channel type
+:title: In memory channel in `{calling_name}` application
+:description: The article describes how to use Javonet with inMemory channel type
 :related_articles: foundations/javonet-static-class, foundations/tcp-channel, foundations/configure-channel, foundations/runtime-context, foundations/invocation-context, foundations/execute-method, foundations/get-value-method,foundations/get-value-method
 :keywords: Javonet, `{called_name}` In Memory Channel, `{calling_name}`, In Memory Channel, Communication Channel, Runtime Context, Invocation Context, Execute Method, TCP Channel, Static Class
 :::
 
-# `{calling_name}` In memory channel
+# In memory channel
 
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If have not yet created your first project check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.  
   
