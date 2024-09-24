@@ -15,7 +15,7 @@ With Javonet you can interact with instance field and properties from `{called_n
   
 Javonet allows you to pass any `{calling_name}` value type as argument to method from `{called_name}`. For reference type arguments (instances of other classes) you can create such instance with Javonet and pass the [Invocation Context](/guides/v2/`{calling_technology}`/`{called_technology}`/foundations/invocation-context) variable referencing that object as argument of method invocation.  
   
-## Custom `{called_name}` with instance fields in `{calling_name}` application
+## Custom `{called_name}` with instance fields and properties
   
 With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with public instance fields and properties declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -51,7 +51,7 @@ It is possible to set one of the declared instance fields from `{called_name}` u
 
 This uses in memory runtime bridging to load the `{called_name}`, and next retrieves reference to specific type, then sets and gets the instance field. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
-## Framework instance fields in `{calling_name}` application
+## Framework instance fields and properties
 
 The same steps are required to get types and fields from framework `{called_name}`:
 

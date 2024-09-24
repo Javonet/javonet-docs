@@ -12,7 +12,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet, you can interact with `enum` types from `{called_name}` as if they were available in `{calling_name}`, but interaction must be performed through the Javonet SDK API. This allows you to handle and manipulate `enum` values, pass them to methods, and return them from methods, all while maintaining the type safety and readability of your `{calling_name}` code.  
   
-## Custom `{called_name}` with enum type in `{calling_name}` application
+## Custom `{called_name}` with enum type
   
 With Javonet it is possible to [reference](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with its methods declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   

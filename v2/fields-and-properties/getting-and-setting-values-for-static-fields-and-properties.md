@@ -13,7 +13,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
   
 With Javonet you can interact with static field and properties from `{called_name}` like they were available in `{calling_name}` but invocation must be performed through Javonet SDK API.  
   
-## Custom `{called_name}` with static fields in `{calling_name}` application
+## Custom `{called_name}` with static fields and properties
   
 With Javonet it is possible to [reference](https://www.javonet.com/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/adding-references-to-libraries) any custom `{called_name}` and interact with public static fields and properties declared on types defined within that module almost the same as with any other `{calling_name}` library.  
   
@@ -49,7 +49,7 @@ It is possible to set one of the declared static fields from `{called_name}` usi
 
 This uses in memory runtime bridging to load the `{called_name}`, and next retrieves reference to specific type, then sets and gets the static field. Result of the invocation is returned as regular `{calling_name}` value and can be used for further processing.
 
-## Framework static fields in `{calling_name}` application
+## Framework static fields and properties
 
 The same steps are required to get types and fields from framework `{called_name}`:
 
