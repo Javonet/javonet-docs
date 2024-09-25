@@ -159,6 +159,60 @@ namespace TestClass
         }
         // </Multithreading>
 
+        // <PassingNull>
+        public static string PassNull(object arg)
+        {
+            if (arg == null)
+            {
+                return "Method called with null";
+            }
+            else
+            {
+                return "Method not called with null";
+            }
+        }
+
+        public static string PassNull2(int arg1, object arg2)
+        {
+            if (arg2 == null)
+            {
+                return "Method2 called with null";
+            }
+            else
+            {
+                return "Method 2not called with null";	
+            }
+        }
+        // </PassingNull>
+
+        // <ReturningNull>
+        public static object ReturnNull()
+        {
+            return null;
+        }
+        // </ReturningNull>
+
+
+        //<Nullable>
+        public static string MethodWithNullables(int? arg1, double? arg2)
+        {
+            return "MethodWithNullables called";
+        }
+        //</Nullable>
+
+        // <OverloadingMethodsWithNulls>
+        public static string MethodWithNullArgument(string arg)
+        {
+            return "MethodWithNullArgument called with string";
+        }
+
+        public static string MethodWithNullArgument(TestClass arg)
+        {
+            return "MethodWithNullArgument called with TestClass";
+        }
+        // </OverloadingMethodsWithNulls>
+
+
         // <Empty>
         // empty
         // </Empty>

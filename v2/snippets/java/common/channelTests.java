@@ -1,7 +1,7 @@
 package common;
 
 import com.javonet.sdk.*;
-import com.javonet.utils.TcpConnectionData;
+import com.javonet.utils.connectiondata.TcpConnectionData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

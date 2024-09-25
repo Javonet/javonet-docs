@@ -666,8 +666,8 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
   end
 
   it 'Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
-    begin
       # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    begin
       # use activate only once in your app
       Javonet.activate('your-license-key')
 

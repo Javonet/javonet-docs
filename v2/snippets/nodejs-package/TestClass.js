@@ -52,6 +52,30 @@ class TestClass {
 		}
 	}
 	// </Exceptions>
+	
+	// <PassingNull>
+	static passNull(arg) {
+		if (arg === null) {
+			return "Method called with null";
+		} else {
+			return "Method not called with null";
+		}
+	}
+
+	static passNull2(arg1, arg2) {
+		if (arg2 === null) {
+			return "Method2 called with null";
+		} else {
+			return "Method2 not called with null";
+		}
+	}
+	// </PassingNull>
+
+	// <ReturningNull>
+		static returnNull() {
+			return null;
+		}
+	// </ReturningNull>
 
 	// <Empty>
 	// empty

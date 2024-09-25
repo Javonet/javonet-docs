@@ -1,6 +1,7 @@
 import threading
 import time
 
+
 class TestClass:
 
     def __init__(self, public_value, private_value):
@@ -79,7 +80,31 @@ class TestClass:
         self.cache[thread_id] = result
         print(f"Returning result in thread: {thread_id}")
         return result
+
     # </Multithreading>
+
+    # <PassingNull>
+    @staticmethod
+    def pass_null(arg):
+        if arg is None:
+            return "Method called with null"
+        else:
+            return "Method not called with null"
+
+    @staticmethod
+    def pass_null_2(arg1, arg2):
+        if arg2 is None:
+            return "Method2 called with null"
+        else:
+            return "Method2 not called with null"
+
+    # </PassingNull>
+
+    # <ReturningNull>
+    @staticmethod
+    def return_null():
+        return None
+    # </ReturningNull>
 
     #<Empty>
     # empty

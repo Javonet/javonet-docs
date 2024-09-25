@@ -624,9 +624,9 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # invoke instance's method
     response = instance
-               .invoke_instance_method('AddArrayElementsAndMultiply',
-                                       called_runtime.cast(target_type, [12.22, 98.22, -10.44]), 9.99)
-               .execute
+                 .invoke_instance_method('AddArrayElementsAndMultiply',
+                                         called_runtime.cast(target_type, [12.22, 98.22, -10.44]), 9.99)
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -693,8 +693,8 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # invoke type's static method
     response = called_runtime_type
-               .invoke_static_method('CastSampleMethod', called_runtime.cast(target_type, 5.2))
-               .execute
+                 .invoke_static_method('CastSampleMethod', called_runtime.cast(target_type, 5.2))
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -728,9 +728,9 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # invoke type's static method
     response = called_runtime_type
-               .invoke_static_method('CastSampleMethod',
-                                     called_runtime.cast(target_type, 5))
-               .execute
+                 .invoke_static_method('CastSampleMethod',
+                                       called_runtime.cast(target_type, 5))
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -743,28 +743,29 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
   it 'Test_NetDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
     # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-    # use activate only once in your app
-    Javonet.activate('your-license-key')
+    begin
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
 
-    # create called runtime context
-    called_runtime = Javonet.in_memory.netcore
+      # create called runtime context
+      called_runtime = Javonet.in_memory.netcore
 
-    # set up variables
-    library_path = "#{resources_directory}/TestClass.dll"
-    class_name = 'TestClass.TestClass'
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = 'TestClass.TestClass'
 
-    # load custom library
-    called_runtime.load_library(library_path)
+      # load custom library
+      called_runtime.load_library(library_path)
 
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type(class_name).execute
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
 
-    # invoke type's static method
-    called_runtime_type.invoke_static_method('DivideBy', 10, 0).execute
-  rescue Exception => e
-    # write exception to console
-    puts e.full_message
-
+      # invoke type's static method
+      called_runtime_type.invoke_static_method('DivideBy', 10, 0).execute
+    rescue Exception => e
+      # write exception to console
+      puts e.full_message
+    end
     # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
   end
 
@@ -791,8 +792,8 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # invoke type's generic static method
     response = called_runtime_type
-               .invoke_generic_static_method('GenericSampleStaticMethod', target_type, 7, 5)
-               .execute
+                 .invoke_generic_static_method('GenericSampleStaticMethod', target_type, 7, 5)
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -829,8 +830,8 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # invoke type's generic method
     response = instance
-               .invoke_generic_method('GenericSampleMethod', target_type, 7, 5)
-               .execute
+                 .invoke_generic_method('GenericSampleMethod', target_type, 7, 5)
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -868,9 +869,9 @@ RSpec.describe 'Ruby To Net Dll Integration Tests' do
 
     # invoke type's generic method
     response = instance
-               .invoke_generic_method('GenericSampleMethodWithTwoTypes',
-                                      [target_type_1, target_type_2], 'test')
-               .execute
+                 .invoke_generic_method('GenericSampleMethodWithTwoTypes',
+                                        [target_type_1, target_type_2], 'test')
+                 .execute
 
     # get value from response
     result = response.get_value

@@ -125,6 +125,30 @@ public class TestClass {
 	}
 	// </Multithreading>
 
+	// <PassingNull>
+	public static String passNull(Object arg) {
+		if (arg == null) {
+			return "Method called with null";
+		} else {
+			return "Method not called with null";
+		}
+	}
+
+	public static String passNull2(int arg1, Object arg2) {
+		if (arg2 == null) {
+			return "Method2 called with null";
+		} else {
+			return "Method2 not called with null";
+		}
+	}
+	// </PassingNull>
+
+	// <ReturningNull>
+	public static Object returnNull() {
+		return null;
+	}
+	// </ReturningNull>
+
 	// <Empty>
 	// empty
 	// </Empty>

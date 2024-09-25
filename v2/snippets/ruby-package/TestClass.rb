@@ -50,6 +50,30 @@ module TestClass
 	end
 	# </Exceptions>
 
+	# <PassingNull>
+	def self.pass_null(arg)
+	 if arg.nil?
+		 return "Method called with null"
+	 else
+		 return "Method not called with null"
+	 end
+	end
+
+	def self.pass_null_2(arg1, arg2)
+	 if arg2.nil?
+		 return "Method2 called with null"
+	 else
+		 return "Method2 not called with null"
+	 end
+	end
+	# </PassingNull>
+
+ # <ReturningNull>
+ def self.return_null
+	 return nil
+ end
+ # </ReturningNull>
+
 	# <Empty>
 	# empty
 	# </Empty>

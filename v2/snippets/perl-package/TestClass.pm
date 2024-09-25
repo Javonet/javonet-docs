@@ -62,4 +62,30 @@ sub divide_by_third {
 # empty
 # </Empty>
 
+# <PassingNull>
+sub pass_null {
+	my ($arg) = @_;
+	if (!defined $arg) {
+		return "Method called with null";
+	} else {
+		return "Method not called with null";
+	}
+}
+
+sub pass_null_2 {
+	my ($arg1, $arg2) = @_;
+	if (!defined $arg2) {
+		return "Method2 called with null";
+	} else {
+		return "Method2 not called with null";
+	}
+}
+# </PassingNull>
+
+# <ReturningNull>
+sub return_null {
+	return undef;
+}
+# </ReturningNull>
+
 1;

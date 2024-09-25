@@ -569,27 +569,29 @@ RSpec.describe 'Ruby To Python Package Integration Tests' do
 
   it 'Test_PythonPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
     # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-    # use activate only once in your app
-    Javonet.activate('your-license-key')
+    begin
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
 
-    # create called runtime context
-    called_runtime = Javonet.in_memory.python
+      # create called runtime context
+      called_runtime = Javonet.in_memory.python
 
-    # set up variables
-    library_path = resources_directory
-    class_name = 'TestClass.TestClass'
+      # set up variables
+      library_path = resources_directory
+      class_name = 'TestClass.TestClass'
 
-    # load custom library
-    called_runtime.load_library(library_path)
+      # load custom library
+      called_runtime.load_library(library_path)
 
-    # get type from the runtime
-    called_runtime_type = called_runtime.get_type(class_name).execute
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
 
-    # invoke type's static method
-    called_runtime_type.invoke_static_method('divide_by', 10, 0).execute
-  rescue Exception => e
-    # write exception to console
-    puts e.full_message
+      # invoke type's static method
+      called_runtime_type.invoke_static_method('divide_by', 10, 0).execute
+    rescue Exception => e
+      # write exception to console
+      puts e.full_message
+    end
     # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
   end
 
