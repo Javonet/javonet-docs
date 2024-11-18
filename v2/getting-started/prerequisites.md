@@ -37,8 +37,11 @@ For example: [OpenJDK](https://www.openlogic.com/openjdk-downloads?field_java_pa
 
 ## Python package
 
-[Python 3.11](https://www.python.org/downloads/release/python-3113/).  
-On Linux - if some packages are missing - it may be necessary to install libpython3.11-dev package too.
+[Python 3.8 or newer](https://www.python.org/downloads/).  
+On Linux, if any packages are missing, you may need to install the libpython3.*-dev package corresponding to your Python version.
+If multiple Python versions are installed on the machine, you can set the JAVONET_PYTHON_RUNTIME_PATH to specify which Python to use.
+The JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3.*.so file, for example:
+JAVONET_PYTHON_RUNTIME_PATH="/usr/lib/x86_64-linux-gnu/libpython3.13.so"
 
 ## Ruby package
 
