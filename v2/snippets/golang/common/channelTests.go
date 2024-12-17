@@ -19,7 +19,7 @@ func init() {
 func Test_Channel_InMemory_Success(t *testing.T) {
 	// <InMemoryChannel>
 	// use Activate only once in your app
-	_, err := Javonet.ActivateWithCredentials("your-license-key")
+	_, err := Javonet.Activate("your-license-key")
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}
@@ -38,7 +38,7 @@ func Test_Channel_InMemory_Success(t *testing.T) {
 func Test_Channel_Tcp_Success(t *testing.T) {
 	// <TcpChannel>
 	// use Activate only once in your app
-	_, err := Javonet.ActivateWithCredentials("your-license-key")
+	_, err := Javonet.Activate("your-license-key")
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}
@@ -58,7 +58,7 @@ func Test_Channel_Tcp_Success(t *testing.T) {
 func Test_Channel_WithConfigurationFile_Success(t *testing.T) {
 	// <WithConfigurationFile>
 	// use Activate only once in your app
-	_, err := Javonet.ActivateWithCredentials("your-license-key")
+	_, err := Javonet.Activate("your-license-key")
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}

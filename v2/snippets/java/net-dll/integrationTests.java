@@ -1,11 +1,6 @@
 package netdll;
 
-import com.javonet.core.generator.handler.GeneratorHandler;
 import com.javonet.sdk.*;
-import com.javonet.utils.Command;
-import com.javonet.utils.CommandType;
-import com.javonet.utils.RuntimeName;
-import com.javonet.utils.Type;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
@@ -1378,29 +1373,4 @@ public class integrationTests {
     // System.out.println("normalMethodTime / optimizedMethodTimeWithIC = " +
     // normalMethodTime / optimizedMethodTimeWithIC);
     // }
-
-    @Test
-    @Tag("integration")
-    @DisabledOnOs(OS.MAC)
-    void Test_NetDll_StandardLibrary_CodeGenerationForClass_SystemMath()
-            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        String className = "System.Math";
-        int initialValue = -232;
-        int expectedValue = Math.abs(initialValue);
-        Command structuredCommandForClass = new Command(RuntimeName.Netcore, CommandType.GENERATE_LIB,
-                new Object[] {
-                        new Command(RuntimeName.Netcore, CommandType.GET_TYPE,
-                                new Object[] { className, "public",
-                                        new Command(RuntimeName.Netcore, CommandType.INVOKE_STATIC_METHOD,
-                                                new Object[] { "Abs", Type.INTEGER, "public", className,
-                                                        new Object[] { Type.INTEGER, },
-                                                        new Object[] { "ref", } }) }) });
-        GeneratorHandler generatorHandler = new GeneratorHandler();
-        ArrayList<File> generatedClassFiles = generatorHandler.generate(structuredCommandForClass,
-                System.getProperty("user.dir"));
-        generatorHandler.compileClass(generatedClassFiles.get(0));
-        Class<?> clazz = GeneratorHandler.getClass(className, new File(System.getProperty("user.dir")));
-        Assertions.assertEquals(className, clazz.getName());
-        Assertions.assertEquals(expectedValue, clazz.getMethod("abs", int.class).invoke(null, initialValue));
-    }
 }

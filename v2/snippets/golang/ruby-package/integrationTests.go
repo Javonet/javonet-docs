@@ -17,13 +17,13 @@ var resourcesDirectory string
 func init() {
 	cwd, _ := os.Getwd()
 	resourcesDirectory = cwd + "/../../../../testResources/ruby-package"
-	Javonet.ActivateWithCredentials(activationcredentials.YourLicenseKey)
+	Javonet.Activate(activationcredentials.YourLicenseKey)
 }
 
 func Test_RubyPackage_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 	// <StandardLibrary_CreateRuntimeContext>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -39,7 +39,7 @@ func Test_RubyPackage_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 func Test_RubyPackage_StandardLibrary_CreateInvocationContext(t *testing.T) {
 	// <StandardLibrary_CreateInvocationContext>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -64,7 +64,7 @@ func Test_RubyPackage_StandardLibrary_CreateInvocationContext(t *testing.T) {
 func Test_RubyPackage_StandardLibrary_GetValue(t *testing.T) {
 	// <StandardLibrary_GetValue>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -96,7 +96,7 @@ func Test_RubyPackage_StandardLibrary_GetValue(t *testing.T) {
 func Test_RubyPackage_TestResources_LoadLibrary_libraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -112,7 +112,7 @@ func Test_RubyPackage_TestResources_LoadLibrary_libraryPath_NoException(t *testi
 func Test_RubyPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -145,7 +145,7 @@ func Test_RubyPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 func Test_RubyPackage_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -182,7 +182,7 @@ func Test_RubyPackage_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 func Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -218,7 +218,7 @@ func Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18(t *testing.T
 func Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
 	// <TestResources_SetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -257,7 +257,7 @@ func Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44(t *testing.T
 func Test_RubyPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -290,7 +290,7 @@ func Test_RubyPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *te
 func Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -326,7 +326,7 @@ func Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_
 func Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(t *testing.T) {
 	// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
 	// use Activate only once in your app
-	result, err := Javonet.ActivateWithCredentials("your-license-key")
+	result, err := Javonet.Activate("your-license-key")
 	if result != 0 {
 		fmt.Println("Wrong activation result: " + err.Error())
 	}
@@ -371,7 +371,7 @@ func Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_
 func Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -410,7 +410,7 @@ func Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T)
 func Test_RubyPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -449,7 +449,7 @@ func Test_RubyPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 func Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -492,7 +492,7 @@ func Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 func Test_RubyPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -534,7 +534,7 @@ func Test_RubyPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 func Test_RubyPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()
@@ -560,7 +560,7 @@ func Test_RubyPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 func Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Ruby()

@@ -10,7 +10,7 @@ import (
 
 func Test_Activation_CorrectCredentials_Returns0(t *testing.T) {
 	// <Javonet_activate>
-	result, err := Javonet.ActivateWithCredentials(activationcredentials.YourLicenseKey)
+	result, err := Javonet.Activate(activationcredentials.YourLicenseKey)
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}
@@ -27,7 +27,7 @@ func Test_Activation_CorrectCredentials_Returns0(t *testing.T) {
 
 func Test_Activation_LicenseFile_Returns0(t *testing.T) {
 	// <Javonet_activate_without_credentials>
-	result, err := Javonet.ActivateWithCredentials("")
+	result, err := Javonet.Activate("")
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}

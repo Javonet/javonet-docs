@@ -20,13 +20,13 @@ var resourcesDirectory string
 func init() {
 	cwd, _ := os.Getwd()
 	resourcesDirectory = cwd + "/../../../../testResources/netframework-dll"
-	Javonet.ActivateWithCredentials(activationcredentials.YourLicenseKey)
+	Javonet.Activate(activationcredentials.YourLicenseKey)
 }
 
 func Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 	// <StandardLibrary_CreateRuntimeContext>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -42,7 +42,7 @@ func Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 func Test_NetframeworkDll_StandardLibrary_CreateInvocationContext(t *testing.T) {
 	// <StandardLibrary_CreateInvocationContext>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -67,7 +67,7 @@ func Test_NetframeworkDll_StandardLibrary_CreateInvocationContext(t *testing.T) 
 func Test_NetframeworkDll_StandardLibrary_GetValue(t *testing.T) {
 	// <StandardLibrary_GetValue>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -99,7 +99,7 @@ func Test_NetframeworkDll_StandardLibrary_GetValue(t *testing.T) {
 func Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -115,7 +115,7 @@ func Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException(t *t
 func Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -148,7 +148,7 @@ func Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3(t *testing.
 func Test_NetframeworkDll_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -185,7 +185,7 @@ func Test_NetframeworkDll_TestResources_SetStaticField_StaticValue75(t *testing.
 func Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -221,7 +221,7 @@ func Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18(t *testi
 func Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
 	// <TestResources_SetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -260,7 +260,7 @@ func Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44(t *testi
 func Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -293,7 +293,7 @@ func Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t
 func Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -326,10 +326,56 @@ func Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_
 	}
 }
 
+// created new ticket to fix this test
+// func Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(t *testing.T) {
+// 	// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+// 	// use Activate only once in your app
+// 	result, err := Javonet.Activate("your-license-key")
+// 	if result != 0 {
+// 		fmt.Println("Wrong activation result: " + err.Error())
+// 	}
+// 	if err != nil {
+// 		fmt.Println("Activation exception: " + err.Error())
+// 	}
+
+// 	// create called runtime context
+// 	calledRuntime, err := Javonet.InMemory().Clr()
+// 	if err != nil {
+// 		fmt.Println("Creating runtime exception: " + err.Error())
+// 	}
+
+// 	// set up variables
+// 	libraryPath := resourcesDirectory + "/TestClass.dll"
+// 	className := "TestClass.TestClass"
+
+// 	// load custom library
+// 	_, err = calledRuntime.LoadLibrary(libraryPath)
+// 	if err != nil {
+// 		fmt.Println("Loading library exception: " + err.Error())
+// 	}
+
+// 	// get type from the runtime
+// 	calledRuntimeType, err := calledRuntime.GetType(className).Execute()
+// 	if err != nil {
+// 		fmt.Println("Get Type exception: " + err.Error())
+// 	}
+
+// 	// invoke type's static method which throws exception
+// 	_, err = calledRuntimeType.InvokeStaticMethod("DivideBy", 10, 0).Execute()
+// 	fmt.Println(err)
+// 	// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+// 	if err == nil {
+// 		t.Fatal("Exception was not thrown")
+// 	}
+// 	if !strings.Contains(err.Error(), "DivideByThird") {
+// 		t.Fatal("Wrong exception message: " + err.Error())
+// 	}
+// }
+
 func Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -368,7 +414,7 @@ func Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree(t *testin
 func Test_NetframeworkDll_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -407,7 +453,7 @@ func Test_NetframeworkDll_TestResources_1DArray_GetSize_5(t *testing.T) {
 func Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -450,7 +496,7 @@ func Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven(t *testing.
 func Test_NetframeworkDll_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -491,7 +537,7 @@ func Test_NetframeworkDll_TestResources_1DArray_RetrieveArray(t *testing.T) {
 func Test_NetframeworkDll_TestResources_Cast_ToUInt32(t *testing.T) {
 	// <TestResources_Cast_ToUInt32>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -527,7 +573,7 @@ func Test_NetframeworkDll_TestResources_Cast_ToUInt32(t *testing.T) {
 func Test_NetframeworkDll_TestResources_Cast_ToFloat(t *testing.T) {
 	// <TestResources_Cast_ToFloat>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -563,7 +609,7 @@ func Test_NetframeworkDll_TestResources_Cast_ToFloat(t *testing.T) {
 func Test_NetframeworkDll_TestResources_GenericStaticMethod(t *testing.T) {
 	// <TestResources_GenericStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -600,7 +646,7 @@ func Test_NetframeworkDll_TestResources_GenericStaticMethod(t *testing.T) {
 func Test_NetframeworkDll_TestResources_GenericMethod(t *testing.T) {
 	// <TestResources_GenericMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -641,7 +687,7 @@ func Test_NetframeworkDll_TestResources_GenericMethod(t *testing.T) {
 func Test_NetframeworkDll_TestResources_EnumNameAndValue(t *testing.T) {
 	// <TestResources_EnumNameAndValue>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -682,7 +728,7 @@ func Test_NetframeworkDll_TestResources_EnumNameAndValue(t *testing.T) {
 func Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -708,7 +754,7 @@ func Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T)
 func Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022(t *testing.T) {
 	// <StandardLibrary_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -737,7 +783,7 @@ func Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2
 func Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()
@@ -763,7 +809,7 @@ func Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50
 func Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022(t *testing.T) {
 	// <StandardLibrary_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Clr()

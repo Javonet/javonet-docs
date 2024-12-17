@@ -74,6 +74,32 @@ module TestClass
  end
  # </ReturningNull>
 
+ # <Multithreading>
+ @@cache = {}
+
+ def add_two_numbers(x, y)
+	 thread_id = Thread.current.object_id
+	 puts "Computing result in thread: #{thread_id}"
+	 sleep(1)  # Simulate computation delay
+	 result = x + y
+	 puts "Saving result in thread: #{thread_id}"
+	 sleep(0.05)  # Simulate saving delay
+	 @@cache[thread_id] = result
+	 puts "Returning result in thread: #{thread_id}"
+	 result
+ end
+ # </Multithreading>
+
+ # <AsyncMethods>
+ def create_file_with_content(file_name, file_input)
+	 sleep(2)  # Simulate async operation
+	 File.open(file_name, "w") do |file|
+		 file.write(file_input)
+	 end
+	 "Input processed"
+ end
+ # </AsyncMethods>
+
 	# <Empty>
 	# empty
 	# </Empty>

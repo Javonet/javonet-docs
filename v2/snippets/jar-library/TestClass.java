@@ -1,155 +1,217 @@
-import java.util.*;
-
 public class TestClass {
-	public TestClass() {
-	}
+    public TestClass() {
+    }
 
-	// <Fields>
-	public int publicValue;
-	private int privateValue;
-	public static int staticValue = 3;
+    // <Fields>
+    public int publicValue;
+    private int privateValue;
+    public static int staticValue = 3;
 
-	public TestClass(int publicValue, int privateValue) {
-		this.publicValue = publicValue;
-		this.privateValue = privateValue;
-	}
-	// </Fields>
+    public TestClass(int publicValue, int privateValue) {
+        this.publicValue = publicValue;
+        this.privateValue = privateValue;
+    }
+    // </Fields>
 
-	// <Methods>
-	public static int multiplyByTwo(int a) {
-		return 2 * a;
-	}
+    // <Methods>
+    public static int multiplyByTwo(int a) {
+        return 2 * a;
+    }
 
-	public int multiplyTwoNumbers(int a, int b) {
-		return a * b;
-	}
-	// </Methods>
+    public int multiplyTwoNumbers(int a, int b) {
+        return a * b;
+    }
+    // </Methods>
 
-	// <Arrays>
-	public String[] get1DArray() {
-		return new String[]{"one", "two", "three", "four", "five"};
-	}
+    // <Arrays>
+    public String[] get1DArray() {
+        return new String[]{"one", "two", "three", "four", "five"};
+    }
 
-	public String[][] get2DArray() {
-		return new String[][]{{"S00", "S01"},{"S10", "S11"}};
-	}
+    public String[][] get2DArray() {
+        return new String[][]{{"S00", "S01"}, {"S10", "S11"}};
+    }
 
-	public double addArrayElementsAndMultiply(Double[] myArray, double myValue) {
-		Double sum = 0.0;
-		for (Double value : myArray) {
-			sum += value;
-		}
-		return sum * myValue;
-	}
-	// </Arrays>
+    public double addArrayElementsAndMultiply(Double[] myArray, double myValue) {
+        Double sum = 0.0;
+        for (Double value : myArray) {
+            sum += value;
+        }
+        return sum * myValue;
+    }
+    // </Arrays>
 
-	// <Exceptions>
-	public static int divideBy(int x, int y) {
-		return divideBySecond(x, y);
-	}
+    // <Exceptions>
+    public static int divideBy(int x, int y) {
+        return divideBySecond(x, y);
+    }
 
-	public static int divideBySecond(int x, int y) {
-		return divideByThird(x, y);
-	}
+    public static int divideBySecond(int x, int y) {
+        return divideByThird(x, y);
+    }
 
-	public static int divideByThird(int x, int y) {
-		return x / y;
-	}
-	// </Exceptions>
+    public static int divideByThird(int x, int y) {
+        return x / y;
+    }
+    // </Exceptions>
 
-	// <Cast>
-	public static String castSampleMethod(Vehicle v) {
-		return "castSampleMethod with Vehicle called";
-	}
+    // <Cast>
+    public static String castSampleMethod(Vehicle v) {
+        return "castSampleMethod with Vehicle called";
+    }
 
-	public static String castSampleMethod(Car c) {
-		return "castSampleMethod with Car called";
-	}
+    public static String castSampleMethod(Car c) {
+        return "castSampleMethod with Car called";
+    }
 
-	public static String castSampleMethod(Boat b) {
-		return "castSampleMethod with Boat called";
-	}
-	// </Cast>
+    public static String castSampleMethod(Boat b) {
+        return "castSampleMethod with Boat called";
+    }
+    // </Cast>
 
-	// <Generics>
-	public static <T> String genericSampleStaticMethod(T x, T y) {
-		return x.toString() + " and " + y.toString();
-	}
+    // <Generics>
+    public static <T> String genericSampleStaticMethod(T x, T y) {
+        return x.toString() + " and " + y.toString();
+    }
 
-	public <T> String genericSampleMethod(T x, T y) {
-		return x.toString() + " or " + y.toString();
-	}
+    public <T> String genericSampleMethod(T x, T y) {
+        return x.toString() + " or " + y.toString();
+    }
 
-	public <T, K> String genericSampleMethodWithTwoTypes(T x) {
-		return "genericSampleMethodWithTwoTypes invoked";
-	}
-	// </Generics>
+    public <T, K> String genericSampleMethodWithTwoTypes(T x) {
+        return "genericSampleMethodWithTwoTypes invoked";
+    }
+    // </Generics>
 
-	// <Enums>
-	public enum Fruit {
-		Apple,
-		Banana,
-		Orange,
-		Mango
-	}
+    // <Enums>
+    public enum Fruit {
+        Apple,
+        Banana,
+        Orange,
+        Mango
+    }
 
-	private static ArrayList<Fruit> Fruits = new ArrayList<Fruit>();
+    private static java.util.ArrayList<Fruit> Fruits = new java.util.ArrayList<Fruit>();
 
-	public static String addFruitsToList(Fruit[] fruits) {
-		Fruits.addAll(Arrays.asList(fruits));
-		return String.format("%d fruits on the list", Fruits.size());
-	}
-	// </Enums>
+    public static String addFruitsToList(Fruit[] fruits) {
+        Fruits.addAll(java.util.Arrays.asList(fruits));
+        return String.format("%d fruits on the list", Fruits.size());
+    }
+    // </Enums>
 
-	// <Multithreading>
+    // <PassingNull>
+    public static String passNull(Object arg) {
+        if (arg == null) {
+            return "Method called with null";
+        } else {
+            return "Method not called with null";
+        }
+    }
 
-	private java.util.concurrent.ConcurrentMap<Integer, Integer> cache = new java.util.concurrent.ConcurrentHashMap<>();
+    public static String passNull2(int arg1, Object arg2) {
+        if (arg2 == null) {
+            return "Method2 called with null";
+        } else {
+            return "Method2 not called with null";
+        }
+    }
+    // </PassingNull>
 
-	public int addTwoNumbers(int x ,int y) {
-		System.out.println("Computing result in thread: " + Thread.currentThread().getId());
-		try {
-			Thread.sleep(1000); // Simulate computation delay
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-		int result = x + y;
-		System.out.println("Saving result in thread: " + Thread.currentThread().getId());
-		try {
-			Thread.sleep(50); // Simulate saving delay
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
-		cache.put((int) Thread.currentThread().getId(), result);
-		System.out.println("Returning result in thread: " + Thread.currentThread().getId());
-		return result;
-	}
-	// </Multithreading>
+    // <ReturningNull>
+    public static Object returnNull() {
+        return null;
+    }
+    // </ReturningNull>
 
-	// <PassingNull>
-	public static String passNull(Object arg) {
-		if (arg == null) {
-			return "Method called with null";
-		} else {
-			return "Method not called with null";
-		}
-	}
+    // <Multithreading>
+    private static java.util.concurrent.ConcurrentMap<Integer, Integer> cache = new java.util.concurrent.ConcurrentHashMap<>();
 
-	public static String passNull2(int arg1, Object arg2) {
-		if (arg2 == null) {
-			return "Method2 called with null";
-		} else {
-			return "Method2 not called with null";
-		}
-	}
-	// </PassingNull>
+    public int addTwoNumbers(int x, int y) {
+        System.out.println("Computing result in thread: " + Thread.currentThread().getId());
+        try {
+            Thread.sleep(1000); // Simulate computation delay
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        int result = x + y;
+        System.out.println("Saving result in thread: " + Thread.currentThread().getId());
+        try {
+            Thread.sleep(50); // Simulate saving delay
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        cache.put((int) Thread.currentThread().getId(), result);
+        System.out.println("Returning result in thread: " + Thread.currentThread().getId());
+        return cache.get((int) Thread.currentThread().getId());
+    }
+    // </Multithreading>
 
-	// <ReturningNull>
-	public static Object returnNull() {
-		return null;
-	}
-	// </ReturningNull>
+    // <AsyncMethods>
+    private static final java.util.concurrent.locks.ReentrantLock fileLock = new java.util.concurrent.locks.ReentrantLock();
 
-	// <Empty>
-	// empty
-	// </Empty>
+    public java.util.concurrent.CompletableFuture<String> WriteToFile(String fileName, String input) {
+        return java.util.concurrent.CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000); // Simulate writing delay
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            fileLock.lock();
+            try {
+                java.nio.file.Files.write(java.nio.file.Paths.get(fileName), input.getBytes(), java.nio.file.StandardOpenOption.APPEND);
+                return "Input processed";
+            }
+            catch (java.io.IOException e) {
+                return "Error writing to file";
+            }
+            finally {
+                fileLock.unlock();
+            }
+        });
+    }
+    // </AsyncMethods>
+
+    // <Delegates>
+    public static Integer useYourFunc(java.lang.reflect.Method yourFunc, Integer x, Integer y) throws Exception {
+        return (Integer) yourFunc.invoke(null, x, y);
+    }
+
+    @FunctionalInterface
+    public interface MathOperation {
+        int operate(int x, int y);
+    }
+
+    public int useYourDelegate(MathOperation mathOperation, int x, int y) {
+        return mathOperation.operate(x, y);
+    }
+    // </Delegates>
+
+
+    // <Others>
+    public Double multiplyTwoDoubles(Double a, Double b) {
+        return a * b;
+    }
+
+    public double multiplyTwoDoublesPrimitive(double a, double b) {
+        return a * b;
+    }
+
+    public Double addArrayElements(Double[] myArray) {
+        Double sum = 0.0;
+        for (Double value : myArray) {
+            sum += value;
+        }
+        return sum;
+    }
+
+    public Double publicDoubleValue;
+
+    public TestClass(Double publicDoubleValue) {
+        this.publicDoubleValue = publicDoubleValue;
+    }
+    // </Others>
+
+    // <Empty>
+    // empty
+    // </Empty>
 }

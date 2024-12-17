@@ -1,3 +1,5 @@
+const fs = require('fs').promises;
+
 class TestClass {
 
 	// <Fields>
@@ -76,6 +78,14 @@ class TestClass {
 			return null;
 		}
 	// </ReturningNull>
+	
+	// <AsyncMethods>
+	async createFileWithContent(fileName, fileInput) {
+		await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate async operation
+		await fs.writeFile(fileName, fileInput);
+		return "Input processed";
+	}
+	// </AsyncMethods>
 
 	// <Empty>
 	// empty

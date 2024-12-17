@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-
-namespace TestClass
+﻿namespace TestClass
 {
     public class TestClass
     {
@@ -115,7 +111,7 @@ namespace TestClass
             Mango
         }
 
-        public static List<Fruit> Fruits = new List<Fruit>();
+        public static System.Collections.Generic.List<Fruit> Fruits = new System.Collections.Generic.List<Fruit>();
 
         public static string AddFruitsToList(Fruit[] fruits)
         {
@@ -144,23 +140,6 @@ namespace TestClass
             outStr = "String from OutSampleMethod";
         }
         // </Outs>
-
-        // <Multithreading>
-
-        ConcurrentDictionary<int, int> _cache = new ConcurrentDictionary<int, int>();
-
-        public int AddTwoNumbers(int x, int y)
-        {
-            Console.WriteLine("Computing result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-            System.Threading.Thread.Sleep(1000);
-            var result = x + y;
-            Console.WriteLine("Saving result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-            System.Threading.Thread.Sleep(50);
-            _cache[System.Threading.Thread.CurrentThread.ManagedThreadId] = result;
-            Console.WriteLine("Returning result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-            return result;
-        }
-        // </Multithreading>
 
         // <PassingNull>
         public static string PassNull(object arg)
@@ -215,7 +194,52 @@ namespace TestClass
         }
         // </OverloadingMethodsWithNulls>
 
+        // <Multithreading>
+        private static System.Collections.Concurrent.ConcurrentDictionary<int, int> _cache = new System.Collections.Concurrent.ConcurrentDictionary<int, int>();
+        public string GetCache()
+        {
+            // write all values in cache to a string
+            string result = "";
+            foreach (var item in _cache)
+            {
+                result += item.Key + " " + item.Value + " ";
+            }
+            return result;
+        }
 
+        public int AddTwoNumbers(int x, int y)
+        {
+            System.Console.WriteLine("Computing result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            System.Threading.Thread.Sleep(1000);
+            var result = x + y;
+            System.Console.WriteLine("Saving result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            System.Threading.Thread.Sleep(50);
+            _cache[System.Threading.Thread.CurrentThread.ManagedThreadId] = result;
+            System.Console.WriteLine("Returning result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
+            return _cache[System.Threading.Thread.CurrentThread.ManagedThreadId];
+        }
+        // </Multithreading>
+
+        // <AsyncMethods>
+        public async System.Threading.Tasks.Task<string> CreateFileWithContent(string fileName, string input)
+        {
+            await System.Threading.Tasks.Task.Delay(2000); // Simulate async operation
+            using (System.IO.StreamWriter outputFile = new System.IO.StreamWriter(fileName))
+            {
+                await outputFile.WriteAsync(input);
+            }
+
+            return "Input processed";
+        }
+        // </AsyncMethods>
+
+
+        // <Delegates>        
+        public int UseYourFunc(System.Func<int, int, int> yourFunc, int x, int y)
+        {
+            return yourFunc(x, y);
+        }
+        // </Delegates>
         // <Empty>
         // empty
         // </Empty>

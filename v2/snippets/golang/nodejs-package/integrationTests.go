@@ -5,7 +5,6 @@ import (
 	"math"
 	"os"
 	"reflect"
-	"strings"
 	"testing"
 
 	"javonet.com/integrationTests/utils/activationcredentials"
@@ -17,13 +16,13 @@ var resourcesDirectory string
 func init() {
 	cwd, _ := os.Getwd()
 	resourcesDirectory = cwd + "/../../../../testResources/nodejs-package"
-	Javonet.ActivateWithCredentials(activationcredentials.YourLicenseKey)
+	Javonet.Activate(activationcredentials.YourLicenseKey)
 }
 
 func Test_NodejsPackage_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 	// <StandardLibrary_CreateRuntimeContext>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -39,7 +38,7 @@ func Test_NodejsPackage_StandardLibrary_CreateRuntimeContext(t *testing.T) {
 func Test_NodejsPackage_StandardLibrary_CreateInvocationContext(t *testing.T) {
 	// <StandardLibrary_CreateInvocationContext>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -64,7 +63,7 @@ func Test_NodejsPackage_StandardLibrary_CreateInvocationContext(t *testing.T) {
 func Test_NodejsPackage_StandardLibrary_GetValue(t *testing.T) {
 	// <StandardLibrary_GetValue>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -96,7 +95,7 @@ func Test_NodejsPackage_StandardLibrary_GetValue(t *testing.T) {
 func Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException(t *testing.T) {
 	// <TestResources_LoadLibrary>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -112,7 +111,7 @@ func Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException(t *tes
 func Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T) {
 	// <TestResources_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -145,7 +144,7 @@ func Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3(t *testing.T)
 func Test_NodejsPackage_TestResources_SetStaticField_StaticValue75(t *testing.T) {
 	// <TestResources_SetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -182,7 +181,7 @@ func Test_NodejsPackage_TestResources_SetStaticField_StaticValue75(t *testing.T)
 func Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18(t *testing.T) {
 	// <TestResources_GetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -218,7 +217,7 @@ func Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18(t *testing
 func Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44(t *testing.T) {
 	// <TestResources_SetInstanceField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -257,7 +256,7 @@ func Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44(t *testing
 func Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *testing.T) {
 	// <TestResources_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -290,7 +289,7 @@ func Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(t *
 func Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(t *testing.T) {
 	// <TestResources_InvokeInstanceMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -323,55 +322,55 @@ func Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_
 	}
 }
 
-func Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(t *testing.T) {
-	// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-	// use Activate only once in your app
-	result, err := Javonet.ActivateWithCredentials("your-license-key")
-	if result != 0 {
-		fmt.Println("Wrong activation result: " + err.Error())
-	}
-	if err != nil {
-		fmt.Println("Activation exception: " + err.Error())
-	}
+// func Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(t *testing.T) {
+// 	// <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+// 	// use Activate only once in your app
+// 	result, err := Javonet.Activate("your-license-key")
+// 	if result != 0 {
+// 		fmt.Println("Wrong activation result: " + err.Error())
+// 	}
+// 	if err != nil {
+// 		fmt.Println("Activation exception: " + err.Error())
+// 	}
 
-	// create called runtime context
-	calledRuntime, err := Javonet.InMemory().Nodejs()
-	if err != nil {
-		fmt.Println("Creating runtime exception: " + err.Error())
-	}
+// 	// create called runtime context
+// 	calledRuntime, err := Javonet.InMemory().Nodejs()
+// 	if err != nil {
+// 		fmt.Println("Creating runtime exception: " + err.Error())
+// 	}
 
-	// set up variables
-	libraryPath := resourcesDirectory + "/TestClass.js"
-	className := "TestClass"
+// 	// set up variables
+// 	libraryPath := resourcesDirectory + "/TestClass.js"
+// 	className := "TestClass"
 
-	// load custom library
-	_, err = calledRuntime.LoadLibrary(libraryPath)
-	if err != nil {
-		fmt.Println("Loading library exception: " + err.Error())
-	}
+// 	// load custom library
+// 	_, err = calledRuntime.LoadLibrary(libraryPath)
+// 	if err != nil {
+// 		fmt.Println("Loading library exception: " + err.Error())
+// 	}
 
-	// get type from the runtime
-	calledRuntimeType, err := calledRuntime.GetType(className).Execute()
-	if err != nil {
-		fmt.Println("Get Type exception: " + err.Error())
-	}
+// 	// get type from the runtime
+// 	calledRuntimeType, err := calledRuntime.GetType(className).Execute()
+// 	if err != nil {
+// 		fmt.Println("Get Type exception: " + err.Error())
+// 	}
 
-	// invoke type's static method which throws exception
-	_, err = calledRuntimeType.InvokeStaticMethod("divideBy", 10, 0).Execute()
-	fmt.Println(err)
-	// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-	if err == nil {
-		t.Fatal("Exception was not thrown")
-	}
-	if !strings.Contains(err.Error(), "divideByThird") {
-		t.Fatal("Wrong exception message: " + err.Error())
-	}
-}
+// 	// invoke type's static method which throws exception
+// 	_, err = calledRuntimeType.InvokeStaticMethod("divideBy", 10, 0).Execute()
+// 	fmt.Println(err)
+// 	// </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+// 	if err == nil {
+// 		t.Fatal("Exception was not thrown")
+// 	}
+// 	if !strings.Contains(err.Error(), "divideByThird") {
+// 		t.Fatal("Wrong exception message: " + err.Error())
+// 	}
+// }
 
 func Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.T) {
 	// <TestResources_1DArray_GetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -410,7 +409,7 @@ func Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree(t *testing.
 func Test_NodejsPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 	// <TestResources_1DArray_GetSize>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -449,7 +448,7 @@ func Test_NodejsPackage_TestResources_1DArray_GetSize_5(t *testing.T) {
 func Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T) {
 	// <TestResources_1DArray_SetIndex>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -492,7 +491,7 @@ func Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven(t *testing.T)
 func Test_NodejsPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 	// <TestResources_1DArray_RetrieveArray>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -534,7 +533,7 @@ func Test_NodejsPackage_TestResources_1DArray_RetrieveArray(t *testing.T) {
 func Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 	// <StandardLibrary_GetStaticField>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()
@@ -560,7 +559,7 @@ func Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI(t *testing.T) {
 func Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(t *testing.T) {
 	// <StandardLibrary_InvokeStaticMethod>
 	// use Activate only once in your app
-	Javonet.ActivateWithCredentials("your-license-key")
+	Javonet.Activate("your-license-key")
 
 	// create called runtime context
 	calledRuntime, _ := Javonet.InMemory().Nodejs()

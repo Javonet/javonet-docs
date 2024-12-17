@@ -67,22 +67,6 @@ class TestClass:
 
     # </Enums>
 
-    # <Multithreading>
-    cache = {}
-
-    def add_two_numbers(self, x, y):
-        thread_id = threading.get_ident()
-        print(f"Computing result in thread: {thread_id}")
-        time.sleep(1)  # Simulate computation delay
-        result = x + y
-        print(f"Saving result in thread: {thread_id}")
-        time.sleep(0.05)  # Simulate saving delay
-        self.cache[thread_id] = result
-        print(f"Returning result in thread: {thread_id}")
-        return result
-
-    # </Multithreading>
-
     # <PassingNull>
     @staticmethod
     def pass_null(arg):
@@ -104,8 +88,41 @@ class TestClass:
     @staticmethod
     def return_null():
         return None
+
     # </ReturningNull>
 
-    #<Empty>
+    # <Multithreading>
+    cache = {}
+
+    def add_two_numbers(self, x, y):
+        thread_id = threading.get_ident()
+        print(f"Computing result in thread: {thread_id}")
+        time.sleep(1)  # Simulate computation delay
+        result = x + y
+        print(f"Saving result in thread: {thread_id}")
+        time.sleep(0.05)  # Simulate saving delay
+        self.cache[thread_id] = result
+        print(f"Returning result in thread: {thread_id}")
+        return result
+
+    # </Multithreading>
+
+    # <AsyncMethods>
+    def create_file_with_content(self, file_name, file_input):
+        time.sleep(2)  # Simulate async operation
+        with open(file_name, "w") as file:
+            file.write(file_input)
+        return "Input processed"
+
+    # </AsyncMethods>
+
+    # <Delegates>
+    @staticmethod
+    def use_your_func(your_func, x, y):
+        return your_func(x, y)
+
+    # </Delegates>
+
+    # <Empty>
     # empty
-    #</Empty>
+    # </Empty>
