@@ -25,23 +25,44 @@ To call library/package/module from another technology, corresponding runtime ha
   
 ## .NET Framework DLL library
 
-[.Net Framework 4.7.2 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472) or higher  
+[.NET Framework 4.7.2 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net472) or higher  
 
 ## .NET DLL library
 
-[.Net 6.0 x64 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher  
+[.NET 6.0 x64 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/6.0) or higher. .NET Core 3.1 can be used, but it is not longer officialy supported by Microsoft.  
+
+Starting from Javonet v. 2.5.9:  
+If there are multiple .NET runtimes installed on the machine, environment variable JAVONET_NETCORE_RUNTIME_VERSION can be set to use preferred runtime. The variable should have one of the following values: ["netcoreapp3.1", "net6.0", "net7.0", "net8.0", "net9.0"]. If the selected version is missing, the newest runtime version is selected to run Javonet.    
 
 ## JAR library
 
-For example: [OpenJDK](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=All&field_architecture_target_id=391&field_java_package_target_id=All) or [Oracle](https://www.oracle.com/pl/java/technologies/javase/javase8u211-later-archive-downloads.html)
+For example: [OpenJDK](https://www.openlogic.com/openjdk-downloads?field_java_parent_version_target_id=416&field_operating_system_target_id=All&field_architecture_target_id=391&field_java_package_target_id=All) or [Oracle](https://www.oracle.com/pl/java/technologies/javase/javase8u211-later-archive-downloads.html)  
+
+Starting from Javonet v. 2.5.9:  
+If there are multiple Java runtimes installed on the machine, environment variable JAVONET_JVM_RUNTIME_PATH can be set to use preferred Java runtime. The variable should point directory where this runtime is installed. (f.e. C:\Program Files\Java\jdk-11 on Windows).    
 
 ## Python package
 
 [Python 3.8 or newer](https://www.python.org/downloads/).  
-On Linux, if any packages are missing, you may need to install the python3.\*-dev package corresponding to your Python version.
-If multiple Python versions are installed on the machine, you can set the JAVONET_PYTHON_RUNTIME_PATH to specify which Python to use.
-The JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3.\*.so file, for example:
-JAVONET_PYTHON_RUNTIME_PATH="/usr/lib/x86_64-linux-gnu/libpython3.13.so"
+
+On Linux:
+python3.\*-dev package needs to be installed corresponding to your Python version.  
+
+Starting from Javonet v. 2.5.9:  
+If there are multiple Java runtimes installed on the machine, environment variable JAVONET_JVM_RUNTIME_PATH can be set to use preferred Java runtime. The variable should point directory where this runtime is installed. (f.e. C:\Program Files\Java\jdk-11 on Windows).   
+
+If there are multiple Python versions installed on the machine, environment variable  JAVONET_PYTHON_RUNTIME_PATH can be set to use preferred Python version.  
+
+On Windows:
+JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3\*.dll file, for example:
+JAVONET_PYTHON_RUNTIME_PATH="C:\Python313\python313.dll".
+
+On Linux:  
+JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3.\*.so file, for example:
+JAVONET_PYTHON_RUNTIME_PATH="/usr/lib/x86_64-linux-gnu/libpython3.13.so".
+
+On MacOs
+Python 3.11 is preffered to use.
 
 ## Ruby package
 
