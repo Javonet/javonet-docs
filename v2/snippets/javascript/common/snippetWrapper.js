@@ -1,4 +1,4 @@
-const { Javonet } = require('javonet-nodejs-sdk/lib/sdk/Javonet')
+const { Javonet } = require('javonet-nodejs-sdk')
 
 let resourcesDirectory = '.'
 
