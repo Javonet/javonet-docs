@@ -44,21 +44,21 @@ If there are multiple Java runtimes installed on the machine, environment variab
 ## Python package
 
 [Python 3.8 or newer](https://www.python.org/downloads/).  
-
+  
 On Linux:
 python3.\*-dev package needs to be installed corresponding to your Python version.  
 
 Starting from Javonet v. 2.5.9:  
 If there are multiple Python versions installed on the machine, environment variable  JAVONET_PYTHON_RUNTIME_PATH can be set to use preferred Python version.  
-
+  
 On Windows:
 JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3\*.dll file, for example:
-JAVONET_PYTHON_RUNTIME_PATH="C:\Python313\python313.dll".
-
+JAVONET_PYTHON_RUNTIME_PATH="C:\Python313\python313.dll".  
+  
 On Linux:  
 JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3.\*.so file, for example:
-JAVONET_PYTHON_RUNTIME_PATH="/usr/lib/x86_64-linux-gnu/libpython3.13.so".
-
+JAVONET_PYTHON_RUNTIME_PATH="/usr/lib/x86_64-linux-gnu/libpython3.13.so".  
+  
 On MacOs
 Python 3.11 is preffered to be used.
 
