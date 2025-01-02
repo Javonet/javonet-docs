@@ -49,8 +49,6 @@ On Linux:
 python3.\*-dev package needs to be installed corresponding to your Python version.  
 
 Starting from Javonet v. 2.5.9:  
-If there are multiple Java runtimes installed on the machine, environment variable JAVONET_JVM_RUNTIME_PATH can be set to use preferred Java runtime. The variable should point directory where this runtime is installed. (f.e. C:\Program Files\Java\jdk-11 on Windows).   
-
 If there are multiple Python versions installed on the machine, environment variable  JAVONET_PYTHON_RUNTIME_PATH can be set to use preferred Python version.  
 
 On Windows:
@@ -62,7 +60,7 @@ JAVONET_PYTHON_RUNTIME_PATH should point to the libpython3.\*.so file, for examp
 JAVONET_PYTHON_RUNTIME_PATH="/usr/lib/x86_64-linux-gnu/libpython3.13.so".
 
 On MacOs
-Python 3.11 is preffered to use.
+Python 3.11 is preffered to be used.
 
 ## Ruby package
 
