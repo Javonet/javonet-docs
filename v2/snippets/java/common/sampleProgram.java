@@ -1,8 +1,6 @@
 // <WholeSnippet>
 // <Import>
-import com.javonet.sdk.InvocationContext;
-import com.javonet.sdk.RuntimeContext;
-import com.javonet.sdk.Javonet;
+import com.javonet.sdk.*;
 // </Import>
 
 public class SampleProgram {
