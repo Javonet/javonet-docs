@@ -4,6 +4,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <filesystem>
+#include <fstream>
+#include <vector>
 
 using namespace JavonetNS::Cpp::Sdk;
 
@@ -729,7 +731,7 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 
 		// invoke type's generic static method
 		auto response = calledRuntimeType->
-			InvokeGenericStaticMethod("GenericSampleStaticMethod", std::deque<std::any>{ targetType, 7, 5 })->
+			InvokeGenericStaticMethod("GenericSampleStaticMethod", { targetType, 7, 5 })->
 			Execute();
 
 		// get value from response
@@ -1145,6 +1147,38 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		EXPECT_EQ(M_PI, result2);
 	}
 
+	TEST(Integration, Test_NetframeworkDll_StandardLibrary_HandleSet) {
+		// <StandardLibrary_HandleSet>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// get types
+		auto doubleType = calledRuntime->GetType("System.Double")->Execute();
+
+		// get generic class
+		auto hashSetType = calledRuntime->GetType("System.Collections.Generic.HashSet`1", doubleType)->Execute();
+
+		// get generic class with double type as parameter
+		auto hashSet = hashSetType->CreateInstance()->Execute();
+
+		// invoke instance method
+		hashSet->InvokeInstanceMethod("Add", 3.14)->Execute();
+		hashSet->InvokeInstanceMethod("Add", 9.81)->Execute();
+		hashSet->InvokeInstanceMethod("Add", 1.44)->Execute();
+
+		// get size of set
+		auto response = hashSet->GetInstanceField("Count")->Execute();
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write results to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_HandleSet>
+		EXPECT_EQ(3, result);
+	}
+
 	TEST(Integration, Test_NetframeworkDll_TestResources_Refs_OneArg) {
 		// <TestResources_Refs>
 		// use Activate only once in your app
@@ -1282,5 +1316,365 @@ namespace JavonetNS::Cpp::Sdk::Tests::NetframeworkDll {
 		EXPECT_EQ("String from OutSampleMethod", result2);
 		EXPECT_EQ("String from OutSampleMethod", result3);
 	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_PassingNullAsOnlyArg) {
+		// <TestResources_PassingNullAsOnlyArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with null argument
+		auto response = calledRuntimeType->InvokeStaticMethod("PassNull", nullptr)->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsOnlyArg>
+		EXPECT_EQ("Method called with null", result);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_PassingNullAsSecondArg) {
+		// <TestResources_PassingNullAsSecondArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with second argument as null
+		auto response = calledRuntimeType->InvokeStaticMethod("PassNull2", {5, nullptr})->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsSecondArg>
+		EXPECT_EQ("Method2 called with null", result);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_ReturningNull) {
+		// <TestResources_ReturningNull>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method
+		auto response = calledRuntimeType->InvokeStaticMethod("ReturnNull")->Execute();
+
+		// get value from response
+		auto result = response->GetValue();
+		// </TestResources_ReturningNull>
+		ASSERT_TRUE(result.has_value());
+		ASSERT_EQ(result.type(), typeid(std::nullptr_t));
+		auto nullValue = std::any_cast<std::nullptr_t>(result);
+		EXPECT_EQ(nullValue, nullptr);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_InvokeMethodWithNullables) {
+		// <TestResources_InvokeMethodWithNullables>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method
+		auto response1 = calledRuntimeType->InvokeStaticMethod("MethodWithNullables", {nullptr, nullptr})->Execute();
+		auto response2 = calledRuntimeType->InvokeStaticMethod("MethodWithNullables", {5, nullptr})->Execute();
+		auto response3 = calledRuntimeType->InvokeStaticMethod("MethodWithNullables", {nullptr, 10.0})->Execute();
+		auto response4 = calledRuntimeType->InvokeStaticMethod("MethodWithNullables", {5, 10.0})->Execute();
+
+		// get value from response
+		auto result1 = std::any_cast<std::string>(response1->GetValue());
+		auto result2 = std::any_cast<std::string>(response2->GetValue());
+		auto result3 = std::any_cast<std::string>(response3->GetValue());
+		auto result4 = std::any_cast<std::string>(response4->GetValue());
+
+		// write result to console
+		std::cout << result1 << std::endl;
+		std::cout << result2 << std::endl;
+		std::cout << result3 << std::endl;
+		std::cout << result4 << std::endl;
+		// </TestResources_InvokeMethodWithNullables>
+
+		EXPECT_EQ("MethodWithNullables called", result1);
+		EXPECT_EQ("MethodWithNullables called", result2);
+		EXPECT_EQ("MethodWithNullables called", result3);
+		EXPECT_EQ("MethodWithNullables called", result4);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_MethodWithNullArgument) {
+		// <TestResources_MethodWithNullArgument>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get types from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+		auto stringType = calledRuntime->GetType("System.String")->Execute();
+
+		// invoke type's static method with null arguments
+		auto response1 = calledRuntimeType->InvokeStaticMethod("MethodWithNullArgument", stringType->CreateNull())->Execute();
+		auto response2 = calledRuntimeType->InvokeStaticMethod("MethodWithNullArgument", calledRuntimeType->CreateNull())->Execute();
+
+		// get value from responses
+		auto result1 = std::any_cast<std::string>(response1->GetValue());
+		auto result2 = std::any_cast<std::string>(response2->GetValue());
+
+		// write results to console
+		std::cout << result1 << std::endl;
+		std::cout << result2 << std::endl;
+		// </TestResources_MethodWithNullArgument>
+
+		EXPECT_EQ("MethodWithNullArgument called with string", result1);
+		EXPECT_EQ("MethodWithNullArgument called with TestClass", result2);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_Multithreading_InvokeInstanceMethod) {
+		// <TestResources_Multithreading_InvokeInstanceMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// create threads and dictionaries to store responses
+		std::vector<std::thread> threads;
+		std::map<int, int> responses;
+		std::mutex responses_mutex;
+
+		auto startTime = std::chrono::system_clock::now();
+		// create threads
+		for (int i = 0; i < 5; i++) {
+			int j = i;
+			threads.emplace_back([&instance, j, &responses, &responses_mutex]() {
+				auto response = instance->InvokeInstanceMethod("AddTwoNumbers", {j, 5})->Execute();
+				int result = std::any_cast<int>(response->GetValue());
+
+				std::lock_guard<std::mutex> lock(responses_mutex);
+				responses[j] = result;
+				});
+		}
+
+		// start and join threads
+		for (auto& thread : threads) {
+			thread.join();
+		}
+
+		auto endTime = std::chrono::system_clock::now();
+		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
+
+		// write results to console
+		std::cout << "Elapsed time: " << elapsed << "ms" << std::endl;
+		for (const auto& response : responses) {
+			std::cout << response.second << std::endl;
+		}
+		// </TestResources_Multithreading_InvokeInstanceMethod>
+
+		// Assert results
+		EXPECT_GT(2000, elapsed);
+		for (const auto& response : responses) {
+			EXPECT_EQ(response.first + 5, response.second);
+		}
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_ExecuteAsync_AsyncMethod) {
+		// <TestResources_ExecuteAsync_AsyncMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// measure time 
+		auto startTime = std::chrono::system_clock::now();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// create file
+		std::string homeDir;
+#ifdef _WIN32
+		char* userProfile = std::getenv("USERPROFILE");
+		homeDir = userProfile ? std::string(userProfile) : ".";
+#else
+		char* home = std::getenv("HOME");
+		homeDir = home ? std::string(home) : ".";
+#endif
+		std::string fileName = std::filesystem::path(homeDir).string() + "/output.txt";
+		std::ofstream outfile(fileName, std::ofstream::out);
+		outfile.close();
+
+		// invoke instance's method asynchronously
+		instance->InvokeInstanceMethod("WriteToFile", {fileName, " This is "})->ExecuteAsync();
+		instance->InvokeInstanceMethod("WriteToFile", {fileName, " file with "})->ExecuteAsync();
+		instance->InvokeInstanceMethod("WriteToFile", {fileName, " sample input "})->ExecuteAsync();
+
+		// wait for WriteToFile to finish
+		std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+		// measure time
+		auto endTime = std::chrono::system_clock::now();
+		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
+
+		// write result to console
+		std::cout << "Time elapsed: " << elapsed << "ms" << std::endl;
+		// </TestResources_ExecuteAsync_AsyncMethod>
+
+		// Assert that the elapsed time is less than 4000 milliseconds
+		EXPECT_GT(4000, elapsed);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_UseStaticMethodAsDelegate) {
+		// <TestResources_UseStaticMethodAsDelegate>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// get static method as delegate
+		auto myFunc = calledRuntimeType->GetStaticMethodAsDelegate("DivideBy")->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod("UseYourFunc", {myFunc, 30, 6})->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_UseStaticMethodAsDelegate>
+		EXPECT_EQ(5, result);
+	}
+
+	TEST(Integration, Test_NetframeworkDll_TestResources_UseInstanceMethodAsDelegate) {
+		// <TestResources_UseInstanceMethodAsDelegate>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Clr();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.dll";
+		auto className = "TestClass.TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// get instance method as delegate
+		auto myFunc = instance->GetInstanceMethodAsDelegate("MultiplyTwoNumbers")->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod("UseYourFunc", {myFunc, 5, 6})->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_UseInstanceMethodAsDelegate>
+		EXPECT_EQ(30, result);
+	}
 }
+
 #endif

@@ -195,41 +195,38 @@
         // </OverloadingMethodsWithNulls>
 
         // <Multithreading>
-        private static System.Collections.Concurrent.ConcurrentDictionary<int, int> _cache = new System.Collections.Concurrent.ConcurrentDictionary<int, int>();
-        public string GetCache()
-        {
-            // write all values in cache to a string
-            string result = "";
-            foreach (var item in _cache)
-            {
-                result += item.Key + " " + item.Value + " ";
-            }
-            return result;
-        }
+        private static System.Collections.Concurrent.ConcurrentDictionary<int, int> cache = new System.Collections.Concurrent.ConcurrentDictionary<int, int>();
 
         public int AddTwoNumbers(int x, int y)
         {
             System.Console.WriteLine("Computing result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(1000); // simulate computation delay
             var result = x + y;
             System.Console.WriteLine("Saving result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-            System.Threading.Thread.Sleep(50);
-            _cache[System.Threading.Thread.CurrentThread.ManagedThreadId] = result;
+            System.Threading.Thread.Sleep(50); // simulate saving delay
+            cache[System.Threading.Thread.CurrentThread.ManagedThreadId] = result;
             System.Console.WriteLine("Returning result in thread: " + System.Threading.Thread.CurrentThread.ManagedThreadId);
-            return _cache[System.Threading.Thread.CurrentThread.ManagedThreadId];
+            return cache[System.Threading.Thread.CurrentThread.ManagedThreadId];
         }
         // </Multithreading>
 
         // <AsyncMethods>
-        public async System.Threading.Tasks.Task<string> CreateFileWithContent(string fileName, string input)
-        {
-            await System.Threading.Tasks.Task.Delay(2000); // Simulate async operation
-            using (System.IO.StreamWriter outputFile = new System.IO.StreamWriter(fileName))
-            {
-                await outputFile.WriteAsync(input);
-            }
+        private static readonly object fileLock = new object();
 
-            return "Input processed";
+        public async System.Threading.Tasks.Task WriteToFile(string fileName, string input)
+        {
+            await System.Threading.Tasks.Task.Delay(2000); // Simulate writing delay
+            lock (fileLock)
+            {
+                System.IO.File.AppendAllText(fileName, input);
+            }
+        }
+
+        public int AddThreeNumbers(int x, int y, int z)
+        {
+            System.Threading.Thread.Sleep(2000); // Simulate computation delay
+            return x + y + z;
+
         }
         // </AsyncMethods>
 
@@ -240,6 +237,42 @@
             return yourFunc(x, y);
         }
         // </Delegates>
+
+        // <Events>
+        public event System.EventHandler ValueChanged;
+
+        private int _value;
+        public int Value
+        {
+            get { return _value; }
+            set
+            {
+                if (_value != value)
+                {
+                    _value = value;
+                    OnValueChanged(System.EventArgs.Empty);
+                }
+            }
+        }
+
+        protected virtual void OnValueChanged(System.EventArgs e)
+        {
+            ValueChanged?.Invoke(this, e);
+        }
+
+        public static void ValueChangedHandler(object sender, System.EventArgs e)
+        {
+            StaticValue = 511;
+            System.Console.WriteLine("Value changed");
+        }
+
+        public void ValueChangedHandler_2(object sender, System.EventArgs e)
+        {
+            StaticValue = 513;
+            System.Console.WriteLine("Value changed");
+        }
+        // </Events>
+
         // <Empty>
         // empty
         // </Empty>

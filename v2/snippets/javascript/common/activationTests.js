@@ -1,13 +1,13 @@
-const {Javonet} = require('javonet-nodejs-sdk')
-const ActivationCredentials = require("../../utils/ActivationCredentials")
-const {describe, expect, test} = require("@jest/globals");
+const { Javonet } = require('javonet-nodejs-sdk');
+const ActivationCredentials = require("../../utils/ActivationCredentials");
+const { describe, expect, test } = require("@jest/globals");
 
 describe('Nodejs activation tests', () => {
 
     test(`Test_Activation_CorrectCredentials_Returns0`, () => {
         // <Javonet_activate>
-        let result = Javonet.activate(ActivationCredentials.yourLicenseKey)
+        let result = Javonet.activate(ActivationCredentials.yourLicenseKey);
         // </Javonet_activate>
-        expect(result).toBe(0)
-    })
-})
+        expect(result).toBe(0);
+    });
+});

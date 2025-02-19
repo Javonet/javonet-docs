@@ -1,9 +1,14 @@
 #include <gtest/gtest.h>
 #include "Javonet.h"
-#include "Interfaces/ITcpConnectionData.h"
+#include "ActivationCredentials.h"
 #include <filesystem>
 
 using namespace JavonetNS::Cpp::Sdk;
+
+int main(int argc, char* argv[]) {
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}
 
 namespace ChannelTests {
 
@@ -13,7 +18,7 @@ namespace ChannelTests {
 	TEST(Integration, Test_Channel_InMemory_Success) {
 		// <InMemoryChannel>
 		// use Activate only once in your app
-		Javonet::Activate("your-license-key");
+		Javonet::Activate(ActivationCredentials::yourLicenseKey);
 
 		auto communicationChannel = Javonet::InMemory();
 		// use communicationChannel to create runtimes to interact with
@@ -26,10 +31,10 @@ namespace ChannelTests {
 	TEST(Integration, Test_Channel_WithConfigurationFile_Success) {
 		// <WithConfigurationFile>
 		// use Activate only once in your app
-		Javonet::Activate("your-license-key");
+		Javonet::Activate(ActivationCredentials::yourLicenseKey);
 
 		// set up variables
-		std::string configFilePath = resourcesDirectory + "/javonetconf.json";
+		std::string configFilePath = resourcesDirectory + "/channel-tests-config.json";
 		auto communicationChannel = Javonet::WithConfig(configFilePath);
 		// use communicationChannel to create runtimes to interact with
 		// </WithConfigurationFile>

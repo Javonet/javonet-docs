@@ -2,94 +2,135 @@ const fs = require('fs').promises;
 
 class TestClass {
 
-	// <Fields>
-	publicValue;
-	#privateValue;
-	static staticValue = 3;
+    // <Fields>
+    publicValue;
+    #privateValue;
+    static staticValue = 3;
 
-	constructor(first, second) {
-		this.publicValue = first;
-		this.#privateValue = second;
-	}
-	// </Fields>
+    constructor(first, second) {
+        this.publicValue = first;
+        this.#privateValue = second;
+    }
 
-	// <Methods>
-	static multiplyByTwo(a) {
-		return 2 * a;
-	}
+    // </Fields>
 
-	multiplyTwoNumbers(a, b) {
-		return a * b
-	}
+    // <Methods>
+    static multiplyByTwo(a) {
+        return 2 * a;
+    }
 
-	// </Methods>
+    multiplyTwoNumbers(a, b) {
+        return a * b
+    }
 
-	// <Arrays>
-	get1DArray() {
-		return ["one", "two", "three", "four", "five"]
-	}
+    // </Methods>
 
-	get2DArray() {
-		return [["S00", "S01"], ["S10", "S11"]]
-	}
-	addArrayElementsAndMultiply(myArray, myValue) {
-		return myArray.reduce((accumulator, currentValue) => accumulator + currentValue) * myValue
-	}
-	// </Arrays>
+    // <Arrays>
+    get1DArray() {
+        return ["one", "two", "three", "four", "five"]
+    }
 
-	// <Exceptions>
-	static divideBy(x, y) {
-		return TestClass.divideBySecond(x, y)
-	}
+    get2DArray() {
+        return [["S00", "S01"], ["S10", "S11"]]
+    }
 
-	static divideBySecond(x, y) {
-		return TestClass.divideByThird(x, y)
-	}
+    addArrayElementsAndMultiply(myArray, myValue) {
+        return myArray.reduce((accumulator, currentValue) => accumulator + currentValue) * myValue
+    }
 
-	static divideByThird(x, y) {
-		if (y === 0) {
-			throw new Error("ZeroDivisionException")
-		} else {
-			return x / y
-		}
-	}
-	// </Exceptions>
-	
-	// <PassingNull>
-	static passNull(arg) {
-		if (arg === null) {
-			return "Method called with null";
-		} else {
-			return "Method not called with null";
-		}
-	}
+    // </Arrays>
 
-	static passNull2(arg1, arg2) {
-		if (arg2 === null) {
-			return "Method2 called with null";
-		} else {
-			return "Method2 not called with null";
-		}
-	}
-	// </PassingNull>
+    // <Exceptions>
+    static divideBy(x, y) {
+        return TestClass.divideBySecond(x, y)
+    }
 
-	// <ReturningNull>
-		static returnNull() {
-			return null;
-		}
-	// </ReturningNull>
-	
-	// <AsyncMethods>
-	async createFileWithContent(fileName, fileInput) {
-		await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate async operation
-		await fs.writeFile(fileName, fileInput);
-		return "Input processed";
-	}
-	// </AsyncMethods>
+    static divideBySecond(x, y) {
+        return TestClass.divideByThird(x, y)
+    }
 
-	// <Empty>
-	// empty
-	// </Empty>
+    static divideByThird(x, y) {
+        if (y === 0) {
+            throw new Error("ZeroDivisionException")
+        } else {
+            return x / y
+        }
+    }
+
+    // </Exceptions>
+
+    // <PassingNull>
+    static passNull(arg) {
+        if (arg === null) {
+            return "Method called with null";
+        } else {
+            return "Method not called with null";
+        }
+    }
+
+    static passNull2(arg1, arg2) {
+        if (arg2 === null) {
+            return "Method2 called with null";
+        } else {
+            return "Method2 not called with null";
+        }
+    }
+
+    // </PassingNull>
+
+    // <ReturningNull>
+    static returnNull() {
+        return null;
+    }
+
+    // </ReturningNull>
+
+    // <Multithreading>
+    addTwoNumbers(x, y) {
+        return x + y;
+    }
+
+    // </Multithreading>
+
+    // <AsyncMethods>
+    async writeToFile(fileName, fileInput) {
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate writing delay
+        await fs.appendFile(fileName, fileInput);
+        return
+    }
+
+    addThreeNumbers(x, y, z) {
+        return x + y + z;
+    }
+
+    // </AsyncMethods>
+
+    // <Delegates>
+    useYourFunc(method, a, b) {
+        const result = method(a, b)
+        return result
+    }
+
+    static multiplyTwoNumbersStatic(a, b) {
+        return a * b
+    }
+
+    // </Delegates>
+
+    // <Empty>
+    // empty
+    // </Empty>
 }
 
-module.exports = TestClass
+// <GlobalFunctions>
+function welcome(name) {
+    return "Hello " + name + "!"
+}
+
+// </GlobalFunctions>
+
+module.exports = {
+    TestClass,
+    welcome
+};
+

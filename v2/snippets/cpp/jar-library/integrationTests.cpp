@@ -3,6 +3,8 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <filesystem>
+#include <fstream>
+#include <vector>
 
 using namespace JavonetNS::Cpp::Sdk;
 
@@ -1057,5 +1059,315 @@ namespace JavonetNS::Cpp::Sdk::Tests::JarLibrary {
 		// </StandardLibrary_HandleDictionary>
 		EXPECT_EQ(M_E, result1);
 		EXPECT_EQ(M_PI, result2);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_HandleSet) {
+		// <StandardLibrary_HandleSet>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// get generic class
+		auto hashSetType = calledRuntime->GetType("java.util.HashSet")->Execute();
+
+		// get generic class with double type as parameter
+		auto hashSet = hashSetType->CreateInstance()->Execute();
+
+		// invoke instance method
+		hashSet->InvokeGenericMethod("add", 3.14)->Execute();
+		hashSet->InvokeGenericMethod("add", 9.81)->Execute();
+		hashSet->InvokeGenericMethod("add", 1.44)->Execute();
+
+		// get size of set
+		auto response = hashSet->InvokeGenericMethod("size")->Execute();
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write results to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_HandleSet>
+		EXPECT_EQ(3, result);
+	}
+
+	TEST(Integration, Test_JarLibrary_StandardLibrary_PrimitiveTypeArray) {
+		// <StandardLibrary_PrimitiveTypeArray>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// create instance of java.lang.String
+		auto newString = calledRuntime->GetType("java.lang.String")->CreateInstance("Hello World!")->Execute();
+
+		// invoke instance method 'getBytes'
+		auto responseBytes = newString->InvokeInstanceMethod("getBytes")->Execute();
+
+		// get elements from array
+		auto array = std::any_cast<std::deque<std::any>>(responseBytes->RetrieveArray());
+
+		// Extract result bytes
+		std::vector<unsigned char> result;
+		for (const auto& item : array) {
+			result.push_back(std::any_cast<unsigned char>(item));
+		}
+
+		// write results to console
+		for (auto byte : result) {
+			std::cout << static_cast<int>(byte) << " ";
+		}
+		std::cout << std::endl;
+		// </StandardLibrary_PrimitiveTypeArray>
+		std::deque<unsigned char> expected = { 72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33 };
+		ASSERT_EQ(expected.size(), result.size()) << "Byte array sizes do not match.";
+
+		for (size_t i = 0; i < expected.size(); ++i) {
+			EXPECT_EQ(expected[i], result[i]) << "Byte mismatch at index " << i;
+		}
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_PassingNullAsOnlyArg) {
+		// <TestResources_PassingNullAsOnlyArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with null argument
+		auto response = calledRuntimeType->InvokeStaticMethod("passNull", nullptr)->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsOnlyArg>
+		EXPECT_EQ("Method called with null", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_PassingNullAsSecondArg) {
+		// <TestResources_PassingNullAsSecondArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with second argument as null
+		auto response = calledRuntimeType->InvokeStaticMethod("passNull2", {5, nullptr})->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsSecondArg>
+		EXPECT_EQ("Method2 called with null", result);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_ReturningNull) {
+		// <TestResources_ReturningNull>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method
+		auto response = calledRuntimeType->InvokeStaticMethod("returnNull")->Execute();
+
+		// get value from response
+		auto result = response->GetValue();
+		// </TestResources_ReturningNull>
+		ASSERT_TRUE(result.has_value());
+		ASSERT_EQ(result.type(), typeid(std::nullptr_t));
+		auto nullValue = std::any_cast<std::nullptr_t>(result);
+		EXPECT_EQ(nullValue, nullptr);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_Multithreading_InvokeInstanceMethod) {
+		// <TestResources_Multithreading_InvokeInstanceMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// create threads and dictionaries to store responses
+		std::vector<std::thread> threads;
+		std::map<int, int> responses;
+		std::mutex responses_mutex;
+
+		auto startTime = std::chrono::system_clock::now();
+		// create threads
+		for (int i = 0; i < 5; i++) {
+			int j = i;
+			threads.emplace_back([&instance, j, &responses, &responses_mutex]() {
+				auto response = instance->InvokeInstanceMethod("addTwoNumbers", {j, 5})->Execute();
+				int result = std::any_cast<int>(response->GetValue());
+
+				std::lock_guard<std::mutex> lock(responses_mutex);
+				responses[j] = result;
+				});
+		}
+
+		// start and join threads
+		for (auto& thread : threads) {
+			thread.join();
+		}
+
+		auto endTime = std::chrono::system_clock::now();
+		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
+
+		// write results to console
+		std::cout << "Elapsed time: " << elapsed << "ms" << std::endl;
+		for (const auto& response : responses) {
+			std::cout << response.second << std::endl;
+		}
+		// </TestResources_Multithreading_InvokeInstanceMethod>
+		EXPECT_GT(2000, elapsed);
+		for (const auto& response : responses) {
+			EXPECT_EQ(response.first + 5, response.second);
+		}
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_ExecuteAsync_AsyncMethod) {
+		// <TestResources_ExecuteAsync_AsyncMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// measure time 
+		auto startTime = std::chrono::system_clock::now();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// create file
+		std::string homeDir;
+#ifdef _WIN32
+		char* userProfile = std::getenv("USERPROFILE");
+		homeDir = userProfile ? std::string(userProfile) : ".";
+#else
+		char* home = std::getenv("HOME");
+		homeDir = home ? std::string(home) : ".";
+#endif
+		std::string fileName = std::filesystem::path(homeDir).string() + "/output.txt";
+		std::ofstream outfile(fileName, std::ofstream::out);
+		outfile.close();
+
+		// invoke instance's method asynchronously
+		instance->InvokeInstanceMethod("writeToFile", {fileName, " This is "})->ExecuteAsync();
+		instance->InvokeInstanceMethod("writeToFile", {fileName, " file with "})->ExecuteAsync();
+		instance->InvokeInstanceMethod("writeToFile", {fileName, " sample input "})->ExecuteAsync();
+
+		// wait for WriteToFile to finish
+		std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+
+		// measure time
+		auto endTime = std::chrono::system_clock::now();
+		auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count();
+
+		// write result to console
+		std::cout << "Time elapsed: " << elapsed << "ms" << std::endl;
+		// </TestResources_ExecuteAsync_AsyncMethod>
+
+		// Assert that the elapsed time is less than 4000 milliseconds
+		EXPECT_GT(4000, elapsed);
+	}
+
+	TEST(Integration, Test_JarLibrary_TestResources_UseStaticMethodAsDelegate) {
+		// <TestResources_UseStaticMethodAsDelegate>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Jvm();
+
+		// set up variables
+		std::string libraryPath = resourcesDirectory + "/TestClass.jar";
+		std::string className = "TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// create type's instance
+		auto instance = calledRuntimeType->CreateInstance()->Execute();
+
+		// get static method as delegate
+		auto myFunc = calledRuntimeType->GetStaticMethodAsDelegate("divideBy", 
+			std::deque<std::any>{calledRuntime->GetType("int"), calledRuntime->GetType("int")})->Execute();
+
+		// invoke instance's method
+		auto response = instance->InvokeInstanceMethod("useYourFunc", 
+			std::deque<std::any>{myFunc, 30, 6})->Execute();
+
+		// get value from response
+		auto result = std::any_cast<int>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_UseStaticMethodAsDelegate>
+		EXPECT_EQ(5, result);
 	}
 }

@@ -88,4 +88,11 @@ sub return_null {
 }
 # </ReturningNull>
 
+# <Functions>
+sub welcome {
+	my ($name) = @_;
+	return "Hello $name!";
+}
+# </Functions>
+
 1;

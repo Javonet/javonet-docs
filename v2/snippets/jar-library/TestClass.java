@@ -149,25 +149,31 @@ public class TestClass {
     // <AsyncMethods>
     private static final java.util.concurrent.locks.ReentrantLock fileLock = new java.util.concurrent.locks.ReentrantLock();
 
-    public java.util.concurrent.CompletableFuture<String> WriteToFile(String fileName, String input) {
-        return java.util.concurrent.CompletableFuture.supplyAsync(() -> {
-            try {
-                Thread.sleep(2000); // Simulate writing delay
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-            fileLock.lock();
-            try {
-                java.nio.file.Files.write(java.nio.file.Paths.get(fileName), input.getBytes(), java.nio.file.StandardOpenOption.APPEND);
-                return "Input processed";
-            }
-            catch (java.io.IOException e) {
-                return "Error writing to file";
-            }
-            finally {
-                fileLock.unlock();
-            }
-        });
+public java.util.concurrent.CompletableFuture<Void> writeToFile(String fileName, String input) {
+    return java.util.concurrent.CompletableFuture.runAsync(() -> {
+        try {
+            Thread.sleep(2000); // Simulate writing delay
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        fileLock.lock();
+        try {
+            java.nio.file.Files.write(java.nio.file.Paths.get(fileName), input.getBytes(), java.nio.file.StandardOpenOption.APPEND);
+        } catch (java.io.IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            fileLock.unlock();
+        }
+    });
+}
+
+    public int addThreeNumbers(int x, int y, int z) {
+        try {
+            Thread.sleep(2000); // Simulate computing delay
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        return x+y+z;
     }
     // </AsyncMethods>
 
@@ -208,6 +214,12 @@ public class TestClass {
 
     public TestClass(Double publicDoubleValue) {
         this.publicDoubleValue = publicDoubleValue;
+    }
+
+    public static byte[] getByteArray() {
+        byte[] test =  new byte[100000];
+        java.util.Arrays.fill(test, (byte) 1);
+        return test;
     }
     // </Others>
 

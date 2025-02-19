@@ -1,13 +1,12 @@
 import math
 from pathlib import Path
 import sys
-
 import pytest
 
-from javonet.utils.exception.JavonetException import JavonetException
 from javonet.sdk import Javonet
 
 resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/nodejs-package'
+
 
 def test_NodejsPackage_StandardLibrary_CreateRuntimeContext():
     # <StandardLibrary_CreateRuntimeContext>
@@ -20,6 +19,7 @@ def test_NodejsPackage_StandardLibrary_CreateRuntimeContext():
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
     assert called_runtime is not None
+
 
 def test_NodejsPackage_StandardLibrary_CreateInvocationContext():
     # <StandardLibrary_CreateInvocationContext>
@@ -36,6 +36,7 @@ def test_NodejsPackage_StandardLibrary_CreateInvocationContext():
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
     assert response is not None
+
 
 def test_NodejsPackage_StandardLibrary_GetValue():
     # <StandardLibrary_GetValue>
@@ -104,6 +105,56 @@ def test_NodejsPackage_StandardLibrary_InvokeStaticMethod():
     print(result)
     # </StandardLibrary_InvokeStaticMethod>
     assert result == 50
+
+
+def test_NodejsPackage_StandardLibrary_InvokeInstanceMethod():
+    # <StandardLibrary_InvokeInstanceMethod>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("Date").execute()
+
+    # create type's instance with year, month, and day
+    instance = called_runtime_type.create_instance(2024, 2, 3).execute()
+
+    # invoke instance method "getFullYear"
+    response = instance.invoke_instance_method("getFullYear").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_InvokeInstanceMethod>
+    assert result == 2024
+
+
+def test_NodejsPackage_StandardLibrary_GetInstanceField():
+    # <StandardLibrary_GetInstanceField>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type("Set").execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # get instance's field "size"
+    response = instance.get_instance_field("size").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_GetInstanceField>
+    assert result == 0
 
 
 def test_NodejsPackage_TestResources_LoadLibrary():
@@ -759,3 +810,301 @@ def test_NodejsPackage_TestResources_2DArray_SetIndex():
     print(result)
     # </TestResources_2DArray_SetIndex>
     assert result == "new value"
+
+
+def test_NodejsPackage_TestResources_PassingNullAsOnlyArg():
+    # <TestResources_PassingNullAsOnlyArg>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method passing None as only argument
+    response = called_runtime_type.invoke_static_method("passNull", None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsOnlyArg>
+    assert result == "Method called with null"
+
+
+def test_NodejsPackage_TestResources_PassingNullAsSecondArg():
+    # <TestResources_PassingNullAsSecondArg>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method with a non-null first argument and None as the second
+    response = called_runtime_type.invoke_static_method("passNull2", 5, None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsSecondArg>
+    assert result == "Method2 called with null"
+
+
+def test_NodejsPackage_TestResources_ReturningNull():
+    # <TestResources_ReturningNull>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method that returns null
+    response = called_runtime_type.invoke_static_method("returnNull").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_ReturningNull>
+    assert result is None
+
+
+def test_NodejsPackage_TestResources_Multithreading_InvokeInstanceMethod():
+    # <TestResources_Multithreading_InvokeInstanceMethod>
+    import threading
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime and create an instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # create threads and dictionary to store responses
+    responses = {}
+    lock = threading.Lock()
+    threads = []
+
+    for i in range(5):
+        def thread_func(j=i):
+            response = instance.invoke_instance_method("addTwoNumbers", j, 5).execute().get_value()
+            with lock:
+                responses[j] = response
+
+        thread = threading.Thread(target=thread_func)
+        threads.append(thread)
+
+    # start threads
+    for thread in threads:
+        thread.start()
+
+    # wait for threads to finish
+    for thread in threads:
+        thread.join()
+
+    # write results to console
+    for key, value in responses.items():
+        print(value)
+    # </TestResources_Multithreading_InvokeInstanceMethod>
+    for key, value in responses.items():
+        assert value == key + 5
+
+
+def test_NodejsPackage_TestResources_ExecuteAsync_AsyncMethod():
+    # <TestResources_ExecuteAsync_AsyncMethod>
+    import time
+    from pathlib import Path
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    start_time = time.time()
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # create file
+    file_name = str(Path.home() / "output.txt")
+    open(file_name, 'w').close()
+
+    # invoke instance methods asynchronously
+    instance.invoke_instance_method("writeToFile", file_name, " This is ").execute_async()
+    instance.invoke_instance_method("writeToFile", file_name, " file with ").execute_async()
+    instance.invoke_instance_method("writeToFile", file_name, " sample input ").execute_async()
+
+    # wait for async methods to finish
+    time.sleep(3)
+
+    end_time = time.time()
+    print(f"Time elapsed: {(end_time - start_time) * 1000} milliseconds")
+    # </TestResources_ExecuteAsync_AsyncMethod>
+    assert end_time - start_time < 4
+
+
+def test_NodejsPackage_TestResources_ExecuteAsync_SyncMethod():
+    # <TestResources_ExecuteAsync_SyncMethod>
+    import time
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    start_time = time.time()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance methods asynchronously
+    instance.invoke_instance_method("addThreeNumbers", 11, 12, 13).execute_async()
+    instance.invoke_instance_method("addThreeNumbers", 21, 22, 23).execute_async()
+    instance.invoke_instance_method("addThreeNumbers", 31, 32, 33).execute_async()
+
+    # sleep to wait for async methods to finish
+    time.sleep(3)
+    end_time = time.time()
+    print(f"Time elapsed: {(end_time - start_time) * 1000} milliseconds")
+    # </TestResources_ExecuteAsync_SyncMethod>
+    assert (end_time - start_time) < 4
+
+
+def test_NodejsPackage_TestResources_UseStaticMethodAsDelegate():
+    # <TestResources_UseStaticMethodAsDelegate>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # get static method as delegate
+    my_func = called_runtime_type.get_static_method_as_delegate("divideBy").execute()
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method("useYourFunc", my_func, 30, 6).execute()
+
+    result = response.get_value()
+    print(result)
+    # </TestResources_UseStaticMethodAsDelegate>
+    assert result == 5
+
+
+def test_Nodejs_TestResources_UseInstanceMethodAsDelegate():
+    # <TestResources_UseInstanceMethodAsDelegate>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Nodejs
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.js'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # get instance method as delegate
+    my_func = instance.get_instance_method_as_delegate("multiplyTwoNumbers").execute()
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method("useYourFunc", my_func, 5, 6).execute()
+
+    result = response.get_value()
+    print(result)
+    # </TestResources_UseInstanceMethodAsDelegate>
+    assert result == 30
+
+
+def test_NodejsPackage_TestResources_InvokeGlobalFunction():
+    # <TestResources_InvokeGlobalFunction>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().nodejs()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.js"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # invoke global function
+    response = called_runtime.invoke_global_function("welcome", "John").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_InvokeGlobalFunction>
+    assert result == "Hello John!"

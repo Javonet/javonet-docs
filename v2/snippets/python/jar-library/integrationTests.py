@@ -35,6 +35,7 @@ def test_JarLibrary_StandardLibrary_CreateRuntimeContext():
     # </StandardLibrary_CreateRuntimeContext>
     assert called_runtime is not None
 
+
 def test_JarLibrary_StandardLibrary_CreateInvocationContext():
     # <StandardLibrary_CreateInvocationContext>
     # use activate only once in your app
@@ -50,6 +51,7 @@ def test_JarLibrary_StandardLibrary_CreateInvocationContext():
     response = invocation_context.execute()
     # </StandardLibrary_CreateInvocationContext>
     assert response is not None
+
 
 def test_JarLibrary_StandardLibrary_GetValue():
     # <StandardLibrary_GetValue>
@@ -72,6 +74,7 @@ def test_JarLibrary_StandardLibrary_GetValue():
     print(result)
     # </StandardLibrary_GetValue>
     assert result == 50
+
 
 def test_JarLibrary_StandardLibrary_GetStaticField():
     # <StandardLibrary_GetStaticField>
@@ -1097,3 +1100,312 @@ def test_JarLibrary_StandardLibrary_HandleDictionary():
     # </StandardLibrary_HandleDictionary>
     assert result1 == math.pi
     assert result2 == 299792458.0
+
+
+def test_JarLibrary_StandardLibrary_HandleSet():
+    # <StandardLibrary_HandleSet>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # get generic class
+    hash_set_type = called_runtime.get_type("java.util.HashSet").execute()
+
+    # create instance of generic class
+    hash_set = hash_set_type.create_instance().execute()
+
+    # invoke instance method
+    hash_set.invoke_generic_method("add", "one").execute()
+    hash_set.invoke_generic_method("add", "two").execute()
+    hash_set.invoke_generic_method("add", "three").execute()
+
+    # get size of set
+    response = hash_set.invoke_generic_method("size").execute()
+    result = response.get_value()
+
+    # write results to console
+    print(result)
+    # </StandardLibrary_HandleSet>
+    assert result == 3
+
+
+def test_JarLibrary_StandardLibrary_PrimitiveTypeArray():
+    # <StandardLibrary_PrimitiveTypeArray>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # create instance of java.lang.String with "Hello World!"
+    new_string = called_runtime.get_type("java.lang.String").create_instance("Hello World!").execute()
+
+    # invoke instance method to get a byte array
+    response_bytes = new_string.invoke_instance_method("getBytes").execute()
+
+    # retrieve the array of bytes
+    result = response_bytes.retrieve_array()
+
+    # write results to console
+    print(result)
+    # </StandardLibrary_PrimitiveTypeArray>
+
+    expected = [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]
+    assert result == expected
+
+
+def test_JarLibrary_TestResources_PassingNullAsOnlyArg():
+    # <TestResources_PassingNullAsOnlyArg>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method passing None as only argument
+    response = called_runtime_type.invoke_static_method("passNull", None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsOnlyArg>
+    assert result == "Method called with null"
+
+
+def test_JarLibrary_TestResources_PassingNullAsSecondArg():
+    # <TestResources_PassingNullAsSecondArg>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method with a non-null first argument and None as the second
+    response = called_runtime_type.invoke_static_method("passNull2", 5, None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsSecondArg>
+    assert result == "Method2 called with null"
+
+
+def test_JarLibrary_TestResources_ReturningNull():
+    # <TestResources_ReturningNull>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method that returns null
+    response = called_runtime_type.invoke_static_method("returnNull").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_ReturningNull>
+    assert result is None
+
+
+def test_JarLibrary_TestResources_Multithreading_InvokeInstanceMethod():
+    # <TestResources_Multithreading_InvokeInstanceMethod>
+    # import threading locally
+    import threading
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime and create an instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # create threads and dictionary to store responses
+    responses = {}
+    lock = threading.Lock()
+    threads = []
+
+    for i in range(5):
+        def thread_func(j=i):
+            response = instance.invoke_instance_method("addTwoNumbers", j, 5).execute().get_value()
+            with lock:
+                responses[j] = response
+
+        thread = threading.Thread(target=thread_func)
+        threads.append(thread)
+
+    # start threads
+    for thread in threads:
+        thread.start()
+
+    # wait for threads to finish
+    for thread in threads:
+        thread.join()
+
+    # write results to console
+    for key, value in responses.items():
+        print(value)
+
+    # </TestResources_Multithreading_InvokeInstanceMethod>
+    for key, value in responses.items():
+        assert value == key + 5
+
+
+def test_JarLibrary_TestResources_ExecuteAsync_AsyncMethod():
+    # <TestResources_ExecuteAsync_AsyncMethod>
+    # import libaries locally
+    import time
+    from pathlib import Path
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # measure time
+    start_time = time.time()
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # create file
+    file_name = str(Path.home() / "output.txt")
+    open(file_name, 'w').close()
+
+    # invoke instance methods
+    instance.invoke_instance_method("writeToFile", file_name, " This is ").execute_async()
+    instance.invoke_instance_method("writeToFile", file_name, " file with ").execute_async()
+    instance.invoke_instance_method("writeToFile", file_name, " sample input ").execute_async()
+
+    # wait for threads to finish
+    time.sleep(3)
+
+    # measure time
+    end_time = time.time()
+
+    # write result to console
+    print(f"Time elapsed: {(end_time - start_time) * 1000} milliseconds")
+    # </TestResources_ExecuteAsync_AsyncMethod>
+    assert end_time - start_time < 4
+
+
+def test_JarLibrary_TestResources_ExecuteAsync_SyncMethod():
+    # <TestResources_ExecuteAsync_SyncMethod>
+    # import libaries locally
+    import time
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    start_time = time.time()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    instance.invoke_instance_method("addThreeNumbers", 11, 12, 13).execute_async()
+    instance.invoke_instance_method("addThreeNumbers", 21, 22, 23).execute_async()
+    instance.invoke_instance_method("addThreeNumbers", 31, 32, 33).execute_async()
+
+    # sleep to wait for async methods to finish
+    time.sleep(3)
+    end_time = time.time()
+
+    # write result to console
+    print(f"Time elapsed: {(end_time - start_time) * 1000} milliseconds")
+    # </TestResources_ExecuteAsync_SyncMethod>
+    assert (end_time - start_time) < 4
+
+
+def test_JarLibrary_TestResources_UseStaticMethodAsDelegate():
+    # <TestResources_UseStaticMethodAsDelegate>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().jvm()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.jar'
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # get static method as delegate
+    my_func = called_runtime_type.get_static_method_as_delegate("divideBy", called_runtime.get_type("int"),
+                                                                called_runtime.get_type("int")).execute()
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method("useYourFunc", my_func, 30, 6).execute()
+
+    result = response.get_value()
+    print(result)
+    # </TestResources_UseStaticMethodAsDelegate>
+    assert result == 5

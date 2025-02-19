@@ -1,7 +1,3 @@
-import threading
-import time
-
-
 class TestClass:
 
     def __init__(self, public_value, private_value):
@@ -95,6 +91,8 @@ class TestClass:
     cache = {}
 
     def add_two_numbers(self, x, y):
+        import time
+        import threading
         thread_id = threading.get_ident()
         print(f"Computing result in thread: {thread_id}")
         time.sleep(1)  # Simulate computation delay
@@ -108,12 +106,26 @@ class TestClass:
     # </Multithreading>
 
     # <AsyncMethods>
-    def create_file_with_content(self, file_name, file_input):
-        time.sleep(2)  # Simulate async operation
-        with open(file_name, "w") as file:
-            file.write(file_input)
-        return "Input processed"
+    import threading
+    file_lock = threading.Lock()
 
+    def write_operation(self):
+        import time
+        time.sleep(2)  # Simulate writing delay
+        with self.file_lock:
+            with open(file_name, "a") as file:
+                file.write(file_input)
+            return
+
+    def write_to_file(self, file_name, file_input):
+        write_thread = threading.Thread(target=self.write_operation)
+        write_thread.start()
+        return write_thread
+
+    def add_three_numbers(self, x, y, z):
+        import time
+        time.sleep(2)  # simulate computing delay
+        return x + y + z
     # </AsyncMethods>
 
     # <Delegates>
@@ -126,3 +138,8 @@ class TestClass:
     # <Empty>
     # empty
     # </Empty>
+
+# <Functions>
+def welcome(name):
+    return f"Hello {name}!"
+# </Functions>

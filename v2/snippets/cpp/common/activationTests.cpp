@@ -4,6 +4,11 @@
 
 using namespace JavonetNS::Cpp::Sdk;
 
+int main(int argc, char* argv[]) {
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
+}
+
 namespace ActivationTests {
 	TEST(Integration, Test_Activation_CorrectCredentials_Returns0) {
 		remove("javonet.lic");

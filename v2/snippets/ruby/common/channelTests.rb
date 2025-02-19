@@ -1,4 +1,5 @@
 require 'javonet-ruby-sdk'
+require_relative '../../utils/activation_credentials'
 
 RSpec.describe 'Ruby Channel Tests' do
 
@@ -7,7 +8,7 @@ RSpec.describe 'Ruby Channel Tests' do
   it 'Test_Channel_InMemory_Success' do
     # <InMemoryChannel>
     # use activate only once in your app
-    Javonet.activate('your-license-key')
+    Javonet.activate(ActivationCredentials.your_license_key)
 
     communication_channel = Javonet.in_memory
     # use communicationChannel to create runtimes to interact with
@@ -18,7 +19,7 @@ RSpec.describe 'Ruby Channel Tests' do
   it 'Test_Channel_Tcp_Success' do
     # <TcpChannel>
     # use activate only once in your app
-    Javonet.activate('your-license-key')
+    Javonet.activate(ActivationCredentials.your_license_key)
 
     connection_data = TcpConnectionData.new('127.0.0.1', 8083)
     communication_channel = Javonet.tcp(connection_data)
@@ -30,10 +31,10 @@ RSpec.describe 'Ruby Channel Tests' do
   it 'Test_Channel_WithConfigurationFile_Success' do
     # <WithConfigurationFile>
     # use activate only once in your app
-    Javonet.activate('your-license-key')
+    Javonet.activate(ActivationCredentials.your_license_key)
 
     # set up variables
-    config_file_path = resources_directory + "/javonetconf.json"
+    config_file_path = resources_directory + "/functional-tests-config.json"
     communication_channel = Javonet.with_config(config_file_path.to_s)
     # use communicationChannel to create runtimes to interact with
     # </WithConfigurationFile>

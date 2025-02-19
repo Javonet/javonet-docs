@@ -9,11 +9,9 @@ import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.OS;
 import utils.ActivationCredentials;
 
-import java.nio.file.Paths;
-
 public class integrationTests {
 
-    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/ruby-package";
+    private final String resourcesDirectory = java.nio.file.Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/ruby-package";
 
     @BeforeAll
     public static void initialization() {
@@ -23,7 +21,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_RubyPackage_StandardLibrary_CreateRuntimeContext() {
+    public void Test_RubyPackage_StandardLibrary_CreateRuntimeContext() {
         // <StandardLibrary_CreateRuntimeContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -38,7 +36,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_RubyPackage_StandardLibrary_CreateInvocationContext() {
+    public void Test_RubyPackage_StandardLibrary_CreateInvocationContext() {
         // <StandardLibrary_CreateInvocationContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -57,7 +55,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_RubyPackage_StandardLibrary_GetValue() {
+    public void Test_RubyPackage_StandardLibrary_GetValue() {
         // <StandardLibrary_GetValue>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -130,6 +128,33 @@ public class integrationTests {
         System.out.println(result);
         // </StandardLibrary_InvokeStaticMethod>
         Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_RubyPackage_StandardLibrary_InvokeInstanceMethod_BuiltIn_String_Upcase() {
+        // <StandardLibrary_InvokeInstanceMethod>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("String").execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance("hello world").execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("upcase").execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_InvokeInstanceMethod>
+        Assertions.assertEquals("HELLO WORLD", result);
     }
 
     @Test
@@ -625,8 +650,7 @@ public class integrationTests {
         // invoke type's static method which throws exception
         try {
             calledRuntimeType.invokeStaticMethod("divide_by", 10, 0).execute();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             // write exception message to console
             ex.printStackTrace();
             return;
@@ -759,5 +783,124 @@ public class integrationTests {
         Assertions.assertEquals("new value", result);
     }
 
+    @Test
+    @Tag("integration")
+    public void Test_RubyPackage_TestResources_PassingNullAsOnlyArg() {
+        // <TestResources_PassingNullAsOnlyArg>
+        Javonet.activate("your-license-key");
 
+        // create called runtime context using Ruby runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method with null as only argument
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("pass_null", null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsOnlyArg>
+        Assertions.assertEquals("Method called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_RubyPackage_TestResources_PassingNullAsSecondArg() {
+        // <TestResources_PassingNullAsSecondArg>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Ruby runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method with a non-null first argument and null as the second argument
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("pass_null_2", 5, null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsSecondArg>
+        Assertions.assertEquals("Method2 called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_RubyPackage_TestResources_ReturningNull() {
+        // <TestResources_ReturningNull>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Ruby runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method that returns null
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("return_null").execute();
+
+        // get value from response
+        Object result = response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_ReturningNull>
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_RubyPackage_TestResources_InvokeGlobalFunction() throws Exception {
+        // <TestResources_InvokeGlobalFunction>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().ruby();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.rb";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // invoke global function
+        InvocationContext response = calledRuntime.invokeGlobalFunction("TestClass.welcome", "John").execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeGlobalFunction>
+        Assertions.assertEquals("Hello John!", result);
+    }
 }

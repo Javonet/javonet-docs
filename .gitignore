@@ -8,3 +8,5 @@ eclipse-formatter.xml
 *.pdb
 _JavonetNativeErrorLogger*
 .markdownlint.json
+Binaries.zip
+Binaries/**

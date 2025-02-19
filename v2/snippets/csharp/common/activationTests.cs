@@ -1,5 +1,4 @@
-﻿using Javonet.Netcore.Sdk;
-using Javonet.Netcore.Sdk.Tests.Utils;
+﻿using Javonet.Netcore.Sdk.Tests.Utils;
 using Xunit;
 using Xunit.Abstractions;
 

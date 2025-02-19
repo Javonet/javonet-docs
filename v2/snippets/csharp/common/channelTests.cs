@@ -1,4 +1,5 @@
-﻿using Javonet.Netcore.Utils;
+﻿using Javonet.Netcore.Sdk.Tests.Utils;
+using Javonet.Netcore.Utils;
 using Javonet.Netcore.Utils.ConnectionData;
 using Xunit;
 
@@ -15,7 +16,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
         {
             // <InMemoryChannel>
             // use Activate only once in your app
-            Javonet.Activate("your-license-key");
+            Javonet.Activate(ActivationCredentials.yourLicenseKey);
 
             var communicationChannel = Javonet.InMemory();
             // use communicationChannel to create runtimes to interact with
@@ -44,7 +45,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
         {
             // <WsChannel>
             // use Activate only once in your app
-            Javonet.Activate("your-license-key");
+            Javonet.Activate(ActivationCredentials.yourLicenseKey);
 
             var connectionData = new WsConnectionData("ws://127.0.0.1:80");
             var communicationChannel = Javonet.WebSocket(connectionData);
@@ -59,10 +60,10 @@ namespace Javonet.Netcore.Sdk.Tests.common
         {
             // <WithConfigurationFile>
             // use Activate only once in your app
-            Javonet.Activate("your-license-key");
+            Javonet.Activate(ActivationCredentials.yourLicenseKey);
 
             // set up variables
-            string configFilePath = resourcesDirectory + "/javonetconf.json";
+            string configFilePath = resourcesDirectory + "/channel-tests-config.json";
             var communicationChannel = Javonet.WithConfig(configFilePath);
             // use communicationChannel to create runtimes to interact with
             // </WithConfigurationFile>

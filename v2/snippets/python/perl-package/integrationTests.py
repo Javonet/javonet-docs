@@ -1,6 +1,4 @@
 from pathlib import Path
-import pytest
-import platform
 
 from javonet.sdk import Javonet
 from javonet.utils.exception.JavonetException import JavonetException
@@ -545,3 +543,116 @@ def test_PerlPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_D
         # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         assert isinstance(e, JavonetException)
         assert "Illegal division by zero" in str(e)
+
+
+def test_PerlPackage_TestResources_PassingNullAsOnlyArg():
+    # <TestResources_PassingNullAsOnlyArg>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Perl
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.pm'
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method with None as only argument
+    response = called_runtime_type.invoke_static_method("pass_null", None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsOnlyArg>
+    assert result == "Method called with null"
+
+
+def test_PerlPackage_TestResources_PassingNullAsSecondArg():
+    # <TestResources_PassingNullAsSecondArg>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Perl
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.pm'
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method with first argument 5 and None as the second argument
+    response = called_runtime_type.invoke_static_method("pass_null_2", 5, None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsSecondArg>
+    assert result == "Method2 called with null"
+
+
+def test_PerlPackage_TestResources_ReturningNull():
+    # <TestResources_ReturningNull>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context for Perl
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + '/TestClass.pm'
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method that returns null
+    response = called_runtime_type.invoke_static_method("return_null").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_ReturningNull>
+    assert result is None
+
+
+def test_PerlPackage_TestResources_InvokeGlobalFunction():
+    # <TestResources_InvokeGlobalFunction>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().perl()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.pm"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # invoke global function
+    response = called_runtime.invoke_global_function("TestClass::TestClass::welcome", "John").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_InvokeGlobalFunction>
+    assert result == "Hello John!"

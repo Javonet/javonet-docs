@@ -5,6 +5,7 @@ import (
 	"os"
 	"testing"
 
+	"javonet.com/integrationTests/utils/activationcredentials"
 	Javonet "javonet.com/javonet"
 	"javonet.com/javonet/utils/connectiondata"
 )
@@ -19,7 +20,7 @@ func init() {
 func Test_Channel_InMemory_Success(t *testing.T) {
 	// <InMemoryChannel>
 	// use Activate only once in your app
-	_, err := Javonet.Activate("your-license-key")
+	_, err := Javonet.Activate(activationcredentials.YourLicenseKey)
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}
@@ -38,7 +39,7 @@ func Test_Channel_InMemory_Success(t *testing.T) {
 func Test_Channel_Tcp_Success(t *testing.T) {
 	// <TcpChannel>
 	// use Activate only once in your app
-	_, err := Javonet.Activate("your-license-key")
+	_, err := Javonet.Activate(activationcredentials.YourLicenseKey)
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}
@@ -58,13 +59,13 @@ func Test_Channel_Tcp_Success(t *testing.T) {
 func Test_Channel_WithConfigurationFile_Success(t *testing.T) {
 	// <WithConfigurationFile>
 	// use Activate only once in your app
-	_, err := Javonet.Activate("your-license-key")
+	_, err := Javonet.Activate(activationcredentials.YourLicenseKey)
 	if err != nil {
 		fmt.Println("Error: " + err.Error())
 	}
 
 	// set up variables
-	configFilePath := resourcesDirectory + "/javonetconf.json"
+	configFilePath := resourcesDirectory + "/channel-tests-config.json"
 	communicationChannel := Javonet.WithConfig(configFilePath)
 	// use communicationChannel to create runtimes to interact with
 	// </WithConfigurationFile>

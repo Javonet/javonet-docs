@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <filesystem>
+#include <vector>
 
 using namespace JavonetNS::Cpp::Sdk;
 
@@ -108,6 +109,32 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		std::cout << result << std::endl;
 		// </StandardLibrary_InvokeStaticMethod>
 		EXPECT_EQ(50, result);
+	}
+
+	TEST(Integration, Test_RubyPackage_StandardLibrary_InvokeInstanceMethod) {
+		// <StandardLibrary_InvokeInstanceMethod>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Ruby();
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType("String")->Execute();
+
+		// create type's instance with year, month, day
+		auto instance = calledRuntimeType->CreateInstance("Hello world")->Execute();
+
+		// invoke instance's method 'getFullYear'
+		auto response = instance->InvokeInstanceMethod("upcase")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </StandardLibrary_InvokeInstanceMethod>
+		EXPECT_EQ("HELLO WORLD", result);
 	}
 
 	TEST(Integration, Test_RubyPackage_TestResources_LoadLibrary) {
@@ -707,7 +734,119 @@ namespace JavonetNS::Cpp::Sdk::Tests::RubyPackage {
 		EXPECT_EQ("new value", result);
 	}
 
-	//TODO: Test_RubyPackage_StandardLibrary_HandleSet
-	//TODO: Test_RubyPackage_StandardLibrary_HandleHash
+	TEST(Integration, Test_RubyPackage_TestResources_PassingNullAsOnlyArg) {
+		// <TestResources_PassingNullAsOnlyArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
 
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Ruby();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.rb";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with null argument
+		auto response = calledRuntimeType->InvokeStaticMethod("pass_null", nullptr)->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsOnlyArg>
+		EXPECT_EQ("Method called with null", result);
+	}
+
+	TEST(Integration, Test_RubyPackage_TestResources_PassingNullAsSecondArg) {
+		// <TestResources_PassingNullAsSecondArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Ruby();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.rb";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with second argument as null
+		auto response = calledRuntimeType->InvokeStaticMethod("pass_null_2", { 5, nullptr })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsSecondArg>
+		EXPECT_EQ("Method2 called with null", result);
+	}
+
+	TEST(Integration, Test_RubyPackage_TestResources_ReturningNull) {
+		// <TestResources_ReturningNull>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Ruby();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.rb";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method
+		auto response = calledRuntimeType->InvokeStaticMethod("return_null")->Execute();
+
+		// get value from response
+		auto result = response->GetValue();
+		// </TestResources_ReturningNull>
+		ASSERT_TRUE(result.has_value());
+		ASSERT_EQ(result.type(), typeid(std::nullptr_t));
+		auto nullValue = std::any_cast<std::nullptr_t>(result);
+		EXPECT_EQ(nullValue, nullptr);
+	}
+
+	TEST(Integration, Test_RubyPackage_TestResources_InvokeGlobalFunction) {
+		// <TestResources_InvokeGlobalFunction>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Ruby();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.rb";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// invoke global function
+		auto response = calledRuntime->InvokeGlobalFunction("TestClass.welcome", "John")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_InvokeGlobalFunction>
+		EXPECT_EQ("Hello John!", result);
+	}
 }

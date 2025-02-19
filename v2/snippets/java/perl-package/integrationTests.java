@@ -7,11 +7,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.ActivationCredentials;
 
-import java.nio.file.Paths;
-
 public class integrationTests {
 
-    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/perl-package";
+    private final String resourcesDirectory = java.nio.file.Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/perl-package";
 
     @BeforeAll
     public static void initialization() {
@@ -21,7 +19,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_PerlPackage_StandardLibrary_CreateRuntimeContext() {
+    public void Test_PerlPackage_StandardLibrary_CreateRuntimeContext() {
         // <StandardLibrary_CreateRuntimeContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -36,7 +34,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_PerlPackage_StandardLibrary_CreateInvocationContext() {
+    public void Test_PerlPackage_StandardLibrary_CreateInvocationContext() {
         // <StandardLibrary_CreateInvocationContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -55,7 +53,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_PerlPackage_StandardLibrary_GetValue() {
+    public void Test_PerlPackage_StandardLibrary_GetValue() {
         // <StandardLibrary_GetValue>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -80,7 +78,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_PerlPackage_StandardLibrary_InvokeStaticMethod() {
+    public void Test_PerlPackage_StandardLibrary_InvokeStaticMethod() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -506,8 +504,7 @@ public class integrationTests {
         // invoke type's static method which throws exception
         try {
             calledRuntimeType.invokeStaticMethod("divide_by", 10, 0).execute();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             // write exception message to console
             ex.printStackTrace();
             return;
@@ -516,5 +513,125 @@ public class integrationTests {
         Assertions.fail();
     }
 
+    @Test
+    @Tag("integration")
+    public void Test_PerlPackage_TestResources_PassingNullAsOnlyArg() {
+        // <TestResources_PassingNullAsOnlyArg>
+        Javonet.activate("your-license-key");
 
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method with null as the only argument
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("pass_null", null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsOnlyArg>
+
+        Assertions.assertEquals("Method called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_PerlPackage_TestResources_PassingNullAsSecondArg() {
+        // <TestResources_PassingNullAsSecondArg>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method with a non-null first arg and null as second argument
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("pass_null_2", 5, null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsSecondArg>
+        Assertions.assertEquals("Method2 called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_PerlPackage_TestResources_ReturningNull() {
+        // <TestResources_ReturningNull>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+        String className = "TestClass::TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method that returns null
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("return_null").execute();
+
+        // get value from response
+        Object result = response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_ReturningNull>
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_PerlPackage_TestResources_InvokeGlobalFunction() throws Exception {
+        // <TestResources_InvokeGlobalFunction>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().perl();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.pm";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // invoke global function
+        InvocationContext response = calledRuntime.invokeGlobalFunction("TestClass::TestClass::welcome", "John").execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeGlobalFunction>
+        Assertions.assertEquals("Hello John!", result);
+    }
 }

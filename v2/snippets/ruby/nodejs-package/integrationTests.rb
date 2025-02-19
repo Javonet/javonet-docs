@@ -110,6 +110,56 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
     expect(result).to eq(50)
   end
 
+  it 'Test_NodejsPackage_StandardLibrary_InvokeInstanceMethod' do
+    # <StandardLibrary_InvokeInstanceMethod>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type('Date').execute
+
+    # create type's instance with year, month, and day
+    instance = called_runtime_type.create_instance(2024, 2, 3).execute
+
+    # invoke instance method "getFullYear"
+    response = instance.invoke_instance_method('getFullYear').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </StandardLibrary_InvokeInstanceMethod>
+    expect(result).to eq(2024)
+  end
+
+  it 'Test_NodejsPackage_StandardLibrary_GetInstanceField' do
+    # <StandardLibrary_GetInstanceField>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type('Set').execute
+
+    # create type's instance
+    instance = called_runtime_type.create_instance.execute
+
+    # get instance's field "size"
+    response = instance.get_instance_field('size').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </StandardLibrary_GetInstanceField>
+    expect(result).to eq(0)
+  end
+
   it 'Test_NodejsPackage_TestResources_LoadLibrary' do
     # <TestResources_LoadLibrary>
     # use activate only once in your app
@@ -762,4 +812,225 @@ RSpec.describe 'Ruby To Nodejs Package Integration Tests' do
     # </TestResources_2DArray_SetIndex>
     expect(result).to eq('new value')
   end
+
+  it 'Test_NodejsPackage_TestResources_PassingNullAsOnlyArg' do
+    # <TestResources_PassingNullAsOnlyArg>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method with nil as argument
+    response = called_runtime_type.invoke_static_method('passNull', nil).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_PassingNullAsOnlyArg>
+    expect(result).to eq('Method called with null')
+  end
+
+  it 'Test_NodejsPackage_TestResources_PassingNullAsSecondArg' do
+    # <TestResources_PassingNullAsSecondArg>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method with second argument as nil
+    response = called_runtime_type.invoke_static_method('passNull2', 5, nil).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_PassingNullAsSecondArg>
+    expect(result).to eq('Method2 called with null')
+  end
+
+  it 'Test_NodejsPackage_TestResources_ReturningNull' do
+    # <TestResources_ReturningNull>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method that returns null
+    response = called_runtime_type.invoke_static_method('returnNull').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_ReturningNull>
+    expect(result).to be_nil
+  end
+
+  it 'Test_NodejsPackage_TestResources_Multithreading_InvokeInstanceMethod' do
+    # <Multithreading_InvokeInstanceMethod>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute
+    instance = called_runtime_type.create_instance.execute
+
+    # create threads and dictionary to store responses
+    threads = {}
+    responses = {}
+
+    thread_function = Proc.new do |index|
+      response = instance.invoke_instance_method('multiplyTwoNumbers', index, 5).execute.get_value
+      responses[index] = response
+    end
+
+    # start threads
+    (0...5).each do |i|
+      threads[i] = Thread.new { thread_function.call(i) }
+    end
+
+    # wait for threads to finish
+    threads.each_value(&:join)
+
+    # write results to console
+    responses.each { |key, value| puts "#{key} * 5 = #{value}" }
+    # </Multithreading_InvokeInstanceMethod>
+
+    (0...5).each do |i|
+      expect(responses[i]).to eq(i * 5)
+    end
+  end
+
+  it 'Test_NodejsPackage_TestResources_UseStaticMethodAsDelegate' do
+    # <TestResources_UseStaticMethodAsDelegate>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute
+    instance = called_runtime_type.create_instance.execute
+
+    # get static method as delegate
+    my_func = called_runtime_type.get_static_method_as_delegate('divideBy').execute
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method('useYourFunc', my_func, 30, 6).execute
+
+    result = response.get_value
+    puts result
+    # </TestResources_UseStaticMethodAsDelegate>
+    expect(result).to eq(5)
+  end
+
+  it 'Test_Nodejs_TestResources_UseInstanceMethodAsDelegate' do
+    # <TestResources_UseInstanceMethodAsDelegate>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute
+    instance = called_runtime_type.create_instance.execute
+
+    # get instance method as delegate
+    my_func = instance.get_instance_method_as_delegate('multiplyTwoNumbers').execute
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method('useYourFunc', my_func, 5, 6).execute
+
+    result = response.get_value
+    puts result
+    # </TestResources_UseInstanceMethodAsDelegate>
+    expect(result).to eq(30)
+  end
+
+  it 'Test_NodejsPackage_TestResources_InvokeGlobalFunction' do
+    # <TestResources_InvokeGlobalFunction>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.nodejs
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.js"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # invoke global function
+    response = called_runtime.invoke_global_function('welcome', 'John').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_InvokeGlobalFunction>
+    expect(result).to eq('Hello John!')
+  end
+
 end

@@ -68,40 +68,58 @@ module TestClass
 	end
 	# </PassingNull>
 
- # <ReturningNull>
- def self.return_null
-	 return nil
- end
- # </ReturningNull>
+	# <ReturningNull>
+	def self.return_null
+		return nil
+	end
+	# </ReturningNull>
 
- # <Multithreading>
- @@cache = {}
+	# <Multithreading>
+	@@cache = {}
 
- def add_two_numbers(x, y)
-	 thread_id = Thread.current.object_id
-	 puts "Computing result in thread: #{thread_id}"
-	 sleep(1)  # Simulate computation delay
-	 result = x + y
-	 puts "Saving result in thread: #{thread_id}"
-	 sleep(0.05)  # Simulate saving delay
-	 @@cache[thread_id] = result
-	 puts "Returning result in thread: #{thread_id}"
-	 result
- end
- # </Multithreading>
+	def add_two_numbers(x, y)
+		thread_id = Thread.current.object_id
+		puts "Computing result in thread: #{thread_id}"
+		sleep(1)  # Simulate computation delay
+		result = x + y
+		puts "Saving result in thread: #{thread_id}"
+		sleep(0.05)  # Simulate saving delay
+		@@cache[thread_id] = result
+		puts "Returning result in thread: #{thread_id}"
+		result
+	end
+	# </Multithreading>
 
- # <AsyncMethods>
- def create_file_with_content(file_name, file_input)
-	 sleep(2)  # Simulate async operation
-	 File.open(file_name, "w") do |file|
-		 file.write(file_input)
-	 end
-	 "Input processed"
- end
- # </AsyncMethods>
+	# <AsyncMethods>
+    @@file_lock = Mutex.new unless defined?(@@file_lock)
+
+    def write_to_file(file_name, file_input)
+      thread = Thread.new do
+        sleep 2  # Simulate writing delay
+        @@file_lock.synchronize do
+          begin
+            File.open(file_name, "a") do |file|
+              file.write(file_input)
+            end
+            "Input processed"
+          rescue IOError
+            "Error writing to file"
+          end
+        end
+      end
+      thread.join
+      thread.value
+    end
+    # </AsyncMethods>
 
 	# <Empty>
 	# empty
 	# </Empty>
-  end
+	end
+
+	# <Functions>
+	def self.welcome(name)
+		"Hello #{name}!"
+	end
+	# </Functions>
 end

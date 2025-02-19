@@ -5,15 +5,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledOnOs;
-import org.junit.jupiter.api.condition.OS;
 import utils.ActivationCredentials;
-
-import java.nio.file.Paths;
 
 public class integrationTests {
 
-    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/netframework-dll";
+    private final String resourcesDirectory = java.nio.file.Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/netframework-dll";
 
     @BeforeAll
     public static void initialization() {
@@ -23,7 +19,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_NetframeworkDll_StandardLibrary_CreateRuntimeContext() {
+    public void Test_NetframeworkDll_StandardLibrary_CreateRuntimeContext() {
         // <StandardLibrary_CreateRuntimeContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -38,7 +34,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_NetframeworkDll_StandardLibrary_CreateInvocationContext() {
+    public void Test_NetframeworkDll_StandardLibrary_CreateInvocationContext() {
         // <StandardLibrary_CreateInvocationContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -57,7 +53,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_NetframeworkDll_StandardLibrary_GetValue() {
+    public void Test_NetframeworkDll_StandardLibrary_GetValue() {
         // <StandardLibrary_GetValue>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -82,7 +78,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50() {
         // <StandardLibrary_InvokeStaticMethod>
         // use activate only once in your app
@@ -108,7 +103,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_StandardLibrary_GetStaticField_MathPI_PI() {
         // <StandardLibrary_GetStaticField>
         // use activate only once in your app
@@ -134,7 +128,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_StandardLibrary_InvokeInstanceMethod_SystemDateTime_ToShortDateString_Contains2022() {
         // <StandardLibrary_InvokeInstanceMethod>
         // use activate only once in your app
@@ -163,7 +156,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_StandardLibrary_GetInstanceField_SystemDateTime_Year_2022() {
         // <StandardLibrary_GetInstanceField>
         // use activate only once in your app
@@ -192,7 +184,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_LoadLibrary_LibraryPath_NoException() {
         // <TestResources_LoadLibrary>
         // use activate only once in your app
@@ -211,7 +202,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_GetStaticField_StaticValue_3() {
         // <TestResources_GetStaticField>
         // use activate only once in your app
@@ -244,7 +234,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_SetStaticField_StaticValue_75() {
         // <TestResources_SetStaticField>
         // use activate only once in your app
@@ -281,7 +270,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_GetInstanceField_PublicValue_18() {
         // <TestResources_GetInstanceField>
         Javonet.activate("your-license-key");
@@ -316,7 +304,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_SetInstanceField_PublicValue_44() {
         // <TestResources_SetInstanceField>
         Javonet.activate("your-license-key");
@@ -354,7 +341,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50() {
         // <TestResources_InvokeStaticMethod>
         // use activate only once in your app
@@ -387,7 +373,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20() {
         // <TestResources_InvokeInstanceMethod>
         // use activate only once in your app
@@ -423,7 +408,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_1DArray_GetIndex_2_StringThree() {
         // <TestResources_1DArray_GetIndex>
         // use activate only once in your app
@@ -462,7 +446,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_1DArray_GetSize_5() {
         // <TestResources_1DArray_GetSize>
         // use activate only once in your app
@@ -501,7 +484,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_1DArray_SetIndex_StringSeven() {
         // <TestResources_1DArray_SetIndex>
         // use activate only once in your app
@@ -544,7 +526,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_1DArray_Iterate() {
         // <TestResources_1DArray_Iterate>
         // use activate only once in your app
@@ -661,7 +642,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_Cast_ToUInt() {
         // <TestResources_Cast_ToUInt>
         // use activate only once in your app
@@ -699,7 +679,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_Cast_ToFloat() {
         // <TestResources_Cast_ToFloat>
         // use activate only once in your app
@@ -737,7 +716,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException() {
         // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
         // use activate only once in your app
@@ -759,8 +737,7 @@ public class integrationTests {
         // invoke type's static method which throws exception
         try {
             calledRuntimeType.invokeStaticMethod("DivideBy", 10, 0).execute();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             // write exception message to console
             ex.printStackTrace();
             return;
@@ -771,7 +748,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_GenericStaticMethod() {
         // <TestResources_GenericStaticMethod>
         // use activate only once in your app
@@ -809,7 +785,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_GenericMethod() {
         // <TestResources_GenericMethod>
         // use activate only once in your app
@@ -850,7 +825,6 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    @EnabledOnOs(OS.WINDOWS)
     public void Test_NetframeworkDll_TestResources_GenericMethodWithTwoTypes() {
         // <TestResources_GenericMethodWithTwoTypes>
         // use activate only once in your app
@@ -916,13 +890,13 @@ public class integrationTests {
         InvocationContext mango = calledRuntime.getEnumItem(enumType, "Mango");
 
         // create fruits arrays
-        InvocationContext[] fruits1ToAdd = new InvocationContext[] {apple, mango};
+        InvocationContext[] fruits1ToAdd = new InvocationContext[]{apple, mango};
 
         // get type from runtime
         InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
 
         // invoke type's method
-        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", (Object)fruits1ToAdd).execute();
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("AddFruitsToList", (Object) fruits1ToAdd).execute();
 
         // get value from response
         String result = (String) response.getValue();
@@ -1117,7 +1091,7 @@ public class integrationTests {
         list.invokeInstanceMethod("Add", "one").execute();
         list.invokeInstanceMethod("Add", "two").execute();
         list.invokeInstanceMethod("Add", "three").execute();
-        list.invokeInstanceMethod("AddRange", (Object)new String[]{"four", "five", "six"}).execute();
+        list.invokeInstanceMethod("AddRange", (Object) new String[]{"four", "five", "six"}).execute();
 
         // check number of elements
         int count = (int) list.getInstanceField("Count").execute().getValue();
@@ -1148,7 +1122,7 @@ public class integrationTests {
         InvocationContext list = listType.createInstance().execute();
 
         // invoke instance's method
-        list.invokeInstanceMethod("AddRange", (Object)new Double[]{1.1, 2.2, 3.3, 4.4, 5.5, 6.6}).execute();
+        list.invokeInstanceMethod("AddRange", (Object) new Double[]{1.1, 2.2, 3.3, 4.4, 5.5, 6.6}).execute();
 
         // get element from list
         InvocationContext response1 = list.getIndex(3).execute();
@@ -1207,7 +1181,41 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void Test_NetframeworkDll_TestResources_Refs() {
+    public void Test_NetframeworkDll_StandardLibrary_HandleSet() {
+        // <StandardLibrary_HandleSet>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // get types
+        InvocationContext doubleType = calledRuntime.getType("System.Double");
+
+        // get generic class
+        InvocationContext hashSetType = calledRuntime.getType("System.Collections.Generic.HashSet`1", doubleType).execute();
+
+        // get generic class with double type as parameter
+        InvocationContext hashSet = hashSetType.createInstance().execute();
+
+        // invoke instance method
+        hashSet.invokeInstanceMethod("Add", 3.14).execute();
+        hashSet.invokeInstanceMethod("Add", 9.81).execute();
+        hashSet.invokeInstanceMethod("Add", 1.44).execute();
+
+        // get size of set
+        InvocationContext response = hashSet.getInstanceField("Count").execute();
+        int result = (int) response.getValue();
+
+        // write results to console
+        System.out.println(result);
+        // </StandardLibrary_HandleSet>
+        Assertions.assertEquals(3, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_Refs_OneArg() {
         // <TestResources_Refs>
         Javonet.activate("your-license-key");
 
@@ -1346,5 +1354,481 @@ public class integrationTests {
         Assertions.assertEquals("String from OutSampleMethod", result1);
         Assertions.assertEquals("String from OutSampleMethod", result2);
         Assertions.assertEquals("String from OutSampleMethod", result3);
+    }
+
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_PassingNullAsOnlyArg() {
+        // <TestResources_PassingNullAsOnlyArg>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("PassNull", (Object)null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsOnlyArg>
+
+        Assertions.assertEquals("Method called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_PassingNullAsSecondArg() {
+        // <TestResources_PassingNullAsSecondArg>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("PassNull2", 5, null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsSecondArg>
+        Assertions.assertEquals("Method2 called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_ReturningNull() {
+        // <TestResources_ReturningNull>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("ReturnNull").execute();
+
+        // get value from response
+        Object result = response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_ReturningNull>
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_InvokeMethodWithNullables() {
+        // <TestResources_InvokeMethodWithNullables>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method
+        InvocationContext response1 = calledRuntimeType.invokeStaticMethod("MethodWithNullables", null, null).execute();
+        InvocationContext response2 = calledRuntimeType.invokeStaticMethod("MethodWithNullables", 5, null).execute();
+        InvocationContext response3 = calledRuntimeType.invokeStaticMethod("MethodWithNullables", null, 10.0).execute();
+        InvocationContext response4 = calledRuntimeType.invokeStaticMethod("MethodWithNullables", 5, 10.0).execute();
+
+        // get value from response
+        String result1 = (String) response1.getValue();
+        String result2 = (String) response2.getValue();
+        String result3 = (String) response3.getValue();
+        String result4 = (String) response4.getValue();
+
+        // write result to console
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        System.out.println(result4);
+        // </TestResources_InvokeMethodWithNullables>
+
+        Assertions.assertEquals("MethodWithNullables called", result1);
+        Assertions.assertEquals("MethodWithNullables called", result2);
+        Assertions.assertEquals("MethodWithNullables called", result3);
+        Assertions.assertEquals("MethodWithNullables called", result4);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_MethodWithNullArgument() {
+        // <TestResources_MethodWithNullArgument>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get types from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+        InvocationContext stringType = calledRuntime.getType("System.String");
+
+        // invoke type's static method
+        InvocationContext response1 = calledRuntimeType.invokeStaticMethod("MethodWithNullArgument", stringType.createNull()).execute();
+        InvocationContext response2 = calledRuntimeType.invokeStaticMethod("MethodWithNullArgument", calledRuntimeType.createNull()).execute();
+        String result1 = (String) response1.getValue();
+        String result2 = (String) response2.getValue();
+
+        // write result to console
+        System.out.println(result1);
+        System.out.println(result2);
+
+        // </TestResources_MethodWithNullArgument>
+        Assertions.assertEquals("MethodWithNullArgument called with string", result1);
+        Assertions.assertEquals("MethodWithNullArgument called with TestClass", result2);
+    }
+
+//    @Test
+//    @Tag("integration")
+//    public void Test_NetframeworkDll_TestResources_Multithreading_InvokeInstanceMethod() throws Exception {
+//        // <TestResources_Multithreading_InvokeInstanceMethod>
+//        // use Activate only once in your app
+//        Javonet.activate("your-license-key");
+//
+//        // create called runtime context
+//        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+//
+//        // set up variables
+//        String libraryPath = resourcesDirectory + "/TestClass.dll";
+//        String className = "TestClass.TestClass";
+//
+//        // load custom library
+//        calledRuntime.loadLibrary(libraryPath);
+//
+//        // get types from the runtime
+//        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+//
+//        // Create type's instance
+//        InvocationContext instance = calledRuntimeType.createInstance().execute();
+//
+//        // create threads and a concurrent map to store responses using full package names
+//        java.util.List<Thread> threads = new java.util.ArrayList<>();
+//        java.util.concurrent.ConcurrentMap<Integer, Integer> responses = new java.util.concurrent.ConcurrentHashMap<>();
+//
+//        // create threads to invoke the instance method concurrently
+//        for (int i = 0; i < 5; i++) {
+//            int j = i;
+//            Thread thread = new Thread(() -> {
+//                try {
+//                    int response = (int) instance.invokeInstanceMethod("AddTwoNumbers", j, 5)
+//                            .execute()
+//                            .getValue();
+//                    responses.put(j, response);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            });
+//            threads.add(thread);
+//        }
+//
+//        // start threads
+//        for (Thread thread : threads) {
+//            thread.start();
+//        }
+//
+//        // wait for threads to finish
+//        for (Thread thread : threads) {
+//            thread.join();
+//        }
+//
+//        // write results to console
+//        for (java.util.Map.Entry<Integer, Integer> entry : responses.entrySet()) {
+//            System.out.println(entry.getValue());
+//        }
+//        // </TestResources_Multithreading_InvokeInstanceMethod>
+//        for (java.util.Map.Entry<Integer, Integer> response : responses.entrySet()) {
+//            Assertions.assertEquals(response.getKey() + 5, response.getValue());
+//        }
+//    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_ExecuteAsync_AsyncMethod() {
+        // <TestResources_ExecuteAsync_AsyncMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // Measure start time
+        long startTime = System.currentTimeMillis();
+
+        // Get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+        // Create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // Create file to write to
+        String fileName = System.getProperty("user.home") + "/output.txt";
+
+        try {
+            java.nio.file.Path path = java.nio.file.Paths.get(fileName);
+            java.nio.file.Files.deleteIfExists(path);
+            java.nio.file.Files.createFile(path);
+        } catch (java.io.IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Invoke instance's method asynchronously
+        instance.invokeInstanceMethod("WriteToFile", fileName, " This is ").executeAsync();
+        instance.invokeInstanceMethod("WriteToFile", fileName, " file with ").executeAsync();
+        instance.invokeInstanceMethod("WriteToFile", fileName, " sample input ").executeAsync();
+
+        // Wait for WriteToFile to finish
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Measure end time
+        long endTime = System.currentTimeMillis();
+
+        // Write result to console
+        System.out.println("Time elapsed: " + (endTime - startTime) + " ms");
+        // </TestResources_ExecuteAsync_AsyncMethod>
+        Assertions.assertTrue((endTime - startTime) < 4000);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_ExecuteAsync_SyncMethod() {
+        // <TestResources_ExecuteAsync_SyncMethod>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // Measure start time
+        long startTime = System.currentTimeMillis();
+
+        // Get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // Create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // Invoke instance's method asynchronously
+        instance.invokeInstanceMethod("AddThreeNumbers", 11, 12, 13).executeAsync();
+        instance.invokeInstanceMethod("AddThreeNumbers", 21, 22, 23).executeAsync();
+        instance.invokeInstanceMethod("AddThreeNumbers", 31, 32, 33).executeAsync();
+
+        // Wait for async methods to finish
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Measure end time
+        long endTime = System.currentTimeMillis();
+
+        // Write result to console
+        System.out.println("Time elapsed: " + (endTime - startTime) + " ms");
+        // </TestResources_ExecuteAsync_SyncMethod>
+        Assertions.assertTrue((endTime - startTime) < 4000);
+    }
+
+//    @Test
+//    @Tag("integration")
+//    public void Test_NetframeworkDll_TestResources_ExecuteAsync_SyncMethod_Await() throws Exception {
+//        // <TestResources_ExecuteAsync_SyncMethod_Await>
+//        // use Activate only once in your app
+//        Javonet.activate("your-license-key");
+//
+//        // create called runtime context
+//        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+//
+//        // set up variables
+//        String libraryPath = resourcesDirectory + "/TestClass.dll";
+//        String className = "TestClass.TestClass";
+//
+//        // load custom library
+//        calledRuntime.loadLibrary(libraryPath);
+//
+//        // Measure start time
+//        long startTime = System.currentTimeMillis();
+//
+//        // Get type from the runtime
+//        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+//        // Create type's instance
+//        InvocationContext instance = calledRuntimeType.createInstance().execute();
+//
+//        // Invoke instance's method asynchronously and await completion
+//        CompletableFuture<InvocationContext> task1 = instance.invokeInstanceMethod("AddThreeNumbers", 11, 12, 13).executeAsync();
+//        CompletableFuture<InvocationContext> task2 = instance.invokeInstanceMethod("AddThreeNumbers", 21, 22, 23).executeAsync();
+//        CompletableFuture<InvocationContext> task3 = instance.invokeInstanceMethod("AddThreeNumbers", 31, 32, 33).executeAsync();
+//
+//        CompletableFuture<Void> allTasks = CompletableFuture.allOf(task1, task2, task3);
+//        allTasks.join();
+//
+//        // Get results from tasks
+//        Integer result1 = (Integer) task1.get().getValue();
+//        Integer result2 = (Integer) task2.get().getValue();
+//        Integer result3 = (Integer) task3.get().getValue();
+//
+//        // Measure end time
+//        long endTime = System.currentTimeMillis();
+//
+//        // Write results to console
+//        System.out.println(result1);
+//        System.out.println(result2);
+//        System.out.println(result3);
+//        System.out.println("Time elapsed: " + (endTime - startTime) + " ms");
+//        // </TestResources_ExecuteAsync_SyncMethod_Await>
+//        // Assert results and total time elapsed
+//        Assertions.assertEquals(36, result1);
+//        Assertions.assertEquals(66, result2);
+//        Assertions.assertEquals(96, result3);
+//        Assertions.assertTrue((endTime - startTime) < 4000);
+//    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_UseStaticMethodAsDelegate() throws Exception {
+        // <TestResources_UseStaticMethodAsDelegate>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get types from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // Create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // Get static method as delegate
+        InvocationContext myFunc = calledRuntimeType.getStaticMethodAsDelegate("DivideBy").execute();
+
+        // Invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("UseYourFunc", myFunc, 30, 6).execute();
+
+        // Get value from response
+        int result = (int) response.getValue();
+
+        // Write result to console
+        System.out.println(result);
+        // </TestResources_UseStaticMethodAsDelegate>
+        Assertions.assertEquals(5, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NetframeworkDll_TestResources_UseInstanceMethodAsDelegate() throws Exception {
+        // <TestResources_UseInstanceMethodAsDelegate>
+        // use Activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().clr();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.dll";
+        String className = "TestClass.TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get types from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // Create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // Get instance method as delegate
+        InvocationContext myFunc = instance.getInstanceMethodAsDelegate("MultiplyTwoNumbers").execute();
+
+        // Invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("UseYourFunc", myFunc, 5, 6).execute();
+
+        // Get value from response
+        int result = (int) response.getValue();
+
+        // Write result to console
+        System.out.println(result);
+        // </TestResources_UseInstanceMethodAsDelegate>
+        Assertions.assertEquals(30, result);
     }
 }

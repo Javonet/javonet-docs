@@ -1,7 +1,8 @@
 const {Javonet} = require('javonet-nodejs-sdk')
 const {describe, expect, test} = require("@jest/globals");
 const path = require("path");
-
+const ActivationCredentials = require("../../utils/ActivationCredentials")
+const {TcpConnectionData} = require('javonet-nodejs-sdk')
 
 describe('Nodejs channel tests', () => {
 
@@ -10,7 +11,7 @@ describe('Nodejs channel tests', () => {
     test(`Test_Channel_InMemory_Success`, () => {
         // <InMemoryChannel>
         // use Activate only once in your app
-        Javonet.activate("your-license-key")
+        Javonet.activate(ActivationCredentials.yourLicenseKey)
 
         let communicationChannel = Javonet.inMemory()
         // use communicationChannel to create runtimes to interact with
@@ -21,9 +22,8 @@ describe('Nodejs channel tests', () => {
     test(`Test_Channel_Tcp_Success`, () => {
         // <TcpChannel>
         // use Activate only once in your app
-        Javonet.activate("your-license-key")
+        Javonet.activate(ActivationCredentials.yourLicenseKey)
 
-        const {TcpConnectionData} = require('javonet-nodejs-sdk')
         let connectionData = new TcpConnectionData("127.0.0.1", 8080)
         let communicationChannel = Javonet.tcp(connectionData)
         // use communicationChannel to create runtimes to interact with
@@ -34,10 +34,10 @@ describe('Nodejs channel tests', () => {
     test(`Test_Channel_WithConfigurationFile_Success`, () => {
         // <WithConfigurationFile>
         // use Activate only once in your app
-        Javonet.activate("your-license-key")
+        Javonet.activate(ActivationCredentials.yourLicenseKey)
 
         // set up variables
-        let configFile = resourcesDirectory + "/javonetconf.json"
+        let configFile = resourcesDirectory + "/channel-tests-config.json"
         let communicationChannel = Javonet.withConfig(configFile)
         // use communicationChannel to create runtimes to interact with
         // </WithConfigurationFile>

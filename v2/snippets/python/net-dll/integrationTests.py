@@ -1,10 +1,9 @@
 import math
-from pathlib import Path
-
+import pathlib
 from javonet.utils.exception.JavonetException import JavonetException
 from javonet.sdk import Javonet
 
-resources_directory = str(Path(__file__).parent.parent.parent.parent.parent) + '/testResources/net-dll'
+resources_directory = str(pathlib.Path(__file__).parent.parent.parent.parent.parent) + '/testResources/net-dll'
 
 
 def test_NetDll_StandardLibrary_CreateRuntimeContext():
@@ -1174,6 +1173,41 @@ def test_NetDll_StandardLibrary_HandleDictionary():
     assert result1 == math.pi
 
 
+def test_NetDll_StandardLibrary_HandleSet():
+    # <StandardLibrary_HandleSet>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # get type from the runtime
+    double_type = called_runtime.get_type("System.Double").execute()
+
+    # get type for generic class
+    hashset_type = called_runtime.get_type("System.Collections.Generic.HashSet`1",
+                                           double_type).execute()
+
+    # create instance of generic class
+    hashset = hashset_type.create_instance().execute()
+
+    # invoke instance's method
+    hashset.invoke_instance_method("Add", math.pi).execute()
+    hashset.invoke_instance_method("Add", math.e).execute()
+    hashset.invoke_instance_method("Add", 299792458.0).execute()
+
+    # get size of hashset
+    response = hashset.get_instance_field("Count").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </StandardLibrary_HandleSet>
+    assert result == 3
+
+
 def test_NetDll_TestResources_Refs_OneArg():
     # <TestResources_Refs>
     # use activate only once in your app
@@ -1309,3 +1343,372 @@ def test_NetDll_TestResources_Outs():
     assert result1 == "String from OutSampleMethod"
     assert result2 == "String from OutSampleMethod"
     assert result3 == "String from OutSampleMethod"
+
+
+def test_NetDll_TestResources_PassingNullAsOnlyArg():
+    # <TestResources_PassingNullAsOnlyArg>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method with null as argument
+    response = called_runtime_type.invoke_static_method("PassNull", None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsOnlyArg>
+    assert result == "Method called with null"
+
+
+def test_NetDll_TestResources_PassingNullAsSecondArg():
+    # <TestResources_PassingNullAsSecondArg>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("PassNull2", 5, None).execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_PassingNullAsSecondArg>
+    assert result == "Method2 called with null"
+
+
+def test_NetDll_TestResources_ReturningNull():
+    # <TestResources_ReturningNull>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method("ReturnNull").execute()
+
+    # get value from response
+    result = response.get_value()
+
+    # write result to console
+    print(result)
+    # </TestResources_ReturningNull>
+    assert result is None
+
+
+def test_NetDll_TestResources_InvokeMethodWithNullables():
+    # <TestResources_InvokeMethodWithNullables>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # invoke type's static method with various null combinations
+    response1 = called_runtime_type.invoke_static_method("MethodWithNullables", None, None).execute()
+    response2 = called_runtime_type.invoke_static_method("MethodWithNullables", 5, None).execute()
+    response3 = called_runtime_type.invoke_static_method("MethodWithNullables", None, 10.0).execute()
+    response4 = called_runtime_type.invoke_static_method("MethodWithNullables", 5, 10.0).execute()
+
+    # get values from responses
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+    result3 = response3.get_value()
+    result4 = response4.get_value()
+
+    # write results to console
+    print(result1)
+    print(result2)
+    print(result3)
+    print(result4)
+    # </TestResources_InvokeMethodWithNullables>
+    assert result1 == "MethodWithNullables called"
+    assert result2 == "MethodWithNullables called"
+    assert result3 == "MethodWithNullables called"
+    assert result4 == "MethodWithNullables called"
+
+
+def test_NetDll_TestResources_MethodWithNullArgument():
+    # <TestResources_MethodWithNullArgument>
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get types from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    string_type = called_runtime.get_type("System.String").execute()
+
+    # create null values from types (assuming create_null is available)
+    null_string = string_type.create_null().execute()
+    null_class = called_runtime_type.create_null().execute()
+
+    # invoke type's static method with null arguments
+    response1 = called_runtime_type.invoke_static_method("MethodWithNullArgument", null_string).execute()
+    response2 = called_runtime_type.invoke_static_method("MethodWithNullArgument", null_class).execute()
+
+    # get values from responses
+    result1 = response1.get_value()
+    result2 = response2.get_value()
+
+    # write result to console
+    print(result1)
+    print(result2)
+    # </TestResources_MethodWithNullArgument>
+    assert result1 == "MethodWithNullArgument called with string"
+    assert result2 == "MethodWithNullArgument called with TestClass"
+
+
+def test_NetDll_TestResources_Multithreading_InvokeInstanceMethod():
+    # <TestResources_Multithreading_InvokeInstanceMethod>
+    # import threading locally
+    import threading
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime and create an instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # create threads and dictionary to store responses
+    responses = {}
+    lock = threading.Lock()
+    threads = []
+
+    for i in range(5):
+        def thread_func(j=i):
+            response = instance.invoke_instance_method("AddTwoNumbers", j, 5).execute().get_value()
+            with lock:
+                responses[j] = response
+
+        thread = threading.Thread(target=thread_func)
+        threads.append(thread)
+
+    # start threads
+    for thread in threads:
+        thread.start()
+
+    # wait for threads to finish
+    for thread in threads:
+        thread.join()
+
+    # write results to console
+    for key, value in responses.items():
+        print(value)
+
+    # </TestResources_Multithreading_InvokeInstanceMethod>
+    for key, value in responses.items():
+        assert value == key + 5
+
+
+def test_NetDll_TestResources_ExecuteAsync_AsyncMethod():
+    # <TestResources_ExecuteAsync_AsyncMethod>
+    # import libaries locally
+    import time
+    from pathlib import Path
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # measure time
+    start_time = time.time()
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # create file
+    file_name = str(Path.home() / "output.txt")
+    open(file_name, 'w').close()
+
+    # invoke instance methods
+    instance.invoke_instance_method("WriteToFile", file_name, " This is ").execute_async()
+    instance.invoke_instance_method("WriteToFile", file_name, " file with ").execute_async()
+    instance.invoke_instance_method("WriteToFile", file_name, " sample input ").execute_async()
+
+    # wait for threads to finish
+    time.sleep(3)
+
+    # measure time
+    end_time = time.time()
+
+    # write result to console
+    print(f"Time elapsed: {(end_time - start_time) * 1000} milliseconds")
+    # </TestResources_ExecuteAsync_AsyncMethod>
+    assert end_time - start_time < 4
+
+
+def test_NetDll_TestResources_ExecuteAsync_SyncMethod():
+    # <TestResources_ExecuteAsync_SyncMethod>
+    # import libaries locally
+    import time
+    # use activate only once in your app
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    start_time = time.time()
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+
+    # create type's instance
+    instance = called_runtime_type.create_instance().execute()
+
+    # invoke instance's method
+    instance.invoke_instance_method("AddThreeNumbers", 11, 12, 13).execute_async()
+    instance.invoke_instance_method("AddThreeNumbers", 21, 22, 23).execute_async()
+    instance.invoke_instance_method("AddThreeNumbers", 31, 32, 33).execute_async()
+
+    # sleep to wait for async methods to finish
+    time.sleep(3)
+    end_time = time.time()
+
+    # write result to console
+    print(f"Time elapsed: {(end_time - start_time) * 1000} milliseconds")
+    # </TestResources_ExecuteAsync_SyncMethod>
+    assert (end_time - start_time) < 4
+
+
+def test_NetDll_TestResources_UseStaticMethodAsDelegate():
+    # <TestResources_UseStaticMethodAsDelegate>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # get static method as delegate
+    my_func = called_runtime_type.get_static_method_as_delegate("DivideBy").execute()
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method("UseYourFunc", my_func, 30, 6).execute()
+
+    result = response.get_value()
+    print(result)
+    # </TestResources_UseStaticMethodAsDelegate>
+    assert result == 5
+
+
+def test_NetDll_TestResources_UseInstanceMethodAsDelegate():
+    # <TestResources_UseInstanceMethodAsDelegate>
+    Javonet.activate("your-license-key")
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory().netcore()
+
+    # set up variables
+    library_path = resources_directory + "/TestClass.dll"
+    class_name = "TestClass.TestClass"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute()
+    instance = called_runtime_type.create_instance().execute()
+
+    # get instance method as delegate
+    my_func = instance.get_instance_method_as_delegate("MultiplyTwoNumbers").execute()
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method("UseYourFunc", my_func, 5, 6).execute()
+
+    result = response.get_value()
+    print(result)
+    # </TestResources_UseInstanceMethodAsDelegate>
+    assert result == 30

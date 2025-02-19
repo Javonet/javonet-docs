@@ -550,5 +550,166 @@ RSpec.describe 'Ruby To Perl Package Integration Tests' do
     end
     # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
   end
+
+  it 'Test_PerlPackage_TestResources_PassingNullAsOnlyArg' do
+    # <TestResources_PassingNullAsOnlyArg>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context for Perl
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.pm"
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method with nil as argument
+    response = called_runtime_type.invoke_static_method('pass_null', nil).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_PassingNullAsOnlyArg>
+    expect(result).to eq('Method called with null')
+  end
+
+  it 'Test_PerlPackage_TestResources_PassingNullAsSecondArg' do
+    # <TestResources_PassingNullAsSecondArg>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context for Perl
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.pm"
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method with second argument as nil
+    response = called_runtime_type.invoke_static_method('pass_null_2', 5, nil).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_PassingNullAsSecondArg>
+    expect(result).to eq('Method2 called with null')
+  end
+
+  it 'Test_PerlPackage_TestResources_ReturningNull' do
+    # <TestResources_ReturningNull>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context for Perl
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.pm"
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method that returns null
+    response = called_runtime_type.invoke_static_method('return_null').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_ReturningNull>
+    expect(result).to be_nil
+  end
+
+  it 'Test_PerlPackage_TestResources_Multithreading_InvokeInstanceMethod' do
+    # <Multithreading_InvokeInstanceMethod>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.pm"
+    class_name = 'TestClass::TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute
+    instance = called_runtime_type.create_instance(0, 1).execute
+
+    # create threads and dictionary to store responses
+    threads = {}
+    responses = {}
+
+    thread_function = Proc.new do |index|
+      response = instance.invoke_instance_method('multiply_two_numbers', index, 5).execute.get_value
+      responses[index] = response
+    end
+
+    # start threads
+    (0...5).each do |i|
+      threads[i] = Thread.new { thread_function.call(i) }
+    end
+
+    # wait for threads to finish
+    threads.each_value(&:join)
+
+    # write results to console
+    responses.each { |key, value| puts "#{key} * 5 = #{value}" }
+    # </Multithreading_InvokeInstanceMethod>
+
+    (0...5).each do |i|
+      expect(responses[i]).to eq(i * 5)
+    end
+  end
+
+  it 'Test_PerlPackage_TestResources_InvokeGlobalFunction' do
+    # <TestResources_InvokeGlobalFunction>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.perl
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.pm"
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # invoke global function
+    response = called_runtime.invoke_global_function('TestClass::TestClass::welcome', 'John').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_InvokeGlobalFunction>
+    expect(result).to eq('Hello John!')
+  end
+
 end
 

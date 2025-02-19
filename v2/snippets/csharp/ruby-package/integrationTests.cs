@@ -8,7 +8,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
     public class integrationTests
     {
         private readonly ITestOutputHelper output;
-        // this constructor is called only once, before first test
+        //this constructor is called only once, before first test
         public integrationTests(ITestOutputHelper output)
         {
             this.output = output;
@@ -21,7 +21,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         [Trait("Test", "Integration")]
         public void Test_RubyPackage_StandardLibrary_CreateRuntimeContext()
         {
-            //<StandardLibrary_CreateRuntimeContext>
+            // <StandardLibrary_CreateRuntimeContext>
             // use Activate only once in your app
             Javonet.Activate("your-license-key");
 
@@ -29,7 +29,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             var calledRuntime = Javonet.InMemory().Ruby();
 
             // use calledRuntime to interact with code from other technology
-            //</StandardLibrary_CreateRuntimeContext>
+            // </StandardLibrary_CreateRuntimeContext>
             Assert.NotNull(calledRuntime);
         }
 
@@ -37,7 +37,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         [Trait("Test", "Integration")]
         public void Test_RubyPackage_StandardLibrary_CreateInvocationContext()
         {
-            //<StandardLibrary_CreateInvocationContext>
+            // <StandardLibrary_CreateInvocationContext>
             // use Activate only once in your app
             Javonet.Activate("your-license-key");
 
@@ -50,7 +50,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
             // execute invocation context - this will materialize the invocationContext
             var response = invocationContext.Execute();
-            //</StandardLibrary_CreateInvocationContext>
+            // </StandardLibrary_CreateInvocationContext>
             Assert.NotNull(response);
         }
 
@@ -83,33 +83,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_StandardLibrary_GetStaticField()
-        {
-            // <StandardLibrary_GetStaticField>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Ruby();
-
-            // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType("Math").Execute();
-
-            // get type's static field
-            var response = calledRuntimeType.GetStaticField("PI").Execute();
-
-            // get value from response
-            var result = (double)response.GetValue();
-
-            // write result to console
-            System.Console.WriteLine(result);
-            // </StandardLibrary_GetStaticField>
-            Assert.Equal(System.Math.PI, result);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
-        public void Test_RubyPackage_StandardLibrary_InvokeStaticMethod()
+        public void Test_RubyPackage_StandardLibrary_InvokeStaticMethod_Math_Sqrt_2500_50()
         {
             // <StandardLibrary_InvokeStaticMethod>
             // use Activate only once in your app
@@ -135,7 +109,62 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_LoadLibrary()
+        public void Test_RubyPackage_StandardLibrary_GetStaticField_MathPI_PI()
+        {
+            // <StandardLibrary_GetStaticField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("Math").Execute();
+
+            // get type's static field
+            var response = calledRuntimeType.GetStaticField("PI").Execute();
+
+            // get value from response
+            var result = (double)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_GetStaticField>
+            Assert.Equal(System.Math.PI, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_StandardLibrary_InvokeInstanceMethod_BuiltIn_String_Upcase()
+        {
+            // <StandardLibrary_InvokeInstanceMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType("String").Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance("hello world").Execute();
+
+            // invoke type's static method
+            var response = instance.InvokeInstanceMethod("upcase").Execute();
+
+            // get value from response
+            var result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </StandardLibrary_InvokeInstanceMethod>
+            Assert.Equal("HELLO WORLD", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_LoadLibrary_LibraryPath_NoExeption()
         {
             // <TestResources_LoadLibrary>
             // use Activate only once in your app
@@ -154,7 +183,40 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_GetStaticField()
+        public void Test_RubyPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50()
+        {
+            // <TestResources_InvokeStaticMethod>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className);
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("multiply_by_two", 25).Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_InvokeStaticMethod>
+            Assert.Equal(50, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_GetStaticField_StaticValue_3()
         {
             // <TestResources_GetStaticField>
             // use Activate only once in your app
@@ -188,9 +250,8 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_SetStaticField()
+        public void Test_RubyPackage_TestResources_SetStaticField_StaticValue_75()
         {
-            // <TestResources_SetStaticField>
             // use Activate only once in your app
             Javonet.Activate("your-license-key");
 
@@ -225,115 +286,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_GetInstanceField()
-        {
-            // <TestResources_GetInstanceField>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Ruby();
-
-            // set up variables
-            string libraryPath = resourcesDirectory + "/TestClass.rb";
-            string className = "TestClass::TestClass";
-
-            // load custom library
-            calledRuntime.LoadLibrary(libraryPath);
-
-            // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType(className).Execute();
-
-            // create type's instance
-            var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
-
-            // get instance's field
-            var response = instance.GetInstanceField("public_value").Execute();
-
-            // get value from response
-            var result = (int)response.GetValue();
-
-            // write result to console
-            System.Console.WriteLine(result);
-            // </TestResources_GetInstanceField>
-            Assert.Equal(18, result);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_SetInstanceField()
-        {
-            // <TestResources_SetInstanceField>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Ruby();
-
-            // set up variables
-            string libraryPath = resourcesDirectory + "/TestClass.rb";
-            string className = "TestClass::TestClass";
-
-            // load custom library
-            calledRuntime.LoadLibrary(libraryPath);
-
-            // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType(className).Execute();
-
-            // create type's instance
-            var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
-
-            // set instance's field
-            instance.SetInstanceField("public_value", 44).Execute();
-
-            // get instance's field
-            var response = instance.GetInstanceField("public_value").Execute();
-
-            // get value from response
-            var result = (int)response.GetValue();
-
-            // write result to console
-            System.Console.WriteLine(result);
-            // </TestResources_SetInstanceField>
-            Assert.Equal(44, result);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_InvokeStaticMethod()
-        {
-            // <TestResources_InvokeStaticMethod>
-            // use Activate only once in your app
-            Javonet.Activate("your-license-key");
-
-            // create called runtime context
-            var calledRuntime = Javonet.InMemory().Ruby();
-
-            // set up variables
-            string libraryPath = resourcesDirectory + "/TestClass.rb";
-            string className = "TestClass::TestClass";
-
-            // load custom library
-            calledRuntime.LoadLibrary(libraryPath);
-
-            // get type from the runtime
-            var calledRuntimeType = calledRuntime.GetType(className);
-
-            // invoke type's static method
-            var response = calledRuntimeType.InvokeStaticMethod("multiply_by_two", 25).Execute();
-
-            // get value from response
-            var result = (int)response.GetValue();
-
-            // write result to console
-            System.Console.WriteLine(result);
-            // </TestResources_InvokeStaticMethod>
-            Assert.Equal(50, result);
-        }
-
-        [Fact]
-        [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_InvokeInstanceMethod()
+        public void Test_RubyPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20()
         {
             // <TestResources_InvokeInstanceMethod>
             // use Activate only once in your app
@@ -369,7 +322,82 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_1DArray_GetIndex()
+        public void Test_RubyPackage_TestResources_GetInstanceField_PublicValue_18()
+        {
+            // <TestResources_GetInstanceField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
+
+            // get instance's field
+            var response = instance.GetInstanceField("public_value").Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_GetInstanceField>
+            Assert.Equal(18, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_SetInstanceField_PublicValue_44()
+        {
+            // <TestResources_SetInstanceField>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the jvmRuntime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // create type's instance
+            var instance = calledRuntimeType.CreateInstance(18, 19).Execute();
+
+            // get instance's field
+            instance.SetInstanceField("public_value", 44).Execute();
+
+            // get instance's field
+            var response = instance.GetInstanceField("public_value").Execute();
+
+            // get value from response
+            var result = (int)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_SetInstanceField>
+            Assert.Equal(44, result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_1DArray_GetIndex_2_StringThree()
         {
             // <TestResources_1DArray_GetIndex>
             // use Activate only once in your app
@@ -408,7 +436,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_1DArray_GetSize()
+        public void Test_RubyPackage_TestResources_1DArray_GetSize_5()
         {
             // <TestResources_1DArray_GetSize>
             // use Activate only once in your app
@@ -441,13 +469,13 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
             // write result to console
             System.Console.WriteLine(result);
-            // </TestResources_1DArray_GetSize>
+            // <TestResources_1DArray_GetSize>
             Assert.Equal(5, result);
         }
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_1DArray_SetIndex()
+        public void Test_RubyPackage_TestResources_1DArray_SetIndex_StringSeven()
         {
             // <TestResources_1DArray_SetIndex>
             // use Activate only once in your app
@@ -483,10 +511,11 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
             // write result to console
             System.Console.WriteLine(result);
-            // </TestResources_1DArray_SetIndex>
+            // <TestResources_1DArray_SetIndex>
             array.SetIndex(4, "five").Execute();
             Assert.Equal("seven", result);
         }
+
 
         [Fact]
         [Trait("Test", "Integration")]
@@ -523,14 +552,14 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
             int i = 0;
             foreach (var element in array)
             {
-                arrayValues[i] = (string)element.InvokeInstanceMethod("upcase").Execute().GetValue();
+                arrayValues[i] = (string)element.Execute().GetValue();
                 i++;
             }
 
             // write result to console
             System.Console.WriteLine(string.Join("\t", arrayValues));
             // </TestResources_1DArray_Iterate>
-            Assert.Equal(new string[] { "ONE", "TWO", "THREE", "FOUR", "FIVE" }, arrayValues);
+            Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, arrayValues);
         }
 
         [Fact]
@@ -604,7 +633,7 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
             // write result to console
             System.Console.WriteLine(result);
-            // </TestResources_1DArray_PassArrayAsArgument>
+            // <TestResources_1DArray_PassArrayAsArgument>
             Assert.Equal(999.0, result);
         }
 
@@ -640,13 +669,13 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
 
             // write result to console
             System.Console.WriteLine(string.Join("\t", result));
-            // </TestResources_1DArray_RetrieveArray>
+            // <TestResources_1DArray_RetrieveArray>
             Assert.Equal(new string[] { "one", "two", "three", "four", "five" }, result);
         }
 
         [Fact]
         [Trait("Test", "Integration")]
-        public void Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0()
+        public void Test_RubyPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException()
         {
             // <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
             // use Activate only once in your app
@@ -815,55 +844,55 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         }
 
         //[Fact]
-        //[Trait("Test", "Integration")]
+        //[Trait("Test", "Functional")]
         //public void Test_RubyPackage_StandardLibrary_HandleSet()
         //{
-        //    // <StandardLibrary_HandleList>
-        //    // use Activate only once in your app
-        //    Javonet.Activate("your-license-key");
+        //// <StandardLibrary_HandleList>
+        //// use Activate only once in your app
+        //Javonet.Activate("your-license-key");
 
-        //    // create called runtime context
-        //    var calledRuntime = Javonet.InMemory().Ruby();
+        //// create called runtime context
+        //var calledRuntime = Javonet.InMemory().Ruby();
 
-        //    // load built-in library
-        //    calledRuntime.LoadLibrary("set");
+        //// load built-in library
+        //calledRuntime.LoadLibrary("set");
 
-        //    // get set from built-in type
-        //    var typeSet = calledRuntime.GetType("Set").Execute();
+        //// get set from built-in type
+        //var typeSet = calledRuntime.GetType("Set").Execute();
 
-        //    // create instance of set
-        //    var set = typeSet.CreateInstance().Execute();
+        //// create instance of set
+        //var set = typeSet.CreateInstance().Execute();
 
-        //    // invoke instance method
-        //    set.InvokeInstanceMethod("add", "one").Execute();
-        //    set.InvokeInstanceMethod("add", "two").Execute();
-        //    set.InvokeInstanceMethod("add", "three").Execute();
-        //    set.InvokeInstanceMethod("add", "four").Execute();
-        //    set.InvokeInstanceMethod("add", "five").Execute();
-        //    set.InvokeInstanceMethod("add", "six").Execute();
+        //// invoke instance method
+        //set.InvokeInstanceMethod("add", "one").Execute();
+        //set.InvokeInstanceMethod("add", "two").Execute();
+        //set.InvokeInstanceMethod("add", "three").Execute();
+        //set.InvokeInstanceMethod("add", "four").Execute();
+        //set.InvokeInstanceMethod("add", "five").Execute();
+        //set.InvokeInstanceMethod("add", "six").Execute();
 
-        //    // get elements from set
-        //    var element0 = set[0].Execute();
-        //    var element1 = set.GetIndex(1).Execute();
+        //// get elements from set
+        //var element0 = set[0].Execute();
+        //var element1 = set.GetIndex(1).Execute();
 
-        //    var result0 = element0.GetValue();
-        //    var result1 = element1.GetValue();
+        //var result0 = element0.GetValue();
+        //var result1 = element1.GetValue();
 
-        //    // get size of set
-        //    var size = set.GetSize().Execute().GetValue();
+        //// get size of set
+        //var size = set.GetSize().Execute().GetValue();
 
-        //    // write results to console
-        //    System.Console.WriteLine(result0);
-        //    System.Console.WriteLine(result1);
-        //    System.Console.WriteLine(size);
-        //    // </StandardLibrary_HandleList>
-        //    Assert.Equal("one", result0);
-        //    Assert.Equal("two", result1);
-        //    Assert.Equal(6, size);
+        //// write results to console
+        //System.Console.WriteLine(result0);
+        //System.Console.WriteLine(result1);
+        //System.Console.WriteLine(size);
+        //// </StandardLibrary_HandleList>
+        //Assert.Equal("one", result0);
+        //Assert.Equal("two", result1);
+        //Assert.Equal(6, size);
         //}
 
         //[Fact]
-        //[Trait("Test", "Integration")]
+        //[Trait("Test", "Functional")]
         //public void Test_RubyPackage_StandardLibrary_HandleHash()
         //{
         //    // <StandardLibrary_HandleDictionary>
@@ -873,10 +902,10 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         //    // create called runtime context
         //    var calledRuntime = Javonet.InMemory().Ruby();
 
-        //    // get generic class 
+        //    // get type 
         //    var typeDictionary = calledRuntime.GetType("Hash").Execute();
 
-        //    // create instance of generic class
+        //    // create instance of type
         //    var dictionary = typeDictionary.CreateInstance().Execute();
 
         //    // set elements in hash
@@ -898,5 +927,134 @@ namespace Javonet.Netcore.Sdk.Tests.rubypackage
         //    Assert.Equal(299792458.0, c_value);
         //    Assert.Equal(System.Math.E, e_value);
         //}
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_PassingNullAsOnlyArg()
+        {
+            // <TestResources_PassingNullAsOnlyArg>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("pass_null", null).Execute();
+
+            // get value from response
+            var result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_PassingNullAsOnlyArg>
+
+            Assert.Equal("Method called with null", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_PassingNullAsSecondArg()
+        {
+            // <TestResources_PassingNullAsSecondArg>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("pass_null_2", 5, null).Execute();
+
+            // get value from response
+            var result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_PassingNullAsSecondArg>
+            Assert.Equal("Method2 called with null", result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_ReturningNull()
+        {
+            // <TestResources_ReturningNull>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+            string className = "TestClass::TestClass";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // get type from the runtime
+            var calledRuntimeType = calledRuntime.GetType(className).Execute();
+
+            // invoke type's static method
+            var response = calledRuntimeType.InvokeStaticMethod("return_null").Execute();
+
+            // get value from response
+            var result = response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_ReturningNull>
+            Assert.Null(result);
+        }
+
+        [Fact]
+        [Trait("Test", "Integration")]
+        public void Test_RubyPackage_TestResources_InvokeGlobalFunction()
+        {
+            // <TestResources_InvokeGlobalFunction>
+            // use Activate only once in your app
+            Javonet.Activate("your-license-key");
+
+            // create called runtime context
+            var calledRuntime = Javonet.InMemory().Ruby();
+
+            // set up variables
+            string libraryPath = resourcesDirectory + "/TestClass.rb";
+
+            // load custom library
+            calledRuntime.LoadLibrary(libraryPath);
+
+            // invoke global function
+            var response = calledRuntime.InvokeGlobalFunction("TestClass.welcome", "John").Execute();
+
+            // get value from response
+            var result = (string)response.GetValue();
+
+            // write result to console
+            System.Console.WriteLine(result);
+            // </TestResources_InvokeGlobalFunction>
+            Assert.Equal("Hello John!", result);
+        }
     }
 }

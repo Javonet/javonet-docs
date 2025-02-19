@@ -670,6 +670,35 @@ if OS.windows?
       expect(result).to eq(%w[one two three four five])
     end
 
+    it 'Test_Netframework_Dll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
+
+      # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+      begin
+        # use activate only once in your app
+        Javonet.activate('your-license-key')
+
+        # create called runtime context
+        called_runtime = Javonet.in_memory.clr
+
+        # set up variables
+        library_path = "#{resources_directory}/TestClass.dll"
+        class_name = 'TestClass.TestClass'
+
+        # load custom library
+        called_runtime.load_library(library_path)
+
+        # get type from the runtime
+        called_runtime_type = called_runtime.get_type(class_name).execute
+
+        # invoke type's static method
+        called_runtime_type.invoke_static_method('DivideBy', 10, 0).execute
+      rescue Exception => e
+        # write exception to console
+        puts e.full_message
+      end
+      # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    end
+
     it 'Test_Netframework_Dll_TestResources_Cast_ToUInt' do
       # <TestResources_Cast_ToUInt>
       # use activate only once in your app
@@ -739,35 +768,6 @@ if OS.windows?
       puts result
       # </TestResources_Cast_ToFloat>
       expect(result).to eq('CastSampleMethod with System.Single called')
-    end
-
-    it 'Test_Netframework_Dll_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
-
-      # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-      begin
-        # use activate only once in your app
-        Javonet.activate('your-license-key')
-
-        # create called runtime context
-        called_runtime = Javonet.in_memory.clr
-
-        # set up variables
-        library_path = "#{resources_directory}/TestClass.dll"
-        class_name = 'TestClass.TestClass'
-
-        # load custom library
-        called_runtime.load_library(library_path)
-
-        # get type from the runtime
-        called_runtime_type = called_runtime.get_type(class_name).execute
-
-        # invoke type's static method
-        called_runtime_type.invoke_static_method('DivideBy', 10, 0).execute
-      rescue Exception => e
-        # write exception to console
-        puts e.full_message
-      end
-      # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
     end
 
     it 'Test_Netframework_Dll_TestResources_GenericStaticMethod' do
@@ -1192,6 +1192,40 @@ if OS.windows?
       expect(result1).to eq(Math::PI)
     end
 
+    it 'Test_NetframeworkDll_StandardLibrary_HandleSet' do
+      # <StandardLibrary_HandleSet>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # get type from the runtime
+      double_type = called_runtime.get_type('System.Double').execute
+
+      # get type for generic class
+      hashset_type = called_runtime.get_type('System.Collections.Generic.HashSet`1', double_type).execute
+
+      # create instance of generic class
+      hashset = hashset_type.create_instance.execute
+
+      # invoke instance's method
+      hashset.invoke_instance_method('Add', Math::PI).execute
+      hashset.invoke_instance_method('Add', Math::E).execute
+      hashset.invoke_instance_method('Add', 299792458.0).execute
+
+      # get size of hashset
+      response = hashset.get_instance_field('Count').execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </StandardLibrary_HandleSet>
+      expect(result).to eq(3)
+    end
+
     it 'Test_Netframework_Dll_TestResources_Refs_OneArg' do
       # <TestResources_Refs>
       # use activate only once in your app
@@ -1315,6 +1349,283 @@ if OS.windows?
       expect(result1).to eq('String from OutSampleMethod')
       expect(result2).to eq('String from OutSampleMethod')
       expect(result3).to eq('String from OutSampleMethod')
+    end
+
+    it 'Test_NetframeworkDll_TestResources_PassingNullAsOnlyArg' do
+      # <TestResources_PassingNullAsOnlyArg>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = 'TestClass.TestClass'
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # invoke type's static method with nil as argument
+      response = called_runtime_type.invoke_static_method('PassNull', nil).execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_PassingNullAsOnlyArg>
+      expect(result).to eq('Method called with null')
+    end
+
+    it 'Test_NetframeworkDll_TestResources_PassingNullAsSecondArg' do
+      # <TestResources_PassingNullAsSecondArg>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = 'TestClass.TestClass'
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # invoke type's static method with second argument as nil
+      response = called_runtime_type.invoke_static_method('PassNull2', 5, nil).execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_PassingNullAsSecondArg>
+      expect(result).to eq('Method2 called with null')
+    end
+
+    it 'Test_NetframeworkDll_TestResources_ReturningNull' do
+      # <TestResources_ReturningNull>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = 'TestClass.TestClass'
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # invoke type's static method
+      response = called_runtime_type.invoke_static_method('ReturnNull').execute
+
+      # get value from response
+      result = response.get_value
+
+      # write result to console
+      puts result
+      # </TestResources_ReturningNull>
+      expect(result).to be_nil
+    end
+
+    it 'Test_NetframeworkDll_TestResources_InvokeMethodWithNullables' do
+      # <TestResources_InvokeMethodWithNullables>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+
+      # invoke type's static method with various null combinations
+      response1 = called_runtime_type.invoke_static_method("MethodWithNullables", nil, nil).execute
+      response2 = called_runtime_type.invoke_static_method("MethodWithNullables", 5, nil).execute
+      response3 = called_runtime_type.invoke_static_method("MethodWithNullables", nil, 10.0).execute
+      response4 = called_runtime_type.invoke_static_method("MethodWithNullables", 5, 10.0).execute
+
+      # get values from responses
+      result1 = response1.get_value
+      result2 = response2.get_value
+      result3 = response3.get_value
+      result4 = response4.get_value
+
+      # write results to console
+      puts result1
+      puts result2
+      puts result3
+      puts result4
+      # </TestResources_InvokeMethodWithNullables>
+      expect(result1).to eq("MethodWithNullables called")
+      expect(result2).to eq("MethodWithNullables called")
+      expect(result3).to eq("MethodWithNullables called")
+      expect(result4).to eq("MethodWithNullables called")
+    end
+
+    it 'Test_NetframeworkDll_TestResources_MethodWithNullArgument' do
+      # <TestResources_MethodWithNullArgument>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get types from the runtime
+      called_runtime_type = called_runtime.get_type(class_name).execute
+      string_type = called_runtime.get_type("System.String").execute
+
+      # create null values from types
+      null_string = string_type.create_null().execute
+      null_class = called_runtime_type.create_null().execute
+
+      # invoke type's static method with null arguments
+      response1 = called_runtime_type.invoke_static_method("MethodWithNullArgument", null_string).execute
+      response2 = called_runtime_type.invoke_static_method("MethodWithNullArgument", null_class).execute
+
+      # get values from responses
+      result1 = response1.get_value
+      result2 = response2.get_value
+
+      # write result to console
+      puts result1
+      puts result2
+      # </TestResources_MethodWithNullArgument>
+      expect(result1).to eq("MethodWithNullArgument called with string")
+      expect(result2).to eq("MethodWithNullArgument called with TestClass")
+    end
+
+    it 'Test_NetframeworkDll_TestResources_Multithreading_InvokeInstanceMethod' do
+      # <Multithreading_InvokeInstanceMethod>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type and create instance
+      called_runtime_type = called_runtime.get_type(class_name).execute
+      instance = called_runtime_type.create_instance.execute
+
+      # create threads and dictionary to store responses
+      threads = {}
+      responses = {}
+
+      thread_function = Proc.new do |index|
+        response = instance.invoke_instance_method('MultiplyTwoNumbers', index, 5).execute.get_value
+        responses[index] = response
+      end
+
+      # start threads
+      (0...5).each do |i|
+        threads[i] = Thread.new { thread_function.call(i) }
+      end
+
+      # wait for threads to finish
+      threads.each_value(&:join)
+
+      # write results to console
+      responses.each { |key, value| puts "#{key} * 5 = #{value}" }
+      # </Multithreading_InvokeInstanceMethod>
+
+      (0...5).each do |i|
+        expect(responses[i]).to eq(i * 5)
+      end
+    end
+
+    it 'Test_NetframeworkDll_TestResources_UseStaticMethodAsDelegate' do
+      # <TestResources_UseStaticMethodAsDelegate>
+      # use activate only once in your app
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type and create instance
+      called_runtime_type = called_runtime.get_type(class_name).execute
+      instance = called_runtime_type.create_instance.execute
+
+      # get static method as delegate
+      my_func = called_runtime_type.get_static_method_as_delegate("DivideBy").execute
+
+      # invoke instance's method using delegate
+      response = instance.invoke_instance_method("UseYourFunc", my_func, 30, 6).execute
+
+      result = response.get_value
+      puts result
+      # </TestResources_UseStaticMethodAsDelegate>
+      expect(result).to eq(5)
+    end
+
+    it 'Test_NetframeworkDll_TestResources_UseInstanceMethodAsDelegate' do
+      # <TestResources_UseInstanceMethodAsDelegate>
+      Javonet.activate('your-license-key')
+
+      # create called runtime context
+      called_runtime = Javonet.in_memory.clr
+
+      # set up variables
+      library_path = "#{resources_directory}/TestClass.dll"
+      class_name = "TestClass.TestClass"
+
+      # load custom library
+      called_runtime.load_library(library_path)
+
+      # get type and create instance
+      called_runtime_type = called_runtime.get_type(class_name).execute
+      instance = called_runtime_type.create_instance.execute
+
+      # get instance method as delegate
+      my_func = instance.get_instance_method_as_delegate("MultiplyTwoNumbers").execute
+
+      # invoke instance's method using delegate
+      response = instance.invoke_instance_method("UseYourFunc", my_func, 5, 6).execute
+
+      result = response.get_value
+      puts result
+      # </TestResources_UseInstanceMethodAsDelegate>
+      expect(result).to eq(30)
     end
   end
 end

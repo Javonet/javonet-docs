@@ -24,7 +24,7 @@ sub Test_NodejsPackage_StandardLibrary_CreateRuntimeContext {
 
     # use calledRuntime to interact with code from other technology
     # </StandardLibrary_CreateRuntimeContext>
-    ok(defined $called_runtime, 'Test_NodejsPackage_StandardLibrary_CreateRuntimeContext');
+    return $called_runtime;
 }
 
 sub Test_NodejsPackage_StandardLibrary_CreateInvocationContext {
@@ -41,7 +41,7 @@ sub Test_NodejsPackage_StandardLibrary_CreateInvocationContext {
     # execute invocation context - this will materialize the invocationContext
     my $response = $invocation_context->execute();
     # </StandardLibrary_CreateInvocationContext>
-    ok(defined $response, 'Test_NodejsPackage_StandardLibrary_CreateInvocationContext');
+    return $response;
 }
 
 sub Test_NodejsPackage_StandardLibrary_GetValue {
@@ -64,7 +64,7 @@ sub Test_NodejsPackage_StandardLibrary_GetValue {
     # write result to console
     print("$result\n");
     # </StandardLibrary_GetValue>
-    is($result, 50, 'Test_NodejsPackage_StandardLibrary_GetValue');
+    return $result;
 }
 
 sub Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
@@ -72,11 +72,11 @@ sub Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type("Math")->execute();
+    my $called_runtime_type = $called_runtime->get_type("Math")->execute();
 
     # invoke type's static method
     my $response = $called_runtime_type->invoke_static_method("abs", -50)->execute();
@@ -95,11 +95,11 @@ sub Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type("Math")->execute();
+    my $called_runtime_type = $called_runtime->get_type("Math")->execute();
 
     # get type's static field
     my $response = $called_runtime_type->get_static_field("PI")->execute();
@@ -113,19 +113,69 @@ sub Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI {
     return $result;
 }
 
+sub Test_NodejsPackage_StandardLibrary_InvokeInstanceMethod {
+    # <StandardLibrary_InvokeInstanceMethod>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type("Date")->execute();
+
+    # create type's instance with year, month, and day
+    my $instance = $called_runtime_type->create_instance(2024, 2, 3)->execute();
+
+    # invoke instance method "getFullYear"
+    my $response = $instance->invoke_instance_method("getFullYear")->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </StandardLibrary_InvokeInstanceMethod>
+    return $result;
+}
+
+sub Test_NodejsPackage_StandardLibrary_GetInstanceField {
+    # <StandardLibrary_GetInstanceField>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type("Set")->execute();
+
+    # create type's instance
+    my $instance = $called_runtime_type->create_instance()->execute();
+
+    # get instance's field "size"
+    my $response = $instance->get_instance_field("size")->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </StandardLibrary_GetInstanceField>
+    return $result;
+}
+
 sub Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException {
     # <TestResources_LoadLibrary>
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
     # </TestResources_LoadLibrary>
     return 0;
 }
@@ -135,18 +185,18 @@ sub Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     #  invoke type's static method
     my $response = $called_runtime_type->invoke_static_method("multiplyByTwo", 25)->execute();
@@ -165,18 +215,18 @@ sub Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # get type's static field
     my $response = $called_runtime_type->get_static_field("staticValue")->execute();
@@ -195,18 +245,18 @@ sub Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # set type's static field
     $called_runtime_type->set_static_field("staticValue", 75)->execute();
@@ -229,18 +279,18 @@ sub Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $called_runtime_type->create_instance()->execute();
@@ -262,18 +312,18 @@ sub Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $called_runtime_type->create_instance(18, 19)->execute();
@@ -290,53 +340,23 @@ sub Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18 {
     return $result;
 }
 
-sub Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException {
-    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-    # use activate only once in your app
-    Javonet->activate("your-license-key");
-
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
-
-    # set up variables
-    my $library_path = "${resources_directory}/TestClass.js";
-    my $class_name = "TestClass";
-
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
-
-    # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
-
-    # #invoke type's static method which throws exception
-    my $exception = "";
-    try {
-        my $response = $called_runtime_type->invoke_static_method("divideBy", 10, 0)->execute();
-    } catch ($ex) {
-        $exception = $ex;
-    };
-    print("Exception: $exception\n");
-    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
-    like($exception, qr/ZeroDivisionException/, 'Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException');
-}
-
 sub Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree {
     # <TestResources_1DArray_GetIndex>
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $called_runtime_type->create_instance()->execute();
@@ -361,18 +381,18 @@ sub Test_NodejsPackage_TestResources_1DArray_GetSize_5 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $called_runtime_type->create_instance()->execute();
@@ -397,18 +417,18 @@ sub Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
-    my $nodejs_runtime = Javonet->in_memory()->nodejs();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Nodejs custom library
-    $nodejs_runtime->load_library($library_path);
+    # load custom library
+    $called_runtime->load_library($library_path);
 
     # get type from the runtime
-    my $called_runtime_type = $nodejs_runtime->get_type($class_name)->execute();
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
 
     # create type's instance
     my $instance = $called_runtime_type->create_instance()->execute();
@@ -437,14 +457,14 @@ sub Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44 {
     # use activate only once in your app
     Javonet->activate("your-license-key");
 
-    # create Nodejs runtime context
+    # create called runtime context
     my $clr_runtime = Javonet->in_memory()->nodejs();
 
     # set up variables
     my $library_path = "${resources_directory}/TestClass.js";
     my $class_name = "TestClass";
 
-    # load Clr custom library
+    # load custom library
     $clr_runtime->load_library($library_path);
 
     # get type from the runtime
@@ -468,36 +488,239 @@ sub Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44 {
     return $result;
 }
 
-Test_NodejsPackage_StandardLibrary_CreateRuntimeContext();
-Test_NodejsPackage_StandardLibrary_CreateInvocationContext();
-Test_NodejsPackage_StandardLibrary_GetValue();
+sub Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException {
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
 
-my $test_result_1 = Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50();
-my $test_result_2 = Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI();
-my $test_result_3 = Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException();
-my $test_result_4 = Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50();
-my $test_result_5 = Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3();
-my $test_result_6 = Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75();
-my $test_result_7 = Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20();
-my $test_result_8 = Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18();
-my $test_result_11 = Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree();
-my $test_result_12 = Test_NodejsPackage_TestResources_1DArray_GetSize_5();
-my $test_result_13 = Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven();
-my $test_result_14 = Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44();
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
 
-is($test_result_1, 50, 'Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50');
-is(sprintf("%.5f", $test_result_2), sprintf("%.5f", pi), 'Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI');
-is($test_result_3, 0, 'Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException');
-is($test_result_4, 50, 'Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
-is($test_result_5, 3, 'Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3');
-is($test_result_6, 75, 'Test_NodejsPackage_TestResources_SetStaticField_StaticValue_3');
-is($test_result_7, 20, 'Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
-is($test_result_8, 18, 'Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18');
-is($test_result_14, 44, 'Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44');
-Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException
-is($test_result_11, "three", 'Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree');
-is($test_result_12, 5, 'Test_NodejsPackage_TestResources_1DArray_GetSize_5');
-is($test_result_13, "seven", 'Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven');
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+
+    # #invoke type's static method which throws exception
+    my $exception = "";
+    try {
+        my $response = $called_runtime_type->invoke_static_method("divideBy", 10, 0)->execute();
+    } catch ($ex) {
+        $exception = $ex;
+    };
+    print("Exception: $exception\n");
+    # </TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    return $exception;
+}
+
+sub Test_NodejsPackage_TestResources_PassingNullAsOnlyArg {
+    # <TestResources_PassingNullAsOnlyArg>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+
+    # invoke type's static method with undef as only argument
+    my $response = $called_runtime_type->invoke_static_method("passNull", undef)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </TestResources_PassingNullAsOnlyArg>
+    return $result;
+}
+
+sub Test_NodejsPackage_TestResources_PassingNullAsSecondArg {
+    # <TestResources_PassingNullAsSecondArg>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+
+    # invoke type's static method with first argument 5 and undef as second argument
+    my $response = $called_runtime_type->invoke_static_method("passNull2", 5, undef)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </TestResources_PassingNullAsSecondArg>
+    return $result;
+}
+
+sub Test_NodejsPackage_TestResources_ReturningNull {
+    # <TestResources_ReturningNull>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name = "TestClass";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+
+    # invoke type's static method that returns null
+    my $response = $called_runtime_type->invoke_static_method("returnNull")->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print(defined $result ? "$result\n" : "undef\n");
+    # </TestResources_ReturningNull>
+    return $result;
+}
+
+sub Test_NodejsPackage_TestResources_UseStaticMethodAsDelegate {
+    # <TestResources_UseStaticMethodAsDelegate>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context for Nodejs
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name   = "TestClass";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # get type and create instance
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+    my $instance            = $called_runtime_type->create_instance()->execute();
+
+    # get static method as delegate
+    my $my_func = $called_runtime_type->get_static_method_as_delegate("divideBy")->execute();
+
+    # invoke instance's method using delegate
+    my $response = $instance->invoke_instance_method("useYourFunc", $my_func, 30, 6)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </TestResources_UseStaticMethodAsDelegate>
+    return $result;
+}
+
+sub Test_NodejsPackage_TestResources_UseInstanceMethodAsDelegate {
+    # <TestResources_UseInstanceMethodAsDelegate>
+    Javonet->activate("your-license-key");
+
+    # create called runtime context for Nodejs
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+    my $class_name   = "TestClass";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # get type from the runtime and create instance
+    my $called_runtime_type = $called_runtime->get_type($class_name)->execute();
+    my $instance            = $called_runtime_type->create_instance()->execute();
+
+    # get instance method as delegate
+    my $my_func = $instance->get_instance_method_as_delegate("multiplyTwoNumbers")->execute();
+
+    # invoke instance's method using delegate
+    my $response = $instance->invoke_instance_method("useYourFunc", $my_func, 5, 6)->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </TestResources_UseInstanceMethodAsDelegate>
+    return $result;
+}
+
+sub Test_NodejsPackage_TestResources_InvokeGlobalFunction {
+    # <TestResources_InvokeGlobalFunction>
+    # use activate only once in your app
+    Javonet->activate("your-license-key");
+
+    # create called runtime context
+    my $called_runtime = Javonet->in_memory()->nodejs();
+
+    # set up variables
+    my $library_path = "${resources_directory}/TestClass.js";
+
+    # load custom library
+    $called_runtime->load_library($library_path);
+
+    # invoke global function
+    my $response = $called_runtime->invoke_global_function("welcome", "John")->execute();
+
+    # get value from response
+    my $result = $response->get_value();
+
+    # write result to console
+    print("$result\n");
+    # </TestResources_InvokeGlobalFunction>
+    return $result;
+}
+
+ok(defined Test_NodejsPackage_StandardLibrary_CreateRuntimeContext(), 'Test_NodejsPackage_StandardLibrary_CreateRuntimeContext');
+ok(defined Test_NodejsPackage_StandardLibrary_CreateInvocationContext(), 'Test_NodejsPackage_StandardLibrary_CreateInvocationContext');
+is(Test_NodejsPackage_StandardLibrary_GetValue(), 50, 'Test_NodejsPackage_StandardLibrary_GetValue');
+is(Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Minus50_50(), 50, 'Test_NodejsPackage_StandardLibrary_InvokeStaticMethod_Math_Abs_Sqrt_2500_50');
+is(Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI(), pi, 'Test_NodejsPackage_StandardLibrary_GetStaticField_MathPI_PI');
+is(Test_NodejsPackage_StandardLibrary_InvokeInstanceMethod(), 2024, 'Test_NodejsPackage_StandardLibrary_InvokeInstanceMethod');
+is(Test_NodejsPackage_StandardLibrary_GetInstanceField(), 0, 'Test_NodejsPackage_StandardLibrary_GetInstanceField');
+is(Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException(), 0, 'Test_NodejsPackage_TestResources_LoadLibrary_LibraryPath_NoException');
+is(Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50(), 50, 'Test_NodejsPackage_TestResources_InvokeStaticMethod_MultiplyByTwo_25_50');
+is(Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3(), 3, 'Test_NodejsPackage_TestResources_GetStaticField_StaticValue_3');
+is(Test_NodejsPackage_TestResources_SetStaticField_StaticValue_75(), 75, 'Test_NodejsPackage_TestResources_SetStaticField_StaticValue_3');
+is(Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20(), 20, 'Test_NodejsPackage_TestResources_InvokeInstanceMethod_MultiplyTwoNumbers_4_5_20');
+is(Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18(), 18, 'Test_NodejsPackage_TestResources_GetInstanceField_PublicValue_18');
+is(Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44(), 44, 'Test_NodejsPackage_TestResources_SetInstanceField_PublicValue_44');
+is(Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree(), "three", 'Test_NodejsPackage_TestResources_1DArray_GetIndex_2_StringThree');
+is(Test_NodejsPackage_TestResources_1DArray_GetSize_5(), 5, 'Test_NodejsPackage_TestResources_1DArray_GetSize_5');
+is(Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven(), "seven", 'Test_NodejsPackage_TestResources_1DArray_SetIndex_StringSeven');
+like(Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException(), qr/ZeroDivisionException/, 'Test_NodejsPackage_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException');
+#is(Test_NodejsPackage_TestResources_PassingNullAsOnlyArg(), "Method called with null", 'Test_NodejsPackage_TestResources_PassingNullAsOnlyArg');
+#is(Test_NodejsPackage_TestResources_PassingNullAsSecondArg(), "Method2 called with null", 'Test_NodejsPackage_TestResources_PassingNullAsSecondArg');
+is(Test_NodejsPackage_TestResources_ReturningNull(), undef, 'Test_NodejsPackage_TestResources_ReturningNull');
+is(Test_NodejsPackage_TestResources_UseStaticMethodAsDelegate(), 5, 'Test_NodejsPackage_TestResources_UseStaticMethodAsDelegate');
+is(Test_NodejsPackage_TestResources_UseInstanceMethodAsDelegate(), 30, 'Test_NodejsPackage_TestResources_UseInstanceMethodAsDelegate');
+is(Test_NodejsPackage_TestResources_InvokeGlobalFunction(), "Hello John!", 'Test_NodejsPackage_TestResources_InvokeGlobalFunction');
 
 
 done_testing();

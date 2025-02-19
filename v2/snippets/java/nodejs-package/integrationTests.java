@@ -7,11 +7,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import utils.ActivationCredentials;
 
-import java.nio.file.Paths;
-
 public class integrationTests {
 
-    private final String resourcesDirectory = Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/nodejs-package";
+    private final String resourcesDirectory = java.nio.file.Paths.get("").toAbsolutePath().getParent().getParent().toString() + "/testResources/nodejs-package";
 
     @BeforeAll
     public static void initialization() {
@@ -21,7 +19,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_NodejsPackage_StandardLibrary_CreateRuntimeContext() {
+    public void Test_NodejsPackage_StandardLibrary_CreateRuntimeContext() {
         // <StandardLibrary_CreateRuntimeContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -36,7 +34,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_NodejsPackage_StandardLibrary_CreateInvocationContext() {
+    public void Test_NodejsPackage_StandardLibrary_CreateInvocationContext() {
         // <StandardLibrary_CreateInvocationContext>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -55,7 +53,7 @@ public class integrationTests {
 
     @Test
     @Tag("integration")
-    public void test_NodejsPackage_StandardLibrary_GetValue() {
+    public void Test_NodejsPackage_StandardLibrary_GetValue() {
         // <StandardLibrary_GetValue>
         // use activate only once in your app
         Javonet.activate("your-license-key");
@@ -126,6 +124,60 @@ public class integrationTests {
         System.out.println(result);
         // </StandardLibrary_InvokeStaticMethod>
         Assertions.assertEquals(50, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_StandardLibrary_InvokeInstanceMethod() {
+        // <StandardLibrary_InvokeInstanceMethod>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("Date").execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance(2024, 2, 3).execute();
+
+        // invoke instance's method
+        InvocationContext response = instance.invokeInstanceMethod("getFullYear").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_InvokeInstanceMethod>
+        Assertions.assertEquals(2024, result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_StandardLibrary_GetInstanceField() {
+        // <StandardLibrary_GetInstanceField>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType("Set").execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // get instance's field
+        InvocationContext response = instance.getInstanceField("size").execute();
+
+        // get value from response
+        int result = (int) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </StandardLibrary_GetInstanceField>
+        Assertions.assertEquals(0, result);
     }
 
     @Test
@@ -688,7 +740,6 @@ public class integrationTests {
         // invoke instance's method
         InvocationContext array = instance.invokeInstanceMethod("get2DArray").execute();
 
-
         // get array's size
         Integer size = (Integer) array.getSize().execute().getValue();
 
@@ -743,5 +794,287 @@ public class integrationTests {
         // </TestResources_2DArray_SetIndex>
         array.setIndex(new Integer[]{0, 1}, "S01").execute();
         Assertions.assertEquals("new value", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_PassingNullAsOnlyArg() {
+        // <TestResources_PassingNullAsOnlyArg>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Nodejs runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method with null
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("passNull", null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsOnlyArg>
+        Assertions.assertEquals("Method called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_PassingNullAsSecondArg() {
+        // <TestResources_PassingNullAsSecondArg>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Nodejs runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method with a non-null first argument and null as second argument
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("passNull2", 5, null).execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_PassingNullAsSecondArg>
+        Assertions.assertEquals("Method2 called with null", result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_ReturningNull() {
+        // <TestResources_ReturningNull>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Nodejs runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // invoke type's static method that returns null
+        InvocationContext response = calledRuntimeType.invokeStaticMethod("returnNull").execute();
+
+        // get value from response
+        Object result = response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_ReturningNull>
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_ExecuteAsync_AsyncMethod() throws Exception {
+        // <TestResources_ExecuteAsync_AsyncMethod>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Nodejs runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // measure start time
+        long startTime = System.currentTimeMillis();
+
+        // get type from the runtime and create instance
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // create file
+        String fileName = System.getProperty("user.home") + "/output.txt";
+        java.io.File file = new java.io.File(fileName);
+        file.createNewFile();
+
+        // invoke instance's method asynchronously
+        instance.invokeInstanceMethod("writeToFile", fileName, " This is ").executeAsync();
+        instance.invokeInstanceMethod("writeToFile", fileName, " file with ").executeAsync();
+        instance.invokeInstanceMethod("writeToFile", fileName, " sample input ").executeAsync();
+
+        // wait for asynchronous operations to finish
+        Thread.sleep(3000);
+
+        // measure end time
+        long endTime = System.currentTimeMillis();
+
+        // write elapsed time to console
+        System.out.println("Time elapsed: " + (endTime - startTime) + " ms");
+        // </TestResources_ExecuteAsync_AsyncMethod>
+        Assertions.assertTrue((endTime - startTime) < 4000);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_ExecuteAsync_SyncMethod() throws Exception {
+        // <TestResources_ExecuteAsync_SyncMethod>
+        Javonet.activate("your-license-key");
+
+        // create called runtime context using Nodejs runtime
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+        String className = "TestClass";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // measure start time
+        long startTime = System.currentTimeMillis();
+
+        // get type from the runtime
+        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+
+        // create type's instance
+        InvocationContext instance = calledRuntimeType.createInstance().execute();
+
+        // invoke instance's method asynchronously
+        instance.invokeInstanceMethod("AddThreeNumbers", 11, 12, 13).executeAsync();
+        instance.invokeInstanceMethod("AddThreeNumbers", 21, 22, 23).executeAsync();
+        instance.invokeInstanceMethod("AddThreeNumbers", 31, 32, 33).executeAsync();
+
+        // wait for async methods to finish
+        Thread.sleep(3000);
+
+        // measure end time
+        long endTime = System.currentTimeMillis();
+
+        // write result to console
+        System.out.println("Time elapsed: " + (endTime - startTime) + " ms");
+        // </TestResources_ExecuteAsync_SyncMethod>
+        Assertions.assertTrue((endTime - startTime) < 4000);
+    }
+
+//    @Test
+//    @Tag("integration")
+//    public void Test_NodejsPackage_TestResources_UseStaticMethodAsDelegate() {
+//        // <TestResources_UseStaticMethodAsDelegate>
+//        Javonet.activate("your-license-key");
+//
+//        // create called runtime context
+//        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+//
+//        // set up variables
+//        String libraryPath = resourcesDirectory + "/TestClass.js";
+//        String className = "TestClass";
+//
+//        // load custom library
+//        calledRuntime.loadLibrary(libraryPath);
+//
+//        // get type from the runtime
+//        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+//
+//        // get static method as delegate
+//        Object myFunc = calledRuntimeType.getStaticMethodAsDelegate("divideBy").execute().getValue();
+//
+//        // create type's instance
+//        InvocationContext instance = calledRuntimeType.createInstance().execute();
+//
+//        // invoke instance's method using the delegate
+//        InvocationContext response = instance.invokeInstanceMethod("useYourFunc", myFunc, 30, 6).execute();
+//
+//        // get value from response
+//        int result = (int) response.getValue();
+//
+//        // write result to console
+//        System.out.println(result);
+//        // </TestResources_UseStaticMethodAsDelegate>
+//        Assertions.assertEquals(5, result);
+//    }
+//
+//    @Test
+//    @Tag("integration")
+//    public void Test_NodejsPackage_TestResources_UseInstanceMethodAsDelegate() {
+//        // <TestResources_UseInstanceMethodAsDelegate>
+//        Javonet.activate("your-license-key");
+//
+//        // create called runtime context
+//        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+//
+//        // set up variables
+//        String libraryPath = resourcesDirectory + "/TestClass.js";
+//        String className = "TestClass";
+//
+//        // load custom library
+//        calledRuntime.loadLibrary(libraryPath);
+//
+//        // get type from the runtime
+//        InvocationContext calledRuntimeType = calledRuntime.getType(className).execute();
+//
+//        // create type's instance
+//        InvocationContext instance = calledRuntimeType.createInstance().execute();
+//
+//        // get instance method as delegate
+//        Object myFunc = instance.getInstanceMethodAsDelegate("multiplyTwoNumbers").execute().getValue();
+//
+//        // invoke instance's method using the delegate
+//        InvocationContext response = instance.invokeInstanceMethod("useYourFunc", myFunc, 5, 6).execute();
+//
+//        // get value from response
+//        int result = (int) response.getValue();
+//
+//        // write result to console
+//        System.out.println(result);
+//        // </TestResources_UseInstanceMethodAsDelegate>
+//        Assertions.assertEquals(30, result);
+//    }
+
+    @Test
+    @Tag("integration")
+    public void Test_NodejsPackage_TestResources_InvokeGlobalFunction() throws Exception {
+        // <TestResources_InvokeGlobalFunction>
+        // use activate only once in your app
+        Javonet.activate("your-license-key");
+
+        // create called runtime context
+        RuntimeContext calledRuntime = Javonet.inMemory().nodejs();
+
+        // set up variables
+        String libraryPath = resourcesDirectory + "/TestClass.js";
+
+        // load custom library
+        calledRuntime.loadLibrary(libraryPath);
+
+        // invoke global function
+        InvocationContext response = calledRuntime.invokeGlobalFunction("welcome", "John").execute();
+
+        // get value from response
+        String result = (String) response.getValue();
+
+        // write result to console
+        System.out.println(result);
+        // </TestResources_InvokeGlobalFunction>
+        Assertions.assertEquals("Hello John!", result);
     }
 }

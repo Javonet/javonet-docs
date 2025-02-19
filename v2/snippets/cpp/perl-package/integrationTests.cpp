@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "Javonet.h"
 #include <filesystem>
+#include <vector>
 
 using namespace JavonetNS::Cpp::Sdk;
 
@@ -484,5 +485,121 @@ namespace JavonetNS::Cpp::Sdk::Tests::PerlPackage {
 			return;
 		}
 		GTEST_FAIL();
+	}
+
+	TEST(Integration, Test_PerlPackage_TestResources_PassingNullAsOnlyArg) {
+		// <TestResources_PassingNullAsOnlyArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with null argument
+		auto response = calledRuntimeType->InvokeStaticMethod("pass_null", nullptr)->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsOnlyArg>
+		EXPECT_EQ("Method called with null", result);
+	}
+
+	TEST(Integration, Test_PerlPackage_TestResources_PassingNullAsSecondArg) {
+		// <TestResources_PassingNullAsSecondArg>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method with second argument as null
+		auto response = calledRuntimeType->InvokeStaticMethod("pass_null_2", { 5, nullptr })->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_PassingNullAsSecondArg>
+		EXPECT_EQ("Method2 called with null", result);
+	}
+
+	TEST(Integration, Test_PerlPackage_TestResources_ReturningNull) {
+		// <TestResources_ReturningNull>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+		auto className = "TestClass::TestClass";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// get type from the runtime
+		auto calledRuntimeType = calledRuntime->GetType(className)->Execute();
+
+		// invoke type's static method
+		auto response = calledRuntimeType->InvokeStaticMethod("return_null")->Execute();
+
+		// get value from response
+		auto result = response->GetValue();
+		// </TestResources_ReturningNull>
+		ASSERT_TRUE(result.has_value());
+		ASSERT_EQ(result.type(), typeid(std::nullptr_t));
+		auto nullValue = std::any_cast<std::nullptr_t>(result);
+		EXPECT_EQ(nullValue, nullptr);
+	}
+
+	TEST(Integration, Test_PerlPackage_TestResources_InvokeGlobalFunction) {
+		// <TestResources_InvokeGlobalFunction>
+		// use Activate only once in your app
+		Javonet::Activate("your-license-key");
+
+		// create called runtime context
+		auto calledRuntime = Javonet::InMemory()->Perl();
+
+		// set up variables
+		auto libraryPath = resourcesDirectory + "/TestClass.pm";
+
+		// load custom library
+		calledRuntime->LoadLibrary(libraryPath);
+
+		// invoke global function
+		auto response = calledRuntime->InvokeGlobalFunction("TestClass::TestClass::welcome", "John")->Execute();
+
+		// get value from response
+		auto result = std::any_cast<std::string>(response->GetValue());
+
+		// write result to console
+		std::cout << result << std::endl;
+		// </TestResources_InvokeGlobalFunction>
+		EXPECT_EQ("Hello John!", result);
 	}
 }

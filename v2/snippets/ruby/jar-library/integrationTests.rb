@@ -666,7 +666,7 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
   end
 
   it 'Test_JarLibrary_TestResources_ExceptionsFromCalledTech_InvokeStaticMethod_DivideBy_0_ThrowsException' do
-      # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
+    # <TestResources_ExceptionsFromCalledTech_InvokeStaticMethod>
     begin
       # use activate only once in your app
       Javonet.activate('your-license-key')
@@ -713,8 +713,8 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
 
     # invoke type's generic static method
     response = called_runtime_type
-               .invoke_generic_static_method('genericSampleStaticMethod', 7, 5)
-               .execute
+                 .invoke_generic_static_method('genericSampleStaticMethod', 7, 5)
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -748,8 +748,8 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
 
     # invoke type's generic method
     response = instance
-               .invoke_generic_method('genericSampleMethod', 7, 5)
-               .execute
+                 .invoke_generic_method('genericSampleMethod', 7, 5)
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -783,8 +783,8 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
 
     # invoke type's generic method
     response = instance
-               .invoke_generic_method('genericSampleMethodWithTwoTypes', 7)
-               .execute
+                 .invoke_generic_method('genericSampleMethodWithTwoTypes', 7)
+                 .execute
 
     # get value from response
     result = response.get_value
@@ -1110,4 +1110,224 @@ RSpec.describe 'Ruby To Jar Library Integration Tests' do
     expect(result1).to eq(Math::PI)
     expect(result2).to eq(299_792_458.0)
   end
+
+  it 'Test_JarLibrary_StandardLibrary_HandleSet' do
+    # <StandardLibrary_HandleSet>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # get generic class
+    hash_set_type = called_runtime.get_type("java.util.HashSet").execute
+
+    # create instance of generic class
+    hash_set = hash_set_type.create_instance.execute
+
+    # invoke instance method
+    hash_set.invoke_generic_method("add", "one").execute
+    hash_set.invoke_generic_method("add", "two").execute
+    hash_set.invoke_generic_method("add", "three").execute
+
+    # get size of set
+    response = hash_set.invoke_generic_method("size").execute
+    result = response.get_value
+
+    # write results to console
+    puts result
+    # </StandardLibrary_HandleSet>
+    expect(result).to eq(3)
+  end
+
+  it 'Test_JarLibrary_StandardLibrary_PrimitiveTypeArray' do
+    # <StandardLibrary_PrimitiveTypeArray>
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # create instance of java.lang.String with "Hello World!"
+    new_string = called_runtime.get_type("java.lang.String").create_instance("Hello World!").execute
+
+    # invoke instance method to get a byte array
+    response_bytes = new_string.invoke_instance_method("getBytes").execute
+
+    # retrieve the array of bytes
+    result = response_bytes.retrieve_array
+
+    # write results to console
+    puts result
+    # </StandardLibrary_PrimitiveTypeArray>
+    expected = [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]
+    expect(result).to eq(expected)
+  end
+
+  it 'Test_JarLibrary_TestResources_PassingNullAsOnlyArg' do
+    # <TestResources_PassingNullAsOnlyArg>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.jar"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method with nil as argument
+    response = called_runtime_type.invoke_static_method('passNull', nil).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_PassingNullAsOnlyArg>
+    expect(result).to eq('Method called with null')
+  end
+
+  it 'Test_JarLibrary_TestResources_PassingNullAsSecondArg' do
+    # <TestResources_PassingNullAsSecondArg>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.jar"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method with second argument as nil
+    response = called_runtime_type.invoke_static_method('passNull2', 5, nil).execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_PassingNullAsSecondArg>
+    expect(result).to eq('Method2 called with null')
+  end
+
+  it 'Test_JarLibrary_TestResources_ReturningNull' do
+    # <TestResources_ReturningNull>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.jar"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type from the runtime
+    called_runtime_type = called_runtime.get_type(class_name).execute
+
+    # invoke type's static method
+    response = called_runtime_type.invoke_static_method('returnNull').execute
+
+    # get value from response
+    result = response.get_value
+
+    # write result to console
+    puts result
+    # </TestResources_ReturningNull>
+    expect(result).to be_nil
+  end
+
+  it 'Test_JarLibrary_TestResources_Multithreading_InvokeInstanceMethod' do
+    # <Multithreading_InvokeInstanceMethod>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.jar"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute
+    instance = called_runtime_type.create_instance.execute
+
+    # create threads and dictionary to store responses
+    threads = {}
+    responses = {}
+
+    thread_function = Proc.new do |index|
+      response = instance.invoke_instance_method('multiplyTwoNumbers', index, 5).execute.get_value
+      responses[index] = response
+    end
+
+    # start threads
+    (0...5).each do |i|
+      threads[i] = Thread.new { thread_function.call(i) }
+    end
+
+    # wait for threads to finish
+    threads.each_value(&:join)
+
+    # write results to console
+    responses.each { |key, value| puts "#{key} * 5 = #{value}" }
+    # </Multithreading_InvokeInstanceMethod>
+
+    (0...5).each do |i|
+      expect(responses[i]).to eq(i * 5)
+    end
+  end
+
+  it 'Test_JarLibrary_TestResources_UseStaticMethodAsDelegate' do
+    # <TestResources_UseStaticMethodAsDelegate>
+    # use activate only once in your app
+    Javonet.activate('your-license-key')
+
+    # create called runtime context
+    called_runtime = Javonet.in_memory.jvm
+
+    # set up variables
+    library_path = "#{resources_directory}/TestClass.jar"
+    class_name = 'TestClass'
+
+    # load custom library
+    called_runtime.load_library(library_path)
+
+    # get type and create instance
+    called_runtime_type = called_runtime.get_type(class_name).execute
+    instance = called_runtime_type.create_instance.execute
+
+    # get static method as delegate
+    my_func = called_runtime_type.get_static_method_as_delegate("divideBy",
+                                                                called_runtime.get_type("int"), called_runtime.get_type("int")).execute
+
+    # invoke instance's method using delegate
+    response = instance.invoke_instance_method("useYourFunc", my_func, 30, 6).execute
+
+    result = response.get_value
+    puts result
+    # </TestResources_UseStaticMethodAsDelegate>
+    expect(result).to eq(5)
+  end
+
 end
