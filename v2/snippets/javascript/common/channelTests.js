@@ -2,7 +2,7 @@ const {Javonet} = require('javonet-nodejs-sdk')
 const {describe, expect, test} = require("@jest/globals");
 const path = require("path");
 const ActivationCredentials = require("../../utils/ActivationCredentials")
-const {TcpConnectionData} = require('javonet-nodejs-sdk')
+const {TcpConnectionData, WsConnectionData} = require('javonet-nodejs-sdk')
 
 describe('Nodejs channel tests', () => {
 
@@ -28,6 +28,18 @@ describe('Nodejs channel tests', () => {
         let communicationChannel = Javonet.tcp(connectionData)
         // use communicationChannel to create runtimes to interact with
         // </TcpChannel>
+        expect(communicationChannel).not.toBeNull()
+    })
+
+    test(`Test_Channel_WebSocket_Success`, () => {
+        // <WebSocketChannel>
+        // use Activate only once in your app
+        Javonet.activate(ActivationCredentials.yourLicenseKey)
+
+        let connectionData = new WsConnectionData("ws://localhost:8080/ws")
+        let communicationChannel = Javonet.webSocket(connectionData)
+        // use communicationChannel to create runtimes to interact with
+        // </WebSocketChannel>
         expect(communicationChannel).not.toBeNull()
     })
 
