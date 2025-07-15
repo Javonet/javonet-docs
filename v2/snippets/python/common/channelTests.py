@@ -28,6 +28,18 @@ def test_channel_tcp_success():
     # </TcpChannel>
     assert communication_channel is not None
 
+def test_channel_websocket_success():
+    # <WebSocketChannel>
+    # use Activate only once in your app
+    Javonet.activate(ActivationCredentials.yourLicenseKey)
+
+    from javonet.utils.connectionData.WsConnectionData import WsConnectionData
+    ws_connection_data = WsConnectionData("ws://127.0.0.1:8080/ws")
+    communication_channel = Javonet.web_socket(ws_connection_data)
+    # use communicationChannel to create runtimes to interact with
+    # </WebSocketChannel>
+    assert communication_channel is not None
+
 
 def test_channel_with_configuration_file_success():
     # <WithConfigurationFile>
