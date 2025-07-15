@@ -45,6 +45,20 @@ public class channelTests {
 
     @Test
     @Tag("integration")
+    public void Test_Channel_WebSocket_Success() throws UnknownHostException {
+        // <WebSocketChannel>
+        // use Activate only once in your app
+        Javonet.activate(ActivationCredentials.yourLicenseKey);
+
+        WsConnectionData connectionData = new WsConnectionData("ws://127.0.0.1:80/ws");
+        RuntimeFactory communicationChanel = Javonet.webSocket(connectionData);
+        // use communicationChannel to create runtimes to interact with
+        // </WebSocketChannel>
+        Assertions.assertNotNull(communicationChannel);
+    }
+
+    @Test
+    @Tag("integration")
     public void Test_Channel_WithConfigurationFile_Success() {
         // <WithConfigurationFile>
         // use Activate only once in your app

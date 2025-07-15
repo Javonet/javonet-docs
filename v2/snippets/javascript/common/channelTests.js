@@ -36,7 +36,7 @@ describe('Nodejs channel tests', () => {
         // use Activate only once in your app
         Javonet.activate(ActivationCredentials.yourLicenseKey)
 
-        let connectionData = new WsConnectionData("ws://localhost:8080/ws")
+        let connectionData = new WsConnectionData("ws://127.0.0.1:8080/ws")
         let communicationChannel = Javonet.webSocket(connectionData)
         // use communicationChannel to create runtimes to interact with
         // </WebSocketChannel>
