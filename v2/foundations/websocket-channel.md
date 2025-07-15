@@ -11,7 +11,7 @@ Javonet allows you to reference and use modules or packages written in (Java/Kot
 
 WebSocket channel is a new way of integrating with remote runtimes hosted on a different machine, container, or service. It uses WebSocket protocol (`ws://` or `wss://`) to establish communication with a remote runtime and allows secure and efficient method invocation.
 
-You can choose between in-memory (same process), TCP (remote runtime via raw socket), or WebSocket (remote runtime via WebSocket protocol) communication channels depending on your deployment scenario.
+You can choose between in-memory (same process), TCP (remote runtime over a TCP connection), or WebSocket (remote runtime via WebSocket protocol) communication channels depending on your deployment scenario.
 
 To initialize Javonet with WebSocket channel, use the following snippet:
 
