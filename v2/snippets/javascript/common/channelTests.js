@@ -48,15 +48,9 @@ describe('Nodejs channel tests', () => {
         // use Activate only once in your app
         Javonet.activate(ActivationCredentials.yourLicenseKey)
 
-        // configuration to `withConfig` method can be provided in multiple ways:
-        // - as path to JSON file (shown below),
-        // - or directly as a JavaScript object,
-        // - or as raw JSON string,
-        
-        // Set up variables
+        // set up variables
         let configFile = resourcesDirectory + "/channel-tests-config.json"
         let communicationChannel = Javonet.withConfig(configFile)
-        
         // use communicationChannel to create runtimes to interact with
         // </WithConfigurationFile>
         expect(communicationChannel).not.toBeNull()

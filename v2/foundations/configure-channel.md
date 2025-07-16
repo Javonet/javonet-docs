@@ -23,10 +23,27 @@ Example configuration file with all three channel types:
 
 :::code source="v2/snippets/commons/configuration-file/javonetconf.json":::
 
-To use this file load it using:
+To use this file, load it using:
 
 :::code
 :calling_source: v2/snippets/`{calling_technology}`/common/channelTests.`{calling_ext}`
 :calling_id: WithConfigurationFile
 :display: calling
+:::
+
+Javonet can be used both in **Node.js** and in browser-based **JavaScript** environments.  
+When using `Javonet.withConfig(...)`, you are not limited to providing a configuration file path — you can also pass:
+
+- **JavaScript object** – representing the configuration structure directly in code. 
+- **JSON string** – containing the configuration as a raw JSON-formatted string.
+
+This flexibility allows seamless integration regardless of your runtime environment.  
+You can use configuration from a file, a JavaScript object, or a JSON string depending on your use case.
+
+Below you can see a code example demonstrating how to load configuration from JavaScript object source.
+
+:::code
+:called_source: v2/snippets/`{called_technology}`common/browserConfig.`{called_ext}`
+:called_id: WithConfigurationObject
+:display: called
 :::
