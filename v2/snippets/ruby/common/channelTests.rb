@@ -28,6 +28,18 @@ RSpec.describe 'Ruby Channel Tests' do
     expect(communication_channel).not_to be_nil
   end
 
+  it 'Test_Channel_WebSocket_Success' do
+    # <WebSocketChannel>
+    # use activate only once in your app
+    Javonet.activate(ActivationCredentials.your_license_key)
+
+    connection_data = WsConnectionData.new("ws://127.0.0.1:8080/ws")
+    communication_channel = Javonet.web_socket(connectionData)
+    # use communicationChannel to create runtimes to interact with
+    # </WebSocketChannel>
+    expect(communication_channel).not_to be_nil
+  end
+
   it 'Test_Channel_WithConfigurationFile_Success' do
     # <WithConfigurationFile>
     # use activate only once in your app

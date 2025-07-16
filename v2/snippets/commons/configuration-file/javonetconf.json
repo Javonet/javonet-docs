@@ -9,16 +9,6 @@
         "channel": {
           "type": "inMemory"
         }
-      },
-      {
-        "name": "custom1",
-        "customOptions": "",
-        "modules": "",
-        "channel": {
-          "type": "tcp",
-          "host": "127.0.0.1",
-          "port": 8083
-        }
       }
     ],
     "netcore": [
@@ -31,58 +21,16 @@
           "host": "127.0.0.1",
           "port": 8080
         }
-      },
-      {
-        "name": "custom1",
-        "customOptions": "",
-        "modules": "",
-        "channel": {
-          "type": "tcp",
-          "host": "127.0.0.1",
-          "port": 8081
-        }
       }
     ],
-    "python": {
-      "name": "default",
-      "customOptions": "",
-      "modules": "",
-      "channel": {
-        "type": "inMemory"
-      }
-    },
-    "ruby": {
-      "name": "default",
-      "customOptions": "",
-      "modules": "",
-      "channel": {
-        "type": "tcp",
-        "host": "127.0.0.1",
-        "port": 8082
-      }
-    },
     "nodejs": {
       "name": "default",
       "customOptions": "",
       "modules": "",
       "channel": {
-        "type": "inMemory"
-      }
-    },
-    "clr": {
-      "name": "default",
-      "customOptions": "",
-      "modules": "",
-      "channel": {
-        "type": "inMemory"
-      }
-    },
-    "perl": {
-      "name": "default",
-      "customOptions": "",
-      "modules": "",
-      "channel": {
-        "type": "inMemory"
+        "type": "webSocket",
+        "host": "wss://127.0.0.1:443/ws",
+        "port": 0
       }
     }
   }

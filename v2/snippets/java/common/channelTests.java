@@ -2,6 +2,7 @@ package common;
 
 import com.javonet.sdk.*;
 import com.javonet.utils.connectiondata.TcpConnectionData;
+import com.javonet.utils.connectiondata.WsConnectionData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,20 @@ public class channelTests {
         RuntimeFactory communicationChannel = Javonet.tcp(connectionData);
         // use communicationChannel to create runtimes to interact with
         // </TcpChannel>
+        Assertions.assertNotNull(communicationChannel);
+    }
+
+    @Test
+    @Tag("integration")
+    public void Test_Channel_WebSocket_Success() throws UnknownHostException {
+        // <WebSocketChannel>
+        // use Activate only once in your app
+        Javonet.activate(ActivationCredentials.yourLicenseKey);
+
+        WsConnectionData connectionData = new WsConnectionData("ws://127.0.0.1:80/ws");
+        RuntimeFactory communicationChanel = Javonet.webSocket(connectionData);
+        // use communicationChannel to create runtimes to interact with
+        // </WebSocketChannel>
         Assertions.assertNotNull(communicationChannel);
     }
 
