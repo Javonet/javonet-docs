@@ -34,8 +34,10 @@ To use this file, load it using:
 Javonet can be used both in **Node.js** and in browser-based **JavaScript** environments.  
 When using `Javonet.withConfig(...)`, you are not limited to providing a configuration file path — you can also pass:
 
-- **JavaScript object** – representing the configuration structure directly in code.
-- **JSON string** – containing the configuration as a raw JSON-formatted string.
+<ul>
+  <li><strong>JavaScript object</strong> – representing the configuration structure directly in code.</li>
+  <li><strong>JSON string</strong> – containing the configuration as a raw JSON-formatted string.</li>
+</ul>
 
 This flexibility allows seamless integration regardless of your runtime environment.
 
