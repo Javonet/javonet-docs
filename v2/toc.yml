@@ -137,7 +137,7 @@ items:
   - name: Configure channel
     href: /foundations/configure-channel.md
     calling_technology: csharp, java, javascript, python, ruby, cpp, golang #, perl
-    called_technology: netframework-dll, net-dll, jar-library, nodejs-package, perl-package, python-package, ruby-package
+    called_technology: javascript
   - name: Runtime Context concept
     href: /foundations/runtime-context.md
     calling_technology: csharp, java, javascript, perl, python, ruby, cpp, golang
