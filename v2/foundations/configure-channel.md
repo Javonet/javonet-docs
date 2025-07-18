@@ -31,7 +31,7 @@ To use this file, load it using:
 :display: calling
 :::
 
-You can configure the communication channel in `{calling_name}` app in many different ways using Javonet.withConfig(...).
+You can configure the communication channel in `{calling_name}` app in many different ways using `Javonet.withConfig(...)`.
 Instead of providing only a configuration file path, you can also pass:
 
 <ul>
@@ -41,7 +41,7 @@ Instead of providing only a configuration file path, you can also pass:
 
 This flexibility allows seamless integration regardless of your runtime environment.
 
-You can use configuration from a file, a `{calling_name}` object, or a JSON string depending on your use case.
+You can use configuration from a file, a `{calling_name}` object, or a `JSON string` depending on your use case.
 
 Below you can see a code example demonstrating how to load configuration from `{calling_name}` object source.
 
