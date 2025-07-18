@@ -14,9 +14,9 @@ If you have not yet created your first project, check [Javonet overview and quic
 Javonet enables configuring the communication channel with foreign runtimes via a configuration file. Each runtime section (`jvm`, `netcore`, `nodejs`, `python`, `ruby`, `clr`, `perl`) can be configured independently with one of the supported channel types:
 
 <ul>
-  <li><a href="/guides/v2/javascript/foundations/in-memory-channel">In-Memory Channel</a> – high-performance, within-process communication</li>
-  <li><a href="/guides/v2/javascript/foundations/tcp-channel">TCP Channel</a> – for inter-process or remote communication over TCP</li>
-  <li><a href="/guides/v2/javascript/foundations/websocket-channel">WebSocket Channel</a> – ideal for browser-based or cross-platform communication</li>
+  <li><a href="/guides/v2/javascript/foundations/in-memory-channel"><strong>In-Memory Channel</strong></a> – high-performance, within-process communication</li>
+  <li><a href="/guides/v2/javascript/foundations/tcp-channel"><strong>TCP Channel</strong></a> – for inter-process or remote communication over TCP</li>
+  <li><a href="/guides/v2/javascript/foundations/websocket-channel"><strong>WebSocket Channel</strong></a> – ideal for browser-based or cross-platform communication</li>
 </ul>
 
 Example configuration file with all three channel types:
@@ -35,8 +35,8 @@ You can configure the communication channel in `{calling_name}` app in many diff
 Instead of providing only a configuration file path, you can also pass:
 
 <ul>
-  <li><strong>`{calling_name}` object</strong> – representing the configuration structure directly in code.</li>
-  <li><strong>JSON string</strong> – containing the configuration as a raw JSON-formatted string.</li>
+  <li><strong>`{calling_name}` object</strong> – representing the configuration structure directly in code</li>
+  <li><strong>JSON string</strong> – containing the configuration as a raw JSON-formatted string</li>
 </ul>
 
 This flexibility allows seamless integration regardless of your runtime environment.

@@ -8,10 +8,10 @@ using namespace JavonetNS::Cpp::Sdk;
 namespace ChannelTests {
 
     TEST(Integration, Test_Channel_WithConfigurationObject_Success) {
-        // <WithConfigurationObject>
+    // <WithConfigurationObject>
 
-        // Configuration channel object is not yet supported in C++.
+    // Configuration channel object is not yet supported in C++.
 
-        // </WithConfigurationObject>
+    // </WithConfigurationObject>
     }
 }

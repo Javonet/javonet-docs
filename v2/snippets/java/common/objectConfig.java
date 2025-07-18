@@ -10,10 +10,10 @@ public class BrowserConfigTests {
     @Tag("Integration")
     @DisplayName("Test_Channel_WithConfigurationObject_Success")
     public void Test_Channel_WithConfigurationObject_Success() {
-        // <WithConfigurationObject>
+    // <WithConfigurationObject>
 
-        // Configuration channel object is not yet supported in Java.
+    // Configuration channel object is not yet supported in Java.
 
-        // </WithConfigurationObject>
+    // </WithConfigurationObject>
     }
 }

@@ -17,11 +17,11 @@ namespace Javonet.Netcore.Sdk.Tests.common
         [Trait("Test", "Integration")]
         public void Test_Channel_WithConfigurationObject_Success()
         {
-            // <WithConfigurationObject>
+        // <WithConfigurationObject>
 
-            // Configuration channel object is not yet supported in for C#.
+        // Configuration channel object is not yet supported in C#.
 
-            // </WithConfigurationObject>
+        // </WithConfigurationObject>
         }
     }
 }
