@@ -5,7 +5,7 @@
 :keywords: Javonet, `{called_name}` WebSocket Channel, `{calling_name}`, WebSocket Communication, Remote Integration, Runtime Context, Method Invocation, Communication Channel, Static Class
 :::
 
-# WebSocket channel in `{calling_name}`
+# WebSocket channel in `{calling_name}` app
 
 Javonet allows you to reference and use modules or packages written in (Java/Kotlin/Groovy/Clojure, C#/VB.NET, Ruby, Perl, Python, JavaScript/TypeScript) like they were created in your technology. If you have not yet created your first project, check [Javonet overview and quick start guides](/guides/v2/`{calling_technology}`/`{called_technology}`/getting-started/about-javonet) for your technology.
 
