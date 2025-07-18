@@ -43,14 +43,14 @@ namespace Javonet.Netcore.Sdk.Tests.common
         [Trait("Test", "Integration")]
         public void Test_Channel_Ws_Success()
         {
-            // <WsChannel>
+            // <WebSocketChannel>
             // use Activate only once in your app
             Javonet.Activate(ActivationCredentials.yourLicenseKey);
 
             var connectionData = new WsConnectionData("ws://127.0.0.1:80");
             var communicationChannel = Javonet.WebSocket(connectionData);
             // use communicationChannel to create runtimes to interact with
-            // </WsChannel>
+            // </WebSocketChannel>
             Assert.NotNull(communicationChannel);
         }
 
