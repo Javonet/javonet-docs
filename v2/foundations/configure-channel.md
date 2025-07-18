@@ -14,9 +14,9 @@ If you have not yet created your first project, check [Javonet overview and quic
 Javonet enables configuring the communication channel with foreign runtimes via a configuration file. Each runtime section (`jvm`, `netcore`, `nodejs`, `python`, `ruby`, `clr`, `perl`) can be configured independently with one of the supported channel types:
 
 <ul>
-  <li>< <a href="/guides/v2/javascript/foundations/in-memory-channel">In-Memory Channel</a> – high-performance, within-process communication</li>
-  <li>< <a href="/guides/v2/javascript/foundations/tcp-channel">TCP Channel</a> – for inter-process or remote communication over TCP</li>
-  <li>< <a href="/guides/v2/javascript/foundations/websocket-channel">WebSocket Channel</a> – ideal for browser-based or cross-platform communication</li>
+  <li><a href="/guides/v2/javascript/foundations/in-memory-channel">In-Memory Channel</a> – high-performance, within-process communication</li>
+  <li><a href="/guides/v2/javascript/foundations/tcp-channel">TCP Channel</a> – for inter-process or remote communication over TCP</li>
+  <li><a href="/guides/v2/javascript/foundations/websocket-channel">WebSocket Channel</a> – ideal for browser-based or cross-platform communication</li>
 </ul>
 
 Example configuration file with all three channel types:
@@ -35,7 +35,7 @@ You can configure the communication channel in `{calling_name}` app in many diff
 Instead of providing only a configuration file path, you can also pass:
 
 <ul>
-  <li><strong>JavaScript object</strong> – representing the configuration structure directly in code.</li>
+  <li><strong>`{calling_name}` object</strong> – representing the configuration structure directly in code.</li>
   <li><strong>JSON string</strong> – containing the configuration as a raw JSON-formatted string.</li>
 </ul>
 
@@ -46,7 +46,7 @@ You can use configuration from a file, a `{calling_name}` object, or a JSON stri
 Below you can see a code example demonstrating how to load configuration from `{calling_name}` object source.
 
 :::code
-:calling_source: v2/snippets/`{calling_technology}`/common/channelTests.`{calling_ext}`
+:calling_source: v2/snippets/`{calling_technology}`/common/objectConfig.`{calling_ext}`
 :calling_id: WithConfigurationObject
 :display: calling
 :::
