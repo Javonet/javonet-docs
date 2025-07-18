@@ -18,9 +18,7 @@ namespace Javonet.Netcore.Sdk.Tests.common
         public void Test_Channel_WithConfigurationObject_Success()
         {
         // <WithConfigurationObject>
-
         // Configuration channel object is not yet supported in C#.
-
         // </WithConfigurationObject>
         }
     }
