@@ -14,9 +14,9 @@ If you have not yet created your first project, check [Javonet overview and quic
 Javonet enables configuring the communication channel with foreign runtimes via a configuration file. Each runtime section (`jvm`, `netcore`, `nodejs`, `python`, `ruby`, `clr`, `perl`) can be configured independently with one of the supported channel types:
 
 <ul>
-  <li><strong>In-Memory Channel</strong> – high-performance, within-process communication, <a href="/guides/v2/javascript/foundations/in-memory-channel">Learn more ›</a></li>
-  <li><strong>TCP Channel</strong> – for inter-process or remote communication over TCP, <a href="/guides/v2/javascript/foundations/tcp-channel">Learn more ›</a></li>
-  <li><strong>WebSocket Channel</strong> – ideal for browser-based or cross-platform communication, <a href="/guides/v2/javascript/foundations/websocket-channel">Learn more ›</a></li>
+  <li>< <a href="/guides/v2/javascript/foundations/in-memory-channel">In-Memory Channel</a> – high-performance, within-process communication</li>
+  <li>< <a href="/guides/v2/javascript/foundations/tcp-channel">TCP Channel</a> – for inter-process or remote communication over TCP</li>
+  <li>< <a href="/guides/v2/javascript/foundations/websocket-channel">WebSocket Channel</a> – ideal for browser-based or cross-platform communication</li>
 </ul>
 
 Example configuration file with all three channel types:
@@ -31,8 +31,8 @@ To use this file, load it using:
 :display: calling
 :::
 
-Javonet can be used both in **Node.js** and in browser-based **JavaScript** environments.  
-When using `Javonet.withConfig(...)`, you are not limited to providing a configuration file path — you can also pass:
+You can configure the communication channel in `{calling_name}` app in many different ways using Javonet.withConfig(...).
+Instead of providing only a configuration file path, you can also pass:
 
 <ul>
   <li><strong>JavaScript object</strong> – representing the configuration structure directly in code.</li>
@@ -41,9 +41,12 @@ When using `Javonet.withConfig(...)`, you are not limited to providing a configu
 
 This flexibility allows seamless integration regardless of your runtime environment.
 
-You can use configuration from a file, a JavaScript object, or a JSON string depending on your use case.
+You can use configuration from a file, a `{calling_name}` object, or a JSON string depending on your use case.
 
-Below you can see a code example demonstrating how to load configuration from JavaScript object source.
+Below you can see a code example demonstrating how to load configuration from `{calling_name}` object source.
 
-:::code source="v2/snippets/commons/configuration-file/browserConfig.js":::
-
+:::code
+:calling_source: v2/snippets/`{calling_technology}`/common/channelTests.`{calling_ext}`
+:calling_id: WithConfigurationObject
+:display: calling
+:::
