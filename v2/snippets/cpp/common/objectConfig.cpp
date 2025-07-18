@@ -9,9 +9,7 @@ namespace ChannelTests {
 
     TEST(Integration, Test_Channel_WithConfigurationObject_Success) {
     // <WithConfigurationObject>
-
     // Configuration channel object is not yet supported in C++.
-
     // </WithConfigurationObject>
     }
 }
