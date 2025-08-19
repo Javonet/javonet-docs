@@ -44,39 +44,7 @@ The `PluginImplementationRegistry` class (used later) comes from this package.
 
 ### 3. Implement the sending plugin
 
-```csharp
-using System;
-
-namespace MyApp
-{
-    public class MySendingPlugin : ICommunitySendingPlugin
-    {
-        public object Execute()
-        {
-            // 1) Get an external developer’s implementation of your custom interface.
-            //    This implementation is provided in another part of your app, registered with the plugin system.
-            var customImplementation =
-                PluginImplementationRegistry
-                    .ResolvePluginTransientImplementation<IMyCustomInterface>();
-            // Transient means: a new instance will be created every time you request it,
-            // no shared state is kept between calls.
-
-            // 2) Retrieve the plugin’s configuration settings
-            //    (usually provided by the host or from a config file)
-            var config =
-                PluginImplementationRegistry
-                    .GetPluginConfiguration<MyPluginSettings>();
-
-            // 3) Use both the implementation and configuration to build the payload.
-            //    If data cannot be created, throw an exception.
-            object payload = GetAuthDataOrThrowException(customImplementation, config);
-
-            // 4) Return the payload to the host application.
-            return payload;
-        }
-    }
-}
-```
+:::code :called_source/v2/snippets//{called_technology}/MySendingPlugin.{called_ext}
 
 **Explanation:**
 
@@ -87,14 +55,7 @@ namespace MyApp
 ### 4. Registering plugin
 Somewhare in you app you need to register your sending plugin. You can do it by:
 
-```csharp
-PluginRegistry.RegisterSendingPlugin<MySendingPlugin>(runtimeContextId);
-
-PluginImplementationRegistry.RegisterPluginTransientImplementation<IMyCustomInterface, ExternalDevImplementation>();
-
-var config = new MyPluginSettings() { ... }
-PluginImplementationRegistry.RegisterPluginConfiguration(config);
-```
+:::code :called_source/v2/snippets//{called_technology}/Registration.{called_ext}
 
 **Notes:**
 
@@ -106,26 +67,7 @@ PluginImplementationRegistry.RegisterPluginConfiguration(config);
 
 In your app create the `ISetup` interface implementation:
 
-```csharp
-namespace MyApp
-{
-    public class MySetup : ISetup
-    {
-        public void Execute()
-        {
-            PluginImplementationRegistry
-                .RegisterPluginTransientImplementation<IMyCustomCalledInterface, MyCalledImplementation>();
-
-            var config = GetSomeConfig();
-
-            PluginImplementationRegistry
-                .RegisterPluginConfiguration(config);
-
-            PluginRegistry.RegisterReceivingPlugin<MyReceivingPlugin>();
-        }
-    }
-}
-```
+:::code :called_source/v2/snippets//{called_technology}/MySetup.{called_ext}
 
 **What happens here?**
 * Register transient implementations of interfaces required by your plugin.
@@ -134,37 +76,11 @@ namespace MyApp
 
 ### 2. Add plugin implementation
 
-```csharp
-namespace MyApp
-{
-    public class MyCalledImplementation : IMyCustomCalledInterface
-    {
-        public MyPluginData DoWhatYouNeed(...)
-        {
-            {...}
-        }
-    }
-}
-```
+:::code :called_source/v2/snippets//{called_technology}/MyCalledImplementation.{called_ext}
 
 ### 3. Implement the receiving plugin
 
-```csharp
-namespace MyApp
-{
-    public class MyReceivingPlugin : ICommunityReceivingPlugin
-    {
-        public IExecutionContext Execute(object commandPayload)
-        {
-            var externalDevCode = PluginImplementationRegistry.ResolvePluginTransientImplementation<IMyCustomCalledInterface>();
-			
-			MyPluginData result = externalDevCode.DoWhatYouNeed(commandPayload)
-
-            return result;
-        }
-    }
-}
-```
+:::code :called_source/v2/snippets//{called_technology}/MyReceivingPlugin.{called_ext}
 
 **Explanation:**
 
@@ -174,12 +90,7 @@ namespace MyApp
 
 ### 4. Access plugin data in host code
 
-```csharp
-public object MyMethod(object commandPayload)
-{
-    var ctx = (MyPluginContext)ExecutionContextRegistry.GetContext();
-}
-```
+:::code :called_source/v2/snippets//{called_technology}/CallPlugin.{called_ext}
 
 **Note:** `MyPluginContext` must implement `Javonet.Netcore.Plugins.ExecutionContexts.IExecutionContext`.
 
