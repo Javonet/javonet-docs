@@ -8,7 +8,7 @@ Runtime
 # Create custom auth plugin
 
 ## Overview
-This guide explains how to create a custom authentication plugin using Javonet.Netcore.Plugins.
+This guide explains how to create a custom authentication plugin using Javonet plugins package.
 The plugin can be dynamically loaded by the host application and configured without recompiling the host.
 
 The process consists of two main parts:
@@ -24,7 +24,7 @@ The process consists of two main parts:
 
 **What this does?**
 
-You are creating a .NET Class Library project that serves as your plugin.
+You are creating a project that serves as your plugin.
 Because it’s a library, the host application can load it dynamically whenever the plugin changes.
 
 ### 2. Install Plugins package.
