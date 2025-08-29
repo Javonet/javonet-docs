@@ -1,0 +1,5 @@
+mkdir MyApp
+cd MyApp
+mkdir MyPlugin
+cd MyPlugin
+dotnet new classlib

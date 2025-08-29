@@ -1,11 +1,11 @@
 :::options
-:title: Plugin .NET Introduction
+:title: Plugin `{calling_name}` Introduction
 :description: This article provides general information about Javonet Plugins mechanism
 :keywords: Javonet, `{called_name}` About, `{calling_name}`, Language Integration, Cross-Language Communication, .NET Core, Plugin, Plugins, Authentication, Authorization, 
 Runtime
 :::
 
-# Create custom auth plugin (.NET CORE 3.1+)
+# Create custom auth plugin
 
 ## Overview
 This guide explains how to create a custom authentication plugin using Javonet.Netcore.Plugins.
@@ -19,22 +19,18 @@ The process consists of two main parts:
 ## Calling side
 
 ### 1. Create the plugin skeleton
-```bash
-mkdir MyApp
-cd MyApp
-mkdir MyPlugin
-cd MyPlugin
-dotnet new classlib
-```
+
+:::code :called_source/v2/snippets//{called_technology}/createPluginProject_terminal
+
 **What this does?**
 
 You are creating a .NET Class Library project that serves as your plugin.
 Because it’s a library, the host application can load it dynamically whenever the plugin changes.
 
-### 2. Install `Javonet.Netcore.Plugins` nuget package.
+### 2. Install Plugins package.
    
 Why this package is needed
-`Javonet.Netcore.Plugins` provides runtime mechanisms for:
+It provides runtime mechanisms for:
 
 * Loading plugin assemblies dynamically
 * Resolving plugin implementations by interface
