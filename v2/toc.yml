@@ -273,4 +273,11 @@ items:
     href: /methods-arguments/passing-arguments-by-reference-with-out-keyword.md
     calling_technology: java, python, javascript, ruby, cpp #, perl, golang
     called_technology: netframework-dll, net-dll
+
+- name: Plugins
+  items: 
+  - name: Authentication and authorization plugins
+    href: /plugins/plugin-guide.md
+    calling_technology: net-dll
+    called_technology: net-dll
   
