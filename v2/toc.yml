@@ -278,6 +278,6 @@ items:
   items: 
   - name: Authentication and authorization plugins
     href: /plugins/plugin-guide.md
-    calling_technology: csharp
+    calling_technology: net-dll
     called_technology: csharp
   

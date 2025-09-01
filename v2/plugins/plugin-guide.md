@@ -56,7 +56,7 @@ Somewhare in you app you need to register your sending plugin. You can do it by:
 **Notes:**
 
 * `runtimeContextId` comes from the `RuntimeContext` object.
-* Your `MySendingPlugin` class must inherit from `Javonet.Netcore.Plugins.Settings.BasePluginSettings`.
+* Your `MyPluginSettings` class must inherit from `BasePluginSettings`.
 
 ## Called side
 ### 1. Create the ISetup implementation
@@ -88,7 +88,7 @@ In your app create the `ISetup` interface implementation:
 
 :::code :called_source/v2/snippets//{called_technology}/CallPlugin.{called_ext}
 
-**Note:** `MyPluginContext` must implement `Javonet.Netcore.Plugins.ExecutionContexts.IExecutionContext`.
+**Note:** `MyPluginContext` must implement `IExecutionContext`.
 
 
 
